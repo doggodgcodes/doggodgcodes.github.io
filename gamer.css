@@ -6,7 +6,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     color: #C8FFFF;
-    text-shadow: 0 0 5px #00ffcc, 0 0 10px #ff0080;
+    text-shadow: 0 0 5px #000000, 0 0 10px #111111;
 }
 
 a {
