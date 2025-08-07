@@ -14,9 +14,6 @@ img {
 	overflow: hidden;
 	margin: 20px;
 }
-img:hover {
-	size: 110;
-}
 button {
 	border-color: cyan;
     background-color: #000064;
