@@ -13,6 +13,10 @@ img {
 	overflow: hidden;
 	margin: 20px;
 }
+img:hover {
+	width: 181px;
+	height: 181px;
+}
 button {
 	border-color: cyan;
     background-color: #000064;
