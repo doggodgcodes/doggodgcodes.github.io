@@ -36,3 +36,12 @@ a:hover {
 .button:hover {
     background-color: #00ffcc;
 }
+
+iframe {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    height: 600px;
+    border: none;
+}
