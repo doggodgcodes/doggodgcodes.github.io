@@ -12,10 +12,10 @@ img {
 	border-radius: 20px;
 	overflow: hidden;
 	margin: 20px;
+	transition: transform 0.3s;
 }
 img:hover {
-	width: 181px;
-	height: 181px;
+	transform: scale(1.05);
 }
 button {
 	border-color: cyan;
@@ -33,6 +33,6 @@ button {
 .text-align {
 	text-align: center;
 }
-hr {
+r {
 	margin: 10px;
 }
