@@ -36,3 +36,13 @@ button {
 r {
 	margin: 10px;
 }
+
+textarea {
+    background-color: #d6ffb0; /* soft lime green */
+    color: #212121; /* dark text */
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #b5e67d;
+}
