@@ -12,9 +12,11 @@ img {
 	border-radius: 20px;
 	overflow: hidden;
 	margin: 20px;
+}
+a {
 	transition: transform 0.3s;
 }
-img:hover {
+a:hover {
 	transform: scale(1.05);
 }
 button {
@@ -33,10 +35,6 @@ button {
 .text-align {
 	text-align: center;
 }
-r {
-	margin: 10px;
-}
-
 textarea {
     background-color: #d6ffb0; /* soft lime green */
     color: #212121; /* dark text */
