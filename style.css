@@ -12,11 +12,12 @@ img {
 	border-radius: 20px;
 	overflow: hidden;
 	margin: 20px;
+	transition: transform 0.3s;
 }
 a {
 	transition: transform 0.3s;
 }
-a:hover {
+a, img:hover {
 	transform: scale(1.05);
 }
 button {
