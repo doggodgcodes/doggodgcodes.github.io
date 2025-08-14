@@ -3,6 +3,8 @@ iframe {
 	border-radius: 20px;
 	overflow: hidden;
 	margin: 20px;
+	width: auto;
+	height: auto;
 }
 body {
 	background-color: #000064;
