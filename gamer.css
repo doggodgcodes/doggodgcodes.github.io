@@ -43,5 +43,6 @@ iframe {
     margin-right: auto;
     width: 870px;
     height: 470px;
-    border: none;
+    border: 10px solid #324fce;
+	border-radius: 20px;
 }
