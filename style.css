@@ -3,10 +3,10 @@ iframe {
 	border-radius: 20px;
 	overflow: hidden;
 	margin: 20px;
-	width: auto;
-	height: auto;
 	border: 10px solid #324fce;
 	border-radius: 20px;
+	width: auto;
+	height: auto;
 }
 body {
 	background-color: #142079;
