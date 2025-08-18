@@ -51,3 +51,6 @@ textarea {
     font-size: 16px;
     border: 1px solid #b5e67d;
 }
+.confetti {
+	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUqSog5flVqyMk7iLRehFjAxKYADdIhApGaQ&s");
+}
