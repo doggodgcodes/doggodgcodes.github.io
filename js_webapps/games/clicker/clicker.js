@@ -3,4 +3,4 @@ function clickFunction() {
 clicks++;
   document.getElementById("numberValue").textContent = clicks;
 }
-document.getElementById("btnClick").onclick = clickFunction()
+document.getElementById("btnClick").onclick = clickFunction;
