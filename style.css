@@ -57,3 +57,7 @@ textarea {
 .not-done {
 	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk1yCuOLzX749b1fv392hgSDgKKFjV3_NwLg");
 }
+.aero-panel {
+	width: auto;
+	height: auto;
+}
