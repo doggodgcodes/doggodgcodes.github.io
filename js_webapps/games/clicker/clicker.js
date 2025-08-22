@@ -1,3 +1,4 @@
+element.addEventListener("click", clickFunction);
 let clicks = 0
 function clickFunction() {
 clicks++;
