@@ -2,7 +2,7 @@ iframe {
 	border: 10px solid #324fce;
 	border-radius: 20px;
 	overflow: hidden;
-	margin: 20px;
+	margin-top: 20px;
 	width: auto;
 	height: auto;
 }
@@ -65,10 +65,12 @@ textarea {
   color: #ffffff;
   font-family: Helvetica, sans-serif;
   padding: 25px;
-  margin: 10px;
   border: 50px;
   border-radius: 0px 0px 50px 50px;
   height: 100px;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to bottom right, #663467, #9137ac);
+}
+hr {
+	margin: 20px;
 }
