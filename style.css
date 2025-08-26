@@ -71,6 +71,7 @@ textarea {
   height: 100px;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to bottom right, #663467, #9137ac);
+  align-content: center;
 }
 hr {
 	margin: 20px;
