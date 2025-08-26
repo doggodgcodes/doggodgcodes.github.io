@@ -67,10 +67,11 @@ textarea {
   padding: 25px;
   border: 50px;
   border-radius: 0px 0px 50px 50px;
+  width: 870px;
   height: 100px;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to bottom right, #663467, #9137ac);
 }
 hr {
-	margin: 20px; /* infobox needs room */
+	margin: 20px;
 }
