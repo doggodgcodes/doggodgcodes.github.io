@@ -72,5 +72,5 @@ textarea {
   background-image: linear-gradient(to bottom right, #663467, #9137ac);
 }
 hr {
-	margin: 20px;
+	margin: 20px; /* infobox needs room */
 }
