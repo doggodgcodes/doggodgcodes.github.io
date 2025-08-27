@@ -9,16 +9,6 @@ h1, h2, h3, h4, h5, h6 {
     text-shadow: 0 0 5px #000000, 0 0 10px #111111;
 }
 
-a {
-    color: #ffcc00;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: #00ffcc;
-}
-
 .button {
     background-color: #ff0080;
     border: none;
