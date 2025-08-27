@@ -21,9 +21,14 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 10px;
 }
 a {
-	transition: transform 0.3s;
+    color: #ffcc00;
+    text-decoration: none;
+    transition: color 0.3s;
 }
-a, img:hover {
+a:hover {
+    color: #d48101;
+}
+img:hover {
 	transform: scale(1.05);
 }
 button {
