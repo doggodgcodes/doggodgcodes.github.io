@@ -66,6 +66,9 @@ textarea {
 	width: auto;
 	height: auto;
 }
+.lighttext {
+	color: #c8ffff;
+}
 #infobox {
   color: #ffffff;
   font-family: Helvetica, sans-serif;
