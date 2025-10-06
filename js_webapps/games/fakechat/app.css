@@ -1,6 +1,7 @@
 body {
   background-color: #e1e4c7;
   align-content: center;
+  padding: 25px;
 }
 .fakechat-msgbox {
   border: 3px solid #82c396;   /* github copilot helped fix my css */
