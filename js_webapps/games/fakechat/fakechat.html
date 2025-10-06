@@ -4,13 +4,30 @@
     <title>Fakechat - doggodgcodes</title>
     <link rel="stylesheet" type="text/css" media="all" href="../../../style.css">
     <link rel="stylesheet" type="text/css" media="all" href="app.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Doto:wght@100..900&family=Noto+Sans+Lao:wght@100..900" rel="stylesheet">
+<style>  
+.noto-lao {
+  font-family: "Noto Sans Lao", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+.dm-serif {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
 </head>
 <body>
-    <h1>Fakechat</h1>
-    <form>
+    <h1 class="dm-serif">Fakechat</h1>
+    <form class="fakechat-msgbox">
         <div>
-            <label for="fname">first name:</label>
-            <input type="text" id="fname" name="fname" placeholder="Send a message..." required>
+            <input type="text" class="noto-lao" placeholder="Send a message..." required>
         </div>
     </form>
 </body>
