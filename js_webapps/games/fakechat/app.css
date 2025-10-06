@@ -3,14 +3,7 @@ body {
   align-content: center;
 }
 .fakechat-msgbox {
-  border: 25px;
-  border-radius: 50px;
-  border-color: #bcc382;
-  background-color: #c7e4d0;
-  color: brown;
-}
-.fakechat-msgbox-copilot-revision {
-  border: 3px solid #bcc382;   /* border thickness, style, and color */
+  border: 3px solid #bcc382;   /* github copilot helped fix my css */
   border-radius: 50px;
   background-color: #c7e4d0;
   color: brown;
