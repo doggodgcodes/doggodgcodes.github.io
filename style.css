@@ -1,10 +1,9 @@
 iframe {
-	border: 10px solid #324fce;
-	border-radius: 20px;
 	overflow: hidden;
 	margin-top: 20px;
 	width: auto;
 	height: auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 body {
 	background-color: #142079;
