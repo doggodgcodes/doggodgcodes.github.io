@@ -1,4 +1,5 @@
 iframe {
+	border-radius: 20px;
 	overflow: hidden;
 	margin-top: 20px;
 	width: auto;
