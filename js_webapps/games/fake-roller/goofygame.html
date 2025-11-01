@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goofy ahh prize roller - doggodgcodes</title>
+	<link rel="icon" type="image/png" href="https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo">
+  <style>
+    :root{
+      --bg-start: #f7f8ff;
+      --bg-end: #fffaf6;
+      --panel-start: #fef9ff;
+      --panel-end: #f7fff6;
+      --accent: #c6e7ff;
+      --accent-2: #ffd7e6;
+      --muted: #6b6b75;
+      --shadow: 0 8px 24px rgba(18, 20, 45, 0.08);
+			--bigshadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      --radius: 15px;
+			--padding: 20px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px;
+      color:#222;
+    }
+
+    /* Mini window */
+    .mini-window{
+      position: absolute;
+      width: 340px;
+      max-width: calc(100% - 40px);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--panel-start), var(--panel-end));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      user-select: none;
+      transform: translate(0,0);
+      transition: box-shadow 220ms ease;
+      border: 1px solid rgba(255,255,255,0.6);
+			padding: var(--padding);
+    }
+
+    /* Header */
+    .mini-header{
+      padding: 16px 18px;
+      cursor: grab;
+      background: linear-gradient(180deg, rgba(198,231,255,0.45), rgba(255,215,230,0.35));
+      backdrop-filter: blur(6px);
+      display:flex;
+      align-items:center;
+      gap:10px;
+			border-radius: var(--radius);
+    }
+    .mini-header:active{ cursor:grabbing }
+
+    .mini-header h1{
+      margin:0;
+      font-size:14px;
+      line-height:1;
+      font-weight:700;
+      letter-spacing:0.2px;
+      color: #172032;
+    }
+
+    /* Body */
+    .mini-body{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .info{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Buttons */
+    .buttons{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:600;
+      font-size:13px;
+      color:#123;
+      cursor:pointer;
+      background: linear-gradient(90deg, rgba(198,231,255,0.95), rgba(255,215,230,0.95));
+      transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
+    }
+    .btn:active{
+			transform: translateY(1px) scale(0.997)
+			box-shadow: var(--shadow);
+		}
+    .btn:hover{
+			transform: translateY(-3px)
+		}
+    .btn:focus{
+			box-shadow: var(--bigshadow);
+		}
+
+    /* Footer */
+    .mini-footer{
+      padding: 12px 18px;
+      border-top: 1px solid rgba(18,20,45,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* small screen tweaks */
+    @media (max-width:420px){
+      .mini-window{ width: calc(100% - 32px); left:16px !important; right:16px !important; }
+      .mini-header h1{ font-size:13px }
+    }
+  </style>
+</head>
+<body>
+  <div class="mini-window" id="miniWindow" role="dialog" aria-label="goofy ahh">
+    <header class="mini-header" id="miniHeader" aria-hidden="false">
+      <h1>Goofy ahh prize roller - THIS IS JUST A GAME YOU CAN'T WIN REAL PRIZES</h1>
+    </header>
+
+    <main class="mini-body">
+      <p class="info">Lol</p>
+			<h3 id="rollContent">You have not rolled yet</h3>
+      <div class="buttons" role="group" aria-label="roll">
+        <button class="btn" id="roll" onclick="onRoll()">Roll goofy ahh</button>
+      </div>
+    </main>
+
+    <footer class="mini-footer">Made by doggodgcodes and UI by GitHub Copilot</footer>
+  </div>
+	<script src="script.js"></script>
+</body>
+</html>
