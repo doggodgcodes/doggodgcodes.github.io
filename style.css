@@ -107,3 +107,6 @@ hr {
 .btncandy:hover{
 	transform: translateY(-3px)
 }
+.opz {
+	opacity: 0.5;
+}
