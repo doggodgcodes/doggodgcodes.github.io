@@ -37,76 +37,34 @@
     <h2>Well, MY Games are not ready yet, still half-baked.</h2>
   </div>
   <hr>
-  <h1>CrazyGames</h1>
-  <iframe src="https://www.crazygames.com/embed/bloxdhop-io" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>WASD and space its like minecraft</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/find-the-pets-cph" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Find The Pets, use wasd/touch to move to find the pets</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/space-waves" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>It is the gd wave click/tap to go up when you dont you go down</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/crazy-office-slap-and-smash" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>use your mouse to move</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/capybara-clicker" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>Do I need to explain this one? Click. CLICK.</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/bloxorz" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Bloxorz, use arrow keys to move to solve puzzles (CERTIFIED HOOD CLASSIC)</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/2048" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In 2048, use arrow keys to move</h1>
-  </div>
-  <iframe src="https://games.crazygames.com/en_US/moto-x3m/index.html" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Moto X3M, use WASD or arrow keys to move and press R to restart the game!</h1>
-  </div>
-  <iframe src="https://crazygames.com/embed/ragdoll-archers" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Ragdoll Archers, mouse/touch (hold) to aim and release your click/touch to well, release! In 2 player mode, use WASD (P1) or arrow keys (P2) to use the bow</h1>
-  </div>
-    <iframe src="https://www.crazygames.com/embed/block-puzzle-master" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Block Blast Knockoff, hold down and drag block to screen.</h1>
-  </div>
-    <iframe src="https://www.crazygames.com/embed/arkadium-s-bubble-shooter" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Bubble, throw bubbles at bubbles the same color.</h1>
-  </div>
-    <iframe src="https://www.crazygames.com/embed/tap-tap-shots" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>tap tap</h1>
-  </div>
-    <iframe src="https://www.crazygames.com/embed/slice-master" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>tap</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/maxwell-clicker" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Maxwell the Cat Clicker, click on the Maxwell and get upgrades</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/kitty-clickler" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Kitty Clicker, click on the cat and get upgrades</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/chicken-clicker" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In Chicken Clicker, click on the chicken and get upgrades (@MineChicken98 on YT if your playing this... lol)</h1>
-  </div>
-  <iframe src="https://www.crazygames.com/embed/italian-brainrot-clicker-usp" frameborder="0" allow="gamepad *;"></iframe>
-  <div id="infobox">
-    <h1>In "the clicker i wont say bc uhh" Clicker, click on the oof and get upgrades</h1>
-  </div>
+  
+  <h1>CrazyGames (now limited to dropdown for your safety)</h1>
+    <select id="gameSelector" aria-label="Select game">
+    <option value="">Select a game...</option>
+    <option value="bloxdhop">BloxdHop.io</option>
+    <option value="findpets">Find The Pets</option>
+    <option value="spacewaves">Space Waves</option>
+    <option value="officeslap">Crazy Office Slap</option>
+    <option value="capybara">Capybara Clicker</option>
+    <option value="bloxorz">Bloxorz</option>
+    <option value="game2048">2048</option>
+    <option value="motox3m">Moto X3M</option>
+    <option value="ragdoll">Ragdoll Archers</option>
+    <option value="blockblast">Block Blast Knockoff</option>
+    <option value="bubble">Bubble Shooter</option>
+    <option value="taptap">Tap Tap Shots</option>
+    <option value="slicemaster">Slice Master</option>
+    <option value="maxwell">Maxwell Clicker</option>
+    <option value="kitty">Kitty Clicker</option>
+    <option value="chicken">Chicken Clicker</option>
+    <option value="italian">Italian Brainrot Clicker</option>
+  </select>
+
+  <button id="collapseBtn">Collapse All</button>
+
+  <div id="gameContainer" aria-live="polite"></div>
   <hr>
+
   <h1>PigSquiggle!!!!</h1>
   <a href="https://pigsquiggle.netlify.app">
     <img src="https://pigsquiggle.netlify.app/images/Full%20pig%20pfp.png" style=" width: 176px; height: 176px;">
@@ -135,9 +93,7 @@
     <h1>Use the Kool new cursor and click</h1>
   </div>
  <hr>
-  <h1>Chrome Dino Game</h1>
-  <iframe src="https://chromedino.com/" frameborder="0" scrolling="no" width="100%" height="100%" loading="lazy" style="iframe { position: absolute; width: 100%; height: 100%; z-index: 999; }" ></iframe>
-  <hr>
+  
   <h1>Scratch Games</h1>
   <iframe src="https://scratch.mit.edu/projects/1202221465/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
   <iframe src="https://scratch.mit.edu/projects/1184435795/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
@@ -150,4 +106,89 @@
   <iframe src="https://scratch.mit.edu/projects/946052650/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
   <iframe src="https://scratch.mit.edu/projects/943997950/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen="true"></iframe>
   <hr>
+  <script aria-label="GPT 5 made this JS">
+/* ==== trusted game list ==== */
+const games = {
+  bloxdhop: {
+    src: "https://www.crazygames.com/embed/bloxdhop-io",
+    desc: "WASD and space — it's like Minecraft!"
+  },
+  findpets: {
+    src: "https://www.crazygames.com/embed/find-the-pets-cph",
+    desc: "Use WASD/touch to move and find the pets."
+  },
+  spacewaves: {
+    src: "https://www.crazygames.com/embed/space-waves",
+    desc: "Click or tap to go up; when you don't, you go down."
+  },
+  motox3m: {
+    src: "https://games.crazygames.com/en_US/moto-x3m/index.html",
+    desc: "Use WASD or arrow keys to move and press R to restart."
+  },
+  ragdoll: {
+    src: "https://crazygames.com/embed/ragdoll-archers",
+    desc: "Mouse/touch to aim and shoot. 2-player: WASD + arrows."
+  },
+  capybara: {
+    src: "https://www.crazygames.com/embed/capybara-clicker",
+    desc: "Click on the Capybara and buy upgrades."
+  }
+};
+
+/* ==== get UI elements ==== */
+const selector = document.getElementById("gameSelector");
+const collapseBtn = document.getElementById("collapseBtn");
+const container = document.getElementById("gameContainer");
+
+/* ==== helper to safely build a game block ==== */
+function createGameBlock(game) {
+  const wrapper = document.createElement("div");
+
+  const iframe = document.createElement("iframe");
+  iframe.src = game.src;
+  iframe.width = "870";
+  iframe.height = "500";
+  iframe.className = "game-frame";
+
+  /* 🧱 privacy + security */
+  iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-gamepad");
+  iframe.setAttribute("referrerpolicy", "no-referrer");
+  iframe.setAttribute("frameborder", "0");
+  iframe.setAttribute("allow", "gamepad *;");
+
+  const info = document.createElement("div");
+  info.className = "infobox";
+
+  const text = document.createElement("h1");
+  text.textContent = game.desc;
+
+  info.appendChild(text);
+  wrapper.appendChild(iframe);
+  wrapper.appendChild(info);
+
+  const hr = document.createElement("hr");
+  wrapper.appendChild(hr);
+
+  return wrapper;
+}
+
+/* ==== handle dropdown change ==== */
+selector.addEventListener("change", () => {
+  // clear previous
+  while (container.firstChild) container.removeChild(container.firstChild);
+
+  const key = selector.value;
+  if (!key || !games[key]) return;
+
+  const gameNode = createGameBlock(games[key]);
+  container.appendChild(gameNode);
+});
+
+/* ==== collapse button ==== */
+collapseBtn.addEventListener("click", () => {
+  while (container.firstChild) container.removeChild(container.firstChild);
+  selector.value = "";
+});
+</script>
+
 </body>
