@@ -37,3 +37,10 @@ iframe {
     border: 10px solid #324fce;
 	border-radius: 20px;
 }
+
+#gameSelector, #collapseBtn {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+}
