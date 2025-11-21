@@ -1,0 +1,162 @@
+# Deploy to GitHub Pages for user site doggodgcodes.github.io with automatic retry loops.
+# - Repo: doggodgcodes/doggodgcodes.github.io (user site). Pages will be served from the target branch (default: main).
+# - This version does NOT install Node.js (you said you only edit in the browser).
+# - deploy.yml was made by GitHub Copilot.
+# - Configure these env vars in this file if you need to change them:
+#     BUILD_COMMAND: set to your build command (e.g., "hugo", "jekyll build" or leave empty if no build)
+#     OUTPUT_DIR: directory containing built site (default: public). If your site files are already in repo root, set to ".".
+#     TARGET_BRANCH: branch Pages serves from (default: main).
+#     MAX_RETRIES: 0 = infinite retry, >0 = maximum attempts (default: 5).
+#     RETRY_DELAY_SECONDS: initial delay between retries (default: 10).
+#
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build and deploy (with retry)
+    runs-on: ubuntu-latest
+    env:
+      BUILD_COMMAND: ""            # leave empty if no build step is needed
+      OUTPUT_DIR: public
+      TARGET_BRANCH: main
+      MAX_RETRIES: 5
+      RETRY_DELAY_SECONDS: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build site (retry loop)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          BUILD_CMD="${BUILD_COMMAND}"
+          MAX="${MAX_RETRIES}"
+          DELAY="${RETRY_DELAY_SECONDS}"
+          attempt=0
+
+          echo "Build command: '${BUILD_CMD}'"
+          if [ -z "${BUILD_CMD}" ]; then
+            echo "No build command specified; assuming static files already in ${OUTPUT_DIR}"
+          else
+            while true; do
+              attempt=$((attempt+1))
+              echo "=== Build attempt ${attempt} ==="
+              if bash -lc "${BUILD_CMD}"; then
+                echo "Build succeeded on attempt ${attempt}"
+                break
+              else
+                echo "Build failed on attempt ${attempt}"
+                if [ "${MAX}" -ne 0 ] && [ "${attempt}" -ge "${MAX}" ]; then
+                  echo "Reached max build attempts (${MAX}). Failing job."
+                  exit 1
+                fi
+                echo "Sleeping ${DELAY} seconds before retrying build..."
+                sleep "${DELAY}"
+                DELAY=$((DELAY * 2))
+                if [ "${DELAY}" -gt 3600 ]; then
+                  DELAY=3600
+                fi
+              fi
+            done
+          fi
+
+      - name: Verify built output exists
+        run: |
+          if [ "${OUTPUT_DIR}" = "." ]; then
+            echo "Using repository root as OUTPUT_DIR"
+          else
+            if [ ! -d "${OUTPUT_DIR}" ]; then
+              echo "ERROR: build output directory '${OUTPUT_DIR}' does not exist."
+              echo "Contents of repo:"
+              ls -la
+              exit 1
+            fi
+            echo "Found build output in '${OUTPUT_DIR}'"
+          fi
+
+      - name: Deploy built output to ${TARGET_BRANCH} (retry loop)
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          TARGET_BRANCH="${TARGET_BRANCH}"
+          OUTPUT_DIR="${OUTPUT_DIR}"
+          MAX="${MAX_RETRIES}"
+          DELAY="${RETRY_DELAY_SECONDS}"
+          ATTEMPT=0
+
+          REPO="https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git"
+          DEPLOY_BRANCH="gh-pages-deploy-temp-$(date +%s)-${GITHUB_RUN_ID}"
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo "Deploy target branch: ${TARGET_BRANCH}"
+          echo "Using temporary deploy branch: ${DEPLOY_BRANCH}"
+
+          while true; do
+            ATTEMPT=$((ATTEMPT+1))
+            echo "=== Deploy attempt ${ATTEMPT} ==="
+
+            # Fetch latest target branch (if it exists)
+            git fetch --prune origin +refs/heads/${TARGET_BRANCH}:refs/remotes/origin/${TARGET_BRANCH} || true
+
+            # Create an orphan branch to compose the publish tree
+            git checkout --orphan "${DEPLOY_BRANCH}"
+
+            # Remove all files from index and working tree
+            git rm -rf . || true
+
+            # Copy build output into repo root (handle OUTPUT_DIR="." case)
+            if [ "${OUTPUT_DIR}" = "." ]; then
+              echo "Deploying repository root contents to ${TARGET_BRANCH}"
+              cp -a . .
+            else
+              echo "Copying '${OUTPUT_DIR}' contents to repo root"
+              cp -a "${OUTPUT_DIR}/." .
+            fi
+
+            # Ensure .nojekyll so Pages doesn't ignore files that start with underscore
+            if [ ! -f .nojekyll ]; then
+              touch .nojekyll
+            fi
+
+            git add -A
+            # Allow empty commits (in case site didn't change)
+            git commit -m "Deploy site: ${GITHUB_SHA} (run ${GITHUB_RUN_ID})" || true
+
+            echo "Pushing to ${TARGET_BRANCH}..."
+            if git push --force "${REPO}" "HEAD:${TARGET_BRANCH}"; then
+              echo "Deploy push succeeded on attempt ${ATTEMPT}"
+              git checkout --detach
+              break
+            else
+              echo "Deploy push failed on attempt ${ATTEMPT}"
+              if [ "${MAX}" -ne 0 ] && [ "${ATTEMPT}" -ge "${MAX}" ]; then
+                echo "Reached max deploy attempts (${MAX}). Failing job."
+                exit 1
+              fi
+              echo "Sleeping ${DELAY} seconds before retrying deploy..."
+              sleep "${DELAY}"
+              DELAY=$((DELAY * 2))
+              if [ "${DELAY}" -gt 3600 ]; then
+                DELAY=3600
+              fi
+              # Reset state for next attempt
+              git reset --hard || true
+              git checkout --detach || true
+            fi
+          done
+
+      - name: Final info
+        run: |
+          echo "Deployment finished. Pages should be served at https://doggodgcodes.github.io (if repository is named doggodgcodes.github.io and Pages is set to use the ${TARGET_BRANCH} branch)."
