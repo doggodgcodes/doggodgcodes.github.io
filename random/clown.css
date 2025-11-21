@@ -1,0 +1,11 @@
+body {
+  background-image: url('https://doggodgcodes.github.io/assets/bg/clown.jpg');
+            background-size: cover; /* Ensure the image covers the whole page */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent the image from repeating */
+            height: 100vh; /* Make sure the body takes the full height of the viewport */
+            margin: 0; /* Remove default margin */
+}
+h1, h2, h3, h4, h5, h6, p {
+  color: white;
+}
