@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BUILD_COMMAND: ""            # leave empty if no build step is needed
-      OUTPUT_DIR: public
+      OUTPUT_DIR: web
       TARGET_BRANCH: main
       MAX_RETRIES: 5
       RETRY_DELAY_SECONDS: 10
