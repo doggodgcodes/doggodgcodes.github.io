@@ -75,6 +75,9 @@ jobs:
             if [ ! -d "${OUTPUT_DIR}" ]; then
               echo "ERROR: build output directory '${OUTPUT_DIR}' does not exist."
               echo "Contents of repo:"
+              - name: Ensure build output directory exists
+              run: |
+                mkdir -p "${OUTPUT_DIR}"
               ls -la
               exit 1
             fi
