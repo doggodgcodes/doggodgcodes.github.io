@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'DG Dingus';
+    src: url('../dg-dingus-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.dingusfont {
+    font-family: 'DG Dingus', sans-serif;
+}
