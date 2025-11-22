@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'DG Moonrunes';
+    src: url('../dg-moonrunes-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.moonrunesfont {
+    font-family: 'DG Moonrunes', sans-serif;
+}
