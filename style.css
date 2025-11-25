@@ -1,3 +1,5 @@
+@import url("https://doggodgcodes.github.io/assets/fonts/css/dg-dingus.css");
+
 body {
 	background-color: #142079;
 	padding: 25px;
@@ -110,4 +112,9 @@ hr {
 }
 .opz {
 	opacity: 0.5;
+}
+.download-yum {
+    background: #28a745;
+    color: white;
+	font-family: "DG Dingus", sans-serif;
 }
