@@ -1,0 +1,308 @@
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container {
+                max-width: 1200px;
+                width: 100%;
+            }
+
+            h1 {
+                text-align: center;
+                color: #fff;
+                font-size: 56px;
+                margin-bottom: 20px;
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+                animation: bounce 2s ease-in-out infinite;
+            }
+
+            @keyframes bounce {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+
+            .subtitle {
+                text-align: center;
+                color: #fff;
+                font-size: 24px;
+                margin-bottom: 50px;
+                opacity: 0.95;
+            }
+
+            .channels-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+
+            .channel-card {
+                background: white;
+                border-radius: 20px;
+                padding: 40px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+                text-align: center;
+                transition:
+                    transform 0.3s,
+                    box-shadow 0.3s;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .channel-card::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    45deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.1),
+                    transparent
+                );
+                transform: rotate(45deg);
+                animation: shine 3s infinite;
+            }
+
+            @keyframes shine {
+                0% {
+                    left: -50%;
+                }
+                100% {
+                    left: 150%;
+                }
+            }
+
+            .channel-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            }
+
+            .channel-icon {
+                font-size: 100px;
+                margin-bottom: 20px;
+                animation: float 3s ease-in-out infinite;
+            }
+
+            @keyframes float {
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-15px);
+                }
+            }
+
+            .channel-card:nth-child(1) .channel-icon {
+                animation-delay: 0s;
+            }
+
+            .channel-card:nth-child(2) .channel-icon {
+                animation-delay: 0.5s;
+            }
+
+            .channel-name {
+                font-size: 32px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+            .channel-description {
+                font-size: 16px;
+                color: #666;
+                margin-bottom: 30px;
+                line-height: 1.6;
+            }
+
+            .subscribe-btn {
+                display: inline-block;
+                background: #ff0000;
+                color: white;
+                padding: 18px 40px;
+                font-size: 20px;
+                font-weight: bold;
+                text-decoration: none;
+                border-radius: 50px;
+                transition: all 0.3s;
+                box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .subscribe-btn::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: translate(-50%, -50%);
+                transition:
+                    width 0.6s,
+                    height 0.6s;
+            }
+
+            .subscribe-btn:hover::before {
+                width: 300px;
+                height: 300px;
+            }
+
+            .subscribe-btn:hover {
+                background: #cc0000;
+                transform: scale(1.1);
+                box-shadow: 0 8px 30px rgba(255, 0, 0, 0.6);
+            }
+
+            .subscribe-btn span {
+                position: relative;
+                z-index: 1;
+            }
+
+            .bell-icon {
+                display: inline-block;
+                margin-left: 8px;
+                animation: ring 2s ease-in-out infinite;
+            }
+
+            @keyframes ring {
+                0%,
+                100% {
+                    transform: rotate(0deg);
+                }
+                10%,
+                30% {
+                    transform: rotate(-10deg);
+                }
+                20%,
+                40% {
+                    transform: rotate(10deg);
+                }
+                50% {
+                    transform: rotate(0deg);
+                }
+            }
+
+            .reasons {
+                background: rgba(255, 255, 255, 0.95);
+                border-radius: 20px;
+                padding: 40px;
+                text-align: center;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            }
+
+            .reasons h2 {
+                font-size: 36px;
+                color: #333;
+                margin-bottom: 30px;
+            }
+
+            .reasons-list {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                text-align: left;
+            }
+
+            .reason-item {
+                background: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                border-left: 5px solid #667eea;
+            }
+
+            .reason-item::before {
+                content: "✓";
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                background: #667eea;
+                color: white;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 30px;
+                margin-right: 10px;
+                font-weight: bold;
+            }
+
+            .footer {
+                text-align: center;
+                margin-top: 50px;
+                color: white;
+                font-size: 18px;
+                opacity: 0.9;
+            }
+
+            .counter {
+                display: inline-block;
+                font-size: 48px;
+                font-weight: bold;
+                color: #ffd700;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                margin: 0 10px;
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 36px;
+                }
+
+                .subtitle {
+                    font-size: 18px;
+                }
+
+                .channels-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .channel-icon {
+                    font-size: 80px;
+                }
+
+                .channel-name {
+                    font-size: 24px;
+                }
+
+                .reasons h2 {
+                    font-size: 28px;
+                }
+            }
+
+            .pulse {
+                animation: pulse 2s ease-in-out infinite;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.05);
+                }
+            }
+        
