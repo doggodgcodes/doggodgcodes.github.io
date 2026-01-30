@@ -33,3 +33,7 @@ checkNewsUpdate("10-31", "🎃 Halloween time! 🎃");
 checkNewsUpdate("01-30", "🚀 News banner testing! 🚀");
 
 checkNewsUpdate("08-07", "another year of this site");
+
+checkNewsUpdate("12-31", "NEW YEAR");
+
+checkNewsUpdate("01-01", "NEW YEAR");
