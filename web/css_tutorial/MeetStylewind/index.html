@@ -1,6 +1,6 @@
 <!doctype html>
 <head>
-    <title>Stylewind - DG Web</title>
+    <title>Stylewind - DG Web (newer, better page for Stylewind)</title>
     <link rel="stylesheet" type="text/css" media="all" href="https://idiotspeed.neocities.org/style.css">
     <link rel="stylesheet" type="text/css" media="all" href="../../../style.css">
     <link rel="icon" type="image/png" href="https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo">
@@ -9,5 +9,27 @@
     <h1><strong>Stylewind</strong></h1>
     <p>Stylewind is a new tool by DoggoDGCodes that introduces basic CSS classes such as <small>r, o, y, g, b, i, v, opz, box-shadow</small>.
     <br>
-    The ROYGBIV color spectrum only includes <em>background colors</em></p>
+    The ROYGBIV color spectrum only includes <em>background colors</em> and also, the copy button is made mostly by Google Gemini</p>
+    <textarea readonly id="copyInput"> <script src="https://doggodgcodes.github.io/web/css_tutorial/MeetStylebuilder/builder.js"></script> 
+        <link rel="stylesheet" href="https://doggodgcodes.github.io/web/css_tutorial/MeetStylebuilder/base.css">
+    </textarea>
+
+<button onclick="copyFunction()">Copy Code</button>
+
+<script>
+function copyFunction() {
+  // Get the text field
+  var copyText = document.getElementById("copyInput");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the user (Optional - you can change this to a console.log)
+  alert("Copied to clipboard: " + copyText.value);
+}
+</script>
 </body>
