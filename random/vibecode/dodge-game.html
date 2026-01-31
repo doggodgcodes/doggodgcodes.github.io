@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Dodge Game - vibecoded with chatgpt</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            background: linear-gradient(to bottom, #87ceeb, #4682b4); /* Blue gradient */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const images = [
+            'https://doggodgcodes.github.io/assets/DGGAMES.png',
+            'https://doggodgcodes.github.io/assets/screenshot.png',
+            'https://doggodgcodes.github.io/assets/memes/Banky.webp',
+            'https://doggodgcodes.github.io/assets/dg-games-half-hd.png',
+            'https://doggodgcodes.github.io/assets/dg-memes-half-hd.png',
+            'https://owendallasread.com/bananazon/banana1.jpg', // Sample image from Banana Stock
+            'https://owendallasread.com/bananazon/banana2.jpg'  // Sample image from Banana Stock
+        ];
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let playerY = canvas.height / 2;
+        const playerWidth = 50;
+        const playerHeight = 50;
+        const playerX = 75; // Player is 75px away from the left
+
+        let bullets = [];
+
+        const mouseMoveHandler = (e) => {
+            playerY = e.clientY;
+        };
+
+        // Player object
+        const player = {
+            x: playerX,
+            y: playerY,
+            width: playerWidth,
+            height: playerHeight,
+            color: 'limegreen',
+        };
+
+        // Bullet object
+        class Bullet {
+            constructor(imgSrc) {
+                this.img = new Image();
+                this.img.src = imgSrc;
+                this.width = 50 + Math.random() * 20;
+                this.height = 50 + Math.random() * 20;
+                this.x = Math.random() * canvas.width;
+                this.y = -this.height;
+                this.speed = 3 + Math.random() * 4;
+            }
+
+            move() {
+                this.y += this.speed;
+            }
+
+            draw() {
+                ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+            }
+
+            checkCollision() {
+                if (
+                    this.x < player.x + player.width &&
+                    this.x + this.width > player.x &&
+                    this.y < player.y + player.height &&
+                    this.y + this.height > player.y
+                ) {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        // Create bullets at random intervals
+        setInterval(() => {
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            const newBullet = new Bullet(randomImage);
+            bullets.push(newBullet);
+        }, 800);
+
+        // Main game loop
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw background (gradient)
+            ctx.fillStyle = 'rgba(135, 206, 235, 0.5)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw player
+            player.y = playerY;
+            ctx.fillStyle = player.color;
+            ctx.fillRect(player.x, player.y, player.width, player.height);
+
+            // Move and draw bullets
+            for (let i = bullets.length - 1; i >= 0; i--) {
+                bullets[i].move();
+                bullets[i].draw();
+
+                // Check for collision
+                if (bullets[i].checkCollision()) {
+                    alert('Game Over!');
+                    window.location.reload(); // Reload the page for restarting
+                }
+
+                // Remove bullets that go off-screen
+                if (bullets[i].y > canvas.height) {
+                    bullets.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        window.addEventListener('mousemove', mouseMoveHandler);
+        gameLoop();
+    </script>
+</body>
+</html>
