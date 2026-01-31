@@ -22,18 +22,16 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
 // HOW TO USE THE MAGIC:
 // Just put the Month and the Day. The script handles the year!
 // checkNewsUpdate("MM-DD", "Your Epic Message");
-
-// Example: Updates the banner on Christmas Day!
-checkNewsUpdate("12-25", "🌲 Christmas time! 🌲");
-
-// Example: Updates the banner for Halloween!
-checkNewsUpdate("10-31", "🎃 Halloween time! 🎃");
-
+checkNewsUpdate("01-01", "NEW YEAR");
 // Example: Updates for the banner test!
 checkNewsUpdate("01-30", "🚀 News banner testing! 🚀");
 
 checkNewsUpdate("08-07", "another year of this site");
+// Example: Updates the banner on Christmas Day!
+
+// Example: Updates the banner for Halloween!
+checkNewsUpdate("10-31", "🎃 Halloween time! 🎃");
+
+checkNewsUpdate("12-25", "🌲 Christmas time! 🌲");
 
 checkNewsUpdate("12-31", "NEW YEAR");
-
-checkNewsUpdate("01-01", "NEW YEAR");
