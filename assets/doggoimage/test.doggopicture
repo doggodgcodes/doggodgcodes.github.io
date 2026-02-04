@@ -1,0 +1,17 @@
+const pixels = 25;
+const colorData = [
+"#ff0000",
+"#ff0000",
+"#ffff00",
+"#ffff00",
+"#ffffff",
+"#ffffff",
+"#0000ff",
+"#0000ff",
+"#00ffff",
+"#00ffff",
+"#ffffff",
+"#ffffff",
+];
+
+console.log("Doggo Picture exists!");
