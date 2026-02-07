@@ -42,8 +42,11 @@ button {
 	border-radius: 25px;
 	margin: 10px;
 }
-.text-align {
+.text-align, .text-align-center {
 	text-align: center;
+}
+.content-align-center {
+	align-content: center;
 }
 textarea {
     background-color: #d6ffb0; /* soft lime green */
