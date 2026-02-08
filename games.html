@@ -37,6 +37,7 @@
   <div class="not-done opz">
     <h2>(Legacy Banner) Well, MY Games are not ready yet, still half-baked.</h2>
   </div>
+  <iframe src="https://doggodgcodes.github.io/js_webapps/games/98-clicker/"></iframe>
   <iframe src="https://doggodgcodes.github.io/js_webapps/games/fake-roller/goofygame.html"></iframe>
     <iframe src="https://doggodgcodes.github.io/js_webapps/games/pocket-clicker/clicker.html"></iframe>
   <hr>
@@ -44,13 +45,14 @@
   <h1>CrazyGames (now limited to dropdown for your safety)</h1>
     <select id="gameSelector" aria-label="Select game">
     <option value="">Select a game...</option>
-    <option value="bloxdhop">BloxdHop.io</option>
+    <option value="bloxdhop">Bloxd.io</option>
     <option value="findpets">Find The Pets</option>
     <option value="spacewaves">Space Waves</option>
     <option value="officeslap">Crazy Office Slap</option>
     <option value="capybara">Capybara Clicker</option>
+    <option value="capybara2">Capybara Clicker 2</option>
     <option value="bloxorz">Bloxorz</option>
-    <option value="game2048">2048</option>
+    <option value="game2048">2048 (Comet)</option>
     <option value="motox3m">Moto X3M</option>
     <option value="ragdoll">Ragdoll Archers</option>
     <option value="blockblast">Block Blast Knockoff</option>
@@ -60,7 +62,7 @@
     <option value="maxwell">Maxwell Clicker</option>
     <option value="kitty">Kitty Clicker</option>
     <option value="chicken">Chicken Clicker</option>
-    <option value="italian">Italian Brainrot Clicker</option>
+    <option value="italian">Italian Brainrot Clicker (Comet)</option>
   </select>
 
   <button id="collapseBtn">Collapse All</button>
@@ -114,27 +116,75 @@
 const games = {
   bloxdhop: {
     src: "https://www.crazygames.com/embed/bloxdhop-io",
-    desc: "WASD and space — it's like Minecraft!"
+    desc: "WASD and space it's like Minecraft!"
   },
   findpets: {
     src: "https://www.crazygames.com/embed/find-the-pets-cph",
-    desc: "Use WASD/touch to move and find the pets."
+    desc: "Use WASD/touch to move and find the pets"
   },
   spacewaves: {
     src: "https://www.crazygames.com/embed/space-waves",
-    desc: "Click or tap to go up; when you don't, you go down."
+    desc: "Click or tap to go up; when you don't, you go down"
   },
   motox3m: {
     src: "https://games.crazygames.com/en_US/moto-x3m/index.html",
-    desc: "Use WASD or arrow keys to move and press R to restart."
+    desc: "Use WASD or arrow keys to move and press R to restart"
   },
   ragdoll: {
     src: "https://crazygames.com/embed/ragdoll-archers",
-    desc: "Mouse/touch to aim and shoot. 2-player: WASD + arrows."
+    desc: "Mouse/touch to aim and shoot 2 player: WASD + arrows"
   },
   capybara: {
     src: "https://www.crazygames.com/embed/capybara-clicker",
-    desc: "Click on the Capybara and buy upgrades."
+    desc: "Click on the Capybara and buy upgrades"
+  },
+  officeslap: {
+    src: "https://www.crazygames.com/embed/crazy-office-slap-and-smash",
+    desc: "swipe and slap"
+  },
+  bloxorz: {
+    src: "https://www.crazygames.com/embed/bloxorz",
+    desc: "wasd/arrows"
+  },
+  game2048: {
+    src: "https://www.crazygames.com/embed/2048",
+    desc: "arrows (COMET BROWSER GAME)"
+  },
+  blockblast: {
+    src: "https://www.crazygames.com/embed/block-puzzle-master",
+    desc: "drag or mouse"
+  },
+  bubble: {
+    src: "https://www.crazygames.com/embed/arkadium-s-bubble-shooter",
+    desc: "touch/mouse"
+  },
+  taptap: {
+    src: "https://www.crazygames.com/embed/tap-tap-shots",
+    desc: "basketball"
+  },
+  slicemaster: {
+    src: "https://www.crazygames.com/embed/slice-master",
+    desc: "click/tap"
+  },
+  maxwell: {
+    src: "https://www.crazygames.com/embed/maxwell-clicker",
+    desc: "funny cat clicker"
+  },
+  kitty: {
+    src: "https://www.crazygames.com/embed/kitty-clickler",
+    desc: "another funny cat clicker"
+  },
+  chicken: {
+    src: "https://www.crazygames.com/embed/chicken-clicker",
+    desc: "clicker of chicken"
+  },
+  italian: {
+    src: "https://www.crazygames.com/embed/italian-brainrot-clicker-usp",
+    desc: "Italian clicker (COMET BROWSER GAME)"
+  },
+  capybara2: {
+    src: "https://www.crazygames.com/embed/capybara-clicker-2",
+    desc: "Click on the Capybara and buy upgrades"
   }
 };
 
