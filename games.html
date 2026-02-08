@@ -12,6 +12,7 @@
 </div>
   <h1>Game sources are: here, <a href="https://pigsquiggle.netlify.app">pigsquiggle, </a><a href="https://scratch.mit.edu">scratch </a><a href="https://crazygames.com">and, crazygames!</a></h1>
   <script src="randomcookie.js"></script>
+  <!-- Start main panel -->
 <div class="aero-panel">
   <a href="doggodgcodes.github.io">
     <img src="/assets/backbutton.png">
@@ -32,14 +33,25 @@
     <img src="/assets/subscribe.png">
   </a>
 </div> 
+  <!-- End main panel -->
+  <iframe style="width: 560px; height: 315px;" src="https://www.youtube.com/embed/videoseries?si=zrcDa8Q6kxNF9g9T&amp;list=PLRBp0Fe2GpglKIXdvLnzcnCdRwEr3tbkO" title="YouTube video player - NCS Gamer Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   <img src="https://doggodgcodes.github.io/assets/play.png" alt="play... DG">
   <h1>The DG Games!</h1>
   <div class="not-done opz">
     <h2>(Legacy Banner) Well, MY Games are not ready yet, still half-baked.</h2>
   </div>
   <iframe src="https://doggodgcodes.github.io/js_webapps/games/98-clicker/"></iframe>
+  <div id="infobox">
+    <h1>Travel back to 1998 with this clicker game!</h1>
+  </div>
   <iframe src="https://doggodgcodes.github.io/js_webapps/games/fake-roller/goofygame.html"></iframe>
+  <div id="infobox">
+    <h1>Just roll stuff, i guess?</h1>
+  </div>
     <iframe src="https://doggodgcodes.github.io/js_webapps/games/pocket-clicker/clicker.html"></iframe>
+  <div id="infobox">
+    <h1>Click the warm bread looking buttons</h1>
+  </div>
   <hr>
   
   <h1>CrazyGames (now limited to dropdown for your safety)</h1>
@@ -65,7 +77,7 @@
     <option value="italian">Italian Brainrot Clicker (Comet)</option>
   </select>
 
-  <button id="collapseBtn">Collapse All</button>
+  <button id="collapseBtn">360 No-Scope this game (to lessen tracking from the 20 websites CrazyGames connects to)</button>
 
   <div id="gameContainer" aria-live="polite"></div>
   <hr>
@@ -116,7 +128,7 @@
 const games = {
   bloxdhop: {
     src: "https://www.crazygames.com/embed/bloxdhop-io",
-    desc: "WASD and space it's like Minecraft!"
+    desc: "WASD and space its like Minecraft!"
   },
   findpets: {
     src: "https://www.crazygames.com/embed/find-the-pets-cph",
@@ -124,7 +136,7 @@ const games = {
   },
   spacewaves: {
     src: "https://www.crazygames.com/embed/space-waves",
-    desc: "Click or tap to go up; when you don't, you go down"
+    desc: "Click or tap to go up when you dont you go down"
   },
   motox3m: {
     src: "https://games.crazygames.com/en_US/moto-x3m/index.html",
@@ -132,11 +144,11 @@ const games = {
   },
   ragdoll: {
     src: "https://crazygames.com/embed/ragdoll-archers",
-    desc: "Mouse/touch to aim and shoot 2 player: WASD + arrows"
+    desc: "Mouse/touch to aim and shoot also 2 player WASD + arrows"
   },
   capybara: {
     src: "https://www.crazygames.com/embed/capybara-clicker",
-    desc: "Click on the Capybara and buy upgrades"
+    desc: "Click on the capybara and buy upgrades"
   },
   officeslap: {
     src: "https://www.crazygames.com/embed/crazy-office-slap-and-smash",
@@ -208,9 +220,10 @@ function createGameBlock(game) {
   iframe.setAttribute("referrerpolicy", "no-referrer");
   iframe.setAttribute("frameborder", "0");
   iframe.setAttribute("allow", "gamepad *;");
+  iframe.setAttribute("allowfullscreen");
 
   const info = document.createElement("div");
-  info.className = "infobox";
+  info.id = "infobox";
 
   const text = document.createElement("h1");
   text.textContent = game.desc;
