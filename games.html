@@ -220,7 +220,10 @@ function createGameBlock(game) {
   iframe.setAttribute("referrerpolicy", "no-referrer");
   iframe.setAttribute("frameborder", "0");
   iframe.setAttribute("allow", "gamepad *;");
-  iframe.setAttribute("allowfullscreen");
+  iframe.setAttribute("allowfullscreen", "true");
+  iframe.setAttribute("webkitallowfullscreen", "true");
+  iframe.setAttribute("mozallowfullscreen", "true");
+
 
   const info = document.createElement("div");
   info.id = "infobox";
