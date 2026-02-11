@@ -7,7 +7,7 @@
 <style>
 body {
   padding: 20px;
-  background-image: linear-gradient(90deg, #000, #F0F0FF);
+  background-image: linear-gradient(90deg, #F0F0FF, #000);
 }
 button {
   margin: 10px;
@@ -40,7 +40,7 @@ img {
 <title>Hollow Knight Clicker - doggodgcodes</title>
 </head>
 <body>
-<button onclick="clickBtn()"><img src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/hollow-knight-wiki/7/77/Hornet_transparent.png"><div id="displayClicks">Honda civics: 0</div></button>
+<button onclick="clickBtn()"><img src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/hollow-knight-wiki/7/77/Hornet_transparent.png"><div id="displayClicks">Knights: 0</div></button>
 <hr>
 <button id="displayCosts" onclick="buyClickPower()">Upgrade Click Power: Costs 10</button>
 <button id="displayCosts2" onclick="buyClickPower2()">Upgrade Click Power: Costs 100</button>
@@ -83,7 +83,7 @@ let clickPower = 1;
 
 function clickBtn() {
   count += clickPower;
-  displayClick.textContent = `Honda civics: ${count}`;
+  displayClick.textContent = `Knights: ${count}`;
 }
 
 // Generic upgrade function
