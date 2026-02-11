@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,800" rel="stylesheet"/>
+<style>
+body {
+  padding: 20px;
+  background-image: linear-gradient(90deg, #000, #F0F0FF);
+}
+button {
+  margin: 10px;
+  transition: transform 0.3s;
+  border: 10px;
+  border-radius: 20px;
+  color: #ffe19d;
+  padding: 20px;
+  font-family: "TikTok Sans", sans-serif;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  background-image: linear-gradient(to bottom right, #000, #25266b);
+}
+button:hover {
+  transform: scale(1.05);
+}
+button:active {
+  background-image: linear-gradient(to bottom right, #25266b, #000);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: TikTok Sans;
+}
+img {
+  margin: 20px;
+  border-radius: 20px;
+}
+</style>
+<title>Hollow Knight Clicker - doggodgcodes</title>
+</head>
+<body>
+<button onclick="clickBtn()"><img src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/hollow-knight-wiki/7/77/Hornet_transparent.png"><div id="displayClicks">Honda civics: 0</div></button>
+<hr>
+<button id="displayCosts" onclick="buyClickPower()">Upgrade Click Power: Costs 10</button>
+<button id="displayCosts2" onclick="buyClickPower2()">Upgrade Click Power: Costs 100</button>
+<button id="displayCosts3" onclick="buyClickPower3()">Upgrade Click Power: Costs 1,000</button>
+<button id="displayCosts4" onclick="buyClickPower4()">Upgrade Click Power: Costs 2,000</button>
+<button id="displayCosts5" onclick="buyClickPower5()">Upgrade Click Power: Costs 5,000</button>
+<button id="displayCosts6" onclick="buyClickPower6()">Upgrade Click Power: Costs 10,000</button>
+<button id="displayCosts7" onclick="buyClickPower7()">Upgrade Click Power: Costs 50,000</button>
+<button id="displayCosts8" onclick="buyClickPower8()">Upgrade Click Power: Costs 100,000</button>
+<button id="displayCosts9" onclick="buyClickPower9()">Upgrade Click Power: Costs 1,000,000</button>
+<button id="displayCosts10" onclick="buyClickPower10()">Upgrade Click Power: Costs 10,000,000</button>
+<h1 id="display">Click Power: 1</h1>
+<h6>Original code is pocket clicker</h6>
+<script>
+  // a chatbot helped
+const displayCount = document.getElementById("display");
+const displayClick = document.getElementById("displayClicks");
+const displayCost = document.getElementById("displayCosts");
+const displayCost2 = document.getElementById("displayCosts2");
+const displayCost3 = document.getElementById("displayCosts3");
+const displayCost4 = document.getElementById("displayCosts4");
+const displayCost5 = document.getElementById("displayCosts5");
+const displayCost6 = document.getElementById("displayCosts6");
+const displayCost7 = document.getElementById("displayCosts7");
+const displayCost8 = document.getElementById("displayCosts8");
+const displayCost9 = document.getElementById("displayCosts9");
+const displayCost10 = document.getElementById("displayCosts10");
+const cost1 = { value: 10 };
+const cost2 = { value: 100 };
+const cost3 = { value: 1000 };
+const cost4 = { value: 2000 };
+const cost5 = { value: 50000 };
+const cost6 = { value: 10000 };
+const cost7 = { value: 50000 };
+const cost8 = { value: 100000 };
+const cost9 = { value: 1000000 };
+const cost10 = { value: 10000000};
+let count = 0;
+let clickPower = 1;
+
+function clickBtn() {
+  count += clickPower;
+  displayClick.textContent = `Honda civics: ${count}`;
+}
+
+// Generic upgrade function
+function buyUpgrade(costObj, powerIncrease, displayElement) {
+  if (count >= costObj.value) {
+    count -= costObj.value;
+    costObj.value = Math.round(costObj.value * 1.1 + 2);
+    clickPower += powerIncrease;
+
+    // Update displays
+    displayCount.textContent = `Click Power: ${clickPower}`;
+    displayElement.textContent = `Upgrade Click Power: Costs ${costObj.value}`;
+    displayClick.textContent = `Honda civics: ${count}`;
+  }
+}
+
+function buyClickPower() {
+  buyUpgrade(cost1, 1, displayCost);
+}
+
+function buyClickPower2() {
+  buyUpgrade(cost2, 5, displayCost2);
+}
+
+function buyClickPower3() {
+  buyUpgrade(cost3, 10, displayCost3);
+}
+
+function buyClickPower4() {
+  buyUpgrade(cost4, 100, displayCost4);
+}
+
+function buyClickPower5() {
+  buyUpgrade(cost5, 1000, displayCost5);
+}
+
+function buyClickPower6() {
+  buyUpgrade(cost6, 2500, displayCost6);
+}
+
+function buyClickPower7() {
+  buyUpgrade(cost7, 10000, displayCost7);
+}
+
+function buyClickPower8() {
+  buyUpgrade(cost8, 50000, displayCost8);
+}
+
+function buyClickPower9() {
+  buyUpgrade(cost9, 500000, displayCost9);
+}
+
+function buyClickPower10() {
+  buyUpgrade(cost10, 1000000, displayCost10);
+}
+</script>
+</body>
+</html>
