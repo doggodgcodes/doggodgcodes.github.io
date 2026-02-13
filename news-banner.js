@@ -26,6 +26,10 @@ checkNewsUpdate("01-01", "NEW YEAR");
 // Example: Updates for the banner test!
 checkNewsUpdate("01-30", "🚀 News banner testing! 🚀");
 
+checkNewsUpdate("02-14", "happy valentine's day");
+
+checkNewsUpdate("03-17", "the leprechauns are hiding");
+
 checkNewsUpdate("08-07", "another year of this site");
 // Example: Updates the banner on Christmas Day!
 
