@@ -1,0 +1,31 @@
+// Credits to ChatGPT and Claude for writing the redirect code
+fetch('https://doggodgcodes.github.io/random/')
+  .then(response => response.text())
+  .then(data => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data, 'text/html');
+
+    // Extract all anchor tags and get their href attributes
+    const links = Array.from(doc.querySelectorAll('a'))
+      .map(a => a.href)
+      .filter(href => href); // Only take links that are non-empty
+
+    if (links.length > 0) {
+      // Choose a random link
+      let randomLink = links[Math.floor(Math.random() * links.length)];
+
+      // Resolve relative URLs against the base page URL
+      if (!/^https?:\/\//i.test(randomLink)) {
+        const baseURL = new URL('https://doggodgcodes.github.io/random/');
+        randomLink = new URL(randomLink, baseURL).href;
+      }
+
+      // Redirect to the random link (now guaranteed to have "https://")
+      window.location.href = randomLink;
+    } else {
+      console.error("No links found on the page.");
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching the page:', error);
+  });
