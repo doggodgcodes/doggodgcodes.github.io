@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FLAPPY WATER (credits to Google Gemini for helping) 🌊🐦</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #87CEEB; font-family: "Segoe UI", Arial, sans-serif; }
+        #game-container { position: relative; width: 100vw; height: 100vh; background: linear-gradient(#1e90ff, #87CEEB); }
+        #bird { position: absolute; width: 60px; height: 60px; left: 50px; top: 50%; transition: transform 0.1s; z-index: 10; }
+        .water-drop { position: absolute; width: 30px; height: 15px; background-image: linear-gradient(to right, #00ffff, #00ddff, #00aaff); border-radius: 5px; z-index: 5; }
+        .enemy { position: absolute; width: 60px; height: 60px; z-index: 4; }
+        #score { position: fixed; top: 20px; left: 20px; font-size: 40px; color: white; text-shadow: 3px 3px 0px #000; z-index: 100; }
+        
+        #controls { position: fixed; bottom: 20px; width: 100%; display: flex; justify-content: space-around; z-index: 100; }
+        .btn { 
+            padding: 20px 40px; font-size: 24px; font-weight: bold; color: white; 
+            border: 5px solid white; border-radius: 15px; cursor: pointer; text-shadow: 2px 2px #000;
+            user-select: none; transition: 0.1s;
+        }
+        .btn:active { transform: scale(0.9); }
+        #flap-btn { background: #ff4757; }
+        #waterball-btn { background: #1e90ff; }
+    </style>
+</head>
+<body>
+
+<div id="score">SCORE: 0</div>
+<div id="game-container">
+    <img id="bird" src="https://doggodgcodes.github.io/assets/bird-water-gun.png" alt="Bird with Water Gun">
+</div>
+
+<div id="controls">
+    <div id="flap-btn" class="btn">Flap (spacebar)</div>
+    <div id="waterball-btn" class="btn">Waterball (F)</div>
+</div>
+
+<audio id="bg-music" loop>
+    <source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    const bird = document.getElementById('bird');
+    const container = document.getElementById('game-container');
+    const flapBtn = document.getElementById('flap-btn');
+    const waterBtn = document.getElementById('waterball-btn');
+    const scoreDisplay = document.getElementById('score');
+    const meowSound = new Audio('https://thirtydollar.website/sounds/meowsynth.wav');
+    const bgMusic = document.getElementById('bg-music');
+    bgMusic.volume = 0.3; // This makes it nice and quiet (0.0 to 1.0)
+
+    let birdY = window.innerHeight / 2;
+    let velocity = 0;
+    let gravity = 0.35;
+    let score = 0;
+    let activeEnemies = [];
+
+    function playMeow() {
+        const soundClone = meowSound.cloneNode();
+        soundClone.playbackRate = 0.5 + Math.random() * 1.5;
+        soundClone.volume = 0.4; // This makes it nice and quiet (0.0 to 1.0)
+        soundClone.play();
+    }
+
+    function flap() {
+        velocity = -8;
+        bird.style.transform = "rotate(-25deg)";
+        playMeow();
+    }
+
+    function water() {
+        playMeow();
+        const drop = document.createElement('div');
+        drop.className = 'water-drop';
+        drop.style.left = '110px';
+        drop.style.top = (birdY + 25) + 'px';
+        container.appendChild(drop);
+
+        let dropX = 110;
+        const moveDrop = setInterval(() => {
+            // KOOL PHYSICS: Slows down as it reaches the edge
+            // We use (window.innerWidth - dropX) to calculate remaining distance
+            let distRemaining = window.innerWidth - dropX;
+            let speed = Math.max(2, distRemaining / 20); 
+            dropX += speed;
+            drop.style.left = dropX + 'px';
+
+            for (let i = activeEnemies.length - 1; i >= 0; i--) {
+                const enemy = activeEnemies[i];
+                const b = enemy.getBoundingClientRect();
+                const d = drop.getBoundingClientRect();
+
+                if (d.right > b.left && d.left < b.right && d.top < b.bottom && d.bottom > b.top) {
+                    enemy.remove();
+                    activeEnemies.splice(i, 1);
+                    drop.remove();
+
+                        score += 10;
+                        scoreDisplay.innerText = "SCORE: " + score;
+                    
+                    clearInterval(moveDrop);
+                    return;
+                }
+            }
+
+            if (dropX >= window.innerWidth - 5) {
+                drop.remove();
+                clearInterval(moveDrop);
+            }
+        }, 20);
+    }
+
+    function spawnEnemy() {
+        const enemy = document.createElement('img');
+        enemy.src = "https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png"; 
+        enemy.className = 'enemy';
+        enemy.style.left = window.innerWidth + 'px';
+        enemy.style.top = Math.random() * (window.innerHeight - 200) + 50 + 'px';
+        container.appendChild(enemy);
+        activeEnemies.push(enemy);
+
+        let enemyX = window.innerWidth;
+        const moveEnemy = setInterval(() => {
+            // KOOL PHYSICS: Enemy slows down as it approaches the left
+            let speed = Math.max(3, enemyX / 40); 
+            enemyX -= speed;
+            enemy.style.left = enemyX + 'px';
+            
+            if (!enemy.parentElement || enemyX < -80) {
+                if(enemy.parentElement) {
+                    enemy.remove();
+                    activeEnemies = activeEnemies.filter(e => e !== enemy);
+                }
+                clearInterval(moveEnemy);
+            }
+        }, 20);
+    }
+
+    setInterval(spawnEnemy, 1800);
+
+    function update() {
+        velocity += gravity;
+        birdY += velocity;
+        bird.style.top = birdY + 'px';
+        if(velocity > 2) bird.style.transform = "rotate(20deg)";
+        if (birdY > window.innerHeight || birdY < -50) {
+            birdY = window.innerHeight / 2;
+            velocity = 0;
+        }
+        requestAnimationFrame(update);
+    }
+
+    flapBtn.addEventListener('mousedown', (e) => { e.preventDefault(); flap(); });
+    waterBtn.addEventListener('mousedown', (e) => { e.preventDefault(); water(); });
+    window.addEventListener('keydown', (e) => {
+        if (e.code === 'Space') flap(); score += 0.001; scoreDisplay.innerText = "SCORE: " + score;
+        if (e.code === 'KeyF') water(); score += 0.001; scoreDisplay.innerText = "SCORE: " + score;
+    });
+
+    // Browsers need a click to start audio, so we trigger it on the first flap or shot!
+    function startMusic() {
+        bgMusic.play();
+        // Remove these listeners after the music starts so we don't restart it every time
+        window.removeEventListener('mousedown', startMusic);
+        window.removeEventListener('keydown', startMusic);
+    }
+
+    window.addEventListener('mousedown', startMusic);
+    window.addEventListener('keydown', startMusic);
+    
+    update();
+</script>
+</body>
+</html>
