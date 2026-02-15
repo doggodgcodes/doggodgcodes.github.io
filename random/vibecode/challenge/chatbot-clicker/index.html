@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css">
+
+  <style>
+    body {
+      padding: 20px;
+      background: linear-gradient(90deg, #fcbb63, #ffe19d);
+      text-align: center;
+      font-family: "TikTok Sans", sans-serif;
+      transition: background 0.5s;
+      overflow-x: hidden;
+    }
+
+    .silly-bg { animation: rainbowBG 5s linear infinite; }
+    @keyframes rainbowBG {
+      0% { background: #ff0000; } 20% { background: #ff8800; }
+      40% { background: #ffff00; } 60% { background: #00ff00; }
+      80% { background: #0000ff; } 100% { background: #ff0000; }
+    }
+
+    button {
+      margin: 8px;
+      transition: transform 0.1s;
+      border: 6px solid #774502;
+      border-radius: 20px;
+      color: #ffe19d;
+      padding: 15px;
+      font-weight: bold;
+      background-image: linear-gradient(to bottom right, #774502, #f68f04);
+      cursor: pointer;
+    }
+
+    button:hover { transform: scale(1.05); }
+    button:active { transform: scale(0.95); }
+
+    .game-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .click-target {
+      cursor: pointer;
+      transition: transform 0.1s;
+      filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));
+    }
+
+    .click-target:active { transform: scale(1.2) rotate(5deg); }
+
+    #bananaDisplay {
+      font-size: 35px;
+      background: rgba(255,255,255,0.7);
+      padding: 15px;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 0 20px orange;
+    }
+
+    .particle {
+      position: absolute;
+      pointer-events: none;
+      font-size: 24px;
+      animation: particleAnim 0.8s ease-out forwards;
+      z-index: 999;
+    }
+
+    @keyframes particleAnim {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-150px) rotate(360deg) scale(0); opacity: 0; }
+    }
+
+    #tooltip {
+      position: fixed;
+      background: black;
+      color: white;
+      padding: 8px;
+      border-radius: 8px;
+      display: none;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .mega-shop {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 30px;
+      border: 4px dashed #774502;
+    }
+  </style>
+
+  <title>Gorilla Banana - SOUNDBOARD EDITION</title>
+</head>
+<body onmousemove="moveTooltip(event)">
+  <div id="tooltip"></div>
+
+  <h1>🍌 MONKE SOUNDBOARD CLICKER 🦍</h1>
+  
+  <div style="background: white; padding: 10px; border-radius: 20px; display: inline-block; border: 4px solid orange;">
+    <p>🔊 <b>RADIO STATUS: HAM JAMMING</b></p>
+    <iframe width="250" height="40" src="https://www.youtube.com/embed/qzSzylSGuiM" frameborder="0"></iframe>
+  </div>
+
+  <br><br>
+  <h2 id="bananaDisplay">Bananas: 0</h2>
+  
+  <div class="game-container">
+    <div>
+      <p><b>OG BANANA</b></p>
+      <img src="https://www.clipartmax.com/png/middle/39-399107_banana-clip-art-banana-clipart-png.png" 
+           class="click-target" style="width: 100px;" onclick="clickBtn(event)">
+    </div>
+
+    <div>
+      <p><b>MONKE</b></p>
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/157.png" 
+           class="click-target" style="width: 130px;" onclick="clickBtn(event)">
+    </div>
+
+    <div>
+      <p><b>TITAN CAT</b></p>
+      <img src="https://minechicken98.github.io/funny/battle-cats-capsule/images/titan.png" 
+           class="click-target" style="width: 110px;" onclick="clickBtn(event)">
+    </div>
+
+    <div>
+      <p><b>SPINNY CAT</b></p>
+      <img id="spinnyCat" src="https://media.tenor.com/Y86p4vW7X80AAAAM/spin-cat.gif" 
+           class="click-target" style="width: 100px; border-radius: 50%;" onclick="funnyCatClick(event)">
+    </div>
+  </div>
+
+  <div class="mega-shop">
+    <h2 style="color: #774502;">🔊 SOUNDBOARD SHOP</h2>
+    <button onclick="playMemeSound()" style="background: #ff00ff; color: white;">📢 PLAY RANDOM MEME SOUND</button>
+    <br>
+    <button id="btn1" onclick="buyUpgrade(0, 1)">🥜 Extra PB (+1)<br>Cost: 10</button>
+    <button id="btn2" onclick="buyUpgrade(1, 5)">🥪 Gamer Sandwich (+5)<br>Cost: 100</button>
+    <button id="btn3" onclick="buyUpgrade(2, 20)">👑 Party Hat (+20)<br>Cost: 1000</button>
+    <br>
+    <button id="btn4" onclick="buyAuto()">🌲 Banana Tree (Auto)<br>Cost: 500</button>
+    <button id="btn5" onclick="buyGatorade()">🥤 Gatorade (2x Speed)<br>Cost: 5000</button>
+    <button id="btn6" onclick="buyCheetos()">🔥 Flamin Hot Cheetos (+100)<br>Cost: 15000</button>
+  </div>
+
+  <hr>
+  <button onclick="toggleSilly()" style="background: cyan; color: black;">🌈 RAINBOW RAVE MODE 🌈</button>
+  <button onclick="doPrestige()" style="background: linear-gradient(to right, red, purple);">💎 PRESTIGE (1M)</button>
+
+  <h3 id="powerStat">Click Power: 1</h3>
+  <h4 id="autoStat">Trees: 0 | Speed: 1x</h4>
+
+  <script>
+    let bananas = 0;
+    let clickPower = 1;
+    let autoClickers = 0;
+    let prestigeMult = 1;
+    let speedMult = 1;
+    let costs = [10, 100, 1000, 500, 5000, 15000];
+    let silly = false;
+
+    // AUDIO CONTEXT FOR SILLY BOOPS
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playNote(freq, type, duration) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function clickBtn(e) {
+      bananas += (clickPower * prestigeMult);
+      addParticles(e.clientX, e.clientY, "🍌");
+      playNote(200 + Math.random() * 400, 'sine', 0.1); // BOOP!
+      updateUI();
+    }
+
+    function funnyCatClick(e) {
+        playNote(100 + Math.random() * 100, 'square', 0.3); // HONK!
+        addParticles(e.clientX, e.clientY, "🐱");
+        bananas += (clickPower * prestigeMult);
+        updateUI();
+    }
+
+    function playMemeSound() {
+        // Just a fun little beep sequence since we can't load external MP3s easily without a server
+        playNote(523.25, 'triangle', 0.2); // C5
+        setTimeout(() => playNote(659.25, 'triangle', 0.2), 100); // E5
+        setTimeout(() => playNote(783.99, 'triangle', 0.2), 200); // G5
+        setTimeout(() => playNote(1046.50, 'triangle', 0.4), 300); // C6
+    }
+
+    function buyUpgrade(index, power) {
+      if (bananas >= costs[index]) {
+        bananas -= costs[index];
+        clickPower += power;
+        costs[index] = Math.round(costs[index] * 1.3);
+        playNote(800, 'sawtooth', 0.2);
+        updateUI();
+      }
+    }
+
+    function buyAuto() {
+      if (bananas >= costs[3]) {
+        bananas -= costs[3];
+        autoClickers++;
+        costs[3] = Math.round(costs[3] * 1.25);
+        playNote(400, 'square', 0.2);
+        updateUI();
+      }
+    }
+
+    function buyGatorade() {
+      if (bananas >= costs[4]) {
+        bananas -= costs[4];
+        speedMult *= 2;
+        costs[4] *= 5;
+        updateUI();
+        alert("GATORADE CONSUMED! ⚡");
+      }
+    }
+
+    function buyCheetos() {
+      if (bananas >= costs[5]) {
+        bananas -= costs[5];
+        clickPower += 100;
+        costs[5] = Math.round(costs[5] * 1.5);
+        updateUI();
+        alert("SPICY BONK! 🔥");
+      }
+    }
+
+    function toggleSilly() {
+      silly = !silly;
+      document.body.classList.toggle('silly-bg');
+    }
+
+    function doPrestige() {
+      if (bananas >= 1000000) {
+        bananas = 0; clickPower = 1; autoClickers = 0; speedMult = 1;
+        prestigeMult *= 2;
+        costs = [10, 100, 1000, 500, 5000, 15000];
+        updateUI();
+        alert("PRESTIGE! AWOOOO! 🚀");
+      }
+    }
+
+    function updateUI() {
+      document.getElementById("bananaDisplay").innerText = "Bananas: " + Math.floor(bananas);
+      document.getElementById("powerStat").innerText = "Click Power: " + (clickPower * prestigeMult);
+      document.getElementById("autoStat").innerText = `Trees: ${autoClickers} | Speed: ${speedMult}x`;
+      document.getElementById("btn1").innerHTML = `🥜 PB (+1)<br>Cost: ${costs[0]}`;
+      document.getElementById("btn2").innerHTML = `🥪 Sandwich (+5)<br>Cost: ${costs[1]}`;
+      document.getElementById("btn3").innerHTML = `👑 Hat (+20)<br>Cost: ${costs[2]}`;
+      document.getElementById("btn4").innerHTML = `🌲 Tree (Auto)<br>Cost: ${costs[3]}`;
+      document.getElementById("btn5").innerHTML = `🥤 Gatorade<br>Cost: ${costs[4]}`;
+      document.getElementById("btn6").innerHTML = `🔥 Cheetos<br>Cost: ${costs[5]}`;
+    }
+
+    setInterval(() => {
+      if (autoClickers > 0) {
+        bananas += (autoClickers * prestigeMult * speedMult);
+        updateUI();
+      }
+    }, 1000);
+
+    function addParticles(x, y, char) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.innerText = char;
+      p.style.left = x + 'px';
+      p.style.top = y + 'px';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 800);
+    }
+
+    function moveTooltip(e) {
+      const t = document.getElementById('tooltip');
+      t.style.left = (e.clientX + 15) + 'px';
+      t.style.top = (e.clientY + 15) + 'px';
+    }
+
+    function showTooltip(text) {
+      const t = document.getElementById('tooltip');
+      t.innerText = text;
+      t.style.display = 'block';
+    }
+
+    function hideTooltip() { document.getElementById('tooltip').style.display = 'none'; }
+  </script>
+</body>
+</html>
