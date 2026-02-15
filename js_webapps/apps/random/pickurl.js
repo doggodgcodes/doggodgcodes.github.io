@@ -21,7 +21,3 @@ fetch('https://doggodgcodes.github.io/random/')
   .catch(error => {
     console.error('Error fetching the page:', error);
   });
-
-  .catch(error => {
-    console.error('Error fetching the list of URLs:', error);
-  });
