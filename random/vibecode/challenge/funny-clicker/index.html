@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Funny Clicker - Memer game</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css" />
+    <style>
+      body {
+        background-color: #0e7373; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Pixelated MS Sans Serif", Arial, sans-serif;
+        transition: background-color 0.5s ease;
+      }
+
+      /* Your eye-catching alert bar! */
+      .not-done {
+        width: 70vw;
+      }
+
+      .window {
+        width: 450px;
+        margin: 20px;
+        transition: all 0.1s;
+      }
+
+      .window-body {
+        text-align: center;
+      }
+
+      #counter {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 15px 0;
+      }
+
+      .meme-img {
+        width: 120px;
+        border: 2px inset #fff;
+      }
+
+      #thumbsUp {
+        display: none;
+        width: 80px;
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .shop-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px;
+        border-bottom: 1px solid #808080;
+      }
+    </style>
+  </head>
+  <body id="mainBody">
+
+    <div class="not-done">
+      <span id="info">🚨 WELCOME BACK, CHICKEN JOCKEY! 🚨</span>
+    </div>
+
+    <div class="window" id="mainWin" style="margin-top: 80px;">
+      <div class="title-bar">
+        <div class="title-bar-text">FunnyClicker.exe - SAVING ENABLED</div>
+      </div>
+      <div class="window-body">
+        <img class="meme-img" src="https://doggodgcodes.github.io/assets/retro/certified-burger.jpg">
+        <div id="counter">0 BONKS</div>
+        <button id="clickBtn" style="padding: 10px 20px; cursor: pointer;">CLICK TO BONK!</button>
+        <p>Your progress is saved! 🦍💾</p>
+        <button id="resetBtn" style="margin-top: 10px; color: red;">RESET GAME</button>
+        <img id="thumbsUp" src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png">
+      </div>
+    </div>
+
+    <div class="window">
+      <div class="title-bar"><div class="title-bar-text">Shop</div></div>
+      <div class="window-body">
+        <div class="shop-item">
+          <span>PBJ Jam (2x)</span>
+          <button id="buyPBJ">Cost: 50</button>
+        </div>
+        
+      </div>
+    </div>
+
+    <script>
+      // LOAD DATA FROM THE INTERNET BRAIN (LocalStorage)
+      let count = parseInt(localStorage.getItem('bonks')) || 0;
+      let multiplier = parseInt(localStorage.getItem('mult')) || 1;
+      let hasPBJ = localStorage.getItem('hasPBJ') === 'true';
+
+      const btn = document.getElementById('clickBtn');
+      const display = document.getElementById('counter');
+      const info = document.getElementById('info');
+      const pbjBtn = document.getElementById('buyPBJ');
+      const thumbs = document.getElementById('thumbsUp');
+
+      function updateDisplay() {
+        display.textContent = count + " BONKS";
+        localStorage.setItem('bonks', count); // Save every time!
+        if(count >= 20) thumbs.style.display = "block";
+      }
+
+      // Initial setup
+      if(hasPBJ) {
+        pbjBtn.innerText = "BOUGHT!";
+        pbjBtn.disabled = true;
+      }
+      updateDisplay();
+
+      btn.addEventListener('click', () => {
+        count += multiplier;
+        updateDisplay();
+        alertSwitch("BONKED!");
+      });
+
+      pbjBtn.addEventListener('click', () => {
+        if (count >= 50) {
+          count -= 50;
+          multiplier = 2;
+          hasPBJ = true;
+          localStorage.setItem('mult', 2);
+          localStorage.setItem('hasPBJ', 'true');
+          pbjBtn.innerText = "BOUGHT!";
+          pbjBtn.disabled = true;
+          updateDisplay();
+          alertSwitch("PBJ SAVED TO BRAIN! 🥪");
+        }
+      });
+
+      // RESET BUTTON FOR TESTING
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        localStorage.clear();
+        location.reload();
+        alert("Well, you just reset!")
+      });
+
+      function alertSwitch(myAlert) {
+        info.textContent = "🚨 " + myAlert + " 🚨";
+      }
+    </script>
+  </body>
+</html>
