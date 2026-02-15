@@ -12,7 +12,14 @@ fetch('https://doggodgcodes.github.io/random/')
 
     if (links.length > 0) {
       // Choose a random link
-      const randomLink = links[Math.floor(Math.random() * links.length)];
+      let randomLink = links[Math.floor(Math.random() * links.length)];
+
+      // Check if the link starts with "https://" or "http://"
+      if (!/^https?:\/\//i.test(randomLink)) {
+        randomLink = 'https://doggodgcodes.github.io/random/' + randomLink;
+      }
+
+      // Redirect to the random link (now guaranteed to have "https://")
       window.location.href = randomLink;
     } else {
       console.error("No links found on the page.");
