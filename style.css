@@ -13,6 +13,7 @@ img {
 	margin: 20px;
 	transition: transform 0.3s;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	background-color: black;
 }
 h1, h2, h3, h4, h5, h6, p, a {
 	padding: 10px;
