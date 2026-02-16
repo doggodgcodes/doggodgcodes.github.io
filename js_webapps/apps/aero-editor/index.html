@@ -1,1 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>html editor aero - doggodgcodes</title>
+<style>
+  /* The Mega Background */
+  body {
+    margin: 0;
+    background-color: #4276c7;
+    /* This is your specific URL! */
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT24ZddUcXOopNnnVhUZXw1FIEZjcWy3Z7fEA');
+    
+    /* The "Not Weird" Stretch Settings */
+    background-size: cover; /* Stretches to fill without squishing! */
+    background-position: center; /* Keeps the middle in view */
+    background-attachment: fixed; /* Stays still while you scroll */
+    
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', sans-serif;
+  }
 
+  .editor-container {
+    display: flex;
+    flex: 1;
+    gap: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  /* The Frosted Glass Textarea */
+  textarea {
+    flex: 1;
+    /* Half-transparent background */
+    background: rgba(255, 255, 255, 0.2); 
+    
+    /* THE MAGIC FROSTING */
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); /* For Safari Monkes */
+    
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    font-size: 18px;
+    outline: none;
+    resize: none;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    tab-size: 2;
+  }
+
+  /* The Output Box (Also a bit glassy!) */
+  .output-box {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.8); /* More solid so we can read! */
+    border-radius: 20px;
+    padding: 20px;
+    overflow: auto;
+    border: 1px solid white;
+  }
+
+  .world-bar {
+    display: flex; 
+    justify-content: space-between; /* Pushes title left, button right! */
+    align-items: center; /* Keeps them perfectly centered vertically */
+    color: white;
+    min-height: 25px;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.2);
+    margin: 0;
+    padding: 12px;
+  }
+  #saveBtn {
+    background: rgba(0, 242, 255, 0.6);
+    color: white;
+    border: 2px solid white;
+    padding: 8px 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  #saveBtn:hover {
+    background: #9cbb54;
+    transform: scale(1.1);
+  }
+  #title {
+    background: rgba(0, 242, 255, 0.1);
+  }
+</style>
+</head>
+<body>
+
+  <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
+
+  <div class="editor-container">
+    <textarea placeholder="Make your webpage...">
+<!doctype html>
+<html>
+  <head>
+    <title>My Webpage</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+  </body>
+</html>
+  
+    </textarea>
+    <div class="output-box">
+    </div>
+  </div>
+
+<script>
+  // 1. Grab the monke-tools
+  const input = document.querySelector('textarea');
+  const output = document.querySelector('.output-box');
+  const displayTitle = document.getElementById('title');
+  
+  // 2. Listen for the boogie woogie (typing)
+  input.addEventListener('input', () => {
+    // 3. Teleport the code to the preview window!
+    output.innerHTML = input.value;
+    
+    // We look for the <title> tag inside the textarea and grab its text
+  const match = input.value.match(/<title>(.*?)<\/title>/i);
+  if (match && match[1]) {
+    document.title = match[1] + " - doggodgcodes";
+    displayTitle.textContent = " " + match[1];
+  }
+  });
+  
+  const saveBtn = document.getElementById('saveBtn');
+
+saveBtn.addEventListener('click', () => {
+  // 1. Ask the user for a name (The Prompt!)
+  let fileName = prompt("What you gonna call it?", "my_project");
+  
+  // If they hit cancel, don't do anything!
+  if (!fileName) return;
+
+  // 2. Make sure it ends in .html
+  if (!fileName.endsWith(".html")) {
+    fileName += ".html";
+  }
+
+  // 3. Create the "Jar" of code
+  const blob = new Blob([input.value], { type: "text/html" });
+  
+  // 4. Create a hidden "ghost" link to trigger the download
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  
+  // 5. CLICK!
+  link.click();
+  
+  // 6. Clean up the ghost link
+  URL.revokeObjectURL(link.href);
+});
+</script>
+</body>
+</html>
