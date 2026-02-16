@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 // ULTRA SILLY VIBES - JavaScript Chaos Engine
 
 const crazyBtn = document.getElementById('crazyBtn');
@@ -224,4 +226,5 @@ window.addEventListener('load', function() {
     console.log("🍝 The sentient bananas are watching you through your screen. 🍝");
     console.log("✨ Press 'B' for banana chaos or 'S' for spaghetti chaos! ✨");
     console.log("🎪 Remember: Reality is just a suggestion! 🎪");
+});
 });
