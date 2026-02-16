@@ -13,7 +13,7 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
     if (today >= switchDate) {
         const banner = document.getElementById(elementId);
         if (banner) {
-            banner.textContent = newMessage;
+            banner.innerHTML = "<marquee behavior="scroll">" + newMessage + "</marquee>"; 
             console.log("News updated for " + targetMonthDay);
         }
     }
