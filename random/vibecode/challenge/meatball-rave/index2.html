@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <title>🚨 MEATBALL RAVE 🚨</title>
+    <link rel="stylesheet" type="text/css" media="all" href="https://doggodgcodes.github.io/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <style>
+      body {
+        background-color: #0e7373;
+        transition: background-color 0.1s;
+        overflow: hidden;
+        height: 100vh;
+      }
+      .window {
+        width: 80vw;
+        height: 70vh;
+        margin: 50px auto;
+        z-index: 10;
+        position: relative;
+      }
+      #dvd-guy {
+        position: fixed;
+        width: 100px;
+        z-index: 999;
+        pointer-events: none;
+      }
+      .title-bar-text {
+          font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+
+    <img src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png" id="dvd-guy" alt="👍">
+
+    <div class="window rounded">
+      <div class="title-bar">
+        <div class="title-bar-text">Meatball Rave</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p style="text-align: center;"><b>my eyes are burning looking at disco mode</b> It's like a time machine but with more Beef Balls! 🧆</p>
+        
+        <div class="field-row" style="justify-content: center">
+            <button onclick="startRave()">ACTIVATE DISCO 🚨</button>
+            <button onclick="stopRave()">CHILL MODE 🧊</button>
+            <audio controls loop>
+          <source src="https://thirtydollar.website/sounds/meowsynth.wav" type="audio/wav">
+        </audio>
+        </div>
+
+        <hr>
+
+        <p>Now Playing: <i>Chocolate Party</i></p>
+        <audio id="bg-music" loop>
+          <source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mp3">
+        </audio>
+
+        <div class="status-bar">
+          <p class="status-bar-field">Silliness: 1000000%</p>
+          <p class="status-bar-field" id="siren-count">🚨</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://doggodgcodes.github.io/min/dogebork/v3.0/dogebork.min.js"></script>
+
+    <script>
+      let raveInterval;
+      const music = document.getElementById('bg-music');
+      
+      function startRave() {
+        music.play();
+        if (raveInterval) return;
+        raveInterval = setInterval(() => {
+          const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0000', '#00ff00', '#0e7373'];
+          document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+          
+          // Using fetchId from dogebork!
+          const sirens = fetchId("siren-count");
+          sirens.textContent += "🚨";
+        }, 100);
+      }
+
+      function stopRave() {
+        clearInterval(raveInterval);
+        raveInterval = null;
+        document.body.style.backgroundColor = "#0e7373";
+        music.pause();
+      }
+
+      // DVD LOGO PHYSICS FOR THUMBS UP GUY
+      const dvd = document.getElementById("dvd-guy");
+      let x = 0, y = 0, xv = 3, yv = 3;
+
+      function bounce() {
+        x += xv;
+        y += yv;
+        if (x + dvd.clientWidth >= window.innerWidth || x <= 0) xv *= -1;
+        if (y + dvd.clientHeight >= window.innerHeight || y <= 0) yv *= -1;
+        
+        dvd.style.left = x + "px";
+        dvd.style.top = y + "px";
+        requestAnimationFrame(bounce);
+      }
+      bounce();
+
+      // CLICK BONK
+      document.body.onclick = (e) => {
+        let b = document.createElement("div");
+        b.innerHTML = "<b>BONK!</b>";
+        b.style.position = "fixed";
+        b.style.left = e.clientX + "px";
+        b.style.top = e.clientY + "px";
+        b.style.color = "yellow";
+        b.style.zIndex = "1000";
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 500);
+      }
+    </script>
+  </body>
+</html>
