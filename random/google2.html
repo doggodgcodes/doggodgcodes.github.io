@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Maximalist Google - a reimagining of google</title>
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 25px;
+        background: linear-gradient(to right, #4facfe, #00f2fe);
+        color: #ffffff;
+        text-align: center;
+      }
+    /* Search form */
+    form {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 30px;
+        width: 100%;
+        max-width: 400px;
+    }
+
+    input[type="text"] {
+        padding: 15px 20px;
+        font-size: 1rem;
+        border-radius: 20px;
+        border: none;
+        flex: 1 1 100%;
+        min-width: 150px;
+        box-sizing: border-box;
+    }
+
+    input[type="text"]:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+    }
+
+    button {
+        padding: 15px 20px;
+        font-size: 1rem;
+        border-radius: 10px;
+        border: none;
+        background-color: #ffffff;
+        color: #4facfe;
+        cursor: pointer;
+        font-weight: bold;
+        flex: 1 1 100%;
+        min-width: 150px;
+    }
+
+    button:hover {
+        background-color: #f0f0f0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+    }
+
+    </style>
+  </head>
+  <body>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn--fMuBQGFTxWvFSth9jVSWnQiXMymMAHcQ">
+<!-- Google Search Form -->
+<form method="get" action="https://www.google.com/search">
+    <input type="text" name="q" placeholder="Search the interwebz">
+    <button type="submit">Search the interwebz now!</button>
+</form>
+  </body>
+</html>
+  
+    
