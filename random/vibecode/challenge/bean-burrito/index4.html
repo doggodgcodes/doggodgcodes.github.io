@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Bean Burritos and Fun Stuff</title>
+    <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css">
+    
+    <script>
+      // MOVED UP HERE SO THE BUTTONS DON'T GET CONFUSED!
+      let burgers = 0;
+
+      function qwFunc() {
+          burgers += 29138;
+          const display = document.getElementById("qwerty");
+          if(display) {
+              display.textContent = burgers;
+          }
+          
+          // RAINBOW RAVE TRIGGER
+          if (burgers > 100000) {
+              document.body.style.backgroundColor = 'rgb(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 + ')';
+          }
+
+          // SPAWN FLYING DOG AT 1 MILLION!
+          if (burgers >= 1000000) {
+              const dog = document.getElementById("flying-dog");
+              dog.style.display = "block";
+          }
+      }
+    </script>
+
+    <style>
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #ffcc00; 
+        overflow-x: hidden;
+        padding: 20px;
+        transition: background-color 0.1s;
+      }
+      
+      .stock-box {
+        animation: boogie 0.5s infinite linear;
+      }
+      
+      @keyframes boogie {
+        0% { transform: translate(1px, 1px) rotate(0deg); }
+        25% { transform: translate(-1px, -2px) rotate(-1deg); }
+        50% { transform: translate(-3px, 0px) rotate(1deg); }
+        75% { transform: translate(3px, 2px) rotate(0deg); }
+        100% { transform: translate(1px, -1px) rotate(1deg); }
+      }
+
+      #flying-dog {
+        position: fixed;
+        bottom: 50px;
+        left: -200px;
+        width: 150px;
+        display: none;
+        animation: flyAcross 4s infinite linear;
+        z-index: 999;
+      }
+
+      @keyframes flyAcross {
+        0% { left: -200px; transform: rotate(0deg); }
+        50% { transform: rotate(20deg); }
+        100% { left: 100%; transform: rotate(0deg); }
+      }
+
+      .gorilla-tag {
+        color: #5d4037;
+        font-weight: bold;
+        text-shadow: 2px 2px #ffffff;
+      }
+      
+      .bonk-button {
+        padding: 20px;
+        font-size: 24px;
+        background: linear-gradient(to right, red, orange, yellow, green, blue, violet);
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+
+      .bonk-button:hover { transform: scale(1.5) rotate(10deg); }
+
+      footer {
+        border-radius: 20px;
+        font-family: "Segoe UI", sans-serif;
+        text-align: center;
+        padding: 5px;
+        background-color: #d1e4ff;
+        color: navy;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        margin: 20px;
+      }
+
+      .dg-fbar-img {
+        border-radius: 25px;
+        padding: 7px;
+        margin: 10px;
+        width: 176px;
+        height: 176px;
+      }
+
+      .creeper-zone {
+        background-color: #4CAF50;
+        color: black;
+        border: 4px solid #000;
+        margin: 20px;
+        padding: 10px;
+      }
+
+      #qwerty {
+        font-size: 80px;
+        color: red;
+        text-shadow: 5px 5px black;
+      }
+    </style>
+  </head>
+  <body>
+
+<img src="https://doggodgcodes.github.io/assets/bird-water-gun.png" id="flying-dog" alt="FLYING DOGGO!">
+
+<div class="stock-box">
+    <marquee class="confetti" behavior="scroll">not bald??? NEVER BALD!!</marquee>
+    <h1>never bald, never what?</h1>
+    <p>(i thought i was a bean burrito but im not)</p>
+
+    <hr>
+    
+    <div style="text-align: center;">
+        <h2 class="gorilla-tag">🚨 MONKE MODE ACTIVATED 🚨</h2>
+        <img src="https://doggodgcodes.github.io/assets/bird-water-gun.png" alt="Gorilla Tag Party" width="300">
+        <p>AWOO! THE PARTY HAT (farting rat) IS HERE! 🎩🦍</p>
+        
+        <br>
+        
+        <img src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png" alt="Thumbs up!" width="150">
+        <p>This website is 10/10 Ham Jam approved! 👍🧀</p>
+        
+        <br>
+
+        <button class="bonk-button" onclick="alert('BONK! GO TO YOUTUBE!'); qwFunc();">CLICK FOR MAXIMUM BONK</button>
+    </div>
+
+    <div class="creeper-zone">
+        <h1 id="qwerty">0</h1>
+        <h3>🧊 CHILLY DOODLING ZONE 🧊</h3>
+        <p>Creeper? Aw man.</p>
+        <button onclick="confirm('Warning: Chicken Jockey detected!'); qwFunc();">SPAWN CHICKEN JOCKEY</button>
+    </div>
+
+    <marquee direction="right" scrollamount="40">🍔🍟🌭🥓🥞🌮🌯🍕🍭🍦🚨👍💫💖🎃🌲🏅😺🤣🍔🤓📎👋🛑♾️🧊🧊🔎😂📰🛷🪨💪🔥💯🍥🍪🥘🍰🍬🥣🍡🍦🍨🎂🍭🍡🍮🍰🍦🥛🍷🍻🥃🍴🍷🫖🧃🍐🍅🍅🍐🌽🥒🥑🥑🥜🥜🍄‍🟫🌹☘️🌱🌼🚗🚌🚐🛺🚔🚚🚍🚘🚘🦼🦽🚘🏍️🚉🚃🚅🚉🚟🛫🚂🚡🚆</marquee>
+
+    <footer style="margin-top: 50px;">
+        <p>Propelled by juice of double rainbow and creamy peanut butter.</p>
+        <p><strong>Subscribe to DoggoWing21! 🐶🍦</strong></p>
+        <a target="_blank" href="https://youtube.com/@flyingdogwithapencil">
+          <img class="dg-fbar-img" src="https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo" alt="Flying Dog With A Pencil">
+        </a>
+    </footer>
+</div>
+
+  </body>
+</html>
