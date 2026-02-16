@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meatballs 3.0: THE ULTIMATE BONKENING</title>
+    <link rel="stylesheet" href="https://idiotspeed.neocities.org/style.css">
+    <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css">
+    <style>
+        body { 
+            overflow: hidden; 
+            background: #111; 
+            color: white; 
+            font-family: 'Comic Sans MS', cursive;
+            transition: filter 0.2s;
+        }
+        
+        .aero-panel {
+            margin: 50px auto;
+            max-width: 600px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .aero-panel:hover {
+            transform: scale(1.02) rotate(-1deg);
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+        }
+
+        #dvd-logo {
+            position: fixed;
+            width: 120px;
+            z-index: 999;
+            pointer-events: none;
+            filter: drop-shadow(0 0 10px white);
+        }
+
+        .party-monke { 
+            width: 80px; 
+            animation: bounce 0.5s infinite alternate; 
+        }
+
+        @keyframes bounce { 
+            from { transform: translateY(0) rotate(0deg); } 
+            to { transform: translateY(-30px) rotate(10deg); } 
+        }
+
+        #burger-display {
+            word-break: break-all;
+            color: #ff0000;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="not-done">
+        <marquee behavior="alternate" style="color: #00ff00; font-size: 20px; background: rgba(0,0,0,0.5);">
+            🚨 Meatball News: Man eats tacos then spaghetti. Monke climbs gorilla tag stump. Tea shop becomes stinky. Dog eats sushi for lunch and burgers. Vacuum becomes evil muncher of doom. DVD logo bounces off a wall. 🚨
+        </marquee>
+    </div>
+
+    <img src="Thumbs up guy!.png" id="dvd-logo" alt="👍">
+
+    <div class="aero-panel">
+        <h1>🧆 MEATBALLS 3.0 🧆</h1>
+        <p>Now with 100% more <b>Creamy Peanut Butter</b>!</p>
+        
+        <button onclick="burger()">Click for 🚨</button>
+        
+        <hr>
+        <h2 id="brgr"></h2> <hr>
+        
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2JLNpQTG7kT9Cs7_W4WKkd7He3PcekNJbog" style="border-radius: 50%; width: 150px; border: 5px solid white;">
+        
+        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px;">
+            <p>FEATURING:</p>
+            <img src="Screenshot 2025-05-17 151139.png" class="party-monke" alt="🥳">
+        </div>
+
+        <p><i>Powered by Chicken Jockey Technologies & Dogebork JS</i> 🐥</p>
+    </div>
+
+    <script src="https://doggodgcodes.github.io/min/dogebork/v3.0/dogebork.min.js"></script>
+
+    <script>
+        // SIREN LOGIC
+        let sirens = "🚨";
+        function burger() {
+            // fetchId works because of dogebork!
+            const display = fetchId("brgr");
+            display.textContent = sirens;
+            sirens += sirens; // EXPONENTIAL CHAOS
+            print("WUSUUUUUU! SIRENS DOUBLED!");
+        }
+
+        // DVD LOGO LOGIC
+        let dvd = document.getElementById("dvd-logo");
+        let x = 10, y = 10, xv = 4, yv = 4;
+
+        function animate() {
+            x += xv;
+            y += yv;
+
+            if (x + dvd.clientWidth >= window.innerWidth || x <= 0) {
+                xv *= -1;
+                document.body.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+            }
+            if (y + dvd.clientHeight >= window.innerHeight || y <= 0) {
+                yv *= -1;
+                document.body.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+            }
+
+            dvd.style.left = x + "px";
+            dvd.style.top = y + "px";
+            requestAnimationFrame(animate);
+        }
+
+        // BONK ON CLICK
+        document.body.onclick = function(e) {
+            let b = document.createElement("div");
+            b.innerHTML = "🚨BONK🚨";
+            b.style.position = "fixed";
+            b.style.left = (e.clientX - 25) + "px";
+            b.style.top = (e.clientY - 25) + "px";
+            b.style.color = "yellow";
+            b.style.fontSize = "30px";
+            b.style.fontWeight = "bold";
+            b.style.zIndex = "1000";
+            b.style.pointerEvents = "none";
+            document.body.appendChild(b);
+            setTimeout(() => b.remove(), 800);
+        };
+
+        // START THE BOUNCE
+        animate();
+        print("BOOGIE WOOGIE SYSTEM ONLINE!");
+    </script>
+</body>
+</html>
