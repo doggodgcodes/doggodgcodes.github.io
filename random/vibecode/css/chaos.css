@@ -1,0 +1,216 @@
+/* 
+===========================================
+  CHAOS.CSS
+  Made by ChatGPT 😎
+  You are not ready.
+===========================================
+*/
+
+/* ------------------------------
+   Global Vibes
+------------------------------ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Comic+Neue:wght@700&display=swap');
+
+:root {
+  --chaos-bg: linear-gradient(135deg, #ff00cc, #3333ff, #00ffcc);
+  --neon-pink: #ff00cc;
+  --neon-blue: #00f7ff;
+  --toxic-green: #39ff14;
+  --danger: #ff3131;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--chaos-bg);
+  background-size: 400% 400%;
+  animation: backgroundShift 12s infinite alternate;
+  font-family: 'Comic Neue', cursive;
+  color: white;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ------------------------------
+   Headings = Drama
+------------------------------ */
+
+h1, h2, h3 {
+  font-family: 'Rubik Glitch', cursive;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 20px 0;
+  animation: glitch 1.2s infinite;
+}
+
+h1 {
+  font-size: clamp(2rem, 8vw, 6rem);
+  text-shadow:
+    3px 3px 0 var(--neon-pink),
+    -3px -3px 0 var(--neon-blue);
+}
+
+/* ------------------------------
+   Paragraphs = Suspicious
+------------------------------ */
+
+p {
+  max-width: 700px;
+  margin: 20px auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  padding: 10px 20px;
+  border-left: 5px solid var(--toxic-green);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px);
+}
+
+p:hover {
+  transform: rotate(-1deg) scale(1.02);
+  border-left: 5px solid var(--danger);
+}
+
+/* ------------------------------
+   Buttons = Danger
+------------------------------ */
+
+button {
+  display: block;
+  margin: 30px auto;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  background: black;
+  color: var(--neon-blue);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 0 20px var(--neon-blue);
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--danger);
+  color: white;
+  box-shadow: 0 0 40px var(--danger);
+  transform: scale(1.1) rotate(2deg);
+}
+
+/* ------------------------------
+   Links = Suspicious Portals
+------------------------------ */
+
+a {
+  color: var(--toxic-green);
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+}
+
+a::after {
+  content: " 🚀";
+  opacity: 0;
+  transition: 0.3s;
+}
+
+a:hover::after {
+  opacity: 1;
+}
+
+/* ------------------------------
+   Images = Dramatic
+------------------------------ */
+
+img {
+  display: block;
+  margin: 40px auto;
+  max-width: 80%;
+  border-radius: 20px;
+  border: 5px solid white;
+  box-shadow: 0 0 40px var(--neon-pink);
+}
+
+img:hover {
+  transform: scale(1.05) rotate(1deg);
+  filter: hue-rotate(90deg) saturate(150%);
+}
+
+/* ------------------------------
+   Divs = Chaos Containers
+------------------------------ */
+
+div {
+  padding: 30px;
+  margin: 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+}
+
+div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* ------------------------------
+   Scrollbar = Custom Vibes
+------------------------------ */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-pink);
+  border-radius: 10px;
+}
+
+/* ------------------------------
+   Animations
+------------------------------ */
+
+@keyframes backgroundShift {
+  0% { background-position: left; }
+  100% { background-position: right; }
+}
+
+@keyframes glitch {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(3deg); }
+  40% { transform: skew(-3deg); }
+  60% { transform: skew(2deg); }
+  80% { transform: skew(-2deg); }
+  100% { transform: skew(0deg); }
+}
+
+/* ------------------------------
+   Secret Chaos
+------------------------------ */
+
+body::after {
+  content: "⚠ CHAOS MODE ACTIVE ⚠";
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.8rem;
+  opacity: 0.4;
+  animation: floaty 3s infinite alternate ease-in-out;
+}
+
+@keyframes floaty {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-10px); }
+}
