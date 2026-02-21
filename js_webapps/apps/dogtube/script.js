@@ -67,7 +67,7 @@ async function fetchVideos() {
   } catch (error) {
     console.error("Error fetching videos:", error);
     document.getElementById("videoGrid").innerHTML =
-      '<div class="error">Failed to load videos. Please try again later.</div>';
+      '<div class="error">404 Not Found</div>';
   }
 }
 
@@ -107,7 +107,7 @@ function displayVideos() {
     card.onclick = () => openVideo(video);
 
     const avatarImg = channelAvatar
-      ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile style="width: 36px; height: 36px; border-radius: 50%;">`
+      ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile" style="width: 36px; height: 36px; border-radius: 50%;">`
       : "";
 
     card.innerHTML = `
@@ -133,7 +133,7 @@ function displayVideos() {
   const moreContent = document.createElement("div");
   moreContent.className = "more-videos-message";
   moreContent.innerHTML = `
-    <p>Want more funny VR content?</p>
+    <p>Want more funny dog content?</p>
     <a href="https://youtube.com/@flyingdogwithapencil" target="_blank" class="channel-link">
       Visit DoggoWing21's channel on YouTube →
     </a>
