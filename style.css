@@ -4,7 +4,8 @@
 body {
 	background-color: #142079;
 	padding: 25px;
-	font-family: "Segoe UI", "Verdana", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Verdana", sans-serif;
 }
 img {
 	border: 20px;
