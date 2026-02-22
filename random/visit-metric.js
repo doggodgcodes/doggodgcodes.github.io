@@ -38,4 +38,4 @@ if (cookieVisits != null) {
 }
 
 // Display the number of visits
-document.getElementById("visitCount").innerText = `You have visited this site ${visits} times.`;
+document.getElementById("visitCount").innerText = `You have visited the random webpage ${visits} times`;
