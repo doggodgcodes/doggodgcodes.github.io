@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BONK BLAST: CHOCOLATE PARTY 🦍🍫</title>
+    <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css">
+    <link rel="stylesheet" href="https://doggodgcodes.github.io/darkmode.css">
+    <style>
+        body {
+            background:  #552d14;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: -apple-system, "Segoe UI", sans-serif;
+        }
+        #main-layout {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            background: green;
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        #game-info { text-align: center; margin-bottom: 20px; }
+        canvas {
+            background-color: #d1d9e6;
+            border-radius: 12px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .inventory {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            width: 120px;
+            height: 400px;
+            background: #f1f3f5;
+            border-radius: 20px;
+            padding: 30px;
+            border: 3px dashed #dee2e6;
+        }
+        .inventory canvas { background: transparent; cursor: grab; }
+        .drag-preview {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.9;
+            display: none;
+            z-index: 1000;
+        }
+        /* GAME OVER OVERLAY */
+        #game-over {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 40px;
+            z-index: 2000;
+            text-align: center;
+        }
+        #game-over h2 { font-size: 3rem; color: #ff4757; margin: 0; }
+        .btn-restart {
+            padding: 15px 30px;
+            background: #2ed573;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <audio id="line" src="https://thirtydollar.website/sounds/meowsynth.wav"></audio>
+    <audio id="bgm" src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party By Mine Chicken.mp3" loop></audio>
+
+    <div id="game-info">
+        <h1>BONK BLAST 📸</h1>
+        <p>Score: <b id="score">0</b> | 🍫 <i>Chocolate Party Mode!</i></p>
+    </div>
+
+    <div id="main-layout">
+        <div id="game-over">
+            <h2>GAME OVER! 😱</h2>
+            <p>You ran out of moves!</p>
+            <button class="btn-restart" onclick="resetGame()">Restart Party</button>
+        </div>
+        
+        <canvas id="gameBoard" width="400" height="400"></canvas>
+        <div class="inventory" id="inventory"></div>
+    </div>
+
+    <canvas id="dragCanvas" class="drag-preview" width="150" height="150"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameBoard');
+        const ctx = canvas.getContext('2d');
+        const dragCanvas = document.getElementById('dragCanvas');
+        const dCtx = dragCanvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const bgm = document.getElementById('bgm');
+
+        const GRID_SIZE = 8;
+        const TILE_SIZE = 50;
+        let score = 0;
+        let grid = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(null));
+
+        const textures = {
+            bezel: 'https://doggodgcodes.github.io/assets/tx/bezel_block.jpg',
+            grass: 'https://doggodgcodes.github.io/assets/tx/grass_block.jpg',
+            smiley: 'https://doggodgcodes.github.io/assets/tx/smiley_block.jpg'
+        };
+
+        const imgs = {};
+        Object.entries(textures).forEach(([k, v]) => { imgs[k] = new Image(); imgs[k].src = v; });
+
+        const SHAPES = [
+          { layout: [[1]], tex: 'grass' },
+            { layout: [[1,1],[1,1]], tex: 'grass' },
+            { layout: [[1,1,1]], tex: 'bezel' },
+            { layout: [[1,1],[1,1]], tex: 'smiley' },
+            { layout: [[1],[1],[1]], tex: 'bezel' },
+            { layout: [[1,1,1],[0,1,0]], tex: 'smiley' }
+        ];
+
+        let draggingPiece = null;
+        let inventoryPieces = [null, null, null];
+
+        function spawnInventory() {
+            const inv = document.getElementById('inventory');
+            inv.innerHTML = '';
+            inventoryPieces.forEach((p, i) => {
+                if (!p) p = SHAPES[Math.floor(Math.random() * SHAPES.length)];
+                inventoryPieces[i] = p;
+                const item = document.createElement('canvas');
+                item.width = 100; item.height = 100;
+                drawPieceToCanvas(item, p);
+                item.onmousedown = (e) => {
+                    if(bgm.paused) bgm.play(); // Start music on first click
+                    startDrag(e, p, i);
+                };
+                inv.appendChild(item);
+            });
+            checkGameOver();
+        }
+
+        function drawPieceToCanvas(c, piece) {
+            const pCtx = c.getContext('2d');
+            const pSize = 25;
+            piece.layout.forEach((row, r) => {
+                row.forEach((cell, col) => {
+                    if(cell) pCtx.drawImage(imgs[piece.tex], col*pSize, r*pSize, pSize-2, pSize-2);
+                });
+            });
+        }
+
+        function startDrag(e, piece, index) {
+            draggingPiece = { ...piece, index };
+            dragCanvas.style.display = 'block';
+            updateDragCanvas();
+            moveDrag(e);
+        }
+
+        function moveDrag(e) {
+            if (!draggingPiece) return;
+            dragCanvas.style.left = (e.pageX - 25) + 'px';
+            dragCanvas.style.top = (e.pageY - 25) + 'px';
+        }
+
+        function updateDragCanvas() {
+            dCtx.clearRect(0,0,150,150);
+            draggingPiece.layout.forEach((row, r) => {
+                row.forEach((cell, col) => {
+                    if(cell) dCtx.drawImage(imgs[draggingPiece.tex], col*TILE_SIZE, r*TILE_SIZE, TILE_SIZE-2, TILE_SIZE-2);
+                });
+            });
+        }
+
+        function checkLines() {
+            let rowsToClear = [];
+            let colsToClear = [];
+            for (let r = 0; r < GRID_SIZE; r++) { if (grid[r].every(cell => cell !== null)) rowsToClear.push(r); }
+            for (let c = 0; c < GRID_SIZE; c++) {
+                let isFull = true;
+                for (let r = 0; r < GRID_SIZE; r++) { if (grid[r][c] === null) { isFull = false; break; } }
+                if (isFull) colsToClear.push(c);
+            }
+
+            if (rowsToClear.length > 0 || colsToClear.length > 0) {
+                document.getElementById("line").currentTime = 0;
+                document.getElementById("line").play();
+                rowsToClear.forEach(r => { for (let c = 0; c < GRID_SIZE; c++) grid[r][c] = null; score += 100; });
+                colsToClear.forEach(c => { for (let r = 0; r < GRID_SIZE; r++) grid[r][c] = null; score += 100; });
+            }
+        }
+
+        function canPlaceAnywhere(piece) {
+            for (let y = 0; y <= GRID_SIZE - piece.layout.length; y++) {
+                for (let x = 0; x <= GRID_SIZE - piece.layout[0].length; x++) {
+                    let fits = true;
+                    piece.layout.forEach((row, r) => {
+                        row.forEach((cell, col) => {
+                            if (cell && grid[y + r][x + col] !== null) fits = false;
+                        });
+                    });
+                    if (fits) return true;
+                }
+            }
+            return false;
+        }
+
+        function checkGameOver() {
+            const playable = inventoryPieces.some(p => p === null || canPlaceAnywhere(p));
+            if (!playable) document.getElementById('game-over').style.display = 'flex';
+        }
+
+        function resetGame() {
+            grid = Array(GRID_SIZE).fill().map(() => Array(GRID_SIZE).fill(null));
+            score = 0;
+            scoreEl.innerText = score;
+            inventoryPieces = [null, null, null];
+            document.getElementById('game-over').style.display = 'none';
+            spawnInventory();
+            drawBoard();
+        }
+
+        window.onmousemove = moveDrag;
+        window.onmouseup = (e) => {
+            if (!draggingPiece) return;
+            const rect = canvas.getBoundingClientRect();
+            const x = Math.floor((e.clientX - rect.left) / TILE_SIZE);
+            const y = Math.floor((e.clientY - rect.top) / TILE_SIZE);
+
+            let canPlace = true;
+            draggingPiece.layout.forEach((row, r) => {
+                row.forEach((cell, col) => {
+                    if (cell) {
+                        const targetY = y + r, targetX = x + col;
+                        if (targetY >= GRID_SIZE || targetX >= GRID_SIZE || targetY < 0 || targetX < 0 || grid[targetY][targetX] !== null) canPlace = false;
+                    }
+                });
+            });
+
+            if (canPlace) {
+                draggingPiece.layout.forEach((row, r) => {
+                    row.forEach((cell, col) => { if (cell) grid[y+r][x+col] = draggingPiece.tex; });
+                });
+                inventoryPieces[draggingPiece.index] = null;
+                score += 50;
+                checkLines();
+                scoreEl.innerText = score;
+                if (inventoryPieces.every(p => p === null)) spawnInventory();
+                else { updateInventoryUI(); checkGameOver(); }
+            }
+            draggingPiece = null;
+            dragCanvas.style.display = 'none';
+            drawBoard();
+        };
+
+        function updateInventoryUI() {
+            const inv = document.getElementById('inventory');
+            inv.innerHTML = '';
+            inventoryPieces.forEach((p, i) => {
+                const item = document.createElement('canvas');
+                item.width = 100; item.height = 100;
+                if (p) { drawPieceToCanvas(item, p); item.onmousedown = (e) => startDrag(e, p, i); }
+                inv.appendChild(item);
+            });
+        }
+
+        function drawBoard() {
+            ctx.fillStyle = "#d1d9e6";
+            ctx.fillRect(0,0,400,400);
+            for(let r=0; r<GRID_SIZE; r++) {
+                for(let c=0; c<GRID_SIZE; c++) {
+                    ctx.strokeStyle = "rgba(255,255,255,0.3)";
+                    ctx.strokeRect(c*TILE_SIZE, r*TILE_SIZE, TILE_SIZE, TILE_SIZE);
+                    if(grid[r][c]) ctx.drawImage(imgs[grid[r][c]], c*TILE_SIZE, r*TILE_SIZE, TILE_SIZE-1, TILE_SIZE-1);
+                }
+            }
+        }
+
+        window.onload = () => { spawnInventory(); drawBoard(); };
+    </script>
+</body>
+</html>
