@@ -17,12 +17,20 @@ async function fetchSubscriberCount() {
     const data = await response.json();
     if (data.items && data.items.length > 0) {
       const subCount = parseInt(data.items[0].statistics.subscriberCount);
+      const vCount = parseInt(data.items[0].statistics.viewCount);
       if (subCount >= 1000000) {
         subscriberCount = (subCount / 1000000).toFixed(2) + "M";
       } else if (subCount >= 1000) {
         subscriberCount = (subCount / 1000).toFixed(2) + "K";
       } else {
         subscriberCount = subCount.toString();
+      }
+      if (subCount >= 1000000) {
+        viewCount = (vCount / 1000000).toFixed(2) + "M";
+      } else if (subCount >= 1000) {
+        viewCount = (vCount / 1000).toFixed(2) + "K";
+      } else {
+        viewCount = vCount.toString();
       }
     }
   } catch (error) {
@@ -144,7 +152,7 @@ function displayVideos() {
 function updateChannelStats() {
   const statsElement = document.querySelector(".channel-stats");
   if (statsElement) {
-    statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos`;
+    statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
   }
 }
 
