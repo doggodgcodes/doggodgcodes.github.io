@@ -6,6 +6,14 @@
   <body>
     <h1>For quick shortcuts, we redirect you.</h1>
     <script>
+      // 1. Get the query string from the current URL (?q=html)
+      const queryString = window.location.search;
+
+      // 2. Parse the parameters
+      const urlParams = new URLSearchParams(queryString);
+
+      // 3. Get the value of 'q'
+      const q = urlParams.get('q');
       let link = "";
       
       if (q == "html-") {
