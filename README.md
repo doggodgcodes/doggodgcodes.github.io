@@ -1,8 +1,8 @@
 # A website because why not
 
-random web stuff
-Dingus ahh website for fun yippee
-This site was built using [GitHub Pages](https://pages.github.com/).
+random web stuff, 
+dingus ahh website for fun yippee also 
+this site was built using [GitHub Pages](https://pages.github.com/).
 
 # Why it exists
 
