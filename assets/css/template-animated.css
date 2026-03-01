@@ -1,0 +1,14 @@
+header {
+  transition:
+      transform 1s;
+}
+header:hover {
+  transform: translateY(-10px);
+}
+h1, h2, h3, h4, h5, h6, p {
+  transition:
+      transform 0.2s;
+}
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover, p:hover {
+  transform: translateY(-3px);
+}
