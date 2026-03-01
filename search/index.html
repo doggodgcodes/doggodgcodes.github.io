@@ -16,7 +16,7 @@
       const q = urlParams.get('q');
       let link = "";
       
-      if (q == "html-") {
+      if (q == "html") {
         link = "https://github.com/doggodgcodes/html-site-template/"
       };
       if (q == "dgdog") {
@@ -34,7 +34,15 @@
       if (q == "random") {
         link = "https://doggodgcodes.github.io/random/"
       };
-      
+      if (q == "anychar") {
+        link = "https://github.com/doggodgcodes/anychar/"
+      };
+      if (q == "bing") {
+        link = "https://bing.com/"
+      };
+      if (q == "scratch") {
+        link = "https://scratch.mit.edu/"
+      };
       window.location.href = link;
     </script>
   </body>
