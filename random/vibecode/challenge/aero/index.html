@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aero - mostly AI CSS</title>
+<style>
+  body {
+    /* DEFAULT HD WALLPAPER */
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT24ZddUcXOopNnnVhUZXw1FIEZjcWy3Z7fEA') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+  }
+  
+  @keyframes aero-zoom {
+    from { transform: translate(-50%, -55%) scale(0.9); opacity: 0; }
+    to { transform: translate(-50%, -55%) scale(1); opacity: 1; }
+  }
+  /* THE AERO GLASS WINDOW */
+  .aero-window {
+    width: 700px;
+    height: 450px;
+    animation: aero-zoom 0.125s ease-out;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px) brightness(1.1) saturate(130%);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.7);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TITLE BAR WITH IMAGE ASSETS */
+  .title-bar {
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    /* Glossy overlay */
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 100%);
+  }
+
+  .window-title {
+    font-size: 13px;
+    color: #1a1a1a;
+    text-shadow: 0 0 10px white, 0 0 5px white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .folder-icon {
+    width: 18px;
+    height: 18px;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHx8PTJYFSzk_4Q6xanYoIJpunWdab2Emkhg') no-repeat center;
+    background-size: contain;
+  }
+
+  /* WINDOW BUTTONS IMAGE */
+  .window-controls {
+    width: 100px;
+    height: 20px;
+    background: url('http://googleusercontent.com/image_collection/image_retrieval/14240835135433525042_0') no-repeat right;
+    background-size: contain;
+    cursor: pointer;
+  }
+
+  /* INTERIOR WHITE BOX */
+  .content-area {
+    flex-grow: 1;
+    background: #FFFFFF;
+    margin: 0 5px 5px 5px;
+    border: 1px solid #707070;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .address-bar {
+    height: 30px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #d0d0d0;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #444;
+  }
+
+  /* THE TASKBAR */
+  .taskbar {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(0,0,0,0.5));
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+  }
+
+  /* START ORB IMAGE */
+  .start-orb {
+    width: 52px;
+    height: 52px;
+    margin-bottom: 10px; /* Sits slightly above taskbar */
+    background: url('https://www.nicepng.com/png/full/88-887330_windows-7-start-orb-transparent-png-transparent-windows.png') no-repeat center;
+    background-size: contain;
+    cursor: pointer;
+    transition: filter 0.2s;
+  }
+
+  .start-orb:hover {
+    filter: brightness(1.2) drop-shadow(0 0 10px rgba(0,255,255,0.5));
+  }
+  .aero-window:active {
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.2));
+  }
+</style>
+</head>
+<body>
+
+<div class="aero-window">
+  <div class="title-bar">
+    <div class="window-title">
+      <div class="folder-icon"></div>
+      <span>File Explorer - Computer > Local Disk (C:) > Users > Aeroguy733 > Desktop</span>
+    </div>
+    <div class="window-controls"></div>
+  </div>
+  <div class="content-area">
+    <div class="address-bar">📁 C:\Users\Aeroguy733\Desktop\windows.html</div>
+    <div style="padding: 20px;">
+        <h3 style="font-weight: normal; color: #003399;">Activated?</h3>
+        <p>Your AeroOS Nonexistent License: <strong>ACTIVATED</strong></p>
+        <img src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png" alt="👍" style="width: 100px;">
+    </div>
+  </div>
+</div>
+
+<div class="taskbar">
+  <div class="start-orb"></div>
+</div>
+
+</body>
+</html>
