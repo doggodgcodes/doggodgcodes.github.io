@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+  <head>
+    <title>THE BONK ZONE 🦍🚨</title>
+    <link rel="stylesheet" type="text/css" media="all" href="https://doggodgcodes.github.io/style.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://doggodgcodes.github.io/darkmode.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://doggodgcodes.github.io/assets/css/template-animated.css">
+    <link rel="stylesheet" type="text/css" media="all" href="https://doggodgcodes.github.io/assets/copilot-ultra-silly-vibes/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=Google+Sans&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Google Sans", "M PLUS Rounded 1c", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        color: white;
+        text-align: center;
+        overflow-x: hidden;
+      }
+      header {
+        background-color: #3f3975; /* purple */
+        padding: 20px;
+        border-radius: 20px;
+        margin: 20px;
+        box-shadow: 0 4px 15px rgba(125, 95, 255, 0.5);
+        border: 2px solid #7d5fff;
+      }
+      .monke-container {
+        margin: 50px auto;
+        transition: transform 0.3s;
+      }
+      .monke-container:hover {
+        transform: scale(0.3  ) rotate(359deg);
+      }
+      .bonk-btn {
+        background: #ff4757;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        box-shadow: 0 5px #c0392b;
+        font-family: 'M PLUS Rounded 1c';
+      }
+      .bonk-btn:active {
+        box-shadow: 0 2px #c0392b;
+        transform: translateY(3px);
+      }
+      .bonk-btn:hover {
+        transform: scale(1.1);
+      }
+      #counter-box {
+        font-size: 30px;
+        margin-top: 20px;
+        color: #eccc68;
+      }
+      marquee {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 10px;
+        font-weight: bold;
+        transition: transform 0.2s;
+      }
+      marquee:hover {
+        transform: scale(1.1) rotate(359deg);
+      }
+      noodle {
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>GORILLA TAG, YO! 🦍🍌</h1>
+    </header>
+    <noodle>Like JMANCURLY! Like JMANCURLY! Like JMANCURLY! Like JMANCURLY! Like JMANCURLY! Like JMANCURLY! Like JMANCURLY! Like JMANCURLY!</noodle>
+    <marquee scrollamount="24">🚨 PEANUT BUTTER JELLY JAM TIME! 🚨 CHICKEN JOCKEYS UNITE! 🚨 SUBSCRIBE TO DOGGOWING21! 🚨</marquee>
+
+    <div class="monke-container">
+        <img src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png" alt="Silly Face" style="width: 200px; border-radius: 50%;">
+        <p>Like JMANCURLY!</p>
+    </div>
+
+    <button class="bonk-btn" onclick="increaseBonk()">CLICK TO BONK!</button>
+    
+    <div id="counter-box">
+        BONK LEVEL: <span id="bonk-count">0</span>
+    </div>
+
+    <div style="margin-top: 50px;">
+        <h3>My Sandwich Ingredients:</h3>
+        <p>HTML • CSS • JS🧀</p>
+    </div>
+
+    <script>
+      function increaseBonk() {
+        count++;
+        document.getElementById('bonk-count').innerText = count;
+        
+        // ✨ NEW: RANDOM COLOR FLASH! ✨
+        if (count > 5) {
+            document.body.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 20%)`;
+        }
+
+        const emojis = ['🧀', '🍌', '🦍', '🚨', '🍔', '🎮'];
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // ✨ NEW: JMAN SHAKE ✨
+        if(count % 5 === 0) {
+            document.querySelector('header').style.transform = `translateX(${Math.random() * 10 - 5}px) rotate(${Math.random() * 4 - 2}deg)`;
+        }
+        
+        if(count % 10 === 0) {
+            // Added some JMAN style hype!
+            console.log("LETS GOOOO! BONK LEVEL " + count);
+            alert("🚨 JMANCURLY MODE ACTIVATED! 🚨\nSilliness level: OVER 9000!");
+        }
+      }
+    </script>
+  </body>
+</html>
