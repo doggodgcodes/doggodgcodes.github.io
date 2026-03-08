@@ -151,3 +151,9 @@ hr {
 	color: black;
 	padding: 20px;
 }
+.aero-panel2 {
+	transition: box-shadow 0.3s;
+}
+.aero-panel2:hover {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
