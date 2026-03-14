@@ -28,7 +28,11 @@ checkNewsUpdate("01-30", "🚀 News banner testing! 🚀");
 
 checkNewsUpdate("02-14", "happy valentine's day");
 
+checkNewsUpdate("03-14", "3.14 this is PI π");
+
 checkNewsUpdate("03-17", "the leprechauns are hiding");
+
+checkNewsUpdate("04-01", "APRIL FOOLS MAN AHHAHAHAHAHHAHAHAHAHHAHAHAHHAHAHAHHAHAHAHAHA IM LAUGHING AT YOU BECAUSE THIS PRANK IS SO FUNNY I CANNOT STOP LAUGHING HAHAHAHHAHAHAHAHHAHAHAHHAHAHAHAHAHAHHAHAHHAHAHAH");
 
 checkNewsUpdate("08-07", "another year of this site");
 // Example: Updates the banner on Christmas Day!
