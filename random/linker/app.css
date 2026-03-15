@@ -1,0 +1,43 @@
+body {
+  padding: 20px;
+  padding-top: 50px;
+}
+footer {
+  border-radius: 20px;
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  padding: 5px;
+  background-color: #d1e4ff;
+  color: navy;
+  height: 170px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 20px;
+}
+.dg-fbar-img {
+  border-radius: 25px;
+  padding: 0px;
+  margin: 10px;
+  width: 50px;
+  height: 50px;
+}
+.dg-fbar-img:hover {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  translateY: 3px;
+}
+.projects {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.project-card {
+  background-color: white; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom, white, #eef);
+}
+.project-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom, white, #eaeaff);
+}
+.link-custom {
+  width: 50%;          /* Or any fixed width */
+  margin: 0 auto;      /* Automatically adjusts the left and right margins */
+  background-color: rgba(255, 255, 255, 0.3);
+}
