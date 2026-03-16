@@ -17,8 +17,8 @@ body {
     45deg,           /* Angle of stripes */
     transparent,     /* First stripe: invisible */
     transparent 20px,/* Width of first stripe */
-    yellow 1px,     /* Second stripe starts */
-    yellow 2px      /* Width of second stripe */
+    yellow 5px,     /* Second stripe starts */
+    yellow 10px      /* Width of second stripe */
   );
 }
 img {
