@@ -171,9 +171,9 @@ hr {
 .aero-panel2:hover {
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
 }
-.aero-panel {
+.aero-panel,float {
 	transition: transform 0.2s;
 }
-.aero-panel:hover {
+.aero-panel:hover,float:hover {
 	transform: scale(1.01);
 }
