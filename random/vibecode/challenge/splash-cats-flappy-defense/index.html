@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Splash Cats: Flappy Defense (Mashup by Le Chat Mistral & Goofy by doggodgcodes)</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: "Luckiest Guy", 'Segoe UI', sans-serif;
+            background: #87CEEB;
+            /* Background image with fallback color */
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT24ZddUcXOopNnnVhUZXw1FIEZjcWy3Z7fEA');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        #flappy-cat {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            left: 50px;
+            top: 50%;
+            transition: transform 0.1s;
+            z-index: 10;
+        }
+        .water-drop {
+            position: absolute;
+            width: 30px;
+            height: 15px;
+            background: linear-gradient(to right, #00ffff, #00ddff, #00aaff);
+            border-radius: 5px;
+            z-index: 5;
+        }
+        .enemy {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            z-index: 4;
+        }
+        .cat {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            z-index: 3;
+        }
+        .world-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            min-height: 25px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.2);
+            margin: 0;
+            padding: 12px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            z-index: 100;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            border: 3px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            text-shadow: 2px 2px #000;
+            user-select: none;
+            transition: 0.1s;
+            background: #4CAF50;
+        }
+        .btn:active {
+            transform: scale(0.9);
+        }
+        #flap-btn {
+            background: #ff4757;
+        }
+        #waterball-btn {
+            background: #1e90ff;
+        }
+        #summon-btn {
+            background: #4CAF50;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="world-bar">
+        <div id="score">SCORE: 0</div>
+        <div id="money">MONEY: 0</div>
+    </div>
+
+    <div id="game-container">
+        <img id="flappy-cat" src="https://doggodgcodes.github.io/assets/bird-water-gun.png" alt="Flappy Cat">
+    </div>
+    <div class="controls">
+        <div id="flap-btn" class="btn">Flap (Space)</div>
+        <div id="waterball-btn" class="btn">Waterball (F)</div>
+        <div id="summon-btn" class="btn">Summon Cat (Q)</div>
+    </div>
+
+    <script>
+        // Game state
+        const flappyCat = document.getElementById('flappy-cat');
+        const container = document.getElementById('game-container');
+        const flapBtn = document.getElementById('flap-btn');
+        const waterBtn = document.getElementById('waterball-btn');
+        const summonBtn = document.getElementById('summon-btn');
+        const scoreDisplay = document.getElementById('score');
+        const moneyDisplay = document.getElementById('money');
+
+        let catY = window.innerHeight / 2;
+        let velocity = 0;
+        let gravity = 0.35;
+        let score = 0;
+        let money = 100;
+        let activeEnemies = [];
+        let summonedCats = [];
+
+        // Cat types (from Battle Cats)
+        const catTypes = [
+            { name: "Basic Cat", cost: 100, hp: 100, damage: 10, speed: 1, img: "https://minechicken98.github.io/funny/battle-cats-capsule/images/cat.png" },
+            { name: "Tank Cat", cost: 200, hp: 300, damage: 5, speed: 0.5, img: "https://minechicken98.github.io/funny/battle-cats-capsule/images/tank.png" },
+            { name: "Axe Cat", cost: 300, hp: 80, damage: 35, speed: 2, img: "https://minechicken98.github.io/funny/battle-cats-capsule/images/axe.png" }
+        ];
+
+        // Flap function
+        function flap() {
+            velocity = -8;
+            flappyCat.style.transform = "rotate(-25deg)";
+            setTimeout(() => {
+                flappyCat.style.transform = "rotate(0deg)";
+            }, 200);
+        }
+
+        // Waterball function
+        function water() {
+            const drop = document.createElement('div');
+            drop.className = 'water-drop';
+            drop.style.left = '110px';
+            drop.style.top = (catY + 25) + 'px';
+            container.appendChild(drop);
+
+            let dropX = 110;
+            const moveDrop = setInterval(() => {
+                dropX += 5;
+                drop.style.left = dropX + 'px';
+
+                // Check for enemy hits
+                for (let i = activeEnemies.length - 1; i >= 0; i--) {
+                    const enemyObj = activeEnemies[i];
+                    const enemy = enemyObj.element;
+                    const b = enemy.getBoundingClientRect();
+                    const d = drop.getBoundingClientRect();
+
+                    if (d.right > b.left && d.left < b.right && d.top < b.bottom && d.bottom > b.top) {
+                        enemyObj.hp -= 20;
+                        if (enemyObj.hp <= 0) {
+                            enemy.remove();
+                            activeEnemies.splice(i, 1);
+                            score += 10;
+                            money += 5;
+                            scoreDisplay.innerText = "SCORE: " + score;
+                            moneyDisplay.innerText = "MONEY: " + money;
+                        }
+                        drop.remove();
+                        clearInterval(moveDrop);
+                        return;
+                    }
+                }
+
+                if (dropX >= window.innerWidth - 5) {
+                    drop.remove();
+                    clearInterval(moveDrop);
+                }
+            }, 20);
+        }
+
+        // Summon cat function
+        function summonCat() {
+            if (money >= catTypes[0].cost) {
+                money -= catTypes[0].cost;
+                moneyDisplay.innerText = "MONEY: " + money;
+
+                const cat = document.createElement('img');
+                cat.className = 'cat';
+                cat.src = catTypes[0].img;
+                cat.style.left = (window.innerWidth - 60) + 'px';
+                cat.style.top = (Math.random() * (window.innerHeight - 100)) + 'px';
+                container.appendChild(cat);
+
+                summonedCats.push({
+                    element: cat,
+                    hp: catTypes[0].hp,
+                    damage: catTypes[0].damage,
+                    speed: catTypes[0].speed,
+                    x: window.innerWidth - 60,
+                    y: (Math.random() * (window.innerHeight - 100))
+                });
+            }
+        }
+
+        // Spawn enemy function
+        function spawnEnemy() {
+            const enemy = document.createElement('img');
+            enemy.src = "https://doggodgcodes.github.io/assets/memes/Thumbs%20up%20guy!.png";
+            enemy.className = 'enemy';
+            enemy.style.left = window.innerWidth + 'px';
+            enemy.style.top = Math.random() * (window.innerHeight - 200) + 50 + 'px';
+            container.appendChild(enemy);
+
+            activeEnemies.push({
+                element: enemy,
+                hp: 100,
+                x: window.innerWidth,
+                y: Math.random() * (window.innerHeight - 200) + 50
+            });
+
+            let enemyX = window.innerWidth;
+            const moveEnemy = setInterval(() => {
+                enemyX -= 2;
+                enemy.style.left = enemyX + 'px';
+
+                // Check for cat collisions
+                for (let i = summonedCats.length - 1; i >= 0; i--) {
+                    const cat = summonedCats[i];
+                    const c = cat.element.getBoundingClientRect();
+                    const e = enemy.getBoundingClientRect();
+
+                    if (c.right > e.left && c.left < e.right && c.top < e.bottom && c.bottom > e.top) {
+                        // Cat attacks enemy
+                        const enemyObj = activeEnemies.find(e => e.element === enemy);
+                        if (enemyObj) {
+                            enemyObj.hp -= cat.damage;
+                            if (enemyObj.hp <= 0) {
+                                enemy.remove();
+                                activeEnemies = activeEnemies.filter(e => e.element !== enemy);
+                                score += 20;
+                                money += 10;
+                                scoreDisplay.innerText = "SCORE: " + score;
+                                moneyDisplay.innerText = "MONEY: " + money;
+                            }
+                        }
+                    }
+                }
+
+                if (enemyX < -80) {
+                    enemy.remove();
+                    activeEnemies = activeEnemies.filter(e => e.element !== enemy);
+                    clearInterval(moveEnemy);
+                }
+            }, 20);
+        }
+
+        // Update summoned cats
+        function updateCats() {
+            for (let i = summonedCats.length - 1; i >= 0; i--) {
+                const cat = summonedCats[i];
+                cat.x -= cat.speed;
+                cat.element.style.left = cat.x + 'px';
+
+                if (cat.x < -60) {
+                    cat.element.remove();
+                    summonedCats.splice(i, 1);
+                }
+            }
+        }
+
+        // Update game state
+        function update() {
+            velocity += gravity;
+            catY += velocity;
+            flappyCat.style.top = catY + 'px';
+            if (velocity > 2) flappyCat.style.transform = "rotate(20deg)";
+            if (catY > window.innerHeight || catY < -50) {
+                catY = window.innerHeight / 2;
+                velocity = 0;
+            }
+            updateCats();
+            requestAnimationFrame(update);
+        }
+
+        // Event listeners
+        flapBtn.addEventListener('mousedown', (e) => { e.preventDefault(); flap(); });
+        waterBtn.addEventListener('mousedown', (e) => { e.preventDefault(); water(); });
+        summonBtn.addEventListener('mousedown', (e) => { e.preventDefault(); summonCat(); });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') flap();
+            if (e.code === 'KeyF') water();
+            if (e.code === 'KeyQ') summonCat();
+        });
+
+        // Spawn enemies every 2 seconds
+        setInterval(spawnEnemy, 2000);
+
+        // Start game
+        moneyDisplay.innerText = "MONEY: " + money;
+        update();
+    </script>
+</body>
+</html>
