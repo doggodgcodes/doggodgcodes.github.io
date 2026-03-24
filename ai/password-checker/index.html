@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is My Password Compromised?</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        input[type="password"], button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #d9534f;
+            text-shadow: 0px 2px 16px #000000;
+        }
+
+        .generator {
+            margin-top: 30px;
+        }
+
+        .credit {
+            position: absolute;
+            bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .credit a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .credit a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Is My Password Compromised?</h1>
+
+    <div class="container">
+        <input type="password" id="passwordInput" placeholder="Enter your password to check">
+        <button onclick="checkPassword()">Check Password Status</button>
+
+        <div class="result" id="result"></div>
+
+        <div class="generator">
+            <h3>Generate a Strong Password:</h3>
+            <button onclick="generatePassword()">Generate New Password</button>
+            <p id="generatedPassword" style="font-size: 18px; color: #28a745;"></p>
+        </div>
+    </div>
+
+    <div class="credit">
+        <p>Created by <a href="https://chatgpt.com" target="_blank">ChatGPT</a> and <a href="https://doggodgcodes.github.io" target="_blank">doggodgcodes</a></p>
+    </div>
+
+    <script>
+ // URL of the text file on GitHub
+        const url = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt';
+        const url2 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/Pwdb_top-10000000.txt';
+        const url3 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/xato-net-10-million-passwords.txt';
+        const url4 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/top-passwords-shortlist.txt';
+const url5 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/2025-199_most_used_passwords.txt';
+const url6 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/2020-200_most_used_passwords.txt';
+const url7 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/2023-200_most_used_passwords.txt';
+const url8 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/2024-197_most_used_passwords.txt';
+const url9 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/common-passwords-win.txt';
+const url10 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/darkweb2017_top-10000.txt';
+        // Initial password list (your custom passwords)
+        let passwordList = [
+    "fortnite", "blox", "barf", "snoop_dogg", "snoop-dogg", "imaginedragons",
+    "imagine_dragons", "imagine-dragons", "Halo", "Valorant", "CallofDuty",
+    "Zelda", "Overwatch", "ApexLegends", "PUBG", "Skyrim", "gta6", "Minecraft123",
+    "FIFA2023", "Battlefield", "GearsOfWar", "TombRaider", "LeagueofLegends",
+    "Cyberpunk2077", "bald", "youtuber", "rainbowsixsiege", "streamer",
+    "hahahahahaha", "stupider", "hack3r", "h4ck3rs", "h4ck3rz", "h4cker",
+    "ai", "ChatGPT", "Claudeai", "geminiai", "lechatai", "mistralai", "soccers",
+    "supermario", "zelda123", "spiderman", "batman2023", "wolverine", "ironman07",
+    "thanos", "captainmarvel", "blackwidow", "venomfan", "deadpool42", "thor2023",
+    "starwarsfan", "matrixneo", "mortalcombat", "rainbow_dash", "sonicboom123",
+    "fortnitepro", "superman123", "avengersendgame", "worldofwarcraft", "fallout76",
+    "darksouls3", "elder_scrolls", "doomslayer", "yum", "valorant123",
+    "battlefront2", "risingthedawn", "legendsneverdie", "stealthgamer", "powergamer",
+    "xboxone", "playstation5", "nintendoswitch", "gameon2023", "gamerlife", "levelup123",
+    "yeetgang", "bigchungus", "dankmemes", "okboomer", "karenmemes", "doge123", 
+    "pepe_the_frog", "bruhmoment", "spicy_memes", "swolecat", "funnymemes", 
+    "vibing", "stonks", "memequeen", "meme_king", "yassqueen", "pogchamp123", 
+    "404notfound", "mememaster", "weirdflexbutok", "smashorpass", "meme_lord", 
+    "notsureifserious", "trendingmemes", "bekind", "lennyface69", "datboi420", "dabomb", 
+    "rickroll123", "trollfaceforever", "crab_rave", "dogewolf", "blessedmeme", "whenyoutry"
+]; // chatgpt made many passwords here
+
+        // Fetch the password list from the URLs
+        async function fetchPasswordList() {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                passwordList = passwordList.concat(text.split('\n').map(p => p.trim()));
+
+                const response2 = await fetch(url2);
+                const text2 = await response2.text();
+                passwordList = passwordList.concat(text2.split('\n').map(p => p.trim()));
+
+                const response3 = await fetch(url3);
+                const text3 = await response3.text();
+                passwordList = passwordList.concat(text3.split('\n').map(p => p.trim()));
+                
+                const response4 = await fetch(url4);
+                const text4 = await response4.text();
+                passwordList = passwordList.concat(text4.split('\n').map(p => p.trim()));
+
+const response5 = await fetch(url5);
+const text5 = await response5.text();
+passwordList = passwordList.concat(text5.split('\n').map(p => p.trim()));
+
+const response6 = await fetch(url6);
+const text6 = await response6.text();
+passwordList = passwordList.concat(text6.split('\n').map(p => p.trim()));
+
+const response7 = await fetch(url7);
+const text7 = await response7.text();
+passwordList = passwordList.concat(text7.split('\n').map(p => p.trim()));
+
+const response8 = await fetch(url8);
+const text8 = await response8.text();
+passwordList = passwordList.concat(text8.split('\n').map(p => p.trim()));
+
+const response9 = await fetch(url9);
+const text9 = await response9.text();
+passwordList = passwordList.concat(text9.split('\n').map(p => p.trim()));
+
+const response10 = await fetch(url10);
+const text10 = await response10.text();
+passwordList = passwordList.concat(text10.split('\n').map(p => p.trim()));
+
+                console.log('Password list loaded');
+            } catch (error) {
+                console.error("Error fetching password list:", error);
+            }
+        }
+
+        // Check if the entered password is in the list of common passwords
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            if (passwordList.length === 0) {
+                resultDiv.textContent = "Loading password list, please try again shortly.";
+                return;
+            }
+
+            if (passwordList.includes(password)) {
+                resultDiv.textContent = "Critical Warning: This password is very common and compromised!";
+                resultDiv.style.color = 'red';
+            } else if (password.length < 10) {
+                resultDiv.textContent = "Warning: Your password is not in the password list, but the length is a bit small if you ask me!";
+                resultDiv.style.color = 'yellow';
+            } else {
+                resultDiv.textContent = "Your password is not in the password list. But still, consider using a stronger one!";
+                resultDiv.style.color = 'green';
+            }
+        }
+
+        // Generate a random password
+        function generatePassword() {
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-+=<>?";
+            let password = "";
+            const passwordLength = 12;
+
+            for (let i = 0; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+
+            document.getElementById('generatedPassword').textContent = "Generated Password: " + password;
+        }
+
+        // Load password list when the page loads
+        window.onload = fetchPasswordList;
+    </script>
+
+</body>
+</html>
