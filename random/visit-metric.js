@@ -40,3 +40,4 @@ if (cookieVisits != null) {
 // Display the number of visits
 document.getElementById("visitCount").innerText = `You have visited the random webpage ${visits} times`;
 console.log(visits);
+console.log(window.location.href)
