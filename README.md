@@ -13,3 +13,7 @@ Exploring the webpage comes with a lot of random stuff and maybe hidden secrets 
 # Why is there TypeScript?
 
 TypeScript was added into this as a dumb test. Maybe meaningful stuff was made with TypeScript in this.
+
+# Why is there AI stuff?
+
+JavaScrript is quite annoying.
