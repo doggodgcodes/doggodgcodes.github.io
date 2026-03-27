@@ -16,4 +16,4 @@ TypeScript was added into this as a dumb test. Maybe meaningful stuff was made w
 
 # Why is there AI stuff?
 
-JavaScrript is quite annoying.
+JavaScript is quite annoying.
