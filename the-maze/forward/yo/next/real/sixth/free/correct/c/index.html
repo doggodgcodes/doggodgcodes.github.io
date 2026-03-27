@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <title>level 9</title>
+  </head>
+  <body>
+    <h1>Level 9</h1>
+    <p>is this a trick question? think about it.</p>
+    <a href="win/" style="color: red;">click me</a>
+    <a href="/the-maze" style="color: green;">click me</a>
+    
+    <script>
+      document.addEventListener("keydown", function(e) {
+    if (e.key === "F12") {
+        console.log("F12 was pressed! Sending back to start...");
+        window.location.href = "https://" + window.location.hostname + "/the-maze"
+        
+        // You can prevent default if you want
+        // e.preventDefault();
+      // chatgpt made this js
+    }
+});
+    </script>
+  </body>
+</html>
