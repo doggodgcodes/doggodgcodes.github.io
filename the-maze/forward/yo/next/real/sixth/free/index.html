@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>level 7</title>
+  </head>
+  <body>
+    <h1>Level 7 is lua bad</h1>
+    <p>quiz</p>
+    
+    <a href="correct/">no</a>
+    <a href="/the-maze">yes</a>
+    
+    <script>
+      document.addEventListener("keydown", function(e) {
+    if (e.key === "F12") {
+        console.log("F12 was pressed! Sending back to start...");
+        window.location.href = "https://" + window.location.hostname + "/the-maze"
+        
+        // You can prevent default if you want
+        // e.preventDefault();
+      // chatgpt made this js
+    }
+});
+    </script>
+  </body>
+</html>
