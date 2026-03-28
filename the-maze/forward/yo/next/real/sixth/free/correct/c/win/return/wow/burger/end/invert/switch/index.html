@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>level 16</title>
+    <style>
+      body {
+        background-color: black;
+        color: grey;
+      }
+      .c {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Level 16 (switch in game console and switching light mode to dark mode)</h1>
+    <p>who is lying? (Tip: hover over links to help)</p>
+    <img src="https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400&h=400&fit=crop">
+    <a href="/the-maze">me</a>
+    <a href="/the-maze">me</a>
+    <a href="/the-maze">me</a>
+    <a href="/the-maze">me</a>
+    <a href="/the-maze">me</a>
+    <a href="/the-maze">me</a>
+    <a href="point/">me <h6 class="c">im the real one</h6></a>
+    <a href="/the-maze">me</a>
+    <a href="/the-maze">me</a>
+    <script>
+      document.addEventListener("keydown", function(e) {
+    if (e.key === "F12") {
+        console.log("F12 was pressed! Sending back to start...");
+        window.location.href = "https://" + window.location.hostname + "/the-maze"
+        
+        // You can prevent default if you want
+        // e.preventDefault();
+      // chatgpt made this js
+    }
+});
+    </script>
+  </body>
+</html>
