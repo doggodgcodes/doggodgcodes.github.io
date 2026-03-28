@@ -15,6 +15,11 @@ function generateRoast() {
     let randomWord = words[Math.floor(Math.random() * words.length)];
     roast.push(randomWord);
   }
-
+  if (Math.random() > 0.7) roast.unshift("you");
+if (Math.random() < 0.05) {
+  document.getElementById("output").textContent =
+    "you absolute microwave energy";
+  return;
+}
   document.getElementById("output").textContent = roast.join(" ");
 }
