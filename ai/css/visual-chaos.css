@@ -1,0 +1,167 @@
+/* CHAOS MODE ACTIVATED */
+/* by chatgpt */
+@import url("https://doggodgcodes.github.io/assets/fonts/css/dg-dingus.css");
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;700&family=Press+Start+2P&family=Paprika&family=Bungee+Shade&family=Rubik+Glitch&display=swap");
+
+/* Root variables that should never be together */
+:root {
+  --ugly-pink: #ff00aa;
+  --radioactive-green: #39ff14;
+  --burnt-orange: #ff5e00;
+  --void-black: #0a0a0a;
+  --blinding-yellow: #ffff00;
+  --mystery-blue: #0011ff;
+}
+
+/* Entire page nightmare */
+body {
+  font-family: "DG Dingus", "Comic Neue", cursive;
+  background: linear-gradient(45deg, var(--ugly-pink), var(--radioactive-green), var(--burnt-orange));
+  background-size: 400% 400%;
+  animation: backgroundChaos 6s infinite alternate;
+  color: var(--blinding-yellow);
+  cursor: crosshair;
+}
+
+/* Background animation that refuses to chill */
+@keyframes backgroundChaos {
+  0% { background-position: left top; }
+  50% { background-position: right bottom; }
+  100% { background-position: left bottom; }
+}
+
+/* Headers: absolutely unacceptable */
+h1, h2, h3 {
+  font-family: "Rubik Glitch", "Bungee Shade", cursive;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--radioactive-green);
+  text-shadow:
+    2px 2px 0 var(--ugly-pink),
+    -2px -2px 0 var(--mystery-blue),
+    5px 5px 10px black;
+  animation: jitter 0.2s infinite;
+}
+
+/* Jitter animation (why would you do this) */
+@keyframes jitter {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(2px, -2px) rotate(1deg); }
+  50% { transform: translate(-2px, 2px) rotate(-1deg); }
+  75% { transform: translate(3px, 1px) rotate(2deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+/* Paragraphs: surprisingly readable but still cursed */
+p {
+  font-family: "Paprika", cursive;
+  background: linear-gradient(90deg, yellow, hotpink);
+  color: black;
+  padding: 10px;
+  border: 3px dashed var(--mystery-blue);
+}
+
+/* Buttons that scream */
+button {
+  font-family: "Press Start 2P", monospace;
+  background: radial-gradient(circle, red, yellow, lime);
+  color: blue;
+  border: 5px double magenta;
+  padding: 15px;
+  transform: skew(-10deg);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover = absolute nonsense */
+button:hover {
+  transform: rotate(360deg) scale(1.5);
+  background: repeating-linear-gradient(
+    45deg,
+    red,
+    red 10px,
+    yellow 10px,
+    yellow 20px
+  );
+  color: white;
+}
+
+/* Links: why would you ever do this */
+a {
+  color: cyan;
+  font-weight: bold;
+  text-decoration: none;
+  position: relative;
+}
+
+/* Wacky underline animation */
+a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, purple);
+  left: 0;
+  bottom: -5px;
+  animation: rainbowSlide 1s infinite linear;
+}
+
+@keyframes rainbowSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Cards with fake “aero glass” but totally wrong */
+.card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(200%);
+  border-radius: 20px;
+  border: 2px solid hotpink;
+  box-shadow:
+    0 0 20px cyan,
+    inset 0 0 30px magenta;
+  padding: 20px;
+  animation: floaty 3s infinite ease-in-out;
+}
+
+/* Floating for no reason */
+@keyframes floaty {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Scrollbar crime */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: repeating-linear-gradient(
+    0deg,
+    black,
+    black 10px,
+    yellow 10px,
+    yellow 20px
+  );
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(red, blue);
+  border-radius: 10px;
+}
+
+/* Input fields that look like arcade machines */
+input {
+  font-family: "Press Start 2P", monospace;
+  background: black;
+  color: lime;
+  border: 3px solid cyan;
+  padding: 10px;
+  box-shadow: 0 0 10px lime;
+}
+
+/* Selection highlight: offensive */
+::selection {
+  background: magenta;
+  color: yellow;
+}
