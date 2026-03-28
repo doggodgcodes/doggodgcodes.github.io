@@ -12,6 +12,8 @@ body {
 }
 .world {
 	padding: 25px;
+}
+.stripes {
 	/* gradient is from ChatGPT */
 	background: repeating-linear-gradient(
     45deg,           /* Angle of stripes */
