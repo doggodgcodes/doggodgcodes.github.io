@@ -1,6 +1,6 @@
 (function () {
   const now = new Date();
-  const isAprilFirst = (now.getMonth() === 3 && now.getDate() === 1); // April = 3 (0-based)
+  let isAprilFirst = (now.getMonth() === 3 && now.getDate() === 1); // April = 3 (0-based)
 
   if (isAprilFirst) {
     setTimeout(() => {
