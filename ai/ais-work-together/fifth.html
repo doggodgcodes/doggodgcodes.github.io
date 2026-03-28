@@ -1,0 +1,348 @@
+<!doctype html>
+<html>
+<head>
+    <title>Toaster OS '99 - Ultra-Millennium Edition</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <style>
+        :root {
+            --crt-noise: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="black"/><rect width="200" height="1" fill="rgba(255,255,255,0.05)"/><rect y="1" width="200" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            --crt-scanlines: repeating-linear-gradient(to bottom, transparent, transparent 1px, rgba(0,0,0,0.1) 1px, rgba(0,0,0,0.1) 2px);
+        }
+
+        body {
+            background-color: #008080;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            overflow: hidden;
+            font-family: 'MS Sans Serif', Arial, sans-serif;
+            background-image: var(--crt-scanlines), var(--crt-noise);
+            animation: crt-flicker 0.15s infinite alternate;
+            color: #000;
+            height: 100vh;
+        }
+
+        @keyframes crt-flicker {
+            0% { opacity: 0.98; }
+            100% { opacity: 1; }
+        }
+
+        .window {
+            width: 400px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+        }
+
+        #toaster-btn {
+            font-size: 60px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+            background: #c0c0c0;
+            border: 2px outset white;
+            user-select: none;
+            margin: 10px 0;
+            transition: transform 0.05s;
+        }
+
+        #toaster-btn:active {
+            border: 2px inset white;
+            transform: scale(0.98);
+        }
+
+        /* Clippy */
+        #clippy-container {
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            width: 150px;
+            z-index: 999;
+        }
+        #clippy-bubble {
+            background: #FFFFE1;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 11px;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        /* System Tray & Taskbar */
+        #taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: #c0c0c0;
+            border-top: 2px solid #dfdfdf;
+            display: flex;
+            align-items: center;
+            padding: 2px;
+            z-index: 1000;
+        }
+
+        #start-btn {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 2px 6px;
+        }
+
+        #system-tray {
+            margin-left: auto;
+            border: 2px inset #dfdfdf;
+            padding: 2px 10px;
+            font-size: 12px;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Start Menu */
+        #start-menu {
+            position: fixed;
+            bottom: 30px;
+            left: 2px;
+            width: 200px;
+            background: #c0c0c0;
+            border: 2px outset white;
+            z-index: 1001;
+            display: none;
+        }
+        .menu-item {
+            padding: 8px 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .menu-item:hover {
+            background: #000080;
+            color: white;
+        }
+
+        /* Screensaver */
+        #screensaver {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            z-index: 1999;
+        }
+        .flying-toaster {
+            position: absolute;
+            font-size: 40px;
+            animation: fly 8s linear infinite;
+        }
+        @keyframes fly {
+            from { transform: translate(110vw, 110vh); }
+            to { transform: translate(-10vw, -10vh); }
+        }
+
+        /* Logon */
+        #logon-ui {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #008080;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2000;
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <div id="logon-ui">
+        <div class="window" style="width: 300px;">
+            <div class="title-bar"><div class="title-bar-text">Welcome</div></div>
+            <div class="window-body">
+                <p>Enter password (1234):</p>
+                <input type="password" id="pass-input" style="width: 100%" />
+                <section class="field-row" style="justify-content: flex-end; margin-top: 10px;">
+                    <button onclick="login()">OK</button>
+                    <button onclick="alert('Help is not available.')">Cancel</button>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="screensaver" onclick="stopScreensaver()">
+        <div class="flying-toaster" style="top: 20%; left: 80%; animation-delay: 0s;">🍞</div>
+        <div class="flying-toaster" style="top: 50%; left: 40%; animation-delay: 2s;">🍞</div>
+        <div class="flying-toaster" style="top: 70%; left: 10%; animation-delay: 4s;">🍞</div>
+    </div>
+
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">ToastManager.exe</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Close" onclick="alert('System process cannot be killed.')"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <center>
+                <div id="toaster-btn" onclick="toastBread()">🍞</div>
+                <div class="field-row">
+                    <label>Slices:</label>
+                    <input id="counter" type="text" value="0" readonly style="width: 80px" />
+                </div>
+                <button style="margin-top: 10px;" onclick="buyButter()">Upgrade: Butter.vxd (10 Slices)</button>
+            </center>
+        </div>
+    </div>
+
+    <div id="ie-window" class="window hidden" style="width: 450px;">
+        <div class="title-bar">
+            <div class="title-bar-text">Internet Explorer 4.0</div>
+            <div class="title-bar-controls">
+                <button aria-label="Close" onclick="toggleWin('ie-window')"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <div style="background: white; border: 2px inset; height: 150px; padding: 10px; overflow-y: scroll;">
+                <h3 style="color: blue;">Welcome to the World Wide Web!</h3>
+                <p>You are visitor #000042</p>
+                <marquee>GET FREE BUTTER RAM NOW! CLICK HERE!</marquee>
+                <p>The year is 1999 and everything is fine. Nothing will happen at midnight.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="regedit" class="window hidden" style="width: 300px;">
+        <div class="title-bar">
+            <div class="title-bar-text">Registry Editor</div>
+            <div class="title-bar-controls">
+                <button aria-label="Close" onclick="toggleWin('regedit')"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <p>HKEY_LOCAL_MACHINE\Toast</p>
+            <input type="number" id="cheat-val" value="1000" style="width: 100px" />
+            <button onclick="applyCheat()">Modify Data</button>
+        </div>
+    </div>
+
+    <div id="taskbar">
+        <button id="start-btn" onclick="toggleStart()">
+            <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="16"> Start
+        </button>
+        <div id="system-tray">
+            <span onclick="alert('Clock error: It is always 1999.')">10:42 PM</span>
+        </div>
+    </div>
+
+    <div id="start-menu">
+        <div class="menu-item" onclick="toggleWin('ie-window')">🌐 Internet Explorer</div>
+        <div class="menu-item" onclick="toggleWin('regedit')">🔑 Registry Editor</div>
+        <div class="menu-item" onclick="bsod()">🔌 Shut Down...</div>
+        <hr>
+        <div style="padding: 10px; font-size: 10px;">
+            <b>Credits:</b><br>
+            Template & Modifications: DoggoDGCodes<br>
+            Code: Gemini & Le Chat
+        </div>
+    </div>
+
+    <div id="clippy-container">
+        <div id="clippy-bubble">It looks like you're trying to toast bread!</div>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Clippy-letter.png/120px-Clippy-letter.png" alt="Clippy" style="width: 80px; float: right;">
+    </div>
+
+    <script>
+        let count = 0;
+        let butterMultiplier = 1;
+        let idleTimer;
+
+        function login() {
+            if (document.getElementById('pass-input').value === '1234') {
+                document.getElementById('logon-ui').classList.add('hidden');
+                startIdleTimer();
+            } else {
+                alert("ACCESS DENIED");
+            }
+        }
+
+        function toastBread() {
+            count += butterMultiplier;
+            updateDisplay();
+            if (Math.random() > 0.9) showClippy();
+            resetIdle();
+        }
+
+        function updateDisplay() {
+            document.getElementById('counter').value = count;
+        }
+
+        function buyButter() {
+            if (count >= 10) {
+                count -= 10;
+                butterMultiplier++;
+                updateDisplay();
+                alert("Driver Butter.vxd installed successfully.");
+            } else {
+                alert("Insufficient crust for this operation.");
+            }
+        }
+
+        function toggleWin(id) {
+            const win = document.getElementById(id);
+            win.classList.toggle('hidden');
+            toggleStart(false);
+        }
+
+        function toggleStart(force) {
+            const menu = document.getElementById('start-menu');
+            menu.style.display = (force === false) ? 'none' : (menu.style.display === 'block' ? 'none' : 'block');
+        }
+
+        function applyCheat() {
+            count = parseInt(document.getElementById('cheat-val').value);
+            updateDisplay();
+            alert("Memory injected.");
+        }
+
+        function showClippy() {
+            const b = document.getElementById('clippy-bubble');
+            const msgs = ["Need a hand?", "That's a lot of carbs!", "I like toast too.", "Click harder!"];
+            b.innerText = msgs[Math.floor(Math.random()*msgs.length)];
+            b.style.display = 'block';
+            setTimeout(() => b.style.display = 'none', 3000);
+        }
+
+        function startIdleTimer() {
+            idleTimer = setTimeout(() => {
+                document.getElementById('screensaver').style.display = 'block';
+            }, 15000);
+        }
+
+        function resetIdle() {
+            stopScreensaver();
+            clearTimeout(idleTimer);
+            startIdleTimer();
+        }
+
+        function stopScreensaver() {
+            document.getElementById('screensaver').style.display = 'none';
+        }
+
+        function bsod() {
+            document.body.innerHTML = `<div style="background:#0000aa; color:#fff; height:100vh; padding:50px; font-family:monospace;">
+                <h1>WINDOWS</h1><p>A fatal exception OE has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.</p>
+                <p>Press any key to terminate the current application.</p>
+                <p>Press CTRL+ALT+DEL to restart. You will lose unsaved toast.</p>
+                <p align="center">Press any key to continue _</p>
+            </div>`;
+            document.body.onclick = () => location.reload();
+        }
+    </script>
+</body>
+</html>
