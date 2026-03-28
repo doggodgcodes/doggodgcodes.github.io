@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SCSS On-the-Fly Example</title>
+  <!-- Include Sass.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/sass.js@0.11.1/dist/sass.sync.js"></script>
+</head>
+<body>
+  <h1>Hello SCSS!</h1>
+  <p>This paragraph will have SCSS styles applied dynamically.</p>
+
+  <script>
+    // Your SCSS code as a string
+    const scssCode = `
+      $primary-color: #3498db;
+      $padding: 20px;
+
+      body {
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+        padding: $padding;
+      }
+
+      h1 {
+        color: $primary-color;
+        text-align: center;
+      }
+
+      p {
+        color: darken($primary-color, 20%);
+      }
+    `;
+
+    // Compile SCSS to CSS using sass.js
+    Sass.compile(scssCode, function(result) {
+      if(result.status === 0){
+        // Create a <style> tag and append the CSS
+        const styleTag = document.createElement('style');
+        styleTag.innerHTML = result.text;
+        document.head.appendChild(styleTag);
+      } else {
+        console.error("SCSS compilation error:", result.formatted);
+      }
+    });
+  </script>
+</body>
+</html>
