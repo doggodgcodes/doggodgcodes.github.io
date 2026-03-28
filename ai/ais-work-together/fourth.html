@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+<head>
+    <title>Toaster OS '99 - Pixel Edition</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <style>
+        :root {
+            --crt-noise: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="black"/><rect width="200" height="1" fill="rgba(255,255,255,0.05)"/><rect y="1" width="200" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+            --crt-scanlines: repeating-linear-gradient(to bottom, transparent, transparent 1px, rgba(0,0,0,0.1) 1px, rgba(0,0,0,0.1) 2px);
+        }
+
+        body {
+            background-color: #008080;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            overflow-x: hidden;
+            font-family: 'MS Sans Serif', Arial, sans-serif;
+            background-image: var(--crt-scanlines), var(--crt-noise);
+            animation: crt-flicker 0.15s infinite alternate;
+            color: #000;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="black" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><path fill="white" d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/></svg>'), auto;
+        }
+
+        @keyframes crt-flicker {
+            0% { opacity: 0.97; }
+            100% { opacity: 1; }
+        }
+
+        .window {
+            width: 400px;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            position: relative;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="black" d="M7 10l5 5 5-5z"/></svg>'), auto;
+        }
+
+        #toaster-btn {
+            font-size: 60px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+            background: #c0c0c0;
+            border: 2px outset white;
+            user-select: none;
+            margin: 10px 0;
+            transition: all 0.1s;
+            box-shadow: inset -2px -2px 0px rgba(0,0,0,0.2);
+        }
+        #toaster-btn:active {
+            border: 2px inset white;
+            box-shadow: inset 2px 2px 0px rgba(0,0,0,0.2);
+        }
+
+        /* Clippy's Styling */
+        #clippy-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            z-index: 999;
+        }
+        #clippy-bubble {
+            background: #FFFFE1;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            display: none;
+            border: 2px solid #000;
+        }
+
+        /* Task Manager */
+        #task-manager {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 300px;
+            background: #c0c0c0;
+            border: 2px solid #000;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: none;
+        }
+        #task-manager .title-bar {
+            background: linear-gradient(to right, #000080, #1084d0);
+            color: white;
+        }
+        .graph-container {
+            background: #fff;
+            border: 1px solid #000;
+            margin: 5px;
+            height: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .graph {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #00ff00, #ff0000);
+            position: relative;
+        }
+        .graph::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(90deg, transparent, transparent 5px, rgba(255,255,255,0.3) 5px, rgba(255,255,255,0.3) 10px);
+            animation: graph-animate 2s linear infinite;
+        }
+        @keyframes graph-animate {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 0; }
+        }
+
+        /* System Tray */
+        #system-tray {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background: #c0c0c0;
+            border-top: 2px solid #dfdfdf;
+            border-left: 2px solid #dfdfdf;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            z-index: 998;
+        }
+        .tray-icon {
+            width: 24px;
+            height: 24px;
+            background: #000;
+            cursor: pointer;
+        }
+
+        /* Start Menu */
+        #start-menu {
+            position: fixed;
+            bottom: 30px;
+            left: 20px;
+            width: 200px;
+            background: #c0c0c0;
+            border: 2px solid #000;
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+            z-index: 1001;
+            display: none;
+        }
+        #start-menu .menu-item {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #start-menu .menu-item:hover {
+            background: #000080;
+            color: white;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #c0c0c0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #808080;
+            border-radius: 0;
+        }
+
+        /* Logon UI */
+        #logon-ui {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #008080;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 2000;
+            color: white;
+            font-family: 'MS Sans Serif', Arial, sans-serif;
+        }
+        #logon-box {
+            background: #c0c0c0;
+            border: 2px solid #000;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            color: #000;
+        }
+        #logon-box input {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #808080;
+        }
+        #logon-box button {
+            background: #c0c0c0;
+            border: 2px solid #000;
+            padding: 5px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Screensaver */
+        #screensaver {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1999;
+            overflow: hidden;
+        }
+        .toaster {
+            position: absolute;
+            color: white;
+            font-size: 48px;
+            user-select: none;
+            animation: float 10s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-200px) translateX(200px); }
+            50% { transform: translateY(0) translateX(400px); }
+            75% { transform: translateY(200px) translateX(200px); }
+            100% { transform: translateY(0) translateX(0); }
+        }
+        .taskmgr {
+          margin-bottom: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logon UI -->
+    <div id="logon-ui">
+        <div id="logon-box">
+            <h2 style="margin-top: 0;">Welcome to Toaster OS '99</h2>
+            <p>Please enter your password: (1234)</p>
+            <input type="password" id="password" placeholder="Password" />
+            <button onclick="checkPassword()">Log On</button>
+        </div>
+    </div>
+
+    <!-- Screensaver -->
+    <div id="screensaver">
+        <div class="toaster" style="top: 50%; left: 50%;">🍞</div>
+        <div class="toaster" style="top: 60%; left: 30%; animation-delay: 1s;">🍞</div>
+        <div class="toaster" style="top: 40%; left: 70%; animation-delay: 2s;">🍞</div>
+        <div class="toaster" style="top: 30%; left: 20%; animation-delay: 3s;">🍞</div>
+        <div class="toaster" style="top: 70%; left: 80%; animation-delay: 4s;">🍞</div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu">
+        <div class="title-bar">
+            <div class="title-bar-text">Start</div>
+        </div>
+        <div class="menu-item" onclick="alert('Opening My Computer...')">My Computer</div>
+        <div class="menu-item" onclick="alert('Opening Notepad...')">Notepad</div>
+        <div class="menu-item" onclick="showTaskManager()">Task Manager</div>
+        <div class="menu-item" onclick="bsod()">Shut Down...</div>
+    </div>
+
+    <!-- System Tray -->
+    <div id="system-tray">
+        <div class="tray-icon" onclick="toggleStartMenu()">🟦</div>
+        <div class="tray-icon" onclick="showTaskManager()">📈</div>
+        <div class="tray-icon" onclick="bsod()">😥</div>
+        <div style="font-size: 10px; margin-left: 5px;">10:42 PM</div>
+    </div>
+
+    <!-- Task Manager -->
+    <div id="task-manager">
+        <div class="title-bar">
+            <div class="title-bar-text">Task Manager</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize" onclick="document.getElementById('task-manager').style.display='none'"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close" onclick="document.getElementById('task-manager').style.display='none'"></button>
+            </div>
+        </div>
+        <div class="window-body taskmgr">
+            <h3>Performance</h3>
+            <div class="graph-container">
+                <div class="graph" id="cpu-graph"></div>
+                <div style="text-align: center; font-size: 10px;">CPU Usage</div>
+            </div>
+            <div class="graph-container">
+                <div class="graph" id="ram-graph"></div>
+                <div style="text-align: center; font-size: 10px;">RAM Usage</div>
+            </div>
+            <h3>Processes</h3>
+            <table style="width: 100%">
+                <thead>
+                    <tr><th>Name</th><th>CPU</th><th>Memory</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>ToastManager.munch</td><td>42%</td><td>12,345K</td></tr>
+                    <tr><td>Clippy.vxd</td><td>12%</td><td>1,234K</td></tr>
+                    <tr><td>System Idle</td><td>88%</td><td>512K</td></tr>
+                    <tr><td>System.world</td><td>2%</td><td>1K</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ToastManager -->
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">ToastManager.exe</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close" onclick="alert('I cannot let you do that, Dave.')"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <p style="text-align:center">Current Toast Density:</p>
+            <div id="toaster-btn" onclick="toastBread()">🍞</div>
+            <div class="field-row" style="justify-content: center">
+                <label>Total Toasted:</label>
+                <input id="counter" type="text" value="0" readonly />
+            </div>
+            <div class="field-row" style="justify-content: center; margin-top:10px;">
+                <button onclick="buyButter()">Install Butter.vxd (10 Slices)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard -->
+    <div class="window">
+        <div class="title-bar">
+            <div class="title-bar-text">Top Feline Toast Enthusiasts</div>
+        </div>
+        <div class="window-body">
+            <table style="width: 100%">
+                <thead>
+                    <tr><th>Rank</th><th>User</th><th>Score</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Grumpy_Cat_69</td><td>9,999,999</td></tr>
+                    <tr><td>2</td><td>Nyan_Technician</td><td>8,420,111</td></tr>
+                    <tr><td>3</td><td><span style="color:blue">You (Player 1)</span></td><td><span id="user-score">0</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- System Info -->
+    <div class="window" style="width: 350px">
+        <div class="title-bar">
+            <div class="title-bar-text">System Info / Credits</div>
+        </div>
+        <div class="window-body">
+            <p><b>Developed by the Dream Team:</b></p>
+            <ul>
+                <li>Template and Tweaks by <b>DoggoDGCodes (not AI)</b></li>
+                <li>Code by <b>Gemini</b></li>
+                <li>Chaos by <b>The User</b></li>
+                <li>Millennium Edition by <b>Le Chat</b></li>
+            </ul>
+            <p style="font-size: 10px">Copyleft 1998-2026 Toast Soft Backyard. All rights reserved.</p>
+        </div>
+    </div>
+
+    <!-- Clippy -->
+    <div id="clippy-container">
+        <div id="clippy-bubble">It looks like you're trying to toast bread. Would you like help with that?</div>
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Clippy-letter.png/120px-Clippy-letter.png" alt="Clippy" style="width: 80px; float: right;">
+    </div>
+
+    <script>
+        let count = 0;
+        let butterMultiplier = 1;
+        let idleTime = 0;
+        const clippyMessages = [
+            "It looks like you're trying to toast bread. Need help?",
+            "Have you tried clicking faster? Your wrist looks lazy.",
+            "A slice of toast is just bread that went to the gym.",
+            "Error: Your toaster is 100% imaginary.",
+            "Would you like to subscribe to Bread Monthly?",
+            "Warning: High levels of gluten detected.",
+            "Your system is low on virtual butter. Click OK to continue.",
+            "Toast error: Bread not found. Insert bread and press any key.",
+            "This program has performed an illegal operation and will be shut down.",
+            "Your toaster is now Y2K compliant!"
+        ];
+
+        // Reset idle timer on activity
+        window.onload = resetIdleTime;
+        window.onmousemove = resetIdleTime;
+        window.onmousedown = resetIdleTime;
+        window.ontouchstart = resetIdleTime;
+        window.onclick = resetIdleTime;
+        window.onkeypress = resetIdleTime;
+
+        function resetIdleTime() {
+            idleTime = 0;
+            document.getElementById('screensaver').style.display = 'none';
+        }
+
+        // Start idle timer
+        setInterval(timerIncrement, 1000);
+
+        function timerIncrement() {
+            idleTime++;
+            if (idleTime > 10) { // 10 seconds
+                document.getElementById('screensaver').style.display = 'flex';
+            }
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            if (password === '1234') {
+                document.getElementById('logon-ui').style.display = 'none';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+
+        function toastBread() {
+            count += butterMultiplier;
+            document.getElementById('counter').value = count;
+            document.getElementById('user-score').innerText = count;
+            if (Math.random() > 0.85) {
+                showClippy();
+            }
+        }
+
+        function buyButter() {
+            if (count >= 10) {
+                count -= 10;
+                butterMultiplier += 1;
+                document.getElementById('counter').value = count;
+                document.getElementById('user-score').innerText = count;
+                alert("SUCCESS: Butter Driver installed. You are now a Toast Professional.");
+            } else {
+                alert("SYSTEM ERROR: You cannot afford the butter DLC.");
+            }
+        }
+
+        function showClippy() {
+            const bubble = document.getElementById('clippy-bubble');
+            const randomMsg = clippyMessages[Math.floor(Math.random() * clippyMessages.length)];
+            bubble.innerText = randomMsg;
+            bubble.style.display = 'block';
+            setTimeout(() => { bubble.style.display = 'none'; }, 4000);
+        }
+
+        function showTaskManager() {
+            document.getElementById('task-manager').style.display = 'block';
+        }
+
+        function toggleStartMenu() {
+            const menu = document.getElementById('start-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function bsod() {
+            document.body.innerHTML = `
+                <div style="background: #000080; color: white; font-family: 'MS Sans Serif', Arial, sans-serif; padding: 20px; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <h1 style="font-size: 2em;">:-(</h1>
+                    <p>A fatal exception 0E has occurred at 0028:C0011E36 in VXD TOAST(01) + 00010E36.</p>
+                    <p>The current application will be terminated.</p>
+                    <p>* Press any key to restart the current application.</p>
+                    <p>* Press CTRL+ALT+DEL again to restart your computer. You will lose any unsaved information in all applications.</p>
+                    <p>Press any key to continue _</p>
+                </div>
+            `;
+            document.body.onclick = () => location.reload();
+        }
+
+        // Animate graphs
+        setInterval(() => {
+            const cpuGraph = document.getElementById('cpu-graph');
+            const ramGraph = document.getElementById('ram-graph');
+            const cpuUsage = Math.floor(Math.random() * 60) + 20;
+            const ramUsage = Math.floor(Math.random() * 50) + 30;
+            cpuGraph.style.width = cpuUsage + '%';
+            ramGraph.style.width = ramUsage + '%';
+        }, 1000);
+    </script>
+</body>
+</html>
