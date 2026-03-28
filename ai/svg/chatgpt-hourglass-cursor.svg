@@ -1,0 +1,26 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges">
+  <!-- Outer border (black) -->
+  <path d="
+    M20 8 H44 V14
+    L36 24 L44 34 V40
+    H20 V34
+    L28 24 L20 14 Z
+  " fill="black"/>
+
+  <!-- Inner white cutout -->
+  <path d="
+    M24 12 H40 V14
+    L32 24 L40 34 V36
+    H24 V34
+    L32 24 L24 14 Z
+  " fill="white"/>
+
+  <!-- Top sand -->
+  <polygon points="26,14 38,14 32,22" fill="black"/>
+
+  <!-- Bottom sand -->
+  <polygon points="26,34 38,34 32,26" fill="black"/>
+
+  <!-- Falling sand pixel -->
+  <rect x="31" y="23" width="2" height="2" fill="black"/>
+</svg>
