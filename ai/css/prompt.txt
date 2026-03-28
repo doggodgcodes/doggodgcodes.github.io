@@ -1,0 +1,1 @@
+cook up the most unprofessional css with awful color palettes, good color palettes, wacky stuff, movement, aero, and more awesome stuff with wacky fonts from google fonts or your preferred fonts library if you want to use a rough font, use @import url("https://doggodgcodes.github.io/assets/fonts/css/dg-dingus.css");
