@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+    <title>Toaster OS '98 - Clippy Edition</title>
+    <link rel="stylesheet" href="https://unpkg.com/98.css" />
+    <style>
+        body {
+            background-color: #008080; 
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            overflow-x: hidden;
+        }
+        .window { width: 400px; margin-bottom: 20px; }
+        #toaster-btn {
+            font-size: 60px;
+            padding: 20px;
+            cursor: pointer;
+            text-align: center;
+            background: #c0c0c0;
+            border: 2px outset white;
+            user-select: none;
+            margin: 10px 0;
+        }
+        #toaster-btn:active { border: 2px inset white; }
+        
+        /* Clippy's Styling */
+        #clippy-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            z-index: 999;
+        }
+        #clippy-bubble {
+            background: #FFFFE1;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 12px;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="window">
+  <div class="title-bar">
+    <div class="title-bar-text">ToastManager.exe</div>
+    <div class="title-bar-controls">
+      <button aria-label="Minimize"></button>
+      <button aria-label="Maximize"></button>
+      <button aria-label="Close" onclick="alert('I cannot let you do that, Dave.')"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <p style="text-align:center">Current Toast Density:</p>
+    <div id="toaster-btn" onclick="toastBread()">🍞</div>
+    <div class="field-row" style="justify-content: center">
+        <label>Total Toasted:</label>
+        <input id="counter" type="text" value="0" readonly />
+    </div>
+    <div class="field-row" style="justify-content: center; margin-top:10px;">
+      <button onclick="buyButter()">Install Butter.vxd (10 Slices)</button>
+    </div>
+  </div>
+</div>
+
+<div class="window">
+  <div class="title-bar">
+    <div class="title-bar-text">Top Feline Toast Enthusiasts</div>
+  </div>
+  <div class="window-body">
+    <table style="width: 100%">
+      <thead>
+        <tr><th>Rank</th><th>User</th><th>Score</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Grumpy_Cat_69</td><td>9,999,999</td></tr>
+        <tr><td>2</td><td>Nyan_Technician</td><td>8,420,111</td></tr>
+        <tr><td>3</td><td><span style="color:blue">You (Player 1)</span></td><td><span id="user-score">0</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="window" style="width: 350px">
+  <div class="title-bar">
+    <div class="title-bar-text">System Info / Credits</div>
+  </div>
+  <div class="window-body">
+    <p><b>Developed by the Dream Team:</b></p>
+    <ul>
+      <li>Template by <b>DoggoDGCodes</b></li>
+      <li>Code by <b>Gemini</b></li>
+      <li>Chaos by <b>The User</b></li>
+    </ul>
+    <p style="font-size: 10px">© 1998-2026 ToastSoft Corp. All rights reserved.</p>
+  </div>
+</div>
+
+<div id="clippy-container">
+    <div id="clippy-bubble">It looks like you're trying to toast bread. Would you like help with that?</div>
+    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Clippy-letter.png/120px-Clippy-letter.png" alt="Clippy" style="width: 80px; float: right;">
+</div>
+
+<script>
+    let count = 0;
+    let butterMultiplier = 1;
+    const clippyMessages = [
+        "It looks like you're trying to toast bread. Need help?",
+        "Have you tried clicking faster? Your wrist looks lazy.",
+        "A slice of toast is just bread that went to the gym.",
+        "Error: Your toaster is 100% imaginary.",
+        "Would you like to subscribe to Bread Monthly?",
+        "Warning: High levels of gluten detected."
+    ];
+
+    function toastBread() {
+        count += butterMultiplier;
+        document.getElementById('counter').value = count;
+        document.getElementById('user-score').innerText = count;
+
+        // Randomly trigger Clippy
+        if (Math.random() > 0.85) {
+            showClippy();
+        }
+    }
+
+    function buyButter() {
+        if (count >= 10) {
+            count -= 10;
+            butterMultiplier += 1;
+            document.getElementById('counter').value = count;
+            document.getElementById('user-score').innerText = count;
+            alert("SUCCESS: Butter Driver installed. You are now a Toast Professional.");
+        } else {
+            alert("SYSTEM ERROR: You cannot afford the butter DLC.");
+        }
+    }
+
+    function showClippy() {
+        const bubble = document.getElementById('clippy-bubble');
+        const randomMsg = clippyMessages[Math.floor(Math.random() * clippyMessages.length)];
+        bubble.innerText = randomMsg;
+        bubble.style.display = 'block';
+        setTimeout(() => { bubble.style.display = 'none'; }, 4000);
+    }
+</script>
+
+</body>
+</html>
