@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    
+<script src="https://doggodgcodes.github.io/min/dogebork/v6.0/dogebork.min.js"></script>
+<script>
+  score = 0
+let score = 0;
+
+function watchButton() {
+  if (Dogebork.buttonOnClick()) {
+    score++;
+    console.log("Score:", score);
+  }
+  requestAnimationFrame(watchButton);
+}
+
+watchButton();
+</script>
+  </body>
+</html>
