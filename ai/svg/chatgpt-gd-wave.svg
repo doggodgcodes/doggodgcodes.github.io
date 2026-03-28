@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Transparent background -->
+  <rect width="32" height="32" fill="transparent"/>
+  
+  <!-- Windows-style arrow cursor with outline -->
+  <polygon points="1,0 1,31 9,23 13,27 13,17 21,9 17,9 21,5" 
+           fill="black" stroke="white" stroke-width="2"/>
+</svg>
