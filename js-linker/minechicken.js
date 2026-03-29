@@ -29,6 +29,8 @@ div.innerHTML = `
 <a href="https://github.com/doggodgcodes" class="project-card"><h2 class="project-title">DoggoDGCodes Code</h2><p class="project-description" style="color: navy;">Explore doggodgcodes code!</p><span class="project-link">View Site →</span></a>
 <a href="https://github.com/minechicken98" class="project-card"><h2 class="project-title">MineChicken98's Code</h2><p class="project-description" style="color: navy;">Explore minechicken98's code1</p><span class="project-link">View Site →</span></a>
 <img class="dg-fbar-img" src="https://i.chzbgr.com/full/10555248128/hEA6A8B63/will-open-this-coca-co-1127">
+<img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/tony.jpg">
+<img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/cat.png">
 </div>
 </div>
 `;
@@ -45,3 +47,11 @@ link.href = "https://doggodgcodes.github.io/js-linker/css.css";
 
 document.body.appendChild(link);
 console.log("Appended CSS");
+
+const script2 = document.createElement("script");
+
+script2.src = "https://doggodgcodes.github.io/js-linker/trail.js";
+
+document.body.appendChild(script2);
+
+console.log("Appended Trail.js")
