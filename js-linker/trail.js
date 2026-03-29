@@ -1,3 +1,4 @@
+let trailClickCount = 0
 (function() {
     // 1. Updated CSS with a "wobble" animation
   // trail by gemini
@@ -34,6 +35,7 @@
 
     document.addEventListener('click', function(e) {
         const img = document.createElement('img');
+        console.log(`Session Clicks: ${trailClickCount} trail clicky`)
         
         // Randomize size (5px to 25px)
         const size = Math.floor(Math.random() * (25 - 5 + 1)) + 5;
