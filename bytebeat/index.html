@@ -24,6 +24,33 @@
       Fuller Kick | (t&gt;&gt;((t/2.14)/99)&lt;&lt;2) & 137
     </p>
     <script>
+      // Initialize the Sass engine
+// Point directly to the CDN worker file
+const sass = new Sass('https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.9.12/sass.worker.min.js');
+// Fetch the correct file: bytebeat.scss
+fetch('bytebeat.scss')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
+    return response.text();
+  })
+  .then(scss => {
+    // Use the instance 'sass' to compile
+    sass.compile(scss, function(result) {
+      if (result.status === 0) {
+        // Success! Inject the CSS
+        document.getElementById('compiled-css').textContent = result.text;
+        console.log("Sass compiled successfully!");
+      } else {
+        // Log specific Sass syntax errors (line numbers, etc.)
+        console.error("Sass Syntax Error:", result.formatted);
+      }
+    });
+  })
+  .catch(error => console.error('Error fetching SCSS:', error));
+    </script>
+    <!-- <script>
     fetch('style.scss')
       .then(response => response.text())
       .then(scss => {
@@ -33,6 +60,6 @@
         });
       })
       .catch(error => console.error('Error fetching SCSS:', error));
-    </script>
+    </script>-->
   </body>
 </html>
