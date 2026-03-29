@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crappy Rap Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            background-color: #121212;
+            color: #ddd;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #FF6347;
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: thin;
+            color: #bbb;
+        }
+        button {
+            background-color: #FF6347;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #FF4500;
+        }
+        .rap-lyrics {
+            font-size: 1.2rem;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 5px;
+            border: 2px solid #444;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>crappy rap generator</h1>
+    <p class="subtitle">100% accurate raps: make sure you click the button if you wanna roast and toast and made by ChatGPT and doggodgcodes</p>
+    <button onclick="generateRap()">generate awful rap</button>
+
+    <div class="rap-lyrics" id="rapLyrics">
+        your rap will appear here
+    </div>
+
+    <script>
+        // List of quirky and surreal phrases
+        const weirdPhrases = [
+            "you awkward gravity toaster", 
+            "confused battlepass spoon", 
+            "mystery noodle gremlin", 
+            "you socks pickle brain", 
+            "awkward fog crumbs cheese", 
+            "floating pancake galaxy", 
+            "beep bop noodle crayon", 
+            "sneaky banana muffin", 
+            "chocolate marshmallow toaster", 
+            "pizza cupcake whisper", 
+            "greasy foggy pillow fight", 
+            "lunar taco spaghetti", 
+            "pickle moonlight pizza", 
+            "soggy keyboard alien", 
+            "cheese cloud rocket", 
+            "fuzzy rainbow pickle", 
+            "ear clacker waffle monster", 
+            "soggy pickle jigsaw", 
+            "invisible rubber boots",
+            "this aint cooking"
+        ];
+
+        // Function to generate a random quirky rap song
+        function generateRap() {
+            let rapSong = "";
+            let numberOfLines = Math.floor(Math.random() * 5) + 3; // Random number between 3 and 7
+
+            for (let i = 0; i < numberOfLines; i++) {
+                let randomLine = weirdPhrases[Math.floor(Math.random() * weirdPhrases.length)];
+                rapSong += randomLine + "<br>";
+            }
+
+            // Display the generated rap lyrics
+            document.getElementById("rapLyrics").innerHTML = rapSong;
+        }
+    </script>
+
+</body>
+</html>
