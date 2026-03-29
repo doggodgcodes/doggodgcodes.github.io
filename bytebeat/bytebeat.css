@@ -1,3 +1,25 @@
+/* Define your variables at the top */
+:root {
+  --grey: #919191;
+  --dark-grey: #262c3c;
+  --radius: 20px;
+}
+
 body {
+  background-color: var(--grey);
+  background-image: linear-gradient(to left, var(--grey), var(--dark-grey));
   font-family: "Segoe UI", sans-serif;
+}
+
+button {
+  background-color: var(--grey);
+  background-image: linear-gradient(to bottom, var(--grey), var(--dark-grey));
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: var(--radius); /* Added since you defined $radius */
+  
+  /* Modern CSS Nesting! */
+  &:active {
+    background-color: var(--grey);
+    background-image: linear-gradient(to top, var(--grey), var(--dark-grey));
+  }
 }
