@@ -9,6 +9,7 @@ body {
   background-color: var(--grey);
   background-image: linear-gradient(to left, var(--grey), var(--dark-grey));
   font-family: "Segoe UI", sans-serif;
+  color: white;
 }
 
 button {
