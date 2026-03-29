@@ -25,3 +25,11 @@ div.innerHTML = `<a href="https://doggodgcodes.github.io" class="project-card"><
 
 document.body.appendChild(div);
 console.log("Appended DoggoDGCodes div");
+
+const link = document.createElement("link");
+
+link.rel = "stylesheet";
+link.href = "https://doggodgcodes.github.io/js-linker/css.css";
+
+document.body.appendChild(link);
+console.log("Appended CSS");
