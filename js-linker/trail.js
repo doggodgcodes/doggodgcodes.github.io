@@ -1,4 +1,3 @@
-let trailClickCount = 0
 (function() {
     // 1. Updated CSS with a "wobble" animation
   // trail by gemini
