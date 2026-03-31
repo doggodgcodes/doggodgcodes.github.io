@@ -12,7 +12,8 @@ document.title = "⚠️ CRITICAL FOOLING IN PROGRESS ⚠️";
 
 console.log("get fooled for april fools haha");
 document.body.innerHTML = `
-  <img src="https://doggodgcodes.github.io/assets/prank/invalid.png" style="width: 100vw; height: 100vh; object-fit: cover;">
+  <img src="https://doggodgcodes.github.io/assets/prank/invalid.png" style="width: 50vw; height: 50vh; object-fit: cover;">
+  <h1>APRIL FOOLS DINGUS HAHAHAHAHAHHAHAHAHAHAHAHAHHAHAH</h1>
   `;
 }
 });
