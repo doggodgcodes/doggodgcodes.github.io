@@ -1,3 +1,4 @@
+document.titlw = "Mine Chicken's Projects!"
 console.log("Test log from https://doggodgcodes.github.io/js-linker/minechicken.js");
 const script = document.createElement("script");
 
@@ -56,3 +57,11 @@ script2.src = "https://doggodgcodes.github.io/js-linker/trail.js";
 document.body.appendChild(script2);
 
 console.log("Appended Trail.js");
+
+const a = document.createElement("script");
+
+a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
+
+// IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
+console.log("Appended April Fools.js")
+document.body.appendChild(a);
