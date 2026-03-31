@@ -15,4 +15,4 @@ document.body.innerHTML = `
   <img src="https://doggodgcodes.github.io/assets/prank/invalid.png" style="width: 100vw; height: 100vh; object-fit: cover;">
   `;
 }
-};
+});
