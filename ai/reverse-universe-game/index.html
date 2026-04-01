@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Universe Game 🌀</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌀 REVERSE UNIVERSE 🌀</h1>
+            <p class="subtitle">Physics is BROKEN. You must UNBREAK it.</p>
+        </div>
+
+        <div class="game-info">
+            <div class="stat">Score: <span id="score">0</span></div>
+            <div class="stat">Lives: <span id="lives">3</span></div>
+            <div class="stat">Time: <span id="timer">60</span>s</div>
+        </div>
+
+        <div id="gameCanvas" class="game-area"></div>
+
+        <div class="controls">
+            <p>Click the boxes to FIX them before they escape!</p>
+            <button id="startBtn" class="btn btn-primary">START GAME</button>
+            <button id="resetBtn" class="btn btn-secondary">RESET</button>
+        </div>
+
+        <div id="gameOverModal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="modalTitle">GAME OVER!</h2>
+                <p id="modalMessage">You scored: <span id="finalScore">0</span></p>
+                <button id="restartBtn" class="btn btn-primary">Play Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
