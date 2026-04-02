@@ -162,7 +162,7 @@ hr {
 	font-family: "Arial";
 }
 .noodle, noodle {
-	background-image: url("https://media.istockphoto.com/id/545775252/photo/spaghetti-background-food-pasta-pattern.jpg?s=1024x1024&w=is&k=20&c=JcxOIfA5baTKyQLLCIavjhXW4f7ri4uPnnnIpH62d_Q=");
+	background-image: url("https://as1.ftcdn.net/jpg/01/02/00/30/1000_F_102003069_2slskZ2xQ6cQ7Icb38usBJ5hUkEUz01r.jpg"); /* was https://media.istockphoto.com/id/545775252/photo/spaghetti-background-food-pasta-pattern.jpg?s=1024x1024&w=is&k=20&c=JcxOIfA5baTKyQLLCIavjhXW4f7ri4uPnnnIpH62d_Q= */
 	border-radius: 20px;
 	color: black;
 	padding: 20px;
@@ -178,4 +178,7 @@ hr {
 }
 .aero-panel:hover,float:hover {
 	transform: scale(1.01);
+}
+.aero-panel {
+    max-width: 1000px;
 }
