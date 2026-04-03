@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>IE Simulator</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css/dist/xp.css">
+    <style>
+      html,body {
+              height: 100%;
+        margin: 0;
+      }
+
+      .toolbar {
+  height: 40px;
+}
+
+.toolbar img {
+  height: 100%;
+  width: auto; /* scales proportionally */
+  display: block;
+}
+      
+      .content {
+        height: calc(100% - 40px); /* remaining space */
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <img src="ie7-toolbar-edited.png">
+    </div>
+
+    <div class="content">
+      <iframe src="webpage.html"></iframe>
+  </body>
+</html>
