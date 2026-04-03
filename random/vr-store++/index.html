@@ -964,7 +964,9 @@
         let gameOver = false;
         let maxQuestions = 20;
         let currentDifficulty = 'normal';
-        let apiToken = localStorage.getItem('anthropic_api_token') || '';
+        // Game logic
+
+        let apiToken = '';
         let clickCount = 0;
         let clickTimer = null;
 
@@ -1000,7 +1002,6 @@
             const token = document.getElementById('apiTokenInput').value.trim();
             if (token) {
                 apiToken = token;
-                localStorage.setItem('anthropic_api_token', token);
                 alert('API token saved! AI responses are now enabled.');
             }
             closeApiModal();
