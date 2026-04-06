@@ -93,6 +93,8 @@
 </head>
 <body>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-+Kqbt7BxoT20OXHT6OYj0KpETulwb2UXMJQTdvzJspYi6vE2SsbsTsOB91E93l3AVz8Y41/2bZUhKDQa/lAZgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
 
   <div class="editor-container">
@@ -125,7 +127,7 @@
   // 2. Listen for the boogie woogie (typing)
   input.addEventListener('input', () => {
     // 3. Teleport the code to the preview window!
-    output.innerHTML = input.value;
+    output.innerHTML = DOMPurify.sanitize(input.value);
     
     // We look for the <title> tag inside the textarea and grab its text
   const match = input.value.match(/<title>(.*?)<\/title>/i);
