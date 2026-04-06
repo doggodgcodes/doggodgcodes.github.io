@@ -5,12 +5,14 @@
     <style>
       background-color: skyblue;
       font-family: "Segoe UI", sans-serif;
+      padding: 75px;
+      align-content: center;
     </style>
   </head>
   <body>
-    <h1>Quick Search by doggodgcodes<!-- For quick shortcuts, we redirect you. --></h1>
+    <center><h1>Quick Search by doggodgcodes<!-- For quick shortcuts, we redirect you. --></h1></center>
     <script>
-      console.log("Gemini helped fix some stuff")
+      console.log("Gemini helped fix some stuff");
       // 1. Get the query string from the current URL (?q=html)
       const queryString = window.location.search;
 
@@ -25,43 +27,43 @@
         link = "https://doggodgcodes.github.io/search/noresults.html"; 
       }
       else if (q === "html") {
-        link = "https://github.com/doggodgcodes/html-site-template/"
+        link = "https://github.com/doggodgcodes/html-site-template/";
       }
       else if (q === "dgdog" || q === "doggodgcodes" || q === "dg") {
-        link = "https://github.com/doggodgcodes/"
+        link = "https://github.com/doggodgcodes/";
       }
       else if (q === "minechicken") {
-        link = "https://github.com/minechicken98/"
+        link = "https://github.com/minechicken98/";
       }
       else if (q === "funny") {
-        link = "https://github.com/minechicken98/funny/"
+        link = "https://github.com/minechicken98/funny/";
       }
       else if (q === "google") {
-        link = "https://google.com/"
+        link = "https://google.com/";
       }
       else if (q === "random") {
-        link = "https://doggodgcodes.github.io/random/"
+        link = "https://doggodgcodes.github.io/random/";
       }
       else if (q === "anychar" || q === "onechar") {
-        link = "https://github.com/doggodgcodes/anychar/"
+        link = "https://github.com/doggodgcodes/anychar/";
       }
       else if (q === "bing") {
-        link = "https://bing.com/"
+        link = "https://bing.com/";
       }
       else if (q === "scratch") {
-        link = "https://scratch.mit.edu/"
+        link = "https://scratch.mit.edu/";
       }
       else if (q === "youtube") {
-        link = "https://youtube.com"
+        link = "https://youtube.com";
       }
       else if (q === "downdetector") {
-        link = "https://downdetector.com"
+        link = "https://downdetector.com";
       }
       else if (q === "gemini") {
-        link = "https://gemini.google.com"
+        link = "https://gemini.google.com";
       }
       else if (q === "github") {
-        link = "https://github.com"
+        link = "https://github.com";
       }
       else {
         link = "https://google.com/search?q=" + encodeURIComponent(q);
