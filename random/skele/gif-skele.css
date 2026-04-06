@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 body {
   margin: 0;
   /* Use the GIF as the background */
@@ -9,6 +10,9 @@ body {
 
   /* Run the movement animation */
   animation: moveUpDiagonal 10s linear infinite;
+  color: white;
+  padding: 75px;
+  padding-top: 50px;
 }
 
 @keyframes moveUpDiagonal {
@@ -21,3 +25,8 @@ body {
   }
 }
 /* code by gemini */
+.vt323-regular,body {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
