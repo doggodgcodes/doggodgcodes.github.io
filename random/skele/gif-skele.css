@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  /* Use the GIF as the background */
+  background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnF6cjF5ejQ2eWFoaDVocTg5Nm56cGVncWEya2RpMnYycGdxZDhmciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/J0WeVOLjuqW2I/giphy.gif');
+  
+  /* Force it to repeat and stay the correct size */
+  background-repeat: repeat;
+  background-size: 250px 227px;
+
+  /* Run the movement animation */
+  animation: moveUpDiagonal 10s linear infinite;
+}
+
+@keyframes moveUpDiagonal {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    /* Moves the image 1 full tile up and left so the loop is seamless */
+    background-position: -250px -227px;
+  }
+}
+/* code by gemini */
