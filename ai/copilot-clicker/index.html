@@ -165,5 +165,121 @@
       window.copilotClicker = {state, save, gain};
     })();
   </script>
+  <script>
+(function() {
+  let audioCtx = null;
+
+  /**
+   * Initializes the AudioContext as a singleton.
+   * Browsers require a user gesture to resume the context.
+   */
+  async function ensureAudio() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      await audioCtx.resume();
+    }
+    return audioCtx;
+  }
+
+  /**
+   * Generates a percussive pop with a feedback delay.
+   */
+  function playPop({ volume = 0.9, delayTime = 0.12, feedback = 0.22 } = {}) {
+    if (!audioCtx || audioCtx.state !== 'running') return;
+
+    const ac = audioCtx;
+    const now = ac.currentTime;
+
+    // 1. Create Noise Buffer (Percussive Pop)
+    const len = Math.floor(ac.sampleRate * 0.04); 
+    const buf = ac.createBuffer(1, len, ac.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) {
+      const env = Math.exp(-i / (len * 0.12));
+      data[i] = (Math.random() * 2 - 1) * env;
+    }
+
+    const src = ac.createBufferSource();
+    src.buffer = buf;
+
+    // 2. Filter for brightness
+    const hp = ac.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.setValueAtTime(800 + Math.random() * 1200, now);
+
+    // 3. Dry Path (The initial 'Click')
+    const dryGain = ac.createGain();
+    dryGain.gain.setValueAtTime(0.0001, now);
+    dryGain.gain.exponentialRampToValueAtTime(0.1 * volume, now + 0.002);
+    dryGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+
+    // 4. Wet Path (The Echo)
+    const delay = ac.createDelay(0.5);
+    delay.delayTime.setValueAtTime(delayTime, now);
+    
+    const fb = ac.createGain();
+    fb.gain.setValueAtTime(feedback, now);
+
+    const wetGain = ac.createGain();
+    wetGain.gain.setValueAtTime(0.3 * volume, now);
+
+    // 5. Connect Graph
+    src.connect(hp);
+    hp.connect(dryGain);
+    dryGain.connect(ac.destination);
+
+    hp.connect(wetGain);
+    wetGain.connect(delay);
+    delay.connect(fb);
+    fb.connect(delay); // Feedback loop
+    delay.connect(ac.destination);
+
+    // Cleanup: Stop source and disconnect nodes to free memory
+    src.start(now);
+    src.stop(now + 0.5);
+    
+    // Explicitly disconnect after sound finishes to prevent memory leaks
+    setTimeout(() => {
+      src.disconnect();
+      dryGain.disconnect();
+      delay.disconnect();
+    }, 700);
+  }
+
+  // Unified Trigger Function
+  async function triggerSound() {
+    try {
+      await ensureAudio();
+      playPop();
+    } catch (e) {
+      console.warn("Audio blocked by browser policy.");
+    }
+  }
+
+  // Pointer Interaction
+  document.addEventListener('pointerdown', (e) => {
+    // Only trigger if it's a left click or touch
+    if (e.button === 0 || e.pointerType === 'touch') {
+      triggerSound();
+    }
+  }, { passive: true });
+
+  // Keyboard Interaction (Space)
+  window.addEventListener('keydown', (e) => {
+    const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) || 
+                    document.activeElement.isContentEditable;
+
+    if (e.code === 'Space' && !isInput) {
+      e.preventDefault();
+      triggerSound();
+    }
+  });
+
+  // Global API
+  window.clickSoundAPI = { trigger: triggerSound, playPop };
+})();
+</script>
 </body>
 </html>
