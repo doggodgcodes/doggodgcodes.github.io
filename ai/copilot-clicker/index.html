@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Copilot Clicker</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#7c3aed;--muted:#94a3b8;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071022 0%, #081428 100%);color:#e6eef8}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{width:100%;max-width:540px;background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+    h1{margin:0 0 10px;font-size:1.5rem;letter-spacing:0.2px}
+    .count{font-size:2.4rem;font-weight:700;padding:18px;border-radius:10px;background:var(--glass);text-align:center;margin:14px 0}
+    .btn{appearance:none;background:linear-gradient(90deg,var(--accent),#4f46e5);color:white;border:0;padding:12px 16px;border-radius:10px;font-weight:600;cursor:pointer}
+    .btn.small{padding:8px 10px;font-size:0.9rem;margin-right:10px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:var(--muted);font-size:0.9rem}
+    .log{margin-top:14px;color:var(--muted);font-size:0.9rem;min-height:44px}
+    .row{display:flex;gap:8px;align-items:center}
+    footer{margin-top:16px;color:var(--muted);font-size:0.8rem;text-align:center}
+    @media (max-width:420px){.card{padding:18px}.count{font-size:2rem}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" role="application" aria-label="Copilot Clicker">
+      <h1>Copilot Clicker</h1>
+      <div id="count" class="count" aria-live="polite">0</div>
+      <div class="row">
+        <button id="clicker" class="btn" aria-label="Click to increase">Click</button>
+        <div style="flex:1"></div>
+        <div class="meta">Per click: <strong id="perClick">1</strong></div>
+      </div>
+
+      <div class="controls">
+        <button id="buyAuto" class="btn small">Buy auto-clicker (<span id="autoCost">50</span>)</button>
+        <button id="buyMult" class="btn small">Buy x2 (<span id="multCost">100</span>)</button>
+      </div>
+
+      <div class="log" id="log">Welcome — press the big Click button or hit Space.</div>
+
+      <footer>Progress is saved to your browser.</footer>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      // State with defaults
+      const stateKey = 'copilot-clicker-v1';
+      const defaults = {count:0, multiplier:1, autos:0, autoCost:50, multCost:100};
+
+      let state = Object.assign({}, defaults);
+      let autoIntervalId = null;
+
+      // Elements
+      const eCount = document.getElementById('count');
+      const eClick = document.getElementById('clicker');
+      const eAutoCost = document.getElementById('autoCost');
+      const eMultCost = document.getElementById('multCost');
+      const ePerClick = document.getElementById('perClick');
+      const eBuyAuto = document.getElementById('buyAuto');
+      const eBuyMult = document.getElementById('buyMult');
+      const eLog = document.getElementById('log');
+
+      function save(){
+        try{localStorage.setItem(stateKey, JSON.stringify(state));}catch(e){console.warn('ls failed', e)}
+      }
+
+      function load(){
+        try{
+          const raw = localStorage.getItem(stateKey);
+          if(raw){
+            const parsed = JSON.parse(raw);
+            // only pick known keys to avoid corruption
+            state.count = Number(parsed.count) || 0;
+            state.multiplier = Number(parsed.multiplier) || 1;
+            state.autos = Number(parsed.autos) || 0;
+            state.autoCost = Number(parsed.autoCost) || 50;
+            state.multCost = Number(parsed.multCost) || 100;
+          }
+        }catch(e){console.warn('load failed', e)}
+      }
+
+      function updateUI(){
+        eCount.textContent = Math.floor(state.count).toLocaleString();
+        eAutoCost.textContent = Math.ceil(state.autoCost).toLocaleString();
+        eMultCost.textContent = Math.ceil(state.multCost).toLocaleString();
+        ePerClick.textContent = (state.multiplier).toString();
+        // disable buy buttons if not affordable
+        eBuyAuto.disabled = state.count < state.autoCost;
+        eBuyMult.disabled = state.count < state.multCost;
+      }
+
+      function log(msg){
+        eLog.textContent = msg;
+      }
+
+      function gain(n){
+        state.count += n;
+        save();
+        updateUI();
+      }
+
+      function clickAction(){
+        gain(state.multiplier);
+        log(`+${state.multiplier} (click)`);
+      }
+
+      function buyAuto(){
+        if(state.count < state.autoCost) { log('Not enough cookies.'); return; }
+        state.count -= state.autoCost;
+        state.autos += 1;
+        // cost scales gently
+        state.autoCost = Math.ceil(state.autoCost * 1.5);
+        save();
+        updateUI();
+        startAuto();
+        log(`Bought auto-clicker (#${state.autos})`);
+      }
+
+      function buyMult(){
+        if(state.count < state.multCost) { log('Not enough cookies.'); return; }
+        state.count -= state.multCost;
+        state.multiplier = state.multiplier * 2;
+        state.multCost = Math.ceil(state.multCost * 2.5);
+        save();
+        updateUI();
+        log(`Multiplier increased — now x${state.multiplier}`);
+      }
+
+      function startAuto(){
+        if(autoIntervalId) return; // already running
+        // run every second, add autos * multiplier
+        autoIntervalId = setInterval(()=>{
+          if(state.autos > 0){
+            const gainAmount = state.autos * state.multiplier;
+            state.count += gainAmount;
+            save();
+            updateUI();
+            log(`+${gainAmount} (auto)`);
+          }
+        }, 1000);
+      }
+
+      // Event listeners
+      eClick.addEventListener('click', clickAction);
+      eBuyAuto.addEventListener('click', buyAuto);
+      eBuyMult.addEventListener('click', buyMult);
+
+      // keyboard: Space to click
+      window.addEventListener('keydown', (ev)=>{
+        if(ev.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
+          ev.preventDefault();
+          clickAction();
+        }
+      });
+
+      // load state and start
+      load();
+      updateUI();
+      if(state.autos > 0) startAuto();
+
+      // expose for debugging in console (optional)
+      window.copilotClicker = {state, save, gain};
+    })();
+  </script>
+</body>
+</html>
