@@ -1443,11 +1443,25 @@
             // Update user greeting in header
             function updateUserGreeting() {
                 const greetingElement = document.getElementById("userGreeting");
-                if (currentUser) {
-                    greetingElement.innerHTML = `Hello, ${currentUser}<br /><strong>Account & Lists</strong>`;
-                } else {
-                    greetingElement.innerHTML = `Hello, Sign in<br /><strong>Account & Lists</strong>`;
+
+                // Clear any existing content
+                while (greetingElement.firstChild) {
+                    greetingElement.removeChild(greetingElement.firstChild);
                 }
+
+                // Create "Hello, <name or Sign in>" text safely
+                const greetingText = document.createTextNode(
+                    currentUser ? `Hello, ${currentUser}` : "Hello, Sign in",
+                );
+                greetingElement.appendChild(greetingText);
+
+                // Line break
+                greetingElement.appendChild(document.createElement("br"));
+
+                // "Account & Lists" in strong tag
+                const strong = document.createElement("strong");
+                strong.textContent = "Account & Lists";
+                greetingElement.appendChild(strong);
             }
 
             // Close login modal
