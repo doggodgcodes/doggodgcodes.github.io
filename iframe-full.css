@@ -1,0 +1,14 @@
+/* You must give the containers a height first! */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block; /* Removes extra space at the bottom */
+}
+/* gemini made the css */
