@@ -6,6 +6,8 @@ body {
   font-family: "Segoe UI", sans-serif;
   align-content: center;
   margin-bottom: var(--margin);
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom, #8205b4, grey);
 }
 .profile {
   border-radius: var(--margin);
