@@ -57,6 +57,8 @@
     const outputArea = document.getElementById('output');
     const runBtn = document.getElementById('run-btn');
 
+console.log("Gemini made the Python work in browser")
+    
     async function init() {
         pyodide = await loadPyodide();
         outputArea.innerText = "Engine Ready. Enter symbols and click Run.";
