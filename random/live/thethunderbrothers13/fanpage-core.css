@@ -1,19 +1,29 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+</style>
 :root {
   --margin: 25px;
   --wh: 128px;
 }
 body {
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
   align-content: center;
   margin-bottom: var(--margin);
   background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to bottom, #8205b4, grey);
+  background-image: linear-gradient(to left, #8205b4, orange);
 }
 .profile {
   border-radius: var(--margin);
   width: var(--wh);
   height: var(--wh);
 }
-h1,.profile {
+h1,.profile,p {
   margin: var(--margin);
+}
+
+.inter,body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
