@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Onechar Online</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+    <style>
+        body { margin: 0; background: #121212; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; height: 100vh; }
+        #header { padding: 15px 25px; background: #1f1f1f; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+        #container { display: flex; flex: 1; overflow: hidden; }
+        #sidebar { width: 250px; padding: 20px; background: #181818; border-right: 1px solid #333; font-size: 0.9rem; }
+        #editor-stack { flex: 1; display: flex; flex-direction: column; }
+        .pane { flex: 1; display: flex; flex-direction: column; padding: 10px; box-sizing: border-box; }
+        .label { color: #888; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
+        textarea { flex: 1; background: #050505; color: #4af500; border: 1px solid #333; border-radius: 4px; padding: 12px; font-family: 'Consolas', monospace; resize: none; outline: none; }
+        #output { height: 150px; background: #000; color: #fff; padding: 15px; font-family: monospace; overflow-y: auto; border-top: 2px solid #333; white-space: pre-wrap; }
+        button { background: #007acc; color: white; border: none; padding: 10px 30px; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        button:hover { background: #005fa3; }
+        button:disabled { background: #444; cursor: not-allowed; }
+        code { background: #333; padding: 2px 4px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <div style="font-weight: bold; font-size: 1.2rem;">Onechar Online</div>
+    <button id="run-btn" onclick="execute()">Run Code</button>
+</div>
+
+<div id="container">
+    <div id="sidebar">
+        <h3>Guide</h3>
+        <p>Use characters to control the <code>asc</code> value</p>
+        <ul>
+            <li><code>+</code>: Increment by 1</li>
+            <li><code>-</code>: Decrement by 1</li>
+            <li><code>*</code>: Square "asc"</li>
+            <li><code>/</code>: Reset to 1</li>
+            <li><code>^</code>: Square "asc" then decrement "asc"</li></li>
+            <li><code>.</code>: Append character to output</li>
+            <li><code>!</code>: Debug</li>
+            <li><code>;</code>: Multiply by 2</li>
+        </ul>
+    </div>
+
+    <div id="editor-stack">
+        <div class="pane">
+            <div class="label">STDIN</div>
+            <textarea id="user-stdin" placeholder="+;**;;++++++++.+++++++++++++++++++++++++++++.+++++++..+++./;;;;;++++++++++++.------------.;+++++++++++++++++++++++.++++++++++++++++++++++++.+++.------.--------./+;;;;+.">+;**;;++++++++.+++++++++++++++++++++++++++++.+++++++..+++./;;;;;++++++++++++.------------.;+++++++++++++++++++++++.++++++++++++++++++++++++.+++.------.--------./+;;;;+.</textarea>
+        </div>
+        <div id="output">Loading Pyodide ~15 MB (Python in browser)</div>
+    </div>
+</div>
+
+<script>
+    let pyodide;
+    const outputArea = document.getElementById('output');
+    const runBtn = document.getElementById('run-btn');
+
+    async function init() {
+        pyodide = await loadPyodide();
+        outputArea.innerText = "Engine Ready. Enter symbols and click Run.";
+    }
+    init();
+
+    async function execute() {
+        if (!pyodide) return;
+        
+        const userInput = document.getElementById('user-stdin').value;
+        outputArea.innerText = "Running...\n";
+        
+        // Your exact Python logic, escaped for JS
+        const interpreterCode = `
+import sys
+import math
+import io
+
+# Setup the input stream from the text area
+sys.stdin = io.StringIO("""${userInput}""")
+sys.stdout = io.StringIO()
+
+def run_interpreter():
+    chars = sys.stdin.read()
+    asc = 0
+    final = ""
+    
+    for character in chars:
+        if character == "-":
+            asc = asc - 1
+        elif character == "+":
+            asc = asc + 1
+        elif character == ".":
+            if asc > 255:
+                asc = asc - 255
+            # Simplified the comparison for browser stability
+            if int(asc) == 10:
+                print(final)
+                final = ""
+            else:
+                final = final + chr(math.floor(asc))
+        elif character == "*":
+            asc = asc * asc
+        elif character == "/":
+            # Guard against division by zero if asc is 0
+            asc = asc / asc if asc != 0 else 0
+        elif character == "^":
+            asc = asc * asc - asc
+        elif character == "!":
+            print(asc)
+        elif character == ";":
+            asc = asc * 2
+            
+    print(final, end="")
+
+try:
+    run_interpreter()
+    result = sys.stdout.getvalue()
+except Exception as e:
+    result = f"Runtime Error: {str(e)}"
+
+result
+`;
+
+        try {
+            const out = await pyodide.runPythonAsync(interpreterCode);
+            outputArea.innerText = out;
+        } catch (err) {
+            outputArea.innerText = "System Error: " + err;
+        }
+    }
+
+  // Save code on every keystroke
+const editor = document.getElementById('user-stdin');
+editor.addEventListener('input', () => {
+    localStorage.setItem('saved_code', editor.value);
+});
+
+// Load code when the page opens
+window.onload = () => {
+    const saved = localStorage.getItem('saved_code');
+    if (saved) editor.value = saved;
+    init(); // Start Pyodide
+};
+</script>
+
+</body>
+</html>
