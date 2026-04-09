@@ -92,8 +92,7 @@ def run_interpreter():
         if char == "g":
             asc += 1
         elif char == "!":
-            # Safety check: chr() only accepts 0 to 1,114,111
-            final += chr(0, asc)
+            final += chr(asc)
         elif char == "w":
             asc -= 1
         elif char == "y":
