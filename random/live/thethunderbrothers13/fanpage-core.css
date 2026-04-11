@@ -6,7 +6,7 @@
 body {
   font-family: "Inter", "Segoe UI", sans-serif;
   align-content: center;
-  margin-bottom: var(--margin);
+  padding-bottom: var(--margin);
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #8205b4, orange);
 }
