@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chicken Nugget XP - Frog Clicker</title>
+  <style>
+  /* Import the requested font - to use it add class="dingus font" to an element */
+  @import url("https://doggodgcodes.github.io/assets/fonts/css/dg-dingus.css");
+
+  :root{
+    --bg:#0b1020;
+    --card:#0f1724;
+    --accent:#ffcc33;
+    --muted:#9aa4b2;
+    --green:#4ee29a;
+  }
+  html,body{height:100%;}
+  body{
+    margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(180deg,#071025 0%, #071a2b 100%);font-family:Inter, system-ui, Arial, sans-serif;color:#e6eef6;
+  }
+  .app{
+    width:960px;max-width:96%;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:22px;box-shadow:0 8px 30px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.04);
+  }
+  header{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+  .logo{font-size:22px;font-weight:700}
+  .dingus.font.logo{font-size:24px}
+
+  .row{display:flex;gap:18px}
+  .col{flex:1}
+  .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+
+  .xp-display{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .xp-info{display:flex;flex-direction:column}
+  .xp-value{font-size:30px;font-weight:800;color:var(--accent)}
+  .xp-bar{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;margin-top:8px}
+  .xp-bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffd46b);width:0%}
+  .nugget-area{display:flex;align-items:center;justify-content:center;gap:30px;padding:28px}
+
+  .nugget{font-size:110px;display:inline-block;transition:transform .25s ease}
+  .stick{font-size:80px;display:inline-block;opacity:0.95}
+  .eat{animation:eatAnim .9s ease forwards}
+  @keyframes eatAnim{0%{transform:translateX(0) scale(1)}50%{transform:translateX(18px) scale(0.9) rotate(-10deg)}100%{transform:translateX(36px) scale(0) rotate(20deg);opacity:0}}
+
+  .floating-xp{position:absolute;pointer-events:none;font-weight:700;color:var(--green);opacity:0;transform:translateY(0);transition:all .9s ease}
+
+  .controls{display:flex;gap:10px;align-items:center}
+  button{background:#0e1730;color:#eaf4ff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer}
+  .frog{font-size:36px;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,#143c2e,#0b2b20);border:1px solid rgba(255,255,255,0.03)}
+  .frog:active{transform:translateY(2px)}
+
+  .meta{font-size:13px;color:var(--muted);margin-top:8px}
+  .small{font-size:13px;color:var(--muted)}
+
+  /* show how to use the dingus font class */
+  .example-dingus{margin-top:10px;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));display:inline-block}
+  .footer{margin-top:14px;color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo dingus font">DG Nugget XP</div>
+      <div style="flex:1"></div>
+      <div class="small">Auto XP every 5s • Click the frog for bonus XP</div>
+    </header>
+
+    <div class="row">
+      <div class="col card">
+        <div class="xp-display">
+          <div class="xp-info">
+            <div class="xp-value" id="xpVal">0 XP</div>
+            <div class="small">Level: <strong id="level">1</strong> • Next: <span id="nextXp">100</span> XP</div>
+            <div class="xp-bar" title="XP progress"><i id="xpBarFill"></i></div>
+          </div>
+          <div class="controls">
+            <button id="pauseBtn">Pause Auto XP</button>
+            <div style="width:6px"></div>
+            <button id="resetBtn">Reset</button>
+          </div>
+        </div>
+
+        <div class="nugget-area" style="position:relative;min-height:160px">
+          <div id="nugget" class="nugget" aria-hidden="true">🟠</div>
+          <div id="stick" class="stick">🍗</div>
+          <div id="float" class="floating-xp" style="left:50%;top:16%"></div>
+        </div>
+
+        <div class="meta">Each 5 seconds the chicken nugget eats a chicken stick and gains random XP. When it eats, you'll see a little XP float up.</div>
+
+      </div>
+
+      <div class="col card">
+        <h3 style="margin-top:0">Frog Clicker</h3>
+        <p class="small">Click the frog to make the nugget happy and earn bonus XP. Use the frog or let the auto-eater run.</p>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+          <button id="frogBtn" class="frog">🐸</button>
+          <div>
+            <div>Frog clicks: <strong id="frogClicks">0</strong></div>
+            <div class="small">Click bonus: <span id="frogBonus">+8</span> XP (randomized)</div>
+          </div>
+        </div>
+
+        <div class="example-dingus dingus font">This text uses the DG Dingus font — add class="dingus font" to any element to use it.</div>
+
+        <div class="footer">Made for your /ai/ folder. Single-file bundle: ai/nugget-game/index.html</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // Game state
+  const XP_KEY = 'dg_nugget_xp_v1';
+  const state = {
+    xp: 0,
+    level: 1,
+    nextXp: 100,
+    auto: true,
+    frogClicks: 0
+  };
+
+  // UI refs
+  const xpVal = document.getElementById('xpVal');
+  const xpBarFill = document.getElementById('xpBarFill');
+  const levelEl = document.getElementById('level');
+  const nextXpEl = document.getElementById('nextXp');
+  const nuggetEl = document.getElementById('nugget');
+  const stickEl = document.getElementById('stick');
+  const floatEl = document.getElementById('float');
+  const frogBtn = document.getElementById('frogBtn');
+  const frogClicksEl = document.getElementById('frogClicks');
+  const frogBonusEl = document.getElementById('frogBonus');
+  const pauseBtn = document.getElementById('pauseBtn');
+  const resetBtn = document.getElementById('resetBtn');
+
+  // load saved
+  function load(){
+    try{
+      const raw = localStorage.getItem(XP_KEY);
+      if(raw){
+        const obj = JSON.parse(raw);
+        Object.assign(state, obj);
+      }
+    }catch(e){console.warn(e)}
+  }
+  function save(){
+    try{localStorage.setItem(XP_KEY, JSON.stringify({xp:state.xp,level:state.level,nextXp:state.nextXp,frogClicks:state.frogClicks}))}catch(e){}
+  }
+
+  function updateUI(){
+    xpVal.textContent = state.xp + ' XP';
+    levelEl.textContent = state.level;
+    nextXpEl.textContent = state.nextXp;
+    const pct = Math.min(100, Math.floor((state.xp / state.nextXp) * 100));
+    xpBarFill.style.width = pct + '%';
+    frogClicksEl.textContent = state.frogClicks;
+  }
+
+  function addXP(amount, opts={x: '50%', y: '10%'} 주문될 수 있습니다.).{0added + amount;
+    // show floating
+    floatEl.textContent = `+${amount} XP`;
+    floatEl.style.left = opts.x || '50%';
+    floatEl.style.top = opts.y || '12%';
+    floatEl.style.opacity = 1;
+    floatEl.style.transform = 'translateY(-18px)';
+    setTimeout(()=>{floatEl.style.opacity = 0;floatEl.style.transform = 'translateY(-60px)';}, 10);
+    // level up
+    if(state.xp >= state.nextXp){
+      state.level += 1;
+      state.xp = state.xp - state.nextXp;
+      state.nextXp = Math.round(state.nextXp * 1.35) + 20;
+      // small celebrate
+      nuggetEl.animate([{transform:'scale(1)'},{transform:'scale(1.18)'},{transform:'scale(1)'}],{duration:700});
+    }
+    updateUI();
+    save();
+  }
+
+  function randomBetween(min,max){return Math.floor(Math.random()*(max-min+1))+min}
+
+  // auto-eat every 5 seconds
+  let autoTimer = null;
+  function doEat(){
+    // random XP between 5 and 22
+    const xp = randomBetween(5,22);
+    // animate nugget eating
+    nuggetEl.classList.remove('eat');
+    void nuggetEl.offsetWidth; // reflow
+    nuggetEl.classList.add('eat');
+    // show ephemeral xp near stick
+    addXP(xp,{x:'62%', y:'28%'});
+  }
+
+  function startAuto(){
+    if(autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(()=>{ if(state.auto) doEat(); }, 5000);
+    state.auto = true;
+    pauseBtn.textContent = 'Pause Auto XP';
+  }
+  function stopAuto(){
+    state.auto = false;
+    pauseBtn.textContent = 'Resume Auto XP';
+  }
+
+  frogBtn.addEventListener('click', ()=>{
+    // frog click gives 4-14 xp
+    const xp = randomBetween(4,14);
+    state.frogClicks += 1;
+    addXP(xp,{x:'18%', y:'36%'});
+    // little hop animation
+    frogBtn.animate([{transform:'translateY(0)'},{transform:'translateY(-10px)'},{transform:'translateY(0)'}],{duration:300});
+    frogClicksEl.textContent = state.frogClicks;
+  });
+
+  pauseBtn.addEventListener('click', ()=>{
+    if(state.auto){ stopAuto(); }else{ startAuto(); }
+  });
+
+  resetBtn.addEventListener('click', ()=>{
+    if(confirm('Reset XP and progress?')){
+      state.xp = 0; state.level = 1; state.nextXp = 100; state.frogClicks = 0; save(); updateUI();
+    }
+  });
+
+  // show randomized frog bonus in UI for flavor
+  setInterval(()=>{ frogBonusEl.textContent = '+'+randomBetween(4,14); }, 2300);
+
+  // initial
+  load(); updateUI(); startAuto();
+
+  // first immediate eat so user sees activity
+  setTimeout(doEat, 800);
+  </script>
+</body>
+</html>
