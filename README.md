@@ -17,3 +17,7 @@ TypeScript was added into this as a dumb test. Maybe meaningful stuff was made w
 # Why is there AI stuff?
 
 JavaScript is quite annoying.
+
+# What is Mine Chicken stuff?
+
+There are bits of @minechicken98's /funny/ repository code.
