@@ -21,3 +21,7 @@ JavaScript is quite annoying.
 # What is Mine Chicken stuff?
 
 There are bits of @minechicken98's /funny/ repository code.
+
+# Where is AI located?
+
+It is located in /ai/ and /random/vibecode/.
