@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Catch the Stars — Single File Game</title>
+  <style>
+    :root{--bg:#0b1221;--panel:#0f1724;--accent:#ffd54a;--text:#e6eef8}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#071029 0%,var(--bg) 100%);color:var(--text);display:flex;align-items:center;justify-content:center;padding:24px}
+    .wrap{max-width:900px;width:100%}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    h1{font-size:18px;margin:0}
+    .hud{display:flex;gap:12px;align-items:center}
+    .badge{background:var(--panel);padding:8px 12px;border-radius:8px;color:var(--text);font-weight:600}
+    canvas{display:block;width:100%;height:520px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .controls{display:flex;gap:8px;margin-top:10px}
+    button{background:var(--accent);border:none;padding:8px 12px;border-radius:8px;font-weight:700;color:#111;cursor:pointer}
+    .help{margin-top:8px;color:#9fb3d9;font-size:13px}
+    footer{margin-top:14px;color:#86a2cf;font-size:13px}
+    @media (max-width:600px){canvas{height:420px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Catch the Stars</h1>
+      <div class="hud">
+        <div class="badge" id="score">Score: 0</div>
+        <div class="badge" id="lives">Lives: 3</div>
+        <div class="badge" id="level">Level: 1</div>
+      </div>
+    </header>
+
+    <canvas id="game"></canvas>
+
+    <div class="controls">
+      <button id="startBtn">Start</button>
+      <button id="pauseBtn">Pause</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <div class="help">Controls: Arrow keys or A/D to move. Click or touch to move the catcher. Catch falling stars to score. Missing stars costs a life.</div>
+    <footer>Single-file demo bundled into ai/catch-the-stars-singlefile/index.html</footer>
+  </div>
+
+  <script>
+  (function(){
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    let W=0,H=0,scale=window.devicePixelRatio||1;
+    function resize(){
+      const rect = canvas.getBoundingClientRect();
+      W = Math.max(320, Math.floor(rect.width));
+      H = Math.max(240, Math.floor(rect.height));
+      canvas.width = W * scale;
+      canvas.height = H * scale;
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      ctx.setTransform(scale,0,0,scale,0,0);
+    }
+    new ResizeObserver(resize).observe(canvas);
+    resize();
+
+    // Game state
+    let player = {x:0,y:0,w:140,h:18, speed: 8};
+    let stars = [];
+    let score = 0, lives = 3, level = 1;
+    let running = false, paused = false;
+    let spawnTimer = 0, spawnInterval = 900; // ms
+    let last = performance.now();
+
+    const scoreEl = document.getElementById('score');
+    const livesEl = document.getElementById('lives');
+    const levelEl = document.getElementById('level');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function resetState(){
+      score = 0; lives = 3; level = 1; stars = [];
+      spawnInterval = 900; player.w = Math.min(160, Math.floor(W/6)); player.speed = 8;
+      updateHud();
+    }
+
+    function updateHud(){
+      scoreEl.textContent = 'Score: ' + score;
+      livesEl.textContent = 'Lives: ' + lives;
+      levelEl.textContent = 'Level: ' + level;
+    }
+
+    function rand(min,max){return Math.random()*(max-min)+min}
+
+    function spawnStar(){
+      const r = rand(8,18);
+      const x = rand(r, W - r);
+      const speed = rand(80,160) + (level-1)*30; // px/s
+      stars.push({x,y:-r,r,vy:speed,angle:rand(0,Math.PI*2),spin:rand(-2,2)});
+    }
+
+    function step(dt){
+      if(!running || paused) return;
+      spawnTimer += dt;
+      if(spawnTimer > spawnInterval){ spawnTimer = 0; spawnStar(); }
+
+      // move stars
+      for(let i = stars.length-1;i>=0;i--){
+        const s = stars[i];
+        s.y += s.vy * dt/1000;
+        s.angle += s.spin * dt/1000;
+        // collision with player
+        if(s.y + s.r >= player.y && s.x > player.x && s.x < player.x + player.w){
+          score += Math.round(10 + s.r);
+          stars.splice(i,1);
+          if(score % 200 === 0){ level++; spawnInterval = Math.max(300, spawnInterval - 80); player.w = Math.max(60, player.w - 6); updateHud(); }
+        } else if(s.y - s.r > H){
+          // missed
+          stars.splice(i,1);
+          lives -= 1;
+          if(lives <= 0){ running = false; showGameOver(); }
+        }
+      }
+      updateHud();
+    }
+
+    function showGameOver(){
+      // simple overlay
+      ctx.save();
+      ctx.fillStyle = 'rgba(2,6,18,0.66)';
+      ctx.fillRect(0,0,W,H);
+      ctx.fillStyle = '#fff';
+      ctx.font = '28px system-ui, Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('Game Over', W/2, H/2 - 10);
+      ctx.font = '16px system-ui, Arial';
+      ctx.fillText('Score: ' + score, W/2, H/2 + 20);
+      ctx.restore();
+    }
+
+    function render(){
+      // background
+      const g = ctx.createLinearGradient(0,0,0,H);
+      g.addColorStop(0,'#07172a'); g.addColorStop(1,'#081428');
+      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+
+      // stars
+      for(const s of stars){
+        ctx.save();
+        ctx.translate(s.x, s.y);
+        ctx.rotate(s.angle);
+        const grd = ctx.createRadialGradient(0,0,s.r*0.1,0,0,s.r);
+        grd.addColorStop(0,'#fff9e6'); grd.addColorStop(0.5,'#fff2b8'); grd.addColorStop(1,'#ffd54a');
+        ctx.fillStyle = grd;
+        // simple star: draw 5-point star path
+        drawStar(ctx,0,0,s.r,5);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // player catcher
+      ctx.fillStyle = '#d1e8ff';
+      ctx.fillRect(player.x, player.y, player.w, player.h);
+      // rim
+      ctx.strokeStyle = '#7fb1ff'; ctx.lineWidth = 2; ctx.strokeRect(player.x, player.y, player.w, player.h);
+
+      // HUD (transparent)
+      ctx.fillStyle = 'rgba(255,255,255,0.02)'; ctx.fillRect(8,8,160,34);
+    }
+
+    function drawStar(ctx,x,y,R,points){
+      const step = Math.PI / points;
+      ctx.beginPath();
+      for(let i=0;i<2*points;i++){ 
+        const r = (i%2===0)?R:R*0.45;
+        const a = i*step - Math.PI/2;
+        const sx = Math.cos(a)*r;
+        const sy = Math.sin(a)*r;
+        if(i===0) ctx.moveTo(sx,sy); else ctx.lineTo(sx,sy);
+      }
+      ctx.closePath();
+    }
+
+    function gameLoop(now){
+      const dt = now - last; last = now;
+      step(dt);
+      render();
+      if(running) requestAnimationFrame(gameLoop);
+    }
+
+    // Input
+    let keys = {};
+    window.addEventListener('keydown', e=>{ keys[e.key] = true; if(['ArrowLeft','ArrowRight','a','d','A','D'].includes(e.key)) e.preventDefault(); });
+    window.addEventListener('keyup', e=>{ keys[e.key] = false; });
+
+    function updatePlayerFromInput(dt){
+      const left = keys['ArrowLeft'] || keys['a'] || keys['A'];
+      const right = keys['ArrowRight'] || keys['d'] || keys['D'];
+      if(left) player.x -= player.speed * (dt/16);
+      if(right) player.x += player.speed * (dt/16);
+      // clamp
+      player.x = Math.max(0, Math.min(W - player.w, player.x));
+    }
+
+    // pointer support: click to move center
+    canvas.addEventListener('pointerdown', e=>{
+      const rect = canvas.getBoundingClientRect();
+      const x = (e.clientX - rect.left);
+      player.x = Math.max(0, Math.min(W - player.w, x - player.w/2));
+    });
+
+    // game control buttons
+    startBtn.addEventListener('click', ()=>{
+      if(!running){ running = true; paused = false; last = performance.now(); requestAnimationFrame(gameLoop); }
+    });
+    pauseBtn.addEventListener('click', ()=>{ paused = !paused; pauseBtn.textContent = paused? 'Resume':'Pause'; if(!paused && running){ last = performance.now(); requestAnimationFrame(gameLoop); } });
+    resetBtn.addEventListener('click', ()=>{ resetState(); running = false; paused = false; updateHud(); render(); });
+
+    // update player position continuously
+    let accLast = performance.now();
+    function ticker(){
+      const now = performance.now();
+      const dt = now - accLast; accLast = now;
+      updatePlayerFromInput(dt);
+      requestAnimationFrame(ticker);
+    }
+    ticker();
+
+    // initial layout
+    function layout(){
+      player.w = Math.min(160, Math.floor(W/6));
+      player.h = Math.max(14, Math.floor(H*0.035));
+      player.x = (W - player.w)/2;
+      player.y = H - player.h - 12;
+    }
+
+    // small loop to keep layout & rendering when not running so user sees the canvas
+    function idleRender(){ render(); requestAnimationFrame(idleRender); }
+    idleRender();
+    layout();
+    resetState();
+
+    // keep HUD in sync on resize
+    new ResizeObserver(()=>{ layout(); updateHud(); render(); }).observe(canvas);
+
+    // integrate simple game-loop extension to call step when running
+    (function frameLoop(){
+      if(running && !paused){ last = performance.now(); requestAnimationFrame(gameLoop); }
+      setTimeout(frameLoop, 500);
+    })();
+
+  })();
+  </script>
+</body>
+</html>
