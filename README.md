@@ -4,7 +4,7 @@
 
 ![Repo Stats](https://github-readme-stats.vercel.app/api/pin/?username=doggodgcodes&repo=doggodgcodes.github.io&theme=tokyonight&show_owner=true)
 
-![Commits](https://img.shields.io/github/commit-activity/t/doggodgcodes/doggodgcodes.github.io?label=stats&color=blue&style=for-the-badge)
+![Commits](https://img.shields.io/github/commit-activity/t/doggodgcodes/doggodgcodes.github.io?label=Commits&color=blue&style=for-the-badge)
 
 # A website because why not?
 
