@@ -1,6 +1,6 @@
 # doggodgcodes.github.io
 
-#### Commit records: 1, 10, 50, 100, 500, ???
+#### Commit records: 1, 10, 50, 100, 500, 1000, ???
 
 ![Repo Stats](https://github-readme-stats.vercel.app/api/pin/?username=doggodgcodes&repo=doggodgcodes.github.io&theme=tokyonight&show_owner=true)
 
