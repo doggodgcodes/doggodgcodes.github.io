@@ -34,6 +34,9 @@ checkNewsUpdate("03-17", "the leprechauns are hiding");
 
 checkNewsUpdate("04-01", "APRIL FOOLS MAN AHHAHAHAHAHHAHAHAHAHHAHAHAHHAHAHAHHAHAHAHAHA IM LAUGHING AT YOU BECAUSE THIS PRANK IS SO FUNNY I CANNOT STOP LAUGHING HAHAHAHHAHAHAHAHHAHAHAHHAHAHAHAHAHAHHAHAHHAHAHAH GET RICKROLLED");
 
+checkNewsUpdate("04-19", "Today is when we hit 1000 commits!");
+
+
 checkNewsUpdate("08-07", "another year of this site");
 // Example: Updates the banner on Christmas Day!
 
