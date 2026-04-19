@@ -4,7 +4,7 @@ console.log("JS linker from doggodgcodes connected!");
 console.log("sup hamburgers");
 
 dgDiv.innerHTML = `
-<h4>haahhahhahahhahahahah</h4>
+<h4>Premuim900</h4>
 `;
 
 const css = document.createElement("link");
