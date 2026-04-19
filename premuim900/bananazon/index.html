@@ -1443,11 +1443,18 @@
             // Update user greeting in header
             function updateUserGreeting() {
                 const greetingElement = document.getElementById("userGreeting");
-                if (currentUser) {
-                    greetingElement.innerHTML = `Hello, ${currentUser}<br /><strong>Account & Lists</strong>`;
-                } else {
-                    greetingElement.innerHTML = `Hello, Sign in<br /><strong>Account & Lists</strong>`;
-                }
+                greetingElement.textContent = "";
+
+                const greetingText = currentUser
+                    ? `Hello, ${currentUser}`
+                    : "Hello, Sign in";
+
+                greetingElement.appendChild(document.createTextNode(greetingText));
+                greetingElement.appendChild(document.createElement("br"));
+
+                const strongElement = document.createElement("strong");
+                strongElement.textContent = "Account & Lists";
+                greetingElement.appendChild(strongElement);
             }
 
             // Close login modal
