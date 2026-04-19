@@ -33,3 +33,7 @@ There are bits of @minechicken98's /funny/ repository code.
 # Where is AI located?
 
 It is located in /ai/ and /random/vibecode/.
+
+# Credits
+
+Me, Gemini, Claude, GPT, Le Chat, Copilot, CodeQL, MineChicken98. (mostly me)
