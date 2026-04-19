@@ -1,0 +1,3 @@
+# /fonts/ directory
+
+For fonts.
