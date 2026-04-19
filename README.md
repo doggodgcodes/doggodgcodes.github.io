@@ -1,3 +1,7 @@
+# doggodgcodes.github.io
+
+#### Commit recorda: 1, 10, 50, 100, 500, ???
+
 # A website because why not?
 
 random web stuff, 
