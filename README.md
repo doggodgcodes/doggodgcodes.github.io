@@ -3,6 +3,7 @@
 #### Commit recorda: 1, 10, 50, 100, 500, ???
 
 ![Repo Stats](https://github-readme-stats.vercel.app/api/pin/?username=doggodgcodes&repo=doggodgcodes.github.io&theme=tokyonight&show_owner=true)
+![Commits](https://img.shields.io/github/commits-since/doggodgcodes/doggodgcodes.github.io/968114f?label=STATS&color=blue&style=for-the-badge)
 
 # A website because why not?
 
