@@ -28,6 +28,12 @@ script2.src = "https://doggodgcodes.github.io/js-linker/trail.js";
 
 document.body.appendChild(script2);
 
+const script3 = document.createElement("script");
+
+script3.src = "https://doggodgcodes.github.io/premuim900/shutter.js";
+
+document.body.appendChild(script3);
+
 const div = document.createElement("div");
 
 div.innerHTML = `
