@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salty Pizza Dodge</title>
+    <style>
+        body { background: #0080ff; color: white; font-family: sans-serif; text-align: center; overflow: hidden; }
+        #player { position: absolute; font-size: 50px; cursor: none; transition: 0.1s; }
+        .pizza { position: absolute; font-size: 30px; }
+        #score { font-size: 40px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>DON'T TOUCH THE SALTY PIZZA! 🍕</h1>
+    <div id="score">HAM JAM: 0</div>
+    <div id="player">🍖</div>
+
+    <script>
+        const player = document.getElementById('player');
+        const scoreBoard = document.getElementById('score');
+        let hamJam = 0;
+
+        // Move player with mouse
+        document.onmousemove = (e) => {
+            player.style.left = e.pageX - 25 + 'px';
+            player.style.top = e.pageY - 25 + 'px';
+        };
+
+        function spawnPizza() {
+            const pizza = document.createElement('div');
+            pizza.className = 'pizza';
+            pizza.innerHTML = '🍕';
+            pizza.style.left = Math.random() * window.innerWidth + 'px';
+            pizza.style.top = '-50px';
+            document.body.appendChild(pizza);
+
+            let fall = setInterval(() => {
+                let top = parseInt(pizza.style.top);
+                pizza.style.top = (top + 5) + 'px';
+
+                // Collision Check
+                let pRect = player.getBoundingClientRect();
+                let sRect = pizza.getBoundingClientRect();
+
+                if (!(pRect.right < sRect.left || pRect.left > sRect.right || pRect.bottom < sRect.top || pRect.top > sRect.bottom)) {
+                    alert("THE SALTY PIZZA GOT YOU! Final Ham Jam: " + hamJam);
+                    hamJam = 0;
+                    location.reload();
+                }
+
+                if (top > window.innerHeight) {
+                    pizza.remove();
+                    hamJam++;
+                    scoreBoard.innerHTML = "HAM JAM: " + hamJam;
+                    clearInterval(fall);
+                }
+            }, 20);
+        }
+
+        setInterval(spawnPizza, 500);
+    </script>
+</body>
+</html>
