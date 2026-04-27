@@ -10,51 +10,67 @@
     
     <style>
         :root {
-            --bg-dark: #080808; --card-bg: #121212; --accent: #00ff88;
-            --hype: #ff00ff; --doggo-glow: #ffae00; --text-dim: #888;
+            --bg-dark: #050505; --card-bg: #0f0f0f; --accent: #00ff88;
+            --hype: #ff00ff; --doggo-glow: #ffae00; --text-dim: #666;
+            --verified: #3897f0;
         }
 
         body {
             background-color: var(--bg-dark); color: #fff;
             font-family: "Segoe UI", Roboto, sans-serif, "Noto Sans Lao";
             margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center;
+            overflow-x: hidden;
         }
 
-        .dashboard { width: 95%; max-width: 1300px; background: var(--card-bg); padding: 20px; border-radius: 24px; border: 1px solid #222; }
+        .dashboard { width: 95%; max-width: 1400px; background: var(--card-bg); padding: 20px; border-radius: 24px; border: 1px solid #1a1a1a; box-shadow: 0 0 100px rgba(0,255,136,0.05); }
 
         .top-ui {
-            background: #1a1a1a; padding: 15px; border-radius: 15px; margin-bottom: 20px;
-            position: sticky; top: 10px; z-index: 1000; border: 1px solid #333;
+            background: #111; padding: 20px; border-radius: 20px; margin-bottom: 20px;
+            position: sticky; top: 10px; z-index: 1000; border: 1px solid #222;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
-        .stat-item { background: #000; padding: 8px; border-radius: 8px; text-align: center; color: var(--accent); font-weight: 800; border: 1px solid #333; font-size: 0.9rem; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+        .stat-item { background: #000; padding: 12px; border-radius: 12px; text-align: center; color: var(--accent); border: 1px solid #222; }
+        .stat-label { font-size: 0.65rem; color: var(--text-dim); display: block; margin-bottom: 4px; }
+        .stat-value { font-size: 1.1rem; font-weight: 900; font-family: monospace; }
 
         .chart-viewport { 
-            width: 100%; height: 500px; overflow-y: auto; background: #0a0a0a; 
-            border-radius: 12px; border: 1px solid #222; padding: 10px;
+            width: 100%; height: 600px; overflow-y: auto; background: #000; 
+            border-radius: 16px; border: 1px solid #222; padding: 10px; scrollbar-width: none;
         }
         #chart-container { position: relative; width: 100%; }
 
-        .channel-row { position: absolute; width: 100%; height: 32px; display: flex; align-items: center; transition: all 0.4s ease; }
-        .bar-wrapper { height: 22px; display: flex; align-items: center; border-radius: 0 6px 6px 0; position: relative; transition: width 0.4s ease; min-width: 4px; }
-        .avatar { width: 22px; height: 22px; border-radius: 50%; margin-right: 8px; flex-shrink: 0; border: 1px solid #444; }
-        .name-and-subs { position: absolute; left: 8px; font-size: 0.7rem; font-weight: 700; text-shadow: 1px 1px 2px black; white-space: nowrap; }
+        .channel-row { position: absolute; width: 100%; height: 42px; display: flex; align-items: center; transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); cursor: pointer; }
+        .channel-row:hover { filter: brightness(1.3); }
+        
+        .bar-wrapper { height: 32px; display: flex; align-items: center; border-radius: 6px; position: relative; transition: width 0.3s ease; min-width: 4px; border: 1px solid rgba(255,255,255,0.1); }
+        .avatar { width: 32px; height: 32px; border-radius: 8px; margin-right: 12px; flex-shrink: 0; border: 1px solid #333; position: relative; }
+        .verified-badge { position: absolute; bottom: -2px; right: -2px; font-size: 10px; background: var(--verified); border-radius: 50%; width: 14px; height: 14px; display: none; align-items: center; justify-content: center; color: white; }
+
+        .name-and-subs { position: absolute; left: 12px; font-size: 0.85rem; font-weight: 700; text-shadow: 2px 2px 4px black; white-space: nowrap; pointer-events: none; display: flex; align-items: center; gap: 8px; }
+
+        /* INPUTS & CONTROLS */
+        .controls { display:flex; justify-content:center; gap:15px; align-items:center; flex-wrap: wrap; background: #000; padding: 15px; border-radius: 15px; }
+        .speed-box { display: flex; align-items: center; gap: 10px; background: #1a1a1a; padding: 5px 15px; border-radius: 10px; border: 1px solid #333; }
+        
+        input[type="range"] { accent-color: var(--accent); cursor: pointer; }
+        input[type="text"] { background: #1a1a1a; border: 1px solid #333; color: white; padding: 10px; border-radius: 8px; width: 200px; }
+        
+        .btn { cursor: pointer; border: none; font-weight: bold; border-radius: 8px; padding: 10px 20px; transition: 0.2s; }
+        .btn-green { background: var(--accent); color: black; }
+        .btn-red { background: #ff4444; color: white; animation: pulse 1s infinite; }
+
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,68,68,0.7); } 70% { box-shadow: 0 0 0 15px rgba(255,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(255,68,68,0); } }
 
         /* LIVE FEED */
-        .comment-section { margin-top: 25px; background: #000; border-radius: 15px; padding: 20px; border: 1px solid #333; }
-        #comment-feed { height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; }
-        .comment-entry { background: #111; padding: 10px; border-radius: 8px; border-left: 4px solid var(--accent); font-size: 0.85rem; }
-        .doggo-msg { border-left-color: var(--doggo-glow); background: #221a00; }
-        .fan-msg { border-left-color: #555; }
+        .comment-section { margin-top: 25px; background: #000; border-radius: 20px; padding: 20px; border: 1px solid #222; }
+        #comment-feed { height: 350px; overflow-y: auto; display: flex; flex-direction: column-reverse; gap: 8px; padding-right: 10px; }
+        .comment-entry { background: #0a0a0a; padding: 12px; border-radius: 10px; border-left: 4px solid var(--accent); font-size: 0.85rem; animation: slideIn 0.2s ease-out; border: 1px solid #1a1a1a; }
+        .milestone-msg { border-left-color: var(--hype); background: linear-gradient(90deg, #1a001a, #000); color: #ff88ff; font-weight: bold; }
+        .train-msg { border-left-color: #00e5ff; background: #001a1a; color: #00e5ff; }
 
-        .input-area { display: flex; gap: 10px; }
-        input { background: #111; border: 1px solid #444; color: white; padding: 10px; border-radius: 8px; }
-        button { cursor: pointer; border: none; font-weight: bold; border-radius: 8px; padding: 10px 20px; background: var(--accent); }
-
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; padding: 15px; background: #000; border-radius: 15px; margin-top: 15px; }
-        .video-card { background: #161616; border-radius: 8px; overflow: hidden; border: 1px solid #333; font-size: 0.7rem; }
-        .thumbnail img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+        @keyframes slideIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
@@ -62,15 +78,21 @@
     <div class="dashboard">
         <div class="top-ui">
             <div class="stats-grid">
-                <div class="stat-item">Network Subs: <span id="global-subs">0</span></div>
-                <div class="stat-item">Hype Level: <span id="hype-level">STABLE</span></div>
-                <div class="stat-item">Total Comments: <span id="global-comments">0</span></div>
+                <div class="stat-item"><span class="stat-label">Total Empire Subs</span><span class="stat-value" id="global-subs">0</span></div>
+                <div class="stat-item"><span class="stat-label">Total Empire Views</span><span class="stat-value" id="global-views">0</span></div>
+                <div class="stat-item"><span class="stat-label">Active Hype</span><span class="stat-value" id="hype-level" style="color:var(--hype)">NORMAL</span></div>
+                <div class="stat-item"><span class="stat-label">Chat Velocity</span><span class="stat-value" id="chat-v">1.2/s</span></div>
             </div>
-            <div style="display:flex; justify-content:center; gap:10px; align-items:center; flex-wrap: wrap;">
-                <input type="text" id="newChannelName" placeholder="Add Creator...">
-                <button onclick="addNewChannel()">DRAFT</button>
-                <input type="range" id="speedSlider" min="50" max="1000" value="300" style="width:80px;">
-                <button onclick="megaBoost()" style="background:#ff4444; color:#fff;">VIRAL SURGE ⚡</button>
+            
+            <div class="controls">
+                <input type="text" id="newChannelName" placeholder="New Creator Name...">
+                <button class="btn btn-green" onclick="addNewChannel()">RECRUIT</button>
+                <div class="speed-box">
+                    <span style="font-size:0.7rem; color:var(--text-dim)">LATENCY (MS)</span>
+                    <input type="range" id="speedSlider" min="1" max="1000" value="100">
+                    <span id="speedValue" style="font-family:monospace; min-width:40px;">100</span>
+                </div>
+                <button class="btn btn-red" onclick="megaBoost()">HYPER DRIVE ⚡</button>
             </div>
         </div>
 
@@ -78,151 +100,159 @@
             <div id="chart-container"></div>
         </div>
 
-        <div class="video-grid" id="videoGrid"></div>
-
         <div class="comment-section">
-            <div style="color:var(--accent); font-weight: bold; margin-bottom: 10px; font-size: 0.8rem;">📡 LIVE GLOBAL CHAT</div>
-            <div id="comment-feed"></div>
-            <div class="input-area">
-                <input type="text" id="userName" style="width:120px;" placeholder="Username">
-                <input type="text" id="userMsg" style="flex-grow:1;" placeholder="Say something to the squad...">
-                <button onclick="postUserComment()" style="background:var(--hype); color:white;">SEND</button>
+            <div style="color:var(--accent); font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <span>📡 EMPIRE COMMAND CHAT</span>
+                <span id="active-watchers" style="color:var(--text-dim); font-size: 0.8rem;">Watchers: 0</span>
             </div>
+            <div id="comment-feed"></div>
         </div>
     </div>
 
 <script>
-    const CORS_PROXY = "https://cors-anywhere.followalong.com/";
-    const RSS_URL = "https://www.youtube.com/feeds/videos.xml?channel_id=UCzHeWI-gvnXPf7JpbRXCW_g";
-
-    // UPDATED ROSTER
-    const squadNames = [
+    const finalSquadList = [
         "DoggoWing21", "MineChicken98", "Tony-The-Pet-Ghost", "FlyingDogWithAPencil",
-        "unsigned integer", "signed integer", "AI Chef", "The Troller", "Float32", "NullPointer",
-        "Name 11", "Name 12", "Name 13", "Name 14", "Name 15", "Name 16", "Name 17", "Name 18", 
-        "Name 19", "Name 20", "Name 21", "Name 22", "Name 23", "Name 24", "Name 25", "Name 26",
-        "Name 27", "Name 28", "Name 29", "Name 30", "Name 31", "Name 32", "Name 33", "Name 34",
-        "Name 35", "Name 36", "Name 37", "Name 38", "Name 39", "Name 40"
+        "unsigned integer", "signed integer", "AI Chef", "LifeHacker3000", "The Troller", 
+        "Conspiracy Corner", "Tech Regrets", "Future Vision", "Truth Seeker", "Pet Tech", 
+        "AI Creator", "Toasterman592", "Doge", "JmanCurly Fan", "Cheezburger King", 
+        "Banana Man", "Chicken Nugget HISTORY", "Float32", "NullPointer", "Boolean", 
+        "Binary Beast", "Hex Master", "Memory Leak", "bytebeat master", "Database Lemon", 
+        "The Algorithm", "Cloud Walker", "Ping King", "Food Reviews", "ThatToasty",
+        "The nerd 22", "a rock", "NoobMaster68", "BurgerLover", "TechGeek_2026",
+        "Default_Skin", "Glitch_In_Matrix", "PizzaTime", "Lofi_Vibes", "CodingWizard",
+        "MemeLord", "GhostInTheShell", "BinaryBot", "SimplyHuman", "BreadSticks",
+        "ToasterFan", "MathIsCool", "HyperGrowth", "spinningdonut32"
     ];
 
-    let channels = squadNames.map((name, i) => ({
+    let channels = finalSquadList.map((name, i) => ({
         id: 'ch-' + i,
         name: name,
-        subs: 1000 - (i * 20),
-        color: `hsl(${(i * 137.5) % 360}, 70%, 60%)`
+        subs: Math.floor(Math.random() * 1000),
+        views: Math.floor(Math.random() * 5000),
+        color: `hsl(${(i * 137.5) % 360}, 75%, 55%)`,
+        milestones: [10000, 50000, 100000, 1000000, 10000000],
+        verified: false
     }));
 
     let boost = false;
-    let globalCommentCount = 0;
+    let hypeTrainActive = false;
 
-    // COMMENT SYSTEM
     function addComment(author, text, type = 'fan') {
         const feed = document.getElementById('comment-feed');
         const div = document.createElement('div');
-        div.className = `comment-entry ${type === 'doggo' ? 'doggo-msg' : 'fan-msg'}`;
+        div.className = `comment-entry ${type === 'doggo' ? 'doggo-msg' : ''} ${type === 'milestone' ? 'milestone-msg' : ''} ${type === 'train' ? 'train-msg' : ''}`;
         div.innerHTML = `<strong>${author}:</strong> ${text}`;
         feed.prepend(div);
-        if(feed.children.length > 25) feed.lastChild.remove();
-        globalCommentCount++;
-        document.getElementById('global-comments').innerText = globalCommentCount;
+        if(feed.children.length > 40) feed.removeChild(feed.lastChild);
     }
 
-    function postUserComment() {
-        const u = document.getElementById('userName').value || "Guest";
-        const m = document.getElementById('userMsg').value;
-        if(m.trim()) {
-            addComment(u, m, 'user');
-            document.getElementById('userMsg').value = "";
+    // CHAT LOGIC TIED TO SPEED
+    function doChat() {
+        const speed = parseInt(document.getElementById('speedSlider').value);
+        const interval = Math.max(100, speed * 2);
+        
+        if(Math.random() > 0.6) {
+            const c = channels[Math.floor(Math.random() * channels.length)];
+            const msgs = ["W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling"];
+            addComment(c.name, msgs[Math.floor(Math.random()*msgs.length)]);
         }
+        
+        document.getElementById('chat-v').innerText = (1000/interval).toFixed(1) + "/s";
+        document.getElementById('active-watchers').innerText = `Watchers: ${Math.floor(500000 / (speed/100)).toLocaleString()}`;
+        setTimeout(doChat, interval);
     }
 
-    // Auto-generate random fan comments
-    const randomGiggles = ["Sub 2 MineChicken!", "Tony is actually a ghost??", "unsigned integer is popping off", "LFG Squad!!", "Doggo is the king", "W Sim", "Anyone else see that growth?"];
-    setInterval(() => {
-        if(Math.random() > 0.7) {
-            const randAuthor = channels[Math.floor(Math.random() * channels.length)].name;
-            const randMsg = randomGiggles[Math.floor(Math.random() * randomGiggles.length)];
-            addComment(randAuthor, randMsg);
-        }
-    }, 4000);
-
-    // GRAPH & CHANNEL LOGIC
     function addNewChannel() {
         const val = document.getElementById('newChannelName').value;
         if(val.trim()) {
-            channels.push({ id: 'c-'+Date.now(), name: val, subs: 10, color: '#00ff88' });
+            channels.push({ id: 'c-'+Date.now(), name: val, subs: 10, views: 0, color: '#fff', milestones: [1000, 10000] });
             document.getElementById('newChannelName').value = "";
-            addComment("System", `${val} has entered the arena!`);
+            addComment("SYSTEM", `NEW CHALLENGER: ${val} HAS ENTERED!`, 'milestone');
         }
     }
 
     function render() {
+        const speed = parseInt(document.getElementById('speedSlider').value);
+        document.getElementById('speedValue').innerText = speed;
+        
         const container = document.getElementById('chart-container');
-        container.style.height = `${channels.length * 35}px`;
+        container.style.height = `${channels.length * 42}px`;
+        
         channels.sort((a, b) => b.subs - a.subs);
         
+        // DoggoWing21 Rigging
         const dIdx = channels.findIndex(c => c.name === "DoggoWing21");
-        if(dIdx > 2) {
+        if(dIdx > 0) {
             const d = channels.splice(dIdx, 1)[0];
             channels.splice(0, 0, d);
-            d.subs = channels[1].subs + 50;
+            d.subs = channels[1].subs + (boost ? 500 : 50);
         }
 
-        let total = 0;
+        let totalS = 0, totalV = 0;
         const max = channels[0].subs || 1;
 
         channels.forEach((c, i) => {
-            total += c.subs;
+            totalS += c.subs; totalV += c.views;
             let row = document.getElementById(`row-${c.id}`);
             if(!row) {
                 row = document.createElement('div');
                 row.id = `row-${c.id}`;
                 row.className = 'channel-row';
-                row.innerHTML = `<div class="avatar" style="background:${c.color}"></div><div class="bar-wrapper" id="bar-${c.id}"><div class="name-and-subs"><span>${c.name}</span><span id="sub-${c.id}"></span></div></div>`;
+                row.onclick = () => { c.subs += 1000; addComment("BOOST", `Gave 1k subs to ${c.name}!`); };
+                row.innerHTML = `<div class="avatar" style="background:${c.color}"><div class="verified-badge" id="v-${c.id}">✓</div></div><div class="bar-wrapper" id="bar-${c.id}"><div class="name-and-subs"><span>${c.name}</span><span id="data-${c.id}"></span></div></div>`;
                 container.appendChild(row);
             }
-            row.style.top = `${i * 35}px`;
+            
+            row.style.top = `${i * 42}px`;
             const bar = document.getElementById(`bar-${c.id}`);
-            bar.style.width = `${(c.subs/max)*85}%`;
+            bar.style.width = `${(c.subs/max)*90}%`;
             bar.style.backgroundColor = c.color;
-            document.getElementById(`sub-${c.id}`).innerText = ` | ${Math.floor(c.subs).toLocaleString()}`;
-            c.subs += (Math.random() * 12) * (boost ? 40 : 1);
+            
+            // Verification Badge Logic
+            if(c.subs > 100000) document.getElementById(`v-${c.id}`).style.display = 'flex';
+
+            document.getElementById(`data-${c.id}`).innerText = ` • ${Math.floor(c.subs).toLocaleString()} • ${Math.floor(c.views).toLocaleString()} views`;
+            
+            // Milestone & Hype Train Logic
+            if(c.milestones.length > 0 && c.subs >= c.milestones[0]) {
+                const m = c.milestones.shift();
+                addComment("🏆 MILESTONE", `${c.name} HIT ${m.toLocaleString()}!`, 'milestone');
+                triggerHypeTrain();
+            }
+
+            let growthFactor = (boost ? 500 : 20) * (hypeTrainActive ? 5 : 1);
+            c.subs += (Math.random() * growthFactor);
+            c.views += (Math.random() * growthFactor * 10);
         });
 
-        document.getElementById('global-subs').innerText = Math.floor(total).toLocaleString();
-        setTimeout(render, document.getElementById('speedSlider').value);
+        document.getElementById('global-subs').innerText = Math.floor(totalS).toLocaleString();
+        document.getElementById('global-views').innerText = Math.floor(totalV).toLocaleString();
+        
+        setTimeout(render, speed);
     }
 
-    async function updateVideos() {
-        try {
-            const r = await fetch(CORS_PROXY + RSS_URL);
-            const t = await r.text();
-            const xml = new DOMParser().parseFromString(t, "text/xml");
-            const entries = Array.from(xml.querySelectorAll("entry")).slice(0, 10);
-            const grid = document.getElementById('videoGrid');
-            grid.innerHTML = "";
-            entries.forEach(e => {
-                const id = e.querySelector("videoId").textContent;
-                const title = e.querySelector("title").textContent;
-                const author = channels[Math.floor(Math.random() * 4)].name;
-                grid.innerHTML += `<div class="video-card"><div class="thumbnail"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg"></div><div style="padding:6px;"><strong>${title}</strong><br><span style="color:#888">${author}</span></div></div>`;
-            });
-        } catch(e) {}
+    function triggerHypeTrain() {
+        if(hypeTrainActive) return;
+        hypeTrainActive = true;
+        document.getElementById('hype-level').innerText = "HYPE TRAIN 🚂";
+        document.getElementById('hype-level').style.color = "#00e5ff";
+        addComment("SYSTEM", "HYPE TRAIN DEPARTING! 5X GROWTH ACTIVE!", 'train');
+        setTimeout(() => {
+            hypeTrainActive = false;
+            document.getElementById('hype-level').innerText = boost ? "WARP SPEED" : "NORMAL";
+            document.getElementById('hype-level').style.color = boost ? "red" : "var(--hype)";
+        }, 3000);
     }
 
     function megaBoost() {
         boost = true;
-        document.getElementById('hype-level').innerText = "VIRAL EXPLOSION!!";
-        addComment("DoggoWing21", "EVERYONE LOOK AT THE GRAPH! 🚀🔥", 'doggo');
-        setTimeout(() => {
-            boost = false;
-            document.getElementById('hype-level').innerText = "STABLE";
-        }, 5000);
+        document.getElementById('hype-level').innerText = "WARP SPEED";
+        addComment("COMMAND", "VIRAL PAYLOAD DELIVERED. ENGINE OVERHEATING.", 'doggo');
+        setTimeout(() => { boost = false; document.getElementById('hype-level').innerText = "NORMAL"; }, 8000);
     }
 
-    updateVideos();
-    setInterval(updateVideos, 60000);
     render();
+    doChat();
 </script>
 </body>
 </html>
