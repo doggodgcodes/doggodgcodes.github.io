@@ -118,7 +118,7 @@
     </div>
 
 <script>
-    console.log("Credits: Gemini, Claude, Doggodgcodes, MineChicken98");
+    console.log("Credits: Gemini, Claude, Doggodgcodes, MineChicken98, CodeQL");
 
     const CORS_PROXY = "https://cors-anywhere.followalong.com/";
     const FEED_CHANNELS = [
@@ -129,7 +129,8 @@
 
     const finalSquadList = [
         "DoggoWing21", "MineChicken98", "Tony-The-Pet-Ghost", "FlyingDogWithAPencil",
-        "unsigned integer", "signed integer", "AI Chef", "LifeHacker3000", "The Troller", 
+        "Your unsigned integer", "signed integer", "AI Chef", "LifeHacker3000", "The Troller", 
+        "uwy", "Tips And Tricks", "Burger", "bitwiseoperand", "xorshifter",
         "Conspiracy Corner", "Tech Regrets", "Future Vision", "Truth Seeker", "Pet Tech", 
         "AI Creator", "Toasterman592", "Doge", "JmanCurly Fan", "Cheezburger King", 
         "Banana Man", "Chicken Nugget HISTORY", "Float32", "NullPointer", "Boolean", 
@@ -144,8 +145,8 @@
     let channels = finalSquadList.map((name, i) => ({
         id: 'ch-' + i,
         name: name,
-        subs: name === "DoggoWing21" ? 10000 : 0,
-        views: name === "DoggoWing21" ? 300000 : 0,
+        subs: name === "DoggoWing21" ? 100000 : 0,
+        views: name === "DoggoWing21" ? 30000000 : 0,
         color: `hsl(${(i * 137.5) % 360}, 75%, 55%)`,
         milestones: [10000, 50000, 100000, 1000000, 10000000],
         verified: false
@@ -172,7 +173,7 @@
         
         if(Math.random() > 0.6) {
             const c = channels[Math.floor(Math.random() * channels.length)];
-            const msgs = ["W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling"];
+            const msgs = ["W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling", "bro is 🍞", "W doggo", "W in the chat", "yap yap yap"];
             addComment(c.name, msgs[Math.floor(Math.random()*msgs.length)]);
         }
         
