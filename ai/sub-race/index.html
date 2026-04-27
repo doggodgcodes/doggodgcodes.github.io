@@ -158,7 +158,10 @@
         const feed = document.getElementById('comment-feed');
         const div = document.createElement('div');
         div.className = `comment-entry ${type === 'doggo' ? 'doggo-msg' : ''} ${type === 'milestone' ? 'milestone-msg' : ''} ${type === 'train' ? 'train-msg' : ''}`;
-        div.innerHTML = `<strong>${author}:</strong> ${text}`;
+        const strong = document.createElement('strong');
+        strong.textContent = `${author}:`;
+        div.appendChild(strong);
+        div.appendChild(document.createTextNode(' ' + text));
         feed.prepend(div);
         if(feed.children.length > 40) feed.removeChild(feed.lastChild);
     }
