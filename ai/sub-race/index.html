@@ -63,6 +63,12 @@
 
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,68,68,0.7); } 70% { box-shadow: 0 0 0 15px rgba(255,68,68,0); } 100% { box-shadow: 0 0 0 0 rgba(255,68,68,0); } }
 
+        /* VIDEO GRID - Set to 5 columns for 3 rows of 5 */
+        .video-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; padding: 15px; background: #000; border-radius: 15px; margin-top: 15px; }
+        .video-card { background: #161616; border-radius: 8px; overflow: hidden; border: 1px solid #333; font-size: 0.75rem; }
+        .thumbnail img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+        .video-creator { color: var(--accent); font-weight: bold; font-size: 0.7rem; margin-top: 4px; display: block; border-top: 1px solid #222; padding-top: 4px; }
+
         /* LIVE FEED */
         .comment-section { margin-top: 25px; background: #000; border-radius: 20px; padding: 20px; border: 1px solid #222; }
         #comment-feed { height: 350px; overflow-y: auto; display: flex; flex-direction: column-reverse; gap: 8px; padding-right: 10px; }
@@ -100,6 +106,8 @@
             <div id="chart-container"></div>
         </div>
 
+        <div class="video-grid" id="videoGrid"></div>
+
         <div class="comment-section">
             <div style="color:var(--accent); font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
                 <span>📡 EMPIRE COMMAND CHAT</span>
@@ -110,6 +118,15 @@
     </div>
 
 <script>
+    console.log("Credits: Gemini, Claude, Doggodgcodes, MineChicken98");
+
+    const CORS_PROXY = "https://cors-anywhere.followalong.com/";
+    const FEED_CHANNELS = [
+        "UCzHeWI-gvnXPf7JpbRXCW_g", // MineChicken98
+        "UCoDdAhc_ve3qtimWFFblNTw", // FlyingDogWithAPencil
+        "UCepde9Wk-PDJtw8S_s2MoiA"  // Tony-the-pet-ghost
+    ];
+
     const finalSquadList = [
         "DoggoWing21", "MineChicken98", "Tony-The-Pet-Ghost", "FlyingDogWithAPencil",
         "unsigned integer", "signed integer", "AI Chef", "LifeHacker3000", "The Troller", 
@@ -127,8 +144,8 @@
     let channels = finalSquadList.map((name, i) => ({
         id: 'ch-' + i,
         name: name,
-        subs: Math.floor(Math.random() * 1000),
-        views: Math.floor(Math.random() * 5000),
+        subs: name === "DoggoWing21" ? 10000 : 0,
+        views: name === "DoggoWing21" ? 300000 : 0,
         color: `hsl(${(i * 137.5) % 360}, 75%, 55%)`,
         milestones: [10000, 50000, 100000, 1000000, 10000000],
         verified: false
@@ -146,7 +163,6 @@
         if(feed.children.length > 40) feed.removeChild(feed.lastChild);
     }
 
-    // CHAT LOGIC TIED TO SPEED
     function doChat() {
         const speed = parseInt(document.getElementById('speedSlider').value);
         const interval = Math.max(100, speed * 2);
@@ -165,7 +181,7 @@
     function addNewChannel() {
         const val = document.getElementById('newChannelName').value;
         if(val.trim()) {
-            channels.push({ id: 'c-'+Date.now(), name: val, subs: 10, views: 0, color: '#fff', milestones: [1000, 10000] });
+            channels.push({ id: 'c-'+Date.now(), name: val, subs: 0, views: 0, color: '#fff', milestones: [1000, 10000] });
             document.getElementById('newChannelName').value = "";
             addComment("SYSTEM", `NEW CHALLENGER: ${val} HAS ENTERED!`, 'milestone');
         }
@@ -180,7 +196,6 @@
         
         channels.sort((a, b) => b.subs - a.subs);
         
-        // DoggoWing21 Rigging
         const dIdx = channels.findIndex(c => c.name === "DoggoWing21");
         if(dIdx > 0) {
             const d = channels.splice(dIdx, 1)[0];
@@ -208,12 +223,10 @@
             bar.style.width = `${(c.subs/max)*90}%`;
             bar.style.backgroundColor = c.color;
             
-            // Verification Badge Logic
             if(c.subs > 100000) document.getElementById(`v-${c.id}`).style.display = 'flex';
 
             document.getElementById(`data-${c.id}`).innerText = ` • ${Math.floor(c.subs).toLocaleString()} • ${Math.floor(c.views).toLocaleString()} views`;
             
-            // Milestone & Hype Train Logic
             if(c.milestones.length > 0 && c.subs >= c.milestones[0]) {
                 const m = c.milestones.shift();
                 addComment("🏆 MILESTONE", `${c.name} HIT ${m.toLocaleString()}!`, 'milestone');
@@ -229,6 +242,44 @@
         document.getElementById('global-views').innerText = Math.floor(totalV).toLocaleString();
         
         setTimeout(render, speed);
+    }
+
+    async function updateVideos() {
+        try {
+            let allVideos = [];
+            for(let chanId of FEED_CHANNELS) {
+                const rss = `https://www.youtube.com/feeds/videos.xml?channel_id=${chanId}`;
+                const response = await fetch(CORS_PROXY + rss);
+                const text = await response.text();
+                const xml = new DOMParser().parseFromString(text, "text/xml");
+                
+                const entries = Array.from(xml.querySelectorAll("entry")).slice(0, 5).map(e => ({
+                    id: e.querySelector("videoId").textContent,
+                    title: e.querySelector("title").textContent,
+                    fakeCreator: finalSquadList[Math.floor(Math.random() * finalSquadList.length)]
+                }));
+                
+                allVideos = allVideos.concat(entries);
+            }
+
+            const grid = document.getElementById('videoGrid');
+            grid.innerHTML = "";
+            
+            allVideos.forEach(v => {
+                grid.innerHTML += `
+                    <div class="video-card">
+                        <div class="thumbnail">
+                            <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg">
+                        </div>
+                        <div style="padding:6px;">
+                            <strong style="display:block; height:2.4em; overflow:hidden;">${v.title}</strong>
+                            <span class="video-creator">${v.fakeCreator}</span>
+                        </div>
+                    </div>`;
+            });
+        } catch(err) {
+            console.warn("Video Fetch failed:", err);
+        }
     }
 
     function triggerHypeTrain() {
@@ -251,6 +302,8 @@
         setTimeout(() => { boost = false; document.getElementById('hype-level').innerText = "NORMAL"; }, 8000);
     }
 
+    updateVideos();
+    setInterval(updateVideos, 120000);
     render();
     doChat();
 </script>
