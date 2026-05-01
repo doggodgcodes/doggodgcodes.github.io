@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dingus Note 2</title>
+	<style>
+		:root {
+			--bg: #deddef;
+			--main: #dad8f4;
+			--accent: #8e88de;
+			--padding: 7px;
+			--rad: 10px;
+		}
+		
+		body {
+			background-color: var(--bg);
+			background: linear-gradient(to right, var(--bg), var(--accent));
+			padding: 70px;
+			align-content: center;
+			font-family: "Tahoma", sans-serif;
+			padding-bottom: 120px; /* Prevent content from being hidden behind bar */
+		}
+		
+		input, button, textarea {
+			background-color: var(--main);
+			border-color: var(--accent);
+			padding: var(--padding);
+			margin: var(--padding);
+			border-radius: var(--rad);
+			transition: box-shadow 0.3s ease-in-out transform 0.3s ease-in-out;
+		}
+		
+		input:hover, button:hover, textarea:hover {
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			transform: translateY(-1px);
+		}
+		
+		textarea {
+			padding: calc(var(--padding) * 2);
+			margin: calc(var(--padding) * 2);
+			resize: vertical; /* Allow vertical resizing */
+		}
+		
+		textarea:hover {
+			transform: translateY(2px) translateX(5px);
+		}
+		
+		img {
+			margin-left: var(--padding);
+		}
+		
+		h1 {
+			margin-top: var(--padding);
+		}
+		
+		.bar-text {
+			margin-left: var(--padding);
+			margin-right: calc(var(--padding) * 2);
+		}
+		
+	.bottom-bar {
+    display: flex;
+    padding: calc(var(--padding) * 2);
+    background-color: #f1f1f1;
+		background: linear-gradient(to right, var(--main), var(--bg));
+    border-top: 1px solid #ccc;
+		border-radius: calc(var(--rad) * 2);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .bottom-bar input[type="text"] {
+    flex: 1; /* Take all available space */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+	
+	audio {
+		background: linear-gradient(to right, #404045, var(--accent));
+		margin: calc(var(--padding) * 3);
+		border-radius: calc(var(--rad) * 3);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+		padding: calc(var(--padding) * 1.5);
+	}
+	</style>
+</head>
+<body>
+	<h1>Dingus Note</h1>
+	<br>
+	
+	<textarea id="note" rows="9" cols="60" placeholder="type stuff, idk..."></textarea>
+  <br><br>
+	
+	<!-- Audio player -->
+	<audio id="audioPlayer" controls loop></audio>
+	
+	<div class="bottom-bar">
+	<h3 class="bar-text">Controls</h3>
+	<input id="filename" placeholder="something.txt" value="note.txt">
+
+  <button id="save">Save File</button>
+	
+	<!-- File input -->
+	<input type="file" id="fileInput" accept="audio/*">
+	
+	<button id="switchHtm">HTML Mode</button>
+	
+	<button id="switchTxt">Text Mode</button>
+	
+	<!-- Copy Button -->
+	<button id="copyButton">Copy Dingus Note Text</button>
+	
+	<img width="50" height="50" src="smiley.gif">
+</div>
+
+  <script>
+		const fileInput = document.getElementById("fileInput")
+		
+    document.getElementById("save").onclick = () => {
+      const text = document.getElementById("note").value;
+      let filename = document.getElementById("filename").value.trim();
+
+      if (!filename) filename = "note.txt";
+      if (!filename.includes(".")) filename += ".txt";
+
+      const blob = new Blob([text], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      a.click();
+
+      URL.revokeObjectURL(url);
+    };
+		
+		document.getElementById("switchHtm").onclick = () => {
+      const note = document.getElementById("note");
+      document.getElementById("filename").value = "index.html";
+
+			let filename = document.getElementById("filename").value.trim();
+			note.value = `
+			<!doctype html>
+			<html lang="en">
+			<head>
+			<title>Title</title>
+			<style>
+				h1, h2, h3, h4, h5, h6 {
+					font-family: "Segoe UI", sans-serif;
+				}
+			</style>
+			</head>
+			<body>
+			<h1>My Webpage</h1>
+			</body>
+			</html>`;
+    };
+		
+		document.getElementById("switchTxt").onclick = () => {
+      const note = document.getElementById("note");
+      document.getElementById("filename").value = "note.txt";
+
+			let filename = document.getElementById("filename").value.trim();
+			note.value = "Write a note, todo, story, or shopping list.";
+    };
+		
+		fileInput.addEventListener('change', function() {
+			const file = this.files[0];
+			if (file) {
+			// Create a temporary URL for the file
+			const fileURL = URL.createObjectURL(file);
+			// Set the audio src to the file
+			audioPlayer.src = fileURL;
+			audioPlayer.play();
+			}
+		});
+		
+		// Copy text to clipboard
+		document.getElementById("copyButton").onclick = () => {
+			const note = document.getElementById("note");
+
+			// Select the text area content
+			note.select();
+			note.setSelectionRange(0, 99999); // For mobile devices
+
+			// Copy the text to the clipboard
+			navigator.clipboard.writeText()
+
+			// Alert the user
+			alert("Copied!");
+		};
+</body>
+</html>
