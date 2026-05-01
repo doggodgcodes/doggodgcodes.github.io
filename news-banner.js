@@ -9,8 +9,8 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
     // Your input should be "MM-DD" (Example: "12-25")
     const switchDate = new Date(`${currentYear}-${targetMonthDay}T00:00:00`);
 
-    // If today is equal to or AFTER the switch date, update the banner!
-    if (today >= switchDate) {
+    // If today is equal to the switch date, update the banner!
+    if (today == switchDate) {
         const banner = document.getElementById(elementId);
         if (banner) {
             banner.textContent = newMessage; 
@@ -20,7 +20,7 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
     else {
         if (banner) {
             banner.textContent = "No news today"; 
-            console.log("News updated for " + targetMonthDay);
+            console.log("Nothing new");
         }
     }
 }
