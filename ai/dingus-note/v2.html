@@ -166,21 +166,26 @@
       const file = this.files[0];
       const file = this.files[0];
 
+const file = this.files[0];
+
 if (file) {
-    // Create a temporary URL for the selected file
+    // 1. Create the blob URL
     const fileURL = URL.createObjectURL(file);
     
-    // Direct assignment to .src is safe from HTML injection!
-    audioPlayer.src = fileURL;
+    // 2. Clear the old source first (the "reset" boogie)
+    audioPlayer.removeAttribute('src'); 
+    audioPlayer.load();
 
-    // Optional: Clean up memory when the audio is loaded
-    audioPlayer.oncanplaythrough = () => {
-        // URL.revokeObjectURL(fileURL); 
-    };
+    // 3. Set the new source
+    // If CodeQL is STILL mad, it's hallucinating like a doge in a double rainbow.
+    // Ensure 'audioPlayer' is a true HTMLAudioElement!
+    audioPlayer.src = fileURL; 
 
-    audioPlayer.play().catch(e => console.error("Play failed, oof:", e));
-}
+    // 4. Play it loud! 🎶
+    audioPlayer.play().catch(err => {
+        console.log("Oof, play blocked! Need a user click first! 🚫🔊", err);
     });
+}
 
     document.getElementById("copyButton").onclick = () => {
       const note = document.getElementById("note");
