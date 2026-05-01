@@ -114,9 +114,11 @@
 	<img width="50" height="50" src="smiley.gif">
 </div>
 
-  <script>
-		const fileInput = document.getElementById("fileInput")
-		
+<script>
+    const fileInput = document.getElementById("fileInput");
+    // FIX: Define audioPlayer so the change listener can find it
+    const audioPlayer = document.getElementById("audioPlayer");
+
     document.getElementById("save").onclick = () => {
       const text = document.getElementById("note").value;
       let filename = document.getElementById("filename").value.trim();
@@ -134,61 +136,52 @@
 
       URL.revokeObjectURL(url);
     };
-		
-		document.getElementById("switchHtm").onclick = () => {
+
+    document.getElementById("switchHtm").onclick = () => {
       const note = document.getElementById("note");
       document.getElementById("filename").value = "index.html";
-
-			let filename = document.getElementById("filename").value.trim();
-			note.value = `
-			<!doctype html>
-			<html lang="en">
-			<head>
-			<title>Title</title>
-			<style>
-				h1, h2, h3, h4, h5, h6 {
-					font-family: "Segoe UI", sans-serif;
-				}
-			</style>
-			</head>
-			<body>
-			<h1>My Webpage</h1>
-			</body>
-			</html>`;
+      note.value = `<!doctype html>
+<html lang="en">
+<head>
+<title>Title</title>
+<style>
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Segoe UI", sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>My Webpage</h1>
+</body>
+</html>`;
     };
-		
-		document.getElementById("switchTxt").onclick = () => {
+
+    document.getElementById("switchTxt").onclick = () => {
       const note = document.getElementById("note");
       document.getElementById("filename").value = "note.txt";
-
-			let filename = document.getElementById("filename").value.trim();
-			note.value = "Write a note, todo, story, or shopping list.";
+      note.value = "Write a note, todo, story, or shopping list.";
     };
-		
-		fileInput.addEventListener('change', function() {
-			const file = this.files[0];
-			if (file) {
-			// Create a temporary URL for the file
-			const fileURL = URL.createObjectURL(file);
-			// Set the audio src to the file
-			audioPlayer.src = fileURL;
-			audioPlayer.play();
-			}
-		});
-		
-		// Copy text to clipboard
-		document.getElementById("copyButton").onclick = () => {
-			const note = document.getElementById("note");
 
-			// Select the text area content
-			note.select();
-			note.setSelectionRange(0, 99999); // For mobile devices
+    fileInput.addEventListener('change', function() {
+      const file = this.files[0];
+      if (file) {
+        const fileURL = URL.createObjectURL(file);
+        audioPlayer.src = fileURL;
+        audioPlayer.play();
+      }
+    });
 
-			// Copy the text to the clipboard
-			navigator.clipboard.writeText()
+    document.getElementById("copyButton").onclick = () => {
+      const note = document.getElementById("note");
+      note.select();
+      note.setSelectionRange(0, 99999); 
 
-			// Alert the user
-			alert("Copied!");
-		};
+      // FIX: Added note.value inside the parentheses
+      navigator.clipboard.writeText(note.value);
+
+      alert("Copied!");
+    };
+  // FIX: Added the missing closing script brace below
+  </script>
 </body>
 </html>
