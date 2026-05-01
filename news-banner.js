@@ -13,7 +13,13 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
     if (today >= switchDate) {
         const banner = document.getElementById(elementId);
         if (banner) {
-            banner.innerHTML = newMessage; 
+            banner.textContent = newMessage; 
+            console.log("News updated for " + targetMonthDay);
+        }
+    }
+    else {
+        if (banner) {
+            banner.textContent = "No news today"; 
             console.log("News updated for " + targetMonthDay);
         }
     }
@@ -28,7 +34,7 @@ checkNewsUpdate("01-30", "🚀 News banner testing! 🚀");
 
 checkNewsUpdate("02-14", "happy valentine's day");
 
-checkNewsUpdate("03-14", "3.14 this is PI π");
+checkNewsUpdate("03-14", "3.14159265 this is PI π");
 
 checkNewsUpdate("03-17", "the leprechauns are hiding");
 
