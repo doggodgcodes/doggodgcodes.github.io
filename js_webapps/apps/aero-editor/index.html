@@ -152,7 +152,7 @@ saveBtn.addEventListener('click', () => {
   }
 
   // 3. Create the "Jar" of code
-  const blob = new Blob([input.value], { type: "text/html" });
+  const blob = new Blob([input.value + `<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->`], { type: "text/html" });
   
   // 4. Create a hidden "ghost" link to trigger the download
   const link = document.createElement("a");
