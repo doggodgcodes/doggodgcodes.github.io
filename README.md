@@ -34,6 +34,10 @@ There are bits of @minechicken98's /funny/ repository code.
 
 It is located in /ai/ and /random/vibecode/.
 
+# Do you credit AI?
+
+The AI will get proper attribution for helping out.
+
 # Credits
 
 Me, Gemini, Claude, GPT, Le Chat, Copilot, CodeQL, MineChicken98. (mostly me)
