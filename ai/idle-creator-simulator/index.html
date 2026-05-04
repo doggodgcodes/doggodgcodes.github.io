@@ -59,6 +59,7 @@
         <button onclick="showTab('ads')">SPONSORS</button>
         <button onclick="showTab('shop')">SHOP</button>
         <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
+        <iframe width="110" height="200" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
     </div>
 
     <audio id="bgm" loop><source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mpeg"></audio>
@@ -89,10 +90,12 @@
         const titles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero compilation", "Mimic in a Costco Freezer", "Whopper Whopper Song"];
 
         function playPop() {
-            // NEW CRISPY POP SOUND 🚨
-            let pop = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');
-            pop.volume = 0.3;
-            pop.play().catch(()=>{});
+            // THE PURE POP SOUND URL! 🚨
+            let pop = new Audio('https://www.myinstants.com/media/sounds/pop-sfx-75405.mp3');
+            pop.volume = 0.4; // Boosted for maximum ham-jam-tastic energy!
+            pop.play().catch(()=>{
+                console.log("Bonk! Interact with the page first to hear the pop!");
+            });
         }
 
         function showTab(id) {
