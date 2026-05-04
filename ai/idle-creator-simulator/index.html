@@ -8,44 +8,47 @@
         body {
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(180deg, #e0f7fa 0%, #80deea 100%);
-            color: #333; margin: 0; display: flex; height: 100vh; overflow: hidden;
+            color: #333; margin: 0; display: flex; height: 100vh;
         }
         .main-area { flex: 1; padding: 20px; overflow-y: auto; text-align: center; }
-        .sidebar { width: 200px; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-left: 2px solid #fff; display: flex; flex-direction: column; padding: 10px; gap: 10px; }
+        .sidebar { width: 220px; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-left: 2px solid #fff; display: flex; flex-direction: column; padding: 15px; gap: 10px; }
         .container { background: rgba(255, 255, 255, 0.7); border-radius: 15px; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
         .tab-content { display: none; }
         .active { display: block; }
-        button { cursor: pointer; padding: 12px; border-radius: 10px; border: 1px solid #fff; background: #00d2ff; color: white; font-weight: bold; box-shadow: 0 4px #0099cc; }
+        button { cursor: pointer; padding: 12px; border-radius: 15px; border: 1px solid #fff; background: #00d2ff; color: white; font-weight: bold; box-shadow: 0 4px #0099cc; transition: 0.1s; }
         button:active { transform: translateY(2px); box-shadow: 0 2px #0099cc; }
-        .pfp { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fff; cursor: pointer; margin-bottom: 10px; }
+        .pfp { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fff; cursor: pointer; }
         .video-card { background: white; padding: 10px; border-radius: 10px; margin: 10px 0; border: 1px solid #ade8f4; text-align: left; }
+        .reset-btn { background: #ff4d4d; box-shadow: 0 4px #cc0000; margin-top: auto; }
     </style>
 </head>
-<body>
+<body onclick="playPop()">
 
     <div class="main-area">
         <div class="container">
             <h1>🎧 IDLE CREATOR SIMULATOR 🎧</h1>
             <img id="currentPfp" class="pfp" src="https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj" onclick="changePfp()">
-            <p><b>Total Subs:</b> <span id="subs">0</span> | <b>Total Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">0</span></p>
+            <p><b>Subs:</b> <span id="subs">0</span> | <b>Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">0</span></p>
 
             <div id="video" class="tab-content active">
                 <h3>UPLOAD CONTENT</h3>
-                <input type="text" id="vidTitle" placeholder="Enter title or leave blank for random...">
+                <input type="text" id="vidTitle" placeholder="Video Title...">
                 <button onclick="uploadVideo()">UPLOAD!</button>
                 <div id="videoList"></div>
             </div>
 
             <div id="ads" class="tab-content">
-                <h3>SPONSORS</h3>
-                <p id="adText">Wait for offers...</p>
-                <button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
+                <h3>SPONSOR OFFERS</h3>
+                <div id="adBox">
+                    <p id="adText">Scanning for cheezburger sponsors... 🍔</p>
+                    <button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
+                </div>
             </div>
 
             <div id="shop" class="tab-content">
                 <h3>SHOP</h3>
-                <button onclick="buyUpgrade(50, 'Mic')">New Mic ($50)</button><br><br>
-                <button onclick="buyUpgrade(200, 'PC')">Aero PC ($200)</button>
+                <button onclick="buyUpgrade(50n, 'New Mic')">New Mic ($50)</button><br><br>
+                <button onclick="buyUpgrade(500n, 'Aero PC')">Aero PC ($500)</button>
             </div>
         </div>
     </div>
@@ -55,14 +58,41 @@
         <button onclick="showTab('video')">VIDEOS</button>
         <button onclick="showTab('ads')">SPONSORS</button>
         <button onclick="showTab('shop')">SHOP</button>
+        <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
     </div>
 
     <audio id="bgm" loop><source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mpeg"></audio>
 
     <script>
-        let stats = JSON.parse(localStorage.getItem('bonkStats')) || { subs: 0, views: 0, money: 0, vids: [], gear: 1, pfpIdx: 0 };
-        const pfps = ["https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj", "https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo", "https://yt3.googleusercontent.com/Ih6ETBj-ts8JemQ1axbN6liYfs537LUZCv-DiZQcW6cPkYsbFtE1AwnlTbAlRs1VK3Vpm9ai0Q8=s160-c-k-c0x00ffffff-no-rj"];
-        const titles = ["Eating Cheetos in a Costco Freezer", "Gorilla Tag clips (REAL)", "Minecraft but I'm a Chicken", "Frutiger Aero Compilation", "How to Bonk yourself", "My Gamer Sandwich Recipe"];
+        let stats = { subs: 0n, views: 0n, money: 0n, gear: 1n, pfpIdx: 0, vids: [] };
+        
+        const saved = JSON.parse(localStorage.getItem('bonkStats'));
+        if (saved) {
+            stats.subs = BigInt(saved.subs || "0");
+            stats.views = BigInt(saved.views || "0");
+            stats.money = BigInt(saved.money || "0");
+            stats.gear = BigInt(saved.gear || "1");
+            stats.pfpIdx = saved.pfpIdx || 0;
+            stats.vids = (saved.vids || []).map(v => ({
+                title: v.title,
+                views: BigInt(v.views || "0"),
+                subs: BigInt(v.subs || "0"),
+                rate: BigInt(v.rate || "5")
+            }));
+        }
+
+        const pfps = [
+            "https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj", 
+            "https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo", 
+            "https://yt3.googleusercontent.com/Ih6ETBj-ts8JemQ1axbN6liYfs537LUZCv-DiZQcW6cPkYsbFtE1AwnlTbAlRs1VK3Vpm9ai0Q8=s160-c-k-c0x00ffffff-no-rj"
+        ];
+        const titles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero compilation", "Drinking Coffee in a Freezer", "Whopper Whopper Song", "Windows sounds 2000, XP"];
+
+        function playPop() {
+            let pop = new Audio('https://www.myinstants.com/media/sounds/pop.mp3');
+            pop.volume = 0.2;
+            pop.play().catch(()=>{});
+        }
 
         function showTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -72,39 +102,74 @@
 
         function uploadVideo() {
             let t = document.getElementById('vidTitle').value || titles[Math.floor(Math.random() * titles.length)];
-            stats.vids.push({ title: t, views: 0, subs: 0, baseRate: Math.random() * 5 * stats.gear });
+            stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
             document.getElementById('vidTitle').value = "";
             renderVids();
         }
 
         function renderVids() {
             document.getElementById('videoList').innerHTML = stats.vids.map((v, i) => 
-                `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${Math.floor(v.views)}</span> | 🚩 <span id="v-subs-${i}">${Math.floor(v.subs)}</span></div>`).reverse().join('');
+                `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${v.views.toString()}</span> | 🚩 <span id="v-subs-${i}">${v.subs.toString()}</span></div>`).reverse().join('');
         }
 
-        // AUTO UPDATE EVERY 0.5 SECONDS 🚨
         setInterval(() => {
             stats.vids.forEach((v, i) => {
-                let gain = v.baseRate * 0.5;
-                v.views += gain;
-                v.subs += gain * 0.1;
-                stats.views += gain;
-                stats.subs += gain * 0.1;
-                stats.money += gain * 0.01;
+                v.views += v.rate;
+                v.subs += v.rate / 5n;
+                stats.views += v.rate;
+                stats.subs += v.rate / 5n;
+                stats.money += v.rate / 10n;
                 
                 let vEl = document.getElementById(`v-views-${i}`);
                 let sEl = document.getElementById(`v-subs-${i}`);
-                if(vEl) vEl.innerText = Math.floor(v.views);
-                if(sEl) sEl.innerText = Math.floor(v.subs);
+                if(vEl) vEl.innerText = v.views.toString();
+                if(sEl) sEl.innerText = v.subs.toString();
             });
-            document.getElementById('subs').innerText = Math.floor(stats.subs);
-            document.getElementById('views').innerText = Math.floor(stats.views);
-            document.getElementById('money').innerText = stats.money.toFixed(2);
-            localStorage.setItem('bonkStats', JSON.stringify(stats));
+            document.getElementById('subs').innerText = stats.subs.toString();
+            document.getElementById('views').innerText = stats.views.toString();
+            document.getElementById('money').innerText = stats.money.toString();
+            
+            let saveData = {
+                ...stats, 
+                subs: stats.subs.toString(), views: stats.views.toString(), 
+                money: stats.money.toString(), gear: stats.gear.toString(),
+                vids: stats.vids.map(v => ({...v, views: v.views.toString(), subs: v.subs.toString(), rate: v.rate.toString()}))
+            };
+            localStorage.setItem('bonkStats', JSON.stringify(saveData));
         }, 500);
 
         function changePfp() { stats.pfpIdx = (stats.pfpIdx + 1) % pfps.length; document.getElementById('currentPfp').src = pfps[stats.pfpIdx]; }
-        function buyUpgrade(cost, name) { if(stats.money >= cost) { stats.money -= cost; stats.gear++; alert("UPGRADED!"); } }
+        
+        function buyUpgrade(cost, name) {
+            if(stats.money >= cost) {
+                stats.money -= cost;
+                stats.gear += 2n;
+                alert("BONK! Upgraded to " + name + "!");
+            } else { alert("Not enough PB&J money!"); }
+        }
+
+        function resetGame() {
+            if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
+                localStorage.removeItem('bonkStats');
+                location.reload();
+            }
+        }
+
+        let currentSponsorReward = 0n;
+        setInterval(() => {
+            if(Math.random() > 0.7) {
+                currentSponsorReward = BigInt(Math.floor(Math.random() * 500) + 100);
+                document.getElementById('adText').innerText = "Sponsor Offer: $" + currentSponsorReward + "!";
+                document.getElementById('adBtn').style.display = "inline-block";
+            }
+        }, 10000);
+
+        function acceptAd() {
+            stats.money += currentSponsorReward;
+            document.getElementById('adText').innerText = "Accepted! Scanning... 🍔";
+            document.getElementById('adBtn').style.display = "none";
+        }
+
         renderVids();
     </script>
 </body>
