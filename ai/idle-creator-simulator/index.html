@@ -31,7 +31,7 @@
             <p><b>Subs:</b> <span id="subs">0</span> | <b>Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">1</span></p>
 
             <div id="video" class="tab-content active">
-                <h3>UPLOAD CONTENT</h3>
+                <h3>UPLOAD CONTENT 📷</h3>
                 <input type="text" id="vidTitle" placeholder="Video Title...">
                 <button onclick="uploadVideo()">UPLOAD!</button>
                 <div id="videoList"></div>
@@ -43,9 +43,9 @@
             </div>
 
             <div id="ads" class="tab-content">
-                <h3>SPONSOR OFFERS</h3>
+                <h3>SPONSOR OFFERS 💵</h3>
                 <div id="adBox">
-                    <p id="adText">Scanning for cheezburger sponsors... 🍔</p>
+                    <h4 id="adText">Scanning for cheezburger sponsors... 🍔</h4>
                     <button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
                 </div>
             </div>
@@ -69,8 +69,8 @@
     </div>
 
     <script>
-        const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke"];
-        const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Frutiger aero is kool.", "Whopper Whopper!", "EEEAAAOOO!", "Creamy peanut butter!", "Wait, what da..."];
+        const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke", "Toaster"];
+        const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Frutiger aero is kool.", "Whopper Whopper!", "EEEAAAOOO!", "Creamy peanut butter!", "Wait, what da...", "W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling", "bro is 🍞", "W doggo", "W in the chat", "yap yap yap", "WOOOOOOOOOOOOOOOOOOOOOOO!"];
         const randomTitles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero 2000", "Gamer Sandwich Tutorial", "Whopper Whopper Song"];
 
         let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
