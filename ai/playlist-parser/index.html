@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist Parser</title>
+  <!-- by gemini -->
+    <style>
+        body {
+            background-color: #121212;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            border: 5px solid #ffcc00;
+            padding: 20px;
+            background: #1e1e1e;
+            box-shadow: 10px 10px 0px #ff00ff;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 20px 0;
+            background: #333;
+            color: #fff;
+            border: 2px solid #00ff00;
+        }
+        button {
+            padding: 15px 30px;
+            background: #ffcc00;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover { background: #fff; }
+        #result { margin-top: 30px; white-space: pre-wrap; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🦴 PLAYLIST PARSER 🥪</h1>
+    <p>Enter your YouTube Playlist URL below to find the total time!</p>
+    
+    <input type="text" id="playlistUrl" placeholder="https://www.youtube.com/playlist?list=...">
+    <br>
+    <button onclick="parsePlaylist()">GET THE LENGTH! 🚨</button>
+
+    <div id="result">Waiting for the juice of double rainbow... 🌈</div>
+</div>
+
+<script>
+async function parsePlaylist() {
+    const url = document.getElementById('playlistUrl').value;
+    const resultDiv = document.getElementById('result');
+    const proxy = 'https://cors-anywhere.followalong.com/';
+    
+    if (!url) {
+        resultDiv.innerText = "Bonk! You forgot the URL, you absolute legend! 💀";
+        return;
+    }
+
+    resultDiv.innerText = "Fetching the ham-jam data... 🥪 (Please wait, proxy might be chilly)";
+
+    try {
+        const response = await fetch(proxy + url);
+        const html = await response.text();
+
+        // This regex looks for the duration in milliseconds in the page source
+        const durationRegex = /"approxDurationMs":"(\d+)"/g;
+        let match;
+        let totalMs = 0;
+        let count = 0;
+
+        while ((match = durationRegex.exec(html)) !== null) {
+            totalMs += parseInt(match[1]);
+            count++;
+        }
+
+        if (count === 0) {
+            resultDiv.innerText = "No videos found! Are you sure this isn't just a plate of empty cheezburgers? 🍔🚫";
+            return;
+        }
+
+        const totalSeconds = Math.floor(totalMs / 1000);
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+
+        resultDiv.innerHTML = `
+            <h2>Found!</h2>
+            <p>Total Videos: 📈 <strong>\${count}</strong></p>
+            <p>Total Duration: 🕒 <strong>\${h}h \${m}m \${s}s</strong></p>
+            <p>Keep yapping in bytebeat! 👾🚀</p>
+        `;
+    } catch (error) {
+        resultDiv.innerText = "Bonk! The proxy is acting chilly or the URL is weird. Check your internet! 🧊";
+    }
+}
+</script>
+
+</body>
+</html>
