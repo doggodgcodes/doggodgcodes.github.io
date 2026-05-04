@@ -167,15 +167,49 @@
             { name: "Absolute Universe Cat", icon: "🌌", rarity: "legend", value: 99999 }
         ];
 
-        let catFood = 8388607;
-        let inventory = JSON.parse(localStorage.getItem('battleCatsInventory')) || {};
-        let totalPulls = parseInt(localStorage.getItem('battleCatsPulls')) || 0;
-        let hamburgerPassActive = false;
+        // --- UPDATE YOUR SCRIPT SECTION WITH THIS BOOGIE WOOGIE LOGIC ---
 
-        function saveGame() {
-            localStorage.setItem('battleCatsInventory', JSON.stringify(inventory));
-            localStorage.setItem('battleCatsPulls', totalPulls);
+// 1. Load Cat Food from storage or use your legendary default!
+let catFood = parseInt(localStorage.getItem('battleCatsFood')) || 8388607;
+let inventory = JSON.parse(localStorage.getItem('battleCatsInventory')) || {};
+let totalPulls = parseInt(localStorage.getItem('battleCatsPulls')) || 0;
+let hamburgerPassActive = false;
+
+function saveGame() {
+    localStorage.setItem('battleCatsInventory', JSON.stringify(inventory));
+    localStorage.setItem('battleCatsPulls', totalPulls);
+    localStorage.setItem('battleCatsFood', catFood); // Save that food!
+}
+
+function purchaseHamburgerPass() {
+    if (catFood < 1 || hamburgerPassActive) return;
+    catFood -= 1;
+    hamburgerPassActive = true;
+    
+    // UI Update for the Pass
+    document.getElementById('roll100Btn').disabled = false;
+    document.getElementById('passStatus').textContent = "ON! 🌈";
+    document.getElementById('hamburgerPassBtn').style.display = "none"; // Hide after use!
+    updateUI();
+    saveGame();
+    
+    // PASSIVE INCOME LOOP - Chilly like a Costco Freezer!
+    setInterval(() => {
+        if(hamburgerPassActive && Math.random() > 0.95) { // Adjusted frequency
+            const randomCat = cats[Math.floor(Math.random() * cats.length)];
+            addToInventory(randomCat);
+            updateUI();
+            updateInventoryDisplay();
+            saveGame();
         }
+    }, 1000);
+}
+
+// Ensure 100x roll actually works!
+function pullHamburgerCapsule(count) { 
+    if(!hamburgerPassActive) return;
+    roll(count, true); 
+}
 
         function getRarityChance() {
             const rand = Math.random() * 100;
@@ -193,27 +227,6 @@
             catFood -= cost;
             roll(count, false);
         }
-
-        function purchaseHamburgerPass() {
-            if (catFood < 1) return;
-            catFood -= 1;
-            hamburgerPassActive = true;
-            document.getElementById('roll100Btn').disabled = false;
-            document.getElementById('passStatus').textContent = "ON! 🌈";
-            updateUI();
-            
-            // PASSIVE INCOME LOOP
-            setInterval(() => {
-                if(hamburgerPassActive && Math.random() > 0.7) {
-                    const randomCat = cats[Math.floor(Math.random() * cats.length)];
-                    addToInventory(randomCat);
-                    updateUI();
-                    updateInventoryDisplay();
-                }
-            }, 100);
-        }
-
-        function pullHamburgerCapsule(count) { roll(count, true); }
 
         function roll(count, isLegendOnly) {
             const display = document.getElementById('capsuleDisplay');
