@@ -3,101 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Playlist Parser</title>
-  <!-- by gemini -->
+    <title>🦴 doggodgcodes' Playlist Parser 🥪</title>
     <style>
+        /* MAXIMALIST FRUTIGER AERO DESIGN */
         body {
-            background-color: #121212;
-            color: #00ff00;
-            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(180deg, #0052d4, #4364f7, #6fb1fc);
+            color: #fff;
+            font-family: 'Trebuchet MS', sans-serif;
             text-align: center;
-            padding: 50px;
-        }
-        .container {
-            border: 5px solid #ffcc00;
             padding: 20px;
-            background: #1e1e1e;
-            box-shadow: 10px 10px 0px #ff00ff;
+            cursor: url('https://doggodgcodes.github.io/min/dogebork/v6.0/cursor.png'), auto;
         }
+        .ham-jam-box {
+            border: 10px solid rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            padding: 30px;
+            box-shadow: 0 0 30px #00ff00, inset 0 0 15px #ffffff;
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 { font-size: 3.5em; color: #ffcc00; text-shadow: 3px 3px #ff00ff; }
         input {
             width: 80%;
-            padding: 10px;
-            margin: 20px 0;
-            background: #333;
-            color: #fff;
-            border: 2px solid #00ff00;
-        }
-        button {
-            padding: 15px 30px;
-            background: #ffcc00;
+            padding: 15px;
+            border-radius: 25px;
+            border: 5px solid #00ccff;
+            background: #fff;
             color: #000;
             font-weight: bold;
-            cursor: pointer;
-            border: none;
         }
-        button:hover { background: #fff; }
-        #result { margin-top: 30px; white-space: pre-wrap; font-size: 1.2em; }
+        button {
+            padding: 20px 50px;
+            font-size: 1.8em;
+            background: #00ff00;
+            border: 5px solid #ffcc00;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.2s;
+        }
+        button:hover { transform: rotate(2deg) scale(1.1); background: #fff; }
+        #status { font-size: 1.2em; margin-top: 20px; color: #ff00ff; }
+        .credits { margin-top: 40px; padding: 20px; font-size: 0.9em; background: rgba(255,255,255,0.1); border-radius: 20px; }
+        a { color: #00ff00; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🦴 PLAYLIST PARSER 🥪</h1>
-    <p>Enter your YouTube Playlist URL below to find the total time!</p>
+<div class="ham-jam-box">
+    <h1>🦴 BONK! AWOO! 🚨</h1>
+    <p>Loading up the juice of double rainbow... O I I A! 🌈</p>
     
-    <input type="text" id="playlistUrl" placeholder="https://www.youtube.com/playlist?list=...">
+    <input type="text" id="pUrl" placeholder="PASTE THAT GORILLA TAG PLAYLIST! 🐒">
     <br>
-    <button onclick="parsePlaylist()">GET THE LENGTH! 🚨</button>
+    <button onclick="calculateBoogie()">GET THE LENGTH! 🕒</button>
 
-    <div id="result">Waiting for the juice of double rainbow... 🌈</div>
+    <div id="status">Ready for the frosting? 🍰</div>
+    <div id="result" style="font-size: 2.5em; color: #ffcc00; margin-top: 20px;"></div>
+
+    <div class="credits">
+        <hr>
+        <strong>🏆 THE COOLER CREDITS 🏆</strong><br>
+        <strong>Lead Coder/Steve:</strong> doggodgcodes 🐶💻<br>
+        <strong>Art & Pencil Doodles:</strong> <a href="https://www.youtube.com/@flyingdogwithapencil">Go sub to DoggoWIng21!</a> ✏️🐶<br>
+        <strong>Featured Media:</strong> "The Party Hat Trailer"<br>
+        <strong>Proxy Wizardry:</strong> cors-anywhere.followalong.com 🌐<br>
+        <em>Subway sandwich to who means subscribe to doggowing21! 🥪✨</em>
+    </div>
 </div>
 
 <script>
-async function parsePlaylist() {
-    const url = document.getElementById('playlistUrl').value;
-    const resultDiv = document.getElementById('result');
+async function calculateBoogie() {
+    const url = document.getElementById('pUrl').value;
+    const stat = document.getElementById('status');
+    const res = document.getElementById('result');
     const proxy = 'https://cors-anywhere.followalong.com/';
     
-    if (!url) {
-        resultDiv.innerText = "Bonk! You forgot the URL, you absolute legend! 💀";
-        return;
-    }
+    if(!url) { stat.innerText = "Bonk! You forgot the juice! 🥤"; return; }
 
-    resultDiv.innerText = "Fetching the ham-jam data... 🥪 (Please wait, proxy might be chilly)";
+    stat.innerText = "Yapping with the internet tubes... 🗣️";
+    res.innerText = "";
 
     try {
         const response = await fetch(proxy + url);
-        const html = await response.text();
+        const text = await response.text();
 
-        // This regex looks for the duration in milliseconds in the page source
-        const durationRegex = /"approxDurationMs":"(\d+)"/g;
+        // High-precision scanning for ALL video lengths in the JSON blob
+        const regex = /"lengthSeconds":"(\d+)"/g;
         let match;
-        let totalMs = 0;
+        let totalSec = 0;
         let count = 0;
 
-        while ((match = durationRegex.exec(html)) !== null) {
-            totalMs += parseInt(match[1]);
+        while ((match = regex.exec(text)) !== null) {
+            totalSec += parseInt(match[1]);
             count++;
         }
 
         if (count === 0) {
-            resultDiv.innerText = "No videos found! Are you sure this isn't just a plate of empty cheezburgers? 🍔🚫";
+            stat.innerText = "Is it public? Proxy might be chilly! Visit the proxy site to wake it up! 🧊";
             return;
         }
 
-        const totalSeconds = Math.floor(totalMs / 1000);
-        const h = Math.floor(totalSeconds / 3600);
-        const m = Math.floor((totalSeconds % 3600) / 60);
-        const s = totalSeconds % 60;
+        const h = Math.floor(totalSec / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
 
-        resultDiv.innerHTML = `
-            <h2>Found!</h2>
-            <p>Total Videos: 📈 <strong>\${count}</strong></p>
-            <p>Total Duration: 🕒 <strong>\${h}h \${m}m \${s}s</strong></p>
-            <p>Keep yapping in bytebeat! 👾🚀</p>
-        `;
-    } catch (error) {
-        resultDiv.innerText = "Bonk! The proxy is acting chilly or the URL is weird. Check your internet! 🧊";
+        stat.innerText = `MLERPCORE DETECTED! Found \${count} slices of ham-jam! 🥪`;
+        res.innerHTML = `🏁 \${h}h \${m}m \${s}s 🏁`;
+        
+    } catch (e) {
+        stat.innerText = "Bonk! The proxy is acting crazy! Check your flint and steel. 🔥";
     }
 }
 </script>
