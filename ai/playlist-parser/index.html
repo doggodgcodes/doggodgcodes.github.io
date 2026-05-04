@@ -13,18 +13,19 @@
             text-align: center;
             padding: 20px;
             cursor: url('https://doggodgcodes.github.io/min/dogebork/v6.0/cursor.png'), auto;
+            overflow-x: hidden;
         }
         .ham-jam-box {
             border: 10px solid rgba(255, 255, 255, 0.5);
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(15px);
             border-radius: 40px;
             padding: 30px;
             box-shadow: 0 0 30px #00ff00, inset 0 0 15px #ffffff;
-            max-width: 900px;
-            margin: auto;
+            max-width: 850px;
+            margin: 40px auto;
         }
-        h1 { font-size: 3.5em; color: #ffcc00; text-shadow: 3px 3px #ff00ff; }
+        h1 { font-size: 3.5em; color: #ffcc00; text-shadow: 3px 3px #ff00ff; margin: 10px; }
         input {
             width: 80%;
             padding: 15px;
@@ -33,6 +34,7 @@
             background: #fff;
             color: #000;
             font-weight: bold;
+            font-size: 1.1em;
         }
         button {
             padding: 20px 50px;
@@ -41,13 +43,15 @@
             border: 5px solid #ffcc00;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: 0.2s;
+            font-weight: 900;
         }
-        button:hover { transform: rotate(2deg) scale(1.1); background: #fff; }
-        #status { font-size: 1.2em; margin-top: 20px; color: #ff00ff; }
-        .credits { margin-top: 40px; padding: 20px; font-size: 0.9em; background: rgba(255,255,255,0.1); border-radius: 20px; }
-        a { color: #00ff00; text-decoration: none; font-weight: bold; }
+        button:hover { transform: rotate(-2deg) scale(1.1); background: #ff00ff; color: white; }
+        #status { font-size: 1.3em; margin-top: 20px; color: #00ff00; font-weight: bold; }
+        #result { font-size: 3em; color: #ffcc00; margin-top: 20px; text-shadow: 2px 2px #000; }
+        .credits { margin-top: 40px; padding: 20px; font-size: 1em; background: rgba(255,255,255,0.1); border-radius: 20px; border: 2px dashed #fff; }
+        a { color: #00ff00; text-decoration: underline; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -61,16 +65,16 @@
     <button onclick="calculateBoogie()">GET THE LENGTH! 🕒</button>
 
     <div id="status">Ready for the frosting? 🍰</div>
-    <div id="result" style="font-size: 2.5em; color: #ffcc00; margin-top: 20px;"></div>
+    <div id="result"></div>
 
     <div class="credits">
         <hr>
         <strong>🏆 THE COOLER CREDITS 🏆</strong><br>
         <strong>Lead Coder/Steve:</strong> doggodgcodes 🐶💻<br>
-        <strong>Art & Pencil Doodles:</strong> <a href="https://www.youtube.com/@flyingdogwithapencil">Go sub to DoggoWIng21!</a> ✏️🐶<br>
+        <strong>Art & Pencil Doodles:</strong> <a href="https://www.youtube.com/@flyingdogwithapencil" target="_blank">Go sub to DoggoWIng21!</a> ✏️🐶<br>
         <strong>Featured Media:</strong> "The Party Hat Trailer"<br>
         <strong>Proxy Wizardry:</strong> cors-anywhere.followalong.com 🌐<br>
-        <em>Subway sandwich to who means subscribe to doggowing21! 🥪✨</em>
+        <strong>Status:</strong> Subway sandwich to who means subscribe to doggowing21! 🥪✨
     </div>
 </div>
 
@@ -110,8 +114,9 @@ async function calculateBoogie() {
         const m = Math.floor((totalSec % 3600) / 60);
         const s = totalSec % 60;
 
-        stat.innerText = `MLERPCORE DETECTED! Found \${count} slices of ham-jam! 🥪`;
-        res.innerHTML = `🏁 \${h}h \${m}m \${s}s 🏁`;
+        // REMOVED THE BACKSLASHES SO THE VARIABLES WORK! 
+        stat.innerText = `DETECTED! Found ${count} slices of ham-jam! 🥪`;
+        res.innerText = `🏁 ${h}h ${m}m ${s}s 🏁`;
         
     } catch (e) {
         stat.innerText = "Bonk! The proxy is acting crazy! Check your flint and steel. 🔥";
