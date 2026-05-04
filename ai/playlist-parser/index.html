@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🦴 doggodgcodes' Playlist Parser 🥪</title>
+    <title>🦴 doggodgcodes' Mega Playlist Parser 🥪</title>
     <style>
-        /* MAXIMALIST FRUTIGER AERO DESIGN */
+        /* MAXIMALIST FRUTIGER AERO DESIGN - 2000 XP VIBES */
         body {
             background: linear-gradient(180deg, #0052d4, #4364f7, #6fb1fc);
             color: #fff;
@@ -13,7 +13,6 @@
             text-align: center;
             padding: 20px;
             cursor: url('https://doggodgcodes.github.io/min/dogebork/v6.0/cursor.png'), auto;
-            overflow-x: hidden;
         }
         .ham-jam-box {
             border: 10px solid rgba(255, 255, 255, 0.5);
@@ -23,9 +22,9 @@
             padding: 30px;
             box-shadow: 0 0 30px #00ff00, inset 0 0 15px #ffffff;
             max-width: 850px;
-            margin: 40px auto;
+            margin: auto;
         }
-        h1 { font-size: 3.5em; color: #ffcc00; text-shadow: 3px 3px #ff00ff; margin: 10px; }
+        h1 { font-size: 3.5em; color: #ffcc00; text-shadow: 3px 3px #ff00ff; }
         input {
             width: 80%;
             padding: 15px;
@@ -34,7 +33,6 @@
             background: #fff;
             color: #000;
             font-weight: bold;
-            font-size: 1.1em;
         }
         button {
             padding: 20px 50px;
@@ -43,26 +41,25 @@
             border: 5px solid #ffcc00;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px;
             transition: 0.2s;
-            font-weight: 900;
         }
-        button:hover { transform: rotate(-2deg) scale(1.1); background: #ff00ff; color: white; }
+        button:hover { transform: rotate(-2deg) scale(1.1); background: #ff00ff; }
         #status { font-size: 1.3em; margin-top: 20px; color: #00ff00; font-weight: bold; }
         #result { font-size: 3em; color: #ffcc00; margin-top: 20px; text-shadow: 2px 2px #000; }
-        .credits { margin-top: 40px; padding: 20px; font-size: 1em; background: rgba(255,255,255,0.1); border-radius: 20px; border: 2px dashed #fff; }
-        a { color: #00ff00; text-decoration: underline; font-weight: bold; }
+        .credits { margin-top: 40px; padding: 20px; font-size: 1em; background: rgba(255,255,255,0.1); border-radius: 20px; }
+        a { color: #00ff00; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="ham-jam-box">
     <h1>🦴 BONK! AWOO! 🚨</h1>
-    <p>Loading up the juice of double rainbow... O I I A! 🌈</p>
+    <p>Calculating the WHOLE length of the party! O I I A! 🌈</p>
     
-    <input type="text" id="pUrl" placeholder="PASTE THAT GORILLA TAG PLAYLIST! 🐒">
+    <input type="text" id="pUrl" placeholder="PASTE THE GORILLA TAG PLAYLIST URL! 🐒">
     <br>
-    <button onclick="calculateBoogie()">GET THE LENGTH! 🕒</button>
+    <button onclick="calculateBoogie()">GET TOTAL LENGTH! 🕒</button>
 
     <div id="status">Ready for the frosting? 🍰</div>
     <div id="result"></div>
@@ -83,18 +80,18 @@ async function calculateBoogie() {
     const url = document.getElementById('pUrl').value;
     const stat = document.getElementById('status');
     const res = document.getElementById('result');
-    const proxy = 'https://cors-anywhere.followalong.com/';
+    const proxy = 'https://cors-anywhere.followalong.com/';[cite: 1]
     
     if(!url) { stat.innerText = "Bonk! You forgot the juice! 🥤"; return; }
 
-    stat.innerText = "Yapping with the internet tubes... 🗣️";
+    stat.innerText = "Yapping with the internet tubes for the FULL length... 🗣️";
     res.innerText = "";
 
     try {
         const response = await fetch(proxy + url);
         const text = await response.text();
 
-        // High-precision scanning for ALL video lengths in the JSON blob
+        // High-precision global scan for ALL video lengths in the JSON blob
         const regex = /"lengthSeconds":"(\d+)"/g;
         let match;
         let totalSec = 0;
@@ -106,7 +103,7 @@ async function calculateBoogie() {
         }
 
         if (count === 0) {
-            stat.innerText = "Is it public? Proxy might be chilly! Visit the proxy site to wake it up! 🧊";
+            stat.innerText = "Is the playlist public? Proxy might be chilly! 🧊";
             return;
         }
 
@@ -114,8 +111,7 @@ async function calculateBoogie() {
         const m = Math.floor((totalSec % 3600) / 60);
         const s = totalSec % 60;
 
-        // REMOVED THE BACKSLASHES SO THE VARIABLES WORK! 
-        stat.innerText = `DETECTED! Found ${count} slices of ham-jam! 🥪`;
+        stat.innerText = `MLERPCORE DETECTED! Found ${count} slices of ham-jam! 🥪`;
         res.innerText = `🏁 ${h}h ${m}m ${s}s 🏁`;
         
     } catch (e) {
