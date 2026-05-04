@@ -58,20 +58,20 @@
         <button onclick="showTab('video')">VIDEOS</button>
         <button onclick="showTab('ads')">SPONSORS</button>
         <button onclick="showTab('shop')">SHOP</button>
+        <iframe width="110" height="110" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
         <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
-        <iframe width="110" height="200" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
     </div>
 
     <audio id="bgm" loop><source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mpeg"></audio>
 
     <script>
-        let stats = { subs: 0n, views: 0n, money: 0n, gear: 1n, pfpIdx: 0, vids: [] };
+        let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
         
         const saved = JSON.parse(localStorage.getItem('bonkStats'));
         if (saved) {
             stats.subs = BigInt(saved.subs || "0");
             stats.views = BigInt(saved.views || "0");
-            stats.money = BigInt(saved.money || "0");
+            stats.money = BigInt(saved.money || "1");
             stats.gear = BigInt(saved.gear || "1");
             stats.pfpIdx = saved.pfpIdx || 0;
             stats.vids = (saved.vids || []).map(v => ({
