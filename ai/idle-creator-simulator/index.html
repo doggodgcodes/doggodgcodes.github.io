@@ -19,13 +19,14 @@
         button { cursor: pointer; padding: 10px 20px; border-radius: 20px; border: 1px solid #fff; background: #00d2ff; color: white; font-weight: bold; box-shadow: 0 4px #0099cc; transition: 0.1s; }
         button:active { transform: translateY(4px); box-shadow: 0 0 #0099cc; }
         .pfp { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fff; cursor: pointer; }
+        #videoList p { background: white; padding: 10px; border-radius: 10px; margin: 5px 0; border: 1px solid #ade8f4; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>🎧 BONK-TUBER SIM 🎧</h1>
-        <img id="currentPfp" class="pfp" src="[https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj](https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj)" onclick="changePfp()">
+        <h1>🎧 IDLE CREATOR SIMULATOR 🎧</h1>
+        <img id="currentPfp" class="pfp" src="https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj" onclick="changePfp()">
         <p>Subs: <span id="subs">0</span> | Views: <span id="views">0</span> | Money: $<span id="money">0</span></p>
         
         <nav>
@@ -60,21 +61,22 @@
         <!-- SHOP TAB -->
         <div id="shop" class="tab-content">
             <h3>UPGRADE GEAR</h3>
+            <p>Better gear = More views/subs per video!</p>
             <button onclick="buyUpgrade(50, 'Mic')">New Mic ($50)</button>
             <button onclick="buyUpgrade(200, 'PC')">Aero PC ($200)</button>
         </div>
     </div>
 
     <audio id="bgm" loop>
-        <source src="[https://minechicken98.github.io/funny/slice-beats/Chocolate](https://minechicken98.github.io/funny/slice-beats/Chocolate) Party by Mine Chicken.mp3" type="audio/mpeg">
+        <source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         let stats = JSON.parse(localStorage.getItem('bonkStats')) || { subs: 0, views: 0, money: 0, vids: [], gear: 1, pfpIdx: 0 };
         const pfps = [
-            "[https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj](https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj)",
-            "[https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo](https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo)",
-            "[https://yt3.googleusercontent.com/Ih6ETBj-ts8JemQ1axbN6liYfs537LUZCv-DiZQcW6cPkYsbFtE1AwnlTbAlRs1VK3Vpm9ai0Q8=s160-c-k-c0x00ffffff-no-rj](https://yt3.googleusercontent.com/Ih6ETBj-ts8JemQ1axbN6liYfs537LUZCv-DiZQcW6cPkYsbFtE1AwnlTbAlRs1VK3Vpm9ai0Q8=s160-c-k-c0x00ffffff-no-rj)"
+            "https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj",
+            "https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo",
+            "https://yt3.googleusercontent.com/Ih6ETBj-ts8JemQ1axbN6liYfs537LUZCv-DiZQcW6cPkYsbFtE1AwnlTbAlRs1VK3Vpm9ai0Q8=s160-c-k-c0x00ffffff-no-rj"
         ];
 
         function updateUI() {
@@ -88,25 +90,32 @@
         function showTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+            // Try to play BGM when user interacts
             document.getElementById('bgm').play().catch(()=>{});
         }
 
         function uploadVideo() {
-            let t = document.getElementById('vidTitle').value || "Silly Video";
+            let t = document.getElementById('vidTitle').value || "Silly Video #" + (stats.vids.length + 1);
             let top = document.getElementById('vidTopic').value;
-            let newViews = Math.floor(Math.random() * 100 * stats.gear);
+            let multiplier = stats.gear;
+            if (top === "Aero") multiplier *= 1.5; // Aero bonus!
+
+            let newViews = Math.floor(Math.random() * 100 * multiplier);
             let newSubs = Math.floor(newViews * 0.1);
+            
             stats.views += newViews;
             stats.subs += newSubs;
             stats.money += Math.floor(newViews * 0.05);
             stats.vids.push({title: t, topic: top, v: newViews, s: newSubs});
+            
             renderVids();
             updateUI();
+            document.getElementById('vidTitle').value = ""; // Clear input
         }
 
         function renderVids() {
             document.getElementById('videoList').innerHTML = stats.vids.map(v => 
-                `<p><b>${v.title}</b> (${v.topic}) - 👀 ${v.v} | 🚩 ${v.s}</p>`).reverse().join('');
+                `<p><b>${v.title}</b> [${v.topic}]<br>👀 ${v.v} views | 🚩 ${v.s} subs</p>`).reverse().join('');
         }
 
         function changePfp() {
@@ -117,26 +126,27 @@
         function buyUpgrade(cost, name) {
             if(stats.money >= cost) {
                 stats.money -= cost;
-                stats.gear++;
-                alert("Upgraded to " + name + "!");
+                stats.gear += 1;
+                alert("BONK! Upgraded to " + name + "! Your views will now grow faster!");
                 updateUI();
+            } else {
+                alert("You need more cReAmy PeAnuT BuTtEr money!");
             }
         }
 
-        // Random Sponsor logic
         setInterval(() => {
-            if(Math.random() > 0.7) {
-                document.getElementById('adText').innerText = "Sponsor Offer: $100!";
+            if(Math.random() > 0.8) {
+                let reward = Math.floor(Math.random() * 50) + 50;
+                document.getElementById('adText').innerText = "Sponsor Offer: $" + reward + "!";
                 document.getElementById('adBtn').style.display = "inline-block";
+                document.getElementById('adBtn').onclick = () => {
+                    stats.money += reward;
+                    document.getElementById('adText').innerText = "Accepted! Wait for more...";
+                    document.getElementById('adBtn').style.display = "none";
+                    updateUI();
+                };
             }
-        }, 5000);
-
-        function acceptAd() {
-            stats.money += 100;
-            document.getElementById('adText').innerText = "Accepted! Wait for more...";
-            document.getElementById('adBtn').style.display = "none";
-            updateUI();
-        }
+        }, 8000);
 
         updateUI();
         renderVids();
