@@ -140,7 +140,7 @@
                 vids: stats.vids.map(v => ({...v, views: v.views.toString(), subs: v.subs.toString(), rate: v.rate.toString()}))
             };
             localStorage.setItem('bonkStats', JSON.stringify(saveData));
-        }, 500);
+        }, 100);
 
         function resetGame() {
             if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
