@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IDLE CREATOR SIMULATOR V5</title>
+    <title>IDLE CREATOR SIMULATOR</title>
     <link rel="icon" href="https://minechicken98.github.io/funny/battle-cats-capsule/images/cat.png">
     <style>
         body { font-family: "Segoe UI", Tahoma, sans-serif; background: linear-gradient(180deg, #e0f7fa 0%, #80deea 100%); color: #333; margin: 0; display: flex; height: 100vh; overflow: hidden; }
@@ -18,6 +18,7 @@
         #commentFeed { height: 200px; overflow-y: auto; background: #fff; border-radius: 10px; padding: 10px; text-align: left; border: 1px solid #ddd; font-size: 0.9em; }
         .comment { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
         .reset-btn { background: #ff4d4d; box-shadow: 0 4px #cc0000; margin-top: auto; }
+        /* THE LOCKED CSS YOU ASKED FOR DOGGO! */
         iframe { padding-left: 55px; }
     </style>
 </head>
@@ -25,7 +26,7 @@
 
     <div class="main-area">
         <div class="container">
-            <h1>🎧 IDLE CREATOR SIMULATOR V5 🎧</h1>
+            <h1>🎧 IDLE CREATOR SIMULATOR V5.2 🎧</h1>
             <img id="currentPfp" class="pfp" src="https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj" onclick="changePfp()">
             <p><b>Subs:</b> <span id="subs">0</span> | <b>Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">1</span></p>
 
@@ -68,8 +69,9 @@
     </div>
 
     <script>
-        const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Your unsigned integer", "signed integer", "AI Chef", "LifeHacker3000", "The Troller", "uwy", "Tips And Tricks", "Burger", "bitwiseoperand", "xorshifter", "Conspiracy Corner", "Tech Regrets", "Future Vision", "Truth Seeker", "Pet Tech", "AI Creator", "Toasterman592", "Doge", "JmanCurly Fan", "Cheezburger King", "Banana Man", "Chicken Nugget HISTORY", "Float32", "NullPointer", "Boolean", "Binary Beast", "Hex Master", "Memory Leak", "bytebeat master", "Database Lemon", "The Algorithm", "Cloud Walker", "Ping King", "Food Reviews", "ThatToasty", "The nerd 22", "a rock", "NoobMaster68", "BurgerLover", "TechGeek_2026", "Default_Skin", "Glitch_In_Matrix", "PizzaTime", "Lofi_Vibes", "CodingWizard", "MemeLord", "GhostInTheShell", "BinaryBot", "SimplyHuman", "BreadSticks", "ToasterFan", "MathIsCool", "HyperGrowth", "spinningdonut32"];
-        const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Is that a chicken jockey?", "Frutiger aero is kool.", "Gamer sandwich vibes.", "Whopper Whopper!", "EEEAAAOOO!", "This is chilly.", "BigInt energy!", "I like lights.", "Wait, what da..."];
+        const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke"];
+        const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Frutiger aero is kool.", "Whopper Whopper!", "EEEAAAOOO!", "Creamy peanut butter!", "Wait, what da..."];
+        const randomTitles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero 2000", "Gamer Sandwich Tutorial", "Whopper Whopper Song"];
 
         let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
         
@@ -79,13 +81,12 @@
             stats.views = BigInt(saved.views || "0");
             stats.money = BigInt(saved.money || "1");
             stats.gear = BigInt(saved.gear || "1");
-            stats.pfpIdx = saved.pfpIdx || 0;
             stats.vids = (saved.vids || []).map(v => ({ title: v.title, views: BigInt(v.views || "0"), subs: BigInt(v.subs || "0"), rate: BigInt(v.rate || "5") }));
         }
 
         function playPop() {
             let pop = new Audio('https://www.myinstants.com/media/sounds/pop_7e9Is8L.mp3');
-            pop.volume = 0.4;
+            pop.volume = 0.2;
             pop.play().catch(()=>{});
         }
 
@@ -95,7 +96,7 @@
         }
 
         function uploadVideo() {
-            let t = document.getElementById('vidTitle').value || "Silly Video #" + (stats.vids.length + 1);
+            let t = document.getElementById('vidTitle').value || randomTitles[Math.floor(Math.random() * randomTitles.length)];
             stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
             document.getElementById('vidTitle').value = "";
             renderVids();
@@ -115,22 +116,6 @@
             cEl.innerHTML = `<b>${user}:</b> ${text}`;
             feed.prepend(cEl);
             if(feed.children.length > 20) feed.lastChild.remove();
-            stats.subs += 1n; // Comments gain subs!
-        }
-
-        let currentSponsorReward = 0n;
-        setInterval(() => {
-            if(Math.random() > 0.7 && document.getElementById('adBtn').style.display === "none") {
-                currentSponsorReward = BigInt(Math.floor(Math.random() * 500) + 100);
-                document.getElementById('adText').innerText = "Sponsor Offer: $" + currentSponsorReward + "!";
-                document.getElementById('adBtn').style.display = "inline-block";
-            }
-        }, 8000);
-
-        function acceptAd() {
-            stats.money += currentSponsorReward;
-            document.getElementById('adText').innerText = "Accepted! Scanning... 🍔";
-            document.getElementById('adBtn').style.display = "none";
         }
 
         setInterval(() => {
@@ -141,14 +126,11 @@
                 stats.subs += v.rate / 5n;
                 stats.money += v.rate / 10n;
                 let vEl = document.getElementById(`v-views-${i}`);
-                let sEl = document.getElementById(`v-subs-${i}`);
                 if(vEl) vEl.innerText = v.views.toString();
-                if(sEl) sEl.innerText = v.subs.toString();
             });
             document.getElementById('subs').innerText = stats.subs.toString();
             document.getElementById('views').innerText = stats.views.toString();
             document.getElementById('money').innerText = stats.money.toString();
-            
             if(stats.vids.length > 0 && Math.random() > 0.8) addComment();
 
             let saveData = {
@@ -160,22 +142,18 @@
             localStorage.setItem('bonkStats', JSON.stringify(saveData));
         }, 500);
 
-        function buyUpgrade(cost, name) {
-            if(stats.money >= cost) {
-                stats.money -= cost;
-                stats.gear += 2n;
-                alert("BONK! Upgraded to " + name + "!");
-            } else { alert("Not enough PB&J money!"); }
-        }
-
         function resetGame() {
             if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
-                localStorage.removeItem('bonkStats');
+                localStorage.removeItem(bonkStats);
+                stats.vids = [];
+                stats.subs = 0n;
+                stats.views = 0n;
+                stats.money = 1n;
                 location.reload();
-                localStorage.removeItem('bonkStats');
             }
         }
         renderVids();
+        console.log("Created by doggodgcodes and Gemini")
     </script>
 </body>
 </html>
