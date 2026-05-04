@@ -2,14 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IDLE CREATOR SIMULATOR</title>
+    <title>IDLE CREATOR SIMULATOR V5</title>
     <link rel="icon" href="https://minechicken98.github.io/funny/battle-cats-capsule/images/cat.png">
     <style>
-        body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(180deg, #e0f7fa 0%, #80deea 100%);
-            color: #333; margin: 0; display: flex; height: 100vh;
-        }
+        body { font-family: "Segoe UI", Tahoma, sans-serif; background: linear-gradient(180deg, #e0f7fa 0%, #80deea 100%); color: #333; margin: 0; display: flex; height: 100vh; overflow: hidden; }
         .main-area { flex: 1; padding: 20px; overflow-y: auto; text-align: center; }
         .sidebar { width: 220px; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-left: 2px solid #fff; display: flex; flex-direction: column; padding: 15px; gap: 10px; }
         .container { background: rgba(255, 255, 255, 0.7); border-radius: 15px; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
@@ -19,23 +15,30 @@
         button:active { transform: translateY(2px); box-shadow: 0 2px #0099cc; }
         .pfp { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fff; cursor: pointer; }
         .video-card { background: white; padding: 10px; border-radius: 10px; margin: 10px 0; border: 1px solid #ade8f4; text-align: left; }
+        #commentFeed { height: 200px; overflow-y: auto; background: #fff; border-radius: 10px; padding: 10px; text-align: left; border: 1px solid #ddd; font-size: 0.9em; }
+        .comment { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
         .reset-btn { background: #ff4d4d; box-shadow: 0 4px #cc0000; margin-top: auto; }
-        iframe { padding-left: 110px; }
+        iframe { align-self: center; margin-bottom: 10px; }
     </style>
 </head>
 <body onclick="playPop()">
 
     <div class="main-area">
         <div class="container">
-            <h1>🎧 IDLE CREATOR SIMULATOR 🎧</h1>
+            <h1>🎧 IDLE CREATOR SIMULATOR V5 🎧</h1>
             <img id="currentPfp" class="pfp" src="https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj" onclick="changePfp()">
-            <p><b>Subs:</b> <span id="subs">0</span> | <b>Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">0</span></p>
+            <p><b>Subs:</b> <span id="subs">0</span> | <b>Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">1</span></p>
 
             <div id="video" class="tab-content active">
                 <h3>UPLOAD CONTENT</h3>
                 <input type="text" id="vidTitle" placeholder="Video Title...">
                 <button onclick="uploadVideo()">UPLOAD!</button>
                 <div id="videoList"></div>
+            </div>
+
+            <div id="comments" class="tab-content">
+                <h3>LIVE COMMENTS 🗣️</h3>
+                <div id="commentFeed"></div>
             </div>
 
             <div id="ads" class="tab-content">
@@ -57,15 +60,17 @@
     <div class="sidebar">
         <h3>MENU</h3>
         <button onclick="showTab('video')">VIDEOS</button>
+        <button onclick="showTab('comments')">COMMENTS</button>
         <button onclick="showTab('ads')">SPONSORS</button>
         <button onclick="showTab('shop')">SHOP</button>
         <iframe width="110" height="110" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
         <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
     </div>
 
-    <audio id="bgm" loop><source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mpeg"></audio>
-
     <script>
+        const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Your unsigned integer", "signed integer", "AI Chef", "LifeHacker3000", "The Troller", "uwy", "Tips And Tricks", "Burger", "bitwiseoperand", "xorshifter", "Conspiracy Corner", "Tech Regrets", "Future Vision", "Truth Seeker", "Pet Tech", "AI Creator", "Toasterman592", "Doge", "JmanCurly Fan", "Cheezburger King", "Banana Man", "Chicken Nugget HISTORY", "Float32", "NullPointer", "Boolean", "Binary Beast", "Hex Master", "Memory Leak", "bytebeat master", "Database Lemon", "The Algorithm", "Cloud Walker", "Ping King", "Food Reviews", "ThatToasty", "The nerd 22", "a rock", "NoobMaster68", "BurgerLover", "TechGeek_2026", "Default_Skin", "Glitch_In_Matrix", "PizzaTime", "Lofi_Vibes", "CodingWizard", "MemeLord", "GhostInTheShell", "BinaryBot", "SimplyHuman", "BreadSticks", "ToasterFan", "MathIsCool", "HyperGrowth", "spinningdonut32"];
+        const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Is that a chicken jockey?", "Frutiger aero is kool.", "Gamer sandwich vibes.", "Whopper Whopper!", "EEEAAAOOO!", "This is chilly.", "BigInt energy!", "I like lights.", "Wait, what da..."];
+
         let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
         
         const saved = JSON.parse(localStorage.getItem('bonkStats'));
@@ -75,38 +80,22 @@
             stats.money = BigInt(saved.money || "1");
             stats.gear = BigInt(saved.gear || "1");
             stats.pfpIdx = saved.pfpIdx || 0;
-            stats.vids = (saved.vids || []).map(v => ({
-                title: v.title,
-                views: BigInt(v.views || "0"),
-                subs: BigInt(v.subs || "0"),
-                rate: BigInt(v.rate || "5")
-            }));
+            stats.vids = (saved.vids || []).map(v => ({ title: v.title, views: BigInt(v.views || "0"), subs: BigInt(v.subs || "0"), rate: BigInt(v.rate || "5") }));
         }
 
-        const pfps = [
-            "https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj", 
-            "https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo", 
-            "https://yt3.googleusercontent.com/Ih6ETBj-ts8JemQ1axbN6liYfs537LUZCv-DiZQcW6cPkYsbFtE1AwnlTbAlRs1VK3Vpm9ai0Q8=s160-c-k-c0x00ffffff-no-rj"
-        ];
-        const titles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero compilation", "Mimic in a Costco Freezer", "Whopper Whopper Song"];
-
         function playPop() {
-            // THE PURE POP SOUND URL! 🚨
             let pop = new Audio('https://www.myinstants.com/media/sounds/pop_7e9Is8L.mp3');
-            pop.volume = 0.4; // Boosted for maximum ham-jam-tastic energy!
-            pop.play().catch(()=>{
-                console.log("Bonk! Interact with the page first to hear the pop!");
-            });
+            pop.volume = 0.4;
+            pop.play().catch(()=>{});
         }
 
         function showTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            document.getElementById('bgm').play().catch(()=>{});
         }
 
         function uploadVideo() {
-            let t = document.getElementById('vidTitle').value || titles[Math.floor(Math.random() * titles.length)];
+            let t = document.getElementById('vidTitle').value || "Silly Video #" + (stats.vids.length + 1);
             stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
             document.getElementById('vidTitle').value = "";
             renderVids();
@@ -117,6 +106,33 @@
                 `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${v.views.toString()}</span> | 🚩 <span id="v-subs-${i}">${v.subs.toString()}</span></div>`).reverse().join('');
         }
 
+        function addComment() {
+            const user = finalSquadList[Math.floor(Math.random() * finalSquadList.length)];
+            const text = catchphrases[Math.floor(Math.random() * catchphrases.length)];
+            const feed = document.getElementById('commentFeed');
+            const cEl = document.createElement('div');
+            cEl.className = 'comment';
+            cEl.innerHTML = `<b>${user}:</b> ${text}`;
+            feed.prepend(cEl);
+            if(feed.children.length > 20) feed.lastChild.remove();
+            stats.subs += 1n; // Comments gain subs!
+        }
+
+        let currentSponsorReward = 0n;
+        setInterval(() => {
+            if(Math.random() > 0.7 && document.getElementById('adBtn').style.display === "none") {
+                currentSponsorReward = BigInt(Math.floor(Math.random() * 500) + 100);
+                document.getElementById('adText').innerText = "Sponsor Offer: $" + currentSponsorReward + "!";
+                document.getElementById('adBtn').style.display = "inline-block";
+            }
+        }, 8000);
+
+        function acceptAd() {
+            stats.money += currentSponsorReward;
+            document.getElementById('adText').innerText = "Accepted! Scanning... 🍔";
+            document.getElementById('adBtn').style.display = "none";
+        }
+
         setInterval(() => {
             stats.vids.forEach((v, i) => {
                 v.views += v.rate;
@@ -124,7 +140,6 @@
                 stats.views += v.rate;
                 stats.subs += v.rate / 5n;
                 stats.money += v.rate / 10n;
-                
                 let vEl = document.getElementById(`v-views-${i}`);
                 let sEl = document.getElementById(`v-subs-${i}`);
                 if(vEl) vEl.innerText = v.views.toString();
@@ -134,6 +149,8 @@
             document.getElementById('views').innerText = stats.views.toString();
             document.getElementById('money').innerText = stats.money.toString();
             
+            if(stats.vids.length > 0 && Math.random() > 0.8) addComment();
+
             let saveData = {
                 ...stats, 
                 subs: stats.subs.toString(), views: stats.views.toString(), 
@@ -143,8 +160,6 @@
             localStorage.setItem('bonkStats', JSON.stringify(saveData));
         }, 500);
 
-        function changePfp() { stats.pfpIdx = (stats.pfpIdx + 1) % pfps.length; document.getElementById('currentPfp').src = pfps[stats.pfpIdx]; }
-        
         function buyUpgrade(cost, name) {
             if(stats.money >= cost) {
                 stats.money -= cost;
@@ -159,22 +174,6 @@
                 location.reload();
             }
         }
-
-        let currentSponsorReward = 0n;
-        setInterval(() => {
-            if(Math.random() > 0.7) {
-                currentSponsorReward = BigInt(Math.floor(Math.random() * 500) + 100);
-                document.getElementById('adText').innerText = "Sponsor Offer: $" + currentSponsorReward + "!";
-                document.getElementById('adBtn').style.display = "inline-block";
-            }
-        }, 10000);
-
-        function acceptAd() {
-            stats.money += currentSponsorReward;
-            document.getElementById('adText').innerText = "Accepted! Scanning... 🍔";
-            document.getElementById('adBtn').style.display = "none";
-        }
-
         renderVids();
     </script>
 </body>
