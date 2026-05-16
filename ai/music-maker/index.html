@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎹 ULTRA RAVE BEATBOX MATRIX 🎹</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #003366, #660099);
+            color: #fff;
+            font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        h1 {
+            color: #00FFCC;
+            text-shadow: 3px 3px 0px #FF0066;
+            font-size: 3rem;
+            animation: bounce 0.5s infinite alternate;
+        }
+        .matrix-container {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            gap: 8px;
+            justify-content: center;
+            margin: 30px auto;
+            background: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #FF6600;
+            width: fit-content;
+        }
+        .pad {
+            width: 60px;
+            height: 60px;
+            background-color: #333;
+            border: 3px solid #555;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+        .pad.active {
+            background-color: #FFFF00 !important; /* CHEESY MUSTARD YELLOW! */
+            box-shadow: 0 0 15px #FFFF00;
+            transform: scale(0.95);
+        }
+        .pad.playing {
+            border-color: #00FF00;
+            box-shadow: 0 0 20px #00FF00;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        button {
+            background: #FF6600;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 0 #993300;
+            text-shadow: 1px 1px 0px #000;
+        }
+        button:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+        .log-box {
+            margin-top: 20px;
+            font-family: monospace;
+            color: #FF00FF;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🚨 ULTRA RAVE BEATBOX MATRIX v6.0 🚨</h1>
+    <p>Tap the pads to load your creamy peanut butter frequencies, then smash PLAY! 🥜🎸</p>
+
+    <div class="matrix-container" id="matrix"></div>
+
+    <div class="controls">
+        <button id="playBtn">START THE RAVE HARDCORE! 🚀</button>
+    </div>
+
+    <div class="log-box" id="hackerLog">Hacker log: Standing by for crazy wafers... 📡</div>
+
+    <script>
+        // 🛠️ THE AUDIO ENGINE MATRIX
+        const matrixContainer = document.getElementById('matrix');
+        const playBtn = document.getElementById('playBtn');
+        const logBox = document.getElementById('hackerLog');
+        
+        let audioCtx = null;
+        let isPlaying = false;
+        let currentStep = 0;
+        let intervalId = null;
+
+        const ROWS = 4; // 4 Sweet musical cookbook rows (frequencies)
+        const COLS = 8; // 8 Speed pads columns (tempo steps)
+        const FREQS = [523.25, 440.00, 349.23, 261.63]; // C5, A4, F4, C4 (Epic gamer scale)
+        const COLORS = ["#FF3366", "#FF6600", "#00FFCC", "#3333FF"];
+
+        // 🧱 BUILD THE RADICAL PAD GRID
+        const gridState = Array(ROWS).fill().map(() => Array(COLS).fill(false));
+        const padElements = [];
+
+        for (let r = 0; r < ROWS; r++) {
+            padElements[r] = [];
+            for (let c = 0; c < COLS; c++) {
+                const pad = document.createElement('div');
+                pad.classList.add('pad');
+                pad.style.backgroundColor = COLORS[r];
+                
+                pad.addEventListener('click', () => {
+                    gridState[r][c] = !gridState[r][c];
+                    pad.classList.toggle('active');
+                    logBox.innerText = `🚨 BONK! Toggled Pad Row ${r+1}, Step ${c+1}!`;
+                });
+                
+                matrixContainer.appendChild(pad);
+                padElements[r][c] = pad;
+            }
+        }
+
+        // 🎵 BEEP BLOOP SYNTH SOUND GENERATOR
+        function playTone(freq) {
+            if (!audioCtx) return;
+            
+            const osc = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+            
+            osc.type = 'triangle'; // Smooth retro Windows Vista media player skin vibes!
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            
+            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+            
+            osc.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        }
+
+        // 🏎️ TIMING ENGINE LOOP
+        function nextStep() {
+            // Remove the glowing green playbar helper from previous step
+            for (let r = 0; r < ROWS; r++) {
+                padElements[r][(currentStep + COLS - 1) % COLS].classList.remove('playing');
+            }
+
+            // Light up the current step and strike the synth nodes!
+            for (let r = 0; r < ROWS; r++) {
+                padElements[r][currentStep].classList.add('playing');
+                if (gridState[r][currentStep]) {
+                    playTone(FREQS[r]);
+                }
+            }
+
+            currentStep = (currentStep + 1) % COLS;
+        }
+
+        // 🎛️ PLAY/PAUSE CONTROLLER INTERRUPT
+        playBtn.addEventListener('click', () => {
+            // Initialize Audio Content upon user interaction (Chrome/Firefox safety law!)
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (isPlaying) {
+                clearInterval(intervalId);
+                isPlaying = false;
+                playBtn.innerText = "START THE RAVE HARDCORE! 🚀";
+                logBox.innerText = "Hacker log: Rave paused. Cheezburger cooling down. 🍔";
+            } else {
+                currentStep = 0;
+                intervalId = setInterval(nextStep, 180); // 180ms per step = absolute breakcore zoomies!
+                isPlaying = true;
+                playBtn.innerText = "STOP THE INVASION! 🛑";
+                logBox.innerText = "WHOOP WHOOP! 🎶Whopper Whopper🎶 engine activated!";
+            }
+        });
+    </script>
+</body>
+</html>
