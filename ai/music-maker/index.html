@@ -649,7 +649,7 @@
             
             executeDualOutputSave(blob, finalFilename, dataString);
             updateURLState();
-            statusLog.innerHTML = `💾 Exported configuration package as: ${finalFilename}`;
+            statusLog.textContent = `💾 Exported configuration package as: ${finalFilename}`;
         });
 
         function parseAndApplyString(jsonString, triggerUrlRewrite = true) {
