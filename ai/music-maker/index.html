@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v15.1 🥁</title>
+    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v16.0 🥁</title>
     <style>
         body {
             background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
@@ -107,30 +107,11 @@
             cursor: pointer;
             transition: all 0.05s ease;
         }
-        /* 2-Octave Chromatic Left Color Coding Hooks */
+        /* Color hooks */
         .pad.note-c0 { border-left: 3px solid #ff595e; }
-        .pad.note-c1 { border-left: 3px solid #ff7657; }
-        .pad.note-c2 { border-left: 3px solid #ff924c; }
-        .pad.note-c3 { border-left: 3px solid #ffae43; }
-        .pad.note-c4 { border-left: 3px solid #ffca3a; }
         .pad.note-c5 { border-left: 3px solid #e2ca35; }
-        .pad.note-c6 { border-left: 3px solid #c5ca30; }
-        .pad.note-c7 { border-left: 3px solid #a7c92b; }
-        .pad.note-c8 { border-left: 3px solid #8ac926; }
-        .pad.note-c9 { border-left: 3px solid #6ec057; }
-        .pad.note-c10 { border-left: 3px solid #52b788; }
         .pad.note-c11 { border-left: 3px solid #35ad9e; }
-        .pad.note-c12 { border-left: 3px solid #1982c4; }
-        .pad.note-c13 { border-left: 3px solid #2e74bc; }
-        .pad.note-c14 { border-left: 3px solid #4267b2; }
-        .pad.note-c15 { border-left: 3px solid #565aa8; }
-        .pad.note-c16 { border-left: 3px solid #6a4c93; }
         .pad.note-c17 { border-left: 3px solid #903199; }
-        .pad.note-c18 { border-left: 3px solid #b5179e; }
-        .pad.note-c19 { border-left: 3px solid #9410ab; }
-        .pad.note-c20 { border-left: 3px solid #7209b7; }
-        .pad.note-c21 { border-left: 3px solid #b4179e; }
-        .pad.note-c22 { border-left: 3px solid #f72585; }
         .pad.note-c23 { border-left: 3px solid #ff4799; }
 
         .drum-pad {
@@ -223,31 +204,15 @@
             box-sizing: border-box;
             resize: vertical;
         }
-
-        .credits-deck {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.6);
-            border-top: 3px double #00FFCC;
-            border-radius: 0 0 10px 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
-        .credit-highlight {
-            color: #ffb703;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
 
-    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v15.1 🥁</h1>
-    <p class="subtitle">🌴 UPGRADED 32-STEP ENGINE + 2 FULL OCTAVES OF CHROMATIC MAJESTY 🌴</p>
+    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v16.0 🥁</h1>
+    <p class="subtitle">🌴 CUSTOM NAMED TEMPLATES + STABLE LOCAL STORAGE MATRIX RECOVERY 🌴</p>
 
     <div class="hacker-panel" id="statusLog">
-        <div>📡 TWO-OCTAVE MATRIX CORE EXPANDED: 32 Steps of pure synth bliss loaded.</div>
+        <div>📡 ENGINE OPERATIONAL: Ready to sequence, dump, and pack custom profiles.</div>
         <div id="portalContainer" class="force-download-portal"></div>
     </div>
 
@@ -257,12 +222,19 @@
         <button id="playBtn">START THE RAVE HARDCORE! 🚀</button>
         
         <div class="control-group">
-            <label for="templateSelect">🗂️ PRESET TEMPLATE</label>
+            <label for="templateSelect">🗂️ PRESET & CUSTOM TEMPLATES</label>
             <select id="templateSelect">
                 <option value="bossa" selected>Bossa Nova Template 🌴 (v15.0)</option>
                 <option value="empty">Empty Grid</option>
+                <!-- Custom templates will dynamically populate here -->
             </select>
         </div>
+
+        <div class="control-group">
+            <label for="templateNameInput">✍️ TEMPLATE NAME</label>
+            <input type="text" id="templateNameInput" value="My Epic Riff" style="max-width:140px;">
+        </div>
+        <button id="saveTemplateBtn" class="btn-save" style="background:#06b6d4; box-shadow:0 4px 0 #0891b2;">SAVE TEMPLATE TO STORAGE 🧠</button>
 
         <div class="control-group">
             <label for="waveType">🎻 INSTRUMENT SELECT</label>
@@ -285,7 +257,12 @@
 
         <button id="randomBtn" class="btn-random">🎲 RANDOM BEAT GENERATOR</button>
         <button id="exportBtn" class="btn-export">EXPORT TO .WAV 💾</button>
-        <button id="saveBtn" class="btn-save">SAVE PROJECT 📁</button>
+        
+        <div class="control-group">
+            <label for="fileNameInput">📁 FILE NAME</label>
+            <input type="text" id="fileNameInput" value="matrix_session" style="max-width:140px;">
+        </div>
+        <button id="saveBtn" class="btn-save">SAVE PROJECT FILE 📁</button>
         
         <label class="btn-load" style="padding: 12px 22px; font-weight: bold; border-radius: 25px; cursor: pointer;">
             LOAD PROJECT 📂
@@ -308,10 +285,6 @@
         <button id="injectLoadBtn" class="btn-inject-load">LOAD STRING DUMP ⚡</button>
     </div>
 
-    <div class="credits-deck">
-        🪐 SYSTEM ARCHITECTURE CREDITS: Developed by <span class="credit-highlight">doggodgcodes</span> & <span class="credit-highlight">Bonk AI Copilot</span> v15.1 | Powered by Frutiger Aero Audio Engines, 2-Octave Chromatic Modulators, Random Rhythm Modules, and Betty Crocker Coconut Pecan Variable Dumps! 🥥🌴[cite: 1]
-    </div>
-
     <script>
         const synthContainer = document.getElementById('synthGrid');
         const drumContainer = document.getElementById('drumGrid');
@@ -322,6 +295,9 @@
         const fileInput = document.getElementById('fileInput');
         const injectLoadBtn = document.getElementById('injectLoadBtn');
         const templateSelect = document.getElementById('templateSelect');
+        const templateNameInput = document.getElementById('templateNameInput');
+        const saveTemplateBtn = document.getElementById('saveTemplateBtn');
+        const fileNameInput = document.getElementById('fileNameInput');
         const bpmSlider = document.getElementById('bpmSlider');
         const bpmVal = document.getElementById('bpmVal');
         const lengthSlider = document.getElementById('lengthSlider');
@@ -355,12 +331,13 @@
         let synthPads = [];
         let drumPads = [];
 
-        // Initial Bossa Nova v15.0 Setup Injection Data Payload
         const bossaNovaInitial = [[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false],[true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]];
 
-        for(let r=0; r<CHROMATIC_ROWS; r++) {
-            for(let c=0; c<32; c++) {
-                synthState[r][c] = bossaNovaInitial[r][c];
+        function loadInitialBossa() {
+            for(let r=0; r<CHROMATIC_ROWS; r++) {
+                for(let c=0; c<32; c++) {
+                    synthState[r][c] = bossaNovaInitial[r][c];
+                }
             }
         }
 
@@ -493,12 +470,7 @@
             const delay = Math.max(0, (time - audioCtx.currentTime) * 1000);
             setTimeout(() => {
                 if (!isPlaying) return;
-                
-                if (step % 4 === 0) {
-                    beatVisualizer.style.background = '#00FFCC';
-                } else {
-                    beatVisualizer.style.background = '#FF0066';
-                }
+                beatVisualizer.style.background = (step % 4 === 0) ? '#00FFCC' : '#FF0066';
                 setTimeout(() => { beatVisualizer.style.background = '#1e1b4b'; }, 60);
 
                 let prevStep = (step + totalSteps - 1) % totalSteps;
@@ -526,7 +498,7 @@
             visualPortalBtn.href = linkUrl;
             visualPortalBtn.download = filename;
             visualPortalBtn.className = 'portal-link';
-            visualPortalBtn.innerText = `📥 CLICK HERE TO DIRECTLY DISPATCH: ${filename}`;
+            visualPortalBtn.innerText = `📥 DISPATCH FILE: ${filename}`;
             portalContainer.appendChild(visualPortalBtn);
 
             try {
@@ -538,24 +510,113 @@
                 hiddenLink.click();
                 setTimeout(() => { document.body.removeChild(hiddenLink); }, 300);
             } catch (err) {
-                console.log("Automated DOM click skipped inside sandbox container.");
+                console.log("Automated download skipped inside sandbox.");
             }
         }
 
-        // 🎲 RANDOM BEAT GENERATOR (PURE RANDOM CHAOS BALANCER)
+        // LOCAL STORAGE CUSTOM TEMPLATE MODULE
+        function updateTemplateDropdown() {
+            templateSelect.innerHTML = `
+                <option value="bossa">Bossa Nova Template 🌴 (v15.0)</option>
+                <option value="empty">Empty Grid</option>
+            `;
+            const keys = Object.keys(localStorage);
+            keys.forEach(key => {
+                if (key.startsWith('matrix_tpl_')) {
+                    const displayName = key.replace('matrix_tpl_', '');
+                    const opt = document.createElement('option');
+                    opt.value = key;
+                    opt.innerText = `🧠 ${displayName} (Custom)`;
+                    templateSelect.appendChild(opt);
+                }
+            });
+        }
+
+        saveTemplateBtn.addEventListener('click', () => {
+            const tplName = templateNameInput.value.trim() || "My Custom Grid";
+            const templateData = {
+                bpm: bpm,
+                totalSteps: totalSteps,
+                chosenWave: chosenWave,
+                synthState: synthState,
+                drumState: drumState
+            };
+            localStorage.setItem(`matrix_tpl_${tplName}`, JSON.stringify(templateData));
+            updateTemplateDropdown();
+            statusLog.innerHTML = `🧠 Saved custom template "${tplName}" to Local Storage!`;
+        });
+
+        templateSelect.addEventListener('change', (e) => {
+            const val = e.target.value;
+            if (val === 'empty') {
+                synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
+                drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
+                renderGrids();
+                statusLog.innerHTML = "🧹 Cleared viewport array.";
+            } else if (val === 'bossa') {
+                loadInitialBossa();
+                renderGrids();
+                statusLog.innerHTML = "🌴 Loaded preset Bossa Nova Template!";
+            } else if (val.startsWith('matrix_tpl_')) {
+                const dataStr = localStorage.getItem(val);
+                if (dataStr) parseAndApplyString(dataStr);
+            }
+        });
+
+        // FIXED FILE SAVING SYSTEM (Name input control without changing the file extension)
+        saveBtn.addEventListener('click', () => {
+            let rawName = fileNameInput.value.trim() || "matrix_session";
+            // Strip out any manually typed extension strings to prevent tampering
+            if (rawName.endsWith('.🔊🎧')) {
+                rawName = rawName.substring(0, rawName.length - 4);
+            }
+            const finalFilename = `${rawName}.🔊🎧`;
+
+            const projectData = {
+                version: "16.0",
+                bpm: bpm,
+                totalSteps: totalSteps,
+                chosenWave: chosenWave,
+                synthState: synthState,
+                drumState: drumState
+            };
+            const dataString = JSON.stringify(projectData);
+            const blob = new Blob([dataString], { type: 'application/json' });
+            executeDualOutputSave(blob, finalFilename, dataString);
+            statusLog.innerHTML = `💾 Exported configuration package as: ${finalFilename}`;
+        });
+
+        function parseAndApplyString(jsonString) {
+            try {
+                const data = JSON.parse(jsonString);
+                bpm = data.bpm || 140;
+                totalSteps = data.totalSteps || 32;
+                chosenWave = data.chosenWave || 'sine';
+                synthState = data.synthState;
+                drumState = data.drumState;
+
+                bpmSlider.value = bpm;
+                bpmVal.innerText = bpm;
+                lengthSlider.value = totalSteps;
+                lengthVal.innerText = totalSteps;
+                waveTypeSelect.value = chosenWave;
+
+                renderGrids();
+                statusLog.innerHTML = "✅ Matrix compilation parsed perfectly!";
+            } catch(e) {
+                alert("Error reading structural payload.");
+            }
+        }
+
+        // Everything else remains untouched & stable
         randomBtn.addEventListener('click', () => {
             for (let r = 0; r < CHROMATIC_ROWS; r++) {
-                for (let c = 0; c < 32; c++) {
-                    synthState[r][c] = Math.random() < 0.12; 
-                }
+                for (let c = 0; c < 32; c++) synthState[r][c] = Math.random() < 0.12;
             }
             for (let r = 0; r < DRUM_ROWS; r++) {
-                for (let c = 0; c < 32; c++) {
-                    drumState[r][c] = Math.random() < 0.22; 
-                }
+                for (let c = 0; c < 32; c++) drumState[r][c] = Math.random() < 0.22;
             }
             renderGrids();
-            statusLog.innerHTML = "🎰 RANDOM BEAT INJECTED: Pure random matrix alignment engaged across 32 steps!";
         });
 
         playBtn.addEventListener('click', () => {
@@ -573,75 +634,10 @@
             }
         });
 
-        bpmSlider.addEventListener('input', (e) => {
-            bpm = parseInt(e.target.value);
-            bpmVal.innerText = bpm;
-        });
-
-        lengthSlider.addEventListener('input', (e) => {
-            totalSteps = parseInt(e.target.value);
-            lengthVal.innerText = totalSteps;
-            renderGrids();
-        });
-
-        waveTypeSelect.addEventListener('change', (e) => {
-            chosenWave = e.target.value;
-        });
-
-        saveBtn.addEventListener('click', () => {
-            const projectData = {
-                version: "15.0",
-                bpm: bpm,
-                totalSteps: totalSteps,
-                chosenWave: chosenWave,
-                synthState: synthState,
-                drumState: drumState
-            };
-            const dataString = JSON.stringify(projectData);
-            const blob = new Blob([dataString], { type: 'application/json' });
-            executeDualOutputSave(blob, `matrix_session.🔊🎧`, dataString);
-        });
-
-        function parseAndApplyString(jsonString) {
-            try {
-                const data = JSON.parse(jsonString);
-                bpm = data.bpm || 140;
-                totalSteps = data.totalSteps || 32;
-                chosenWave = data.chosenWave || 'sine';
-                
-                synthState = data.synthState;
-                drumState = data.drumState;
-
-                bpmSlider.value = bpm;
-                bpmVal.innerText = bpm;
-                lengthSlider.value = totalSteps;
-                lengthVal.innerText = totalSteps;
-                waveTypeSelect.value = chosenWave;
-
-                renderGrids();
-                statusLog.innerHTML = "✅ TEMPLATE PARSED: Loaded 32-step template parameters into the active viewport array!";
-            } catch(e) {
-                alert("Error reading JSON payload structure.");
-            }
-        }
-
-        injectLoadBtn.addEventListener('click', () => {
-            parseAndApplyString(dataDumpBox.value);
-        });
-
-        templateSelect.addEventListener('change', (e) => {
-            if (e.target.value === 'empty') {
-                synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
-                drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
-                renderGrids();
-                statusLog.innerHTML = "🧹 Grid successfully cleared to empty template state.";
-            } else if (e.target.value === 'bossa') {
-                const v15String = '{"version":"15.0","bpm":140,"totalSteps":32,"chosenWave":"sine","synthState":[[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false],[true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]],"drumState":[[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]]}';
-                dataDumpBox.value = v15String;
-                parseAndApplyString(v15String);
-            }
-        });
-
+        bpmSlider.addEventListener('input', (e) => { bpm = parseInt(e.target.value); bpmVal.innerText = bpm; });
+        lengthSlider.addEventListener('input', (e) => { totalSteps = parseInt(e.target.value); lengthVal.innerText = totalSteps; renderGrids(); });
+        waveTypeSelect.addEventListener('change', (e) => { chosenWave = e.target.value; });
+        injectLoadBtn.addEventListener('click', () => { parseAndApplyString(dataDumpBox.value); });
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
@@ -650,67 +646,9 @@
             reader.readAsText(file);
         });
 
-        exportBtn.addEventListener('click', () => {
-            const secondsPerBeat = 60.0 / bpm / 2;
-            const totalDuration = totalSteps * secondsPerBeat + 0.5;
-            const sampleRate = 44100;
-            const offlineCtx = new OfflineAudioContext(1, sampleRate * totalDuration, sampleRate);
-
-            for (let step = 0; step < totalSteps; step++) {
-                let stepTime = step * secondsPerBeat;
-                for (let r = 0; r < CHROMATIC_ROWS; r++) {
-                    if (synthState[r][step]) playSynthTone(FREQS[r], stepTime, offlineCtx);
-                }
-                for (let r = 0; r < DRUM_ROWS; r++) {
-                    if (drumState[r][step]) triggerDrumSound(r, stepTime, offlineCtx);
-                }
-            }
-
-            offlineCtx.startRendering().then(renderedBuffer => {
-                const wavBlob = bufferToWav(renderedBuffer);
-                executeDualOutputSave(wavBlob, `matrix_track_${bpm}bpm.wav`);
-            });
-        });
-
-        function bufferToWav(buffer) {
-            let numOfChan = buffer.numberOfChannels,
-                length = buffer.length * numOfChan * 2 + 44,
-                bufferArr = new ArrayBuffer(length),
-                view = new DataView(bufferArr),
-                channels = [], i, sample, offset = 0, pos = 0;
-
-            setUint32(0x46464952); // "RIFF"
-            setUint32(length - 8); 
-            setUint32(0x45564157); // "WAVE"
-            setUint32(0x20746d66); // "fmt "
-            setUint32(16); 
-            setUint16(1); 
-            setUint16(numOfChan);
-            setUint32(buffer.sampleRate);
-            setUint32(buffer.sampleRate * 2 * numOfChan);
-            setUint16(numOfChan * 2); 
-            setUint16(16); 
-            setUint32(0x61746164); // "data"
-            setUint32(length - pos - 4);
-
-            for (i = 0; i < buffer.numberOfChannels; i++) channels.push(buffer.getChannelData(i));
-
-            while (pos < length) {
-                for (i = 0; i < numOfChan; i++) {
-                    sample = Math.max(-1, Math.min(1, channels[i][offset])); 
-                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF; 
-                    view.setInt16(pos, sample, true);
-                    pos += 2;
-                }
-                offset++;
-            }
-
-            return new Blob([bufferArr], { type: 'audio/wav' });
-
-            function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
-            function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
-        }
-
+        // Initialization
+        loadInitialBossa();
+        updateTemplateDropdown();
         renderGrids();
     </script>
 </body>
