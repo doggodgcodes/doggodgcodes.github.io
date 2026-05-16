@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🎹 CHROME LAB x FL STUDIO ULTIMATE DAWS v8.0 🥁</title>
+    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v9.0 🥁</title>
     <style>
         body {
             background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
@@ -24,17 +24,17 @@
             font-size: 1.1rem;
             margin-bottom: 20px;
         }
-        /* Dashboard Panel */
+        /* Control Station Dashboard */
         .dashboard {
             background: rgba(15, 23, 42, 0.8);
             padding: 20px;
             border-radius: 15px;
             border: 2px solid #38bdf8;
-            max-width: 800px;
+            max-width: 950px;
             margin: 0 auto 20px auto;
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             align-items: center;
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
@@ -46,11 +46,17 @@
             font-weight: bold;
             color: #cbd5e1;
         }
-        .control-group input {
+        .control-group input, .control-group select {
             margin-top: 8px;
+            padding: 5px 10px;
+            background: #1e293b;
+            color: #00FFCC;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            font-weight: bold;
             cursor: pointer;
         }
-        /* Scrollable Workspaces */
+        /* Scrollable Grid Workspace */
         .workspace {
             overflow-x: auto;
             max-width: 95vw;
@@ -66,7 +72,7 @@
             margin: 20px 0 10px 0;
             color: #a5b4fc;
         }
-        /* Matrix Grids */
+        /* Grid Alignment Matrix */
         .grid-container {
             display: grid;
             gap: 4px;
@@ -83,21 +89,21 @@
             cursor: pointer;
             transition: all 0.05s ease;
         }
-        /* Chromatic 12-Tone Scale Pastel Colors */
-        .pad.note-0 { border-left: 4px solid #ff595e; } /* C */
-        .pad.note-1 { border-left: 4px solid #ff924c; } /* C# */
-        .pad.note-2 { border-left: 4px solid #ffca3a; } /* D */
-        .pad.note-3 { border-left: 4px solid #c5ca30; } /* D# */
-        .pad.note-4 { border-left: 4px solid #8ac926; } /* E */
-        .pad.note-5 { border-left: 4px solid #52b788; } /* F */
-        .pad.note-6 { border-left: 4px solid #1982c4; } /* F# */
-        .pad.note-7 { border-left: 4px solid #4267b2; } /* G */
-        .pad.note-8 { border-left: 4px solid #6a4c93; } /* G# */
-        .pad.note-9 { border-left: 4px solid #b5179e; } /* A */
-        .pad.note-10 { border-left: 4px solid #7209b7; } /* A# */
-        .pad.note-11 { border-left: 4px solid #f72585; } /* B */
+        /* 12-Tone Chromatic Rainbow Row Identification */
+        .pad.note-0 { border-left: 4px solid #ff595e; }
+        .pad.note-1 { border-left: 4px solid #ff924c; }
+        .pad.note-2 { border-left: 4px solid #ffca3a; }
+        .pad.note-3 { border-left: 4px solid #c5ca30; }
+        .pad.note-4 { border-left: 4px solid #8ac926; }
+        .pad.note-5 { border-left: 4px solid #52b788; }
+        .pad.note-6 { border-left: 4px solid #1982c4; }
+        .pad.note-7 { border-left: 4px solid #4267b2; }
+        .pad.note-8 { border-left: 4px solid #6a4c93; }
+        .pad.note-9 { border-left: 4px solid #b5179e; }
+        .pad.note-10 { border-left: 4px solid #7209b7; }
+        .pad.note-11 { border-left: 4px solid #f72585; }
 
-        /* Drum Sequencer Blocks */
+        /* Drum Blocks */
         .drum-pad {
             width: 45px;
             height: 40px;
@@ -110,7 +116,7 @@
         .drum-pad.snare-row { border-bottom-color: #3b82f6; }
         .drum-pad.hihat-row { border-bottom-color: #eab308; }
 
-        /* Shared Interactive Modifiers */
+        /* Interactive Highlights */
         .pad.active, .drum-pad.active {
             background-color: #00ffcc !important;
             box-shadow: 0 0 10px #00ffcc;
@@ -120,13 +126,13 @@
             transform: scale(1.05);
         }
 
-        /* Interactive Action Buttons */
+        /* Action Buttons */
         button {
             background: #ff6b6b;
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
+            padding: 12px 22px;
+            font-size: 0.95rem;
             font-weight: bold;
             border-radius: 25px;
             cursor: pointer;
@@ -137,10 +143,11 @@
             transform: translateY(4px);
             box-shadow: none;
         }
-        .btn-export {
-            background: #059669;
-            box-shadow: 0 4px 0 #047857;
-        }
+        .btn-export { background: #059669; box-shadow: 0 4px 0 #047857; }
+        .btn-save { background: #3b82f6; box-shadow: 0 4px 0 #1d4ed8; }
+        .btn-load { background: #8b5cf6; box-shadow: 0 4px 0 #6d28d9; position: relative; }
+        #fileInput { display: none; }
+
         .hacker-panel {
             font-family: 'Courier New', monospace;
             color: #38bdf8;
@@ -151,47 +158,64 @@
 </head>
 <body>
 
-    <h1>🎹 CHROMATIC LAB x FL STUDIO ULTIMATE DAWS v8.0 🥁</h1>
-    <p class="subtitle">12-Tone Chromatic Matrix + FL Drums + Real Time BPM + WAV Exporter! 🚨🧃</p>
+    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v9.0 🥁</h1>
+    <p class="subtitle">Custom Instruments + Perfect WAV Export + Goofy File Save System (.🔊🎧)</p>
 
-    <!-- CONTROL DASHBOARD -->
+    <!-- CONTROL STREAMS PANEL -->
     <div class="dashboard">
         <button id="playBtn">START THE RAVE HARDCORE! 🚀</button>
         
+        <div class="control-group">
+            <label for="waveType">🎻 INSTRUMENT SELECT</label>
+            <select id="waveType">
+                <option value="triangle" selected>Retro Triangle (Default)</option>
+                <option value="square">8-Bit Square Burst</option>
+                <option value="sine">Smooth Acoustic Sine</option>
+            </select>
+        </div>
+
         <div class="control-group">
             <label for="bpmSlider">⚡ TEMPO SPEED: <span id="bpmVal">120</span> BPM</label>
             <input type="range" id="bpmSlider" min="60" max="240" value="120">
         </div>
 
         <div class="control-group">
-            <label for="lengthSlider">📏 SONG LENGTH: <span id="lengthVal">16</span> STEPS</label>
+            <label for="lengthSlider">📏 MATRIX LENGTH: <span id="lengthVal">16</span> STEPS</label>
             <input type="range" id="lengthSlider" min="4" max="32" value="16" step="4">
         </div>
 
-        <button id="exportBtn" class="btn-export">EXPORT TRACK TO .WAV 💾</button>
+        <button id="exportBtn" class="btn-export">EXPORT TO .WAV 💾</button>
+        <button id="saveBtn" class="btn-save">SAVE PROJECT 📁</button>
+        
+        <label class="btn-load" style="padding: 12px 22px; font-weight: bold; border-radius: 25px; cursor: pointer;">
+            LOAD PROJECT 📂
+            <input type="file" id="fileInput" accept=".🔊🎧">
+        </label>
     </div>
 
-    <!-- WORKSPACE MATRIX SCROLL GRID -->
+    <!-- MAIN MATRIX ARRAYS -->
     <div class="workspace">
-        <div class="section-title">🎵 12-TONE CHROMATIC CHROMIUM PIANO SCALE</div>
+        <div class="section-title">🎵 12-TONE CHROMATIC PITCH MATRIX</div>
         <div class="grid-container" id="synthGrid"></div>
 
-        <div class="section-title">🥁 FL STUDIO STEP DRUM SEQUENCER</div>
+        <div class="section-title">🥁 COMPACT STEP SEQUENCER DRUM RACK</div>
         <div class="grid-container" id="drumGrid"></div>
     </div>
 
-    <div class="hacker-panel" id="statusLog">Status: Bytebeat engine initialized. Standing by... 📡</div>
+    <div class="hacker-panel" id="statusLog">Status: Audio context engine calibrated. Welcome back doggodgcodes! 📡</div>
 
     <script>
-        // DOM Nodes Hooking
         const synthContainer = document.getElementById('synthGrid');
         const drumContainer = document.getElementById('drumGrid');
         const playBtn = document.getElementById('playBtn');
         const exportBtn = document.getElementById('exportBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const fileInput = document.getElementById('fileInput');
         const bpmSlider = document.getElementById('bpmSlider');
         const bpmVal = document.getElementById('bpmVal');
         const lengthSlider = document.getElementById('lengthSlider');
         const lengthVal = document.getElementById('lengthVal');
+        const waveTypeSelect = document.getElementById('waveType');
         const statusLog = document.getElementById('statusLog');
 
         let audioCtx = null;
@@ -202,41 +226,24 @@
 
         let bpm = 120;
         let totalSteps = 16;
+        let chosenWave = 'triangle';
         
         const CHROMATIC_ROWS = 12;
         const DRUM_ROWS = 3;
+        const FREQS = [523.25, 493.88, 466.16, 440.00, 415.30, 392.00, 369.99, 349.23, 329.63, 311.13, 293.66, 261.63];
 
-        // Perfect 12-Tone Chromatic Frequencies from C5 down to C4 🎹
-        const FREQS = [
-            523.25, // C5
-            493.88, // B4
-            466.16, // A#4
-            440.00, // A4
-            415.30, // G#4
-            392.00, // G4
-            369.99, // F#4
-            349.23, // F4
-            329.63, // E4
-            311.13, // D#4
-            293.66, // D4
-            261.63  // C4
-        ];
-
-        // Storage Arrays Max Limits
         let synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
         let drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
         
         let synthPads = [];
         let drumPads = [];
 
-        // 🧱 DYNAMICALLY DRAW GRIDS BASED ON DESIGNED SONG LENGTH
         function renderGrids() {
             synthContainer.innerHTML = '';
             drumContainer.innerHTML = '';
             synthContainer.style.gridTemplateColumns = `repeat(${totalSteps}, 45px)`;
             drumContainer.style.gridTemplateColumns = `repeat(${totalSteps}, 45px)`;
 
-            // Render Chromatic Grid
             for (let r = 0; r < CHROMATIC_ROWS; r++) {
                 synthPads[r] = [];
                 for (let c = 0; c < totalSteps; c++) {
@@ -247,14 +254,13 @@
                     pad.addEventListener('click', () => {
                         synthState[r][c] = !synthState[r][c];
                         pad.classList.toggle('active');
-                        if (synthState[r][c] && audioCtx) playSynthTone(FREQS[r], audioCtx.currentTime, audioCtx);
+                        if (synthState[r][c] && audioCtx) playSynthTone(FREQS[r], audioCtx.currentTime, audioCtx, false);
                     });
                     synthContainer.appendChild(pad);
                     synthPads[r][c] = pad;
                 }
             }
 
-            // Render FL Drum Sequencer
             const drumClasses = ['kick-row', 'snare-row', 'hihat-row'];
             for (let r = 0; r < DRUM_ROWS; r++) {
                 drumPads[r] = [];
@@ -266,7 +272,7 @@
                     pad.addEventListener('click', () => {
                         drumState[r][c] = !drumState[r][c];
                         pad.classList.toggle('active');
-                        if (drumState[r][c] && audioCtx) triggerDrumSound(r, audioCtx.currentTime, audioCtx);
+                        if (drumState[r][c] && audioCtx) triggerDrumSound(r, audioCtx.currentTime, audioCtx, false);
                     });
                     drumContainer.appendChild(pad);
                     drumPads[r][c] = pad;
@@ -274,28 +280,31 @@
             }
         }
 
-        // 🔊 NATIVE REPLICATED RETRO TRIANGLE SYNTH CONTEXT INSTRUMENT
-        function playSynthTone(freq, time, ctx) {
+        // 🔊 AUDIO NODE SYNTH COMPILER (Fixed routing for Offline Context)
+        function playSynthTone(freq, time, ctx, isOffline) {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
-            osc.type = 'triangle';
+            osc.type = chosenWave;
             osc.frequency.setValueAtTime(freq, time);
             gain.gain.setValueAtTime(0.15, time);
             gain.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
             osc.connect(gain);
+            
+            // FIX: Route to ctx.destination directly, never use shared destination nodes in offline matrices
             gain.connect(ctx.destination);
+            
             osc.start(time);
             osc.stop(time + 0.3);
         }
 
-        // 🥁 FL STUDIO 808 SYNTH DRUM EMULATORS
-        function triggerDrumSound(rowType, time, ctx) {
+        // 🥁 NATIVE GENERATED DRUMS INTERLOCK (Fixed routing for Offline Context)
+        function triggerDrumSound(rowType, time, ctx, isOffline) {
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.connect(gain);
             gain.connect(ctx.destination);
 
-            if (rowType === 0) { // Deep Punchy 808 Kick
+            if (rowType === 0) { // Kick
                 osc.frequency.setValueAtTime(140, time);
                 osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.12);
                 gain.gain.setValueAtTime(0.5, time);
@@ -303,7 +312,7 @@
                 osc.start(time);
                 osc.stop(time + 0.15);
             } 
-            else if (rowType === 1) { // Crunchy Snare Snap
+            else if (rowType === 1) { // Snare
                 osc.type = 'triangle';
                 osc.frequency.setValueAtTime(170, time);
                 gain.gain.setValueAtTime(0.25, time);
@@ -311,7 +320,6 @@
                 osc.start(time);
                 osc.stop(time + 0.1);
 
-                // Quick programmatic algorithmic noise snare tail
                 const bufferSize = ctx.sampleRate * 0.08;
                 const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
                 const data = buffer.getChannelData(0);
@@ -326,7 +334,7 @@
                 noise.start(time);
                 noise.stop(time + 0.08);
             } 
-            else if (rowType === 2) { // Square Synth Hi-Hat Click
+            else if (rowType === 2) { // Hi-Hat
                 osc.type = 'square';
                 osc.frequency.setValueAtTime(9000, time);
                 gain.gain.setValueAtTime(0.08, time);
@@ -336,7 +344,7 @@
             }
         }
 
-        // 🏎️ SCHEDULER CLOCK ENGINE (Web Audio API Rock Solid Precision)
+        // ROCK SOLID SCHEDULER ENGINE CLOCK
         function scheduler() {
             while (nextTickTime < audioCtx.currentTime + 0.1) {
                 scheduleStep(currentStep, nextTickTime);
@@ -346,19 +354,17 @@
         }
 
         function scheduleStep(step, time) {
-            // Visual playhead flashing callback using requestAnimationFrame
             ctxTimeCallback(step, time);
-
             for (let r = 0; r < CHROMATIC_ROWS; r++) {
-                if (synthState[r][step]) playSynthTone(FREQS[r], time, audioCtx);
+                if (synthState[r][step]) playSynthTone(FREQS[r], time, audioCtx, false);
             }
             for (let r = 0; r < DRUM_ROWS; r++) {
-                if (drumState[r][step]) triggerDrumSound(r, time, audioCtx);
+                if (drumState[r][step]) triggerDrumSound(r, time, audioCtx, false);
             }
         }
 
         function advanceStep() {
-            const secondsPerBeat = 60.0 / bpm / 2; // Step speed calculation (Eighth Notes)
+            const secondsPerBeat = 60.0 / bpm / 2;
             nextTickTime += secondsPerBeat;
             currentStep = (currentStep + 1) % totalSteps;
         }
@@ -368,37 +374,31 @@
             setTimeout(() => {
                 if (!isPlaying) return;
                 let prevStep = (step + totalSteps - 1) % totalSteps;
-                
-                // Clear out highlight lines
                 for(let r=0; r<CHROMATIC_ROWS; r++) if(synthPads[r][prevStep]) synthPads[r][prevStep].classList.remove('playing');
                 for(let r=0; r<DRUM_ROWS; r++) if(drumPads[r][prevStep]) drumPads[r][prevStep].classList.remove('playing');
-
-                // Add active playhead highlight colors
                 for(let r=0; r<CHROMATIC_ROWS; r++) if(synthPads[r][step]) synthPads[r][step].classList.add('playing');
                 for(let r=0; r<DRUM_ROWS; r++) if(drumPads[r][step]) drumPads[r][step].classList.add('playing');
             }, delay);
         }
 
-        // 🎛️ PLAY INTERRUPT BUTTON
+        // PLAYER BUTTONS INTERRUPTS
         playBtn.addEventListener('click', () => {
             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
             if (isPlaying) {
                 clearTimeout(timerId);
                 isPlaying = false;
                 playBtn.innerText = "START THE RAVE HARDCORE! 🚀";
-                statusLog.innerText = "Status: Rave paused. Wafers crisp. 🍪";
+                statusLog.innerText = "Status: Timeline frozen. Crunching chips... 🥔";
             } else {
                 currentStep = 0;
                 nextTickTime = audioCtx.currentTime;
                 isPlaying = true;
                 scheduler();
                 playBtn.innerText = "FREEZE THE TIMELINE 🛑";
-                statusLog.innerText = "Status: Playing live matrix array composition! 🔥🍉";
+                statusLog.innerText = "Status: Making beautiful noise arrays! 🔥🍉";
             }
         });
 
-        // 🎚️ CONTROL VALUE MODIFIER listeners
         bpmSlider.addEventListener('input', (e) => {
             bpm = parseInt(e.target.value);
             bpmVal.innerText = bpm;
@@ -410,49 +410,104 @@
             renderGrids();
         });
 
+        waveTypeSelect.addEventListener('change', (e) => {
+            chosenWave = e.target.value;
+            statusLog.innerText = `Status: Instrument swapped to ${chosenWave}!`;
+        });
+
         // ==========================================
-        // 💾 THE NATIVE OFFLINE WAV EXPORTER ENGINE (.WAV GENERATOR)
+        // 💾 CUSTOM SAVE & LOAD MANAGEMENT SYSTEM (.🔊🎧)
+        // ==========================================
+        saveBtn.addEventListener('click', () => {
+            const projectData = {
+                version: "9.0",
+                bpm: bpm,
+                totalSteps: totalSteps,
+                chosenWave: chosenWave,
+                synthState: synthState,
+                drumState: drumState
+            };
+            const dataString = JSON.stringify(projectData);
+            const blob = new Blob([dataString], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            // Goofy project saving extension activated!
+            a.download = `breakcore_session.🔊🎧`;
+            a.click();
+            statusLog.innerText = "Status: Saved custom project matrix configuration file! 📂✨";
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const data = JSON.parse(event.target.result);
+                    bpm = data.bpm;
+                    totalSteps = data.totalSteps;
+                    chosenWave = data.chosenWave;
+                    synthState = data.synthState;
+                    drumState = data.drumState;
+
+                    // Update controls
+                    bpmSlider.value = bpm;
+                    bpmVal.innerText = bpm;
+                    lengthSlider.value = totalSteps;
+                    lengthVal.innerText = totalSteps;
+                    waveTypeSelect.value = chosenWave;
+
+                    renderGrids();
+                    statusLog.innerText = "Status: Project structural matrix imported successfully! 🎧🛸";
+                } catch (err) {
+                    statusLog.innerText = "Error reading specialized project array file!";
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        // ==========================================
+        // 🔊 FIXED REAL-TIME WAV AUDIO STREAM COMPILER
         // ==========================================
         exportBtn.addEventListener('click', () => {
-            statusLog.innerText = "Status: Initializing Offline Context Render... 🧠";
+            statusLog.innerText = "Status: Commencing un-isolated WAV export trace... 🧠";
             
             const secondsPerBeat = 60.0 / bpm / 2;
-            const totalDuration = totalSteps * secondsPerBeat + 0.5; // Added safety ringout buffer tail
+            const totalDuration = totalSteps * secondsPerBeat + 0.4;
             const sampleRate = 44100;
             
-            // Create target buffer setup
             const offlineCtx = new OfflineAudioContext(1, sampleRate * totalDuration, sampleRate);
 
-            // Execute note layouts straight down to offline timeline context
+            // Directly fire tracking loops straight into offline calculation buffers
             for (let step = 0; step < totalSteps; step++) {
                 let stepTime = step * secondsPerBeat;
                 for (let r = 0; r < CHROMATIC_ROWS; r++) {
-                    if (synthState[r][step]) playSynthTone(FREQS[r], stepTime, offlineCtx);
+                    if (synthState[r][step]) playSynthTone(FREQS[r], stepTime, offlineCtx, true);
                 }
                 for (let r = 0; r < DRUM_ROWS; r++) {
-                    if (drumState[r][step]) triggerDrumSound(r, stepTime, offlineCtx);
+                    if (drumState[r][step]) triggerDrumSound(r, stepTime, offlineCtx, true);
                 }
             }
 
-            statusLog.innerText = "Status: Baking matrix components down into audio channels... 🍳";
+            statusLog.innerText = "Status: Rendering waveform matrix structures... 🍳";
 
             offlineCtx.startRendering().then(renderedBuffer => {
                 const wavBlob = bufferToWav(renderedBuffer);
                 const url = URL.createObjectURL(wavBlob);
                 
-                // Fire download injection instantly!
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `gamer_sandwich_beatbox_${bpm}bpm.wav`;
+                a.download = `matrix_composition_${bpm}bpm.wav`;
                 a.click();
                 
-                statusLog.innerText = "Status: WAV file generated and dispatched successfully! 👍🤩😎";
+                statusLog.innerText = "Status: WAV binary file successfully built and transferred! 👍🤩😎";
             }).catch(err => {
-                statusLog.innerText = `Error compiling file: ${err}`;
+                statusLog.innerText = `Compilation Fault: ${err}`;
             });
         });
 
-        // 🛠️ RIFF WAV STRUCT PACKING SYSTEM FOR AUDIO STREAM BINARIES
         function bufferToWav(buffer) {
             let numOfChan = buffer.numberOfChannels,
                 length = buffer.length * numOfChan * 2 + 44,
@@ -462,28 +517,26 @@
                 offset = 0,
                 pos = 0;
 
-            // Write wave header identifiers
-            setUint32(0x46464952);                         // "RIFF" chunk descriptor
-            setUint32(length - 8);                         // File scale block length
-            setUint32(0x45564157);                         // "WAVE" structural format identifier
-            setUint32(0x20746d66);                         // "fmt " subchunk chunk
-            setUint32(16);                                 // Subchunk format length size
-            setUint16(1);                                  // Audio PCM modulation index type (1 = Uncompressed)
+            setUint32(0x46464952); // "RIFF"
+            setUint32(length - 8); 
+            setUint32(0x45564157); // "WAVE"
+            setUint32(0x20746d66); // "fmt "
+            setUint32(16); 
+            setUint16(1); 
             setUint16(numOfChan);
             setUint32(buffer.sampleRate);
-            setUint32(buffer.sampleRate * 2 * numOfChan);  // Byte rate tracking computation
-            setUint16(numOfChan * 2);                      // Block alignments
-            setUint16(16);                                 // Bits per sample size index
-            setUint32(0x61746164);                         // "data" structural subchunk marking identifier
-            setUint32(length - pos - 4);                   // Data chunk allocation boundaries
+            setUint32(buffer.sampleRate * 2 * numOfChan);
+            setUint16(numOfChan * 2); 
+            setUint16(16); 
+            setUint32(0x61746164); // "data"
+            setUint32(length - pos - 4);
 
-            // Merge stereo layers down to raw interleaved arrays
             for (i = 0; i < buffer.numberOfChannels; i++) channels.push(buffer.getChannelData(i));
 
             while (pos < length) {
-                for (i = 0; i < numOfChan; i++) {             // Interleave audio channel frames
-                    sample = Math.max(-1, Math.min(1, channels[i][offset])); // Hard brickwall limiter protection clip
-                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF; // Translate directly to 16-bit Integer ranges
+                for (i = 0; i < numOfChan; i++) {
+                    sample = Math.max(-1, Math.min(1, channels[i][offset])); 
+                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF; 
                     view.setInt16(pos, sample, true);
                     pos += 2;
                 }
@@ -496,7 +549,6 @@
             function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
         }
 
-        // Initialize setup compilation
         renderGrids();
     </script>
 </body>
