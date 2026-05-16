@@ -595,7 +595,7 @@
             localStorage.setItem(`matrix_tpl_${tplName}`, JSON.stringify(templateData));
             updateTemplateDropdown();
             updateURLState();
-            statusLog.innerHTML = `🧠 Saved template "${tplName}" to Local Storage!`;
+            statusLog.textContent = `🧠 Saved template "${tplName}" to Local Storage!`;
         });
 
         templateSelect.addEventListener('change', (e) => {
