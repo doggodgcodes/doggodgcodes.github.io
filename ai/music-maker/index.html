@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v17.0 🥁</title>
+    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</title>
     <style>
         body {
             background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
@@ -208,8 +208,8 @@
 </head>
 <body>
 
-    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v17.0 🥁</h1>
-    <p class="subtitle">🚀 LIVE URL MATRIX STATE SYNCING + EMAIL DISPATCH CHANNELS 🚀</p>
+    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</h1>
+    <p class="subtitle">🚀 SAFE-DUMP RECOVERY ENGINE + EXTENDED GMAIL FAIL-SAFE CHANNELS 🚀</p>
 
     <div class="hacker-panel" id="statusLog">
         <div>📡 DISPATCH ENGINE ONLINE: Manipulating URL routing flags dynamically.</div>
@@ -349,31 +349,27 @@
             }
         }
 
-        // 🚀 URL SERIALIZATION PACKAGER & STATE MUTATOR
         function compileCurrentStateToJSONString() {
-            const packageObj = {
-                version: "17.0",
+            return JSON.stringify({
+                version: "18.0",
                 bpm: bpm,
                 totalSteps: totalSteps,
                 chosenWave: chosenWave,
                 synthState: synthState,
                 drumState: drumState
-            };
-            return JSON.stringify(packageObj);
+            });
         }
 
         function updateURLState() {
             const rawJSONString = compileCurrentStateToJSONString();
             const base64EncodedPayload = btoa(encodeURIComponent(rawJSONString));
             
-            // Re-route matrix handle to explicitly support your production landing directory target!
             const targetBaseURL = "https://doggodgcodes.github.io/ai/music-maker/";
             const absoluteTrackURL = `${targetBaseURL}?song=${base64EncodedPayload}`;
             
-            // Safely alter local tab view address stack window
             window.history.replaceState(null, "", `?song=${base64EncodedPayload}`);
             
-            // Push matching compilation signature string directly down into recovery block
+            // Default recovery dump behavior
             dataDumpBox.value = rawJSONString;
             return absoluteTrackURL;
         }
@@ -385,14 +381,13 @@
             if (encodedSong) {
                 try {
                     const decodedJSONString = decodeURIComponent(atob(encodedSong));
-                    parseAndApplyString(decodedJSONString, false); // Block loops from triggering on launch
+                    parseAndApplyString(decodedJSONString, false);
                     statusLog.innerHTML = "🔗 MATRIX RECOVERY SUCCESSFUL: Injected array states from URL arguments!";
                 } catch (err) {
                     console.error("URL package extraction fault: ", err);
                     setGridToEmpty();
                 }
             } else {
-                // If there is no data in the URL, strictly fallback to the completely blank grid!
                 setGridToEmpty();
                 statusLog.innerHTML = "🧹 BLANK INITIALIZATION: URL payload not detected. Fresh board deployed.";
             }
@@ -415,7 +410,7 @@
                         synthState[r][c] = !synthState[r][c];
                         pad.classList.toggle('active');
                         if (synthState[r][c] && audioCtx) playSynthTone(FREQS[r], audioCtx.currentTime, audioCtx);
-                        updateURLState(); // Trigger live address updating!
+                        updateURLState();
                     });
                     synthContainer.appendChild(pad);
                     synthPads[r][c] = pad;
@@ -434,7 +429,7 @@
                         drumState[r][c] = !drumState[r][c];
                         pad.classList.toggle('active');
                         if (drumState[r][c] && audioCtx) triggerDrumSound(r, audioCtx.currentTime, audioCtx);
-                        updateURLState(); // Trigger live address updating!
+                        updateURLState();
                     });
                     drumContainer.appendChild(pad);
                     drumPads[r][c] = pad;
@@ -568,12 +563,9 @@
                 document.body.appendChild(hiddenLink);
                 hiddenLink.click();
                 setTimeout(() => { document.body.removeChild(hiddenLink); }, 300);
-            } catch (err) {
-                console.log("Automated download skipped inside sandboxed viewport.");
-            }
+            } catch (err) {}
         }
 
-        // LOCAL STORAGE ENGINE UPDATES
         function updateTemplateDropdown() {
             templateSelect.innerHTML = `
                 <option value="empty">Empty Grid</option>
@@ -602,7 +594,7 @@
             };
             localStorage.setItem(`matrix_tpl_${tplName}`, JSON.stringify(templateData));
             updateTemplateDropdown();
-            updateURLState(); // Trigger state update
+            updateURLState();
             statusLog.innerHTML = `🧠 Saved template "${tplName}" to Local Storage!`;
         });
 
@@ -620,32 +612,37 @@
                 statusLog.innerHTML = "🌴 Loaded preset Bossa Nova Template!";
             } else if (val.startsWith('matrix_tpl_')) {
                 const dataStr = localStorage.getItem(val);
-                if (dataStr) {
-                    parseAndApplyString(dataStr, true);
-                }
+                if (dataStr) parseAndApplyString(dataStr, true);
             }
         });
 
-        // 📧 MAILTO DISPATCH CORE
+        // 📧 GMAIL SAFE DUMP DISPATCH SYSTEM
         mailBtn.addEventListener('click', () => {
             const generatedTrackURL = updateURLState();
-            const emailSubject = encodeURIComponent("🚨 BOOGIE BEAT DISPATCH FROM DOGGODGCODES! 🚨");
-            const emailBody = encodeURIComponent(
+            const subjectLine = "🚨 BOOGIE BEAT DISPATCH FROM DOGGODGCODES! 🚨";
+            const rawBodyText = 
                 "WUSUUUUUU Friend!!! 🦍🎩\n\n" +
                 "Check out this absolute custom audio layout matrix track I just coded using the 24-tone chromatic sequencer engine!\n\n" +
                 "🎛️ PLAY THE SONG INSTANTLY IN YOUR BROWSER:\n" + generatedTrackURL + "\n\n" +
-                "Keep the internet silly and stay chilly! 🧊🍌\n- doggodgcodes"
-            );
+                "Keep the internet silly and stay chilly! 🧊🍌\n- doggodgcodes";
             
-            window.location.href = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+            // 🛠️ COGNITIVE DUMP INTERFACE REDIRECT
+            dataDumpBox.value = `=== GMAIL SAFE-DUMP DISPATCH AREA ===\nSUBJECT: ${subjectLine}\n\n${rawBodyText}`;
+            dataDumpBox.select();
+            
+            statusLog.innerHTML = "⚠️ GMAIL ANTI-400 DEFENSE DETECTED: Copy payload generated below inside the text area!";
+            
+            // Attempt standard mailto window trigger as a soft launch mechanism
+            try {
+                window.location.href = `mailto:?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(rawBodyText)}`;
+            } catch (err) {
+                console.log("Mailto redirect fallback triggered due to data length boundaries.");
+            }
         });
 
-        // FILE DISPATCH WITH LOCKED EXTENSION
         saveBtn.addEventListener('click', () => {
             let rawName = fileNameInput.value.trim() || "matrix_session";
-            if (rawName.endsWith('.🔊🎧')) {
-                rawName = rawName.substring(0, rawName.length - 4);
-            }
+            if (rawName.endsWith('.🔊🎧')) rawName = rawName.substring(0, rawName.length - 4);
             const finalFilename = `${rawName}.🔊🎧`;
             const dataString = compileCurrentStateToJSONString();
             const blob = new Blob([dataString], { type: 'application/json' });
@@ -657,6 +654,14 @@
 
         function parseAndApplyString(jsonString, triggerUrlRewrite = true) {
             try {
+                // Strip manual email dump headers if the user tries to load an email string directly
+                if (jsonString.includes("=== GMAIL SAFE-DUMP DISPATCH AREA ===")) {
+                    const findUrl = jsonString.match(/\?song=([A-Za-z0-9%=\-_]+)/);
+                    if (findUrl && findUrl[1]) {
+                        jsonString = decodeURIComponent(atob(findUrl[1]));
+                    }
+                }
+                
                 const data = JSON.parse(jsonString);
                 bpm = data.bpm || 140;
                 totalSteps = data.totalSteps || 32;
@@ -678,7 +683,6 @@
             }
         }
 
-        // CONTROL GROUP HANDLERS
         randomBtn.addEventListener('click', () => {
             for (let r = 0; r < CHROMATIC_ROWS; r++) {
                 for (let c = 0; c < 32; c++) synthState[r][c] = Math.random() < 0.12;
@@ -777,7 +781,6 @@
             function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
         }
 
-        // INITIAL RUN CORE: Extracting URL strings or dumping to empty!
         updateTemplateDropdown();
         extractAndApplyURLState();
     </script>
