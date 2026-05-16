@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v11.0 🥁</title>
+    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v14.0 🥁</title>
     <style>
         body {
             background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
@@ -24,20 +24,30 @@
             font-size: 1.1rem;
             margin-bottom: 20px;
         }
-        /* HACKER PANEL PROMOTED TO THE APEX */
+        /* HACKER PANEL AT THE ABSOLUTE TOP */
         .hacker-panel {
             font-family: 'Courier New', monospace;
             color: #38bdf8;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             padding: 14px;
             border-radius: 8px;
             border: 2px dashed #00FFCC;
             max-width: 950px;
             margin: 0 auto 20px auto;
             font-size: 1.1rem;
-            box-shadow: 0 0 15px rgba(0, 255, 204, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
         }
-        /* Dashboard Control Center */
+        /* SPEED DEMON VISUALIZER DECK */
+        .visualizer-bar {
+            width: 100%;
+            height: 10px;
+            background: #1e1b4b;
+            margin: 10px 0;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: background 0.1s ease;
+        }
+        /* Control Dashboard */
         .dashboard {
             background: rgba(15, 23, 42, 0.85);
             padding: 20px;
@@ -69,7 +79,7 @@
             font-weight: bold;
             cursor: pointer;
         }
-        /* Workspace Matrix */
+        /* Grid Alignment Matrix */
         .workspace {
             overflow-x: auto;
             max-width: 95vw;
@@ -101,7 +111,7 @@
             cursor: pointer;
             transition: all 0.05s ease;
         }
-        /* Chromatic Note Colors */
+        /* Chromatic Palette */
         .pad.note-0 { border-left: 4px solid #ff595e; }
         .pad.note-1 { border-left: 4px solid #ff924c; }
         .pad.note-2 { border-left: 4px solid #ffca3a; }
@@ -136,7 +146,7 @@
             transform: scale(1.05);
         }
 
-        /* Action Buttons */
+        /* Buttons Core */
         button {
             background: #ff6b6b;
             color: white;
@@ -156,18 +166,91 @@
         .btn-export { background: #059669; box-shadow: 0 4px 0 #047857; }
         .btn-save { background: #3b82f6; box-shadow: 0 4px 0 #1d4ed8; }
         .btn-load { background: #8b5cf6; box-shadow: 0 4px 0 #6d28d9; position: relative; display: inline-block; }
+        .btn-inject-load { background: #d946ef; box-shadow: 0 4px 0 #a21caf; margin-top: 10px; }
         #fileInput { display: none; }
+
+        /* VISUAL PORTAL DECK FORCE CONTAINER */
+        .force-download-portal {
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .portal-link {
+            background: #f59e0b;
+            color: #000 !important;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #fff;
+            display: inline-block;
+            box-shadow: 0 0 10px #f59e0b;
+        }
+
+        /* FAIL-SAFE BOTTOM DATA DUMP SECTION */
+        .dump-section {
+            max-width: 950px;
+            margin: 30px auto 10px auto;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #ff0066;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.3);
+        }
+        .dump-title {
+            font-family: 'Courier New', monospace;
+            color: #ff0066;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+        .dump-box {
+            width: 100%;
+            height: 120px;
+            background: #020617;
+            color: #00ffcc;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        /* THE ELITE CREDITS DECK */
+        .credits-deck {
+            max-width: 950px;
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border-top: 3px double #00FFCC;
+            border-radius: 0 0 10px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .credit-highlight {
+            color: #ffb703;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
-    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v11.0 🥁</h1>
-    <p class="subtitle">Stack Overflow Safe-Saving Architecture + Promoted Hacker Deck</p>
+    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v14.0 🥁</h1>
+    <p class="subtitle">140 BPM Turbo Engine + Hard Inject Save Overhaul + Matrix Beat Mirror! 👇</p>
 
-    <!-- HACKER PANEL AT THE ABSOLUTE TOP -->
-    <div class="hacker-panel" id="statusLog">📡 SYSTEM INITIALIZED: Stack Overflow link-injected save protocols loaded into browser RAM. Ready to jam!</div>
+    <!-- PROMOTED HACKER DECK AT TOP -->
+    <div class="hacker-panel" id="statusLog">
+        <div>📡 DATA ENGINE ONLINE: Core audio clocks primed for 140 BPM track assemblies. Ready to rock!</div>
+        <div id="portalContainer" class="force-download-portal"></div>
+    </div>
 
-    <!-- CONTROL DASHBOARD -->
+    <!-- SPEED DEMON VISUALIZER DECK -->
+    <div class="visualizer-bar" id="beatVisualizer"></div>
+
+    <!-- CONTROL CENTER -->
     <div class="dashboard">
         <button id="playBtn">START THE RAVE HARDCORE! 🚀</button>
         
@@ -181,8 +264,8 @@
         </div>
 
         <div class="control-group">
-            <label for="bpmSlider">⚡ TEMPO SPEED: <span id="bpmVal">120</span> BPM</label>
-            <input range id="bpmSlider" type="range" min="60" max="240" value="120">
+            <label for="bpmSlider">⚡ TEMPO SPEED: <span id="bpmVal">140</span> BPM</label>
+            <input range id="bpmSlider" type="range" min="60" max="240" value="140">
         </div>
 
         <div class="control-group">
@@ -208,6 +291,19 @@
         <div class="grid-container" id="drumGrid"></div>
     </div>
 
+    <!-- FAIL-SAFE TEXT BOX + ONE-CLICK LOAD ENGINE -->
+    <div class="dump-section">
+        <div class="dump-title">🛠️ LIVE TEXT COMPILATION INTERFACE AREA (FAIL-SAFE RECOVERY)</div>
+        <textarea id="dataDumpBox" class="dump-box" placeholder="Your project saves and WAV data streams will generate here instantly for easy copy-pasting..."></textarea>
+        <br>
+        <button id="injectLoadBtn" class="btn-inject-load">LOAD STRING DUMP ⚡</button>
+    </div>
+
+    <!-- THE ELITE CREDITS DECK -->
+    <div class="credits-deck">
+        🪐 SYSTEM ARCHITECTURE CREDITS: Developed by <span class="credit-highlight">doggodgcodes</span> & <span class="credit-highlight">Bonk AI Copilot</span> v14.0 | Powered by Frutiger Aero Audio Engines, 140 BPM Breakcore Arrays, and Betty Crocker Coconut Pecan Variable Dumps! 🥥🌴
+    </div>
+
     <script>
         const synthContainer = document.getElementById('synthGrid');
         const drumContainer = document.getElementById('drumGrid');
@@ -215,12 +311,16 @@
         const exportBtn = document.getElementById('exportBtn');
         const saveBtn = document.getElementById('saveBtn');
         const fileInput = document.getElementById('fileInput');
+        const injectLoadBtn = document.getElementById('injectLoadBtn');
         const bpmSlider = document.getElementById('bpmSlider');
         const bpmVal = document.getElementById('bpmVal');
         const lengthSlider = document.getElementById('lengthSlider');
         const lengthVal = document.getElementById('lengthVal');
         const waveTypeSelect = document.getElementById('waveType');
         const statusLog = document.getElementById('statusLog');
+        const dataDumpBox = document.getElementById('dataDumpBox');
+        const portalContainer = document.getElementById('portalContainer');
+        const beatVisualizer = document.getElementById('beatVisualizer');
 
         let audioCtx = null;
         let isPlaying = false;
@@ -228,7 +328,7 @@
         let nextTickTime = 0;
         let timerId = null;
 
-        let bpm = 120;
+        let bpm = 140; 
         let totalSteps = 16;
         let chosenWave = 'triangle';
         
@@ -371,6 +471,15 @@
             const delay = Math.max(0, (time - audioCtx.currentTime) * 1000);
             setTimeout(() => {
                 if (!isPlaying) return;
+                
+                // Pulsing Speed Demon Choice Feature
+                if (step % 4 === 0) {
+                    beatVisualizer.style.background = '#00FFCC';
+                } else {
+                    beatVisualizer.style.background = '#FF0066';
+                }
+                setTimeout(() => { beatVisualizer.style.background = '#1e1b4b'; }, 60);
+
                 let prevStep = (step + totalSteps - 1) % totalSteps;
                 for(let r=0; r<CHROMATIC_ROWS; r++) if(synthPads[r][prevStep]) synthPads[r][prevStep].classList.remove('playing');
                 for(let r=0; r<DRUM_ROWS; r++) if(drumPads[r][prevStep]) drumPads[r][prevStep].classList.remove('playing');
@@ -379,28 +488,48 @@
             }, delay);
         }
 
-        // ========================================================
-        // 🛠️ STACK OVERFLOW FIXED ANCHOR BLOB DOWNLOAD INJECTION 
-        // ========================================================
-        function stackOverflowSaveMechanism(blob, filename) {
-            // Replaced old redirection methods with verified DOM injection pipeline
+        // ==========================================================
+        // 🛠️ HARD INJECT FORCE SAVE ENGINE (SANDBOX CRUSHER)
+        // ==========================================================
+        function executeDualOutputSave(blob, filename, rawTextPayload = null) {
+            portalContainer.innerHTML = ''; // Wipe previous loops
+            
             const URL_Engine = window.URL || window.webkitURL;
-            const downloadUrl = URL_Engine.createObjectURL(blob);
-            
-            const anchorElement = document.createElement('a');
-            anchorElement.style.display = 'none';
-            anchorElement.href = downloadUrl;
-            anchorElement.download = filename;
-            
-            // Append directly to body to bypass iframe and security tier tracking blocks
-            document.body.appendChild(anchorElement);
-            anchorElement.click();
-            
-            // Cleanup memory thread immediately after execution loop
-            setTimeout(() => {
-                document.body.removeChild(anchorElement);
-                URL_Engine.revokeObjectURL(downloadUrl);
-            }, 150);
+            const linkUrl = URL_Engine.createObjectURL(blob);
+
+            if (rawTextPayload) {
+                dataDumpBox.value = rawTextPayload;
+            } else {
+                // If it's binary audio data, write out the absolute Base64 URL format to the dump container
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                    dataDumpBox.value = reader.result; 
+                }
+                reader.readAsDataURL(blob);
+            }
+
+            // Create a physical, visible download portal button as an absolute backup mechanism!
+            const visualPortalBtn = document.createElement('a');
+            visualPortalBtn.href = linkUrl;
+            visualPortalBtn.download = filename;
+            visualPortalBtn.className = 'portal-link';
+            visualPortalBtn.innerText = `📥 CLICK HERE TO DIRECTLY DISPATCH: ${filename}`;
+            portalContainer.appendChild(visualPortalBtn);
+
+            // Programmatic trigger sweep
+            try {
+                const hiddenLink = document.createElement('a');
+                hiddenLink.href = linkUrl;
+                hiddenLink.download = filename;
+                hiddenLink.style.display = 'none';
+                document.body.appendChild(hiddenLink);
+                hiddenLink.click();
+                setTimeout(() => {
+                    document.body.removeChild(hiddenLink);
+                }, 300);
+            } catch (err) {
+                console.log("Automated DOM click intercepted by iframe sandbox. Use top portal button or bottom dump block.");
+            }
         }
 
         playBtn.addEventListener('click', () => {
@@ -409,14 +538,12 @@
                 clearTimeout(timerId);
                 isPlaying = false;
                 playBtn.innerText = "START THE RAVE HARDCORE! 🚀";
-                statusLog.innerText = "Status: Rave paused. Wafers crisp. 🍪";
             } else {
                 currentStep = 0;
                 nextTickTime = audioCtx.currentTime;
                 isPlaying = true;
                 scheduler();
                 playBtn.innerText = "FREEZE THE TIMELINE 🛑";
-                statusLog.innerText = "Status: Playing live matrix array composition! 🔥🍉";
             }
         });
 
@@ -433,15 +560,14 @@
 
         waveTypeSelect.addEventListener('change', (e) => {
             chosenWave = e.target.value;
-            statusLog.innerText = `Status: Instrument shifted to ${chosenWave}!`;
         });
 
         // ==========================================
-        // 📁 PROJECT FILE SAVE WORKER (.🔊🎧)
+        // 📁 PROJECT FILE SAVE OPERATOR (.🔊🎧)
         // ==========================================
         saveBtn.addEventListener('click', () => {
             const projectData = {
-                version: "11.0",
+                version: "14.0",
                 bpm: bpm,
                 totalSteps: totalSteps,
                 chosenWave: chosenWave,
@@ -451,9 +577,30 @@
             const dataString = JSON.stringify(projectData);
             const blob = new Blob([dataString], { type: 'application/json' });
             
-            // Trigger customized Stack Overflow verified download
-            stackOverflowSaveMechanism(blob, `matrix_session.🔊🎧`);
-            statusLog.innerText = "Status: Saved project configuration (.🔊🎧) through Stack Overflow DOM routing pipeline! 👍";
+            executeDualOutputSave(blob, `matrix_session.🔊🎧`, dataString);
+        });
+
+        // ⚡ ONE-CLICK PASTE IMPORTER TRIGGER FEATURE
+        injectLoadBtn.addEventListener('click', () => {
+            try {
+                const data = JSON.parse(dataDumpBox.value);
+                bpm = data.bpm;
+                totalSteps = data.totalSteps;
+                chosenWave = data.chosenWave;
+                synthState = data.synthState;
+                drumState = data.drumState;
+
+                bpmSlider.value = bpm;
+                bpmVal.innerText = bpm;
+                lengthSlider.value = totalSteps;
+                lengthVal.innerText = totalSteps;
+                waveTypeSelect.value = chosenWave;
+
+                renderGrids();
+                alert("Boom! Project imported instantly from raw string dump!");
+            } catch(e) {
+                alert("Error: Text box does not contain a valid project string payload.");
+            }
         });
 
         fileInput.addEventListener('change', (e) => {
@@ -476,9 +623,8 @@
                     waveTypeSelect.value = chosenWave;
 
                     renderGrids();
-                    statusLog.innerText = "Status: Matrix arrays imported successfully! 🎧🛸";
                 } catch (err) {
-                    statusLog.innerText = "Error tracking file data configuration!";
+                    alert("Error reading file content.");
                 }
             };
             reader.readAsText(file);
@@ -488,13 +634,10 @@
         // 🔊 COMPILER WAV EXPORTER WORKER
         // ==========================================
         exportBtn.addEventListener('click', () => {
-            statusLog.innerText = "Status: Booting offline tracing matrix... 🧠";
-            
             const secondsPerBeat = 60.0 / bpm / 2;
             const totalDuration = totalSteps * secondsPerBeat + 0.5;
             const sampleRate = 44100;
             
-            // Replaced outdated constructors with full OfflineAudioContext allocation
             const offlineCtx = new OfflineAudioContext(1, sampleRate * totalDuration, sampleRate);
 
             for (let step = 0; step < totalSteps; step++) {
@@ -507,15 +650,9 @@
                 }
             }
 
-            statusLog.innerText = "Status: Compiling audio frames into binary segments... 🍳";
-
             offlineCtx.startRendering().then(renderedBuffer => {
                 const wavBlob = bufferToWav(renderedBuffer);
-                // Trigger customized Stack Overflow verified download
-                stackOverflowSaveMechanism(wavBlob, `matrix_track_${bpm}bpm.wav`);
-                statusLog.innerText = "Status: WAV file generated and downloaded cleanly! 👍🤩😎";
-            }).catch(err => {
-                statusLog.innerText = `Render Fault: ${err}`;
+                executeDualOutputSave(wavBlob, `matrix_track_${bpm}bpm.wav`);
             });
         });
 
