@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v16.0 🥁</title>
+    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v17.0 🥁</title>
     <style>
         body {
             background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
@@ -107,7 +107,6 @@
             cursor: pointer;
             transition: all 0.05s ease;
         }
-        /* Color hooks */
         .pad.note-c0 { border-left: 3px solid #ff595e; }
         .pad.note-c5 { border-left: 3px solid #e2ca35; }
         .pad.note-c11 { border-left: 3px solid #35ad9e; }
@@ -156,6 +155,7 @@
         .btn-load { background: #8b5cf6; box-shadow: 0 4px 0 #6d28d9; position: relative; display: inline-block; }
         .btn-random { background: #eab308; box-shadow: 0 4px 0 #ca8a04; color: black; }
         .btn-inject-load { background: #d946ef; box-shadow: 0 4px 0 #a21caf; margin-top: 10px; }
+        .btn-mail { background: #ec4899; box-shadow: 0 4px 0 #be185d; }
         #fileInput { display: none; }
 
         .force-download-portal {
@@ -208,11 +208,11 @@
 </head>
 <body>
 
-    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v16.0 🥁</h1>
-    <p class="subtitle">🌴 CUSTOM NAMED TEMPLATES + STABLE LOCAL STORAGE MATRIX RECOVERY 🌴</p>
+    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v17.0 🥁</h1>
+    <p class="subtitle">🚀 LIVE URL MATRIX STATE SYNCING + EMAIL DISPATCH CHANNELS 🚀</p>
 
     <div class="hacker-panel" id="statusLog">
-        <div>📡 ENGINE OPERATIONAL: Ready to sequence, dump, and pack custom profiles.</div>
+        <div>📡 DISPATCH ENGINE ONLINE: Manipulating URL routing flags dynamically.</div>
         <div id="portalContainer" class="force-download-portal"></div>
     </div>
 
@@ -224,15 +224,14 @@
         <div class="control-group">
             <label for="templateSelect">🗂️ PRESET & CUSTOM TEMPLATES</label>
             <select id="templateSelect">
-                <option value="bossa" selected>Bossa Nova Template 🌴 (v15.0)</option>
-                <option value="empty">Empty Grid</option>
-                <!-- Custom templates will dynamically populate here -->
+                <option value="empty" selected>Empty Grid</option>
+                <option value="bossa">Bossa Nova Template 🌴 (v15.0)</option>
             </select>
         </div>
 
         <div class="control-group">
             <label for="templateNameInput">✍️ TEMPLATE NAME</label>
-            <input type="text" id="templateNameInput" value="My Epic Riff" style="max-width:140px;">
+            <input type="text" id="templateNameInput" value="My Saved Jam" style="max-width:140px;">
         </div>
         <button id="saveTemplateBtn" class="btn-save" style="background:#06b6d4; box-shadow:0 4px 0 #0891b2;">SAVE TEMPLATE TO STORAGE 🧠</button>
 
@@ -268,6 +267,8 @@
             LOAD PROJECT 📂
             <input type="file" id="fileInput" accept=".🔊🎧">
         </label>
+
+        <button id="mailBtn" class="btn-mail">📧 MAIL BEAT TO FRIENDS</button>
     </div>
 
     <div class="workspace">
@@ -307,6 +308,7 @@
         const dataDumpBox = document.getElementById('dataDumpBox');
         const portalContainer = document.getElementById('portalContainer');
         const beatVisualizer = document.getElementById('beatVisualizer');
+        const mailBtn = document.getElementById('mailBtn');
 
         let audioCtx = null;
         let isPlaying = false;
@@ -333,11 +335,66 @@
 
         const bossaNovaInitial = [[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false],[true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]];
 
+        function setGridToEmpty() {
+            synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
+            drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
+        }
+
         function loadInitialBossa() {
+            setGridToEmpty();
             for(let r=0; r<CHROMATIC_ROWS; r++) {
                 for(let c=0; c<32; c++) {
                     synthState[r][c] = bossaNovaInitial[r][c];
                 }
+            }
+        }
+
+        // 🚀 URL SERIALIZATION PACKAGER & STATE MUTATOR
+        function compileCurrentStateToJSONString() {
+            const packageObj = {
+                version: "17.0",
+                bpm: bpm,
+                totalSteps: totalSteps,
+                chosenWave: chosenWave,
+                synthState: synthState,
+                drumState: drumState
+            };
+            return JSON.stringify(packageObj);
+        }
+
+        function updateURLState() {
+            const rawJSONString = compileCurrentStateToJSONString();
+            const base64EncodedPayload = btoa(encodeURIComponent(rawJSONString));
+            
+            // Re-route matrix handle to explicitly support your production landing directory target!
+            const targetBaseURL = "https://doggodgcodes.github.io/ai/music-maker/";
+            const absoluteTrackURL = `${targetBaseURL}?song=${base64EncodedPayload}`;
+            
+            // Safely alter local tab view address stack window
+            window.history.replaceState(null, "", `?song=${base64EncodedPayload}`);
+            
+            // Push matching compilation signature string directly down into recovery block
+            dataDumpBox.value = rawJSONString;
+            return absoluteTrackURL;
+        }
+
+        function extractAndApplyURLState() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedSong = urlParams.get('song');
+            
+            if (encodedSong) {
+                try {
+                    const decodedJSONString = decodeURIComponent(atob(encodedSong));
+                    parseAndApplyString(decodedJSONString, false); // Block loops from triggering on launch
+                    statusLog.innerHTML = "🔗 MATRIX RECOVERY SUCCESSFUL: Injected array states from URL arguments!";
+                } catch (err) {
+                    console.error("URL package extraction fault: ", err);
+                    setGridToEmpty();
+                }
+            } else {
+                // If there is no data in the URL, strictly fallback to the completely blank grid!
+                setGridToEmpty();
+                statusLog.innerHTML = "🧹 BLANK INITIALIZATION: URL payload not detected. Fresh board deployed.";
             }
         }
 
@@ -358,6 +415,7 @@
                         synthState[r][c] = !synthState[r][c];
                         pad.classList.toggle('active');
                         if (synthState[r][c] && audioCtx) playSynthTone(FREQS[r], audioCtx.currentTime, audioCtx);
+                        updateURLState(); // Trigger live address updating!
                     });
                     synthContainer.appendChild(pad);
                     synthPads[r][c] = pad;
@@ -376,6 +434,7 @@
                         drumState[r][c] = !drumState[r][c];
                         pad.classList.toggle('active');
                         if (drumState[r][c] && audioCtx) triggerDrumSound(r, audioCtx.currentTime, audioCtx);
+                        updateURLState(); // Trigger live address updating!
                     });
                     drumContainer.appendChild(pad);
                     drumPads[r][c] = pad;
@@ -510,15 +569,15 @@
                 hiddenLink.click();
                 setTimeout(() => { document.body.removeChild(hiddenLink); }, 300);
             } catch (err) {
-                console.log("Automated download skipped inside sandbox.");
+                console.log("Automated download skipped inside sandboxed viewport.");
             }
         }
 
-        // LOCAL STORAGE CUSTOM TEMPLATE MODULE
+        // LOCAL STORAGE ENGINE UPDATES
         function updateTemplateDropdown() {
             templateSelect.innerHTML = `
-                <option value="bossa">Bossa Nova Template 🌴 (v15.0)</option>
                 <option value="empty">Empty Grid</option>
+                <option value="bossa">Bossa Nova Template 🌴 (v15.0)</option>
             `;
             const keys = Object.keys(localStorage);
             keys.forEach(key => {
@@ -543,50 +602,60 @@
             };
             localStorage.setItem(`matrix_tpl_${tplName}`, JSON.stringify(templateData));
             updateTemplateDropdown();
-            statusLog.innerHTML = `🧠 Saved custom template "${tplName}" to Local Storage!`;
+            updateURLState(); // Trigger state update
+            statusLog.innerHTML = `🧠 Saved template "${tplName}" to Local Storage!`;
         });
 
         templateSelect.addEventListener('change', (e) => {
             const val = e.target.value;
             if (val === 'empty') {
-                synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
-                drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
+                setGridToEmpty();
                 renderGrids();
-                statusLog.innerHTML = "🧹 Cleared viewport array.";
+                updateURLState();
+                statusLog.innerHTML = "🧹 Grid cleared to blank slate.";
             } else if (val === 'bossa') {
                 loadInitialBossa();
                 renderGrids();
+                updateURLState();
                 statusLog.innerHTML = "🌴 Loaded preset Bossa Nova Template!";
             } else if (val.startsWith('matrix_tpl_')) {
                 const dataStr = localStorage.getItem(val);
-                if (dataStr) parseAndApplyString(dataStr);
+                if (dataStr) {
+                    parseAndApplyString(dataStr, true);
+                }
             }
         });
 
-        // FIXED FILE SAVING SYSTEM (Name input control without changing the file extension)
+        // 📧 MAILTO DISPATCH CORE
+        mailBtn.addEventListener('click', () => {
+            const generatedTrackURL = updateURLState();
+            const emailSubject = encodeURIComponent("🚨 BOOGIE BEAT DISPATCH FROM DOGGODGCODES! 🚨");
+            const emailBody = encodeURIComponent(
+                "WUSUUUUUU Friend!!! 🦍🎩\n\n" +
+                "Check out this absolute custom audio layout matrix track I just coded using the 24-tone chromatic sequencer engine!\n\n" +
+                "🎛️ PLAY THE SONG INSTANTLY IN YOUR BROWSER:\n" + generatedTrackURL + "\n\n" +
+                "Keep the internet silly and stay chilly! 🧊🍌\n- doggodgcodes"
+            );
+            
+            window.location.href = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+        });
+
+        // FILE DISPATCH WITH LOCKED EXTENSION
         saveBtn.addEventListener('click', () => {
             let rawName = fileNameInput.value.trim() || "matrix_session";
-            // Strip out any manually typed extension strings to prevent tampering
             if (rawName.endsWith('.🔊🎧')) {
                 rawName = rawName.substring(0, rawName.length - 4);
             }
             const finalFilename = `${rawName}.🔊🎧`;
-
-            const projectData = {
-                version: "16.0",
-                bpm: bpm,
-                totalSteps: totalSteps,
-                chosenWave: chosenWave,
-                synthState: synthState,
-                drumState: drumState
-            };
-            const dataString = JSON.stringify(projectData);
+            const dataString = compileCurrentStateToJSONString();
             const blob = new Blob([dataString], { type: 'application/json' });
+            
             executeDualOutputSave(blob, finalFilename, dataString);
+            updateURLState();
             statusLog.innerHTML = `💾 Exported configuration package as: ${finalFilename}`;
         });
 
-        function parseAndApplyString(jsonString) {
+        function parseAndApplyString(jsonString, triggerUrlRewrite = true) {
             try {
                 const data = JSON.parse(jsonString);
                 bpm = data.bpm || 140;
@@ -602,13 +671,14 @@
                 waveTypeSelect.value = chosenWave;
 
                 renderGrids();
-                statusLog.innerHTML = "✅ Matrix compilation parsed perfectly!";
+                if (triggerUrlRewrite) updateURLState();
+                statusLog.innerHTML = "✅ Matrix data stream parsed successfully!";
             } catch(e) {
-                alert("Error reading structural payload.");
+                alert("Error reading structural parameters.");
             }
         }
 
-        // Everything else remains untouched & stable
+        // CONTROL GROUP HANDLERS
         randomBtn.addEventListener('click', () => {
             for (let r = 0; r < CHROMATIC_ROWS; r++) {
                 for (let c = 0; c < 32; c++) synthState[r][c] = Math.random() < 0.12;
@@ -617,6 +687,7 @@
                 for (let c = 0; c < 32; c++) drumState[r][c] = Math.random() < 0.22;
             }
             renderGrids();
+            updateURLState();
         });
 
         playBtn.addEventListener('click', () => {
@@ -634,22 +705,81 @@
             }
         });
 
-        bpmSlider.addEventListener('input', (e) => { bpm = parseInt(e.target.value); bpmVal.innerText = bpm; });
-        lengthSlider.addEventListener('input', (e) => { totalSteps = parseInt(e.target.value); lengthVal.innerText = totalSteps; renderGrids(); });
-        waveTypeSelect.addEventListener('change', (e) => { chosenWave = e.target.value; });
-        injectLoadBtn.addEventListener('click', () => { parseAndApplyString(dataDumpBox.value); });
+        bpmSlider.addEventListener('input', (e) => { bpm = parseInt(e.target.value); bpmVal.innerText = bpm; updateURLState(); });
+        lengthSlider.addEventListener('input', (e) => { totalSteps = parseInt(e.target.value); lengthVal.innerText = totalSteps; renderGrids(); updateURLState(); });
+        waveTypeSelect.addEventListener('change', (e) => { chosenWave = e.target.value; updateURLState(); });
+        injectLoadBtn.addEventListener('click', () => { parseAndApplyString(dataDumpBox.value, true); });
+        
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = function(event) { parseAndApplyString(event.target.result); };
+            reader.onload = function(event) { parseAndApplyString(event.target.result, true); };
             reader.readAsText(file);
         });
 
-        // Initialization
-        loadInitialBossa();
+        exportBtn.addEventListener('click', () => {
+            const secondsPerBeat = 60.0 / bpm / 2;
+            const totalDuration = totalSteps * secondsPerBeat + 0.5;
+            const sampleRate = 44100;
+            const offlineCtx = new OfflineAudioContext(1, sampleRate * totalDuration, sampleRate);
+
+            for (let step = 0; step < totalSteps; step++) {
+                let stepTime = step * secondsPerBeat;
+                for (let r = 0; r < CHROMATIC_ROWS; r++) {
+                    if (synthState[r][step]) playSynthTone(FREQS[r], stepTime, offlineCtx);
+                }
+                for (let r = 0; r < DRUM_ROWS; r++) {
+                    if (drumState[r][step]) triggerDrumSound(r, stepTime, offlineCtx);
+                }
+            }
+
+            offlineCtx.startRendering().then(renderedBuffer => {
+                const wavBlob = bufferToWav(renderedBuffer);
+                executeDualOutputSave(wavBlob, `matrix_track_${bpm}bpm.wav`);
+            });
+        });
+
+        function bufferToWav(buffer) {
+            let numOfChan = buffer.numberOfChannels,
+                length = buffer.length * numOfChan * 2 + 44,
+                bufferArr = new ArrayBuffer(length),
+                view = new DataView(bufferArr),
+                channels = [], i, sample, offset = 0, pos = 0;
+
+            setUint32(0x46464952); // "RIFF"
+            setUint32(length - 8); 
+            setUint32(0x45564157); // "WAVE"
+            setUint32(0x20746d66); // "fmt "
+            setUint32(16); 
+            setUint16(1); 
+            setUint16(numOfChan);
+            setUint32(buffer.sampleRate);
+            setUint32(buffer.sampleRate * 2 * numOfChan);
+            setUint16(numOfChan * 2); 
+            setUint16(16); 
+            setUint32(0x61746164); // "data"
+            setUint32(length - pos - 4);
+
+            for (i = 0; i < buffer.numberOfChannels; i++) channels.push(buffer.getChannelData(i));
+
+            while (pos < length) {
+                for (i = 0; i < numOfChan; i++) {
+                    sample = Math.max(-1, Math.min(1, channels[i][offset])); 
+                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF; 
+                    view.setInt16(pos, sample, true);
+                    pos += 2;
+                }
+                offset++;
+            }
+            return new Blob([bufferArr], { type: 'audio/wav' });
+            function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
+            function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
+        }
+
+        // INITIAL RUN CORE: Extracting URL strings or dumping to empty!
         updateTemplateDropdown();
-        renderGrids();
+        extractAndApplyURLState();
     </script>
 </body>
 </html>
