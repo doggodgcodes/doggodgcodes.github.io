@@ -2,186 +2,309 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>🎹 ULTRA RAVE BEATBOX MATRIX 🎹</title>
+    <title>🎹 CHROME LAB x FL STUDIO MATRIX 🥁</title>
     <style>
         body {
-            background: linear-gradient(135deg, #003366, #660099);
+            background: linear-gradient(180deg, #0f172a, #1e1b4b);
             color: #fff;
-            font-family: 'Comic Sans MS', 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             padding: 20px;
-            overflow-x: hidden;
+            margin: 0;
         }
         h1 {
             color: #00FFCC;
             text-shadow: 3px 3px 0px #FF0066;
-            font-size: 3rem;
-            animation: bounce 0.5s infinite alternate;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
         }
-        .matrix-container {
+        .subtitle {
+            color: #ffb703;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 15px 0 5px 0;
+            color: #a5b4fc;
+        }
+        /* Grid Arrangements */
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(8, 60px);
-            gap: 8px;
+            grid-template-columns: repeat(8, 55px);
+            gap: 6px;
             justify-content: center;
-            margin: 30px auto;
-            background: rgba(0,0,0,0.6);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px #FF6600;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #334155;
             width: fit-content;
+            margin: 0 auto 20px auto;
         }
         .pad {
-            width: 60px;
-            height: 60px;
-            background-color: #333;
-            border: 3px solid #555;
-            border-radius: 10px;
+            width: 55px;
+            height: 40px;
+            background-color: #334155;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.1s ease;
+            transition: transform 0.05s ease, background-color 0.1s ease;
         }
-        .pad.active {
-            background-color: #FFFF00 !important; /* CHEESY MUSTARD YELLOW! */
-            box-shadow: 0 0 15px #FFFF00;
-            transform: scale(0.95);
+        /* Chrome Music Lab Inspired Pastel Rainbow Row Colors */
+        .pad.row-0 { border-left: 5px solid #ff4d6d; }
+        .pad.row-1 { border-left: 5px solid #ff758f; }
+        .pad.row-2 { border-left: 5px solid #ff97b7; }
+        .pad.row-3 { border-left: 5px solid #ffb3c6; }
+        .pad.row-4 { border-left: 5px solid #90e0ef; }
+        .pad.row-5 { border-left: 5px solid #00b4d8; }
+        .pad.row-6 { border-left: 5px solid #0077b6; }
+        .pad.row-7 { border-left: 5px solid #03045e; }
+
+        /* Drum Sequencer Styling */
+        .drum-container {
+            display: grid;
+            grid-template-columns: repeat(8, 55px);
+            gap: 6px;
+            justify-content: center;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid #ffaa00;
+            width: fit-content;
+            margin: 0 auto 25px auto;
         }
-        .pad.playing {
-            border-color: #00FF00;
-            box-shadow: 0 0 20px #00FF00;
+        .drum-pad {
+            width: 55px;
+            height: 45px;
+            background-color: #1e293b;
+            border: 2px solid #475569;
+            border-radius: 6px;
+            cursor: pointer;
         }
+        .drum-pad.kick-row { border-bottom: 4px solid #ef4444; }
+        .drum-pad.snare-row { border-bottom: 4px solid #3b82f6; }
+        .drum-pad.hihat-row { border-bottom: 4px solid #eab308; }
+
+        /* Shared Interactive Classes */
+        .pad.active, .drum-pad.active {
+            background-color: #00ffcc !important;
+            box-shadow: 0 0 12px #00ffcc;
+        }
+        .pad.playing, .drum-pad.playing {
+            filter: brightness(1.6);
+            transform: scale(1.05);
+        }
+
+        /* Dashboard Interface Controls */
         .controls {
-            margin-top: 20px;
+            margin: 20px 0;
         }
         button {
-            background: #FF6600;
+            background: #ff6b6b;
             color: white;
             border: none;
-            padding: 15px 30px;
-            font-size: 1.5rem;
+            padding: 12px 35px;
+            font-size: 1.2rem;
             font-weight: bold;
-            border-radius: 50px;
+            border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 5px 0 #993300;
-            text-shadow: 1px 1px 0px #000;
+            box-shadow: 0 4px 0 #c92a2a;
+            transition: all 0.1s;
         }
         button:active {
-            transform: translateY(5px);
+            transform: translateY(4px);
             box-shadow: none;
         }
-        .log-box {
-            margin-top: 20px;
-            font-family: monospace;
-            color: #FF00FF;
-            font-size: 1.2rem;
+        .hacker-panel {
+            font-family: 'Courier New', monospace;
+            color: #38bdf8;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <h1>🚨 ULTRA RAVE BEATBOX MATRIX v6.0 🚨</h1>
-    <p>Tap the pads to load your creamy peanut butter frequencies, then smash PLAY! 🥜🎸</p>
+    <h1>🎹 CHROME LAB x FL STUDIO MATRIX 🥁</h1>
+    <p class="subtitle">Draw your melody notes on top, layout your drum kicks and snares below! 🚀🍕</p>
 
-    <div class="matrix-container" id="matrix"></div>
+    <div class="section-title">🎵 CHROMATIC SYNTH MAKER (Chrome Lab Style)</div>
+    <div class="grid-container" id="synthGrid"></div>
+
+    <div class="section-title">🥁 FL STUDIO STEP SEQUENCER (KICK, SNARE, HI-HAT)</div>
+    <div class="drum-container" id="drumGrid"></div>
 
     <div class="controls">
-        <button id="playBtn">START THE RAVE HARDCORE! 🚀</button>
+        <button id="playBtn">LAUNCH THE BEAT INVASION ⚡</button>
     </div>
 
-    <div class="log-box" id="hackerLog">Hacker log: Standing by for crazy wafers... 📡</div>
+    <div class="hacker-panel" id="statusLog">Status: Synthesizers primed. Ready to boogie woogie... 🧠</div>
 
     <script>
-        // 🛠️ THE AUDIO ENGINE MATRIX
-        const matrixContainer = document.getElementById('matrix');
+        const synthContainer = document.getElementById('synthGrid');
+        const drumContainer = document.getElementById('drumGrid');
         const playBtn = document.getElementById('playBtn');
-        const logBox = document.getElementById('hackerLog');
-        
+        const statusLog = document.getElementById('statusLog');
+
         let audioCtx = null;
         let isPlaying = false;
         let currentStep = 0;
-        let intervalId = null;
+        let loopInterval = null;
 
-        const ROWS = 4; // 4 Sweet musical cookbook rows (frequencies)
-        const COLS = 8; // 8 Speed pads columns (tempo steps)
-        const FREQS = [523.25, 440.00, 349.23, 261.63]; // C5, A4, F4, C4 (Epic gamer scale)
-        const COLORS = ["#FF3366", "#FF6600", "#00FFCC", "#3333FF"];
+        const STEPS = 8;
+        const SYNTH_ROWS = 8; // 8 pitch levels
+        const DRUM_ROWS = 3;  // Kick, Snare, Hi-hat
 
-        // 🧱 BUILD THE RADICAL PAD GRID
-        const gridState = Array(ROWS).fill().map(() => Array(COLS).fill(false));
-        const padElements = [];
+        // Pentatonic/Chromatic Fusion Scale Notes (Higher to Lower)
+        const FREQS = [523.25, 493.88, 440.00, 392.00, 349.23, 329.63, 293.66, 261.63]; 
 
-        for (let r = 0; r < ROWS; r++) {
-            padElements[r] = [];
-            for (let c = 0; c < COLS; c++) {
+        // Storage Matrix States
+        const synthState = Array(SYNTH_ROWS).fill().map(() => Array(STEPS).fill(false));
+        const drumState = Array(DRUM_ROWS).fill().map(() => Array(STEPS).fill(false));
+
+        const synthPads = [];
+        const drumPads = [];
+
+        // 🛠️ GENERATE CHROME MUSIC LAB MELODY GRID
+        for (let r = 0; r < SYNTH_ROWS; r++) {
+            synthPads[r] = [];
+            for (let c = 0; c < STEPS; c++) {
                 const pad = document.createElement('div');
-                pad.classList.add('pad');
-                pad.style.backgroundColor = COLORS[r];
-                
+                pad.classList.add('pad', `row-${r}`);
                 pad.addEventListener('click', () => {
-                    gridState[r][c] = !gridState[r][c];
+                    synthState[r][c] = !synthState[r][c];
                     pad.classList.toggle('active');
-                    logBox.innerText = `🚨 BONK! Toggled Pad Row ${r+1}, Step ${c+1}!`;
+                    if(synthState[r][c]) playSynthTone(FREQS[r]);
                 });
-                
-                matrixContainer.appendChild(pad);
-                padElements[r][c] = pad;
+                synthContainer.appendChild(pad);
+                synthPads[r][c] = pad;
             }
         }
 
-        // 🎵 BEEP BLOOP SYNTH SOUND GENERATOR
-        function playTone(freq) {
+        // 🛠️ GENERATE FL STUDIO DRUM TRACKS
+        const drumRowClasses = ['kick-row', 'snare-row', 'hihat-row'];
+        for (let r = 0; r < DRUM_ROWS; r++) {
+            drumPads[r] = [];
+            for (let c = 0; c < STEPS; c++) {
+                const pad = document.createElement('div');
+                pad.classList.add('drum-pad', drumRowClasses[r]);
+                pad.addEventListener('click', () => {
+                    drumState[r][c] = !drumState[r][c];
+                    pad.classList.toggle('active');
+                    if(drumState[r][c]) triggerDrumSound(r);
+                });
+                drumContainer.appendChild(pad);
+                drumPads[r][c] = pad;
+            }
+        }
+
+        // 🔊 INSTRUMENT SOURCE: NATIVE CHROMATIC TRIANGLE WAVE
+        function playSynthTone(freq) {
             if (!audioCtx) return;
-            
             const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
+            const gain = audioCtx.createGain();
             
-            osc.type = 'triangle'; // Smooth retro Windows Vista media player skin vibes!
+            osc.type = 'triangle'; // Chrome Music Lab default instrument emulation vibe
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
             
-            gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+            gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
             
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.3);
+            osc.stop(audioCtx.currentTime + 0.35);
         }
 
-        // 🏎️ TIMING ENGINE LOOP
-        function nextStep() {
-            // Remove the glowing green playbar helper from previous step
-            for (let r = 0; r < ROWS; r++) {
-                padElements[r][(currentStep + COLS - 1) % COLS].classList.remove('playing');
-            }
+        // 🥁 NATIVE WEB AUDIO DRUM SYNTHESIZERS (NO AUDIO FILES REQUIRED!)
+        function triggerDrumSound(rowType) {
+            if (!audioCtx) return;
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
 
-            // Light up the current step and strike the synth nodes!
-            for (let r = 0; r < ROWS; r++) {
-                padElements[r][currentStep].classList.add('playing');
-                if (gridState[r][currentStep]) {
-                    playTone(FREQS[r]);
-                }
+            if (rowType === 0) { // 🚨 DEEP TRAP 808 KICK
+                osc.frequency.setValueAtTime(150, now);
+                osc.frequency.exponentialRampToValueAtTime(0.01, now + 0.15);
+                gain.gain.setValueAtTime(0.6, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.2);
+                osc.start(now);
+                osc.stop(now + 0.2);
+            } 
+            else if (rowType === 1) { // 💥 CRISPY FL STUDIO SNARE
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(180, now);
+                gain.gain.setValueAtTime(0.3, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                
+                // Noise injection clone for the snare snap
+                const bufferSize = audioCtx.sampleRate * 0.1;
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
+                const noise = audioCtx.createBufferSource();
+                noise.buffer = buffer;
+                const noiseGain = audioCtx.createGain();
+                noiseGain.gain.setValueAtTime(0.2, now);
+                noiseGain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                noise.connect(noiseGain);
+                noiseGain.connect(audioCtx.destination);
+                
+                osc.start(now);
+                osc.stop(now + 0.12);
+                noise.start(now);
+                noise.stop(now + 0.1);
+            } 
+            else if (rowType === 2) { // ⚡ METALLIC CHILL HI-HAT
+                // High frequency burst emulation
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(10000, now);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+                osc.start(now);
+                osc.stop(now + 0.05);
             }
-
-            currentStep = (currentStep + 1) % COLS;
         }
 
-        // 🎛️ PLAY/PAUSE CONTROLLER INTERRUPT
+        // 🏎️ CENTRAL CLOCK SEQUENCER STEPPERS
+        function playEngineLoop() {
+            let prevStep = (currentStep + STEPS - 1) % STEPS;
+
+            // Remove previous marker classes
+            for (let r = 0; r < SYNTH_ROWS; r++) synthPads[r][prevStep].classList.remove('playing');
+            for (let r = 0; r < DRUM_ROWS; r++) drumPads[r][prevStep].classList.remove('playing');
+
+            // Inject playhead position animations
+            for (let r = 0; r < SYNTH_ROWS; r++) {
+                synthPads[r][currentStep].classList.add('playing');
+                if (synthState[r][currentStep]) playSynthTone(FREQS[r]);
+            }
+            for (let r = 0; r < DRUM_ROWS; r++) {
+                drumPads[r][currentStep].classList.add('playing');
+                if (drumState[r][currentStep]) triggerDrumSound(r);
+            }
+
+            currentStep = (currentStep + 1) % STEPS;
+        }
+
+        // 🎛️ PLAY/PAUSE ROUTINE INTERRUPT
         playBtn.addEventListener('click', () => {
-            // Initialize Audio Content upon user interaction (Chrome/Firefox safety law!)
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
             if (isPlaying) {
-                clearInterval(intervalId);
+                clearInterval(loopInterval);
                 isPlaying = false;
-                playBtn.innerText = "START THE RAVE HARDCORE! 🚀";
-                logBox.innerText = "Hacker log: Rave paused. Cheezburger cooling down. 🍔";
+                playBtn.innerText = "LAUNCH THE BEAT INVASION ⚡";
+                statusLog.innerText = "Status: Track frozen. Engine cooling down... 🍔";
             } else {
                 currentStep = 0;
-                intervalId = setInterval(nextStep, 180); // 180ms per step = absolute breakcore zoomies!
+                loopInterval = setInterval(playEngineLoop, 140); // Fast pacing electronic bounce!
                 isPlaying = true;
-                playBtn.innerText = "STOP THE INVASION! 🛑";
-                logBox.innerText = "WHOOP WHOOP! 🎶Whopper Whopper🎶 engine activated!";
+                playBtn.innerText = "FREEZE THE TIMELINE 🛑";
+                statusLog.innerText = "Status: PLAYING COMPOSITION! Bytebeats are cooking hard! 🔥🍉";
             }
         });
     </script>
