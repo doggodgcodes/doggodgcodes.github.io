@@ -360,38 +360,63 @@
             });
         }
 
-        function updateURLState() {
-            const rawJSONString = compileCurrentStateToJSONString();
-            const base64EncodedPayload = btoa(encodeURIComponent(rawJSONString));
-            
-            const targetBaseURL = "https://doggodgcodes.github.io/ai/music-maker/";
-            const absoluteTrackURL = `${targetBaseURL}?song=${base64EncodedPayload}`;
-            
-            window.history.replaceState(null, "", `?song=${base64EncodedPayload}`);
-            
-            // Default recovery dump behavior
-            dataDumpBox.value = rawJSONString;
-            return absoluteTrackURL;
-        }
+        // Add this to your <script> section to handle compression
+// If you don't want external libs, we use a simple bit-packing method!
 
-        function extractAndApplyURLState() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const encodedSong = urlParams.get('song');
-            
-            if (encodedSong) {
-                try {
-                    const decodedJSONString = decodeURIComponent(atob(encodedSong));
-                    parseAndApplyString(decodedJSONString, false);
-                    statusLog.innerHTML = "🔗 MATRIX RECOVERY SUCCESSFUL: Injected array states from URL arguments!";
-                } catch (err) {
-                    console.error("URL package extraction fault: ", err);
-                    setGridToEmpty();
-                }
-            } else {
-                setGridToEmpty();
-                statusLog.innerHTML = "🧹 BLANK INITIALIZATION: URL payload not detected. Fresh board deployed.";
-            }
-        }
+function packMatrix(state) {
+    // Converts the true/false grid into a compact string of numbers
+    return state.map(row => {
+        let bitstring = row.map(cell => cell ? '1' : '0').join('');
+        return parseInt(bitstring, 2).toString(36); // Base36 is shorter!
+    }).join(',');
+}
+
+function unpackMatrix(packedString, rows, cols) {
+    let rowsData = packedString.split(',');
+    return rowsData.map(rowData => {
+        let bits = parseInt(rowData, 36).toString(2).padStart(cols, '0');
+        return bits.split('').map(b => b === '1');
+    });
+}
+
+// 🔄 YOUR NEW UPDATE URL LOGIC
+function updateURLState() {
+    const compactData = {
+        b: bpm,
+        s: totalSteps,
+        w: chosenWave,
+        syn: packMatrix(synthState),
+        drm: packMatrix(drumState)
+    };
+    
+    // Use Base64 but on a much smaller object!
+    const payload = btoa(JSON.stringify(compactData));
+    window.history.replaceState(null, "", `?s=${payload}`);
+    
+    return window.location.href;
+}
+
+// 🕵️‍♂️ YOUR NEW EXTRACTION LOGIC
+function extractAndApplyURLState() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const s = urlParams.get('s');
+    if (!s) return setGridToEmpty();
+
+    try {
+        const data = JSON.parse(atob(s));
+        bpm = data.b;
+        totalSteps = data.s;
+        chosenWave = data.w;
+        synthState = unpackMatrix(data.syn, CHROMATIC_ROWS, totalSteps);
+        drumState = unpackMatrix(data.drm, DRUM_ROWS, totalSteps);
+        
+        renderGrids();
+        statusLog.innerHTML = "🔗 COMPRESSION RECOVERY SUCCESSFUL!";
+    } catch (e) {
+        console.error("Link corrupted!", e);
+        setGridToEmpty();
+    }
+}
 
         function renderGrids() {
             synthContainer.innerHTML = '';
