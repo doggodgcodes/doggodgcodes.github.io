@@ -218,6 +218,7 @@
 
     <div class="visualizer-bar" id="beatVisualizer"></div>
 
+    <!-- Dashboard or Main Bar -->
     <div class="dashboard">
         <button id="playBtn">START THE RAVE HARDCORE! 🚀</button>
         
@@ -255,7 +256,28 @@
         </div>
 
         <button id="randomBtn" class="btn-random">🎲 RANDOM BEAT GENERATOR</button>
-        <button id="exportBtn" class="btn-export">EXPORT TO .WAV 💾</button>
+        
+        <!-- 🎙️ THE MULTI-FORMAT EXPORT MATRIX SQUEEZED RIGHT HERE -->
+        <div class="control-group" style="margin-top: 10px;">
+            <label for="exportFormat">📦 EXPORT FORMAT</label>
+            <select id="exportFormat" style="background: #000; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 5px; font-weight: bold;">
+                <option value="wav">Lossless WAV 🦴</option>
+                <option value="mp3">Gamer MP3 🎛️</option>
+                <option value="m4a">Mobile M4A 📱</option>
+            </select>
+        </div>
+        <button id="exportBtn" class="btn-export">EXPORT BANGER 💾</button>
+        
+        <!-- 🎁 BONUS FEATURE: RANDOM CHAOS PENTATONIC JAMMER -->
+        <button id="bonusChaosBtn" style="background: linear-gradient(45deg, #ff007f, #7f00ff); color: white; border: none; padding: 12px 22px; font-weight: bold; border-radius: 25px; cursor: pointer; margin-top: 5px;">🎲 RANDOM CHAOS JAM</button>
+        
+        <!-- 📊 THE VOLUME VISUALIZER CANVAS DROPPED STRAIGHT INTO THE MATRIX -->
+        <div class="control-group" style="margin-top: 10px;">
+            <label>🔊 LIVE VOLUME WAVE</label>
+            <canvas id="visualizerCanvas" width="160" height="40" style="background: #111; border: 1px solid #00ffcc; border-radius: 5px; display: block; margin-top: 4px;"></canvas>
+        </div>
+
+        <div id="exportStatus" style="color: #00ffcc; font-family: monospace; font-size: 11px; margin-top: 5px;">Ready! 🎸</div>
         
         <div class="control-group">
             <label for="fileNameInput">📁 FILE NAME</label>
@@ -263,13 +285,13 @@
         </div>
         <button id="saveBtn" class="btn-save">SAVE PROJECT FILE 📁</button>
         
-        <label class="btn-load" style="padding: 12px 22px; font-weight: bold; border-radius: 25px; cursor: pointer;">
+        <label class="btn-load" style="padding: 12px 22px; font-weight: bold; border-radius: 25px; cursor: pointer; display: inline-block; text-align: center; margin-top: 5px;">
             LOAD PROJECT 📂
-            <input type="file" id="fileInput" accept=".🔊🎧">
+            <input type="file" id="fileInput" accept=".🔊🎧" style="display: none;">
         </label>
 
         <button id="mailBtn" class="btn-mail">📧 MAIL BEAT TO FRIENDS</button>
-    </div>
+</div>
 
     <div class="workspace">
         <div class="section-title">🎵 24-TONE TWO-OCTAVE CHROMATIC PITCH MATRIX</div>
@@ -310,7 +332,17 @@
         const beatVisualizer = document.getElementById('beatVisualizer');
         const mailBtn = document.getElementById('mailBtn');
 
-        let audioCtx = null;
+        // 🎛️ DECLARE THE AUDIO CONTEXT AND MASTER NODES AT THE TOP OF YOUR LOGIC
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+// 👑 THIS IS YOUR MAIN GAIN NODE (The Master Volume Slider of the Universe!)
+const mainGainNode = audioCtx.createGain();
+
+// 🎚️ SET THE INITIAL VOLUME SETTING (So it hits just fine, not too loud!)
+mainGainNode.gain.setValueAtTime(0.3, audioCtx.currentTime); 
+
+// 🔌 CONNECT THE MAIN GAIN NODE DIRECTLY TO THE SPEAKERS
+mainGainNode.connect(audioCtx.destination);
         let isPlaying = false;
         let currentStep = 0;
         let nextTickTime = 0;
@@ -335,6 +367,9 @@
 
         const bossaNovaInitial = [[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false],[true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]];
 
+
+
+        
         function setGridToEmpty() {
             synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
             drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
@@ -725,6 +760,7 @@ function extractAndApplyURLState() {
                 clearTimeout(timerId);
                 isPlaying = false;
                 playBtn.innerText = "START THE RAVE HARDCORE! 🚀";
+                setupVisualizer(audioCtx, mainGainNode)
             } else {
                 currentStep = 0;
                 nextTickTime = audioCtx.currentTime;
@@ -769,42 +805,184 @@ function extractAndApplyURLState() {
             });
         });
 
-        function bufferToWav(buffer) {
-            let numOfChan = buffer.numberOfChannels,
-                length = buffer.length * numOfChan * 2 + 44,
-                bufferArr = new ArrayBuffer(length),
-                view = new DataView(bufferArr),
-                channels = [], i, sample, offset = 0, pos = 0;
+// 📦 LOAD FFmpeg ASYNCHRONOUSLY
+const { createFFmpeg, fetchFile } = FFmpeg;
+const ffmpeg = createFFmpeg({ log: false });
 
-            setUint32(0x46464952); // "RIFF"
-            setUint32(length - 8); 
-            setUint32(0x45564157); // "WAVE"
-            setUint32(0x20746d66); // "fmt "
-            setUint32(16); 
-            setUint16(1); 
-            setUint16(numOfChan);
-            setUint32(buffer.sampleRate);
-            setUint32(buffer.sampleRate * 2 * numOfChan);
-            setUint16(numOfChan * 2); 
-            setUint16(16); 
-            setUint32(0x61746164); // "data"
-            setUint32(length - pos - 4);
-
-            for (i = 0; i < buffer.numberOfChannels; i++) channels.push(buffer.getChannelData(i));
-
-            while (pos < length) {
-                for (i = 0; i < numOfChan; i++) {
-                    sample = Math.max(-1, Math.min(1, channels[i][offset])); 
-                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF; 
-                    view.setInt16(pos, sample, true);
-                    pos += 2;
-                }
-                offset++;
-            }
-            return new Blob([bufferArr], { type: 'audio/wav' });
-            function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
-            function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
+// 🔊 SETTING UP THE LIVE VISUALIZER LOGIC (Connect this to your main audio context node!)
+let audioAnalyser;
+function setupVisualizer(audioContext, sourceNode) {
+    audioAnalyser = audioContext.createAnalyser();
+    audioAnalyser.fftSize = 32;
+    sourceNode.connect(audioAnalyser);
+    
+    const canvas = document.getElementById('visualizerCanvas');
+    const canvasCtx = canvas.getContext('2d');
+    const bufferLength = audioAnalyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    
+    function draw() {
+        requestAnimationFrame(draw);
+        if (!audioAnalyser) return;
+        
+        audioAnalyser.getByteFrequencyData(dataArray);
+        canvasCtx.fillStyle = '#111';
+        canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        const barWidth = (canvas.width / bufferLength) * 1.5;
+        let barHeight;
+        let x = 0;
+        
+        for (let i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] / 4;
+            // Hot neon green chiptune color bars!
+            canvasCtx.fillStyle = `rgb(0, 255, ${barHeight + 100})`;
+            canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+            x += barWidth + 2;
         }
+    }
+    draw();
+}
+
+// 🎹 THE MULTI-FORMAT BACKGROUND BUFFER PIPELINE
+async function renderSongToBuffer() {
+    const totalSteps = parseInt(document.getElementById('lengthSlider')?.value) || 32;
+    const currentBPM = parseInt(document.getElementById('bpmSlider')?.value) || 140;
+    const stepDuration = 60 / currentBPM / 4;
+    const totalDuration = totalSteps * stepDuration;
+    
+    const offlineCtx = new OfflineAudioContext(1, 44100 * totalDuration, 44100);
+    
+    for (let col = 0; col < totalSteps; col++) {
+        for (let row = 0; row < 8; row++) {
+            if (synthState && synthState[row] && synthState[row][col]) {
+                const osc = offlineCtx.createOscillator();
+                const gainNode = offlineCtx.createGain();
+                
+                osc.type = document.getElementById('waveType').value || 'square';
+                osc.frequency.setValueAtTime(getRowFrequency(row), col * stepDuration);
+                
+                gainNode.gain.setValueAtTime(0.25, col * stepDuration);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, (col + 1) * stepDuration);
+                
+                osc.connect(gainNode);
+                gainNode.connect(offlineCtx.destination);
+                
+                osc.start(col * stepDuration);
+                osc.stop((col + 1) * stepDuration);
+            }
+        }
+    }
+    return await offlineCtx.startRendering();
+}
+
+// 💽 FAST RIFF-WAV PACKER UTILITY
+function bufferToWav(buffer) {
+    const numOfChan = buffer.numberOfChannels,
+          length = buffer.length * numOfChan * 2 + 44,
+          bufferArr = new ArrayBuffer(length),
+          view = new DataView(bufferArr),
+          channels = [];
+    let pos = 0, sample = 0;
+
+    const setUint32 = (data) => { view.setUint32(pos, data, true); pos += 4; };
+    const setUint16 = (data) => { view.setUint16(pos, data, true); pos += 2; };
+
+    setUint32(0x46464952); // "RIFF"
+    setUint32(length - 8); 
+    setUint32(0x45564157); // "WAVE"
+    setUint32(0x20746d66); // "fmt "
+    setUint32(16);         
+    setUint16(1);          
+    setUint16(numOfChan);
+    setUint32(buffer.sampleRate);
+    setUint32(buffer.sampleRate * 2 * numOfChan); 
+    setUint16(numOfChan * 2);                     
+    setUint16(16);         
+    setUint32(0x61746164); // "data"
+    setUint32(length - pos - 4);                  
+
+    for (let i = 0; i < numOfChan; i++) channels.push(buffer.getChannelData(i));
+
+    let sampleIdx = 0;
+    while (pos < length) {
+        for (let i = 0; i < numOfChan; i++) {
+            sample = Math.max(-1, Math.min(1, channels[i][sampleIdx]));
+            sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+            view.setInt16(pos, sample, true);
+            pos += 2;
+        }
+        sampleIdx++;
+    }
+    return new Blob([bufferArr], { type: 'audio/wav' });
+}
+
+// 🚀 EVENT TRIGGER MOUNTS
+document.getElementById('exportBtn').addEventListener('click', async () => {
+    const format = document.getElementById('exportFormat').value;
+    const status = document.getElementById('exportStatus');
+    const sessionName = document.getElementById('fileNameInput').value || 'matrix_session';
+    status.innerHTML = "🌀 CONDENSING CHUNKS...";
+    
+    try {
+        const renderedBuffer = await renderSongToBuffer();
+        const wavBlob = audioBufferToWav(renderedBuffer);
+        
+        if (format === 'wav') {
+            triggerFileDownload(wavBlob, `${sessionName}.wav`);
+            status.innerHTML = "✅ WAV DOWNLOADED!";
+            return;
+        }
+        
+        status.innerHTML = "🧨 LOADING WASM ENGINES...";
+        if (!ffmpeg.isLoaded()) await ffmpeg.load();
+        
+        ffmpeg.FS('writeFile', 'input.wav', await fetchFile(wavBlob));
+        
+        if (format === 'mp3') {
+            await ffmpeg.run('-i', 'input.wav', '-codec:a', 'libmp3lame', '-b:a', '192k', 'output.mp3');
+        } else if (format === 'm4a') {
+            await ffmpeg.run('-i', 'input.wav', '-c:a', 'aac', '-b:a', '192k', 'output.m4a');
+        }
+        
+        const data = ffmpeg.FS('readFile', `output.${format}`);
+        const finalBlob = new Blob([data.buffer], { type: `audio/${format}` });
+        
+        triggerFileDownload(finalBlob, `${sessionName}.${format}`);
+        status.innerHTML = "✅ HIGH FIDELITY EXPORT DONE! 🦍🎉";
+    } catch (err) {
+        status.innerHTML = "❌ BOOM ENGINE ERRORED!";
+        console.error(err);
+    }
+});
+
+function triggerFileDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+}
+
+// 🎁 BONUS JAM MERGE LINK: THE PERFECT PENTATONIC RANDOM Melodizer
+document.getElementById('bonusChaosBtn').addEventListener('click', () => {
+    const totalSteps = parseInt(document.getElementById('lengthSlider')?.value) || 32;[cite: 1]
+    for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < totalSteps; c++) {
+            synthState[r][c] = false;
+        }
+    }
+    for (let c = 0; c < totalSteps; c++) {
+        if (Math.random() < 0.35) {
+            const pentatonicRows = [0, 2, 4, 5, 7];
+            const randomRow = pentatonicRows[Math.floor(Math.random() * pentatonicRows.length)];
+            synthState[randomRow][c] = true;
+        }
+    }
+    if (typeof drawGrid === 'function') drawGrid();
+    if (typeof updateURLState === 'function') updateURLState();
+    document.getElementById('exportStatus').innerHTML = "🎲 CHAOS JAM TRIGGERED LIVE!!!";
+});
 
         updateTemplateDropdown();
         extractAndApplyURLState();
