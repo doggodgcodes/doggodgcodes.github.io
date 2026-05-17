@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #00FFCC;
+            text-shadow: 4px 4px 0px #FF0066;
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            color: #ffb703;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .hacker-panel {
+            font-family: 'Courier New', monospace;
+            color: #38bdf8;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 14px;
+            border-radius: 8px;
+            border: 2px dashed #00FFCC;
+            max-width: 1100px;
+            margin: 0 auto 20px auto;
+            font-size: 1.1rem;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+        }
+        .visualizer-bar {
+            width: 100%;
+            height: 10px;
+            background: #1e1b4b;
+            margin: 10px 0;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: background 0.1s ease;
+        }
+        .dashboard {
+            background: rgba(15, 23, 42, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px solid #38bdf8;
+            max-width: 1100px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-weight: bold;
+            color: #cbd5e1;
+        }
+        .control-group input, .control-group select {
+            margin-top: 8px;
+            padding: 5px 10px;
+            background: #1e293b;
+            color: #00FFCC;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .workspace {
+            overflow-x: auto;
+            max-width: 95vw;
+            margin: 0 auto;
+            padding: 10px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 12px;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 20px 0 10px 0;
+            color: #a5b4fc;
+        }
+        .grid-container {
+            display: grid;
+            gap: 4px;
+            justify-content: start;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        .pad {
+            width: 32px;
+            height: 24px;
+            background-color: #334155;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.05s ease;
+        }
+        .pad.note-c0 { border-left: 3px solid #ff595e; }
+        .pad.note-c5 { border-left: 3px solid #e2ca35; }
+        .pad.note-c11 { border-left: 3px solid #35ad9e; }
+        .pad.note-c17 { border-left: 3px solid #903199; }
+        .pad.note-c23 { border-left: 3px solid #ff4799; }
+
+        .drum-pad {
+            width: 32px;
+            height: 40px;
+            background-color: #1e293b;
+            border-bottom: 4px solid #475569;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .drum-pad.kick-row { border-bottom-color: #ef4444; }
+        .drum-pad.snare-row { border-bottom-color: #3b82f6; }
+        .drum-pad.hihat-row { border-bottom-color: #eab308; }
+
+        .pad.active, .drum-pad.active {
+            background-color: #00ffcc !important;
+            box-shadow: 0 0 10px #00ffcc;
+        }
+        .pad.playing, .drum-pad.playing {
+            filter: brightness(1.6);
+            transform: scale(1.05);
+        }
+
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #c92a2a;
+            transition: all 0.1s;
+        }
+        button:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+        .btn-export { background: #059669; box-shadow: 0 4px 0 #047857; }
+        .btn-save { background: #3b82f6; box-shadow: 0 4px 0 #1d4ed8; }
+        .btn-load { background: #8b5cf6; box-shadow: 0 4px 0 #6d28d9; position: relative; display: inline-block; }
+        .btn-random { background: #eab308; box-shadow: 0 4px 0 #ca8a04; color: black; }
+        .btn-inject-load { background: #d946ef; box-shadow: 0 4px 0 #a21caf; margin-top: 10px; }
+        .btn-mail { background: #ec4899; box-shadow: 0 4px 0 #be185d; }
+        #fileInput { display: none; }
+
+        .force-download-portal {
+            margin-top: 10px;
+            display: inline-block;
+        }
+        .portal-link {
+            background: #f59e0b;
+            color: #000 !important;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #fff;
+            display: inline-block;
+            box-shadow: 0 0 10px #f59e0b;
+        }
+
+        .dump-section {
+            max-width: 1100px;
+            margin: 30px auto 10px auto;
+            background: rgba(15, 23, 42, 0.9);
+            border: 2px solid #ff0066;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 0 15px rgba(255, 0, 102, 0.3);
+        }
+        .dump-title {
+            font-family: 'Courier New', monospace;
+            color: #ff0066;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+        .dump-box {
+            width: 100%;
+            height: 140px;
+            background: #020617;
+            color: #00ffcc;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</h1>
+    <p class="subtitle">🚀 SAFE-DUMP RECOVERY ENGINE + EXTENDED GMAIL FAIL-SAFE CHANNELS 🚀</p>
+
+    <div class="hacker-panel" id="statusLog">
+        <div>📡 DISPATCH ENGINE ONLINE: Manipulating URL routing flags dynamically.</div>
+        <div id="portalContainer" class="force-download-portal"></div>
+    </div>
+
+    <div class="visualizer-bar" id="beatVisualizer"></div>
+
+    <div class="dashboard">
+        <button id="playBtn">START THE RAVE HARDCORE! 🚀</button>
+        
+        <div class="control-group">
+            <label for="templateSelect">🗂️ PRESET & CUSTOM TEMPLATES</label>
+            <select id="templateSelect">
+                <option value="empty" selected>Empty Grid</option>
+                <option value="bossa">Bossa Nova Template 🌴 (v15.0)</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="templateNameInput">✍️ TEMPLATE NAME</label>
+            <input type="text" id="templateNameInput" value="My Saved Jam" style="max-width:140px;">
+        </div>
+        <button id="saveTemplateBtn" class="btn-save" style="background:#06b6d4; box-shadow:0 4px 0 #0891b2;">SAVE TEMPLATE TO STORAGE 🧠</button>
+
+        <div class="control-group">
+            <label for="waveType">🎻 INSTRUMENT SELECT</label>
+            <select id="waveType">
+                <option value="sine" selected>Smooth Acoustic Sine</option>
+                <option value="triangle">Retro Triangle</option>
+                <option value="square">8-Bit Square Burst</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label for="bpmSlider">⚡ TEMPO SPEED: <span id="bpmVal">140</span> BPM</label>
+            <input id="bpmSlider" type="range" min="60" max="240" value="140">
+        </div>
+
+        <div class="control-group">
+            <label for="lengthSlider">📏 MATRIX LENGTH: <span id="lengthVal">32</span> STEPS</label>
+            <input id="lengthSlider" type="range" min="4" max="32" value="32" step="4">
+        </div>
+
+        <button id="randomBtn" class="btn-random">🎲 RANDOM BEAT GENERATOR</button>
+        <button id="exportBtn" class="btn-export">EXPORT TO .WAV 💾</button>
+        
+        <div class="control-group">
+            <label for="fileNameInput">📁 FILE NAME</label>
+            <input type="text" id="fileNameInput" value="matrix_session" style="max-width:140px;">
+        </div>
+        <button id="saveBtn" class="btn-save">SAVE PROJECT FILE 📁</button>
+        
+        <label class="btn-load" style="padding: 12px 22px; font-weight: bold; border-radius: 25px; cursor: pointer;">
+            LOAD PROJECT 📂
+            <input type="file" id="fileInput" accept=".🔊🎧">
+        </label>
+
+        <button id="mailBtn" class="btn-mail">📧 MAIL BEAT TO FRIENDS</button>
+    </div>
+
+    <div class="workspace">
+        <div class="section-title">🎵 24-TONE TWO-OCTAVE CHROMATIC PITCH MATRIX</div>
+        <div class="grid-container" id="synthGrid"></div>
+
+        <div class="section-title">🥁 COMPACT STEP SEQUENCER DRUM RACK</div>
+        <div class="grid-container" id="drumGrid"></div>
+    </div>
+
+    <div class="dump-section">
+        <div class="dump-title">🛠️ LIVE TEXT COMPILATION INTERFACE AREA (FAIL-SAFE RECOVERY)</div>
+        <textarea id="dataDumpBox" class="dump-box" placeholder="Your project saves and WAV data streams will generate here instantly for easy copy-pasting..."></textarea>
+        <br>
+        <button id="injectLoadBtn" class="btn-inject-load">LOAD STRING DUMP ⚡</button>
+    </div>
+
+    <script>
+        const synthContainer = document.getElementById('synthGrid');
+        const drumContainer = document.getElementById('drumGrid');
+        const playBtn = document.getElementById('playBtn');
+        const randomBtn = document.getElementById('randomBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const saveBtn = document.getElementById('saveBtn');
+        const fileInput = document.getElementById('fileInput');
+        const injectLoadBtn = document.getElementById('injectLoadBtn');
+        const templateSelect = document.getElementById('templateSelect');
+        const templateNameInput = document.getElementById('templateNameInput');
+        const saveTemplateBtn = document.getElementById('saveTemplateBtn');
+        const fileNameInput = document.getElementById('fileNameInput');
+        const bpmSlider = document.getElementById('bpmSlider');
+        const bpmVal = document.getElementById('bpmVal');
+        const lengthSlider = document.getElementById('lengthSlider');
+        const lengthVal = document.getElementById('lengthVal');
+        const waveTypeSelect = document.getElementById('waveType');
+        const statusLog = document.getElementById('statusLog');
+        const dataDumpBox = document.getElementById('dataDumpBox');
+        const portalContainer = document.getElementById('portalContainer');
+        const beatVisualizer = document.getElementById('beatVisualizer');
+        const mailBtn = document.getElementById('mailBtn');
+
+        let audioCtx = null;
+        let isPlaying = false;
+        let currentStep = 0;
+        let nextTickTime = 0;
+        let timerId = null;
+
+        let bpm = 140; 
+        let totalSteps = 32;
+        let chosenWave = 'sine';
+        
+        const CHROMATIC_ROWS = 24;
+        const DRUM_ROWS = 3;
+        const FREQS = [
+            1046.50, 987.77, 932.33, 880.00, 830.61, 783.99, 739.99, 698.46, 659.25, 622.25, 587.33, 554.37, 
+            523.25, 493.88, 466.16, 440.00, 415.30, 392.00, 369.99, 349.23, 329.63, 311.13, 293.66, 261.63   
+        ];
+
+        let synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
+        let drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
+        
+        let synthPads = [];
+        let drumPads = [];
+
+        const bossaNovaInitial = [[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false],[true,false,true,false,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,false,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false],[false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],[true,false,true,false,false,true,false,true,false,true,false,true,true,false,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]];
+
+        function setGridToEmpty() {
+            synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
+            drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
+        }
+
+        function loadInitialBossa() {
+            setGridToEmpty();
+            for(let r=0; r<CHROMATIC_ROWS; r++) {
+                for(let c=0; c<32; c++) {
+                    synthState[r][c] = bossaNovaInitial[r][c];
+                }
+            }
+        }
+
+        function compileCurrentStateToJSONString() {
+            return JSON.stringify({
+                version: "18.0",
+                bpm: bpm,
+                totalSteps: totalSteps,
+                chosenWave: chosenWave,
+                synthState: synthState,
+                drumState: drumState
+            });
+        }
+
+        function updateURLState() {
+            const rawJSONString = compileCurrentStateToJSONString();
+            const base64EncodedPayload = btoa(encodeURIComponent(rawJSONString));
+            
+            const targetBaseURL = "https://doggodgcodes.github.io/ai/music-maker/";
+            const absoluteTrackURL = `${targetBaseURL}?song=${base64EncodedPayload}`;
+            
+            window.history.replaceState(null, "", `?song=${base64EncodedPayload}`);
+            
+            // Default recovery dump behavior
+            dataDumpBox.value = rawJSONString;
+            return absoluteTrackURL;
+        }
+
+        function extractAndApplyURLState() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedSong = urlParams.get('song');
+            
+            if (encodedSong) {
+                try {
+                    const decodedJSONString = decodeURIComponent(atob(encodedSong));
+                    parseAndApplyString(decodedJSONString, false);
+                    statusLog.innerHTML = "🔗 MATRIX RECOVERY SUCCESSFUL: Injected array states from URL arguments!";
+                } catch (err) {
+                    console.error("URL package extraction fault: ", err);
+                    setGridToEmpty();
+                }
+            } else {
+                setGridToEmpty();
+                statusLog.innerHTML = "🧹 BLANK INITIALIZATION: URL payload not detected. Fresh board deployed.";
+            }
+        }
+
+        function renderGrids() {
+            synthContainer.innerHTML = '';
+            drumContainer.innerHTML = '';
+            synthContainer.style.gridTemplateColumns = `repeat(${totalSteps}, 32px)`;
+            drumContainer.style.gridTemplateColumns = `repeat(${totalSteps}, 32px)`;
+
+            for (let r = 0; r < CHROMATIC_ROWS; r++) {
+                synthPads[r] = [];
+                for (let c = 0; c < totalSteps; c++) {
+                    const pad = document.createElement('div');
+                    pad.classList.add('pad', `note-c${r}`);
+                    if (synthState[r][c]) pad.classList.add('active');
+                    
+                    pad.addEventListener('click', () => {
+                        synthState[r][c] = !synthState[r][c];
+                        pad.classList.toggle('active');
+                        if (synthState[r][c] && audioCtx) playSynthTone(FREQS[r], audioCtx.currentTime, audioCtx);
+                        updateURLState();
+                    });
+                    synthContainer.appendChild(pad);
+                    synthPads[r][c] = pad;
+                }
+            }
+
+            const drumClasses = ['kick-row', 'snare-row', 'hihat-row'];
+            for (let r = 0; r < DRUM_ROWS; r++) {
+                drumPads[r] = [];
+                for (let c = 0; c < totalSteps; c++) {
+                    const pad = document.createElement('div');
+                    pad.classList.add('drum-pad', drumClasses[r]);
+                    if (drumState[r][c]) pad.classList.add('active');
+                    
+                    pad.addEventListener('click', () => {
+                        drumState[r][c] = !drumState[r][c];
+                        pad.classList.toggle('active');
+                        if (drumState[r][c] && audioCtx) triggerDrumSound(r, audioCtx.currentTime, audioCtx);
+                        updateURLState();
+                    });
+                    drumContainer.appendChild(pad);
+                    drumPads[r][c] = pad;
+                }
+            }
+        }
+
+        function playSynthTone(freq, time, ctx) {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = chosenWave;
+            osc.frequency.setValueAtTime(freq, time);
+            gain.gain.setValueAtTime(0.15, time);
+            gain.gain.exponentialRampToValueAtTime(0.001, time + 0.3);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(time);
+            osc.stop(time + 0.3);
+        }
+
+        function triggerDrumSound(rowType, time, ctx) {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+
+            if (rowType === 0) { // Kick
+                osc.frequency.setValueAtTime(140, time);
+                osc.frequency.exponentialRampToValueAtTime(0.01, time + 0.12);
+                gain.gain.setValueAtTime(0.5, time);
+                gain.gain.exponentialRampToValueAtTime(0.001, time + 0.15);
+                osc.start(time);
+                osc.stop(time + 0.15);
+            } 
+            else if (rowType === 1) { // Snare
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(170, time);
+                gain.gain.setValueAtTime(0.25, time);
+                gain.gain.exponentialRampToValueAtTime(0.01, time + 0.1);
+                osc.start(time);
+                osc.stop(time + 0.1);
+
+                const bufferSize = ctx.sampleRate * 0.08;
+                const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+                const data = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
+                const noise = ctx.createBufferSource();
+                noise.buffer = buffer;
+                const noiseGain = ctx.createGain();
+                noiseGain.gain.setValueAtTime(0.15, time);
+                noiseGain.gain.exponentialRampToValueAtTime(0.01, time + 0.08);
+                noise.connect(noiseGain);
+                noiseGain.connect(ctx.destination);
+                noise.start(time);
+                noise.stop(time + 0.08);
+            } 
+            else if (rowType === 2) { // Hi-Hat
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(9000, time);
+                gain.gain.setValueAtTime(0.08, time);
+                gain.gain.exponentialRampToValueAtTime(0.001, time + 0.04);
+                osc.start(time);
+                osc.stop(time + 0.04);
+            }
+        }
+
+        function scheduler() {
+            while (nextTickTime < audioCtx.currentTime + 0.1) {
+                scheduleStep(currentStep, nextTickTime);
+                advanceStep();
+            }
+            timerId = setTimeout(scheduler, 25);
+        }
+
+        function scheduleStep(step, time) {
+            ctxTimeCallback(step, time);
+            for (let r = 0; r < CHROMATIC_ROWS; r++) {
+                if (synthState[r][step]) playSynthTone(FREQS[r], time, audioCtx);
+            }
+            for (let r = 0; r < DRUM_ROWS; r++) {
+                if (drumState[r][step]) triggerDrumSound(r, time, audioCtx);
+            }
+        }
+
+        function advanceStep() {
+            const secondsPerBeat = 60.0 / bpm / 2;
+            nextTickTime += secondsPerBeat;
+            currentStep = (currentStep + 1) % totalSteps;
+        }
+
+        function ctxTimeCallback(step, time) {
+            const delay = Math.max(0, (time - audioCtx.currentTime) * 1000);
+            setTimeout(() => {
+                if (!isPlaying) return;
+                beatVisualizer.style.background = (step % 4 === 0) ? '#00FFCC' : '#FF0066';
+                setTimeout(() => { beatVisualizer.style.background = '#1e1b4b'; }, 60);
+
+                let prevStep = (step + totalSteps - 1) % totalSteps;
+                for(let r=0; r<CHROMATIC_ROWS; r++) if(synthPads[r][prevStep]) synthPads[r][prevStep].classList.remove('playing');
+                for(let r=0; r<DRUM_ROWS; r++) if(drumPads[r][prevStep]) drumPads[r][prevStep].classList.remove('playing');
+                for(let r=0; r<CHROMATIC_ROWS; r++) if(synthPads[r][step]) synthPads[r][step].classList.add('playing');
+                for(let r=0; r<DRUM_ROWS; r++) if(drumPads[r][step]) drumPads[r][step].classList.add('playing');
+            }, delay);
+        }
+
+        function executeDualOutputSave(blob, filename, rawTextPayload = null) {
+            portalContainer.innerHTML = ''; 
+            const URL_Engine = window.URL || window.webkitURL;
+            const linkUrl = URL_Engine.createObjectURL(blob);
+
+            if (rawTextPayload) {
+                dataDumpBox.value = rawTextPayload;
+            } else {
+                const reader = new FileReader();
+                reader.onloadend = function() { dataDumpBox.value = reader.result; }
+                reader.readAsDataURL(blob);
+            }
+
+            const visualPortalBtn = document.createElement('a');
+            visualPortalBtn.href = linkUrl;
+            visualPortalBtn.download = filename;
+            visualPortalBtn.className = 'portal-link';
+            visualPortalBtn.innerText = `📥 DISPATCH FILE: ${filename}`;
+            portalContainer.appendChild(visualPortalBtn);
+
+            try {
+                const hiddenLink = document.createElement('a');
+                hiddenLink.href = linkUrl;
+                hiddenLink.download = filename;
+                hiddenLink.style.display = 'none';
+                document.body.appendChild(hiddenLink);
+                hiddenLink.click();
+                setTimeout(() => { document.body.removeChild(hiddenLink); }, 300);
+            } catch (err) {}
+        }
+
+        function updateTemplateDropdown() {
+            templateSelect.innerHTML = `
+                <option value="empty">Empty Grid</option>
+                <option value="bossa">Bossa Nova Template 🌴 (v15.0)</option>
+            `;
+            const keys = Object.keys(localStorage);
+            keys.forEach(key => {
+                if (key.startsWith('matrix_tpl_')) {
+                    const displayName = key.replace('matrix_tpl_', '');
+                    const opt = document.createElement('option');
+                    opt.value = key;
+                    opt.innerText = `🧠 ${displayName} (Custom)`;
+                    templateSelect.appendChild(opt);
+                }
+            });
+        }
+
+        saveTemplateBtn.addEventListener('click', () => {
+            const tplName = templateNameInput.value.trim() || "My Custom Grid";
+            const templateData = {
+                bpm: bpm,
+                totalSteps: totalSteps,
+                chosenWave: chosenWave,
+                synthState: synthState,
+                drumState: drumState
+            };
+            localStorage.setItem(`matrix_tpl_${tplName}`, JSON.stringify(templateData));
+            updateTemplateDropdown();
+            updateURLState();
+            statusLog.textContent = `🧠 Saved template "${tplName}" to Local Storage!`;
+        });
+
+        templateSelect.addEventListener('change', (e) => {
+            const val = e.target.value;
+            if (val === 'empty') {
+                setGridToEmpty();
+                renderGrids();
+                updateURLState();
+                statusLog.innerHTML = "🧹 Grid cleared to blank slate.";
+            } else if (val === 'bossa') {
+                loadInitialBossa();
+                renderGrids();
+                updateURLState();
+                statusLog.innerHTML = "🌴 Loaded preset Bossa Nova Template!";
+            } else if (val.startsWith('matrix_tpl_')) {
+                const dataStr = localStorage.getItem(val);
+                if (dataStr) parseAndApplyString(dataStr, true);
+            }
+        });
+
+        // 📧 GMAIL SAFE DUMP DISPATCH SYSTEM
+        mailBtn.addEventListener('click', () => {
+            const generatedTrackURL = updateURLState();
+            const subjectLine = "subject:🚨 Song I made! 🚨";
+            const rawBodyText = 
+                "Hi Friend!!! 🦍🎩\n\n" +
+                "Check out this absolute custom audio layout matrix track I just coded using the 24-tone chromatic sequencer engine!\n\n" +
+                "🎛️ PLAY THE SONG INSTANTLY IN YOUR BROWSER:\n" + generatedTrackURL + "\n\n" +
+                "Keep the internet silly and stay happy! 🧊🍌\n- me";
+            
+            // 🛠️ COGNITIVE DUMP INTERFACE REDIRECT
+            dataDumpBox.value = `=== GMAIL SAFE-DUMP DISPATCH AREA ===\nSUBJECT: ${subjectLine}\n\n${rawBodyText}`;
+            dataDumpBox.select();
+            
+            statusLog.innerHTML = "⚠️ GMAIL ANTI-400 DEFENSE DETECTED: Copy payload generated below inside the text area!";
+            
+            // Attempt standard mailto window trigger as a soft launch mechanism
+            try {
+                window.location.href = `mailto:?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(rawBodyText)}`;
+            } catch (err) {
+                console.log("Mailto redirect fallback triggered due to data length boundaries.");
+            }
+        });
+
+        saveBtn.addEventListener('click', () => {
+            let rawName = fileNameInput.value.trim() || "matrix_session";
+            if (rawName.endsWith('.🔊🎧')) rawName = rawName.substring(0, rawName.length - 4);
+            const finalFilename = `${rawName}.🔊🎧`;
+            const dataString = compileCurrentStateToJSONString();
+            const blob = new Blob([dataString], { type: 'application/json' });
+            
+            executeDualOutputSave(blob, finalFilename, dataString);
+            updateURLState();
+            statusLog.textContent = `💾 Exported configuration package as: ${finalFilename}`;
+        });
+
+        function parseAndApplyString(jsonString, triggerUrlRewrite = true) {
+            try {
+                // Strip manual email dump headers if the user tries to load an email string directly
+                if (jsonString.includes("=== GMAIL SAFE-DUMP DISPATCH AREA ===")) {
+                    const findUrl = jsonString.match(/\?song=([A-Za-z0-9%=\-_]+)/);
+                    if (findUrl && findUrl[1]) {
+                        jsonString = decodeURIComponent(atob(findUrl[1]));
+                    }
+                }
+                
+                const data = JSON.parse(jsonString);
+                bpm = data.bpm || 140;
+                totalSteps = data.totalSteps || 32;
+                chosenWave = data.chosenWave || 'sine';
+                synthState = data.synthState;
+                drumState = data.drumState;
+
+                bpmSlider.value = bpm;
+                bpmVal.innerText = bpm;
+                lengthSlider.value = totalSteps;
+                lengthVal.innerText = totalSteps;
+                waveTypeSelect.value = chosenWave;
+
+                renderGrids();
+                if (triggerUrlRewrite) updateURLState();
+                statusLog.innerHTML = "✅ Matrix data stream parsed successfully!";
+            } catch(e) {
+                alert("Error reading structural parameters.");
+            }
+        }
+
+        randomBtn.addEventListener('click', () => {
+            for (let r = 0; r < CHROMATIC_ROWS; r++) {
+                for (let c = 0; c < 32; c++) synthState[r][c] = Math.random() < 0.12;
+            }
+            for (let r = 0; r < DRUM_ROWS; r++) {
+                for (let c = 0; c < 32; c++) drumState[r][c] = Math.random() < 0.22;
+            }
+            renderGrids();
+            updateURLState();
+        });
+
+        playBtn.addEventListener('click', () => {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (isPlaying) {
+                clearTimeout(timerId);
+                isPlaying = false;
+                playBtn.innerText = "START THE RAVE HARDCORE! 🚀";
+            } else {
+                currentStep = 0;
+                nextTickTime = audioCtx.currentTime;
+                isPlaying = true;
+                scheduler();
+                playBtn.innerText = "FREEZE THE TIMELINE 🛑";
+            }
+        });
+
+        bpmSlider.addEventListener('input', (e) => { bpm = parseInt(e.target.value); bpmVal.innerText = bpm; updateURLState(); });
+        lengthSlider.addEventListener('input', (e) => { totalSteps = parseInt(e.target.value); lengthVal.innerText = totalSteps; renderGrids(); updateURLState(); });
+        waveTypeSelect.addEventListener('change', (e) => { chosenWave = e.target.value; updateURLState(); });
+        injectLoadBtn.addEventListener('click', () => { parseAndApplyString(dataDumpBox.value, true); });
+        
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(event) { parseAndApplyString(event.target.result, true); };
+            reader.readAsText(file);
+        });
+
+        exportBtn.addEventListener('click', () => {
+            const secondsPerBeat = 60.0 / bpm / 2;
+            const totalDuration = totalSteps * secondsPerBeat + 0.5;
+            const sampleRate = 44100;
+            const offlineCtx = new OfflineAudioContext(1, sampleRate * totalDuration, sampleRate);
+
+            for (let step = 0; step < totalSteps; step++) {
+                let stepTime = step * secondsPerBeat;
+                for (let r = 0; r < CHROMATIC_ROWS; r++) {
+                    if (synthState[r][step]) playSynthTone(FREQS[r], stepTime, offlineCtx);
+                }
+                for (let r = 0; r < DRUM_ROWS; r++) {
+                    if (drumState[r][step]) triggerDrumSound(r, stepTime, offlineCtx);
+                }
+            }
+
+            offlineCtx.startRendering().then(renderedBuffer => {
+                const wavBlob = bufferToWav(renderedBuffer);
+                executeDualOutputSave(wavBlob, `matrix_track_${bpm}bpm.wav`);
+            });
+        });
+
+        function bufferToWav(buffer) {
+            let numOfChan = buffer.numberOfChannels,
+                length = buffer.length * numOfChan * 2 + 44,
+                bufferArr = new ArrayBuffer(length),
+                view = new DataView(bufferArr),
+                channels = [], i, sample, offset = 0, pos = 0;
+
+            setUint32(0x46464952); // "RIFF"
+            setUint32(length - 8); 
+            setUint32(0x45564157); // "WAVE"
+            setUint32(0x20746d66); // "fmt "
+            setUint32(16); 
+            setUint16(1); 
+            setUint16(numOfChan);
+            setUint32(buffer.sampleRate);
+            setUint32(buffer.sampleRate * 2 * numOfChan);
+            setUint16(numOfChan * 2); 
+            setUint16(16); 
+            setUint32(0x61746164); // "data"
+            setUint32(length - pos - 4);
+
+            for (i = 0; i < buffer.numberOfChannels; i++) channels.push(buffer.getChannelData(i));
+
+            while (pos < length) {
+                for (i = 0; i < numOfChan; i++) {
+                    sample = Math.max(-1, Math.min(1, channels[i][offset])); 
+                    sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF; 
+                    view.setInt16(pos, sample, true);
+                    pos += 2;
+                }
+                offset++;
+            }
+            return new Blob([bufferArr], { type: 'audio/wav' });
+            function setUint16(data) { view.setUint16(pos, data, true); pos += 2; }
+            function setUint32(data) { view.setUint32(pos, data, true); pos += 4; }
+        }
+
+        updateTemplateDropdown();
+        extractAndApplyURLState();
+    </script>
+</body>
+</html>
