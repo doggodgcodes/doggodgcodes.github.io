@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BONK-O-MATIC LYRIC GENERATOR 1000000%</title>
+    <style>
+        :root {
+            --bg-color: #00ffff;
+            --panel-bg: rgba(255, 255, 255, 0.85);
+            --text-color: #ff00ff;
+            --border-color: #ffff00;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#ff00ff 20%, transparent 20%), radial-gradient(#ffff00 20%, transparent 20%);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            font-family: 'Comic Sans MS', 'Courier New', sans-serif;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: var(--panel-bg);
+            border: 8px ridge var(--border-color);
+            box-shadow: 10px 10px 0px #000;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            color: #ff0055;
+            text-shadow: 3px 3px 0px #00ffff, -3px -3px 0px #ffff00;
+            font-size: 2.5rem;
+            margin-top: 0;
+            animation: bounce 0.5s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-5px); }
+        }
+
+        .media-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .media-box {
+            background: #fff;
+            border: 3px solid #000;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 4px 4px 0px #000;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .lyrics-box {
+            background: #000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            border-radius: 10px;
+            min-height: 250px;
+            text-align: left;
+            white-space: pre-line;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            border: 4px inset #888;
+            box-shadow: inset 0 0 10px #000;
+            margin-bottom: 20px;
+        }
+
+        .bar-line {
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.3s forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        button {
+            background: #ff00ff;
+            color: #fff;
+            border: 4px solid #000;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 5px 5px 0px #000;
+            transition: all 0.1s ease;
+        }
+
+        button:hover {
+            background: #ffff00;
+            color: #000;
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0px #000;
+        }
+
+        button:active {
+            transform: translate(5px, 5px);
+            box-shadow: 0px 0px 0px #000;
+        }
+
+        .footer-credit {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #555;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚨 BONK LYRIC ENGINE 🚨</h1>
+
+    <!-- Verbatim file references added to the UI panel -->
+    <div class="media-container">
+        <div class="media-box">📷 Reference Link: Screenshot 2025-05-17 151139.png[cite: 1]</div>
+        <div class="media-box">👍 Status: Thumbs up guy!.png[cite: 1]</div>
+    </div>
+
+    <div class="lyrics-box" id="lyricsDisplay">✨ Press the button to drop raw fire bars... ✨</div>
+    
+    <button id="generateBtn">GENERATE 8 BARS 🎉</button>
+    
+    <div class="footer-credit">User: doggodgcodes | Powered by 1000000% Bonk Energy</div>
+</div>
+
+<script>
+    // Syllable pools packed with the requested vocabulary strings
+    const words2 = [
+        "ham jam", "gorilla", "whopper", "creeper", "im blue", 
+        "cheetos", "rave time", "sprite lines", "saucy", "burger", 
+        "doge time", "pepe", "monke", "yapper", "dorito", 
+        "noodles", "ramen", "boop boop", "bytebeat", "gatorade"
+    ];
+
+    const words3 = [
+        "cheezburger", "orange juice", "chicken jockey", "ender pearl", "minecraft world",
+        "mario", "water flow", "double rainbow", "tootsie rolls", "geometry",
+        "croissant beans", "peanut butter", "goofy dev", "anychar", "jmancurly"
+    ];
+
+    const words4 = [
+        "virtual dance floor", "frutiger aero", "internet cheezburger", "cookie cupcake", "holiday sandwich",
+        "maximalism", "breakcore boogie", "esolang coding", "costco freezer", "coconut frosting"
+    ];
+
+    function getRandomWord(wordArray) {
+        return wordArray[Math.floor(Math.random() * wordArray.length)];
+    }
+
+    function generateBars() {
+        const display = document.getElementById("lyricsDisplay");
+        display.innerHTML = ""; // Clear existing output
+        
+        // Loop to construct exactly 8 bars matching the [2][3][4][2] syllable structure
+        for (let i = 1; i <= 8; i++) {
+            const w2_1 = getRandomWord(words2);
+            const w3 = getRandomWord(words3);
+            const w4 = getRandomWord(words4);
+            const w2_2 = getRandomWord(words2);
+            
+            const lineText = `🔥 Bar ${i}: ${w2_1} // ${w3} // ${w4} // ${w2_2}!`;
+            
+            const lineElement = document.createElement("div");
+            lineElement.className = "bar-line";
+            lineElement.style.animationDelay = `${i * 0.1}s`;
+            lineElement.textContent = lineText;
+            
+            display.appendChild(lineElement);
+        }
+    }
+
+    document.getElementById("generateBtn").addEventListener("click", generateBars);
+</script>
+
+</body>
+</html>
