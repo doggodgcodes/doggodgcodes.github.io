@@ -2,34 +2,260 @@
 <html>
 <head>
     <title>Fakechat - doggodgcodes</title>
-    <link rel="stylesheet" type="text/css" media="all" href="../../../style.css">
-    <link rel="stylesheet" type="text/css" media="all" href="app.css">
+    <!-- Core Web Fonts Matrix -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Doto:wght@100..900&family=Noto+Sans+Lao:wght@100..900" rel="stylesheet">
-<style>  
-.noto-lao {
-  font-family: "Noto Sans Lao", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-}
-.dm-serif {
-  font-family: "DM Serif Text", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-</style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Doto:wght@100..900&family=Noto+Sans+Lao:wght@100..900" rel="stylesheet">
+    
+    <style>  
+    body {
+        background-color: #e1e4c7; /* Your classic old version background color */
+        color: brown;              /* Your custom text color signature */
+        font-family: "Noto Sans Lao", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 25px;
+        margin: 0;
+    }
+
+    /* Typography Overrides */
+    .noto-lao {
+        font-family: "Noto Sans Lao", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+    }
+    
+    .dm-serif {
+        font-family: "DM Serif Text", serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    /* Fixed Title Alignment Grid using Vintage Tones */
+    .text-align {
+        text-align: center;
+        width: 100%;
+        color: brown;
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+    
+    /* Dynamic Chat Viewport Core - Fully Harmonized with your Colors */
+    #fakechat-area {
+        width: 580px;
+        height: 420px;
+        background-color: #c7e4d0; /* Your cozy container fill */
+        border: 3px solid #82c396;   /* Copilot-assisted border fix */
+        border-radius: 20px;
+        margin-bottom: 20px;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        box-sizing: border-box;
+    }
+    
+    /* Message Alignment Systems */
+    .chat-row {
+        display: flex;
+        width: 100%;
+    }
+    
+    /* Fakechatter Messages on Left */
+    .row-bot {
+        justify-content: flex-start;
+    }
+    
+    /* User Messages on Right */
+    .row-user {
+        justify-content: flex-end;
+    }
+    
+    /* Standardized Message Geometry Blocks using the classic palette */
+    .msg-box {
+        padding: 12px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        max-width: 75%;
+        line-height: 1.4;
+        word-wrap: break-word;
+        color: brown;
+    }
+    
+    .bot-style {
+        background-color: #e1e4c7; /* Flips color with body for contrast */
+        border: 2px solid #82c396;
+        border-top-left-radius: 4px;
+    }
+    
+    .user-style {
+        background-color: #ffffff; /* Crisp canvas paper white for user input */
+        border: 2px solid #82c396;
+        border-top-right-radius: 4px;
+    }
+    
+    .sender-tag {
+        font-size: 11px;
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: brown;
+    }
+    
+    /* Input Container & Formatting Hooks from your template */
+    .fakechat-msgbox {
+        border: 3px solid #82c396;  
+        border-radius: 20px;
+        background-color: #c7e4d0;
+        color: brown;
+        padding: 15px;
+        font-size: 14px;
+        outline: none;
+    }
+    
+    input[type="text"].fakechat-msgbox {
+        width: 360px;
+        box-sizing: border-box;
+    }
+    
+    input[type="submit"].fakechat-msgbox {
+        background-color: #82c396;
+        color: #ffffff;
+        font-weight: bold;
+        cursor: pointer;
+        margin-left: 8px;
+        padding-left: 25px;
+        padding-right: 25px;
+        transition: transform 0.1s;
+    }
+    
+    input[type="submit"].fakechat-msgbox:hover {
+        transform: scale(1.02);
+        background-color: #c7e4d0;
+        color: brown;
+    }
+    </style>
 </head>
 <body>
+
+    <!-- Fixed Text-Align Heading Element -->
     <h1 class="dm-serif text-align"><strong>Fakechat</strong></h1>
-    <form>
+    
+    <!-- The Core Chat Interface Matrix -->
+    <div id="fakechat-area" class="noto-lao">
+        <!-- Initial Chat State Block -->
+        <div class="chat-row row-bot">
+            <div class="msg-box bot-style">
+                <span class="sender-tag">Dingus Assistant</span>
+                Hi. How can i assist you?
+            </div>
+        </div>
+    </div>
+
+    <!-- Submission Input Panel -->
+    <form id="fakechat-form">
         <div>
-            <input type="text" class="noto-lao fakechat-msgbox" placeholder="Send a message..." required>
-            <input type="submit" class="noto-lao fakechat-msgbox">
+            <input type="text" id="chat-typed-msg" class="noto-lao fakechat-msgbox" placeholder="Send a message..." autocomplete="off">
+            <input type="submit" class="noto-lao fakechat-msgbox" value="Send">
         </div>
     </form>
+
+    <!-- ============================================================================ -->
+    <!-- DEDICATED LOGIC TAG MATRIX - MODERNIZED FOR NEWER BROWSERS! -->
+    <!-- ============================================================================ -->
+    <script>
+        console.log("Credits to Google Gemini for helping");
+        const chatForm = document.getElementById('fakechat-form');
+        
+        chatForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // PREVENT TARGET RELOADS
+            
+            const textInput = document.getElementById('chat-typed-msg');
+            const txt = textInput.value.trim().toLowerCase(); 
+            if (txt === '') return;
+            
+            const area = document.getElementById('fakechat-area');
+            
+            /* 1. Modern Template Literals and Append for Newer Engine Layers */
+            const userRowHtml = `
+                <div class="chat-row row-user">
+                    <div class="msg-box user-style">
+                        <span class="sender-tag">You</span>
+                        ${textInput.value.trim()}
+                    </div>
+                </div>`;
+            
+            area.insertAdjacentHTML('beforeend', userRowHtml);
+            textInput.value = ''; // Input is safely wiped clean right here!
+            area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+            
+            /* 2. Run Random Fakechatter Response Generator Delay Pipeline */
+            setTimeout(() => {
+                if (txt.includes("hi") || txt.includes("hey") || txt.includes("hello") || txt.includes("yo")) {
+                    
+                    /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                    let botRowHtml = `
+                        <div class="chat-row row-bot">
+                           <div class="msg-box bot-style">
+                               <span class="sender-tag">Dingus Assistant</span>
+                               Uh... Hi? I already said hi.
+                           </div>
+                        </div>`;
+                    
+                    area.insertAdjacentHTML('beforeend', botRowHtml);
+                    area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                } 
+                else if (txt.includes("code") || txt.includes("coding")) { // FIXED: Converted 'elseif' to JavaScript native 'else if'
+                    
+                    /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                    let botRowHtml = `
+                        <div class="chat-row row-bot">
+                           <div class="msg-box bot-style">
+                               <span class="sender-tag">Dingus Assistant</span>
+                               Coding? I LOVE coding! There is so many languages!
+                           </div>
+                        </div>
+                        <div class="chat-row row-bot">
+                           <div class="msg-box bot-style">
+                               <span class="sender-tag">Dingus Assistant</span>
+                               From Python to Lua to JavaScript to Ruby to C++, there is a variety of great programming languages!
+                           </div>
+                        </div>`; // FIXED: Repaired broken backticks and closing tags matrix!
+                    
+                    area.insertAdjacentHTML('beforeend', botRowHtml);
+                    area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                }
+                else {
+                    const quotes = [
+                        'Lua is probably the best coding language, along with Python.',
+                        'You should not hurt people.',
+                        'I\'m sure 1 + 1 = 2'
+                    ];
+                    
+                    const rBot = "Dingus Assistant";
+                    const rTxt = quotes[Math.floor(Math.random() * quotes.length)];
+                    
+                    /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                    let botRowHtml = `
+                        <div class="chat-row row-bot">
+                           <div class="msg-box bot-style">
+                               <span class="sender-tag">${rBot}</span>
+                               ${rTxt}
+                           </div>
+                        </div>`;
+                    
+                    area.insertAdjacentHTML('beforeend', botRowHtml);
+                    area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                }
+            }, 600);
+        });
+    </script>
+
 </body>
 </html>
