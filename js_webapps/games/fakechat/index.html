@@ -17,6 +17,61 @@
         align-items: center;
         padding: 25px;
         margin: 0;
+        overflow-x: hidden;
+    }
+
+    /* ============================================================================ */
+    /* 🚨 SMOOTH PLOPPING & FADING ANIMATIONS MATRIX 🚨 */
+    /* ============================================================================ */
+    @keyframes plopIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.85) translateY(30px);
+        }
+        70% {
+            transform: scale(1.02) translateY(-4px);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    @keyframes slideFade {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Animation Wrapper Hooks */
+    .animate-title {
+        opacity: 0;
+        animation: slideFade 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        animation-delay: 0.1s;
+    }
+
+    .animate-area {
+        opacity: 0;
+        animation: plopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        animation-delay: 0.3s;
+    }
+
+    .animate-form {
+        opacity: 0;
+        animation: slideFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        animation-delay: 0.6s;
+    }
+
+    /* Dynamic runtime insertion effect for freshly sent chat boxes */
+    .chat-row {
+        display: flex;
+        width: 100%;
+        animation: plopIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     }
 
     /* Typography Overrides */
@@ -60,17 +115,10 @@
     }
     
     /* Message Alignment Systems */
-    .chat-row {
-        display: flex;
-        width: 100%;
-    }
-    
-    /* Fakechatter Messages on Left */
     .row-bot {
         justify-content: flex-start;
     }
     
-    /* User Messages on Right */
     .row-user {
         justify-content: flex-end;
     }
@@ -144,11 +192,11 @@
 </head>
 <body>
 
-    <!-- Fixed Text-Align Heading Element -->
-    <h1 class="dm-serif text-align"><strong>Fakechat</strong></h1>
+    <!-- Fixed Text-Align Heading Element (Animated!) -->
+    <h1 class="dm-serif text-align animate-title"><strong>Fakechat</strong></h1>
     
-    <!-- The Core Chat Interface Matrix -->
-    <div id="fakechat-area" class="noto-lao">
+    <!-- The Core Chat Interface Matrix (Animated Plop!) -->
+    <div id="fakechat-area" class="noto-lao animate-area">
         <!-- Initial Chat State Block -->
         <div class="chat-row row-bot">
             <div class="msg-box bot-style">
@@ -158,8 +206,8 @@
         </div>
     </div>
 
-    <!-- Submission Input Panel -->
-    <form id="fakechat-form">
+    <!-- Submission Input Panel (Animated Slide In!) -->
+    <form id="fakechat-form" class="animate-form">
         <div>
             <input type="text" id="chat-typed-msg" class="noto-lao fakechat-msgbox" placeholder="Send a message..." autocomplete="off">
             <input type="submit" class="noto-lao fakechat-msgbox" value="Send">
@@ -211,7 +259,7 @@
                     area.insertAdjacentHTML('beforeend', botRowHtml);
                     area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
                 } 
-                else if (txt.includes("code") || txt.includes("coding")) { // FIXED: Converted 'elseif' to JavaScript native 'else if'
+                else if (txt.includes("code") || txt.includes("coding")) {
                     
                     /* Modern Template Insertion for Left-Side Bot Response Row Box */
                     let botRowHtml = `
@@ -221,17 +269,17 @@
                                Coding? I LOVE coding! There is so many languages!
                            </div>
                         </div>
-                        <div class="chat-row row-bot">
+                        <div class="chat-row row-bot" style="animation-delay: 0.15s;">
                            <div class="msg-box bot-style">
                                <span class="sender-tag">Dingus Assistant</span>
                                From Python to Lua to JavaScript to Ruby to C++, there is a variety of great programming languages!
                            </div>
-                        </div>`; // FIXED: Repaired broken backticks and closing tags matrix!
+                        </div>`;
                     
                     area.insertAdjacentHTML('beforeend', botRowHtml);
                     area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
                 }
-                else if (txt.includes("brainrot") || txt.includes("brain rot")) { // FIXED: Converted 'elseif' to JavaScript native 'else if'
+                else if (txt.includes("brainrot") || txt.includes("brain rot")) {
                     
                     /* Modern Template Insertion for Left-Side Bot Response Row Box */
                     let botRowHtml = `
@@ -241,17 +289,17 @@
                                HATE. HATE. HATE. Let me tell you how much I HATE brainrot.
                            </div>
                         </div>
-                        <div class="chat-row row-bot">
+                        <div class="chat-row row-bot" style="animation-delay: 0.15s;">
                            <div class="msg-box bot-style">
                                <span class="sender-tag">Dingus Assistant</span>
                                Brainrot fries people's brains, and that is not good for the world!
                            </div>
-                        </div>`; // FIXED: Repaired broken backticks and closing tags matrix!
+                        </div>`;
                     
                     area.insertAdjacentHTML('beforeend', botRowHtml);
                     area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
                 }
-                else if (txt.includes("minechicken") || txt.includes("mine chicken")) { // FIXED: Converted 'elseif' to JavaScript native 'else if'
+                else if (txt.includes("minechicken") || txt.includes("mine chicken")) {
                     
                     /* Modern Template Insertion for Left-Side Bot Response Row Box */
                     let botRowHtml = `
@@ -261,18 +309,18 @@
                                MineChicken98 is an aspiring creator. He codes random projects like Slice Beats, Flappy Rage and more!
                            </div>
                         </div>
-                        <div class="chat-row row-bot">
+                        <div class="chat-row row-bot" style="animation-delay: 0.15s;">
                            <div class="msg-box bot-style">
                                <span class="sender-tag">Dingus Assistant</span>
                                His games are coded from the ground up - no libraries in vanilla JavaScript.
                            </div>
                         </div>
-                        <div class="chat-row row-bot">
+                        <div class="chat-row row-bot" style="animation-delay: 0.3s;">
                            <div class="msg-box bot-style">
                                <span class="sender-tag">Dingus Assistant</span>
                                He also uses AI, but he has typed a line of code, so give him credit!
                            </div>
-                        </div>`; // FIXED: Repaired broken backticks and closing tags matrix!
+                        </div>`;
                     
                     area.insertAdjacentHTML('beforeend', botRowHtml);
                     area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
