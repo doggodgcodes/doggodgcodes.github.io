@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VISUAL_FREQUENCY_LAB.EXE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css">
+
+    <style>
+        body, html { margin: 0; padding: 0; overflow: hidden; height: 100%; background: #000; font-family: 'Tahoma', sans-serif; }
+        #canvas-3d { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        .window { position: absolute; top: 20px; left: 20px; width: 400px; z-index: 10; cursor: default !important; }
+        textarea { width: 100%; height: 80px; background: #000; color: #0f0; font-family: 'Consolas', monospace; padding: 8px; border: 2px inset #fff; word-break: break-all; margin-top: 5px; }
+        #freq-banner { height: 100px; background: #111; color: #ff00ff; border: 2px inset #fff; margin-top: 10px; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; text-shadow: 0 0 10px #ff00ff; }
+        .controls { display: flex; gap: 5px; margin-top: 10px; justify-content: center; }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas-3d"></canvas>
+
+<div class="window">
+    <div class="title-bar">
+        <div class="title-bar-text">Aocwei_Sound_Lab_Pro</div>
+        <div class="title-bar-controls">
+            <button aria-label="Minimize"></button>
+            <button aria-label="Close"></button>
+        </div>
+    </div>
+    <div class="window-body">
+        <label>Input Sequence:</label>
+        <textarea id="freq-input">80,90,110,82,2912,29,9,2882,82910,29180,89</textarea>
+        
+        <div id="freq-banner">--- Hz</div>
+
+        <div class="field-row justify-center mt-2">
+            <label>Delay (ms):</label>
+            <input id="delay-ms" type="number" value="100" style="width: 60px;">
+            <input type="checkbox" id="loop-check" checked>
+            <label for="loop-check">Loop</label>
+        </div>
+
+        <div class="controls">
+            <button id="play-btn">POWER ON</button>
+            <button id="stop-btn">STOP</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- 1. THREE.JS VISUALIZER INITIALIZATION ---
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas-3d'), antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+
+    // Deep Infinite Grid
+    const gridHelper = new THREE.GridHelper(200, 50, 0x00ffff, 0x333333);
+    scene.add(gridHelper);
+
+    // The Central Visualizer Structure
+    const vizGroup = new THREE.Group();
+    scene.add(vizGroup);
+
+    // Create 10 geometric "bars"
+    const geometries = [THREE.BoxGeometry, THREE.ConeGeometry, THREE.TorusGeometry, THREE.OctahedronGeometry];
+    for (let i = 0; i < 10; i++) {
+        const RandomGeo = geometries[Math.floor(Math.random() * geometries.length)];
+        const material = new THREE.MeshBasicMaterial({ color: 0xff00ff, wireframe: true });
+        const mesh = new THREE.Mesh(new RandomGeo(1, 1, 1), material);
+        mesh.position.x = (i - 4.5) * 2;
+        vizGroup.add(mesh);
+    }
+
+    camera.position.set(0, 5, 15);
+    camera.lookAt(0, 2, 0);
+
+    function animate3D() {
+        requestAnimationFrame(animate3D);
+        
+        // Infinite move the gridHelper to create movement illusion
+        gridHelper.position.z += 0.5;
+        if (gridHelper.position.z > 4) gridHelper.position.z = 0;
+        
+        renderer.render(scene, camera);
+    }
+    animate3D();
+
+    // --- 2. AUDIO & VISUAL LOGIC ---
+    let audioCtx, osc, gainNode, isPlaying = false, currentIndex = 0, timer;
+
+    const startAudio = () => {
+        if (isPlaying) return;
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        osc = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.type = 'sine';
+        gainNode.gain.value = 0.05; // PROTECT AOCWEI SPEAKERS
+        osc.start();
+        
+        isPlaying = true;
+        gsap.to(".window", { opacity: 0.5, duration: 0.5 }); // Visual focus mode
+        playNext();
+    };
+
+    const playNext = () => {
+        if (!isPlaying) return;
+
+        const input = document.getElementById('freq-input').value;
+        const frequencies = input.split(',').map(f => parseFloat(f.trim())).filter(f => !isNaN(f));
+        const delay = parseInt(document.getElementById('delay-ms').value) || 100;
+        const loop = document.getElementById('loop-check').checked;
+
+        if (currentIndex < frequencies.length) {
+            let f = frequencies[currentIndex];
+            
+            // Set Frequency
+            osc.frequency.setTargetAtTime(f, audioCtx.currentTime, 0.001);
+            
+            // Update UI
+            document.getElementById('freq-banner').innerText = f + " Hz";
+            document.getElementById('freq-banner').style.color = f > 20000 ? "#ff0000" : "#ff00ff"; // Red for danger frequencies!
+            
+            // --- GSAP VISUALIZER ANIMATION ---
+            // Rapidly scale and rotate the 3D bars based on the frequency value
+            const intensity = Math.max(0.1, Math.min(10, f / 200)); // Map freq to visual intensity
+            vizGroup.children.forEach((mesh, idx) => {
+                // GSAP can animate anything—even object properties like scale
+                gsap.to(mesh.scale, { 
+                    y: 1 + intensity * (1 - Math.cos(idx)), 
+                    x: 1 + intensity / 5,
+                    duration: delay / 1000, 
+                    ease: "bounce.out" 
+                });
+                gsap.to(mesh.rotation, { 
+                    x: Math.random() * Math.PI, 
+                    y: Math.PI / 2,
+                    duration: delay / 500
+                });
+                
+                // Color shift for high frequencies
+                mesh.material.color.setHex(f > 15000 ? 0xff4444 : 0x00ffff);
+            });
+
+            currentIndex++;
+            timer = setTimeout(playNext, delay);
+        } else {
+            if (loop) { currentIndex = 0; playNext(); } else { stopAudio(); }
+        }
+    };
+
+    const stopAudio = () => {
+        isPlaying = false;
+        clearTimeout(timer);
+        if (osc) osc.stop();
+        if (audioCtx) audioCtx.close();
+        audioCtx = null;
+        currentIndex = 0;
+        document.getElementById('freq-banner').innerText = "--- Hz";
+        gsap.to(".window", { opacity: 1 });
+        vizGroup.children.forEach(mesh => gsap.to(mesh.scale, { y: 1, duration: 0.5 })); // Reset visualizer
+    };
+
+    document.getElementById('play-btn').onclick = startAudio;
+    document.getElementById('stop-btn').onclick = stopAudio;
+    
+    // Resize handler to keep the 3D visualizer responsive
+    window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+</body>
+</html>
