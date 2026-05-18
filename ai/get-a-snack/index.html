@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>get a snack web port - lowercase clerk update</title>
+    <!-- the holy grail fonts: source sans & comic neue! -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Source+Sans+3:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #16162d; 
+            font-family: 'source sans 3', sans-serif;
+            user-select: none;
+            text-transform: lowercase; /* forces total lowercase immersion! */
+        }
+        #ui-container {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            color: #fff;
+            text-shadow: 2px 2px #000;
+            z-index: 999; 
+        }
+        .hud-element {
+            background: rgba(15, 10, 30, 0.85);
+            padding: 12px;
+            border-radius: 6px;
+            border: 3px solid #ffcc00;
+            font-family: 'comic neue', cursive;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        /* sleek black button update */
+        .gui-btn {
+            background: #111111;
+            color: #ffffff;
+            border: 3px solid #ffcc00;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-family: 'comic neue', cursive;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-shadow: 1px 1px #000;
+            box-shadow: 0 4px #000000;
+            transition: 0.1s;
+            display: block;
+            text-transform: lowercase;
+        }
+        .gui-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px #000000;
+        }
+        /* achievements menu box */
+        #achievements-menu {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 340px;
+            background: rgba(25, 20, 45, 0.98);
+            border: 5px solid #ffcc00;
+            border-radius: 12px;
+            color: white;
+            padding: 20px;
+            box-shadow: 0 0 35px rgba(0,0,0,0.95);
+            display: none; 
+            font-family: 'comic neue', cursive;
+            z-index: 10000; 
+        }
+        #achievements-menu h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #ffcc00;
+            border-bottom: 3px dashed #ff007f;
+            padding-bottom: 8px;
+        }
+        .badge-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border: 1px solid #555;
+        }
+        .badge-icon {
+            font-size: 2rem;
+        }
+        .badge-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .badge-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .badge-status {
+            font-size: 0.85rem;
+            color: #ff9999;
+        }
+        .close-btn {
+            background: #222222;
+            color: white;
+            border: 2px solid #ffcc00;
+            padding: 8px;
+            width: 100%;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            font-family: 'comic neue', cursive;
+            text-transform: lowercase;
+        }
+        #achievement-popup {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            background: #ffcc00;
+            color: #000;
+            padding: 18px;
+            border: 4px solid #fff;
+            border-radius: 10px;
+            font-family: 'comic neue', cursive;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: none;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8);
+            z-index: 9999;
+        }
+        /* clerk speech dialogue container */
+        #clerk-dialogue {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: #ff5555;
+            border: 3px solid #ff5555;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-family: 'comic neue', cursive;
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: none;
+            z-index: 9999;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255,0,0,0.4);
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <!-- background music element -->
+    <audio id="bg-music" loop>
+        <source src="https://web.archive.org/web/20260518134414/https://audio.ngfiles.com/1085000/1085523_Konekos-Caf.mp3" type="audio/mp3">
+    </audio>
+
+    <div id="ui-container">
+        <div class="hud-element">wasd / arrows to walk | right-click drag to look | scroll wheel to zoom</div>
+        <button class="gui-btn" onclick="toggleMenu()">view achievements</button>
+    </div>
+
+    <div id="achievements-menu">
+        <h2>badge storage box</h2>
+        <div class="badge-row">
+            <div class="badge-icon">🏠</div>
+            <div class="badge-info">
+                <span class="badge-title">mansion dweller</span>
+                <span class="badge-status" id="badge-spawn">locked</span>
+            </div>
+        </div>
+        <div class="badge-row">
+            <div class="badge-icon">🌫️</div>
+            <div class="badge-info">
+                <span class="badge-title">into the 4am fog</span>
+                <span class="badge-status" id="badge-outside">locked</span>
+            </div>
+        </div>
+        <div class="badge-row">
+            <div class="badge-icon">🏪</div>
+            <div class="badge-info">
+                <span class="badge-title">late night snack run</span>
+                <span class="badge-status" id="badge-store">locked</span>
+            </div>
+        </div>
+        <button class="close-btn" onclick="toggleMenu()">close menu</button>
+    </div>
+
+    <div id="achievement-popup">achievement unlocked!</div>
+    <div id="clerk-dialogue">clerk: "dude, it's 4am... buy something or leave, i want to go home."</div>
+
+    <script>
+        // --- start music on first player interaction click ---
+        window.addEventListener('click', () => {
+            const music = document.getElementById('bg-music');
+            if (music.paused) {
+                music.volume = 0.3;
+                music.play().catch(e => console.log("audio auto-play blocked until interaction"));
+            }
+        });
+
+        // --- 1. SPARK THE WORLD WITH BRIGHTER EXPONENTIAL FOG ---
+        const scene = new THREE.Scene();
+        const nightBg = 0x16162d; 
+        scene.background = new THREE.Color(nightBg);
+        scene.fog = new THREE.FogExp2(nightBg, 0.03); 
+
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        // --- 2. LIGHTING DECK ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.45); 
+        scene.add(ambientLight);
+
+        const moonLight = new THREE.DirectionalLight(0xaaccff, 0.7); 
+        moonLight.position.set(40, 80, 20);
+        scene.add(moonLight);
+
+        // --- 3. THE BASEPLATE WORLD FLOOR ---
+        const baseplateGeo = new THREE.BoxGeometry(400, 2, 400);
+        const grassMat = new THREE.MeshStandardMaterial({ color: 0x245418, roughness: 0.9 }); 
+        const baseplate = new THREE.Mesh(baseplateGeo, grassMat);
+        baseplate.position.y = -1;
+        scene.add(baseplate);
+
+        // --- 4. THE LONG ROAD & STREET LAMPS ---
+        const roadGeo = new THREE.BoxGeometry(400, 2.02, 22); 
+        const roadMat = new THREE.MeshStandardMaterial({ color: 0x1e1e22, roughness: 0.85 });
+        const road = new THREE.Mesh(roadGeo, roadMat);
+        road.position.set(0, -1, 35); 
+        scene.add(road);
+
+        // road dash lines
+        const lineGeo = new THREE.BoxGeometry(12, 2.05, 0.6);
+        const lineMat = new THREE.MeshStandardMaterial({ color: 0xffcc00, roughness: 1.0 });
+        for (let i = -180; i <= 180; i += 40) {
+            const line = new THREE.Mesh(lineGeo, lineMat);
+            line.position.set(i, -1, 35);
+            scene.add(line);
+        }
+
+        // GLOWING STREET LAMPS ENGINE
+        function createStreetLamp(x, z) {
+            const lampGroup = new THREE.Group();
+            lampGroup.position.set(x, 0, z);
+
+            // metal post pole
+            const poleGeo = new THREE.CylinderGeometry(0.2, 0.3, 14, 8);
+            const poleMat = new THREE.MeshStandardMaterial({ color: 0x444448, roughness: 0.6 });
+            const pole = new THREE.Mesh(poleGeo, poleMat);
+            pole.position.y = 7;
+            lampGroup.add(pole);
+
+            // top horizontal bar arm bulb case
+            const armGeo = new THREE.BoxGeometry(2, 0.4, 0.4);
+            const arm = new THREE.Mesh(armGeo, poleMat);
+            arm.position.set(1, 14, 0);
+            lampGroup.add(arm);
+
+            // glowing bulb mesh box
+            const bulbGeo = new THREE.BoxGeometry(0.8, 0.4, 0.8);
+            const bulbMat = new THREE.MeshBasicMaterial({ color: 0xfff0aa });
+            const bulb = new THREE.Mesh(bulbGeo, bulbMat);
+            bulb.position.set(1.8, 13.8, 0);
+            lampGroup.add(bulb);
+
+            // real lamp point light casting down onto the asphalt road surface
+            const lampLight = new THREE.PointLight(0xffe699, 1.2, 35);
+            lampLight.position.set(1.8, 13, 0);
+            lampGroup.add(lampLight);
+
+            scene.add(lampGroup);
+        }
+
+        // drop lamps all along the front road curb lines
+        createStreetLamp(-60, 22);
+        createStreetLamp(-20, 22);
+        createStreetLamp(20, 22);
+        createStreetLamp(60, 22);
+
+        // --- 5. WALL COLLISION PHYSICS ARRAY ---
+        const collidableBoxes = [];
+
+        function createWall(x, y, z, w, h, d, colorColor, opacity = 1, transparent = false) {
+            const geo = new THREE.BoxGeometry(w, h, d);
+            const mat = new THREE.MeshStandardMaterial({ 
+                color: colorColor, 
+                roughness: 0.7,
+                transparent: transparent,
+                opacity: opacity
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.position.set(x, y, z);
+            scene.add(mesh);
+
+            const box = new THREE.Box3().setFromObject(mesh);
+            collidableBoxes.push(box);
+            return mesh;
+        }
+
+        // --- 6. THE EXPANDED TAN MANSION ---
+        const tanWallColor = 0xd2b48c;  
+        const brickRedColor = 0xb22222; 
+
+        createWall(0, 6, -25, 32, 12, 1, tanWallColor); // back wall
+        createWall(-16, 6, -10, 1, 12, 30, tanWallColor); // left wall
+        createWall(16, 6, -10, 1, 12, 30, tanWallColor); // right wall
+        createWall(-11, 6, 5, 10, 12, 1, tanWallColor); // front left wall
+        createWall(11, 6, 5, 10, 12, 1, tanWallColor); // front right wall
+        createWall(0, 10, 5, 12, 4, 1, tanWallColor); // door header beam
+        createWall(0, 12.25, -10, 34, 0.5, 32, brickRedColor); // big brick red roof overhang
+
+        // --- 7. THE GIGANTIC 4AM CONVENIENCE STORE SUPER-MARKET ---
+        const storeX = 0, storeZ = 75;
+        const storeWidth = 46;
+        const storeHeight = 14;
+        const storeDepth = 30;
+
+        // massive store shell frame structures
+        createWall(storeX, storeHeight/2, storeZ + storeDepth/2, storeWidth, storeHeight, 1, 0x252528); // back wall
+        createWall(storeX - storeWidth/2, storeHeight/2, storeZ, 1, storeHeight, storeDepth, 0x252528); // left wall
+        createWall(storeX + storeWidth/2, storeHeight/2, storeZ, 1, storeHeight, storeDepth, 0x252528); // right wall
+        
+        // neon sign board frame block roof marquee
+        createWall(storeX, storeHeight - 1, storeZ - storeDepth/2, storeWidth, 2, 1.2, 0x00ffcc);
+        
+        // front glass window wall blocks (lower half transparent glass pane panes)
+        createWall(storeX - 14, 5, storeZ - storeDepth/2, 14, 10, 0.5, 0xaaffff, 0.35, true);
+        createWall(storeX + 14, 5, storeZ - storeDepth/2, 14, 10, 0.5, 0xaaffff, 0.35, true);
+        createWall(storeX, storeHeight - 3, storeZ - storeDepth/2, storeWidth, 4, 1, 0x252528); // upper wall overhead header
+
+        // snack interior counter counter shelf block setup
+        createWall(storeX, 2, storeZ + 2, 22, 4, 4, 0xff5500); // central orange chips stand block
+
+        // clerk service checkout desk
+        createWall(storeX - 10, 2, storeZ - 6, 6, 4, 4, 0x44444a);
+
+        // interior ceiling spot glowing lights
+        const storeLight1 = new THREE.PointLight(0x00ffcc, 1.6, 45);
+        storeLight1.position.set(storeX - 10, 11, storeZ);
+        scene.add(storeLight1);
+
+        const storeLight2 = new THREE.PointLight(0xffffff, 1.2, 45);
+        storeLight2.position.set(storeX + 10, 11, storeZ);
+        scene.add(storeLight2);
+
+        // --- 8. THE GRUMPY STORE CLERK BLOCKY MESH ---
+        const clerkGroup = new THREE.Group();
+        clerkGroup.position.set(storeX - 10, 0, storeZ - 5); // stands right behind checkout desk platform
+
+        const redMat = new THREE.MeshStandardMaterial({ color: 0xaa2222 }); // grumpy red apron shirt
+        const faceMat = new THREE.MeshStandardMaterial({ color: 0xffd1a4 }); // human skin block
+
+        const cHead = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), faceMat);
+        cHead.position.y = 4.2;
+        clerkGroup.add(cHead);
+
+        const cTorso = new THREE.Mesh(new THREE.BoxGeometry(1.8, 1.8, 0.9), redMat);
+        cTorso.position.y = 2.8;
+        clerkGroup.add(cTorso);
+
+        scene.add(clerkGroup);
+
+        // --- 9. R6 ROBLOX YELLOW PLAYER MESH ---
+        const playerGroup = new THREE.Group();
+        playerGroup.position.set(0, 0, -5); 
+
+        const skinMat = new THREE.MeshStandardMaterial({ color: 0xffea00, roughness: 0.5 }); 
+        const clothesMat = new THREE.MeshStandardMaterial({ color: 0x00aa44, roughness: 0.5 }); 
+
+        const headMesh = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 1.0), skinMat);
+        headMesh.position.y = 4.5;
+        playerGroup.add(headMesh);
+
+        const torsoMesh = new THREE.Mesh(new THREE.BoxGeometry(2.0, 2.0, 1.0), clothesMat);
+        torsoMesh.position.y = 3.0;
+        playerGroup.add(torsoMesh);
+
+        const laMesh = new THREE.Mesh(new THREE.BoxGeometry(1.0, 2.0, 1.0), skinMat);
+        laMesh.position.set(-1.5, 3.0, 0);
+        playerGroup.add(laMesh);
+
+        const raMesh = new THREE.Mesh(new THREE.BoxGeometry(1.0, 2.0, 1.0), skinMat);
+        raMesh.position.set(1.5, 3.0, 0);
+        playerGroup.add(raMesh);
+
+        const llMesh = new THREE.Mesh(new THREE.BoxGeometry(1.0, 2.0, 1.0), clothesMat);
+        llMesh.position.set(-0.5, 1.0, 0);
+        playerGroup.add(llMesh);
+
+        const rlMesh = new THREE.Mesh(new THREE.BoxGeometry(1.0, 2.0, 1.0), clothesMat);
+        rlMesh.position.set(0.5, 1.0, 0);
+        playerGroup.add(rlMesh);
+
+        scene.add(playerGroup);
+        const playerBox = new THREE.Box3();
+
+        // --- 10. INPUT DRIVERS & MOUSE CAMERA WHEEL ORBIT ENGINE ---
+        const keys = { w: false, a: false, s: false, d: false, ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false };
+        const playerSpeed = 0.26;
+
+        let cameraAngleH = 0; 
+        let cameraAngleV = 0.4; 
+        let cameraRadius = 24; 
+
+        let isRightMouseDown = false;
+        let previousMousePosition = { x: 0, y: 0 };
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key.toLowerCase() in keys) keys[e.key.toLowerCase()] = true;
+            if (e.key in keys) keys[e.key] = true;
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (e.key.toLowerCase() in keys) keys[e.key.toLowerCase()] = false;
+            if (e.key in keys) keys[e.key] = false;
+        });
+
+        window.addEventListener('contextmenu', e => e.preventDefault());
+
+        window.addEventListener('mousedown', (e) => {
+            if (e.button === 2) {
+                isRightMouseDown = true;
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (isRightMouseDown) {
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+                cameraAngleH -= deltaX * 0.007;
+                cameraAngleV = Math.max(0.05, Math.min(Math.PI / 2.1, cameraAngleV + deltaY * 0.007));
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+            }
+        });
+
+        window.addEventListener('mouseup', (e) => {
+            if (e.button === 2) isRightMouseDown = false;
+        });
+
+        window.addEventListener('wheel', (e) => {
+            cameraRadius += e.deltaY * 0.02;
+            cameraRadius = Math.max(5, Math.min(85, cameraRadius));
+        });
+
+        // --- 11. TRACKING BADGES & GUI POPUP REVEAL INTERFACE ---
+        function updateMenuGUI() {
+            if(localStorage.getItem('gasa4_spawn_mansion')) {
+                document.getElementById('badge-spawn').innerText = "✅ unlocked!";
+                document.getElementById('badge-spawn').style.color = "#00ffcc";
+            }
+            if(localStorage.getItem('gasa4_left_mansion')) {
+                document.getElementById('badge-outside').innerText = "✅ unlocked!";
+                document.getElementById('badge-outside').style.color = "#00ffcc";
+            }
+            if(localStorage.getItem('gasa4_reached_store')) {
+                document.getElementById('badge-store').innerText = "✅ unlocked!";
+                document.getElementById('badge-store').style.color = "#00ffcc";
+            }
+        }
+
+        function triggerBadge(key, text) {
+            if (!localStorage.getItem(key)) {
+                localStorage.setItem(key, 'true');
+                const popup = document.getElementById('achievement-popup');
+                popup.innerText = "🏆 badge unlocked: " + text.toLowerCase();
+                popup.style.display = 'block';
+                updateMenuGUI();
+                setTimeout(() => { popup.style.display = 'none'; }, 4000);
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('achievements-menu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                updateMenuGUI();
+                menu.style.display = 'block';
+            }
+        }
+
+        triggerBadge('gasa4_spawn_mansion', 'mansion dweller!');
+        updateMenuGUI();
+
+        // --- 12. MAIN ANIMATION LOOP & TRIGGER LOGIC ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            let inputX = 0;
+            let inputZ = 0;
+
+            if (keys.w || keys.ArrowUp) inputZ -= 1;
+            if (keys.s || keys.ArrowDown) inputZ += 1;
+            if (keys.a || keys.ArrowLeft) inputX -= 1;
+            if (keys.d || keys.ArrowRight) inputX += 1;
+
+            if (inputX !== 0 || inputZ !== 0) {
+                const camForward = new THREE.Vector3(0, 0, -1).applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraAngleH).normalize();
+                const camRight = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), cameraAngleH).normalize();
+
+                const moveDirection = new THREE.Vector3()
+                    .addScaledVector(camForward, -inputZ)
+                    .addScaledVector(camRight, inputX)
+                    .normalize();
+
+                const nextX = playerGroup.position.x + moveDirection.x * playerSpeed;
+                const nextZ = playerGroup.position.z + moveDirection.z * playerSpeed;
+
+                // X wall block check
+                playerBox.setFromObject(playerGroup);
+                playerBox.translate(new THREE.Vector3(moveDirection.x * playerSpeed, 0, 0));
+                let collideX = false;
+                for (let box of collidableBoxes) {
+                    if (playerBox.intersectsBox(box)) { collideX = true; break; }
+                }
+                if (!collideX) playerGroup.position.x = nextX;
+
+                // Z wall block check
+                playerBox.setFromObject(playerGroup);
+                playerBox.translate(new THREE.Vector3(0, 0, moveDirection.z * playerSpeed));
+                let collideZ = false;
+                for (let box of collidableBoxes) {
+                    if (playerBox.intersectsBox(box)) { collideZ = true; break; }
+                }
+                if (!collideZ) playerGroup.position.z = nextZ;
+
+                const targetRotation = Math.atan2(moveDirection.x, moveDirection.z);
+                playerGroup.rotation.y = targetRotation;
+
+                // objective distance tracking thresholds
+                if (playerGroup.position.z > 6) {
+                    triggerBadge('gasa4_left_mansion', 'into the 4am fog!');
+                }
+                if (playerGroup.position.z > 58) {
+                    triggerBadge('gasa4_reached_store', 'late night snack run!');
+                }
+            }
+
+            // clerk proximity grumpy complaining subtitle engine trigger
+            const distToClerk = playerGroup.position.distanceTo(clerkGroup.position);
+            const dialogueBox = document.getElementById('clerk-dialogue');
+            if (distToClerk < 10) {
+                dialogueBox.style.display = 'block';
+            } else {
+                dialogueBox.style.display = 'none';
+            }
+
+            // camera offset math positions
+            const targetCamX = playerGroup.position.x + cameraRadius * Math.sin(cameraAngleH) * Math.cos(cameraAngleV);
+            const targetCamY = playerGroup.position.y + 4.5 + cameraRadius * Math.sin(cameraAngleV);
+            const targetCamZ = playerGroup.position.z + cameraRadius * Math.cos(cameraAngleH) * Math.cos(cameraAngleV);
+
+            camera.position.set(targetCamX, targetCamY, targetCamZ);
+            camera.lookAt(playerGroup.position.x, playerGroup.position.y + 2.5, playerGroup.position.z);
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+</body>
+</html>
