@@ -230,16 +230,22 @@
             
             const area = document.getElementById('fakechat-area');
             
-            /* 1. Modern Template Literals and Append for Newer Engine Layers */
-            const userRowHtml = `
-                <div class="chat-row row-user">
-                    <div class="msg-box user-style">
-                        <span class="sender-tag">You</span>
-                        ${textInput.value.trim()}
-                    </div>
-                </div>`;
-            
-            area.insertAdjacentHTML('beforeend', userRowHtml);
+            /* 1. Safely append user message without HTML interpretation */
+            const userRow = document.createElement('div');
+            userRow.className = 'chat-row row-user';
+
+            const userBox = document.createElement('div');
+            userBox.className = 'msg-box user-style';
+
+            const senderTag = document.createElement('span');
+            senderTag.className = 'sender-tag';
+            senderTag.textContent = 'You';
+
+            userBox.appendChild(senderTag);
+            userBox.appendChild(document.createTextNode(` ${textInput.value.trim()}`));
+            userRow.appendChild(userBox);
+            area.appendChild(userRow);
+
             textInput.value = ''; // Input is safely wiped clean right here!
             area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
             
