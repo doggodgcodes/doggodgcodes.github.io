@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Delay</title>
+    <script src="https://doggodgcodes.github.io/ai/api/asyncdelay.js"></script>
+  </head>
+  <body>
+    <h1 id="count">0</h1>
+    <button id="btn" style="max-width: 70vw;">Hi</button>
+    <script>
+      const btn = document.getElementById("btn");
+      const counter = document.getElementById("count");
+      let c = 0n;
+      let d = 0.1;
+
+      btn.addEventListener("click", () => {
+        d -= 0.1;
+      });
+
+      async function autoClick() {
+        while (true) {
+          c += 1n;
+          c += c;
+          counter.textContent = c;
+          await wait(d);
+        }
+      }
+
+      autoClick();
+    </script>
+  </body>
+</html>
