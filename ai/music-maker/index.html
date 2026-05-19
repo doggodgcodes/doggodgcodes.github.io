@@ -333,7 +333,9 @@
         const mailBtn = document.getElementById('mailBtn');
 
         // 🎛️ DECLARE THE AUDIO CONTEXT AND MASTER NODES AT THE TOP OF YOUR LOGIC
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const audioCtx = null
+        // use null to test it
+    // new (window.AudioContext || window.webkitAudioContext)();
 
 // 👑 THIS IS YOUR MAIN GAIN NODE (The Master Volume Slider of the Universe!)
 const mainGainNode = audioCtx.createGain();
