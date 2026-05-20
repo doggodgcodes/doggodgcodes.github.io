@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="robots" content="noindex, nofollow">
+    <title>Terminal Clicker</title>
+    <style>
+      body {
+        font-family: monospace;
+        background-color: #000;
+        padding: 25px;
+        animation: move 10s ease-in-out infinite alternate;
+      }
+      @keyframes move {
+        0% {
+          transform: translateX(5px) translateY(5px);
+        }
+
+        25% {
+          transform: translateX(5px) translateY(-5px);
+        }
+
+        50% {
+          transform: translateX(0px) translateY(0px);
+        }
+
+        75% {
+          transform: translateX(5px) translateY(-5px);
+        }
+
+        100% {
+          transform: translateX(-5px) translateY(-5px);
+        }
+      }
+      @keyframes flicker {
+        from {
+          opacity: 0.95;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      #terminal-out {
+        animation: flicker 0.01s ease-in-out infinite alternate;
+      }
+      span:hover {
+        padding-left: 5px;
+      }
+    </style>
+    <style id="text">body { color: #fff; text-shadow: 0 0 10px #fff; }</style>
+  </head>
+  <body>
+    <div id="terminal-out">...</div>
+    <script>
+      const terminal = document.getElementById("terminal-out");
+      const textColor = document.getElementById("text");
+
+      let delay = (s) => new Promise(r => setTimeout(r, s * 1000));
+      let score = 0n;
+      let key = "";
+      let add = 1n;
+      let blinky = 0;
+      let blinkyString = "|";
+      let cost = 1n;
+      let costAuto = 1n;
+      let isActiveB = false;
+      let isActiveF = false;
+      let isActiveC = false;
+      let autoAmount = 0n;
+      let mode = 0;
+
+      colorSwitch()
+
+      document.addEventListener("keydown", function (e) {
+        key = e.key;
+        if (key == "b" || key == "B") {
+          isActiveB = true;
+          updateDisplay();
+        } else {
+          isActiveB = false;
+          updateDisplay();
+        }
+        if (key == "f" || key == "F") {
+          isActiveF = true;
+          updateDisplay();
+        } else {
+          isActiveF = false;
+          updateDisplay();
+        }
+        if (key == "c" || key == "C") {
+          isActiveC = true;
+          updateDisplay();
+        } else {
+          isActiveC = false;
+          updateDisplay();
+        }
+        addScore();
+      });
+      document.addEventListener("keyup", function (e) {
+        key = "";
+        blinky++;
+        updateDisplay();
+      });
+
+      async function addScore() {
+        if (key !== "" && isActiveB == false && isActiveF == false && isActiveC == false) {
+          score = score + add;
+          blinky++;
+          if (blinky > 16) {
+            blinkyString = "|";
+          } else {
+            blinkyString = "";
+          }
+          if (blinky > 32) {
+            blinky = 0;
+          }
+        } else if (isActiveB == true && score > cost) {
+          score -= cost;
+          add += 1n;
+          cost *= 2n;
+        }
+        else if (isActiveF == true && score > costAuto) {
+          score -= costAuto;
+          autoAmount += 1n;
+          costAuto *= 2n;
+        }
+        colorSwitch()
+        updateDisplay();
+      }
+
+      async function updateDisplay() {
+        terminal.innerHTML = "<h1>" + score + blinkyString + "</h1>";
+        terminal.innerHTML = terminal.innerHTML + "<span>Current cost per upgrade: " + cost + "</span><br>";
+        terminal.innerHTML = terminal.innerHTML + "<span>Current cost per autoclicker: " + costAuto + "</span><br>";
+        terminal.innerHTML = terminal.innerHTML + "<span>Current value per keystroke: " + add + "</span><br>";
+        terminal.innerHTML = terminal.innerHTML + "<span>Current amount of autoclickers: " + autoAmount + "</span><br>";
+        terminal.innerHTML = terminal.innerHTML + "<span>To purchase upgrade, press B</span><br>";
+        terminal.innerHTML = terminal.innerHTML + "<span>To purchase autoclick, press F</span><br>";
+        terminal.innerHTML = terminal.innerHTML + "<span>To change color, press C</span><br>";
+        terminal.innerHTML = terminal.innerHTML + "<span>Any other keys work like a click</span>";
+      }
+
+      async function autoClick() {
+        while (true) {
+          score += autoAmount * add;
+          updateDisplay();
+          await delay(1);
+        }
+      }
+
+      async function colorSwitch() {
+        if (isActiveC == true) {
+          mode++;
+          if (mode > 6) {
+            mode = 0;
+          }
+          if (mode == 0) {
+            textColor.innerText = "body { color: #fff; text-shadow: 0 0 10px #fff;}";
+          } else if (mode == 1) {
+            textColor.innerText = "body { color: #0f0; text-shadow: 0 0 10px #0f0;}";
+          } else if (mode == 2) {
+            textColor.innerText = "body { color: #00f; text-shadow: 0 0 10px #0f;}";
+          } else if (mode == 3) {
+            textColor.innerText = "body { color: #f00; text-shadow: 0 0 10px #f0;}";
+          } else if (mode == 4) {
+            textColor.innerText = "body { color: #ff0; text-shadow: 0 0 10px #ff0;}";
+          } else if (mode == 5) {
+            textColor.innerText = "body { color: #0ff; text-shadow: 0 0 10px #0ff;}";
+          } else if (mode == 6) {
+            textColor.innerText = "body { color: #f0f; text-shadow: 0 0 10px #f0f;}";
+          }
+        }
+      }
+
+      addScore();
+      autoClick();
+      updateDisplay();
+    </script>
+  </body>
+</html>
