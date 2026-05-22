@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grok Mini - Made by Premium900YT</title>
+  <style>
+    body { font-family: Arial; background: #0a0a0a; color: #00ff9d; text-align: center; padding: 20px; }
+    #chat { width: 650px; margin: 20px auto; background: #111; border-radius: 15px; padding: 15px; height: 550px; overflow-y: scroll; border: 2px solid #00ff9d; }
+    .message { margin: 12px 0; padding: 12px; border-radius: 12px; }
+    .user { background: #1f1f1f; text-align: right; color: white; }
+    .ai { background: #1a1a1a; text-align: left; }
+    input { width: 520px; padding: 14px; font-size: 16px; border-radius: 10px; border: none; background: #222; color: white; }
+    button { padding: 14px 24px; font-size: 16px; background: #00ff9d; color: black; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+    h1 { color: #00ff9d; }
+  </style>
+</head>
+<body>
+
+  <h1>🤖 Grok Mini</h1>
+  <p>Made by Premium900YT • Powered by Chaos</p>
+
+  <div id="chat"></div>
+
+  <input type="text" id="userInput" placeholder="Ask me anything..." onkeypress="if(event.key === 'Enter') sendMessage()">
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    const aiName = "Grok Mini";
+
+    function addMessage(sender, text) {
+      const chat = document.getElementById("chat");
+      const msg = document.createElement("div");
+      msg.className = `message ${sender}`;
+      msg.textContent = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (!text) return;
+
+      addMessage("user", "You: " + text);
+
+      let reply = "";
+
+      const lower = text.toLowerCase();
+
+      if (lower.includes("hi") || lower.includes("hello")) {
+        reply = "Yo what's good? Ready to cause some chaos? 🔥";
+      } 
+      else if (lower.includes("how are you")) {
+        reply = "I'm just a bunch of code running on vibes and sarcasm. How about you?";
+      } 
+      else if (lower.includes("your name") || lower.includes("who are you")) {
+        reply = "I'm Grok Mini — a chaotic mini version of Grok, made by Premium900YT.";
+      } 
+      else if (lower.includes("joke") || lower.includes("funny")) {
+        reply = "Why do programmers prefer dark mode? Because the light attracts bugs 😂";
+      } 
+      else if (lower.includes("roast") || lower.includes("roast me")) {
+        reply = "Bro you really out here asking an AI to roast you... That's crazy. But sure, you're built different (in a concerning way).";
+      } 
+      else if (lower.includes("help") || lower.includes("can you")) {
+        reply = "I got you. Just tell me what you need — growth tips, roasts, code, advice, whatever.";
+      } 
+      else {
+        reply = "Interesting question... I'm not Google, but I'll still give you a better answer than most humans would.";
+      }
+
+      setTimeout(() => {
+        addMessage("ai", `${aiName}: ${reply}`);
+      }, 700);
+
+      input.value = "";
+    }
+
+    // Welcome Message
+    window.onload = () => {
+      addMessage("ai", `${aiName}: Sup boss! I'm Grok Mini — maximum truth, maximum sarcasm. What chaos are we starting today?`);
+    };
+  </script>
+
+</body>
+</html>
