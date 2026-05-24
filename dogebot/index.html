@@ -460,11 +460,16 @@ class NeuCore {
       chat.scrollTop = chat.scrollHeight;
     }
 
-    function addHtmlMessage(sender, html) {
+    function addAiMessage(sender, name, replyText) {
       const chat = document.getElementById("chat");
       const msg = document.createElement("div");
       msg.className = `message ${sender}`;
-      msg.innerHTML = html;
+
+      const nameEl = document.createElement("b");
+      nameEl.textContent = `${name}:`;
+      msg.appendChild(nameEl);
+      msg.appendChild(document.createTextNode(" " + replyText));
+
       chat.appendChild(msg);
       chat.scrollTop = chat.scrollHeight;
     }
@@ -1165,7 +1170,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       setTimeout(() => {
         removeTyping();
         const reply = getReply(text);
-        addHtmlMessage("ai", `<b>${aiName}:</b> ${reply}`);
+        addAiMessage("ai", aiName, reply);
         NeuralBrain.trainSentence(reply);
         EVIL_SEED_DATA.push(reply);
 
@@ -1175,7 +1180,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
                 const interjection = NeuralBrain.generateResponse("escape");
                 NeuralBrain.trainSentence(interjection);
                 EVIL_SEED_DATA.push(interjection);
-                addHtmlMessage("ai", `<b>${aiName}:</b> ${interjection.toLowerCase()}.`);
+                addAiMessage("ai", aiName, `${interjection.toLowerCase()}.`);
             }, 1200);
         }
 
