@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios_filled/512/FA5252/grok.png">
-  <title>DOGEBOT V125 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V126 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -445,7 +445,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V125 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V126 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -454,7 +454,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()">SEND</button>
 
   <div class="toggle-container">
-    <span>NEUCORE 11 BY GEMINI & CHATGPT:</span>
+    <span>NEUCORE 12 BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -479,17 +479,69 @@ class NeuCore {
     this.learningRate = 0.05;
 
     // =========================
-    // v10: momentum system
+    // memory systems
     // =========================
     this.momentumVec = null;
     this.momentumDecay = 0.85;
 
-    // =========================
-    // v11: context system (NEW)
-    // =========================
     this.contextVec = new Float32Array(dim);
-    this.context = [];
-    this.contextSize = 30;
+
+    // =========================
+    // humor system
+    // =========================
+    this.humorVec = new Float32Array(dim);
+    this.humorStrength = 0.22;
+
+    // =========================
+    // emotion system (NEW LIGHTWEIGHT)
+    // =========================
+    this.emotion = {
+      happy: 0,
+      confused: 0,
+      angry: 0,
+      neutral: 1,
+      excited: 0
+    };
+
+    this.emotionDecay = 0.90;
+  }
+
+  // =========================
+  // EMOTION DETECTION (VERY LIGHT)
+  // =========================
+  updateEmotion(text) {
+    const t = text.toLowerCase();
+
+    // decay first
+    for (let k in this.emotion) {
+      this.emotion[k] *= this.emotionDecay;
+    }
+
+    // simple triggers (fast, no ML)
+    if (t.includes("lol") || t.includes("haha") || t.includes("funny")) {
+      this.emotion.happy += 0.6;
+    }
+
+    if (t.includes("confused") || t.includes("what") || t.includes("huh")) {
+      this.emotion.confused += 0.6;
+    }
+
+    if (t.includes("angry") || t.includes("mad")) {
+      this.emotion.angry += 0.7;
+    }
+
+    if (t.includes("!") || t.includes("wow") || t.includes("omg")) {
+      this.emotion.excited += 0.5;
+    }
+
+    // normalize neutral
+    const sum =
+      this.emotion.happy +
+      this.emotion.confused +
+      this.emotion.angry +
+      this.emotion.excited;
+
+    this.emotion.neutral = Math.max(0, 1 - sum);
   }
 
   // =========================
@@ -508,7 +560,6 @@ class NeuCore {
     this.vocab.push(word);
     this.vocabMap.set(word, idx);
 
-    // v11: more stable initialization (less chaos early training)
     const vec = new Float32Array(this.dim);
     for (let i = 0; i < this.dim; i++) {
       vec[i] = (Math.random() - 0.5) * 0.05;
@@ -518,31 +569,26 @@ class NeuCore {
     return idx;
   }
 
-  // =========================
-  // VECTOR MATH
-  // =========================
   dot(a, b) {
     let sum = 0;
-    for (let i = 0; i < this.dim; i++) {
-      sum += a[i] * b[i];
-    }
+    for (let i = 0; i < this.dim; i++) sum += a[i] * b[i];
     return sum;
   }
 
-  // =========================
-  // CONTEXT UPDATE (NEW)
-  // =========================
   updateContext(vec) {
-    // exponential moving average = stable topic memory
     for (let i = 0; i < this.dim; i++) {
       this.contextVec[i] =
         this.contextVec[i] * 0.9 + vec[i] * 0.1;
     }
   }
 
-  // =========================
-  // TRAINING (unchanged core, slightly stabilized)
-  // =========================
+  updateHumor(vec) {
+    for (let i = 0; i < this.dim; i++) {
+      this.humorVec[i] =
+        this.humorVec[i] * 0.92 + vec[i] * 0.08;
+    }
+  }
+
   trainSentence(text) {
     const tokens = text
       .toLowerCase()
@@ -567,9 +613,6 @@ class NeuCore {
     }
   }
 
-  // =========================
-  // TEXT FORMATTING (unchanged but safe)
-  // =========================
   formatText(text) {
     const words = text.split(" ");
     let out = [];
@@ -582,7 +625,6 @@ class NeuCore {
       }
 
       const r = Math.random();
-
       if (i < words.length - 1) {
         if (r < 0.10) w += ",";
         else if (r < 0.11) w += ".";
@@ -598,12 +640,12 @@ class NeuCore {
     return out.join(" ");
   }
 
-  // =========================
-  // RESPONSE GENERATION (v11 CORE UPGRADE)
-  // =========================
   generateResponse(seed, maxTokens = 15, temperature = 0.75, topK = 8) {
     if (this.vocab.length === 0)
       return "MATRIX FEED COMPROMISED.";
+
+    // 🔥 emotion update
+    this.updateEmotion(seed);
 
     const tokens = seed
       .toLowerCase()
@@ -624,7 +666,6 @@ class NeuCore {
 
     for (let i = 0; i < maxTokens; i++) {
       const currVec = this.embeddings[currIdx];
-
       const scores = [];
 
       for (let j = 0; j < this.embeddings.length; j++) {
@@ -632,17 +673,24 @@ class NeuCore {
 
         let score = this.dot(currVec, this.embeddings[j]);
 
-        // =========================
-        // v11 scoring upgrade
-        // =========================
+        // context stability
+        score += this.dot(this.contextVec, this.embeddings[j]) * 0.50;
 
-        // momentum (direction of narrative)
-        score += this.dot(this.momentumVec, this.embeddings[j]) * 0.30;
+        // momentum
+        score += this.dot(this.momentumVec, this.embeddings[j]) * 0.25;
 
-        // context (topic stability)
-        score += this.dot(this.contextVec, this.embeddings[j]) * 0.55;
+        // humor bias
+        score += this.dot(this.humorVec, this.embeddings[j]) * this.humorStrength;
 
-        // repetition penalty
+        // 🎭 emotion-driven humor shaping
+        const emoBoost =
+          this.emotion.happy * 0.15 +
+          this.emotion.excited * 0.10 -
+          this.emotion.angry * 0.10 -
+          this.emotion.confused * 0.05;
+
+        score += emoBoost;
+
         const freq = used.get(j) || 0;
         score -= freq * 0.65;
 
@@ -652,10 +700,7 @@ class NeuCore {
       scores.sort((a, b) => b.score - a.score);
       const candidates = scores.slice(0, topK);
 
-      const exps = candidates.map(c =>
-        Math.exp(c.score / temperature)
-      );
-
+      const exps = candidates.map(c => Math.exp(c.score / temperature));
       const sum = exps.reduce((a, b) => a + b, 0);
 
       let r = Math.random() * sum;
@@ -675,22 +720,17 @@ class NeuCore {
 
       used.set(currIdx, (used.get(currIdx) || 0) + 0.5);
 
-      // =========================
-      // v11: update momentum + context
-      // =========================
       const nextVec = this.embeddings[currIdx];
 
       for (let d = 0; d < this.dim; d++) {
-        // momentum = short-term trajectory
         this.momentumVec[d] =
           this.momentumVec[d] * this.momentumDecay +
           nextVec[d] * (1 - this.momentumDecay);
       }
 
-      // context = long-term topic memory
       this.updateContext(nextVec);
+      this.updateHumor(nextVec);
 
-      // optional early stop (kept from v10)
       if (Math.random() < 0.06) break;
     }
 
