@@ -13,11 +13,11 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios_filled/512/FA5252/grok.png">
-  <title>DOGEBOT V118 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V120 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
-   💎 DOGEBOT v118 — Optimized Aero + Selective Neomorphism
-   Firefox + Chromium Friendly Build
+   💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
+   Between Skeuo + Optimized Flat
    ========================================================= */
 
 /* =========================================
@@ -37,25 +37,25 @@ body {
     overflow-x: hidden;
 
     font-family: "Segoe UI", -apple-system, sans-serif;
-    color: #1b2a3a;
+    color: #1a2a3a;
     text-align: center;
 
-    /* toned-down Aero background (less neon, less CPU) */
+    /* soft Aero gradient (not flat, not neon) */
     background:
         linear-gradient(
             135deg,
-            #a9d6ff 0%,
-            #d9efff 50%,
-            #d6d2ff 100%
+            #a7d4ff 0%,
+            #dff3ff 45%,
+            #dcd6ff 100%
         );
 
-    background-size: 200% 200%;
+    background-size: 300% 300%;
 
-    animation: flowBackground 22s ease infinite;
+    animation: flowBackground 20s ease infinite;
 }
 
 /* =========================================
-   CHAT PANEL (glass but cheaper)
+   CHAT PANEL (light glass, not heavy blur)
 ========================================= */
 
 #chat {
@@ -65,53 +65,53 @@ body {
     height: 28vw;
 
     margin: 20px auto;
-    padding: 22px;
+    padding: 24px;
 
     overflow-y: auto;
-    overflow-x: hidden;
 
     border-radius: 26px;
 
-    border: 1px solid rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.62);
 
-    /* lighter glass (reduced blur cost) */
-    background: rgba(255,255,255,0.55);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
 
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.6);
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.10),
-        inset 0 1px 0 rgba(255,255,255,0.7);
+        0 12px 35px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.75);
 
-    animation: floatPanel 8s ease-in-out infinite;
+    animation: floatPanel 7s ease-in-out infinite;
 }
 
-/* reduce heavy gloss overlay */
+/* subtle top gloss (not overpowering) */
+
 #chat::before {
     content: "";
+
     position: absolute;
 
     top: 0;
     left: 0;
 
     width: 100%;
-    height: 35%;
-
-    border-radius: 26px;
+    height: 38%;
 
     pointer-events: none;
+
+    border-radius: 26px;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,0.25),
+            rgba(255,255,255,0.35),
             transparent
         );
 }
 
 /* =========================================
-   MESSAGES (less glossy, less pastel)
+   MESSAGES (balanced depth)
 ========================================= */
 
 .message {
@@ -120,69 +120,92 @@ body {
     margin: 14px 0;
     padding: 14px 16px;
 
-    border-radius: 14px;
+    border-radius: 16px;
 
     font-weight: 500;
 
-    /* remove heavy transitions (better FPS) */
-    transition: transform 0.18s ease;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
-/* lighter hover (no big shadow recalcs) */
+/* soft hover lift */
 .message:hover {
     transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 16px rgba(0,0,0,0.10);
 }
 
-/* remove glossy overlay entirely (big perf win) */
+/* subtle gloss highlight (kept, but light) */
+
 .message::before {
-    display: none;
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 45%;
+
+    pointer-events: none;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.22),
+            transparent
+        );
 }
 
-/* USER (less pastel, more neutral blue) */
+/* USER (slightly more depth than flat version) */
+
 .user {
     text-align: right;
 
     color: #173a5c;
 
-    background: #eaf4ff;
+    background:
+        linear-gradient(
+            145deg,
+            #f2f9ff,
+            #dcebff
+        );
 
-    border-right: 4px solid #4a9fff;
+    border-right: 5px solid #4aa3ff;
 
     box-shadow:
-        0 2px 8px rgba(0,0,0,0.06);
+        0 3px 10px rgba(0,0,0,0.06),
+        inset 0 1px 2px rgba(255,255,255,0.6);
 }
 
-/* AI (less neon green, more muted) */
+/* AI (balanced green, not neon, not flat) */
+
 .ai {
     text-align: left;
 
     color: #1f4b2f;
 
-    background: #ecf7ee;
+    background:
+        linear-gradient(
+            145deg,
+            #f0fbf2,
+            #dbf3df
+        );
 
-    border-left: 4px solid #3dbb73;
+    border-left: 5px solid #3dbb73;
 
     box-shadow:
-        0 2px 8px rgba(0,0,0,0.06);
+        0 3px 10px rgba(0,0,0,0.06),
+        inset 0 1px 2px rgba(255,255,255,0.6);
 }
 
 /* =========================================
-   TYPING
-========================================= */
-
-.typing {
-    margin: 8px 0;
-
-    color: #2b6fff;
-
-    font-style: italic;
-    font-weight: 600;
-
-    /* no glow, avoids repaint */
-}
-
-/* =========================================
-   INPUT (slightly flatter, faster)
+   INPUT (slightly glossy again)
 ========================================= */
 
 input {
@@ -192,35 +215,43 @@ input {
 
     font-size: 17px;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
     border: 1px solid rgba(0,0,0,0.08);
 
-    background: #ffffff;
-
-    color: #112233;
+    background:
+        linear-gradient(
+            to bottom,
+            #ffffff,
+            #f3f7ff
+        );
 
     box-shadow:
-        inset 0 1px 3px rgba(0,0,0,0.06);
+        inset 0 2px 4px rgba(0,0,0,0.05),
+        0 4px 12px rgba(0,0,0,0.06);
 
-    transition: border-color 0.2s ease;
+    transition: 0.2s ease;
 }
 
 input:focus {
     border-color: #4aa3ff;
+
+    box-shadow:
+        0 0 12px rgba(0,160,255,0.20),
+        inset 0 2px 4px rgba(255,255,255,0.8);
 }
 
 /* =========================================
-   BUTTONS (less glossy, cheaper shadows)
+   BUTTONS (gloss returns but controlled)
 ========================================= */
 
 button {
     position: relative;
 
-    padding: 16px 36px;
+    padding: 16px 38px;
 
     border: none;
-    border-radius: 14px;
+    border-radius: 16px;
 
     cursor: pointer;
 
@@ -229,16 +260,51 @@ button {
 
     color: white;
 
-    background: #2f86ff;
+    background:
+        linear-gradient(
+            to bottom,
+            #4fbfff,
+            #2f7fff
+        );
 
     box-shadow:
-        0 6px 14px rgba(0,0,0,0.15);
+        0 7px 18px rgba(0,0,0,0.15),
+        inset 0 2px 0 rgba(255,255,255,0.55);
 
-    transition: transform 0.15s ease;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+/* glossy highlight (this is the “missed” part you wanted back) */
+
+button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 2px;
+    left: 4px;
+    right: 4px;
+
+    height: 45%;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,0.45),
+            transparent
+        );
 }
 
 button:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(0,0,0,0.18),
+        inset 0 2px 0 rgba(255,255,255,0.6);
 }
 
 button:active {
@@ -246,22 +312,21 @@ button:active {
 }
 
 /* =========================================
-   TITLE (no glow = faster)
+   TITLE (light glow returns slightly)
 ========================================= */
 
 h1 {
-    margin-bottom: 18px;
-
     font-size: 42px;
-    letter-spacing: 1px;
 
     color: #1f6fff;
 
-    /* removed text-shadow for performance */
+    text-shadow:
+        0 1px 0 rgba(255,255,255,0.7),
+        0 6px 12px rgba(0,120,255,0.18);
 }
 
 /* =========================================
-   TOGGLE (kept, slightly simplified)
+   TOGGLE (unchanged stable version)
 ========================================= */
 
 .toggle-container {
@@ -272,18 +337,15 @@ h1 {
 
     margin: 15px auto;
 
-    font-size: 15px;
     font-weight: 600;
-
     color: #245aa6;
 }
 
 .switch {
     position: relative;
-    display: inline-block;
-
     width: 54px;
     height: 30px;
+    display: inline-block;
 }
 
 .switch input {
@@ -294,16 +356,12 @@ h1 {
 
 .slider {
     position: absolute;
-
     inset: 0;
-
-    cursor: pointer;
 
     border-radius: 34px;
 
     background: #cfd8e3;
-
-    transition: background 0.25s ease;
+    transition: 0.25s ease;
 }
 
 .slider::before {
@@ -311,11 +369,11 @@ h1 {
 
     position: absolute;
 
-    left: 3px;
-    top: 3px;
-
     width: 24px;
     height: 24px;
+
+    left: 3px;
+    top: 3px;
 
     border-radius: 50%;
 
@@ -335,23 +393,7 @@ input:checked + .slider::before {
 }
 
 /* =========================================
-   IFRAME (ONLY NEOMORPHIC ELEMENT)
-========================================= */
-
-iframe {
-    border-radius: 24px;
-
-    background: #e6e9ef;
-
-    box-shadow:
-        8px 8px 18px rgba(0,0,0,0.12),
-        -6px -6px 14px rgba(255,255,255,0.8);
-
-    border: none;
-}
-
-/* =========================================
-   KEYFRAMES (kept minimal cost)
+   KEYFRAMES
 ========================================= */
 
 @keyframes flowBackground {
@@ -367,7 +409,7 @@ iframe {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V118 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V120 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
