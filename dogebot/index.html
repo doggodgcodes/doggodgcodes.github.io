@@ -13,93 +13,114 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios_filled/512/FA5252/grok.png">
-  <title>DOGEBOT V113 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V117 • ENJOY THE INTERFACE</title>
   <style id="css">
-/* ===================================================
-   💎 DOGEBOT v102-113 blend — Frutiger Aero + Skeuomorphic Fusion
-   =================================================== */
+/* =========================================================
+   💎 DOGEBOT v113
+   Frutiger Aero + Skeuomorphic Hybrid
+   Chromium-Safe Clean Build
+   ========================================================= */
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 body {
-    font-family: "Segoe UI", -apple-system, sans-serif;
-
-    /* Dynamic Aero sky */
-    background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.7), transparent 40%),
-        linear-gradient(135deg, #9dd6ff 0%, #d8f3ff 35%, #d9c8ff 100%);
-
-    background-size: 400% 400%;
-    animation:
-        flowBackground 18s ease infinite,
-        move 10s ease-in-out infinite alternate;
-
-    color: #1a2a3a;
-    text-align: center;
     margin: 0;
     padding: 20px;
 
     overflow-x: hidden;
+
+    font-family: "Segoe UI", -apple-system, sans-serif;
+    color: #1a2a3a;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(255,255,255,0.65),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #9dd6ff 0%,
+            #d8f3ff 35%,
+            #d9c8ff 100%
+        );
+
+    background-size: 400% 400%;
+
+    animation:
+        flowBackground 18s ease infinite;
 }
 
 /* =========================================
-   MAIN CHAT GLASS PANEL
+   CHAT PANEL
 ========================================= */
 
 #chat {
+    position: relative;
+
     width: 860px;
     height: 28vw;
-    overflow-y: auto;
 
     margin: 20px auto;
     padding: 25px;
 
-    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
 
     border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.7);
 
-    /* Skeuo glass layering */
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,0.65),
-            rgba(255,255,255,0.28)
+            rgba(255,255,255,0.68),
+            rgba(255,255,255,0.30)
         );
 
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-
-    border:
-        1px solid rgba(255,255,255,0.8);
+    /* Chromium-safe glass */
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
 
     box-shadow:
-        0 15px 50px rgba(0,0,0,0.15),
-        inset 0 2px 0 rgba(255,255,255,0.9),
-        inset 0 -2px 8px rgba(255,255,255,0.3),
-        0 0 30px rgba(100,200,255,0.15);
+        0 15px 45px rgba(0,0,0,0.12),
+        inset 0 2px 0 rgba(255,255,255,0.85),
+        inset 0 -2px 8px rgba(255,255,255,0.20);
 
     animation: floatPanel 6s ease-in-out infinite;
 }
 
-/* Gloss layer */
+/* Gloss overlay */
+
 #chat::before {
     content: "";
 
     position: absolute;
+
     top: 0;
     left: 0;
 
     width: 100%;
-    height: 45%;
+    height: 42%;
 
-    border-radius: 28px 28px 120px 120px;
+    pointer-events: none;
+
+    border-radius: 28px 28px 100px 100px;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,0.55),
-            rgba(255,255,255,0.05)
+            rgba(255,255,255,0.42),
+            rgba(255,255,255,0.04)
         );
-
-    pointer-events: none;
 }
 
 /* =========================================
@@ -117,21 +138,20 @@ body {
     font-weight: 500;
 
     transition:
-        transform 0.3s cubic-bezier(.175,.885,.32,1.275),
-        box-shadow 0.3s,
-        background 0.3s;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
 
-/* Hover bounce */
 .message:hover {
-    transform: translateY(-4px) scale(1.02);
+    transform: translateY(-3px);
 
     box-shadow:
-        0 10px 30px rgba(0,150,255,0.18),
-        inset 0 1px 0 rgba(255,255,255,0.6);
+        0 8px 24px rgba(0,150,255,0.16);
 }
 
-/* Bubble gloss */
+/* Gloss */
+
 .message::before {
     content: "";
 
@@ -143,16 +163,16 @@ body {
     width: 100%;
     height: 50%;
 
+    pointer-events: none;
+
     border-radius: inherit;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,0.45),
+            rgba(255,255,255,0.35),
             transparent
         );
-
-    pointer-events: none;
 }
 
 /* USER */
@@ -165,16 +185,15 @@ body {
     background:
         linear-gradient(
             145deg,
-            #f6fbff,
-            #d9efff
+            #f7fbff,
+            #dcefff
         );
 
-    border-right: 6px solid #4fb4ff;
+    border-right: 5px solid #4fb4ff;
 
     box-shadow:
-        inset 0 2px 3px rgba(255,255,255,0.8),
-        inset 0 -3px 6px rgba(0,0,0,0.04),
-        0 6px 15px rgba(0,0,0,0.06);
+        inset 0 1px 2px rgba(255,255,255,0.75),
+        0 5px 14px rgba(0,0,0,0.06);
 }
 
 /* AI */
@@ -187,16 +206,28 @@ body {
     background:
         linear-gradient(
             145deg,
-            #f3fff5,
-            #d8ffd9
+            #f4fff5,
+            #dcffdd
         );
 
-    border-left: 6px solid #00d26a;
+    border-left: 5px solid #00d26a;
 
     box-shadow:
-        inset 0 2px 3px rgba(255,255,255,0.85),
-        inset 0 -3px 6px rgba(0,0,0,0.05),
-        0 6px 15px rgba(0,0,0,0.06);
+        inset 0 1px 2px rgba(255,255,255,0.75),
+        0 5px 14px rgba(0,0,0,0.06);
+}
+
+/* =========================================
+   TYPING INDICATOR
+========================================= */
+
+.typing {
+    margin: 8px 0;
+
+    color: #0077ff;
+
+    font-style: italic;
+    font-weight: bold;
 }
 
 /* =========================================
@@ -208,29 +239,30 @@ input {
 
     padding: 18px;
 
-    border-radius: 16px;
+    font-size: 18px;
+    color: #112233;
 
+    outline: none;
+
+    border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.8);
 
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,0.95),
-            rgba(240,248,255,0.75)
+            rgba(255,255,255,0.96),
+            rgba(240,248,255,0.82)
         );
-
-    color: #112233;
-
-    font-size: 18px;
-
-    outline: none;
 
     box-shadow:
         inset 0 2px 4px rgba(255,255,255,0.9),
-        inset 0 -2px 5px rgba(0,0,0,0.08),
-        0 5px 18px rgba(0,0,0,0.08);
+        inset 0 -1px 4px rgba(0,0,0,0.05),
+        0 4px 14px rgba(0,0,0,0.07);
 
-    transition: all 0.25s ease;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
 }
 
 input:focus {
@@ -239,7 +271,7 @@ input:focus {
     border-color: #4fc3ff;
 
     box-shadow:
-        0 0 20px rgba(0,170,255,0.35),
+        0 0 18px rgba(0,170,255,0.28),
         inset 0 2px 4px rgba(255,255,255,0.95);
 }
 
@@ -269,16 +301,17 @@ button {
         );
 
     box-shadow:
-        inset 0 2px 0 rgba(255,255,255,0.7),
-        inset 0 -4px 8px rgba(0,0,0,0.15),
-        0 8px 22px rgba(0,114,255,0.35);
+        inset 0 2px 0 rgba(255,255,255,0.65),
+        inset 0 -3px 6px rgba(0,0,0,0.12),
+        0 7px 20px rgba(0,114,255,0.28);
 
     transition:
         transform 0.15s ease,
-        box-shadow 0.25s ease;
+        box-shadow 0.2s ease;
 }
 
 /* Gloss */
+
 button::before {
     content: "";
 
@@ -288,34 +321,34 @@ button::before {
     left: 4px;
     right: 4px;
 
-    height: 45%;
+    height: 42%;
+
+    pointer-events: none;
 
     border-radius: 14px;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,0.55),
+            rgba(255,255,255,0.45),
             transparent
         );
 }
 
-/* Hover */
 button:hover {
-    transform: translateY(-2px) scale(1.03);
+    transform: translateY(-2px);
 
     box-shadow:
-        inset 0 2px 0 rgba(255,255,255,0.8),
-        0 12px 28px rgba(0,114,255,0.45);
+        inset 0 2px 0 rgba(255,255,255,0.75),
+        0 10px 24px rgba(0,114,255,0.36);
 }
 
-/* Press */
 button:active {
-    transform: translateY(2px);
+    transform: translateY(1px);
 
     box-shadow:
-        inset 0 3px 8px rgba(0,0,0,0.18),
-        0 4px 12px rgba(0,114,255,0.25);
+        inset 0 3px 7px rgba(0,0,0,0.14),
+        0 4px 10px rgba(0,114,255,0.18);
 }
 
 /* =========================================
@@ -323,15 +356,16 @@ button:active {
 ========================================= */
 
 h1 {
+    margin-bottom: 20px;
+
     font-size: 44px;
+    letter-spacing: 1px;
 
     color: #0077ff;
 
-    letter-spacing: 1px;
-
     text-shadow:
         0 2px 0 rgba(255,255,255,0.8),
-        0 0 15px rgba(0,140,255,0.25);
+        0 0 14px rgba(0,140,255,0.22);
 
     animation: pulse 3s ease-in-out infinite;
 }
@@ -340,22 +374,78 @@ h1 {
    TOGGLE
 ========================================= */
 
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin: 15px auto;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    color: #0055cc;
+}
+
+.switch {
+    position: relative;
+
+    display: inline-block;
+
+    width: 54px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+
+    width: 0;
+    height: 0;
+}
+
 .slider {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    cursor: pointer;
+
+    border-radius: 34px;
+    border: 1px solid rgba(255,255,255,0.6);
+
     background:
         linear-gradient(
             to bottom,
             #dce4ec,
-            #b8c5d0
+            #bcc7d1
         );
 
     box-shadow:
-        inset 0 2px 5px rgba(255,255,255,0.7),
-        inset 0 -2px 5px rgba(0,0,0,0.08);
+        inset 0 2px 4px rgba(255,255,255,0.6),
+        inset 0 -1px 3px rgba(0,0,0,0.08);
 
-    transition: .4s cubic-bezier(.175,.885,.32,1.275);
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-.slider:before {
+.slider::before {
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    top: 3px;
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
     background:
         linear-gradient(
             to bottom,
@@ -364,8 +454,24 @@ h1 {
         );
 
     box-shadow:
-        inset 0 2px 2px rgba(255,255,255,0.8),
-        0 3px 8px rgba(0,0,0,0.25);
+        inset 0 1px 2px rgba(255,255,255,0.8),
+        0 2px 6px rgba(0,0,0,0.20);
+
+    transition:
+        transform 0.3s ease;
+}
+
+input:checked + .slider {
+    background:
+        linear-gradient(
+            135deg,
+            #00f260,
+            #0575e6
+        );
+}
+
+input:checked + .slider::before {
+    transform: translateX(24px);
 }
 
 /* =========================================
@@ -373,13 +479,22 @@ h1 {
 ========================================= */
 
 @keyframes flowBackground {
-    0%   { background-position: 0% 50%; }
-    50%  { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 @keyframes pulse {
-    0%,100% {
+    0%,
+    100% {
         transform: scale(1);
     }
 
@@ -388,33 +503,21 @@ h1 {
     }
 }
 
-@keyframes move {
-    0% {
-        transform: translateX(2px) translateY(2px);
-    }
-
-    100% {
-        transform: translateX(-2px) translateY(-2px);
-    }
-}
-
-/* Floating glass panel effect */
 @keyframes floatPanel {
-    0%,100% {
-        transform: translateY(0px);
+    0%,
+    100% {
+        transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-4px);
+        transform: translateY(-3px);
     }
 }
-
-    /* --- 💎 DOGEBOT v102 FRUTIGER AERO GLASSY UI OVERHAUL --- */ body { font-family: "Segoe UI", -apple-system, sans-serif; /* Fresh double-rainbow sky dynamic gradient */ background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 50%, #e0c3fc 100%); background-size: 400% 400%; color: #1a2a3a; text-align: center; padding: 20px; margin: 0; animation: flowBackground 15s ease infinite, move 12s ease-in-out infinite alternate; } /* Glassmorphism Aero Chat Box Workspace */ #chat { width: 860px; margin: 20px auto; background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-radius: 24px; padding: 25px; height: 28vw; overflow-y: scroll; border: 2px solid rgba(255, 255, 255, 0.7); box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.6); } /* Hyper-Bouncy Aero Floating Message Bubbles */ .message { margin: 18px 0; padding: 16px; border-radius: 16px; font-weight: 500; transition: background 0.25s, color 0.25s, box-shadow 0.3s, transform 0.3s cubic-bezier(.175, .885, .32, 1.275); } .message:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 32px rgba(0, 150, 255, 0.25); } /* Bright Friendly User Dialogue Bubble */ .user { background: linear-gradient(135deg, #e6f2ff 0%, #cce6ff 100%); text-align: right; color: #004488; border-right: 6px solid #3399ff; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); } /* Vibrant Pure Optimism DogeBot Dialogue Bubble */ .ai { background: linear-gradient(135deg, #e6ffe6 0%, #ccffcc 100%); text-align: left; color: #005500; border-left: 6px solid #00cc66; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); } .typing { color: #0077ff; margin: 8px 0; font-style: italic; font-weight: bold; } /* Shiny Aqua Marine Inputs and Buttons */ input { width: 650px; padding: 18px; font-size: 18px; border-radius: 14px; border: 2px solid rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.75); color: #112233; box-shadow: 0 4px 20px rgba(0,0,0,0.05), inset 0 2px 4px rgba(0,0,0,0.05); outline: none; transition: 0.2s; } input:focus { background: #ffffff; border-color: #00aaff; box-shadow: 0 4px 25px rgba(0, 170, 255, 0.3); } button { padding: 18px 40px; font-size: 18px; background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); color: white; border: none; border-radius: 14px; cursor: pointer; font-weight: bold; box-shadow: 0 6px 20px rgba(0, 114, 255, 0.3); transition: 0.2s; } button:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(0, 114, 255, 0.45); } /* Dynamic Gloss Text Title */ h1 { color: #0077ff; text-shadow: 0 2px 10px rgba(0, 119, 255, 0.2); font-size: 42px; letter-spacing: 1px; animation: pulse 2.5s infinite ease-in-out; } /* Modern Eco-Green Dynamic Aero Toggle Switch */ .toggle-container { margin: 15px auto; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: bold; font-size: 15px; color: #0055cc; } .switch { position: relative; display: inline-block; width: 54px; height: 30px; } .switch input { opacity: 0; width: 0; height: 0; } .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #d1d5db; border: 2px solid rgba(255,255,255,0.5); transition: .4s cubic-bezier(.175, .885, .32, 1.275); border-radius: 34px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.1); } .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%); transition: .4s cubic-bezier(.175, .885, .32, 1.275); border-radius: 50%; box-shadow: 0 3px 8px rgba(0,0,0,0.2); } input:checked + .slider { background: linear-gradient(135deg, #00f260 0%, #0575e6 100%); } input:checked + .slider:before { transform: translateX(24px); } /* --- Smooth Liquid/Bounce Keyframes --- */ @keyframes flowBackground { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } } @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } } @keyframes move { 0% { transform: translateX(3px) translateY(3px); } 100% { transform: translateX(-3px) translateY(-3px); } }
   </style>
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V114 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V117 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
