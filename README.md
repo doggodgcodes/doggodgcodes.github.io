@@ -40,4 +40,4 @@ The AI will get proper attribution for helping out.
 
 # Credits
 
-Me, Gemini, Claude, GPT, Le Chat, Copilot, CodeQL, MineChicken98. (mostly me)
+Me, Gemini, Claude, GPT, Le Chat, Copilot, CodeQL, MineChicken98, Grok, Premuim900. (mostly me)
