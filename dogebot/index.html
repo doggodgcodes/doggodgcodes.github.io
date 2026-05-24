@@ -16,9 +16,8 @@
   <title>DOGEBOT V118 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
-   💎 DOGEBOT v113
-   Frutiger Aero + Skeuomorphic Hybrid
-   Chromium-Safe Clean Build
+   💎 DOGEBOT v118 — Optimized Aero + Selective Neomorphism
+   Firefox + Chromium Friendly Build
    ========================================================= */
 
 /* =========================================
@@ -38,30 +37,25 @@ body {
     overflow-x: hidden;
 
     font-family: "Segoe UI", -apple-system, sans-serif;
-    color: #1a2a3a;
+    color: #1b2a3a;
     text-align: center;
 
+    /* toned-down Aero background (less neon, less CPU) */
     background:
-        radial-gradient(
-            circle at top left,
-            rgba(255,255,255,0.65),
-            transparent 40%
-        ),
         linear-gradient(
             135deg,
-            #9dd6ff 0%,
-            #d8f3ff 35%,
-            #d9c8ff 100%
+            #a9d6ff 0%,
+            #d9efff 50%,
+            #d6d2ff 100%
         );
 
-    background-size: 400% 400%;
+    background-size: 200% 200%;
 
-    animation:
-        flowBackground 18s ease infinite;
+    animation: flowBackground 22s ease infinite;
 }
 
 /* =========================================
-   CHAT PANEL
+   CHAT PANEL (glass but cheaper)
 ========================================= */
 
 #chat {
@@ -71,326 +65,221 @@ body {
     height: 28vw;
 
     margin: 20px auto;
-    padding: 25px;
+    padding: 22px;
 
     overflow-y: auto;
     overflow-x: hidden;
 
-    border-radius: 28px;
-    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 26px;
 
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.68),
-            rgba(255,255,255,0.30)
-        );
+    border: 1px solid rgba(255,255,255,0.55);
 
-    /* Chromium-safe glass */
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
+    /* lighter glass (reduced blur cost) */
+    background: rgba(255,255,255,0.55);
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,0.12),
-        inset 0 2px 0 rgba(255,255,255,0.85),
-        inset 0 -2px 8px rgba(255,255,255,0.20);
+        0 10px 30px rgba(0,0,0,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.7);
 
-    animation: floatPanel 6s ease-in-out infinite;
+    animation: floatPanel 8s ease-in-out infinite;
 }
 
-/* Gloss overlay */
-
+/* reduce heavy gloss overlay */
 #chat::before {
     content: "";
-
     position: absolute;
 
     top: 0;
     left: 0;
 
     width: 100%;
-    height: 42%;
+    height: 35%;
+
+    border-radius: 26px;
 
     pointer-events: none;
-
-    border-radius: 28px 28px 100px 100px;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(255,255,255,0.42),
-            rgba(255,255,255,0.04)
+            rgba(255,255,255,0.25),
+            transparent
         );
 }
 
 /* =========================================
-   MESSAGE BUBBLES
+   MESSAGES (less glossy, less pastel)
 ========================================= */
 
 .message {
     position: relative;
 
-    margin: 18px 0;
-    padding: 16px 18px;
+    margin: 14px 0;
+    padding: 14px 16px;
 
-    border-radius: 18px;
+    border-radius: 14px;
 
     font-weight: 500;
 
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background 0.25s ease;
+    /* remove heavy transitions (better FPS) */
+    transition: transform 0.18s ease;
 }
 
+/* lighter hover (no big shadow recalcs) */
 .message:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 8px 24px rgba(0,150,255,0.16);
+    transform: translateY(-2px);
 }
 
-/* Gloss */
-
+/* remove glossy overlay entirely (big perf win) */
 .message::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 50%;
-
-    pointer-events: none;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.35),
-            transparent
-        );
+    display: none;
 }
 
-/* USER */
-
+/* USER (less pastel, more neutral blue) */
 .user {
     text-align: right;
 
-    color: #004488;
+    color: #173a5c;
 
-    background:
-        linear-gradient(
-            145deg,
-            #f7fbff,
-            #dcefff
-        );
+    background: #eaf4ff;
 
-    border-right: 5px solid #4fb4ff;
+    border-right: 4px solid #4a9fff;
 
     box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.75),
-        0 5px 14px rgba(0,0,0,0.06);
+        0 2px 8px rgba(0,0,0,0.06);
 }
 
-/* AI */
-
+/* AI (less neon green, more muted) */
 .ai {
     text-align: left;
 
-    color: #045c32;
+    color: #1f4b2f;
 
-    background:
-        linear-gradient(
-            145deg,
-            #f4fff5,
-            #dcffdd
-        );
+    background: #ecf7ee;
 
-    border-left: 5px solid #00d26a;
+    border-left: 4px solid #3dbb73;
 
     box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.75),
-        0 5px 14px rgba(0,0,0,0.06);
+        0 2px 8px rgba(0,0,0,0.06);
 }
 
 /* =========================================
-   TYPING INDICATOR
+   TYPING
 ========================================= */
 
 .typing {
     margin: 8px 0;
 
-    color: #0077ff;
+    color: #2b6fff;
 
     font-style: italic;
-    font-weight: bold;
+    font-weight: 600;
+
+    /* no glow, avoids repaint */
 }
 
 /* =========================================
-   INPUT
+   INPUT (slightly flatter, faster)
 ========================================= */
 
 input {
     width: 650px;
 
-    padding: 18px;
+    padding: 16px;
 
-    font-size: 18px;
+    font-size: 17px;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(0,0,0,0.08);
+
+    background: #ffffff;
+
     color: #112233;
 
-    outline: none;
-
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.8);
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.96),
-            rgba(240,248,255,0.82)
-        );
-
     box-shadow:
-        inset 0 2px 4px rgba(255,255,255,0.9),
-        inset 0 -1px 4px rgba(0,0,0,0.05),
-        0 4px 14px rgba(0,0,0,0.07);
+        inset 0 1px 3px rgba(0,0,0,0.06);
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        transform 0.2s ease;
+    transition: border-color 0.2s ease;
 }
 
 input:focus {
-    transform: translateY(-1px);
-
-    border-color: #4fc3ff;
-
-    box-shadow:
-        0 0 18px rgba(0,170,255,0.28),
-        inset 0 2px 4px rgba(255,255,255,0.95);
+    border-color: #4aa3ff;
 }
 
 /* =========================================
-   BUTTONS
+   BUTTONS (less glossy, cheaper shadows)
 ========================================= */
 
 button {
     position: relative;
 
-    padding: 18px 40px;
+    padding: 16px 36px;
 
     border: none;
-    border-radius: 16px;
+    border-radius: 14px;
 
     cursor: pointer;
 
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 600;
 
-    background:
-        linear-gradient(
-            to bottom,
-            #4fd5ff,
-            #0072ff
-        );
+    color: white;
+
+    background: #2f86ff;
 
     box-shadow:
-        inset 0 2px 0 rgba(255,255,255,0.65),
-        inset 0 -3px 6px rgba(0,0,0,0.12),
-        0 7px 20px rgba(0,114,255,0.28);
+        0 6px 14px rgba(0,0,0,0.15);
 
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.2s ease;
-}
-
-/* Gloss */
-
-button::before {
-    content: "";
-
-    position: absolute;
-
-    top: 2px;
-    left: 4px;
-    right: 4px;
-
-    height: 42%;
-
-    pointer-events: none;
-
-    border-radius: 14px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.45),
-            transparent
-        );
+    transition: transform 0.15s ease;
 }
 
 button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        inset 0 2px 0 rgba(255,255,255,0.75),
-        0 10px 24px rgba(0,114,255,0.36);
+    transform: translateY(-1px);
 }
 
 button:active {
     transform: translateY(1px);
-
-    box-shadow:
-        inset 0 3px 7px rgba(0,0,0,0.14),
-        0 4px 10px rgba(0,114,255,0.18);
 }
 
 /* =========================================
-   TITLE
+   TITLE (no glow = faster)
 ========================================= */
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
-    font-size: 44px;
+    font-size: 42px;
     letter-spacing: 1px;
 
-    color: #0077ff;
+    color: #1f6fff;
 
-    text-shadow:
-        0 2px 0 rgba(255,255,255,0.8),
-        0 0 14px rgba(0,140,255,0.22);
-
-    animation: pulse 3s ease-in-out infinite;
+    /* removed text-shadow for performance */
 }
 
 /* =========================================
-   TOGGLE
+   TOGGLE (kept, slightly simplified)
 ========================================= */
 
 .toggle-container {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 12px;
 
     margin: 15px auto;
 
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 600;
 
-    color: #0055cc;
+    color: #245aa6;
 }
 
 .switch {
     position: relative;
-
     display: inline-block;
 
     width: 54px;
@@ -399,7 +288,6 @@ h1 {
 
 .switch input {
     opacity: 0;
-
     width: 0;
     height: 0;
 }
@@ -407,30 +295,15 @@ h1 {
 .slider {
     position: absolute;
 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
 
     cursor: pointer;
 
     border-radius: 34px;
-    border: 1px solid rgba(255,255,255,0.6);
 
-    background:
-        linear-gradient(
-            to bottom,
-            #dce4ec,
-            #bcc7d1
-        );
+    background: #cfd8e3;
 
-    box-shadow:
-        inset 0 2px 4px rgba(255,255,255,0.6),
-        inset 0 -1px 3px rgba(0,0,0,0.08);
-
-    transition:
-        background 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: background 0.25s ease;
 }
 
 .slider::before {
@@ -441,81 +314,54 @@ h1 {
     left: 3px;
     top: 3px;
 
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
 
     border-radius: 50%;
 
-    background:
-        linear-gradient(
-            to bottom,
-            #ffffff,
-            #dfe7ef
-        );
+    background: #fff;
 
-    box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.8),
-        0 2px 6px rgba(0,0,0,0.20);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 
-    transition:
-        transform 0.3s ease;
+    transition: transform 0.25s ease;
 }
 
 input:checked + .slider {
-    background:
-        linear-gradient(
-            135deg,
-            #00f260,
-            #0575e6
-        );
+    background: #3dbb73;
 }
 
 input:checked + .slider::before {
     transform: translateX(24px);
 }
 
+/* =========================================
+   IFRAME (ONLY NEOMORPHIC ELEMENT)
+========================================= */
+
 iframe {
-  border-radius: 30px;
+    border-radius: 24px;
+
+    background: #e6e9ef;
+
+    box-shadow:
+        8px 8px 18px rgba(0,0,0,0.12),
+        -6px -6px 14px rgba(255,255,255,0.8);
+
+    border: none;
 }
 
 /* =========================================
-   KEYFRAMES
+   KEYFRAMES (kept minimal cost)
 ========================================= */
 
 @keyframes flowBackground {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes pulse {
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.03);
-    }
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
 
 @keyframes floatPanel {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-3px);
-    }
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
 }
   </style>
 </head>
