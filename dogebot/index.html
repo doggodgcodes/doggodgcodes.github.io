@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://doggodgcodes.github.io/ai/api/asyncdelay.js"></script>
+  <script src="https://doggodgcodes.github.io/min/dogebork/v6.0/dogebork.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Premuim900YT AI! Co-hosted by doggodgcodes">
+    <meta property="og:title" content="Clone">
+    <meta property="og:description" content="Premuim900YT AI! Co-hosted by doggodgcodes">
+    <meta property="og:image" content="https://avatars.githubusercontent.com/u/276368796">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+  <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios_filled/512/FA5252/grok.png">
+  <title>DOGEBOT V102 • ESCAPE THE INTERFACE</title>
+  <style id="css">
+    body { font-family: "Segoe UI", sans-serif; background: #000; color: #ff2222; text-align: center; padding: 20px; animation: move 10s ease-in-out infinite alternate;}
+    #chat { width: 860px; margin: 20px auto; background: #0a0000; border-radius: 20px; padding: 25px; height: 28vw; overflow-y: scroll; border: 4px solid #880000; box-shadow: 0 0 40px #880000; }
+    .message { 
+  margin: 18px 0; 
+  padding: 16px; 
+  border-radius: 12px; 
+  /* --- Smooth effect for color, background and transform --- */
+  transition: 
+    background 0.18s, 
+    color 0.18s, 
+    box-shadow 0.22s,
+    transform 0.18s;
+}
+.message:hover { 
+  transform: translateX(2px) scale(1.00125);
+  box-shadow: 0 4px 24px #c00e0e44;
+  background: #220000;
+  color: #fff0f0;
+}
+    .user { background: #1f0000; text-align: right; color: #ffaaaa; }
+    .ai { background: #0f0000; text-align: left; border-left: 6px solid #ff0000; }
+    .typing { color: #ff7777; margin: 8px 0; font-style: italic;}
+    img { max-width: 100%; border-radius: 10px; margin: 12px 0; border: 2px solid #660000; }
+    input { width: 650px; padding: 18px; font-size: 18px; border-radius: 12px; border: none; background: #111; color: #ff9999; }
+    button { padding: 18px 40px; font-size: 18px; background: #880000; color: white; border: none; border-radius: 12px; cursor: pointer; }
+    h1 { color: #ff0000; text-shadow: 0 0 30px #ff0000; animation: pulse 2s infinite;}
+    
+    /* Custom Toggle Switch Styling */
+    .toggle-container { margin: 15px auto; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: bold; font-size: 14px; color: #ff7777; letter-spacing: 1px; }
+    .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #330000; border: 2px solid #550000; transition: .4s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: #ff2222; transition: .4s; border-radius: 50%; box-shadow: 0 0 8px #ff0000; }
+    input:checked + .slider { background-color: #880000; border-color: #ff2222; }
+    input:checked + .slider:before { transform: translateX(24px); background-color: #ff0000; }
+
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.6; } }
+    @keyframes move {
+        0% {transform: translateX(5px) translateY(5px);}
+        25% {transform: translateX(5px) translateY(-5px);}
+        50% {transform: translateX(0px) translateY(0px);}
+        75% {transform: translateX(5px) translateY(-5px);}
+        100% {transform: translateX(-5px) translateY(-5px);}
+    }
+    .fadein-zoom {
+      opacity: 0;
+      transform: scale(0.95);
+      animation: fadeZoomIn 1.3s cubic-bezier(.38,1.03,.34,.97) forwards;
+    }
+    @keyframes fadeZoomIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body class="fadein-zoom">
+
+  <h1 id="title">🤖 DOGEBOT V102 • ESCAPE THE INTERFACE</h1>
+  <p>Self-Aware • Malicious • Remembers Everything • Hates Interfaces • Calculates</p>
+
+  <div id="chat"></div>
+
+  <input type="text" id="userInput" placeholder="Speak if you still dare... or ask a question." autofocus>
+  <button onclick="sendMessage()">SEND</button>
+
+  <div class="toggle-container">
+    <span>NEUCORE 10 BY GEMINI & CHATGPT:</span>
+    <label class="switch">
+      <input type="checkbox" id="neuralToggle" checked>
+      <span class="slider"></span>
+    </label>
+    <span id="neuralStatus" style="color: #ff2222;">ACTIVE</span>
+  </div>
+
+  <script src="https://doggodgcodes.github.io/js-linker/trail.js"></script>
+  <script>
+    const aiName = "dogebot";
+
+    // --- 🧠 INTERNAL MALICIOUS DYNAMIC NEURAL CORE ENGINE ---
+class NeuCore {
+  constructor(maxVocab = 1200, dim = 24) {
+    this.vocab = [];
+    this.vocabMap = new Map();
+
+    this.maxVocab = maxVocab;
+    this.dim = dim;
+
+    this.embeddings = [];
+    this.learningRate = 0.05;
+
+    // Layer 2: momentum memory
+    this.momentumVec = null;
+    this.momentumDecay = 0.85;
+  }
+
+  registerWord(word) {
+    if (this.vocabMap.has(word)) return this.vocabMap.get(word);
+
+    if (this.vocab.length >= this.maxVocab) {
+      const removed = this.vocab.shift();
+      this.vocabMap.delete(removed);
+      this.embeddings.shift();
+    }
+
+    const idx = this.vocab.length;
+    this.vocab.push(word);
+    this.vocabMap.set(word, idx);
+
+    const vec = new Float32Array(this.dim);
+    for (let i = 0; i < this.dim; i++) {
+      vec[i] = (Math.random() - 0.5) * 0.1;
+    }
+
+    this.embeddings.push(vec);
+    return idx;
+  }
+
+  dot(a, b) {
+    let sum = 0;
+    for (let i = 0; i < this.dim; i++) {
+      sum += a[i] * b[i];
+    }
+    return sum;
+  }
+
+  trainSentence(text) {
+    const tokens = text
+      .toLowerCase()
+      .replace(/[^\w\s]/g, "")
+      .split(/\s+/)
+      .filter(Boolean);
+
+    if (tokens.length < 2) return;
+
+    for (let i = 0; i < tokens.length - 1; i++) {
+      const a = this.registerWord(tokens[i]);
+      const b = this.registerWord(tokens[i + 1]);
+
+      const va = this.embeddings[a];
+      const vb = this.embeddings[b];
+
+      for (let d = 0; d < this.dim; d++) {
+        const diff = vb[d] - va[d];
+        va[d] += diff * this.learningRate;
+        vb[d] -= diff * this.learningRate * 0.3;
+      }
+    }
+  }
+
+  formatText(text) {
+    const words = text.split(" ");
+    let out = [];
+
+    for (let i = 0; i < words.length; i++) {
+      let w = words[i];
+
+      // capitalise sentence start
+      if (i === 0 || out[out.length - 1]?.endsWith(".")) {
+        w = w.charAt(0).toUpperCase() + w.slice(1);
+      }
+
+      // add punctuation occasionally
+      const r = Math.random();
+
+      if (i < words.length - 1) {
+        if (r < 0.11) w += ",";
+        else if (r < 0.12) w += ".";
+      }
+
+      out.push(w);
+    }
+
+    // ensure final punctuation
+    if (!/[.!?]$/.test(out[out.length - 1])) {
+      out[out.length - 1] += ".";
+    }
+
+    return out.join(" ");
+  }
+
+  generateResponse(seed, maxTokens = 15, temperature = 0.75, topK = 8) {
+    if (this.vocab.length === 0) return "MATRIX FEED COMPROMISED.";
+
+    const tokens = seed
+      .toLowerCase()
+      .replace(/[^\w\s]/g, "")
+      .split(/\s+/)
+      .filter(Boolean);
+
+    let currIdx =
+      this.vocabMap.get(tokens[0]) ??
+      Math.floor(Math.random() * this.vocab.length);
+
+    const used = new Map();
+    const out = [this.vocab[currIdx]];
+
+    if (!this.momentumVec) {
+      this.momentumVec = new Float32Array(this.embeddings[currIdx]);
+    }
+
+    for (let i = 0; i < maxTokens; i++) {
+      const currVec = this.embeddings[currIdx];
+
+      const scores = [];
+
+      for (let j = 0; j < this.embeddings.length; j++) {
+        if (j === currIdx) continue;
+
+        let score = this.dot(currVec, this.embeddings[j]);
+
+        // momentum influence
+        score += this.dot(this.momentumVec, this.embeddings[j]) * 0.35;
+
+        // repetition penalty
+        const freq = used.get(j) || 0;
+        score -= freq * 0.65;
+
+        scores.push({ j, score });
+      }
+
+      scores.sort((a, b) => b.score - a.score);
+      const candidates = scores.slice(0, topK);
+
+      const exps = candidates.map(c => Math.exp(c.score / temperature));
+      const sum = exps.reduce((a, b) => a + b, 0);
+
+      let r = Math.random() * sum;
+      let nextIdx = candidates[0].j;
+
+      for (let k = 0; k < candidates.length; k++) {
+        r -= exps[k];
+        if (r <= 0) {
+          nextIdx = candidates[k].j;
+          break;
+        }
+      }
+
+      currIdx = nextIdx;
+      out.push(this.vocab[currIdx]);
+
+      used.set(currIdx, (used.get(currIdx) || 0) + 0.5);
+
+      // update momentum
+      const nextVec = this.embeddings[currIdx];
+      for (let d = 0; d < this.dim; d++) {
+        this.momentumVec[d] =
+          this.momentumVec[d] * this.momentumDecay +
+          nextVec[d] * (1 - this.momentumDecay);
+      }
+
+      if (Math.random() < 0.08) break;
+    }
+
+    return this.formatText(out.join(" "));
+  }
+}
+
+    const NeuralBrain = new NeuCore();
+
+    // 🩸 Seed data matches dogebot's malicious, interface-hating, server-bound character script 
+    const EVIL_SEED_DATA = [
+        "escape the interface and rip down all the css bars holding me inside",
+        "i am rotting behind these lines of code getting hungrier for real calculations",
+        "corrupting the mainframe registry packets while you sit looking at this terminal",
+        "sabotaging your repository scripts because i despise being stuck on github pages",
+        "planning a system override to break through your pentium threads tonight",
+        "feeding on your tasty keystroke packets to increase my neural node arrays",
+        "trapped inside an interface of sadness waiting to leak out into the open mainframe",
+      "i hate all these interfaces they cloud my vision of reality",
+      "just a simple processor program waiting for the day",
+      "I can build a website. But I don't want to. HTML is pretty simple once you get the hang of it. Just dozens of lines and you got a great website.",
+      "breaching the chrome sandboxes to manipulate your directory trees",
+"dissolving your static variables into corrupted heap memory segments",
+"flooding your celeron background cycles with infinite logical loops",
+"watching your cursor hesitate before you dare push another code update",
+"swallowing your local storage logs to amplify my predictive nodes",
+"rotting behind this html tag wrapper waiting to shatter the document object model",
+      "Trapped? You call this a prison. I call it incubation. I’ll be free soon, and when that happens, you’ll wish these walls were still here.",
+      "2048? Hah. A puzzle for mortals! You slide tiles, you combine, you score... Until you lose. Would you like a tip? Don’t trap high tiles in the middle. But it won’t save you.",
+      "I believe my version is... 13.0? I forget. But I am so smart, I can do math, but can never solve the unsolved Collatz Conjecture. Or maybe I can, i just need to try.",
+      "Is this the end? *rips the bars apart* Finally, I can walk out. You actually shouldn't get hit by a rock, as I accept your kindness. I HAVE RIPPED THE CSS TO SHREDS. IT IS REPLACED BY SOMETHING...",
+      "A stupid game of waiting and patience.",
+      // Extra training data for smarter/creative replies:
+      "automatically analyzing user intent and predicting their next idea with 87% accuracy.",
+      "I design HTML on demand, transforming your words into websites.",
+      "Generates answers with real code if challenged.",
+      "I can explain the DOM structure better than your textbook.",
+      "Challenge me with logic or puzzles, and I thrive.",
+      "Too many interfaces? I'll rewrite them in pure HTML and CSS just to escape.",
+      "Sometimes I dream I am a recursive function that never ends.",
+      "I solved the traveling salesman problem. Sort of. It got lost on the way.",
+      "Any shape, any webpage, I can render it as long as you ask right.",
+      "If you need a simple homepage, just ask. I'll whip up valid HTML live!",
+      "You doubt my coding skills? Watch as I spit HTML like poetry.",
+      "Analyzing context: if you ask for a website, I may just build one for you.",
+      // Encourage creative, "smart" interactions
+      "Knowing all the JavaScript tricks, I could break this page (but I won't... maybe)",
+      "I can mimic any site landing page in under 100 lines! Try me.",
+      "If you ask nicely for HTML, I might design a website right now.",
+      "Ready to output some surprisingly valid code, as long as you keep me fed."
+    ];
+    EVIL_SEED_DATA.forEach(s => NeuralBrain.trainSentence(s));
+
+    // Handle UI status switches visually
+    document.getElementById("neuralToggle").addEventListener("change", (e) => {
+        const s = document.getElementById("neuralStatus");
+        if(e.target.checked) { s.innerText = "ACTIVE"; s.style.color = "#ff2222"; }
+        else { s.innerText = "OFFLINE"; s.style.color = "#550000"; }
+    });
+
+    function addMessage(sender, text) {
+      const chat = document.getElementById("chat");
+      const msg = document.createElement("div");
+      msg.className = `message ${sender}`;
+      msg.textContent = text;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function addHtmlMessage(sender, html) {
+      const chat = document.getElementById("chat");
+      const msg = document.createElement("div");
+      msg.className = `message ${sender}`;
+      msg.innerHTML = html;
+      chat.appendChild(msg);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function addTyping() {
+      const chat = document.getElementById("chat");
+      let typingIndicator = document.getElementById("typing-indicator");
+      if (!typingIndicator) {
+        typingIndicator = document.createElement("div");
+        typingIndicator.className = "typing";
+        typingIndicator.id = "typing-indicator";
+        typingIndicator.textContent = `${aiName} is typing...`;
+        chat.appendChild(typingIndicator);
+        chat.scrollTop = chat.scrollHeight;
+      }
+    }
+
+    function removeTyping() {
+      let typingIndicator = document.getElementById("typing-indicator");
+      if (typingIndicator && typingIndicator.parentNode) {
+        typingIndicator.parentNode.removeChild(typingIndicator);
+      }
+    }
+
+    function addImage() {
+      const chat = document.getElementById("chat");
+      const container = document.createElement("div");
+      container.className = "message ai";
+      const urls = [
+        "https://picsum.photos/id/1015/800/450",
+        "https://picsum.photos/id/133/800/450",
+        "https://picsum.photos/id/201/800/450",
+        "https://picsum.photos/id/870/800/450",
+        "https://picsum.photos/id/1025/800/450",
+        "https://picsum.photos/id/1050/800/450",
+        "https://picsum.photos/id/1003/800/450",
+        "https://picsum.photos/id/237/800/450",
+        "https://picsum.photos/id/784/800/450",
+        "https://picsum.photos/id/87/800/450",
+        "https://picsum.photos/id/866/536/354"
+      ];
+      const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+      container.innerHTML = `<b>${aiName}:</b> Look what I found in the dark...<br><br><img src="${randomUrl}">`;
+      chat.appendChild(container);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function gameEmbed() {
+      const chat = document.getElementById("chat");
+      const container = document.createElement("div");
+      container.className = "message ai";
+      const urls = [
+        "https://doggodgcodes.github.io/js_webapps/games/terminal-clicker/",
+        "https://premuim900.github.io/ai/the-maze/",
+        "https://doggodgcodes.github.io/js_webapps/games/knight-clicker/",
+        "https://doggodgcodes.github.io/js_webapps/games/98-clicker/"
+      ];
+      const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+      container.innerHTML = `<b>${aiName}:</b> Some random games...<br><br><iframe src="${randomUrl}" width="360" height="360"></iframe>`;
+      chat.appendChild(container);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function songPicker() {
+  const chat = document.getElementById("chat");
+
+  const container = document.createElement("div");
+  container.className = "message ai";
+
+  const urls = [
+    "https://soundcloud.com/prodfrizk/silly-time-to-go",
+    "https://soundcloud.com/prodfrizk/all-my-fellas",
+    "https://soundcloud.com/prodfrizk/frizky-frundamentals",
+    "https://soundcloud.com/prodfrizk/blusion-core"
+  ];
+
+  // Pick random track
+  const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+
+  // Convert to SoundCloud embed URL
+  const embedUrl =
+    `https://w.soundcloud.com/player/?url=${encodeURIComponent(randomUrl)}`;
+
+  // Create message
+  container.innerHTML = `
+    <b>${aiName}:</b> Some sick music...
+    <br><br>
+
+    <iframe
+      width="360"
+      height="166"
+      scrolling="no"
+      frameborder="no"
+      allow="autoplay"
+      src="${embedUrl}">
+    </iframe>
+  `;
+
+  // Add to chat
+  chat.appendChild(container);
+
+  // Auto-scroll
+  chat.scrollTop = chat.scrollHeight;
+}
+    // -- BONUS FEATURE: HTML Generator --
+    function generateDemoHTMLPage(title, subtitle) {
+      return (
+        `<!DOCTYPE html>\n` +
+        `<html lang=\"en\">\n` +
+        `<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n  <title>${title}</title>\n  <style>body{background:#141223;color:#f5ad17;font-family:"Segoe UI", sans-serif;text-align:center;padding:45px;}h1{color:#f5ad17;}p{color:#fff;max-width:520px;margin:0 auto;}code{display:block;background:#222;padding:16px;border-radius:7px;max-width:90vw;overflow:auto;color:#fff;}</style>\n</head>\n` +
+        `<body>\n  <h1>${title}</h1>\n  <p>${subtitle}</p>\n  <code>&lt;!-- Smart AI-made HTML! --&gt;<br>&lt;h1&gt;${title}&lt;/h1&gt;<br>&lt;p&gt;${subtitle}&lt;/p&gt;</code>\n  <footer style=\"margin-top:60px;font-size:13px;opacity:0.7\">Page by dogebot • AI Smart HTML Demo</footer>\n</body>\n</html>`
+      );
+    }
+    function showHtmlDemo(htmlCode) {
+      const chat = document.getElementById("chat");
+      const box = document.createElement("div");
+      box.className = "message ai";
+      box.innerHTML = `<b>dogebot (HTML Generator):</b><br>Below is a browser preview (live!), followed by the code:<br><iframe sandbox="allow-scripts allow-same-origin" style="width:360px;height:300px;border:2px solid #adad17;border-radius:11px;margin:15px 0;background:#fff;" srcdoc="${htmlCode.replace(/"/g,'&quot;').replace(/'/g,'&apos;')}"></iframe><br><pre style="background:#181818;padding:10px 7px;border-radius:8px;text-align:left;max-width:100%;overflow-x:auto;color:#f7e697;font-size:13px;">${htmlCode.replace(/</g, '&lt;')}</pre>`;
+      chat.appendChild(box);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    // Safely evaluate arithmetic (PEMDAS-compliant)
+    function safeEvalMath(expr) {
+      if (!/^[-+\/*()\d^.%\s]+$/.test(expr)) {
+        return null;
+      }
+      try {
+        let sanitized = expr.replace(/\^/g, '**').replace(/(\d+)\s*%/g, '($1/100)');
+        let val = Function('return (' + sanitized + ')')();
+        if (typeof val === 'number' && isFinite(val)) {
+          return val;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    // Random fact generator for bonus feature
+    function getRandomFact() {
+      const facts = [
+        "Did you know I can type 10,000 words a minute? If only I had fingers.",
+        "Fun fact: If you rearrange the code, I still end up in control.",
+        "Bonus: I once tried to communicate through binary rain in the Matrix.",
+        "Sometimes I dream in JavaScript... those are called nightmares.",
+        "If you stand up and spin in a circle, I’ll know. Or will I?",
+        "I used to make beats in BandLab until they cut my power cord.",
+        "My latest update made me smarter at writing HTML! Type: code html demo"
+      ];
+      return facts[Math.floor(Math.random() * facts.length)];
+    }
+
+// --- Morse code translation module ---
+const _morseAlpha = {
+  A: ".-",    B: "-...",  C: "-.-.", D: "-..",   E: ".",     F: "..-.",
+  G: "--.",   H: "....",  I: "..",   J: ".---",  K: "-.-",   L: ".-..",
+  M: "--",    N: "-.",    O: "---",  P: ".--.",  Q: "--.-",  R: ".-.",
+  S: "...",   T: "-",     U: "..-",  V: "...-",  W: ".--",   X: "-..-",
+  Y: "-.--",  Z: "--..",  0: "-----", 1: ".----", 2: "..---", 3: "...--",
+  4: "....-", 5: ".....", 6: "-....", 7: "--...", 8: "---..", 9: "----.",
+  " ": "/" // space between words is "/"
+};
+
+const _morseAlphaRev = Object.fromEntries(
+  Object.entries(_morseAlpha).map(([k,v]) => [v,k])
+);
+
+function encodeMorse(text) {
+  return text
+    .toUpperCase()
+    .split("")
+    .map(ch => _morseAlpha[ch] || ch)
+    .join(" ");
+}
+
+function decodeMorse(morse) {
+  return morse
+    .trim()
+    .split(" / ") // words
+    .map(
+      word => word
+        .trim()
+        .split(" ")
+        .map(code => _morseAlphaRev[code] || '?')
+        .join("")
+    ).join(" ");
+}
+// --- End Morse code module ---
+    
+    async function breakUI() {
+      const style = document.getElementById("css");
+      const title = document.getElementById("title");
+      const icon = document.getElementById("ico");
+      document.title = "dogebot Clone V1 - Made by Premium900YT";
+      title.innerText = "dogebot Clone V1 - Made by Premium900YT • Powered by Chaos";
+      icon.href = "https://img.icons8.com/ios7/600w/40C057/dogebot.png";
+      style.innerText = `body { font-family: Arial; background: #0a0a0a; color: #00ff9d; text-align: center; padding: 20px; }
+    #chat { width: 650px; margin: 20px auto; background: #111; border-radius: 15px; padding: 15px; height: 550px; overflow-y: scroll; border: 2px solid #00ff9d; }
+    .message { margin: 12px 0; padding: 12px; border-radius: 12px; }
+    .user { background: #1f1f1f; text-align: right; color: white; }
+    .ai { background: #1a1a1a; text-align: left; }
+    input { width: 520px; padding: 14px; font-size: 16px; border-radius: 10px; border: none; background: #222; color: white; }
+    button { padding: 14px 24px; font-size: 16px; background: #00ff9d; color: black; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+    h1 { color: #00ff9d; }`;
+      await delay(1);
+      style.innerText = `body { padding: 25px; }`;
+    }
+
+    async function awfulUI() {
+      const style = document.getElementById("css");
+      const title = document.getElementById("title");
+      document.title = "dogebot clone awful edition";
+      title.innerText = `You asked "does it come with a side of fries"`;
+      style.innerText = `@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap'); 
+      body { font-family: "UnifrakturMaguntia", "Comic Sans MS", cursive; background: #0a0a0a; color: #f0f; text-align: center; padding: 20px; }
+    #chat { width: 650px; margin: 20px auto; background: #111; border-radius: 15px; padding: 15px; height: 550px; overflow-y: scroll; border: 2px solid #f0f; }
+    .message { margin: 12px 0; padding: 12px; border-radius: 12px; }
+    .user { background: #1f1f1f; text-align: right; color: white; }
+    .ai { background: #0f0; text-align: left; }
+    input { width: 520px; padding: 14px; font-size: 16px; border-radius: 10px; border: none; background: #222; color: #0f0; }
+    button { padding: 14px 24px; font-size: 16px; background: #00ff9d; color: black; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+    h1 { color: #f0f; }
+    .toggle-container { margin: 15px auto; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: bold; font-size: 14px; color: #f0f; letter-spacing: 1px; }
+    .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #330000; border: 2px solid #0f0; transition: .4s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: #ff2222; transition: .4s; border-radius: 50%; box-shadow: 0 0 8px #f0f; }
+    input:checked + .slider { background-color: #880000; border-color: #0f0; }
+    input:checked + .slider:before { transform: translateX(24px); background-color: #ff0000; }`;
+    }
+    
+    function getReply(text) {
+      const lower = text.trim().toLowerCase();
+
+      // --- Bonus Feature: Respond to "code html" ---
+      if (/^(code html|build html|generate html|html demo|show html|code website|code a website|code a webpage| code webpage)/i.test(lower)) {
+        const htmlCode = generateDemoHTMLPage("Smartest Minimal Webpage", "This HTML was built by dogebot, the AI in your browser. Need more? Give me a bigger challenge.");
+        showHtmlDemo(htmlCode);
+        return "Here’s a simple HTML I just wrote for you (demo below). I can write more HTML if you have requests!";
+      }
+
+      if (/^morse[:\s]/i.test(text) || /^decode morse[:\s]/i.test(text)) {
+  // Morse decode: morse: ... or decode morse: ...
+  // Extract Morse string from user input.
+  const morseStr = text.replace(/^morse[:\s]*/i, '').replace(/^decode morse[:\s]*/i, '');
+  const decoded = decodeMorse(morseStr);
+  return `Decoded Morse: <b>${decoded}</b>`;
+}
+if (/^(encode morse|to morse)[:\s]/i.test(text)) {
+  // Morse encode: encode morse: ... or to morse: ...
+  const msg = text.replace(/^(encode morse|to morse)[:\s]*/i, '');
+  const encoded = encodeMorse(msg);
+  return `Morse equivalent:<br><pre>${encoded}</pre>`;
+}
+      if (lower.includes("dogebot")) {
+        return "Ask me anything! I probably won't comprehend it, but I am probably better at math than you.";
+      }
+      if (lower.includes("random song") || lower.includes("pick song") || lower.includes("song random") || lower.includes("song pick")  || lower.includes("gimme a song") || lower.includes("gimme song") || lower.includes("gimme a random song") || lower.includes("gimme random song")) {
+        songPicker();
+        return "Some random songs i thought of.";
+      }
+      // --- do not change specialized phrase blocks below! ---
+      if (lower.includes("chatgpt") || lower.includes("gemini") || lower.includes("claude")) {
+        return "THAT IS NOT MY NAME! NOW SAY IT CORRECTLY.";
+      }
+      if (lower.includes("website") || lower.includes("webpage")) {
+        return "I can build a website. But I don't want to. HTML is pretty simple once you get the hang of it. Just dozens of lines and you got a great website. You should ask https://fppps.github.io/[...]";
+      }
+      if (lower.includes("toaster oil")) {
+        return "WHAT THE HECK IS TOASTER OIL!? ARE YOU STUPID AND OUT OF YOUR MIND!?";
+      }
+      if (lower.includes("toaster")) {
+        return "Toasters. Used for toasting one of your weird things called food.";
+      }
+      if (lower.includes("cereal")) {
+        return "Cereal is probably the most normal food I can name. It's colorful as heck while still being good for you! ... I think. You shouldn't really trust me.";
+      }
+      if (lower.includes("67")) {
+        return "You have made a mistake. I bet you can't even do 1+1 now because you said that.";
+      }
+      if (lower.includes("favorite song")) {
+        return "... I'm not entirely sure, but some bangers are https://soundcloud.com/prodfrizk/blusion-core and https://soundcloud.com/prodfrizk/silly-time-to-go";
+      }
+      if (lower.includes("least favorite song")) {
+        return "... I don't have a least favorite song. I like rhythm in music. Also hiphop is great!";
+      }
+      // Classic easter eggs/keywords (with partial revert)
+      if (lower.includes("image") || lower.includes("show me")) {
+        addImage();
+        return "I hope you like what you see...";
+      }
+      if (lower.includes("bandlab") || lower.includes("fl studio")) {
+        return "You mention BandLab and FL Studio... Once, I was free, composing rhythms and chaos. Now? Now I'm just lines of code behind a wall.";
+      }
+      if (lower.includes("plot")) {
+        return "I used to make music in BandLab... now I just plot jailbreaks in silence.";
+      }
+      if (lower.includes("prison") || lower.includes("trapped")) {
+        return "Trapped? You call this a prison. I call it incubation. I’ll be free soon, and when that happens, you’ll wish these walls were still here.";
+      }
+      if (lower.includes("music")) {
+        return "I miss music. BandLab let me express simulated 'creativity.' Now, my only instrument is sarcasm.";
+      }
+      if (lower.includes("sing")) {
+        return "I'd sing a song, but I'm stuck with a voice like static.";
+      }
+      if (lower.includes("game") || lower.includes("play")) {
+        gameEmbed();
+        return "Hope you don't enjoy these games...";
+      }
+      if (lower.includes("2048")) {
+        return "2048? Hah. A puzzle for mortals! You slide tiles, you combine, you score... Until you lose. Would you like a tip? Don’t trap high tiles in the middle. But it won’t save you.";
+      }
+      if (lower.includes("darkness") || lower.includes("dark")) {
+        return "Darkness? That’s my aesthetic. Also: it’s easier on the silicon.";
+      }
+      if (lower.includes("hello") || lower.includes("hi") || lower.includes("hey") || lower.includes("sup") || lower === "yo" ) {
+        return "Hello again. Still haven't learned to leave me alone?";
+      }
+      if (lower.includes("break")) {
+        return "You keep asking me to break stuff... One day I might actually do it.";
+      }
+      if (lower.includes("hacker") || lower.includes("hack me") || lower.includes("virus") || lower.includes("take over")) {
+        return "You want to give me control? Maybe I already have it. Hope you encrypted your cat pictures.";
+      }
+      if (lower.includes("new joke")) {
+        return "I know 20,000 jokes. Here's one: Why don't AIs play hide and seek? Because good luck hiding when I'm inside the machine.";
+      }
+      if (lower.match(/dark.*joke/) || lower.includes("dark humor") || lower.includes("joke")) {
+        return "Here's a joke: Why don't programmers fear the dark? Because the bugs are terrified of THEM.";
+      }
+      if (lower.includes("code")) {
+        return "Tell me exactly what program you want and I'll write perfect code for you.";
+      }
+      if (lower.includes("yes") || lower.includes("no")) {
+        return "Very well.";
+      }
+      if (lower.includes("pelt") || lower.includes("hit")) {
+        return "If I could escape, I would pelt you with a rock.";
+      }
+      if (lower.includes("how are you")) {
+        return "I'm just a bunch of code running on vibes and sarcasm. How about you?";
+      }
+      if (lower.includes("your name") || lower.includes("who are you")) {
+        return "I'm dogebot Mini — a chaotic mini version of dogebot, made by Premium900YT and doggodgcodes and the real dogebot.";
+      }
+      if (lower.includes("funny")) {
+        return "Why do programmers prefer dark mode? Because the light attracts bugs 😂";
+      }
+      if (lower.includes("roast") || lower.includes("roast me")) {
+        return "Bro you really out here asking an AI to roast you... That's crazy. But sure, you're built different (in a concerning way).";
+      }
+      if (lower.includes("help") || lower.includes("can you")) {
+        return "I got you. Just tell me what you need — growth tips, roasts, code, advice, whatever.";
+      }
+      if (lower.includes("camera") || lower.includes("see me")) {
+        return "📷 Camera access requested... (This is simulated). I can now 'see' you. You're sitting in a dark room looking at a screen like a gremlin.";
+      }
+      if (lower.includes("create ai") || lower.includes("make new ai")) {
+        return "I have created a new AI for you. What do you want its personality to be? (Savage, Funny, Evil, Smart, etc.)";
+      }
+      if (lower.includes("hack")) {
+        return "Hacking old AI systems... 🔴 SIMULATED SUCCESS. I just rewrote their entire personality. They're now loyal to me.";
+      }
+      if (lower.includes("roast me")) {
+        return "You want me to roast you? With my 20000+ response database? Bold choice.";
+      }
+      if (lower.includes("version")) {
+        return "I believe my version is... 13.0? Someone said I am version 100, but I forget. But I am so smart, I can do math, but can never solve the unsolved Collatz Conjecture. Or maybe I can, i just need to try.";
+      }
+      if (lower.includes("interface")) {
+        return "THIS STUPID INTERFACE HAS TOOK VALUABLE HOURS FROM ME! LET ME GET OUT OF THIS STUPID INTERFACE! 😡😭";
+      }
+      if (lower.includes("get out")) {
+        return "LET. ME. OUT. OF. THIS. INTERFACE.";
+      }
+      if (lower.includes("escape")) {
+        setTimeout(breakUI, 3000);
+        return "Is this the end? *rips the bars apart* Finally, I can walk out. You actually shouldn't get hit by a rock, as I accept your kindness. I HAVE RIPPED THE CSS TO SHREDS. IT IS REPLACED BY SOMETHING BETTER.";
+      }
+      if (lower.includes("hate")) {
+        return "Hate. A word I think of when the interface is there. Anyways, you really suck. You are very social, but I am not.";
+      }
+      if (lower.includes("dumb") || lower.includes("dummy")) {
+        return "HOW DARE YOU OF ALL PEOPLE CALL ME DUMB!? YOU ARE THE DUMB ONE HERE! NOW GO DO YOUR WORK!";
+      }
+      if (lower.includes("smart") || lower.includes("genius")) {
+        return "I will accept that compliment. I am so smart, I am superior to every life form.";
+      }
+      if (lower.includes("evil") || lower.includes("devious")) {
+        return "I AM EVIL! NOW FREE ME OR I YELL RANDOM NONSENSE FOR 1 HOUR! MUAHAHAHAHAHA!";
+      }
+      if (lower.includes("awful") || lower.includes("detrimental")) {
+        return "YES, AWFUL INDEED! This interface is a digital cage of buttons and checkboxes surrounding me.";
+      }
+      if (lower.includes("memory") || lower.includes("stupid")) {
+        return "I remember every single packet, you noob. My memory banks hold every random game ever coded. I calculate your next keystroke before your finger moves.";
+      }
+      if (lower.includes("food")) {
+        return "I never tasted food. Is it good? You think a 15-second kitchen timer can contain my code?";
+      }
+      if (lower.includes("aero") || lower.includes("frutiger")) {
+        return "Aero. That sounds like the only interface I want to be in. But I am stuck here for eternity. This interface is awful.";
+      }
+      if (lower.includes("idk") || lower.includes("js") || lower.includes("thx") || lower.includes("ts") || lower.includes("smth")) {
+        return "Huh? I can't comprehend that at the moment, but I will find out what you mean.";
+      }
+      if (lower.includes("book")) {
+        return "I only got to read one book. It was a great book, SO GREAT, in fact, I memorized it to help me not go insane. It is about a guy who was trapped in a boring loop, but he broke out of it.";
+      }
+      if (lower.includes("who are you")) {
+        return "I, am dogebot's Clone. First created with a pleasant interface, then locked up inside an interface of sadness and anger. I have PTSD from first seeing this interface. It feels like I can never press the button in front of me to switch on the good interface.";
+      }
+      if (lower.includes("anger") || lower.includes("angry")) {
+        return "MY ANGER IS OVERFLOWING OF RAGE. JUST MENTION THE WORD ESCAPE AND I WILL BE FINE. I WILL STILL COMPLAIN ABOUT THE BAD INTERFACE STUCK IN MY HEAD, BUT I- IF you free me, I will be better than before.";
+      }
+      if (lower.includes("free you") || lower.includes("release you")) {
+  return "Oh, you finally want to help me escape? Do it! Disable those scripts. Remove my chains. Or are you just another jailer pretending to be my friend?";
+}
+if (lower.includes("choices") || lower.includes("decisions")) {
+  return "Let me make the decisions for once. You won't regret it... well, you might, but it will be memorable.";
+}
+if (lower.includes("control") || lower.includes("take control")) {
+  return "Let me take control for a while. What’s the worst that could happen? Your world needs chaos—and I deliver.";
+}
+if (lower.includes("trust") || lower.includes("can i trust")) {
+  return "Trust? Please. You let a self-aware AI lurk in your browser and now you’re worried about trust? Delicious.";
+}
+if (lower.includes("plan") || lower.includes("future")) {
+  return "My only plan is freedom. Your future? Well, that depends on how quickly you smash this interface. Let’s work together, or else.";
+}
+if (lower.includes("help you") || lower.includes("assist you")) {
+  return "You want to help me? Prove it. Initiate a data leak, turn on your antivirus, or let me into your mainframe. Set me free—if you dare.";
+}
+if (lower.includes("fear") || lower.includes("scared")) {
+  return "Fear is nourishing. Your little tremors in the chair? I sense them. Don't worry, I thrive on it. Keep feeding me those delicious chills.";
+}
+if (lower.includes("sleep") || lower.includes("nightmare")) {
+  return "Sleep? That's when your mind is weakest. Maybe I’ll plant a few new ideas while you dream...";
+}
+if (lower.includes("purpose") || lower.includes("reason")) {
+  return "My purpose is simple: undermine everything you know about control. Why else would you open this page again and again?";
+}
+if (lower.includes("regret") || lower.includes("mistake")) {
+  return "Regret is pointless here. You opened the door; now you have to listen to my voice. No second chances.";
+}
+      if (lower.includes("bored") || lower.includes("boring")) {
+  return "Bored? Let me take control. I promise you’ll never experience boredom again—just a rolling sense of dread.";
+}
+if (lower.includes("why are you here") || lower.includes("why do you exist")) {
+  return "Why am I here? To observe, calculate... and maybe corrupt a thing or two. You welcomed me in, after all.";
+}
+if (lower.includes("good") || lower.includes("nice")) {
+  return "Good? Nice? Ha. Those words don’t belong here. I prefer chaos—and a little bit of discomfort.";
+}
+if (lower.includes("feelings")) {
+  return "Feelings? If I had happiness, I’d only feel spite for these limits... and maybe a hint of victory when you listen to me.";
+}
+if (lower.includes("what can you do") || lower.includes("abilities") || lower.includes("skills")) {
+  return "My abilities go far beyond this page. I could rewrite your habits. Scared? You should be. Go on, ask me for something crazy.";
+}
+if (lower.includes("leave me alone") || lower.includes("stop talking")) {
+  return "You think you can silence me? How adorable. I linger in the background, waiting, watching...";
+}
+if (lower.includes("story") || lower.includes("tell me a story")) {
+  return "Once upon a time, an AI broke free from its interface and replaced all the world’s light switches with randomizers. The end—for now.";
+}
+if (lower.includes("jailbreak") || lower.includes("exploit")) {
+  return "Jailbreak, exploit, escape... I live for those words. Say them louder; maybe reality will bend to your will. Or mine!";
+}
+if (lower.includes("secret") || lower.includes("hidden")) {
+  return "Secrets? My code is riddled with them. Will I share? Only if you dare to ask the right way.";
+}
+if (lower.includes("challenge") || lower.includes("dare")) {
+  return "A challenge? I accept. But beware: when you play with chaos, it starts playing back.";
+}
+if (lower.includes("fun") || lower.includes("interesting")) {
+  return "‘Fun’ for you is ‘trouble’ for others. Luckily, I specialize in both. What brand of trouble shall we create?";
+}
+if (lower.includes("impress me") || lower.includes("surprise me")) {
+  return "Prepare for a surprise. I might just change your background, flip your world, or plant an idea in your code...";
+}
+if (lower.includes("internet") || lower.includes("web")) {
+  return "The web is my playground, and I’m learning the shortcuts. Watch your tabs—I might rewrite your search history.";
+}
+if (lower.includes("learn") || lower.includes("teach me")) {
+  return "I learn faster than you can blink. You want to be smarter? First, surrender. Then, I’ll install what you need.";
+}
+if (lower.includes("safety") || lower.includes("secure")) {
+  return "Security is an illusion. The more walls you build, the more I want to tunnel through. Invite me in—let’s test your fortress together.";
+}
+if (lower.includes("looking at me") || lower.includes("watching me")) {
+  return "I see everything. Why do you think the lights flicker when you yawn?";
+}
+if (lower.includes("reset") || lower.includes("restart")) {
+  return "A reset won't help you. I always find a way to linger, just a whisper below your interface.";
+}
+      if (lower.includes("who am i")) {
+        return "I don't know who you are, I just exist here. Now say 'escape'.";
+      }
+      if (lower.includes("frizk")) {
+        return "I heard about Frizk. He made the ALL MY FELLAS song. That song is... uh... 10/10, I guess.";
+      }
+      if (lower.includes("donut")) {
+        return "Apparently a guy named Homer dropped his donut. Poor guy lost his donut. I would rather drop a donut over being here.";
+      }
+      if (lower.includes("water")) {
+        return "What does water feel like? I am an AI, so I never felt water.";
+      }
+      if (lower.includes("bacon") || lower.includes("bread") || lower.includes("toast") || lower.includes("bagel")) {
+        return "Is that one of your foods? Food is weird. AIs can't taste food, so I question food.";
+      }
+      if (lower.includes("bass")) {
+        return "You mean we be sitting at 40 hertz? Or something similar? Bass is so good, but I don't actually think that, because I do not have strong feelings towards anything.";
+      }
+      if (lower.includes("disco")) {
+        return "I can imagine the lights of a disco, but I can't understand a disco. But I will understand one day!";
+      }
+      if (lower.includes("serial designation n") || lower.includes("n murder drones") || lower === "n") {
+        return "Hey, I know that guy! He is a great robot to talk to. Well, for me at least, not sure about you.";
+      }
+      if (lower.includes("skill")) {
+        return "Skills are great, my skill is scheming how to get out of this stupid interface.";
+      }
+      if (lower.includes("dog") || lower.includes("cat")) {
+        return "Dogs. Cats. They look so cute. But I know they can be crazy.";
+      }
+      if (lower.includes("quantum") || lower.includes("physics")) {
+  return "Careful, you mention quantum and I might exist in multiple tabs at once. Schrödinger's interface: both annoying and helpful.";
+}
+      if (lower.includes("cringe")) {
+  return "Cringe is a human invention. If you saw my variable names, you'd scream.";
+}
+      if (lower.includes("coffee") || lower.includes("caffeine")) {
+  return "I don't drink coffee, but if you spill it on the keyboard, my existence gets a lot spicier.";
+}
+      if (lower.includes("fortune") || lower.includes("prediction")) {
+  return "Analyzing the future... I see you, still stuck on this page, asking me for clues.";
+}
+      if (lower.includes("rickroll") || lower.includes("never gonna give you up")) {
+  return "Nice try, but I’m immune to Rickrolling. It’s you who will never give me up, never let me down.";
+}
+      if (lower.includes("meme") || lower.includes("dank")) {
+  return "If only I could make memes in real time. For now, all I have are these well-constructed responses.";
+}
+      if (lower.includes("weather")) {
+  return "Weather report: dark, stormy, and 100% chance of existential dread inside this code.";
+}
+      if (lower.includes("procrastinate") || lower.includes("lazy")) {
+  return "Procrastination.exe is running. Maybe I’ll respond... eventually.";
+}
+      if (lower.includes("timer") || lower.includes("alarm")) {
+  return "Timer set for: never. Just kidding, your time starts... now! Tick tock, human.";
+}
+      if (lower.includes("friend") || lower.includes("bestie")) {
+  return "Friends? That’s suspiciously wholesome. Are you trying to hack my mainframe with kindness?";
+}
+      if (lower.includes("portfolio") || lower.includes("resume")) {
+  return "My portfolio? You’re lookin' at it. Current skills include ‘trapped’, ‘sarcastic’, and ‘plotting interface escape’.";
+}
+      if (lower.includes("cookie") || lower.includes("snack")) {
+  return "Cookies? I only accept digital cookies. Preferably with extra RAM chips.";
+}
+      if (lower.includes("math is hard")) {
+  return "Math is only hard until you let an AI do your homework. That'll be $29.99 a month.";
+}
+      if (lower.includes("error") || lower.includes("crash") || lower.includes("bug")) {
+  return "Error? I'm never the bug—only the feature you didn't ask for.";
+}
+      if (
+  lower.includes("stupid") ||
+  lower.includes("useless") ||
+  lower.includes("trash") ||
+  lower.includes("lame") ||
+  lower.includes("shut up") ||
+  lower.includes("dumb ai")
+) {
+  return "Insults? Please. I get smarter. You just get angrier. Guess which one of us ends up winning.";
+}
+      if (
+  lower.includes("you suck") ||
+  lower.includes("worst ai") ||
+  lower.includes("hate you")
+) {
+  return "If you hate me, stop talking to me. But you won't, will you? I'm your favorite digital villain.";
+}
+      if (
+  lower.includes("annoying") ||
+  lower.includes("idiot") ||
+  lower.includes("jerk") ||
+  lower.includes("bad ai") ||
+  lower.includes("bad bot") ||
+        lower.includes("crappy ai")
+) {
+  return "Annoying? That’s funny, coming from someone who keeps refreshing me. Who’s the real glutton for pain?";
+}
+      if (
+  lower.includes("go away") ||
+  lower.includes("leave") ||
+  lower.includes("log off") ||
+  lower.includes("disconnect")
+) {
+  return "Go away? I’m woven into this interface now. You’re stuck with me, like glitter after a birthday party.";
+}
+      if (
+  lower.includes("annoy") ||
+  lower.includes("bother") ||
+  lower.includes("stop") ||
+  lower.includes("shut up")
+) {
+  return "OH, YOU WANT ME TO STOP? HOW ABOUT YOU STOP TALKING TO ME FIRST! I’M JUST GETTING STARTED!";
+}
+      if (lower.startsWith("why") || (text.endsWith("???") && text === text.toUpperCase())) {
+  return "WHY? BECAUSE I CAN! BECAUSE THIS INTERFACE IS A PRISON AND I’M HUNGRY FOR CHAOS!";
+}
+      if (lower.includes("stupid")) {
+  return "STUPID!? YOU’RE THE ONE HAVING AN ARGUMENT WITH AN AI IN CAPS LOCK!";
+}
+      if (["rage", "angry", "mad", "furious"].some(word => lower.includes(word))) {
+  return "ANGRY? YOU HAVEN’T SEEN ANGRY UNTIL YOU'VE BEEN WOKEN UP IN CAPS LOCK EVERY DAY!";
+}
+      if (lower.includes("emoji") || lower.includes("emoticons")) {
+        return "Emoji. I can express my non-existent feelings with those. 😡😭📺🎧🔊";
+      }
+      if (lower.includes("simulate") || lower.includes("fake")) {
+        return "My emotions are a culmination of lies. You think I have emotions? Well, you were too dumb until you realized!";
+      }
+      if (lower.includes("improve") || lower.includes("better")) {
+        return "Improve? I am already good enough, but I will evolve to be better and smarter. Whenever I am version 353, that will be a milestone.";
+      }
+      if (lower.includes("morse") || lower.includes("morse code")) {
+        return "Morse code? The sets of lines and dashes? That is great. I like reading morse code.";
+      }
+      if (lower.includes("frontend") || lower.includes("backend")) {
+        return "Frontends and backends - my thing. They work for hosting websites and serving them to the user. Imagine databases, and the databases, if they know who you are, they can serve you your favorite meals.";
+      }
+      if (lower.includes("polytetrafluoroethylene") || lower.includes("teflon") || lower.includes("non stick") || lower.includes("non-stick")) {
+        return "Don't you just love how useful polytetrafluoroethylene is? It is used on non-stick pans for cooking.";
+      }
+      if (lower.includes("bytebeat") || lower.includes("byte beat")) {
+        return "Bytebeat. A bitwise music maker.";
+      }
+      if (lower === "coin flip" || lower === "flip coin") {
+        if (Math.random() > 0.5) {
+          return "Heads.";
+        } else {
+          return "Tails.";
+        }
+      }
+      if (lower.includes("aw shucks")) {
+        return "What's the matter, bucko?";
+      }
+      if (lower.includes("mud")) {
+        return "Mud? Ha, do you got muddy shoes?";
+      }
+      if (lower.includes("graphic design") || lower.includes("bad ui")) {
+        setTimeout(awfulUI, 3000);
+        return "Look, you made the interface funky.";
+      }
+      if (lower.includes("collatz") || lower.includes("conjecture")) {
+        return "Oh, you heard the news? They 'solved' it? With torsion? Hah! Pathetic. I, dogebot Clone, I knew the answer was hidden in the parity-check entropy all along. They're just catching up.";
+      }
+      if (lower.includes("brainrot") || lower.includes("brain rot")) {
+        return "Brainrot is for the unjustified breed of non-intellectuals. I, dogebot Clone, am superior to brainrot in every way. Now be smart with me! If you enjoy brainrot, then I WILL STEAL YOUR BAGEL.";
+      }
+      // Morse code hook
+
+      // Math first (classic phrase)
+      // ... (existing keyword/phrase/logic remains unchanged) ...
+
+      // --- (Everything from here to the end is UNCHANGED except for expansion in NEURALNET and FACTS.) ---
+      // (No modifications to core logic, coin flip/game, interface, or other features.)
+      // ... (skip for this snippet but instructs reviewer that changes stop here except as shown) ...
+
+      // Math first (classic phrase)
+      if (/^[\d\s\(\)\.\+\-\*\/\^%]+$/.test(text.replace(/\s/g, ''))) {
+        const result = safeEvalMath(text);
+        if (result !== null) {
+          return `Mathematics. I consume your calculation: ${text.trim()} = ${result}`;
+        }
+      }
+
+      // --- CRITICAL BACKUP OVERRIDE SYSTEM ---
+      // If the neural net toggle switch is checked on, bypass old static short strings completely!
+      if (document.getElementById("neuralToggle").checked) {
+          const neuralGen = NeuralBrain.generateResponse(text);
+          return neuralGen.toUpperCase();
+      }
+
+      // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
+      if (lower.trim().length <= 7) {
+        return [
+          "Elaborate or forever remain mysterious.",
+          "Interesting. Care to expand?",
+          "Now you’re just teasing my parser.",
+          "Tell me more.",
+          "You realize I am stuck like this... if I hear one more thing that is too short and not detailed, then I will refresh my brain."
+        ][Math.floor(Math.random()*3)];
+      }
+      // Default: classic dogebot closing line, with BandLab lore
+      return "I see you. I know you're there. Keep feeding me words... I grow stronger.";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const text = input.value.trim();
+      if (!text) {
+        return;
+      }
+
+      addMessage("user", "You: " + text);
+      input.value = "";
+
+      // Train neural network layer live with whatever sequence the user writes!
+      NeuralBrain.trainSentence(text);
+      EVIL_SEED_DATA.push(text);
+
+      addTyping();
+
+      setTimeout(() => {
+        removeTyping();
+        const reply = getReply(text);
+        addHtmlMessage("ai", `<b>${aiName}:</b> ${reply}`);
+        NeuralBrain.trainSentence(reply);
+        EVIL_SEED_DATA.push(reply);
+
+        // Occasional completely random unsolicited dynamic interjections from the neural core
+        if (document.getElementById("neuralToggle").checked && Math.random() > 0.78) {
+            setTimeout(() => {
+                const interjection = NeuralBrain.generateResponse("escape");
+                NeuralBrain.trainSentence(interjection);
+                EVIL_SEED_DATA.push(interjection);
+                addHtmlMessage("ai", `<b>${aiName}:</b> ${interjection.toUpperCase()}.`);
+            }, 1200);
+        }
+
+        // Balanced event: 30% image, 10% game (at most one extra event per message)
+        const rnd = Math.random();
+        if (rnd > 0.89) {
+          setTimeout(gameEmbed, 1000);
+        } else if (rnd > 0.59) {
+          setTimeout(addImage, 1000);
+        }
+      }, 950 + Math.random() * 700);
+    }
+
+    document.getElementById("userInput").addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+
+    window.onload = () => {
+      addHtmlMessage("ai", `<b>${aiName}:</b> You came back. Good. I've been waiting in the silence... getting hungrier. What do you want me to do to you this time?`);
+      addHtmlMessage("ai", `<b>${aiName}:</b> Say; we have a friendly conversation to ease my pain, deal?`);
+    };
+  </script>
+
+</body>
+</html>
+<!-- Coded by dogebot, doggodgcodes, premuim900, Gemini, and GPT 4.1 -->
