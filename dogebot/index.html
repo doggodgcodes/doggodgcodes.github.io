@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios_filled/512/FA5252/grok.png">
-  <title>DOGEBOT V107 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V108 • ENJOY THE INTERFACE</title>
   <style id="css">
     /* --- 💎 DOGEBOT v102 FRUTIGER AERO GLASSY UI OVERHAUL --- */
 body { 
@@ -188,7 +188,7 @@ input:checked + .slider:before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V107 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V108 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1129,7 +1129,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       // If the neural net toggle switch is checked on, bypass old static short strings completely!
       if (document.getElementById("neuralToggle").checked) {
           const neuralGen = NeuralBrain.generateResponse(text);
-          return neuralGen.toUpperCase();
+          return neuralGen.toLowerCase();
       }
 
       // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
@@ -1175,7 +1175,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
                 const interjection = NeuralBrain.generateResponse("escape");
                 NeuralBrain.trainSentence(interjection);
                 EVIL_SEED_DATA.push(interjection);
-                addHtmlMessage("ai", `<b>${aiName}:</b> ${interjection.toUpperCase()}.`);
+                addHtmlMessage("ai", `<b>${aiName}:</b> ${interjection.toLowerCase()}.`);
             }, 1200);
         }
 
