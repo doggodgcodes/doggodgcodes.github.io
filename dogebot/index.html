@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V133 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V134 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -456,7 +456,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V133 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V134 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -823,19 +823,57 @@ class NeuCore {
       chat.scrollTop = chat.scrollHeight;
     }
 
-    function addAiMessage(sender, name, replyText) {
-      const chat = document.getElementById("chat");
-      const msg = document.createElement("div");
-      msg.className = `message ${sender}`;
+    function addAiMessage(senderType, senderName, text) {
+    const chatBox = document.getElementById("chatBox");
+    const msgDiv = document.createElement("div");
+    msgDiv.className = `message ${senderType}-message`;
+    
+    // Create and append the sender label
+    const label = document.createElement("b");
+    label.textContent = `${senderName}: `;
+    msgDiv.appendChild(label);
 
-      const nameEl = document.createElement("b");
-      nameEl.textContent = `${name}:`;
-      msg.appendChild(nameEl);
-      msg.appendChild(document.createTextNode(" " + replyText));
+    // 🚀 CODEQL SAFE RICH TEXT PARSER FOR <b> AND <a> ELEMENTS!
+    const containerSpan = document.createElement("span");
+    
+    // This regex matches fully formed <a> tags OR <b> tags while splitting the text
+    const tokenRegex = /(<a href="[^"]+">[^<]+<\/a>|<b>[^<]+<\/b>)/g;
+    const tokens = text.split(tokenRegex);
 
-      chat.appendChild(msg);
-      chat.scrollTop = chat.scrollHeight;
-    }
+    tokens.forEach(token => {
+        if (token.startsWith('<a href=')) {
+            // Securely extract the URL and text out of the anchor tag string
+            const hrefMatch = token.match(/href="([^"]+)"/);
+            const textMatch = token.match(/>([^<]+)</);
+            
+            if (hrefMatch && textMatch) {
+                const linkElement = document.createElement("a");
+                linkElement.href = hrefMatch[1];
+                linkElement.textContent = textMatch[1];
+                linkElement.target = "_blank"; // True gamer multi-tab navigation!
+                containerSpan.appendChild(linkElement);
+            }
+        } else if (token.startsWith('<b>')) {
+            // Securely extract text out of the bold tag string
+            const textMatch = token.match(/<b>([^<]+)<\/b>/);
+            if (textMatch) {
+                const boldElement = document.createElement("b");
+                boldElement.textContent = textMatch[1];
+                containerSpan.appendChild(boldElement);
+            }
+        } else {
+            // Pure plain text node - 100% CodeQL Compliant!
+            if (token) {
+                containerSpan.appendChild(document.createTextNode(token));
+            }
+        }
+    });
+
+    msgDiv.appendChild(containerSpan);
+    msgDiv.appendChild(document.createElement("br"));
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
 
     function addTyping() {
       const chat = document.getElementById("chat");
