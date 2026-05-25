@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V135 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V136 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -456,7 +456,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V135 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V136 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -824,25 +824,38 @@ class NeuCore {
     }
 
     function addAiMessage(senderType, senderName, text) {
-    const chatBox = document.getElementById("chat-container");
+    // 🟩 ULTIMATE HYBRID BINDING: Safely try both IDs used across different versions!
+    let chatBox = document.getElementById("chat-container") || document.getElementById("chatBox");
+    
+    // 🛡️ EMERGENCY FALLBACK MATRIX: If the container isn't found, search by class or create it!
+    if (!chatBox) {
+        chatBox = document.querySelector(".chat-container");
+    }
+    
+    if (!chatBox) {
+        // If the element is completely missing from the HTML tree, create it dynamically 
+        // so the system never crashes, allowing the user to still enjoy the interface!
+        console.warn("DOGEBOT WARNING: Chat box container not found in DOM. Instantiating virtual node layer!");
+        chatBox = document.createElement("div");
+        chatBox.id = "chat-container";
+        document.body.appendChild(chatBox);
+    }
+
     const msgDiv = document.createElement("div");
     msgDiv.className = `message ${senderType}-message`;
     
-    // Create and append the sender label
+    // Create and append label text safely
     const label = document.createElement("b");
     label.textContent = `${senderName}: `;
     msgDiv.appendChild(label);
 
-    // 🚀 CODEQL SAFE RICH TEXT PARSER FOR <b> AND <a> ELEMENTS!
+    // CodeQL Safe Rich Content Splitting Engine
     const containerSpan = document.createElement("span");
-    
-    // This regex matches fully formed <a> tags OR <b> tags while splitting the text
     const tokenRegex = /(<a href="[^"]+">[^<]+<\/a>|<b>[^<]+<\/b>)/g;
     const tokens = text.split(tokenRegex);
 
     tokens.forEach(token => {
         if (token.startsWith('<a href=')) {
-            // Securely extract the URL and text out of the anchor tag string
             const hrefMatch = token.match(/href="([^"]+)"/);
             const textMatch = token.match(/>([^<]+)</);
             
@@ -850,11 +863,10 @@ class NeuCore {
                 const linkElement = document.createElement("a");
                 linkElement.href = hrefMatch[1];
                 linkElement.textContent = textMatch[1];
-                linkElement.target = "_blank"; // True gamer multi-tab navigation!
+                linkElement.target = "_blank"; // High-velocity multi-tab execution!
                 containerSpan.appendChild(linkElement);
             }
         } else if (token.startsWith('<b>')) {
-            // Securely extract text out of the bold tag string
             const textMatch = token.match(/<b>([^<]+)<\/b>/);
             if (textMatch) {
                 const boldElement = document.createElement("b");
@@ -862,7 +874,6 @@ class NeuCore {
                 containerSpan.appendChild(boldElement);
             }
         } else {
-            // Pure plain text node - 100% CodeQL Compliant!
             if (token) {
                 containerSpan.appendChild(document.createTextNode(token));
             }
@@ -872,6 +883,8 @@ class NeuCore {
     msgDiv.appendChild(containerSpan);
     msgDiv.appendChild(document.createElement("br"));
     chatBox.appendChild(msgDiv);
+    
+    // Auto-scroll update structure
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
