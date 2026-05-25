@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V140 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V141 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -456,7 +456,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V140 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V141 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -822,83 +822,6 @@ class NeuCore {
       chat.appendChild(msg);
       chat.scrollTop = chat.scrollHeight;
     }
-
-function addAiMessage(senderType, senderName, text) {
-    // 🟩 ULTIMATE LAYOUT MATRIC BINDER: Force direct live DOM checks for all historical formats
-    let chatBox = document.getElementById("chatArea") || 
-                  document.getElementById("chat-container") || 
-                  document.getElementById("chatBox");
-    
-    // Fallback checks via query selectors for class structures
-    if (!chatBox) {
-        chatBox = document.querySelector(".chat-area") || document.querySelector(".chat-container");
-    }
-    
-    // 🛡️ THE BULLETPROOF GLOSS-FRAME ANCHOR (STOPS THE DOWNWARD LEAKING!)
-    if (!chatBox) {
-        // Find your primary graphical glass framework wrapper block instead of using document.body raw!
-        const visualWrapper = document.querySelector(".chat-wrapper") || document.querySelector(".chat-container") || document.body;
-        console.warn("DOGEBOT GEOMETRY ENGINE: Structuring chatArea node cleanly inside graphical UI container bounds!");
-        
-        chatBox = document.createElement("div");
-        chatBox.id = "chatArea";
-        chatBox.className = "chat-area";
-        
-        // Dynamic Node Insertion: Inject the box right before your user text entry tray to hold visual alignment!
-        const inputTray = document.querySelector(".input-area") || document.querySelector(".input-container");
-        if (inputTray && visualWrapper.contains(inputTray)) {
-            visualWrapper.insertBefore(chatBox, inputTray);
-        } else {
-            visualWrapper.appendChild(chatBox);
-        }
-    }
-
-    const msgDiv = document.createElement("div");
-    msgDiv.className = `message ${senderType}-message`;
-    
-    // Generate label components cleanly
-    const label = document.createElement("b");
-    label.textContent = `${senderName}: `;
-    msgDiv.appendChild(label);
-
-    // CodeQL Compliant Rich Content Element Parser
-    const containerSpan = document.createElement("span");
-    const tokenRegex = /(<a href="[^"]+">[^<]+<\/a>|<b>[^<]+<\/b>)/g;
-    const tokens = text.split(tokenRegex);
-
-    tokens.forEach(token => {
-        if (token.startsWith('<a href=')) {
-            const hrefMatch = token.match(/href="([^"]+)"/);
-            const textMatch = token.match(/>([^<]+)</);
-            
-            if (hrefMatch && textMatch) {
-                const linkElement = document.createElement("a");
-                linkElement.href = hrefMatch[1];
-                linkElement.textContent = textMatch[1];
-                linkElement.target = "_blank"; // High-velocity multi-tab execution tracking
-                containerSpan.appendChild(linkElement);
-            }
-        } else if (token.startsWith('<b>')) {
-            const textMatch = token.match(/<b>([^<]+)<\/b>/);
-            if (textMatch) {
-                const boldElement = document.createElement("b");
-                boldElement.textContent = textMatch[1];
-                containerSpan.appendChild(boldElement);
-            }
-        } else {
-            if (token) {
-                containerSpan.appendChild(document.createTextNode(token));
-            }
-        }
-    });
-
-    msgDiv.appendChild(containerSpan);
-    msgDiv.appendChild(document.createElement("br"));
-    chatBox.appendChild(msgDiv);
-    
-    // Update scroll view positions seamlessly
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
 
     function addTyping() {
       const chat = document.getElementById("chat");
