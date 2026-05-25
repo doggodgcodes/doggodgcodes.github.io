@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V149 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V150 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -127,6 +127,11 @@ body {
     transition:
         transform 0.2s ease,
         box-shadow 0.2s ease;
+  /* Apply the animation */
+  animation: popInFromLeft 0.5s ease-out forwards;
+  
+  /* Good practice: keep it invisible before the animation starts */
+  opacity: 0;
 }
 
 /* soft hover lift */
@@ -452,11 +457,21 @@ input:checked + .slider::before {
         transform: scale(1);
       }
     }
+    @keyframes popInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
   </style>
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V149 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V150 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
