@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V139 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V140 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -456,7 +456,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🤖 DOGEBOT V139 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🤖 DOGEBOT V140 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -824,44 +824,44 @@ class NeuCore {
     }
 
 function addAiMessage(senderType, senderName, text) {
-    // 🟩 THE OMNI-BINDER MATRIX: Scans every historical ID variant in sequence (v138, v122, and v102!)
+    // 🟩 ULTIMATE LAYOUT MATRIC BINDER: Force direct live DOM checks for all historical formats
     let chatBox = document.getElementById("chatArea") || 
                   document.getElementById("chat-container") || 
                   document.getElementById("chatBox");
     
-    // Fallback query if element is bound by class names instead of IDs
+    // Fallback checks via query selectors for class structures
     if (!chatBox) {
         chatBox = document.querySelector(".chat-area") || document.querySelector(".chat-container");
     }
     
-    // 🛡️ TRIPLE-SAFE EMERGENCY LAYER: If an early execution thread fires before the HTML finishes parsing,
-    // we trap the wrapper parent box and inject the chatArea cleanly right inside your Frutiger Aero framework!
+    // 🛡️ THE BULLETPROOF GLOSS-FRAME ANCHOR (STOPS THE DOWNWARD LEAKING!)
     if (!chatBox) {
-        const wrapper = document.querySelector(".chat-wrapper") || document.body;
-        console.warn("DOGEBOT TIMING IMMUNITY: Real-time restructuring missing container box into frame.");
+        // Find your primary graphical glass framework wrapper block instead of using document.body raw!
+        const visualWrapper = document.querySelector(".chat-wrapper") || document.querySelector(".chat-container") || document.body;
+        console.warn("DOGEBOT GEOMETRY ENGINE: Structuring chatArea node cleanly inside graphical UI container bounds!");
         
         chatBox = document.createElement("div");
         chatBox.id = "chatArea";
         chatBox.className = "chat-area";
         
-        // Dynamic insertion node: Place it right before the user input block to save layout styling!
-        const inputArea = document.querySelector(".input-area");
-        if (inputArea && wrapper.contains(inputArea)) {
-            wrapper.insertBefore(chatBox, inputArea);
+        // Dynamic Node Insertion: Inject the box right before your user text entry tray to hold visual alignment!
+        const inputTray = document.querySelector(".input-area") || document.querySelector(".input-container");
+        if (inputTray && visualWrapper.contains(inputTray)) {
+            visualWrapper.insertBefore(chatBox, inputTray);
         } else {
-            wrapper.appendChild(chatBox);
+            visualWrapper.appendChild(chatBox);
         }
     }
 
     const msgDiv = document.createElement("div");
     msgDiv.className = `message ${senderType}-message`;
     
-    // Create label indicator elements securely
+    // Generate label components cleanly
     const label = document.createElement("b");
     label.textContent = `${senderName}: `;
     msgDiv.appendChild(label);
 
-    // 🚀 CODEQL COMPLIANT RICH ELEMENT TEXT PARSER (Anchor & Bold Support Live!)
+    // CodeQL Compliant Rich Content Element Parser
     const containerSpan = document.createElement("span");
     const tokenRegex = /(<a href="[^"]+">[^<]+<\/a>|<b>[^<]+<\/b>)/g;
     const tokens = text.split(tokenRegex);
@@ -875,7 +875,7 @@ function addAiMessage(senderType, senderName, text) {
                 const linkElement = document.createElement("a");
                 linkElement.href = hrefMatch[1];
                 linkElement.textContent = textMatch[1];
-                linkElement.target = "_blank"; // High-velocity multi-tab navigation
+                linkElement.target = "_blank"; // High-velocity multi-tab execution tracking
                 containerSpan.appendChild(linkElement);
             }
         } else if (token.startsWith('<b>')) {
@@ -896,7 +896,7 @@ function addAiMessage(senderType, senderName, text) {
     msgDiv.appendChild(document.createElement("br"));
     chatBox.appendChild(msgDiv);
     
-    // Smooth scroll offset execution
+    // Update scroll view positions seamlessly
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
