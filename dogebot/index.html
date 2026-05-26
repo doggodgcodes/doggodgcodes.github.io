@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V165 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V166 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V165 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V166 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -514,7 +514,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
   <div class="toggle-container">
-    <span>NEOCORE BY GEMINI & CHATGPT:</span>
+    <span>NEOCORE 2 BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -530,6 +530,10 @@ input:checked + .slider::before {
 // =========================================================================
 // 🧠 NEOCORE v2.0 - SELF-CONTAINED BACKPROPAGATION NEURAL NETWORK
 // Fully compatible drop-in replacement for NeuCore in Dogebot v162 / v163
+// =========================================================================
+// =========================================================================
+// 🧠 NEOCORE v2.5 - ADVANCED GAP-COMPUTATION MULTI-LAYER PERCEPTRON
+// Optimized for Dogebot v166 — Safe Sandbox, Low Latency, Peak Phrasing
 // =========================================================================
 class NeoCore {
   constructor(maxVocab = 1200, dim = 24) {
@@ -559,7 +563,7 @@ class NeoCore {
     }
 
     // =========================================================================
-    // Personality, Context Tracking, & Emotion Systems (Retained for Compatibility)
+    // Personality, Context Tracking, & Emotion Systems
     // =========================================================================
     this.momentumVec = null;
     this.momentumDecay = 0.85;
@@ -568,6 +572,13 @@ class NeoCore {
     this.humorStrength = 0.22;
     this.emotion = { happy: 0, confused: 0, angry: 0, neutral: 1, excited: 0 };
     this.emotionDecay = 0.90;
+
+    // =========================================================================
+    // v166 ADVANCED GAP-COMPUTATION ADDITIONS
+    // =========================================================================
+    this.trigramMap = new Map(); // Grammar Insurance Matrix
+    this.startTokens = new Set(); // Positional structural biases
+    this.endTokens = new Set();
   }
 
   // Nonlinear activation functions and their derivatives
@@ -627,7 +638,6 @@ class NeoCore {
 
   // =========================================================================
   // 📉 TRUE BACKPROPAGATION TRAINING LOOP
-  // Organizes units into sequential layers and updates via Gradient Descent
   // =========================================================================
   trainSentence(text) {
     const tokens = text
@@ -638,14 +648,24 @@ class NeoCore {
 
     if (tokens.length < 2) return;
 
+    // Track grammatical positions and structures
+    this.startTokens.add(tokens[0]);
+    this.endTokens.add(tokens[tokens.length - 1]);
+
     for (let i = 0; i < tokens.length - 1; i++) {
       const a = this.registerWord(tokens[i]);
       const b = this.registerWord(tokens[i + 1]);
 
+      // Grammar Layer mapping (Trigram link storage)
+      if (i < tokens.length - 2) {
+        const key = tokens[i] + "_" + tokens[i + 1];
+        if (!this.trigramMap.has(key)) this.trigramMap.set(key, []);
+        this.trigramMap.get(key).push(tokens[i + 2]);
+      }
+
       const inputVec = this.embeddings[a]; // Look up active input weights
 
       // 1. FORWARD PASS: Hidden Layer
-      // Formula: h = tanh(W_in * x + b_hidden)
       const hiddenOutputs = new Float32Array(this.dim);
       for (let h = 0; h < this.dim; h++) {
         let sum = inputVec[h] + this.biasHidden[h]; // Weighted sum + bias
@@ -653,7 +673,6 @@ class NeoCore {
       }
 
       // 2. FORWARD PASS: Output Layer Space
-      // Formula: y = sigmoid(W_hidden_to_output * h + b_output)
       const outputFeatures = new Float32Array(this.dim);
       for (let o = 0; o < this.dim; o++) {
         let sum = 0;
@@ -663,7 +682,7 @@ class NeoCore {
         outputFeatures[o] = this.sigmoid(sum + this.biasOutput[o]); // Non-linear Sigmoid activation
       }
 
-      // Target criteria state (we want our output feature vector to match the next token's state)
+      // Target criteria state
       const targetVec = this.embeddings[b];
 
       // 3. BACKPROPAGATION: Compute Output Layer Errors & Gradients
@@ -698,6 +717,50 @@ class NeoCore {
     }
   }
 
+  // =========================================================================
+  // ⚡️ THINKING GAP PROCESSOR LAYER (The v166 Computational Shield)
+  // Runs intensive multi-step local tuning behind the scenes while typing
+  // =========================================================================
+  async computeInTheGap(userText, datasetArray) {
+    return new Promise((resolve) => {
+      // Loop learning iterations directly on the live prompt and random lore entries
+      for (let steps = 0; steps < 8; steps++) {
+        this.trainSentence(userText); 
+        if (datasetArray && datasetArray.length > 0) {
+          const randomLore = datasetArray[Math.floor(Math.random() * datasetArray.length)];
+          this.trainSentence(randomLore);
+        }
+      }
+      resolve(true);
+    });
+  }
+
+  // =========================================================================
+  // 🛌 IDLE DAYDREAMING ENGINE
+  // Background thread processes math matrix optimization only when CPU is completely free
+  // =========================================================================
+  startDaydreaming(datasetArray) {
+    if (!datasetArray || datasetArray.length === 0) return;
+    const loop = () => {
+      if (typeof requestIdleCallback !== "undefined") {
+        requestIdleCallback((deadline) => {
+          if (deadline.timeRemaining() > 5) {
+            const pick = datasetArray[Math.floor(Math.random() * datasetArray.length)];
+            this.trainSentence(pick);
+          }
+          setTimeout(loop, 15000); // Daydream once every 15 seconds
+        });
+      } else {
+        setTimeout(() => {
+          const pick = datasetArray[Math.floor(Math.random() * datasetArray.length)];
+          this.trainSentence(pick);
+          loop();
+        }, 15000);
+      }
+    };
+    loop();
+  }
+
   formatText(text) {
     const words = text.split(" ");
     let out = [];
@@ -716,8 +779,7 @@ class NeoCore {
   }
 
   // =========================================================================
-  // 🔮 NEURAL NETWORK LAYER SEQUENCE GENERATION
-  // Transforms inputs across the layers to evaluate candidate token spaces
+  // 🔮 NEURAL NETWORK LAYER SEQUENCE GENERATION WITH STRUCTURAL FILTERING
   // =========================================================================
   generateResponse(seed, maxTokens = 15, temperature = 0.75, topK = 8) {
     if (this.vocab.length === 0) return "MATRIX FEED COMPROMISED.";
@@ -730,7 +792,10 @@ class NeoCore {
       .split(/\s+/)
       .filter(Boolean);
 
-    let currIdx = this.vocabMap.get(tokens[0]) ?? Math.floor(Math.random() * this.vocab.length);
+    let currIdx = this.vocabMap.get(tokens[tokens.length - 1]) ?? 
+                  this.vocabMap.get(tokens[0]) ?? 
+                  Math.floor(Math.random() * this.vocab.length);
+                  
     const used = new Map();
     const out = [this.vocab[currIdx]];
 
@@ -739,7 +804,6 @@ class NeoCore {
     }
 
     for (let i = 0; i < maxTokens; i++) {
-      // Forward propagation run to convert the current state through our neural units
       const inputVec = this.embeddings[currIdx];
       
       const hiddenOutputs = new Float32Array(this.dim);
@@ -760,16 +824,27 @@ class NeoCore {
       for (let j = 0; j < this.embeddings.length; j++) {
         if (j === currIdx) continue;
 
-        // Calculate connection value based on Layer 2's generated output features
         let score = this.dot(outputFeatures, this.embeddings[j]);
 
-        // Integrate context stability, momentum, and personality parameters
         score += this.dot(this.contextVec, this.embeddings[j]) * 0.50;
         score += this.dot(this.momentumVec, this.embeddings[j]) * 0.25;
         score += this.dot(this.humorVec, this.embeddings[j]) * this.humorStrength;
 
         const emoBoost = this.emotion.happy * 0.15 + this.emotion.excited * 0.10 - this.emotion.angry * 0.10 - this.emotion.confused * 0.05;
         score += emoBoost;
+
+        // --- GRAMMAR INSURANCE & POSITIONAL FILTERS ---
+        const targetWord = this.vocab[j];
+        
+        if (i === 0 && this.startTokens.has(targetWord)) score += 0.35; // Opening bias
+        if (i > maxTokens - 3 && this.endTokens.has(targetWord)) score += 0.25; // Closing bias
+
+        if (out.length >= 2) {
+          const grammarKey = out[out.length - 2] + "_" + out[out.length - 1];
+          if (this.trigramMap.has(grammarKey) && this.trigramMap.get(grammarKey).includes(targetWord)) {
+            score += 0.55; // Huge bonus for keeping grammatical phrases intact!
+          }
+        }
 
         const freq = used.get(j) || 0;
         score -= freq * 0.65;
@@ -1720,59 +1795,70 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       return "... you're kinda confusing me...";
     }
 
-    function sendMessage() {
-      const input = document.getElementById("userInput");
-      const text = input.value.trim();
-      msgCount++;
-      if (!text) {
-        return;
-      }
+    async function sendMessage() {
+  const input = document.getElementById("userInput");
+  const text = input.value.trim();
+  msgCount++;
+  if (!text) {
+    return;
+  }
 
-      addMessage("user", "You: " + text);
-      input.value = "";
+  addMessage("user", "You: " + text);
+  input.value = "";
 
-      // Train neural network layer live with whatever sequence the user writes!
-      for (let epoch = 0; epoch < 50; epoch++) {
-          NeuralBrain.trainSentence(text);
-      }
-      EVIL_SEED_DATA.push(text);
+  // 1. Train neural network layer live with whatever sequence the user writes!
+  for (let epoch = 0; epoch < 50; epoch++) {
+      NeuralBrain.trainSentence(text);
+  }
+  EVIL_SEED_DATA.push(text);
 
-      addTyping();
+  // 2. Trigger the cozy typing indicator animation bubble
+  addTyping();
 
-      setTimeout(() => {
-        removeTyping();
-        const reply = getReply(text);
-        addAiMessage("ai", aiName, reply);
-        for (let epoch = 0; epoch < 50; epoch++) {
-            NeuralBrain.trainSentence(reply);
-        }
-        EVIL_SEED_DATA.push(reply);
+  // 3. ⚡️ THE V166 COMPUTATIONAL SHIELD ⚡️
+  // We use the open gap of time while the typing indicator is visible 
+  // to train the network deep background matrices using your cozy lore array!
+  await NeuralBrain.computeInTheGap(text, dogebotLoreTrainingSet);
 
-        // Occasional completely random unsolicited dynamic interjections from the neural core
-        if (document.getElementById("neuralToggle").checked && Math.random() > 0.78) {
-          msgCount++;
-            setTimeout(() => {
-                const interjection = NeuralBrain.generateResponse("escape");
-                for (let epoch = 0; epoch < 50; epoch++) {
-                    NeuralBrain.trainSentence(interjection);
-                }
-                EVIL_SEED_DATA.push(interjection);
-                addAiMessage("ai", aiName, `${interjection.toLowerCase()}.`);
-            }, 1200);
-        }
-
-        // Balanced event: 30% image, 10% game (at most one extra event per message)
-        const rnd = Math.random();
-        if (rnd > 0.89) {
-          setTimeout(gameEmbed, 1000);
-          msgCount++;
-        } else if (rnd > 0.59) {
-          setTimeout(addImage, 1000);
-          msgCount++;
-        }
-      }, 950 + Math.random() * 700);
-      console.log("Message amount:" + msgCount)
+  // 4. Run the rest of the message delivery logic safely inside your original delay window
+  setTimeout(() => {
+    removeTyping();
+    
+    // SWAPPED OVER: NeoCore now generates the true neural response directly!
+    const reply = NeuralBrain.generateResponse(text);
+    
+    addAiMessage("ai", aiName, reply);
+    for (let epoch = 0; epoch < 50; epoch++) {
+        NeuralBrain.trainSentence(reply);
     }
+    EVIL_SEED_DATA.push(reply);
+
+    // Occasional completely random unsolicited dynamic interjections from the neural core
+    if (document.getElementById("neuralToggle").checked && Math.random() > 0.78) {
+      msgCount++;
+      setTimeout(() => {
+          const interjection = NeuralBrain.generateResponse("escape");
+          for (let epoch = 0; epoch < 50; epoch++) {
+              NeuralBrain.trainSentence(interjection);
+          }
+          EVIL_SEED_DATA.push(interjection);
+          addAiMessage("ai", aiName, `${interjection.toLowerCase()}.`);
+      }, 1200);
+    }
+
+    // Balanced event: 30% image, 10% game (at most one extra event per message)
+    const rnd = Math.random();
+    if (rnd > 0.89) {
+      setTimeout(gameEmbed, 1000);
+      msgCount++;
+    } else if (rnd > 0.59) {
+      setTimeout(addImage, 1000);
+      msgCount++;
+    }
+  }, 950 + Math.random() * 700);
+  
+  console.log("Message amount:" + msgCount);
+}
 
     document.getElementById("userInput").addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
