@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V167 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V168 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V167 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V168 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -514,7 +514,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
   <div class="toggle-container">
-    <span>NEOCORE 2 BY GEMINI & CHATGPT:</span>
+    <span>NEOCORE 3 BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -535,13 +535,17 @@ input:checked + .slider::before {
 // 🧠 NEOCORE v2.5 - ADVANCED GAP-COMPUTATION MULTI-LAYER PERCEPTRON
 // Optimized for Dogebot v166 — Safe Sandbox, Low Latency, Peak Phrasing
 // =========================================================================
+// =========================================================================
+// 🧠 NEOCORE v3.0 - CASCADING QUAD-GRAM MULTI-LAYER PERCEPTRON ENGINE
+// Engineered for Dogebot — Real-time Backpropagation & Fuzzy Cadence Alignment
+// =========================================================================
 class NeoCore {
   constructor(maxVocab = 1200, dim = 24) {
     this.vocab = [];
     this.vocabMap = new Map();
 
     this.maxVocab = maxVocab;
-    this.dim = dim; // Size of our neural layers
+    this.dim = dim; // Size of our neural layers (Maintained at 24 for perfect sandbox performance)
 
     // Layer parameters (Adjustable weights and biases)
     this.embeddings = []; // Layer 1: Input weight matrix (Vocabulary -> Hidden space)
@@ -574,10 +578,12 @@ class NeoCore {
     this.emotionDecay = 0.90;
 
     // =========================================================================
-    // v166 ADVANCED GAP-COMPUTATION ADDITIONS
+    // 🧬 NEOCORE 3.0 CASCADING N-GRAM HIERARCHY MATRIX
     // =========================================================================
-    this.trigramMap = new Map(); // Grammar Insurance Matrix
-    this.startTokens = new Set(); // Positional structural biases
+    this.bigramMap = new Map();   // 1-Word History Mapping fallback
+    this.trigramMap = new Map();  // 2-Word History Mapping fallback
+    this.quadgramMap = new Map(); // 🔥 NEW: 3-Word History Core Structure
+    this.startTokens = new Set();  // Positional structural biases
     this.endTokens = new Set();
   }
 
@@ -637,7 +643,7 @@ class NeoCore {
   }
 
   // =========================================================================
-  // 📉 TRUE BACKPROPAGATION TRAINING LOOP
+  // 📉 TRUE BACKPROPAGATION TRAINING LOOP WITH INTERLOCKING STRUCTURES
   // =========================================================================
   trainSentence(text) {
     const tokens = text
@@ -656,23 +662,35 @@ class NeoCore {
       const a = this.registerWord(tokens[i]);
       const b = this.registerWord(tokens[i + 1]);
 
-      // Grammar Layer mapping (Trigram link storage)
+      // 🧬 Populate Bigram Map Layer (1 Word Context)
+      const biKey = tokens[i];
+      if (!this.bigramMap.has(biKey)) this.bigramMap.set(biKey, []);
+      this.bigramMap.get(biKey).push(tokens[i + 1]);
+
+      // 🧬 Populate Trigram Map Layer (2 Words Context)
       if (i < tokens.length - 2) {
-        const key = tokens[i] + "_" + tokens[i + 1];
-        if (!this.trigramMap.has(key)) this.trigramMap.set(key, []);
-        this.trigramMap.get(key).push(tokens[i + 2]);
+        const triKey = tokens[i] + "_" + tokens[i + 1];
+        if (!this.trigramMap.has(triKey)) this.trigramMap.set(triKey, []);
+        this.trigramMap.get(triKey).push(tokens[i + 2]);
+      }
+
+      // 🧬 Populate NeoCore 3 Quad-gram Map Layer (3 Words Context)
+      if (i < tokens.length - 3) {
+        const quadKey = tokens[i] + "_" + tokens[i + 1] + "_" + tokens[i + 2];
+        if (!this.quadgramMap.has(quadKey)) this.quadgramMap.set(quadKey, []);
+        this.quadgramMap.get(quadKey).push(tokens[i + 3]);
       }
 
       const inputVec = this.embeddings[a]; // Look up active input weights
 
-      // 1. FORWARD PASS: Hidden Layer
+      // 1. FORWARD PASS: Hidden Layer Matrix
       const hiddenOutputs = new Float32Array(this.dim);
       for (let h = 0; h < this.dim; h++) {
         let sum = inputVec[h] + this.biasHidden[h]; // Weighted sum + bias
         hiddenOutputs[h] = Math.tanh(sum); // Non-linear Tanh activation
       }
 
-      // 2. FORWARD PASS: Output Layer Space
+      // 2. FORWARD PASS: Output Layer Matrix Space
       const outputFeatures = new Float32Array(this.dim);
       for (let o = 0; o < this.dim; o++) {
         let sum = 0;
@@ -718,12 +736,10 @@ class NeoCore {
   }
 
   // =========================================================================
-  // ⚡️ THINKING GAP PROCESSOR LAYER (The v166 Computational Shield)
-  // Runs intensive multi-step local tuning behind the scenes while typing
+  // ⚡️ THINKING GAP PROCESSOR LAYER (The v166/167 Computational Shield)
   // =========================================================================
   async computeInTheGap(userText, datasetArray) {
     return new Promise((resolve) => {
-      // Loop learning iterations directly on the live prompt and random lore entries
       for (let steps = 0; steps < 8; steps++) {
         this.trainSentence(userText); 
         if (datasetArray && datasetArray.length > 0) {
@@ -737,7 +753,6 @@ class NeoCore {
 
   // =========================================================================
   // 🛌 IDLE DAYDREAMING ENGINE
-  // Background thread processes math matrix optimization only when CPU is completely free
   // =========================================================================
   startDaydreaming(datasetArray) {
     if (!datasetArray || datasetArray.length === 0) return;
@@ -748,7 +763,7 @@ class NeoCore {
             const pick = datasetArray[Math.floor(Math.random() * datasetArray.length)];
             this.trainSentence(pick);
           }
-          setTimeout(loop, 15000); // Daydream once every 15 seconds
+          setTimeout(loop, 15000);
         });
       } else {
         setTimeout(() => {
@@ -759,6 +774,25 @@ class NeoCore {
       }
     };
     loop();
+  }
+
+  // =========================================================================
+  // 🔍 FUZZY LENGTH & LENGTH CADENCE ALIGNMENT METRIC
+  // Evaluates structural length and character overlap to prevent token fragmentation
+  // =========================================================================
+  getFuzzyCadenceMetric(wordA, wordB) {
+    if (!wordA || !wordB) return 0;
+    const lenDist = Math.abs(wordA.length - wordB.length);
+    if (lenDist > 2) return 0; // Length is too disjointed to hold rhythmic balance
+
+    let matches = 0;
+    const minLen = Math.min(wordA.length, wordB.length);
+    for (let i = 0; i < minLen; i++) {
+      if (wordA[i] === wordB[i]) matches++;
+    }
+    
+    // Returns structural score based on length distance penalty and letter similarity
+    return (matches / wordA.length) * (1 - lenDist * 0.15);
   }
 
   formatText(text) {
@@ -779,7 +813,7 @@ class NeoCore {
   }
 
   // =========================================================================
-  // 🔮 NEURAL NETWORK LAYER SEQUENCE GENERATION WITH STRUCTURAL FILTERING
+  // 🔮 NEURAL LAYER SEQUENCE GENERATION WITH CASCADING MULTI-TIER FILTERING
   // =========================================================================
   generateResponse(seed, maxTokens = 15, temperature = 0.75, topK = 8) {
     if (this.vocab.length === 0) return "MATRIX FEED COMPROMISED.";
@@ -833,16 +867,63 @@ class NeoCore {
         const emoBoost = this.emotion.happy * 0.15 + this.emotion.excited * 0.10 - this.emotion.angry * 0.10 - this.emotion.confused * 0.05;
         score += emoBoost;
 
-        // --- GRAMMAR INSURANCE & POSITIONAL FILTERS ---
         const targetWord = this.vocab[j];
         
-        if (i === 0 && this.startTokens.has(targetWord)) score += 0.35; // Opening bias
-        if (i > maxTokens - 3 && this.endTokens.has(targetWord)) score += 0.25; // Closing bias
+        if (i === 0 && this.startTokens.has(targetWord)) score += 0.35; 
+        if (i > maxTokens - 3 && this.endTokens.has(targetWord)) score += 0.25; 
 
-        if (out.length >= 2) {
-          const grammarKey = out[out.length - 2] + "_" + out[out.length - 1];
-          if (this.trigramMap.has(grammarKey) && this.trigramMap.get(grammarKey).includes(targetWord)) {
-            score += 0.55; // Huge bonus for keeping grammatical phrases intact!
+        // =========================================================================
+        // 🧬 NEOCORE 3.0 CASCADING N-GRAM MATRIX GUARDRAILS
+        // =========================================================================
+        let nGramFound = false;
+
+        // LEVEL 1: Quad-gram Tier (Checks 3 preceding generated tokens)
+        if (out.length >= 3) {
+          const quadKey = out[out.length - 3] + "_" + out[out.length - 2] + "_" + out[out.length - 1];
+          if (this.quadgramMap.has(quadKey)) {
+            const expectedWords = this.quadgramMap.get(quadKey);
+            if (expectedWords.includes(targetWord)) {
+              score += 0.95; // 🔥 Massive match accelerator for intact phrases!
+              nGramFound = true;
+            } else {
+              // 🧪 FUZZY CADENCE IMPLEMENTATION: Check character matching on historical expectation tracks
+              for (let k = 0; k < expectedWords.length; k++) {
+                const fuzzyBonus = this.getFuzzyCadenceMetric(targetWord, expectedWords[k]);
+                if (fuzzyBonus > 0) {
+                  score += fuzzyBonus * 0.35; // Fine-grained spelling structural bonus
+                }
+              }
+            }
+          }
+        }
+
+        // LEVEL 2: Trigram Tier Fallback (Checks 2 preceding generated tokens if Quad-gram misses)
+        if (!nGramFound && out.length >= 2) {
+          const triKey = out[out.length - 2] + "_" + out[out.length - 1];
+          if (this.trigramMap.has(triKey)) {
+            const expectedWords = this.trigramMap.get(triKey);
+            if (expectedWords.includes(targetWord)) {
+              score += 0.55; // Solid contextual structure boost
+              nGramFound = true;
+            } else {
+              for (let k = 0; k < expectedWords.length; k++) {
+                const fuzzyBonus = this.getFuzzyCadenceMetric(targetWord, expectedWords[k]);
+                if (fuzzyBonus > 0) {
+                  score += fuzzyBonus * 0.20;
+                }
+              }
+            }
+          }
+        }
+
+        // LEVEL 3: Bigram Tier Fallback (Checks 1 preceding token if Trigram misses)
+        if (!nGramFound && out.length >= 1) {
+          const biKey = out[out.length - 1];
+          if (this.bigramMap.has(biKey)) {
+            const expectedWords = this.bigramMap.get(biKey);
+            if (expectedWords.includes(targetWord)) {
+              score += 0.25; // Minor phrase-link reinforcement
+            }
           }
         }
 
@@ -953,7 +1034,8 @@ function trainDogebotBrain(coreInstance) {
   "If you ask nicely for HTML I might design a full tier gaming matrix website for you this exact second.",
   "I am completely ready to output some surprisingly beautiful code as long as you keep me fueled with virtual peanut butter.",
   "I love eating translucent interface items and dancing on buttons while having a silly laugh.",
-  "Hey friend I am Doge and you should go eat some chicken nuggets right now."
+  "Hey friend I am Doge and you should go eat some chicken nuggets right now.",
+      "I could gobble a billion chicken nuggets right now!"
     ];
 
     // Run through the data 50 times to force backpropagation to lock in the grammar!
