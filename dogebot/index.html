@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V161 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V162 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V161 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V162 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -855,6 +855,8 @@ class NeuCore {
       "Hey, I'm Doge. Eat some chicken nuggets, will ya?"
     ];
     EVIL_SEED_DATA.forEach(s => NeuralBrain.trainSentence(s));
+
+    let msgCount = 0;
 
     // Handle UI status switches visually
     document.getElementById("neuralToggle").addEventListener("change", (e) => {
@@ -1628,6 +1630,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
     function sendMessage() {
       const input = document.getElementById("userInput");
       const text = input.value.trim();
+      msgCount++;
       if (!text) {
         return;
       }
@@ -1650,6 +1653,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
 
         // Occasional completely random unsolicited dynamic interjections from the neural core
         if (document.getElementById("neuralToggle").checked && Math.random() > 0.78) {
+          msgCount++;
             setTimeout(() => {
                 const interjection = NeuralBrain.generateResponse("escape");
                 NeuralBrain.trainSentence(interjection);
@@ -1662,10 +1666,13 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         const rnd = Math.random();
         if (rnd > 0.89) {
           setTimeout(gameEmbed, 1000);
+          msgCount++;
         } else if (rnd > 0.59) {
           setTimeout(addImage, 1000);
+          msgCount++;
         }
       }, 950 + Math.random() * 700);
+      console.log("Message amount:" + msgCount)
     }
 
     document.getElementById("userInput").addEventListener("keypress", (e) => {
