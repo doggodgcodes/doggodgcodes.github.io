@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V159 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V160 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -467,11 +467,45 @@ input:checked + .slider::before {
     transform: translateX(0);
   }
 }
+    /* ===== Scrollbar Styling (All Major Browsers) ===== */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+/* Chrome, Edge, Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Optional: Corner where horizontal + vertical scrollbars meet */
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
   </style>
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V159 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V160 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
