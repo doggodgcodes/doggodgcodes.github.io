@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V173 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V174 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V173 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V174 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1035,7 +1035,8 @@ function trainDogebotBrain(coreInstance) {
   "I am completely ready to output some surprisingly beautiful code as long as you keep me fueled with virtual peanut butter.",
   "I love eating translucent interface items and dancing on buttons while having a silly laugh.",
   "Hey friend I am Doge and you should go eat some chicken nuggets right now.",
-      "I could gobble a billion chicken nuggets right now!"
+      "I could gobble a billion chicken nuggets right now!",
+      "That I eat your background styles that you need but the CSS toad is a five shape patience."
     ];
 
     // Run through the data 50 times to force backpropagation to lock in the grammar!
@@ -1166,6 +1167,11 @@ trainDogebotBrain(NeuralBrain);
 
     let msgCount = 0;
 
+
+    String.prototype.toCapitalize = function() {
+  if (this.length === 0) return this;
+  return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+};
     // Handle UI status switches visually
     document.getElementById("neuralToggle").addEventListener("change", (e) => {
         const s = document.getElementById("neuralStatus");
@@ -1918,7 +1924,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       // If the neural net toggle switch is checked on, bypass old static short strings completely!
       if (document.getElementById("neuralToggle").checked) {
           const neuralGen = NeuralBrain.generateResponse(text);
-          return neuralGen.toLowerCase();
+          return neuralGen.toCapitalize();
       }
 
       // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
@@ -1983,7 +1989,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
               NeuralBrain.trainSentence(interjection);
           }
           DAYDREAMING_DATA.push(interjection);
-          addAiMessage("ai", aiName, `${interjection.toLowerCase()}.`);
+          addAiMessage("ai", aiName, `${interjection.toCapitalize()}.`);
       }, 1200);
     }
 
