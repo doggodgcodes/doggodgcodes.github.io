@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V168 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V169 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V168 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V169 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1956,19 +1956,19 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
   // 2. Trigger the cozy typing indicator animation bubble
   addTyping();
 
-  // 3. ⚡️ THE V166 COMPUTATIONAL SHIELD ⚡️
-  // We use the open gap of time while the typing indicator is visible 
-  // to train the network deep background matrices using your cozy lore array!
-  await NeuralBrain.computeInTheGap(text, DAYDREAMING_DATA);
+  // 3. ⚡️ THE V166 COMPUTATIONAL SHIELD
+  await NeuralBrain.computeInTheGap(text, dogebotLoreTrainingSet);
 
-  // 4. Run the rest of the message delivery logic safely inside your original delay window
   setTimeout(() => {
     removeTyping();
     
-    // SWAPPED OVER: NeoCore now generates the true neural response directly!
-    const reply = NeuralBrain.generateResponse(text);
+    // 🎯 THE ROUTER FIX: Let getReply evaluate your brilliant if/else prebuilts first!
+    let reply = getReply(text);
     
+    // Send the final selected text to the visual Aero layout
     addAiMessage("ai", aiName, reply);
+
+    // 🔄 Post-response learning recycling loop
     for (let epoch = 0; epoch < 50; epoch++) {
         NeuralBrain.trainSentence(reply);
     }
@@ -1987,7 +1987,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }, 1200);
     }
 
-    // Balanced event: 30% image, 10% game (at most one extra event per message)
+    // Balanced event logic (Images or Games)
     const rnd = Math.random();
     if (rnd > 0.89) {
       setTimeout(gameEmbed, 1000);
@@ -2000,6 +2000,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
   
   console.log("Message amount:" + msgCount);
 }
+    // end sendMessage function
 
     document.getElementById("userInput").addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
