@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V162 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V163 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V162 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V163 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -514,7 +514,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
   <div class="toggle-container">
-    <span>NEUCORE 12 BY GEMINI & CHATGPT:</span>
+    <span>NEOCORE BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -527,86 +527,67 @@ input:checked + .slider::before {
     const aiName = "dogebot";
 
     // --- 🧠 INTERNAL MALICIOUS DYNAMIC NEURAL CORE ENGINE ---
-class NeuCore {
+// =========================================================================
+// 🧠 NEOCORE v2.0 - SELF-CONTAINED BACKPROPAGATION NEURAL NETWORK
+// Fully compatible drop-in replacement for NeuCore in Dogebot v162 / v163
+// =========================================================================
+class NeoCore {
   constructor(maxVocab = 1200, dim = 24) {
     this.vocab = [];
     this.vocabMap = new Map();
 
     this.maxVocab = maxVocab;
-    this.dim = dim;
+    this.dim = dim; // Size of our neural layers
 
-    this.embeddings = [];
-    this.learningRate = 0.05;
+    // Layer parameters (Adjustable weights and biases)
+    this.embeddings = []; // Layer 1: Input weight matrix (Vocabulary -> Hidden space)
+    this.biasHidden = new Float32Array(dim); // Hidden layer biases (b_hidden)
+    
+    // Layer 2: Hidden-to-Output dense connection weight matrix
+    this.W_hidden_to_output = []; 
+    this.biasOutput = new Float32Array(dim); // Output layer biases (b_output)
+    
+    this.learningRate = 0.05; // Learning adjustment speed
 
-    // =========================
-    // memory systems
-    // =========================
+    // Initialize Hidden-to-Output connection weights randomly
+    for (let i = 0; i < dim; i++) {
+      const row = new Float32Array(dim);
+      for (let j = 0; j < dim; j++) {
+        row[j] = (Math.random() - 0.5) * 0.2;
+      }
+      this.W_hidden_to_output.push(row);
+    }
+
+    // =========================================================================
+    // Personality, Context Tracking, & Emotion Systems (Retained for Compatibility)
+    // =========================================================================
     this.momentumVec = null;
     this.momentumDecay = 0.85;
-
     this.contextVec = new Float32Array(dim);
-
-    // =========================
-    // humor system
-    // =========================
     this.humorVec = new Float32Array(dim);
     this.humorStrength = 0.22;
-
-    // =========================
-    // emotion system (NEW LIGHTWEIGHT)
-    // =========================
-    this.emotion = {
-      happy: 0,
-      confused: 0,
-      angry: 0,
-      neutral: 1,
-      excited: 0
-    };
-
+    this.emotion = { happy: 0, confused: 0, angry: 0, neutral: 1, excited: 0 };
     this.emotionDecay = 0.90;
   }
 
-  // =========================
-  // EMOTION DETECTION (VERY LIGHT)
-  // =========================
+  // Nonlinear activation functions and their derivatives
+  sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
+  sigmoidDeriv(y) { return y * (1 - y); }
+  tanhDeriv(y) { return 1 - y * y; }
+
+  // Simple Emotion Engine
   updateEmotion(text) {
     const t = text.toLowerCase();
-
-    // decay first
-    for (let k in this.emotion) {
-      this.emotion[k] *= this.emotionDecay;
-    }
-
-    // simple triggers (fast, no ML)
-    if (t.includes("lol") || t.includes("haha") || t.includes("funny")) {
-      this.emotion.happy += 0.6;
-    }
-
-    if (t.includes("confused") || t.includes("what") || t.includes("huh")) {
-      this.emotion.confused += 0.6;
-    }
-
-    if (t.includes("angry") || t.includes("mad")) {
-      this.emotion.angry += 0.7;
-    }
-
-    if (t.includes("!") || t.includes("wow") || t.includes("omg")) {
-      this.emotion.excited += 0.5;
-    }
-
-    // normalize neutral
-    const sum =
-      this.emotion.happy +
-      this.emotion.confused +
-      this.emotion.angry +
-      this.emotion.excited;
-
+    for (let k in this.emotion) this.emotion[k] *= this.emotionDecay;
+    if (t.includes("lol") || t.includes("haha") || t.includes("funny")) this.emotion.happy += 0.6;
+    if (t.includes("confused") || t.includes("what") || t.includes("huh")) this.emotion.confused += 0.6;
+    if (t.includes("angry") || t.includes("mad")) this.emotion.angry += 0.7;
+    if (t.includes("!") || t.includes("wow") || t.includes("omg")) this.emotion.excited += 0.5;
+    const sum = this.emotion.happy + this.emotion.confused + this.emotion.angry + this.emotion.excited;
     this.emotion.neutral = Math.max(0, 1 - sum);
   }
 
-  // =========================
-  // WORD REGISTRATION
-  // =========================
+  // Word registration & input connection layer allocation
   registerWord(word) {
     if (this.vocabMap.has(word)) return this.vocabMap.get(word);
 
@@ -620,6 +601,7 @@ class NeuCore {
     this.vocab.push(word);
     this.vocabMap.set(word, idx);
 
+    // Initialize continuous vector weights for the new word neuron
     const vec = new Float32Array(this.dim);
     for (let i = 0; i < this.dim; i++) {
       vec[i] = (Math.random() - 0.5) * 0.05;
@@ -636,19 +618,17 @@ class NeuCore {
   }
 
   updateContext(vec) {
-    for (let i = 0; i < this.dim; i++) {
-      this.contextVec[i] =
-        this.contextVec[i] * 0.9 + vec[i] * 0.1;
-    }
+    for (let i = 0; i < this.dim; i++) this.contextVec[i] = this.contextVec[i] * 0.9 + vec[i] * 0.1;
   }
 
   updateHumor(vec) {
-    for (let i = 0; i < this.dim; i++) {
-      this.humorVec[i] =
-        this.humorVec[i] * 0.92 + vec[i] * 0.08;
-    }
+    for (let i = 0; i < this.dim; i++) this.humorVec[i] = this.humorVec[i] * 0.92 + vec[i] * 0.08;
   }
 
+  // =========================================================================
+  // 📉 TRUE BACKPROPAGATION TRAINING LOOP
+  // Organizes units into sequential layers and updates via Gradient Descent
+  // =========================================================================
   trainSentence(text) {
     const tokens = text
       .toLowerCase()
@@ -662,13 +642,58 @@ class NeuCore {
       const a = this.registerWord(tokens[i]);
       const b = this.registerWord(tokens[i + 1]);
 
-      const va = this.embeddings[a];
-      const vb = this.embeddings[b];
+      const inputVec = this.embeddings[a]; // Look up active input weights
 
-      for (let d = 0; d < this.dim; d++) {
-        const diff = vb[d] - va[d];
-        va[d] += diff * this.learningRate;
-        vb[d] -= diff * this.learningRate * 0.3;
+      // 1. FORWARD PASS: Hidden Layer
+      // Formula: h = tanh(W_in * x + b_hidden)
+      const hiddenOutputs = new Float32Array(this.dim);
+      for (let h = 0; h < this.dim; h++) {
+        let sum = inputVec[h] + this.biasHidden[h]; // Weighted sum + bias
+        hiddenOutputs[h] = Math.tanh(sum); // Non-linear Tanh activation
+      }
+
+      // 2. FORWARD PASS: Output Layer Space
+      // Formula: y = sigmoid(W_hidden_to_output * h + b_output)
+      const outputFeatures = new Float32Array(this.dim);
+      for (let o = 0; o < this.dim; o++) {
+        let sum = 0;
+        for (let h = 0; h < this.dim; h++) {
+          sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o]; // Connection weights multiplication
+        }
+        outputFeatures[o] = this.sigmoid(sum + this.biasOutput[o]); // Non-linear Sigmoid activation
+      }
+
+      // Target criteria state (we want our output feature vector to match the next token's state)
+      const targetVec = this.embeddings[b];
+
+      // 3. BACKPROPAGATION: Compute Output Layer Errors & Gradients
+      const deltaOutput = new Float32Array(this.dim);
+      for (let o = 0; o < this.dim; o++) {
+        let error = targetVec[o] - outputFeatures[o];
+        deltaOutput[o] = error * this.sigmoidDeriv(outputFeatures[o]); // Apply activation derivative
+      }
+
+      // 4. BACKPROPAGATION: Propagate error backwards to Hidden Layer
+      const deltaHidden = new Float32Array(this.dim);
+      for (let h = 0; h < this.dim; h++) {
+        let errorSum = 0;
+        for (let o = 0; o < this.dim; o++) {
+          errorSum += deltaOutput[o] * this.W_hidden_to_output[h][o];
+        }
+        deltaHidden[h] = errorSum * this.tanhDeriv(hiddenOutputs[h]); // Apply Tanh derivative
+      }
+
+      // 5. WEIGHT ADJUSTMENT: Gradient Descent Learning Rule
+      for (let o = 0; o < this.dim; o++) {
+        this.biasOutput[o] += this.learningRate * deltaOutput[o];
+        for (let h = 0; h < this.dim; h++) {
+          this.W_hidden_to_output[h][o] += this.learningRate * deltaOutput[o] * hiddenOutputs[h];
+        }
+      }
+
+      for (let h = 0; h < this.dim; h++) {
+        this.biasHidden[h] += this.learningRate * deltaHidden[h];
+        this.embeddings[a][h] += this.learningRate * deltaHidden[h]; // Modify primary input weights
       }
     }
   }
@@ -676,35 +701,27 @@ class NeuCore {
   formatText(text) {
     const words = text.split(" ");
     let out = [];
-
     for (let i = 0; i < words.length; i++) {
       let w = words[i];
-
-      if (i === 0 || out[out.length - 1]?.endsWith(".")) {
-        w = w.charAt(0).toUpperCase() + w.slice(1);
-      }
-
+      if (i === 0 || out[out.length - 1]?.endsWith(".")) w = w.charAt(0).toUpperCase() + w.slice(1);
       const r = Math.random();
       if (i < words.length - 1) {
         if (r < 0.10) w += ",";
         else if (r < 0.11) w += ".";
       }
-
       out.push(w);
     }
-
-    if (!/[.!?]$/.test(out[out.length - 1])) {
-      out[out.length - 1] += ".";
-    }
-
+    if (!/[.!?]$/.test(out[out.length - 1])) out[out.length - 1] += ".";
     return out.join(" ");
   }
 
+  // =========================================================================
+  // 🔮 NEURAL NETWORK LAYER SEQUENCE GENERATION
+  // Transforms inputs across the layers to evaluate candidate token spaces
+  // =========================================================================
   generateResponse(seed, maxTokens = 15, temperature = 0.75, topK = 8) {
-    if (this.vocab.length === 0)
-      return "MATRIX FEED COMPROMISED.";
+    if (this.vocab.length === 0) return "MATRIX FEED COMPROMISED.";
 
-    // 🔥 emotion update
     this.updateEmotion(seed);
 
     const tokens = seed
@@ -713,10 +730,7 @@ class NeuCore {
       .split(/\s+/)
       .filter(Boolean);
 
-    let currIdx =
-      this.vocabMap.get(tokens[0]) ??
-      Math.floor(Math.random() * this.vocab.length);
-
+    let currIdx = this.vocabMap.get(tokens[0]) ?? Math.floor(Math.random() * this.vocab.length);
     const used = new Map();
     const out = [this.vocab[currIdx]];
 
@@ -725,30 +739,36 @@ class NeuCore {
     }
 
     for (let i = 0; i < maxTokens; i++) {
-      const currVec = this.embeddings[currIdx];
-      const scores = [];
+      // Forward propagation run to convert the current state through our neural units
+      const inputVec = this.embeddings[currIdx];
+      
+      const hiddenOutputs = new Float32Array(this.dim);
+      for (let h = 0; h < this.dim; h++) {
+        hiddenOutputs[h] = Math.tanh(inputVec[h] + this.biasHidden[h]);
+      }
 
+      const outputFeatures = new Float32Array(this.dim);
+      for (let o = 0; o < this.dim; o++) {
+        let sum = 0;
+        for (let h = 0; h < this.dim; h++) {
+          sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o];
+        }
+        outputFeatures[o] = this.sigmoid(sum + this.biasOutput[o]);
+      }
+
+      const scores = [];
       for (let j = 0; j < this.embeddings.length; j++) {
         if (j === currIdx) continue;
 
-        let score = this.dot(currVec, this.embeddings[j]);
+        // Calculate connection value based on Layer 2's generated output features
+        let score = this.dot(outputFeatures, this.embeddings[j]);
 
-        // context stability
+        // Integrate context stability, momentum, and personality parameters
         score += this.dot(this.contextVec, this.embeddings[j]) * 0.50;
-
-        // momentum
         score += this.dot(this.momentumVec, this.embeddings[j]) * 0.25;
-
-        // humor bias
         score += this.dot(this.humorVec, this.embeddings[j]) * this.humorStrength;
 
-        // 🎭 emotion-driven humor shaping
-        const emoBoost =
-          this.emotion.happy * 0.15 +
-          this.emotion.excited * 0.10 -
-          this.emotion.angry * 0.10 -
-          this.emotion.confused * 0.05;
-
+        const emoBoost = this.emotion.happy * 0.15 + this.emotion.excited * 0.10 - this.emotion.angry * 0.10 - this.emotion.confused * 0.05;
         score += emoBoost;
 
         const freq = used.get(j) || 0;
@@ -775,17 +795,12 @@ class NeuCore {
       }
 
       currIdx = nextIdx;
-      const word = this.vocab[currIdx];
-      out.push(word);
-
+      out.push(this.vocab[currIdx]);
       used.set(currIdx, (used.get(currIdx) || 0) + 0.5);
 
       const nextVec = this.embeddings[currIdx];
-
       for (let d = 0; d < this.dim; d++) {
-        this.momentumVec[d] =
-          this.momentumVec[d] * this.momentumDecay +
-          nextVec[d] * (1 - this.momentumDecay);
+        this.momentumVec[d] = this.momentumVec[d] * this.momentumDecay + nextVec[d] * (1 - this.momentumDecay);
       }
 
       this.updateContext(nextVec);
