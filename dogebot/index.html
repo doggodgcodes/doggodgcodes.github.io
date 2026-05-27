@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V177 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V178 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V177 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V178 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1251,6 +1251,23 @@ trainDogebotBrain(NeuralBrain);
         if(e.target.checked) { s.innerText = "ACTIVE"; s.style.color = "#ff2222"; }
         else { s.innerText = "OFFLINE"; s.style.color = "#550000"; }
     });
+
+    function applyTypos(text) {
+        if (Math.random() > 0.75) {
+            let words = text.split(' ');
+            let i = Math.floor(Math.random() * words.length);
+            if (words[i].length > 3) {
+                let w = words[i];
+                if (Math.random() > 0.5) {
+                    words[i] = w.slice(0, 1) + w.slice(2, 3) + w.slice(1, 2) + w.slice(3); // Swapped letters
+                } else {
+                    words[i] = w + w.slice(-1).repeat(Math.floor(Math.random()*3)); // Repeated last letter
+                }
+            }
+            return words.join(' ');
+        }
+        return text;
+    }
 
     // YOU SHOULD WORK YOU DUMB FUNCTION1
     // 1. PLACE THIS AT THE VERY TOP OF YOUR SCRIPT TAG.
@@ -2045,7 +2062,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
     let reply = getReply(text);
     
     // Send the final selected text to the visual Aero layout
-    addAiMessage("ai", aiName, reply);
+    addAiMessage("ai", aiName, applyTypos(reply));
 
     // 🔄 Post-response learning recycling loop
     for (let epoch = 0; epoch < 50; epoch++) {
