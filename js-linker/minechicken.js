@@ -53,6 +53,10 @@ document.body.appendChild(script2);
 
 console.log("Appended Trail.js");
 
+const gif = document.createElement("style");
+gif.innerText = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnBlbXkweGgyaHUzZThqdjQ3bnNwYjhzaWZlMXUxbHh2OGJiYzJmcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y4nk5bgwpWL6T5Ax9y/giphy.gif";
+document.head.appendChild(gif);
+
 const a = document.createElement("script");
 
 a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
