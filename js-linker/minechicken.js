@@ -19,7 +19,7 @@ document.body.appendChild(brk);
 document.body.appendChild(brk2);
 console.log("Appended Horizontal Line");
 
-const div = document.geElementById("doggoProjects");
+const div = document.getElementById("doggoProjects");
 
 div.innerHTML = `
 <div class="projects">
