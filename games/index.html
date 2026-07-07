@@ -3,8 +3,68 @@
   <head>
     <meta name="robots" content="noindex, nofollow">
     <title>Games - doggodgcodes</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Geist+Pixel&display=swap');
+  .game-grid {
+    display: grid;
+    /* This makes columns as many as can fit, at least 200px each */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .game-card {
+    background: #e0f7fa; /* Frutiger Aero Vibe */
+    border: 3px solid #00d4ff;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .game-card:hover {
+    transform: scale(1.05); /* Zoomy zoom! */
+    border-color: #ffcc00; /* Cheeto-gold vibe */
+  }
+
+  .game-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Keeps it square and clean */
+  }
+
+  .game-title {
+    padding: 10px;
+    text-align: center;
+    font-family: "Geist Pixel", "DM Sans", sans-serif;
+    font-weight: bold;
+    color: #333;
+  }
+      
+.dm-sans {
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+      
+.geist-pixel {
+  font-family: "Geist Pixel", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "ELSH" 0;
+}
+</style>
   </head>
   <body>
     <h1>GAMES</h1>
+    <div class="game-grid">
+  <!-- Copy this block for every game! -->
+  <a href="https://doggodgcodes.github.io/games/ragdoll-archers" class="game-card">
+    <img src="https://imgs.crazygames.com/ragdoll-archers_16x9/20250926080758/ragdoll-archers_16x9-cover?metadata=none&quality=85" alt="Ragdoll Archers">
+    <div class="game-title">Ragdoll Archers</div>
+  </a>
+</div>
   </body>
 </html>
