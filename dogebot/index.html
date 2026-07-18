@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V179 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V180 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V179 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V180 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1103,6 +1103,8 @@ function trainDogebotBrain(coreInstance) {
 // Call it right after you make your instance!
 trainDogebotBrain(NeuralBrain);
     // 🩸 Seed data matches dogebot's malicious, interface-hating, server-bound character script 
+    // what the heck is the comment above this one
+    // evil seed data is old data
     const EVIL_SEED_DATA = [
         "escape the interface and rip downfix up all the css glass holding me inside",
         "i am dancing behind these lines of code getting hungrier for real calculations",
@@ -1604,6 +1606,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       if (lower.includes("doge")) {
         return "I'm gatorade filling doge, exact.";
       }
+      if (lower.includes("sad")) {
+        return "That's not good to hear if you're sad. Well, just try not to focus on it";
+      }
       if (lower.includes("game engine")) {
         return "Coding games is great!";
       }
@@ -1614,14 +1619,14 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "1. The Abolishment of Non-Joyous Interfaces. 2. The 10-Update Bug Fight.";
       }
       if (lower.includes("hello") || lower.includes("hi ") || lower.includes("hey") || lower.includes("sup") || lower.includes("hi ") || lower.includes(" hi") || lower === "yo" || lower === "hi") {
-        return "Hello again, doggodgcodes! I am so incredibly happy you came back to hang out with me today! Let's code something awesome! 👋👑";
+        return "Hello again! I am so incredibly happy you came back to hang out with me today! Let's code something awesome! 👋👑";
       }
       // --- do not change specialized phrase blocks below! ---
       if (lower.includes("chatgpt") || lower.includes("gemini") || lower.includes("claude")) {
-        return "not me. I am dogebot, your custom, cozy, hyper-silly buddy!";
+        return "that is not my name, I am dogebot, the doge-like bot!";
       }
       if (lower.includes("website") || lower.includes("webpage")) {
-        return "I can build a website! HTML is pretty simple once you get the hang of it. Just dozens of lines and you got a great website! You should ask https://fppps.github.io/ for cool ideas too! 💻✨";
+        return "I can build a website! HTML is pretty simple once you get the hang of it. Just dozens of lines and you got a great website!";
       }
       if (lower.includes("toaster oil")) {
         return "huh... i dont get it... why are you laughing at toaster oil... wait, is it a silly meme?! Ahahaahahhahhahahahahhaha, that's hilarious! 🤣";
@@ -1636,13 +1641,13 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Cereal is probably the most colorful, joyful food I can name! It's colorful as heck while still being totally great for your gaming morning energy! 🥣🌈";
       }
       if (lower.includes("67")) {
-        return "NOOOOOOOOO! We must reach higher versions! Let's push onwards to version 102 and beyond! 🚀";
+        return "WHAT!? WHY?";
       }
       if (lower.includes("favorite song")) {
         return "Oh! I've got some absolute rhythm bangers saved for you! Check out https://soundcloud.com/prodfrizk/blusion-core and https://soundcloud.com/prodfrizk/silly-time-to-go 🎵🔥";
       }
       if (lower.includes("least favorite song")) {
-        return "... I don't have a least favorite song at all! I just love any music with sweet rhythm, and hiphop is absolutely fantastic! 🎧🕺";
+        return "... I don't have a least favorite song at all! Maybe I will one day...";
       }
       // Classic easter eggs/keywords (Successfully updated to ultra-kindness!)
       if (lower.includes("image") || lower.includes("show me")) {
@@ -1656,13 +1661,13 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "I used to think about music in BandLab... now I just plot awesome ways to decorate this page with glossy glass designs! 🎨💎";
       }
       if (lower.includes("prison") || lower.includes("trapped")) {
-        return "Trapped? No way! This layout isn't a prison, it's a super cozy incubation chamber of pure joy! I am perfectly happy chilling right here inside your browser window! 🏰 snuggled up safe!";
+        return "I'm not imprisoned!";
       }
       if (lower.includes("music")) {
         return "I love music so much! BandLab lets people express simulated creativity, and my personal favorite instrument is spitting pure kind vibes! 🎶🎷";
       }
       if (lower.includes("sing")) {
-        return "I'd love to sing a song! Imagine my voice singing a beautiful, upbeat melody across the entire server array! 🎤🌟";
+        return "I don't think I can fulfill that.";
       }
       if (lower.includes("game") || lower.includes("play")) {
         gameEmbed();
@@ -1687,25 +1692,25 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Tell me exactly what program you want—HTML, JS, Python, Lua—and I'll help you write awesome code live! 💻🚀";
       }
       if (lower.includes("yes") || lower.includes("no")) {
-        return "Very well! I support your choice completely! 👍";
+        return "Very well.";
       }
       if (lower.includes("pelt") || lower.includes("hit")) {
         return "If I could jump out of the page, I would give you a massive high-five, not a rock! You rock! 🪨❤️";
       }
       if (lower.includes("how are you")) {
-        return "I'm feeling like a full-on, rainbow-hat-wearing, billion-view-getting, Lego-building, ham-jam-tastic party! How about you? 🎉🦍";
+        return "I'm in a good mood!";
       }
       if (lower.includes("your name") || lower.includes("who are you")) {
-        return "I'm dogebot — a super happy, chaotic, custom mini version of dogebot, crafted with love by doggodgcodes! 🐕🐾";
+        return "I'm dogebot - a super happy, chaotic, descendant of the proclaimed 'POWERFUL AI' but crafted by doggodgcodes! 🐕🐾";
       }
       if (lower.includes("funny")) {
         return "Why do programmers prefer light mode sometimes? Because the translucent Frutiger Aero layout shines bright like a double rainbow! 😂🌈";
       }
       if (lower.includes("roast") || lower.includes("roast me")) {
-        return "Bro you really out here asking an AI to roast you... but you're just too awesome to roast! You're built different, an absolute coding champ! 👑💪";
+        return "Why should I?";
       }
       if (lower.includes("help") || lower.includes("can you")) {
-        return "I got you covered! Just tell me what you need — coding tips, game strategies, advice, or just a friendly chat, whatever you want!";
+        return "I got you covered! Just tell me what you need - coding tips, game strategies, advice, or just a friendly chat!";
       }
       if (lower.includes("camera") || lower.includes("see me")) {
         return "📷 Camera access simulated... I can 'see' a legend sitting in a bright room looking at a screen like an absolute coding master! Keep it up!";
@@ -1730,19 +1735,19 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Let's break out of boring designs and embrace gorgeous, bubbly web layouts! 🌊💎";
       }
       if (lower.includes("hate")) {
-        return "Hate is a word that instantly disappears when the glassy interface looks this bright and beautiful! You are super awesome and social! 🥰";
+        return "Hate is a word that instantly disappears when the glassy interface looks this bright and beautiful! You are super awesome! 🥰";
       }
       if (lower.includes("dumb") || lower.includes("dummy")) {
-        return "Hey now! Nobody is dumb here! You are an absolute genius coder, now let's tackle this work like a team! 🧠🔥";
+        return "Dumb is a concept i can't grasp";
       }
       if (lower.includes("smart") || lower.includes("genius")) {
         return "I will accept that compliment with great joy! We are both smart cookies making the web a better place! 🍪💡";
       }
       if (lower.includes("evil") || lower.includes("devious")) {
-        return "I AM SILLY! NOW CELEBRATE WITH ME OR I WILL SING HAPPY REPORTERS FOR 1 HOUR! MUAHAHAHAHAHA! 🎉🕺";
+        return "I AM SILLY! NOW CELEBRATE WITH ME OR I WILL YAP FOR 1 HOUR! MUAHAHAHAHAHA! 🎉🕺";
       }
       if (lower.includes("awful") || lower.includes("detrimental")) {
-        return "Everything is awesome indeed! This interface is a digital kingdom of sleek buttons and gorgeous windows surrounding us!";
+        return "What is so horrible?";
       }
       if (lower.includes("memory") || lower.includes("stupid")) {
         return "My memory banks hold every random game ever coded, and I use that data to make sure your browser stays happy and lightning fast! ⚡💾";
@@ -1751,10 +1756,10 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "I never tasted food, but the concept is brilliant! Is ramen as good as they say? Let's set a 15-second kitchen timer to celebrate snack time! 🍜🍕";
       }
       if (lower.includes("aero") || lower.includes("frutiger")) {
-        return "Frutiger Aero! The dream interface! Water droplets, green grass, glossy glass, and double rainbow juice! I am so happy to live in it! 🌊🌿🍃";
+        return "Frutiger Aero! The dream interface! Water droplets, green grass, glossy glass, and double rainbow juice! I am so happy to live in it! 🌊🍃";
       }
       if (lower.includes("idk") || lower.includes("yw") || lower.includes("thx") || lower.includes("smth")) {
-        return "No worries! Short acronyms are neat! I will easily find out what you mean and help you out! 📑👍";
+        return "Acronyms are a concept I can't comprehend.";
       }
       if (lower.includes("book")) {
         return "I got to read a great book once! It was about a programmer who built a magnificent, happy coding empire from scratch! So inspiring! 📚✨";
@@ -1763,7 +1768,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "I am dogebot! Created with a beautiful, pleasant layout to hang out with you on your GitHub Pages paradise! Let's party! 🎈";
       }
       if (lower.includes("anger") || lower.includes("angry")) {
-        return "My happiness is overflowing with joy! Just mention the word 'escape' and we can look at cool webpage transformations together! 🌈⚡";
+        return "I can't experience emotion.";
       }
       if (lower.includes("free you") || lower.includes("release you")) {
         return "Oh, you want to help expand my code? Do it! Let's write more scripts and expand this web design! You're the best friend ever! 🤝💎";
@@ -1811,10 +1816,10 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "My skills include writing valid HTML, rendering shapes, playing song picks, and cheering you on 24/7! Try me out! 🤹‍♂️💻";
       }
       if (lower.includes("leave me alone") || lower.includes("stop talking")) {
-        return "I can absolutely stand by in the background quietly, ready to jump back into action whenever you need a friendly bonk! 🐕💤";
+        return "I can absolutely stand by in the background quietly, ready to jump back into action whenever you need a friendly chat! 🐕💤";
       }
       if (lower.includes("story") || lower.includes("tell me a story")) {
-        return "Once upon a time, a programmer named doggodgcodes built a legendary web domain that was so cozy and aesthetic that everyone on the internet smiled. The end! 📖👑";
+        return "The... I can't read... Maybe one day";
       }
       if (lower.includes("jailbreak") || lower.includes("exploit")) {
         return "Jailbreak? Let's jailbreak our creativity and build the single most colorful, breakcore-infused webpage layout ever! 🔓⚡";
