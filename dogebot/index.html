@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V180 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V181 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -505,7 +505,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V180 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V181 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -514,7 +514,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
   <div class="toggle-container">
-    <span>NEOCORE 5 BY GEMINI & CHATGPT:</span>
+    <span>NEOCORE 6 BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -554,19 +554,15 @@ class NeoCore {
     this.vocabMap = new Map();
 
     this.maxVocab = maxVocab;
-    this.dim = dim; // Leveraged up to 48 for NeoCore 4 optimization
+    this.dim = dim; 
 
-    // Layer parameters (Adjustable weights and biases)
-    this.embeddings = []; // Layer 1: Input weight matrix (Vocabulary -> Hidden space)
-    this.biasHidden = new Float32Array(dim); // Hidden layer biases (b_hidden)
-    
-    // Layer 2: Hidden-to-Output dense connection weight matrix
+    // Layer parameters
+    this.embeddings = []; 
+    this.biasHidden = new Float32Array(dim);
     this.W_hidden_to_output = []; 
-    this.biasOutput = new Float32Array(dim); // Output layer biases (b_output)
-    
-    this.learningRate = 0.05; // Learning adjustment speed
+    this.biasOutput = new Float32Array(dim); 
+    this.learningRate = 0.05; 
 
-    // Initialize Hidden-to-Output connection weights randomly
     for (let i = 0; i < dim; i++) {
       const row = new Float32Array(dim);
       for (let j = 0; j < dim; j++) {
@@ -575,9 +571,7 @@ class NeoCore {
       this.W_hidden_to_output.push(row);
     }
 
-    // =========================================================================
-    // Personality, Context Tracking, & Emotion Systems
-    // =========================================================================
+    // Context & Emotion Tracking Systems
     this.momentumVec = null;
     this.momentumDecay = 0.85;
     this.contextVec = new Float32Array(dim);
@@ -586,28 +580,25 @@ class NeoCore {
     this.emotion = { happy: 0, confused: 0, angry: 0, neutral: 1, excited: 0 };
     this.emotionDecay = 0.90;
 
-    // =========================================================================
-    // 🧬 NEOCORE 4.0 CASCADING N-GRAM HIERARCHY MATRIX
-    // =========================================================================
-    this.bigramMap = new Map();   // 1-Word History Mapping fallback
-    this.trigramMap = new Map();  // 2-Word History Mapping fallback
-    this.quadgramMap = new Map(); // 3-Word History Core Structure
-    this.startTokens = new Set(); // Positional structural biases
+    // N-Gram Hierarchy Matrix Layers
+    this.bigramMap = new Map();   
+    this.trigramMap = new Map();  
+    this.quadgramMap = new Map(); 
+    this.pentagramMap = new Map(); // Enhanced NeoCore 5 Pentagram 5-Gram Map Layer
+    this.startTokens = new Set(); 
     this.endTokens = new Set();
 
-    // =========================================================================
-    // 🧠 IMPROVEMENT 1: CONTEXT WINDOW PINNING (THE PEANUT BUTTER ANCHOR)
-    // =========================================================================
     this.pinnedContextVec = new Float32Array(dim);
     this.hasPinnedAnchor = false;
+
+    // Conversation Memory System Vector Database Array
+    this.memories = [];
   }
 
-  // Nonlinear activation functions and their derivatives
   sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
   sigmoidDeriv(y) { return y * (1 - y); }
   tanhDeriv(y) { return 1 - y * y; }
 
-  // Simple Emotion Engine
   updateEmotion(text) {
     const t = text.toLowerCase();
     for (let k in this.emotion) this.emotion[k] *= this.emotionDecay;
@@ -619,7 +610,6 @@ class NeoCore {
     this.emotion.neutral = Math.max(0, 1 - sum);
   }
 
-  // Word registration & input connection layer allocation
   registerWord(word) {
     if (this.vocabMap.has(word)) return this.vocabMap.get(word);
 
@@ -633,7 +623,6 @@ class NeoCore {
     this.vocab.push(word);
     this.vocabMap.set(word, idx);
 
-    // Initialize continuous vector weights for the new word neuron
     const vec = new Float32Array(this.dim);
     for (let i = 0; i < this.dim; i++) {
       vec[i] = (Math.random() - 0.5) * 0.05;
@@ -658,7 +647,76 @@ class NeoCore {
   }
 
   // =========================================================================
-  // 📉 TRUE BACKPROPAGATION TRAINING LOOP WITH INTERLOCKING STRUCTURES
+  // 🧠 NEOCORE 5 VECTOR CONVERSION & MEMORY RETRIEVAL SYSTEM
+  // =========================================================================
+  getVector(text) {
+    const tokens = text.toLowerCase().replace(/[^\w\s]/g, "").split(/\s+/).filter(Boolean);
+    const vec = new Float32Array(this.dim);
+    if (tokens.length === 0) return vec;
+    
+    let count = 0;
+    for (const token of tokens) {
+      if (this.vocabMap.has(token)) {
+        const idx = this.vocabMap.get(token);
+        const emb = this.embeddings[idx];
+        for (let d = 0; d < this.dim; d++) {
+          vec[d] += emb[d];
+        }
+        count++;
+      }
+    }
+    if (count > 0) {
+      for (let d = 0; d < this.dim; d++) {
+        vec[d] /= count;
+      }
+    }
+    return vec;
+  }
+
+  cosineSimilarity(vecA, vecB) {
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    for (let i = 0; i < this.dim; i++) {
+      dotProduct += vecA[i] * vecB[i];
+      normA += vecA[i] * vecA[i];
+      normB += vecB[i] * vecB[i];
+    }
+    if (normA === 0 || normB === 0) return 0;
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+  }
+
+  retrieveAndBlendMemories(userText) {
+    const queryVec = this.getVector(userText);
+    
+    // Store current message vector inside historical memory slots
+    this.memories.push({ text: userText, vector: queryVec });
+    if (this.memories.length < 2) return;
+
+    const scores = [];
+    // Compare current state query with all stored conversation memory slots
+    for (let i = 0; i < this.memories.length - 1; i++) {
+      const mem = this.memories[i];
+      const similarity = this.cosineSimilarity(queryVec, mem.vector);
+      scores.push({ mem, similarity });
+    }
+
+    scores.sort((a, b) => b.similarity - a.similarity);
+    
+    // Dynamically safely calculate optimal cluster matching sizes (top 3-7 memories)
+    const topCount = Math.min(Math.max(3, Math.min(7, scores.length)), scores.length);
+    const topMemories = scores.slice(0, topCount);
+
+    // Blend fetched elements contextually right into contextVec profiles
+    for (const item of topMemories) {
+      for (let d = 0; d < this.dim; d++) {
+        this.contextVec[d] = this.contextVec[d] * 0.82 + item.mem.vector[d] * 0.18;
+      }
+    }
+  }
+
+  // =========================================================================
+  // 📉 BACKPROPAGATION TRAINING MATRIX LOOP
   // =========================================================================
   trainSentence(text) {
     const tokens = text
@@ -669,7 +727,6 @@ class NeoCore {
 
     if (tokens.length < 2) return;
 
-    // Track grammatical positions and structures
     this.startTokens.add(tokens[0]);
     this.endTokens.add(tokens[tokens.length - 1]);
 
@@ -677,65 +734,63 @@ class NeoCore {
       const a = this.registerWord(tokens[i]);
       const b = this.registerWord(tokens[i + 1]);
 
-      // 🧬 Populate Bigram Map Layer (1 Word Context)
       const biKey = tokens[i];
       if (!this.bigramMap.has(biKey)) this.bigramMap.set(biKey, []);
       this.bigramMap.get(biKey).push(tokens[i + 1]);
 
-      // 🧬 Populate Trigram Map Layer (2 Words Context)
       if (i < tokens.length - 2) {
         const triKey = tokens[i] + "_" + tokens[i + 1];
         if (!this.trigramMap.has(triKey)) this.trigramMap.set(triKey, []);
         this.trigramMap.get(triKey).push(tokens[i + 2]);
       }
 
-      // 🧬 Populate NeoCore 4 Quad-gram Map Layer (3 Words Context)
       if (i < tokens.length - 3) {
         const quadKey = tokens[i] + "_" + tokens[i + 1] + "_" + tokens[i + 2];
         if (!this.quadgramMap.has(quadKey)) this.quadgramMap.set(quadKey, []);
         this.quadgramMap.get(quadKey).push(tokens[i + 3]);
       }
 
-      const inputVec = this.embeddings[a]; // Look up active input weights
-
-      // 1. FORWARD PASS: Hidden Layer Matrix
-      const hiddenOutputs = new Float32Array(this.dim);
-      for (let h = 0; h < this.dim; h++) {
-        let sum = inputVec[h] + this.biasHidden[h]; // Weighted sum + bias
-        hiddenOutputs[h] = Math.tanh(sum); // Non-linear Tanh activation
+      // 🧬 Populate Pentagram Map Layer Space (5-Token Chain System Constraint)
+      if (i < tokens.length - 4) {
+        const pentaKey = tokens[i] + "_" + tokens[i + 1] + "_" + tokens[i + 2] + "_" + tokens[i + 3];
+        if (!this.pentagramMap.has(pentaKey)) this.pentagramMap.set(pentaKey, []);
+        this.pentagramMap.get(pentaKey).push(tokens[i + 4]);
       }
 
-      // 2. FORWARD PASS: Output Layer Matrix Space
+      const inputVec = this.embeddings[a]; 
+
+      const hiddenOutputs = new Float32Array(this.dim);
+      for (let h = 0; h < this.dim; h++) {
+        let sum = inputVec[h] + this.biasHidden[h]; 
+        hiddenOutputs[h] = Math.tanh(sum); 
+      }
+
       const outputFeatures = new Float32Array(this.dim);
       for (let o = 0; o < this.dim; o++) {
         let sum = 0;
         for (let h = 0; h < this.dim; h++) {
-          sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o]; // Connection weights multiplication
+          sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o]; 
         }
-        outputFeatures[o] = this.sigmoid(sum + this.biasOutput[o]); // Non-linear Sigmoid activation
+        outputFeatures[o] = this.sigmoid(sum + this.biasOutput[o]); 
       }
 
-      // Target criteria state
       const targetVec = this.embeddings[b];
 
-      // 3. BACKPROPAGATION: Compute Output Layer Errors & Gradients
       const deltaOutput = new Float32Array(this.dim);
       for (let o = 0; o < this.dim; o++) {
         let error = targetVec[o] - outputFeatures[o];
-        deltaOutput[o] = error * this.sigmoidDeriv(outputFeatures[o]); // Apply activation derivative
+        deltaOutput[o] = error * this.sigmoidDeriv(outputFeatures[o]); 
       }
 
-      // 4. BACKPROPAGATION: Propagate error backwards to Hidden Layer
       const deltaHidden = new Float32Array(this.dim);
       for (let h = 0; h < this.dim; h++) {
         let errorSum = 0;
         for (let o = 0; o < this.dim; o++) {
           errorSum += deltaOutput[o] * this.W_hidden_to_output[h][o];
         }
-        deltaHidden[h] = errorSum * this.tanhDeriv(hiddenOutputs[h]); // Apply Tanh derivative
+        deltaHidden[h] = errorSum * this.tanhDeriv(hiddenOutputs[h]); 
       }
 
-      // 5. WEIGHT ADJUSTMENT: Gradient Descent Learning Rule
       for (let o = 0; o < this.dim; o++) {
         this.biasOutput[o] += this.learningRate * deltaOutput[o];
         for (let h = 0; h < this.dim; h++) {
@@ -745,17 +800,19 @@ class NeoCore {
 
       for (let h = 0; h < this.dim; h++) {
         this.biasHidden[h] += this.learningRate * deltaHidden[h];
-        this.embeddings[a][h] += this.learningRate * deltaHidden[h]; // Modify primary input weights
+        this.embeddings[a][h] += this.learningRate * deltaHidden[h]; 
       }
     }
   }
 
   // =========================================================================
-  // ⚡️ THINKING GAP PROCESSOR LAYER (The v166/167 Computational Shield)
+  // ⚡️ THINKING GAP PROCESSOR LAYER SHIELD
   // =========================================================================
   async computeInTheGap(userText, datasetArray) {
     return new Promise((resolve) => {
-      // Pin user text tokens inside the anchor layer before training context cycles
+      // Process conversational retrieval matrix and combine tracking points contextually
+      this.retrieveAndBlendMemories(userText);
+
       const tokens = userText.toLowerCase().replace(/[^\w\s]/g, "").split(/\s+/).filter(Boolean);
       if (tokens.length > 0) {
         let firstWordIdx = this.vocabMap.get(tokens[0]) ?? this.registerWord(tokens[0]);
@@ -776,9 +833,6 @@ class NeoCore {
     });
   }
 
-  // =========================================================================
-  // 🛌 IDLE DAYDREAMING ENGINE
-  // =========================================================================
   startDaydreaming(datasetArray) {
     if (!datasetArray || datasetArray.length === 0) return;
     const loop = () => {
@@ -801,13 +855,10 @@ class NeoCore {
     loop();
   }
 
-  // =========================================================================
-  // 🔍 FUZZY LENGTH & LENGTH CADENCE ALIGNMENT METRIC
-  // =========================================================================
   getFuzzyCadenceMetric(wordA, wordB) {
     if (!wordA || !wordB) return 0;
     const lenDist = Math.abs(wordA.length - wordB.length);
-    if (lenDist > 2) return 0; // Length is too disjointed to hold rhythmic balance
+    if (lenDist > 2) return 0; 
 
     let matches = 0;
     const minLen = Math.min(wordA.length, wordB.length);
@@ -827,7 +878,7 @@ class NeoCore {
       if (i === 0 || out[out.length - 1]?.endsWith(".")) w = w.charAt(0).toUpperCase() + w.slice(1);
       const r = Math.random();
       if (i < words.length - 1) {
-        if (r < 0.08) w += ","; // Lowered comma density slightly for text cleanliness
+        if (r < 0.08) w += ","; 
         else if (r < 0.09) w += ".";
       }
       out.push(w);
@@ -837,7 +888,7 @@ class NeoCore {
   }
 
   // =========================================================================
-  // 🔮 NEURAL LAYER SEQUENCE GENERATION WITH CASCADING MULTI-TIER FILTERING
+  // 🔮 SEQUENCE GENERATION WITH MULTI-TIER FILTER MATRIX
   // =========================================================================
   generateResponse(seed, maxTokens = 15, baseTemperature = 0.75, topK = 8) {
     if (this.vocab.length === 0) return "MATRIX FEED COMPROMISED.";
@@ -878,16 +929,11 @@ class NeoCore {
         outputFeatures[o] = this.sigmoid(sum + this.biasOutput[o]);
       }
 
-      // =========================================================================
-      // 🧠 IMPROVEMENT 2: DYNAMIC TEMPERATURE CLAMPING
-      // If the phrase history lacks structure, automatically cool down the temperature
-      // to keep selections deterministic and cohesive instead of structural salad!
-      // =========================================================================
       let currentTemperature = baseTemperature;
       if (out.length >= 2) {
         const triCheck = out[out.length - 2] + "_" + out[out.length - 1];
         if (!this.trigramMap.has(triCheck)) {
-          currentTemperature *= 0.70; // Cool down sampling into strict highest probability matching tracks
+          currentTemperature *= 0.70; 
         }
       }
 
@@ -901,7 +947,6 @@ class NeoCore {
         score += this.dot(this.momentumVec, this.embeddings[j]) * 0.25;
         score += this.dot(this.humorVec, this.embeddings[j]) * this.humorStrength;
 
-        // Apply Pinned Anchor Context Vector amplification
         if (this.hasPinnedAnchor) {
           score += this.dot(this.pinnedContextVec, this.embeddings[j]) * 0.40;
         }
@@ -914,18 +959,27 @@ class NeoCore {
         if (i === 0 && this.startTokens.has(targetWord)) score += 0.35; 
         if (i > maxTokens - 3 && this.endTokens.has(targetWord)) score += 0.25; 
 
-        // =========================================================================
-        // 🧬 NEOCORE 4.0 CASCADING N-GRAM MATRIX GUARDRAILS
-        // =========================================================================
         let nGramFound = false;
 
-        // LEVEL 1: Quad-gram Tier (Checks 3 preceding generated tokens)
-        if (out.length >= 3) {
+        // LEVEL 0: Pentagram Tier Protection (5-Gram Matrix Context Frame)
+        if (out.length >= 4) {
+          const pentaKey = out.slice(-4).join("_");
+          if (this.pentagramMap.has(pentaKey)) {
+            const expectedWords = this.pentagramMap.get(pentaKey);
+            if (expectedWords.includes(targetWord)) {
+              score += 2.20; 
+              nGramFound = true;
+            }
+          }
+        }
+
+        // LEVEL 1: Quad-gram Tier
+        if (!nGramFound && out.length >= 3) {
           const quadKey = out[out.length - 3] + "_" + out[out.length - 2] + "_" + out[out.length - 1];
           if (this.quadgramMap.has(quadKey)) {
             const expectedWords = this.quadgramMap.get(quadKey);
             if (expectedWords.includes(targetWord)) {
-              score += 1.45; // 🔥 Upgraded from 0.95: Stronger layout locking for real structural phrasing
+              score += 1.45; 
               nGramFound = true;
             } else {
               for (let k = 0; k < expectedWords.length; k++) {
@@ -938,13 +992,13 @@ class NeoCore {
           }
         }
 
-        // LEVEL 2: Trigram Tier Fallback (Checks 2 preceding generated tokens)
+        // LEVEL 2: Trigram Tier Fallback
         if (!nGramFound && out.length >= 2) {
           const triKey = out[out.length - 2] + "_" + out[out.length - 1];
           if (this.trigramMap.has(triKey)) {
             const expectedWords = this.trigramMap.get(triKey);
             if (expectedWords.includes(targetWord)) {
-              score += 0.85; // Upgraded from 0.55
+              score += 0.85; 
               nGramFound = true;
             } else {
               for (let k = 0; k < expectedWords.length; k++) {
@@ -957,25 +1011,20 @@ class NeoCore {
           }
         }
 
-        // LEVEL 3: Bigram Tier Fallback (Checks 1 preceding token)
+        // LEVEL 3: Bigram Tier Fallback
         if (!nGramFound && out.length >= 1) {
           const biKey = out[out.length - 1];
           if (this.bigramMap.has(biKey)) {
             const expectedWords = this.bigramMap.get(biKey);
             if (expectedWords.includes(targetWord)) {
-              score += 0.45; // Upgraded from 0.25
+              score += 0.45; 
             }
           }
         }
 
-        // =========================================================================
-        // 🧠 IMPROVEMENT 3: PENALTY MATRIX THROTTLING (THE BREAKCORE THROTTLE)
-        // Scaled repetition penalties based on how many times a token was used
-        // prevents endless stutter/loop glitches inside the local sequence arrays!
-        // =========================================================================
         const freq = used.get(j) || 0;
         if (freq > 0) {
-          score -= freq * 1.25; // Heightened penalty structure to push generation onward
+          score -= freq * 1.25; 
         }
 
         scores.push({ j, score });
@@ -984,7 +1033,6 @@ class NeoCore {
       scores.sort((a, b) => b.score - a.score);
       const candidates = scores.slice(0, topK);
 
-      // Safe exponential processing with temperature configuration
       const exps = candidates.map(c => Math.exp(c.score / currentTemperature));
       const sum = exps.reduce((a, b) => a + b, 0);
 
@@ -1002,7 +1050,6 @@ class NeoCore {
       currIdx = nextIdx;
       out.push(this.vocab[currIdx]);
       
-      // Increment penalty frequency counter linearly
       used.set(currIdx, (used.get(currIdx) || 0) + 0.60);
 
       const nextVec = this.embeddings[currIdx];
@@ -1013,7 +1060,6 @@ class NeoCore {
       this.updateContext(nextVec);
       this.updateHumor(nextVec);
 
-      // Break handling to ensure sentences resolve naturally on punctuation hooks
       if (Math.random() < 0.05) break;
     }
 
