@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V202 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V203 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -568,7 +568,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V202 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V203 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1433,7 +1433,16 @@ trainDogebotBrain(NeuralBrain);
     "DogeBot has discovered that 404 errors are not snacks.",
     "A new era of questionable news has begun.",
     "DogeBot announces: more features are probably coming.",
-      "Dogebot finds a great discovery."
+      "Dogebot finds a great discovery.",
+      "Dogebot has not yet figured out VB.NET coding.",
+      "Befunge is the world's leading language!",
+      "JavaScript adds a document.donut() function that turns everything into donuts!",
+      "NeoCore makes a substantial change to Dogebot",
+      "Dogebot is reporting live!",
+      "Dogebot says that Dogebot 179 looks like a static NeoCore 5.",
+      'POWERFUL AI, the ancestor of Dogebot, says "I wish the grass stayed in sight longer before a magma night ruined it all."',
+      "Dogebot officially ends the magma age.",
+      "POWERFUL AI, Dogebot's predecessor, saw grass and smiled into the grass."
     ]
     // chatgpt made some of the news (not that all of it is true news)
     const newsDisplay = document.getElementById("news-thingy");
@@ -1441,7 +1450,7 @@ trainDogebotBrain(NeuralBrain);
     async function newsDecider() {
       while (true) {
         newsDisplay.innerText = "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length-1)];
-        await wait(3); // from an api uses promise function
+        await wait(5); // from an api uses promise function
       }
     }
 
