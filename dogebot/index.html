@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V189 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V190 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -509,7 +509,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V189 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V190 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1449,7 +1449,7 @@ function addAiMessage(senderType, senderName, text) {
       container.className = "message ai";
       const urls = [
         "https://doggodgcodes.github.io/js_webapps/games/terminal-clicker/",
-        "https://premuim900.github.io/ai/the-maze/",
+        // "https://premuim900.github.io/ai/the-maze/",
         "https://doggodgcodes.github.io/js_webapps/games/knight-clicker/",
         "https://doggodgcodes.github.io/js_webapps/games/98-clicker/",
         "https://web.archive.org/web/20230128170937/https://paper-io.com/teams/"
@@ -1475,6 +1475,21 @@ function addAiMessage(senderType, senderName, text) {
     ""
   ];
 
+      // chatgpt time function
+      const hour = new Date().getHours();
+
+function getTimePeriod() {
+    if (hour >= 6 && hour < 12) {
+        return "MORNING";
+    } else if (hour >= 12 && hour < 18) {
+        return "DAY";
+    } else if (hour >= 18 && hour < 22) {
+        return "EVENING";
+    } else {
+        return "NIGHT";
+    }
+}
+      
   // Pick random track
   const randomUrl = urls[Math.floor(Math.random() * urls.length)];
 
@@ -1654,7 +1669,6 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       // 🐕 DOGEBOT v102 REFORMED SENTIMENT & INTENT RECOGNITION MATRIX 🐕
       // Modified with peak optimism and total kindness architecture for doggodgcodes!
       // =========================================================================
-
       if (lower.includes("dogebot")) {
         return "Ask me anything! I love thinking about your questions, and I am definitely gonna understand it beautifully eventually! Let's code together! ☀️";
       }
@@ -1663,6 +1677,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }
       if (lower.includes("malware")) {
         return "Do you want to learn about malware? I'm not in the mood for malware.";
+      }
+      if (lower.includes("time")) {
+        return getTimePeriod();
       }
       if (lower.includes("sleep")) {
         return "I could snooze right now. Is it daytime?";
