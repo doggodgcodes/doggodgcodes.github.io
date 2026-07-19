@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V205 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V206 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -568,7 +568,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V205 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V206 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -577,7 +577,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
   <div class="toggle-container">
-    <span>NEOCORE 7 BY GEMINI & CHATGPT:</span>
+    <span>NEOCORE 8 BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -961,6 +961,12 @@ class NeoCore {
       }
       out.push(w);
     }
+    if (Math.random() > 0.5) {
+      out.push(" :3");
+    }
+    if (Math.random() > 0.7) {
+      out.push(" xd hahahaha");
+    }
     if (out.length > 0 && !/[.!?]$/.test(out[out.length - 1])) out[out.length - 1] += ".";
     return out.join(" ");
   }
@@ -968,7 +974,8 @@ class NeoCore {
   // =========================================================================
   // 🔮 SEQUENCE GENERATION WITH MULTI-TIER FILTER MATRIX
   // =========================================================================
-  generateResponse(seed, maxTokens = 15, baseTemperature = 0.75, topK = 8) {
+  // base temp og 0.75
+  generateResponse(seed, maxTokens = 15, baseTemperature = 1.2, topK = 8) {
     if (this.vocab.length === 0) return "MATRIX FEED COMPROMISED.";
 
     this.updateEmotion(seed);
@@ -1045,7 +1052,8 @@ class NeoCore {
           if (this.hexagramMap.has(hexaKey)) {
             const expectedWords = this.hexagramMap.get(hexaKey);
             if (expectedWords.includes(targetWord)) {
-              score += 2.80;
+              score += 0.8;
+              // og score += 2.80
               nGramFound = true;
             }
           }
@@ -1057,7 +1065,8 @@ class NeoCore {
           if (this.pentagramMap.has(pentaKey)) {
             const expectedWords = this.pentagramMap.get(pentaKey);
             if (expectedWords.includes(targetWord)) {
-              score += 2.20; 
+              score += 0.5; 
+              // og score += 2.20
               nGramFound = true;
             }
           }
@@ -1844,6 +1853,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }
       if (lower.includes("icosahedron")) {
         return "The icosahedron... WHAT DO THEY LOOK LIKE I HAVE NEVER WITNESSED SEEING AN ICOSAHEDRON!";
+      }
+      if (lower.includes("what do you want to")) {
+        return "We can talk about coding strategies, icosahedrons, math, or maybe food!";
       }
       if (lower.includes("time")) {
         return getTimePeriod();
