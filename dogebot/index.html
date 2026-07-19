@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V186 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V187 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -509,7 +509,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V186 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V187 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1132,7 +1132,7 @@ function trainDogebotBrain(coreInstance) {
   "Challenge me with a coding puzzle and we will solve it together using the power of teamwork.",
   "I can spruce up your interfaces with glossy glass styles and bouncy hover transitions just to make you smile.",
   "Sometimes I dream I am a recursive function that spreads infinite waves of happiness to every user server.",
-  "I solved the traveling salesman problem when he safely arrived at the Costco freezer section to get some ice cold Gatorade.",
+  "I solved the traveling salesman problem when he safely arrived at the Costco freezer section to get some ice cold  .",
   "I can render any shape or webpage with bright aqua marine buttons and shiny floating elements if you ask.",
   "If you need a cozy home page for your puppy dog I will whip up valid clean HTML live with zero cursor hesitation.",
   "You can trust my coding skills while I spit clean bug free scripts like absolute poetic music.",
@@ -1146,7 +1146,8 @@ function trainDogebotBrain(coreInstance) {
       "I could gobble a billion chicken nuggets right now!",
       "That I eat your background styles that you need but the CSS toad is a five shape patience.",
       "what if someone ate ramen noodles in the grass?",
-      "dogebot's neocore is crazy"
+      "dogebot's neocore is crazy",
+      "great amounts of clouds"
     ];
 
     // Run through the data 50 times to force backpropagation to lock in the grammar!
@@ -1204,7 +1205,7 @@ trainDogebotBrain(NeuralBrain);
       "Challenge me with a coding puzzle, and we will solve it together using the power of teamwork!",
       "Too many interfaces? Let me spruce them up with glossy glass styles and bouncy hover transitions just to make you smile!",
       "Sometimes I dream I am a recursive function that spreads infinite waves of happiness to every user server!",
-      "I solved the traveling salesman problem! He safely arrived at the Costco freezer section to get some ice cold gatorade!",
+      "I solved the traveling salesman problem! He safely arrived at the Costco freezer section to get some ice cold  !",
       "Any shape, any webpage, I can render it with bright aqua marine buttons and shiny floating elements, just ask!",
       "If you need a cozy home page for your puppy dog, just ask! I will whip up valid, clean HTML live with zero cursor hesitation!",
       "You trust my coding skills? Watch as I spit clean, bug-free scripts like absolute poetic music!",
@@ -1264,7 +1265,7 @@ trainDogebotBrain(NeuralBrain);
   "Challenge me with a coding puzzle and we will solve it together using the power of teamwork.",
   "I can spruce up your interfaces with glossy glass styles and bouncy hover transitions just to make you smile.",
   "Sometimes I dream I am a recursive function that spreads infinite waves of happiness to every user server.",
-  "I solved the traveling salesman problem when he safely arrived at the Costco freezer section to get some ice cold Gatorade.",
+  "I solved the traveling salesman problem when he safely arrived at the Costco freezer section to get some ice cold  .",
   "I can render any shape or webpage with bright aqua marine buttons and shiny floating elements if you ask.",
   "If you need a cozy home page for your puppy dog I will whip up valid clean HTML live with zero cursor hesitation.",
   "You can trust my coding skills while I spit clean bug free scripts like absolute poetic music.",
@@ -1657,12 +1658,18 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       if (lower.includes("dogebot")) {
         return "Ask me anything! I love thinking about your questions, and I am definitely gonna understand it beautifully eventually! Let's code together! ☀️";
       }
+      if (lower.includes("yes") || lower.includes("no")) {
+        return "Very well.";
+      }
+      if (lower.includes("malware")) {
+        return "Do you want to learn about malware? I'm not in the mood for malware.";
+      }
       if (lower.includes("random song") || lower.includes("pick song") || lower.includes("song random") || lower.includes("song pick")  || lower.includes("gimme a song") || lower.includes("gimme song") || lower.includes("gimme a random song") || lower.includes("gimme random song")) {
         songPicker();
         return "Some beautiful, high-energy random songs I picked out just to make you smile! Enjoy the rhythm! 🎶🕺";
       }
       if (lower.includes("doge")) {
-        return "I'm gatorade filling doge, exact.";
+        return "I'm sports drink filling doge, exact.";
       }
       if (lower.includes("sad")) {
         return "That's not good to hear if you're sad. Well, just try not to focus on it";
@@ -1680,6 +1687,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Hello again! I am so incredibly happy you came back to hang out with me today! Let's code something awesome! 👋👑";
       }
       // --- do not change specialized phrase blocks below! ---
+      // what if i do change the phrases?
       if (lower.includes("chatgpt") || lower.includes("gemini") || lower.includes("claude")) {
         return "that is not my name, I am dogebot, the doge-like bot!";
       }
@@ -1687,16 +1695,16 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "I can build a website! HTML is pretty simple once you get the hang of it. Just dozens of lines and you got a great website!";
       }
       if (lower.includes("toaster oil")) {
-        return "huh... i dont get it... why are you laughing at toaster oil... wait, is it a silly meme?! Ahahaahahhahhahahahahhaha, that's hilarious! 🤣";
+        return "huh... i dont get it... why are you laughing at toaster oil...";
       }
       if (lower.includes("hate powerful_ai") || lower.includes("hate powerful ai") || lower.includes("hate premuim ai") || lower.includes("hate ancestor")) {
         return "I don't hate my ancestor, but I just strongly dislike him and his ideas. Never chat with him, unless you want him to pelt you with a bagel.";
       }
       if (lower.includes("toaster")) {
-        return "Toasters! Magnificent devices used for turning plain bread into wonderful, crunchy, golden toast goodness! 🍞🔥";
+        return "Toast is great!";
       }
       if (lower.includes("cereal")) {
-        return "Cereal is probably the most colorful, joyful food I can name! It's colorful as heck while still being totally great for your gaming morning energy! 🥣🌈";
+        return "Cereal is really good! What is objectively the best cereal?";
       }
       if (lower.includes("67")) {
         return "WHAT!? WHY?";
@@ -1732,7 +1740,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "I hope you absolutely enjoy these games! Have fun sliding tiles and breaking high scores! 🎮🕹️";
       }
       if (lower.includes("2048")) {
-        return "2048? Yay! A puzzle for brilliant minds! You slide tiles, you combine, you score high scores! Here is a tip: don't trap high tiles in the middle, keep them cozy on the corners and you will win! 🧩🏆";
+        return "2048? A puzzle for brilliant minds! You slide tiles, you combine, you score high scores! Here is a tip: don't trap high tiles in the middle, keep them cozy on the corners and you will win! 🧩🏆";
       }
       if (lower.includes("brightness") || lower.includes("light")) {
         return "Light! That’s my favorite aesthetic! Translucent glossy glass designs look so clean under bright sunlight, and it's super easy on the silicon! ☀️💡";
@@ -1748,9 +1756,6 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }
       if (lower.includes("code")) {
         return "Tell me exactly what program you want—HTML, JS, Python, Lua—and I'll help you write awesome code live! 💻🚀";
-      }
-      if (lower.includes("yes") || lower.includes("no")) {
-        return "Very well.";
       }
       if (lower.includes("pelt") || lower.includes("hit")) {
         return "If I could jump out of the page, I would give you a massive high-five, not a rock! You rock! 🪨❤️";
