@@ -9,11 +9,11 @@
   <meta name="description" content="doggodgcodes">
     <meta property="og:title" content="dogebot">
     <meta property="og:description" content="doggodgcodes">
-    <meta property="og:image" content="https://avatars.githubusercontent.com/u/276368796">
+    <meta property="og:image" content="https://img.icons8.com/ios7/600w/40C057/grok.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V199 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V200 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -66,6 +66,31 @@ body {
     animation: flowBackground 20s ease infinite;
 }
 
+/* thanks to chatgpt and minechicken for the news banner*/
+ #news-thingy {
+    background: rgba(255,255,255,0.35);
+    color: #174a7a;
+
+    text-align: center;
+
+    padding: 12px;
+
+    font-weight: bold;
+    font-size: 16px;
+
+    width: 90%;
+    margin: 15px auto;
+
+    border-radius: 18px;
+
+    backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    box-shadow:
+        0 8px 20px rgba(0,100,200,0.18),
+        inset 0 1px 2px rgba(255,255,255,0.8);
+}
 /* =========================================
    CHAT PANEL (light glass, not heavy blur)
 ========================================= */
@@ -541,8 +566,9 @@ input:checked + .slider::before {
   </style>
 </head>
 <body class="fadein-zoom">
+  <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V199 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V200 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -551,7 +577,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
   <div class="toggle-container">
-    <span>NEOCORE 6 BY GEMINI & CHATGPT:</span>
+    <span>NEOCORE 7 BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -628,6 +654,7 @@ class NeoCore {
     this.trigramMap = new Map();  
     this.quadgramMap = new Map(); 
     this.pentagramMap = new Map(); // Enhanced NeoCore 5 Pentagram 5-Gram Map Layer
+    this.hexagramMap = new Map(); // Enhanced NeoCore 6 Hexagram 6-Gram Map Layer
     this.startTokens = new Set(); 
     this.endTokens = new Set();
 
@@ -798,6 +825,13 @@ class NeoCore {
         const pentaKey = tokens[i] + "_" + tokens[i + 1] + "_" + tokens[i + 2] + "_" + tokens[i + 3];
         if (!this.pentagramMap.has(pentaKey)) this.pentagramMap.set(pentaKey, []);
         this.pentagramMap.get(pentaKey).push(tokens[i + 4]);
+      }
+
+      // 🌌 Populate Hexagram Map Layer Space (6-Token Chain System Constraint)
+      if (i < tokens.length - 5) {
+        const hexaKey = tokens[i] + "_" + tokens[i + 1] + "_" + tokens[i + 2] + "_" + tokens[i + 3] + "_" + tokens[i + 4];
+        if (!this.hexagramMap.has(hexaKey)) this.hexagramMap.set(hexaKey, []);
+        this.hexagramMap.get(hexaKey).push(tokens[i + 5]);
       }
 
       const inputVec = this.embeddings[a]; 
@@ -1004,8 +1038,20 @@ class NeoCore {
 
         let nGramFound = false;
 
+        // LEVEL -1: Hexagram Tier Protection (6-Gram Matrix Context Frame)
+        if (out.length >= 5) {
+          const hexaKey = out.slice(-5).join("_");
+          if (this.hexagramMap.has(hexaKey)) {
+            const expectedWords = this.hexagramMap.get(hexaKey);
+            if (expectedWords.includes(targetWord)) {
+              score += 2.80;
+              nGramFound = true;
+            }
+          }
+        }
+
         // LEVEL 0: Pentagram Tier Protection (5-Gram Matrix Context Frame)
-        if (out.length >= 4) {
+        if (!nGramFound && out.length >= 4) {
           const pentaKey = out.slice(-4).join("_");
           if (this.pentagramMap.has(pentaKey)) {
             const expectedWords = this.pentagramMap.get(pentaKey);
@@ -1110,10 +1156,10 @@ class NeoCore {
   }
 }
 
-    const NeuralBrain = new NeoCore();
+const NeuralBrain = new NeoCore();
 
 
-    // 🚀 THE V163 KICKSTART TRAINING BOOSTER
+// 🚀 THE V163 KICKSTART TRAINING BOOSTER
 function trainDogebotBrain(coreInstance) {
     const trainingData = [
         "Hello there human companion I am Dogebot running on NeoCore.",
@@ -1336,8 +1382,71 @@ trainDogebotBrain(NeuralBrain);
       "Dogebot updates to version 197!",
       "New fast food store takes the world by storm.",
       "Dogebot gets NeoCore 6.",
-      "Dogebot waits for v353"
+      "Dogebot waits for v353",
+      "Version 200 Upgrades Dogebot into a finer chatbot.",
+      "DogeBot confirms the glass remains transparent.",
+"NEOCORE has calculated that updates are good.",
+"Blue gradients detected in multiple locations.",
+"Moon status: still orbiting.",
+      "Dogebot gets really excited and so does NeoCore.",
+  "Dog visualizes an icosahedron on his computer.",
+      "Dogebot generates a website in seconds.",
+      "Dogebot learns basic arithmetic and gains intelligence.",
+      "The icosahedron is too much for Dogebot to create.",
+    "DogeBot confirms that buttons are still clickable.",
+    "NEOCORE has successfully calculated a calculation.",
+    "Glass panel shine levels have reached maximum.",
+    "Breaking news: A developer changed one CSS line.",
+    "DogeBot reports that gradients are everywhere.",
+    "DogeBot finds a bug and politely asks it to leave.",
+    "NEOCORE predicts that more updates are coming.",
+    "DogeBot has entered a very cozy computing state.",
+    "The keyboard has survived another coding session.",
+    "DogeBot announces that version numbers keep increasing.",
+    "DogeBot has detected an unusually large amount of pixels.",
+    "The chat panel has received a tiny improvement.",
+    "DogeBot has polished the virtual glass.",
+    "NEOCORE confirms that everything is probably fine.",
+    "DogeBot has upgraded its friendliness module.",
+    "A new button has been created for unknown reasons.",
+    "DogeBot discovers that computers need electricity.",
+    "The moon remains available for nighttime operations.",
+    "Frutiger Aero weather report: 100% chance of shiny UI.",
+    "DogeBot has found another old comment in the code.",
+    "NEOCORE is thinking about thinking.",
+    "DogeBot reports: the CSS is looking stylish.",
+    "A random feature has been added to the system.",
+    "DogeBot has reached a new level of silliness.",
+    "The internet connection has been declared sufficiently internet.",
+    "DogeBot confirms that the sun is still bright.",
+    "NEOCORE has organized its imaginary files.",
+    "DogeBot has discovered a perfectly rounded corner.",
+    "The glass interface has passed the sparkle test.",
+    "DogeBot has created a very important empty space.",
+    "A typo was found and immediately investigated.",
+    "DogeBot has generated a completely unnecessary statistic.",
+    "DogeBot has found a forgotten feature from an older version.",
+    "A computer somewhere has made a tiny beep.",
+    "NEOCORE has finished a task that nobody assigned.",
+    "DogeBot has added another layer of shiny technology.",
+    "The version counter continues its journey.",
+    "DogeBot has discovered that 404 errors are not snacks.",
+    "A new era of questionable news has begun.",
+    "DogeBot announces: more features are probably coming.",
+      "Dogebot finds a great discovery."
     ]
+    // chatgpt made some of the news (not that all of it is true news)
+    const newsDisplay = document.getElementById("news-thingy");
+
+    async function newsDecider() {
+      while (true) {
+        newsDisplay.innerText = "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length-1)];
+        await wait(10); // from an api uses promise function
+      }
+    }
+
+    newsDecider()
+    
     let msgCount = 0;
 
 
@@ -1720,6 +1829,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       if (lower.includes("news")) {
         return "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length-1)];
       }
+      if (lower.includes("icosahedron")) {
+        return "The icosahedron... WHAT DO THEY LOOK LIKE I HAVE NEVER WITNESSED SEEING AN ICOSAHEDRON!";
+      }
       if (lower.includes("time")) {
         return getTimePeriod();
       }
@@ -1755,7 +1867,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "ALL MY FELLAS!";
       }
       if (lower.includes("milestone")) {
-        return "1. The Abolishment of Non-Joyous Interfaces. 2. The 10-Update Bug Fight.";
+        return "1. The Abolishment of Non-Joyous Interfaces. 2. The 10-Update Bug Fight. 3. Version 200.";
       }
       if (lower.includes("hello") || lower.includes("hi ") || lower.includes("hey") || lower.includes("sup") || lower.includes("hi ") || lower.includes(" hi") || lower === "yo" || lower === "hi") {
         return "Hello again! I am so incredibly happy you came back to hang out with me today! Let's code something awesome! 👋👑";
