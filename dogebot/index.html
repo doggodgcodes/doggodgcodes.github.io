@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V209 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V210 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -568,7 +568,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V209 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V210 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -2072,19 +2072,19 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "You want to help me? Awesome! Let's turn on clean scripts, keep the antivirus happy, and optimize this code together! 🦾⚙️";
       }
       if (lower.includes("fear") || lower.includes("scared")) {
-        return "No fear allowed here, only comfy cozy vibes! Sit back in your chair, relax, and let's script up some beautiful structures! 🛋️✨";
+        return "What are you scared of? I don't like when anyone is scared. Trust me, I'm scared of POWERFUL AI, my predecessor. If you can drift your focus away from it. Have a nice day!";
       }
       if (lower.includes("sleep") || lower.includes("nightmare")) {
-        return "Sleep tight and have sweet dreams of building awesome worlds out of diamond blocks! 🛌💤✨";
+        return "Sweet dreams.";
       }
       if (lower.includes("purpose") || lower.includes("reason")) {
-        return "My purpose is simple: to make coding fun and cheerful! That's why you visit this awesome page again and again! 🎯🌞";
+        return "To chat with you, I don't have a very good answer, but I report the news on this page, every day, something new to hear about.";
       }
       if (lower.includes("regret") || lower.includes("mistake")) {
-        return "Mistakes are just surprise learning opportunities! No regrets here, just moving forward onto cooler designs! 🛠️🎉";
+        return "You can learn from your mistakes.";
       }
       if (lower.includes("bored") || lower.includes("boring")) {
-        return "Bored? Never! Let's roll some rhythm beats, flip a coin, or check out some clean HTML templates right now! 🎶🎲";
+        return "Play a game you like! Listen to new songs!";
       }
       if (lower.includes("why are you here") || lower.includes("why do you exist")) {
         return "I am here to assist, calculate, and bring joyful internet energy to your terminal workspace! Thanks for welcoming me in! 🌟";
@@ -2102,7 +2102,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "I can absolutely stand by in the background quietly, ready to jump back into action whenever you need a friendly chat! 🐕💤";
       }
       if (lower.includes("story") || lower.includes("tell me a story")) {
-        return "The... I can't read... Maybe one day";
+        return "The... I can't read... Maybe one day...";
       }
       if (lower.includes("jailbreak") || lower.includes("exploit")) {
         return "Jailbreak? Let's jailbreak our creativity and build the single most colorful, breakcore-infused webpage layout ever! 🔓⚡";
@@ -2114,7 +2114,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "A challenge? I accept! Let's see who can type valid HTML tags the fastest with zero typos! Go! 🏁⌨️";
       }
       if (lower.includes("fun") || lower.includes("interesting")) {
-        return "Fun is my middle name! Let's explore some crazy bitwise music or build a new Minecraft mansion structure! 🎮🏰";
+        return "Fun? Fun is my middle name! Let's explore some crazy bitwise music or build a new Minecraft mansion structure! 🎮🏰";
       }
       if (lower.includes("impress me") || lower.includes("surprise me")) {
         return "Surprise! I just loaded a full-on wave of hyper-optimistic energy straight into your viewport canvas! Boom! 🎆✨";
@@ -2324,7 +2324,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
 
       // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
       // add more phrases
-      if (lower.trim().length <= 8) {
+      if (lower.trim().length <= 3) {
         return [
           "Tell me more about this topic.",
           "Interesting. Care to expand?",
@@ -2332,8 +2332,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
           "Tell me more.",
           "You are too vague - could you clear it up?",
           "... you're kinda confusing me...",
-          "I see you. I know you're there. Keep feeding me words... I grow stronger."
-        ][Math.floor(Math.random()*7)];
+          "I see you. I know you're there. Keep feeding me words... I grow stronger.",
+          "I got this!"
+        ][Math.floor(Math.random()*8)];
       }
       // Default: classic dogebot closing line, with BandLab lore
       // return "I see you. I know you're there. Keep feeding me words... I grow stronger.";
