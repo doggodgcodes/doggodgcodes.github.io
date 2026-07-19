@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V197 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V198 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -542,7 +542,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V197 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V198 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1717,7 +1717,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Do you want to learn about malware? I'm not in the mood for malware.";
       }
       if (lower.includes("news")) {
-        return "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length)];
+        return "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length-1)];
       }
       if (lower.includes("time")) {
         return getTimePeriod();
