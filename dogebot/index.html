@@ -13,13 +13,14 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V191 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V192 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
    Between Skeuo + Optimized Flat
    ========================================================= */
 /* DOGEBOT v191 CSS Updates */
+    /* v193 CSS updates */
 /* =========================================
    GLOBAL
 ========================================= */
@@ -86,11 +87,20 @@ body {
     -webkit-backdrop-filter: blur(14px);
     backdrop-filter: blur(14px);
 
-    border: 1px solid rgba(255,255,255,0.6);
+    /* border: 1px solid rgba(255,255,255,0.6); */
+  border: 2px solid rgba(255,255,255,0.4);
 
+    box-shadow:
+        0 25px 60px rgba(0,80,160,0.25),
+        inset 0 2px 4px rgba(255,255,255,0.9),
+        inset 0 -3px 8px rgba(0,80,150,0.12);
+  
+
+  /*
     box-shadow:
         0 12px 35px rgba(0,0,0,0.12),
         inset 0 1px 0 rgba(255,255,255,0.75);
+  */
 
     animation: floatPanel 7s ease-in-out infinite;
 }
@@ -118,6 +128,22 @@ body {
             rgba(255,255,255,0.35),
             transparent
         );
+}
+
+    #chat::after {
+    content: "";
+
+    position: absolute;
+    inset: 8px;
+
+    border-radius: 20px;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 30px rgba(255,255,255,0.35);
+
+    opacity: 0.8;
 }
 
 /* =========================================
@@ -515,7 +541,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V191 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V192 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
