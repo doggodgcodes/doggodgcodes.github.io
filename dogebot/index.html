@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V201 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V202 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -83,7 +83,7 @@ body {
 
     border-radius: 18px;
 
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(3px);
 
     border: 1px solid rgba(255,255,255,0.6);
 
@@ -110,8 +110,8 @@ body {
 
     background: rgba(255,255,255,0.25);
 
-    -webkit-backdrop-filter: blur(7px);
-    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
 
     /* border: 1px solid rgba(255,255,255,0.6); */
   border: 2px solid rgba(255,255,255,0.6);
@@ -568,7 +568,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V201 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V202 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1441,7 +1441,7 @@ trainDogebotBrain(NeuralBrain);
     async function newsDecider() {
       while (true) {
         newsDisplay.innerText = "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length-1)];
-        await wait(10); // from an api uses promise function
+        await wait(3); // from an api uses promise function
       }
     }
 
@@ -1825,6 +1825,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }
       if (lower.includes("malware")) {
         return "Do you want to learn about malware? I'm not in the mood for malware.";
+      }
+      if (lower.includes("gamer")) {
+        return "Well, if you're a gamer, what is your favorite game?";
       }
       if (lower.includes("news")) {
         return "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length-1)];
