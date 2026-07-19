@@ -1,4 +1,4 @@
-document.title = "My Projects - ✨ With doggodgcodes PROJECT LIST UNLOCKED ✨"
+document.title = "My Projects - Menu Unlocked!"
 console.log("Test log from https://doggodgcodes.github.io/js-linker/minechicken.js");
 const script = document.createElement("script");
 
@@ -27,12 +27,12 @@ div.innerHTML = `
 <a href="https://doggodgcodes.github.io/ai/" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes AI Page</h2><p class="project-description" style="color: navy;">Explore hilariously random AI creations made by doggodgcodes and others to test your AI detection skills.</p><span class="project-link">View Page →</span></a>
 <a href="https://github.com/doggodgcodes" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes Code</h2><p class="project-description" style="color: navy;">Explore doggodgcodes code!</p><span class="project-link">View Page →</span></a>
 <a href="https://github.com/minechicken98" target="_blank" class="project-card"><h2 class="project-title">MineChicken98's Code</h2><p class="project-description" style="color: navy;">Explore minechicken98's code!</p><span class="project-link">View Page →</span></a>
-<a href="https://doggodgcodes.github.io/random/" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes Random Page</h2><p class="project-description" style="color: navy;">Find new favorite webpage! Has a random website picker, that is truly random!</p><span class="project-link">View Page →</span></a>
+<a href="https://doggodgcodes.github.io/dogebot/" target="_blank" class="project-card"><h2 class="project-title">Dogebot</h2><p class="project-description" style="color: navy;">Dogebot, the AI that can run ENTIRELY in your browser! On the inaccurate Icosahedron News the reporter is Dogebot. Dogebot runs on over 2000+ lines of code! (partially AI generated)</p><span class="project-link">View Page →</span></a>
 </div>
 </div>
 `;
 
-
+// <a href="https://doggodgcodes.github.io/random/" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes Random Page</h2><p class="project-description" style="color: navy;">Find new favorite webpage! Has a random website picker, that is truly random!</p><span class="project-link">View Page →</span></a>
 
 // document.body.appendChild(div);
 // console.log("Appended DoggoDGCodes div");
