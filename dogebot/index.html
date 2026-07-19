@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V183 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V184 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -1145,7 +1145,8 @@ function trainDogebotBrain(coreInstance) {
   "Hey friend I am Doge and you should go eat some chicken nuggets right now.",
       "I could gobble a billion chicken nuggets right now!",
       "That I eat your background styles that you need but the CSS toad is a five shape patience.",
-      "what if someone ate ramen noodles in the grass?"
+      "what if someone ate ramen noodles in the grass?",
+      "dogebot's neocore is crazy"
     ];
 
     // Run through the data 50 times to force backpropagation to lock in the grammar!
@@ -2056,7 +2057,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Click-shhh! Light up that cozy nether portal with your flint and steel, throw an ender pearl right across the island, because I AM STEVE! 💎🧱🔥";
       }
       if (lower.includes("costco") || lower.includes("freezer")) {
-        return "Costco freezers are so chillingly refreshing! Grabbing a cold gatorade slushie or a box of crazy wafers at peak crispness! 🥶🛒🍟";
+        return "Costco freezers are so chillingly refreshing! Grabbing a cold slushie or a box of crazy wafers at peak crispness! 🥶🛒🍟";
       }
       // Morse code hook
 
@@ -2071,14 +2072,18 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       if (/^[\d\s\(\)\.\+\-\*\/\^%]+$/.test(text.replace(/\s/g, ''))) {
         const result = safeEvalMath(text);
         if (result !== null) {
-          return `Mathematics. I am the calculation: ${text.trim()} = ${result}`;
+          return `Math: ${text.trim()} = ${result}`;
         }
       }
 
       // --- CRITICAL BACKUP OVERRIDE SYSTEM ---
       // If the neural net toggle switch is checked on, bypass old static short strings completely!
+      // hint of confusion
       if (document.getElementById("neuralToggle").checked) {
           const neuralGen = NeuralBrain.generateResponse(text);
+          if (Math.random() > 0.7) {
+            neuralGen += "wait i confused myself";
+          }
           return neuralGen.toCapitalize();
       }
 
