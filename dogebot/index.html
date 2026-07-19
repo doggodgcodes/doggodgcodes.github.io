@@ -3,7 +3,7 @@
 <head>
   <meta name="robots" content="noindex, nofollow">
   <script src="https://doggodgcodes.github.io/ai/api/asyncdelay.js"></script>
-  <script src="https://doggodgcodes.github.io/min/dogebork/v6.0/dogebork.min.js"></script>
+  <script src="https://doggodgcodes.github.io/min/dogebork/v7.0/dogebork.min.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="doggodgcodes">
@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V196 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V197 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -542,7 +542,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V196 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V197 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1332,6 +1332,11 @@ trainDogebotBrain(NeuralBrain);
       "Let’s keep the bits flowing until the entire internet starts looking like your vision of the future."
     ];
 
+    const news = [
+      "Dogebot updates to version 197!",
+      "New fast food store takes the world by storm.",
+      "Dogebot gets NeoCore 6."
+    ]
     let msgCount = 0;
 
 
@@ -1710,6 +1715,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }
       if (lower.includes("malware")) {
         return "Do you want to learn about malware? I'm not in the mood for malware.";
+      }
+      if (lower.includes("news")) {
+        return "PROBABLY NOT ACCURATE NEWS: " + news[Doge.lcg(0,news.length)];
       }
       if (lower.includes("time")) {
         return getTimePeriod();
