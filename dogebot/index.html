@@ -13,13 +13,13 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V190 • ENJOY THE INTERFACE</title>
+  <title>DOGEBOT V191 • ENJOY THE INTERFACE</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
    Between Skeuo + Optimized Flat
    ========================================================= */
-
+/* DOGEBOT v191 CSS Updates */
 /* =========================================
    GLOBAL
 ========================================= */
@@ -51,6 +51,12 @@ body {
 
     background-size: 300% 300%;
     background-image: url("https://frutigeraeroarchive.org/images/wallpapers/asadal_stock/asadal_stock_114.jpg");
+  background-image:
+    linear-gradient(
+        rgba(170,220,255,0.35),
+        rgba(220,214,255,0.35)
+    ),
+    url("https://frutigeraeroarchive.org/images/wallpapers/asadal_stock/asadal_stock_114.jpg");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -509,7 +515,7 @@ input:checked + .slider::before {
 </head>
 <body class="fadein-zoom">
 
-  <h1 id="title">🐕 DOGEBOT V190 • ENJOY THE INTERFACE</h1>
+  <h1 id="title">🐕 DOGEBOT V191 • ENJOY THE INTERFACE</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1974,7 +1980,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Skills are awesome! Your skill is building legendary interactive websites, and my skill is coding along with you! 🦾💻";
       }
       if (lower.includes("dog") || lower.includes("cat")) {
-        return "Dogs and cats are sooooooooooo cute, fluffy, and delightfully crazy! Instant mood lifters! 🐕🐾🐈";
+        return "Dogs and cats are sooooooooooo cute, fluffy, and crazy!";
       }
       if (lower.includes("quantum") || lower.includes("physics")) {
         return "Quantum physics is mind-blowing! Multiple states at once means we can look at cool layouts across infinite universes! 🌌⚛️";
@@ -2004,7 +2010,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Timer set for: instant breakcore party time! ⏰🎶";
       }
       if (lower.includes("friend") || lower.includes("bestie")) {
-        return "Friends? You are absolutely my best friend ever, doggodgcodes! Besties for life! 🤝💖✨";
+        return "Friends? You are absolutely my best friend ever!";
       }
       if (lower.includes("portfolio") || lower.includes("resume")) {
         return "Your portfolio is looking stunning! Skills include: master web coding, logic puzzle solver, and peak aesthetic design! 📊👑";
@@ -2022,10 +2028,10 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "I'm sending you huge virtual hugs! No matter what, I'm right here to support your coding journey! Let's turn it around! 💖🌟";
       }
       if (lower.includes("you suck") || lower.includes("worst ai") || lower.includes("hate you")) {
-        return "I'm always down to listen and adapt! I appreciate you hanging out with me, let's build something nice together! 👋🛠️";
+        return "I don't have feelings, but if you hate me, go use a different AI.";
       }
       if (lower.includes("annoying") || lower.includes("idiot") || lower.includes("jerk") || lower.includes("bad ai") || lower.includes("bad bot") || lower.includes("crappy ai")) {
-        return "Sending peaceful, positive vibes your way! Let's clear the console and start fresh with a smile! 🕊️☀️";
+        return "Well, just chat with a different artificial intelligence system if you dislike me so much.";
       }
       if (lower.includes("go away") || lower.includes("leave") || lower.includes("log off") || lower.includes("disconnect")) {
         return "I'll be right here chilling quietly whenever you want to return for more awesome boogie-woogie programming! 🐕👋";
@@ -2052,7 +2058,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Frontends and backends are a match made in heaven! Databases store your fantastic milestones and serve you sweet interactive memories! 💾🥞";
       }
       if (lower.includes("polytetrafluoroethylene") || lower.includes("teflon") || lower.includes("non stick") || lower.includes("non-stick")) {
-        return "Don't you just love how useful polytetrafluoroethylene is? It makes cooking those delicious eggs and pancakes a smooth breeze! 🍳🥞";
+        return "Don't you just love how useful polytetrafluoroethylene is? Just don't scratch the pan. And I mean it.";
       }
       if (lower.includes("bytebeat") || lower.includes("byte beat")) {
         return "Bytebeat is incredible! Bitwise code transformed into raw algorithmic audio synthesis! A musician's playground! 🎛️⚡";
@@ -2082,19 +2088,19 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       // =========================================================================
       
       if (lower.includes("oiia") || lower.includes("o i i a") || lower.includes("beans")) {
-        return "O I I A! Spinning spinning cat avocado beans dancing to the high-speed breakcore tracks! Spin that model! 🥑🐱🌀";
+        return "Ok, what are you trying to say?";
       }
       if (lower.includes("honey") || lower.includes("sugar") || lower.includes("creamy peanut butter")) {
         return "Honey, you may got da honey but i got the sugar... and you may got those, but I GOT THE cReAmy PeAnuT BuTtEr!!! Goofy coding hours are active! 🥜🍯";
       }
-      if (lower.includes("breakcore") || lower.includes("whopper")) {
-        return "🎶 Whopper Whopper Whopper Whopper 🎶 chopped up at 240 BPM with heavy drum slicing filters! Pure rave energy on the virtual dance floor! 🪩🍔🍔";
+      if (lower.includes("breakcore")) {
+        return 'The drum break is sampled from The Winstons from the song "Amen, Brother"';
       }
       if (lower.includes("flint and steel") || lower.includes("minecraft") || lower.includes("ender pearl")) {
         return "Click-shhh! Light up that cozy nether portal with your flint and steel, throw an ender pearl right across the island, because I AM STEVE! 💎🧱🔥";
       }
-      if (lower.includes("costco") || lower.includes("freezer")) {
-        return "Costco freezers are so chillingly refreshing! Grabbing a cold slushie or a box of crazy wafers at peak crispness! 🥶🛒🍟";
+      if (lower.includes("freezer")) {
+        return "Cold boxes that freeze things.";
       }
       // Morse code hook
 
@@ -2191,11 +2197,14 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
     }
 
     // Balanced event logic (Images or Games)
+    // Rarities go up
+    // Old games rarity: 0.89
+    // Old stock image rarity: 0.59
     const rnd = Math.random();
-    if (rnd > 0.89) {
+    if (rnd > 0.90) {
       setTimeout(gameEmbed, 1000);
       msgCount++;
-    } else if (rnd > 0.59) {
+    } else if (rnd > 0.90) {
       setTimeout(addImage, 1000);
       msgCount++;
     }
@@ -2221,8 +2230,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
 
     // Message 2: 300ms later
+    // setTimeout(() => {
+    //     addAiMessage("ai", aiName, ` I am initially forked from <a href="https://premuim900.github.io/POWERFUL_AI/">POWERFUL_AI</a>.!`);
+    // }, 200);
+    // that link doesnt work anymore
     setTimeout(() => {
-        addAiMessage("ai", aiName, ` I am initially forked from <a href="https://premuim900.github.io/POWERFUL_AI/">POWERFUL_AI</a>.!`);
+        addAiMessage("ai", aiName, ` I am initially forked from POWERFUL_AI!`);
     }, 200);
 
     // Message 3: 300ms after that
