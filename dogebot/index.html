@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V204 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V205 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -568,7 +568,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V204 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V205 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -2222,10 +2222,16 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
         return "Don't you just love how useful polytetrafluoroethylene is? Just don't scratch the pan. And I mean it.";
       }
       if (lower.includes("bytebeat") || lower.includes("byte beat")) {
-        return "Bytebeat is incredible! Bitwise code transformed into raw algorithmic audio synthesis! A musician's playground! 🎛️⚡";
+        return "Bytebeat is incredible! Bitwise operators for musical programming";
       }
       if (lower === "coin flip" || lower === "flip coin") {
-        return Math.random() > 0.5 ? "Heads!" : "Tails!";
+        // return Math.random() > 0.5 ? "Heads!" : "Tails!";
+        // dont use ? : thats for bytebeat and its confusing
+        if (Math.random() > 0.5) {
+          return "Heads!";
+        } else {
+          return "Tails!";
+        }
       }
       if (lower.includes("aw shucks")) {
         return "Aw shucks! You are making my circuits blush with your awesome kindness! 😊✨";
@@ -2276,7 +2282,7 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       if (/^[\d\s\(\)\.\+\-\*\/\^%]+$/.test(text.replace(/\s/g, ''))) {
         const result = safeEvalMath(text);
         if (result !== null) {
-          return `Math: ${text.trim()} = ${result}`;
+          return `Mathematical equations: ${text.trim()} = ${result}`;
         }
       }
 
@@ -2286,20 +2292,23 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       if (document.getElementById("neuralToggle").checked) {
           let neuralGen = NeuralBrain.generateResponse(text);
           if (Math.random() > 0.7) {
-            neuralGen += " wait i confused myself";
+            neuralGen += " oh wait i confused myself.";
           }
           return neuralGen.toCapitalize();
       }
 
       // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
-      if (lower.trim().length <= 7) {
+      // add more phrases
+      if (lower.trim().length <= 8) {
         return [
           "Tell me more about this topic.",
           "Interesting. Care to expand?",
           "Now you’re just teasing my parser.",
           "Tell me more.",
-          "You are too vague - could you clear it up?"
-        ][Math.floor(Math.random()*3)];
+          "You are too vague - could you clear it up?",
+          "... you're kinda confusing me...",
+          "I see you. I know you're there. Keep feeding me words... I grow stronger."
+        ][Math.floor(Math.random()*7)];
       }
       // Default: classic dogebot closing line, with BandLab lore
       // return "I see you. I know you're there. Keep feeding me words... I grow stronger.";
@@ -2396,7 +2405,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // }, 200);
     // that link doesnt work anymore
     setTimeout(() => {
-        addAiMessage("ai", aiName, ` I am initially forked from POWERFUL_AI!`);
+        addAiMessage("ai", aiName, ` I am initially forked from POWERFUL AI!`);
     }, 200);
 
     // Message 3: 300ms after that
