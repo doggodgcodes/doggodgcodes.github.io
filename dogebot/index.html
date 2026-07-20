@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V222 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V223 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V222 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V223 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -909,7 +909,8 @@ class NeoCore {
         this.hasPinnedAnchor = true;
       }
 
-      for (let steps = 0; steps < 8; steps++) {
+      // was 8 steps, but performance matters
+      for (let steps = 0; steps < 6; steps++) {
         this.trainSentence(userText); 
         if (datasetArray && datasetArray.length > 0) {
           const randomLore = datasetArray[Math.floor(Math.random() * datasetArray.length)];
