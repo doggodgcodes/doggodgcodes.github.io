@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V228 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V229 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V228 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V229 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -585,7 +585,7 @@ input:checked + .slider::before {
   <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
   <div class="toggle-container">
-    <span>NEOCORE 9 BY GEMINI & CHATGPT:</span>
+    <span>NEOCORE 10 BY GEMINI & CHATGPT:</span>
     <label class="switch">
       <input type="checkbox" id="neuralToggle" checked>
       <span class="slider"></span>
@@ -801,7 +801,7 @@ class NeoCore {
   trainSentence(text) {
     const tokens = text
       .toLowerCase()
-      .replace(/[^\w\s]/g, "")
+      .replace(/\./g, "")
       .split(/\s+/)
       .filter(Boolean);
 
@@ -1255,7 +1255,8 @@ function trainDogebotBrain(coreInstance) {
       "i ate the spaghetti and it was the tastiest i could ever dream of",
       "the sheer power of a raisin is insane",
       "i am a trustworthy chat bot",
-      "you can always code the best things if you try hard enough"
+      "you can always code the best things if you try hard enough",
+      "i dont like that"
     ];
 
     // Run through the data 50 times to force backpropagation to lock in the grammar!
@@ -1895,6 +1896,9 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }
       if (lower.includes("yes") || lower.includes("no")) {
         return "Very well.";
+      }
+      if (lower.includes("i dont like that") || lower.includes("i don't like that")) {
+        return "?";
       }
       if (lower.includes("malware")) {
         return "Do you want to learn about malware? I'm not in the mood for malware.";
