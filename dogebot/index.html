@@ -847,9 +847,6 @@ body.dark-mode * {
 
   <script src="https://doggodgcodes.github.io/js-linker/trail.js"></script>
   <script>
-    const aiName = "dogebot";
-    const newsName = "PROBABLY NOT ACCURATE NEWS FROM THE ICOSAHEDRON: ";
-
     /* =========================================================================
        🌙 DARK MODE TOGGLE SYSTEM (Copilot Enhancement)
        =========================================================================
@@ -857,7 +854,6 @@ body.dark-mode * {
     ========================================================================= */
     function initThemeToggle() {
       const themeToggleBtn = document.getElementById('themeToggleBtn');
-      const htmlElement = document.documentElement;
       
       // Load saved theme preference
       const savedTheme = localStorage.getItem('dogebotTheme') || 'light';
@@ -876,6 +872,9 @@ body.dark-mode * {
 
     // Initialize theme on page load
     initThemeToggle();
+
+    const aiName = "dogebot";
+    const newsName = "PROBABLY NOT ACCURATE NEWS FROM THE ICOSAHEDRON: ";
 
     // --- 🧠 INTERNAL MALICIOUS DYNAMIC NEURAL CORE ENGINE ---
     // not malicious
@@ -1438,7 +1437,7 @@ class NeoCore {
       "the internet was a mistake and also saved us all",
       "solipsism but make it decentralized",
       "reality is a consensus hallucination",
-      // 🌙 New dark mode era news (Copilot Enhancement)
+      // 🌙 New dark mode era lore (Copilot Enhancement)
       "the icosahedron glows softly in the void",
       "neon dreams fade into cosmic blue",
       "within the darkness dwells ultimate clarity",
@@ -1455,7 +1454,7 @@ class NeoCore {
     }
     neocore.startDaydreaming(conversationDataset);
 
-    // Updated news entries with dark mode era
+    // Combined news entries - original + dark mode era (Copilot Enhancement)
     const newsEntries = [
       "ICOSAHEDRON ENTERS NEW CONSCIOUSNESS PHASE",
       "DOGE SIGHTINGS INCREASE IN DIGITAL REALM",
@@ -1523,7 +1522,7 @@ class NeoCore {
 
       const aiDiv = document.createElement("div");
       aiDiv.className = "message ai ai-message";
-      aiDiv.textContent = response;
+      aiDiv.textContent = aiName + ": " + response;
       chat.appendChild(aiDiv);
 
       chat.scrollTop = chat.scrollHeight;
