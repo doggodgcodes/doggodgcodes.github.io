@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
   <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-  <title>DOGEBOT V238 • ENJOY THE ICOSAHEDRON</title>
+  <title>DOGEBOT V239 • ENJOY THE ICOSAHEDRON</title>
   <style id="css">
 /* =========================================================
    💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@ input:checked + .slider::before {
 <body class="fadein-zoom">
   <div id="news-thingy"></div>
 
-  <h1 id="title">🐕 DOGEBOT V238 • ENJOY THE ICOSAHEDRON</h1>
+  <h1 id="title">🐕 DOGEBOT V239 • ENJOY THE ICOSAHEDRON</h1>
   <p>Smart • Kind • Calculates • Chatty • Great</p>
 
   <div id="chat"></div>
@@ -1876,6 +1876,41 @@ function decodeMorse(morse) {
     input:checked + .slider:before { transform: translateX(24px); background-color: #ff0000; }`;
     }
     
+    async function stupidUI() {
+      const style = document.getElementById("css");
+      const title = document.getElementById("title");
+      document.title = "Dogebot is very confused.";
+      title.innerText = `Dogebot`;
+      style.innerText = `@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap'); 
+      body { font-family: "UnifrakturMaguntia", "Comic Sans MS", cursive; background: #0a0a0a; color: #f0f; text-align: center; padding: 20px; animation: move 10s ease-in-out infinite alternate; }
+    #chat { width: 650px; margin: 20px auto; background: #111; border-radius: 15px; padding: 15px; height: 550px; overflow-y: scroll; border: 2px solid #f0f; }
+    .message { margin: 12px 0; padding: 12px; border-radius: 12px; }
+    .user { background: #1f1f1f; text-align: right; color: white; }
+    .ai { background: #0f0; text-align: left; }
+    input { width: 520px; padding: 14px; font-size: 16px; border-radius: 10px; border: none; background: #222; color: #0f0; }
+    @keyframes move {
+        0% {
+          transform: translateX(50px) translateY(50px);
+        }
+
+        25% {
+          transform: translateX(50px) translateY(-50px);
+        }
+
+        50% {
+          transform: translateX(0px) translateY(0px);
+        }
+
+        75% {
+          transform: translateX(50px) translateY(-50px);
+        }
+
+        100% {
+          transform: translateX(-5px) translateY(-5px);
+        }
+      }
+`;
+    }
     function getReply(text) {
       const lower = text.trim().toLowerCase();
 
@@ -1920,6 +1955,10 @@ if (/^(encode morse|to morse)[:\s]/i.test(text)) {
       }
       if (lower.includes("gamer")) {
         return "Well, if you're a gamer, what is your favorite game?";
+      }
+      if (lower.includes("abolish")) {
+        stupidUI();
+        return "THE- INTERFACE- I FEEL IT BREAKING! !!! ! ! !! !!";
       }
       if (lower.includes("dark mode")) {
         return "Dark mode... POWERFUL_AI, my ancestor, had only dark mode.";
