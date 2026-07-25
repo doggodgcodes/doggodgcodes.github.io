@@ -45,24 +45,24 @@ div.innerHTML = `
   <a href="https://github.com/minechicken98" target="_blank" class="project-card"><h2 class="project-title">MineChicken98's Code</h2><p class="project-description" style="color: navy;">Explore minechicken98's code!</p><span class="project-link">View Page →</span></a>
   <a href="https://doggodgcodes.github.io/random/" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes Random Page</h2><p class="project-description" style="color: navy;">Find new favorite webpage! Has a random website picker, that is truly random!</p><span class="project-link">View Page →</span></a>
   <img class="dg-fbar-img" src="https://i.chzbgr.com/full/10555248128/hEA6A8B63/will-open-this-coca-co-1127">
-    <img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/tony.jpg">
-      <img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/cat.png">
-      </div>
-    </div>
-    `;
+  <img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/tony.jpg">
+  <img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/cat.png">
+</div>
+</div>
+`;
 
 
 
-    document.body.appendChild(div);
+document.body.appendChild(div);
 
-    const a = document.createElement("script");
+const a = document.createElement("script");
 
-    a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
-    const a2 = document.createElement("script");
+a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
+const a2 = document.createElement("script");
 
-    a2.src = "https://doggodgcodes.github.io/april_fools.js";
+a2.src = "https://doggodgcodes.github.io/april_fools.js";
 
-    // IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
-    console.log("Appended April Fools.js")
-    document.body.appendChild(a);
-    document.body.appendChild(a2);
+// IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
+console.log("Appended April Fools.js")
+document.body.appendChild(a);
+document.body.appendChild(a2);

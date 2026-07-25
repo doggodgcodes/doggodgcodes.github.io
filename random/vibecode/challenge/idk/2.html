@@ -79,35 +79,35 @@
 
     <div class="monke-container">
       <img src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png" alt="Silly Face" style="width: 200px; border-radius: 50%;">
-        <p>Like JMANCURLY!</p>
-      </div>
+      <p>Like JMANCURLY!</p>
+    </div>
 
-      <button class="bonk-btn" onclick="increaseBonk()">CLICK TO BONK!</button>
+    <button class="bonk-btn" onclick="increaseBonk()">CLICK TO BONK!</button>
 
-      <div id="counter-box">
-        BONK LEVEL: <span id="bonk-count">0</span>
-      </div>
+    <div id="counter-box">
+      BONK LEVEL: <span id="bonk-count">0</span>
+    </div>
 
-      <div style="margin-top: 50px;">
-        <h3>My Sandwich Ingredients:</h3>
-        <p>HTML • CSS • JS🧀</p>
-      </div>
+    <div style="margin-top: 50px;">
+      <h3>My Sandwich Ingredients:</h3>
+      <p>HTML • CSS • JS🧀</p>
+    </div>
 
-      <script>
-        let count = 0;
-        function increaseBonk() {
-          count++;
-          document.getElementById('bonk-count').innerText = count;
+    <script>
+      let count = 0;
+      function increaseBonk() {
+        count++;
+        document.getElementById('bonk-count').innerText = count;
 
-          // Add a random emoji explosion!
-          const emojis = ['🧀', '🍌', '🦍', '🚨', '🍔', '🎮'];
-          const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-          console.log("BONK! " + randomEmoji);
+        // Add a random emoji explosion!
+        const emojis = ['🧀', '🍌', '🦍', '🚨', '🍔', '🎮'];
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        console.log("BONK! " + randomEmoji);
 
-          if(count % 10 === 0) {
-            alert("ULTRA BONK! You have reached level " + count + " of pure silliness!");
-          }
+        if(count % 10 === 0) {
+          alert("ULTRA BONK! You have reached level " + count + " of pure silliness!");
         }
-      </script>
-    </body>
-  </html>
+      }
+    </script>
+  </body>
+</html>

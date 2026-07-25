@@ -274,42 +274,42 @@
                 <div class="video-card">
                   <div class="thumbnail">
                     <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg">
-                    </div>
-                    <div style="padding:6px;">
-                      <strong style="display:block; height:2.4em; overflow:hidden;">${v.title}</strong>
-                      <span class="video-creator">${v.fakeCreator}</span>
-                    </div>
-                  </div>`;
-                });
-              } catch(err) {
-                console.warn("Video Fetch failed:", err);
-              }
+                  </div>
+                  <div style="padding:6px;">
+                    <strong style="display:block; height:2.4em; overflow:hidden;">${v.title}</strong>
+                    <span class="video-creator">${v.fakeCreator}</span>
+                  </div>
+                </div>`;
+              });
+            } catch(err) {
+              console.warn("Video Fetch failed:", err);
             }
+          }
 
-            function triggerHypeTrain() {
-              if(hypeTrainActive) return;
-              hypeTrainActive = true;
-              document.getElementById('hype-level').innerText = "HYPE TRAIN 🚂";
-              document.getElementById('hype-level').style.color = "#00e5ff";
-              addComment("SYSTEM", "HYPE TRAIN DEPARTING! 5X GROWTH ACTIVE!", 'train');
-              setTimeout(() => {
-                hypeTrainActive = false;
-                document.getElementById('hype-level').innerText = boost ? "WARP SPEED" : "NORMAL";
-                document.getElementById('hype-level').style.color = boost ? "red" : "var(--hype)";
-              }, 3000);
-            }
+          function triggerHypeTrain() {
+            if(hypeTrainActive) return;
+            hypeTrainActive = true;
+            document.getElementById('hype-level').innerText = "HYPE TRAIN 🚂";
+            document.getElementById('hype-level').style.color = "#00e5ff";
+            addComment("SYSTEM", "HYPE TRAIN DEPARTING! 5X GROWTH ACTIVE!", 'train');
+            setTimeout(() => {
+              hypeTrainActive = false;
+              document.getElementById('hype-level').innerText = boost ? "WARP SPEED" : "NORMAL";
+              document.getElementById('hype-level').style.color = boost ? "red" : "var(--hype)";
+            }, 3000);
+          }
 
-            function megaBoost() {
-              boost = true;
-              document.getElementById('hype-level').innerText = "WARP SPEED";
-              addComment("COMMAND", "VIRAL PAYLOAD DELIVERED. ENGINE OVERHEATING.", 'doggo');
-              setTimeout(() => { boost = false; document.getElementById('hype-level').innerText = "NORMAL"; }, 8000);
-            }
+          function megaBoost() {
+            boost = true;
+            document.getElementById('hype-level').innerText = "WARP SPEED";
+            addComment("COMMAND", "VIRAL PAYLOAD DELIVERED. ENGINE OVERHEATING.", 'doggo');
+            setTimeout(() => { boost = false; document.getElementById('hype-level').innerText = "NORMAL"; }, 8000);
+          }
 
-            updateVideos();
-            setInterval(updateVideos, 120000);
-            render();
-            doChat();
-          </script>
-        </body>
-      </html>
+          updateVideos();
+          setInterval(updateVideos, 120000);
+          render();
+          doChat();
+        </script>
+      </body>
+    </html>
