@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-    <title>DOGEBOT V246 • ENJOY THE ICOSAHEDRON</title>
+    <title>DOGEBOT V247 • ENJOY THE ICOSAHEDRON</title>
     <style id="css">
       /* =========================================================
       💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@
   <body class="fadein-zoom">
     <div id="news-thingy"></div>
 
-    <h1 id="title">🐕 DOGEBOT V246 • ENJOY THE ICOSAHEDRON</h1>
+    <h1 id="title">🐕 DOGEBOT V247 • ENJOY THE ICOSAHEDRON</h1>
     <p>Smart • Kind • Calculates • Chatty • Great</p>
 
     <div id="chat"></div>
@@ -1528,7 +1528,7 @@
                           let msgCount = 0;
 
 
-                          String.prototype.toCapitalize = function() {
+                          String.prototype.capitalize = function() {
                             if (this.length === 0) return this;
                             return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
                           };
@@ -2588,9 +2588,9 @@
                                     if (document.getElementById("neuralToggle").checked) {
                                       let neuralGen = NeuralBrain.generateResponse(text);
                                       if (Math.random() > 0.7) {
-                                        neuralGen += " oh wait i confused myself.";
+                                        neuralGen += " oh, wait i confused myself.";
                                       }
-                                      return neuralGen.toCapitalize();
+                                      return neuralGen.capitalize();
                                     }
 
                                     // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
@@ -2659,7 +2659,7 @@
                                             NeuralBrain.trainSentence(interjection);
                                           }
                                           DAYDREAMING_DATA.push(interjection);
-                                          addAiMessage("ai", aiName, `${interjection.toCapitalize()}.`);
+                                          addAiMessage("ai", aiName, `${interjection.capitalize()}.`);
                                         }, 1200);
                                       }
 
