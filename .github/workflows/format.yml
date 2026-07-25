@@ -1,0 +1,25 @@
+name: Run Custom Auto Indent
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  indent-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make script executable and run it
+        run: |
+          chmod +x ./format.sh
+          ./format.sh
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "style: auto-indent run #${{ github.run_number }}"
+          git push
