@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-    <title>DOGEBOT V247 • ENJOY THE ICOSAHEDRON</title>
+    <title>DOGEBOT V248 • ENJOY THE ICOSAHEDRON</title>
     <style id="css">
       /* =========================================================
       💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@
   <body class="fadein-zoom">
     <div id="news-thingy"></div>
 
-    <h1 id="title">🐕 DOGEBOT V247 • ENJOY THE ICOSAHEDRON</h1>
+    <h1 id="title">🐕 DOGEBOT V248 • ENJOY THE ICOSAHEDRON</h1>
     <p>Smart • Kind • Calculates • Chatty • Great</p>
 
     <div id="chat"></div>
@@ -719,12 +719,12 @@
               }
 
               updateContext(vec) {
-                for (let i = 0; i < this.dim; i++);
+                for (let i = 0; i < this.dim; i++)
                   this.contextVec[i] = this.contextVec[i] * 0.9 + vec[i] * 0.1;
                 }
 
                 updateHumor(vec) {
-                  for (let i = 0; i < this.dim; i++);
+                  for (let i = 0; i < this.dim; i++)
                     this.humorVec[i] = this.humorVec[i] * 0.92 + vec[i] * 0.08;
                   }
 
@@ -2586,12 +2586,15 @@
                                     // If the neural net toggle switch is checked on, bypass old static short strings completely!
                                     // hint of confusion
                                     if (document.getElementById("neuralToggle").checked) {
-                                      let neuralGen = NeuralBrain.generateResponse(text);
-                                      if (Math.random() > 0.7) {
-                                        neuralGen += " oh, wait i confused myself.";
-                                      }
-                                      return neuralGen.capitalize();
-                                    }
+  let neuralGen = NeuralBrain.generateResponse(text);
+  if (neuralGen && neuralGen.trim().length > 0) {  // ADD THIS CHECK
+    if (Math.random() > 0.7) {
+      neuralGen += " oh wait i confused myself.";
+    }
+    return neuralGen.toCapitalize();
+  }
+  // If neural generation failed, fall through to default
+}
 
                                     // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
                                     // add more phrases
