@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run inline node script to fix indentation while skipping meta tags
+# run inline node script to fix indentation across js, html, and css files
 node -e '
 const fs = require("fs");
 const path = require("path");
@@ -15,7 +15,7 @@ function getFiles(dir) {
       if (!file.includes("node_modules") && !file.includes(".git")) {
         results = results.concat(getFiles(file));
       }
-    } else if (file.endsWith(".js") || file.endsWith(".html")) {
+    } else if (file.endsWith(".js") || file.endsWith(".html") || file.endsWith(".css")) {
       if (stat.size < 50 * 1024 * 1024) {
         results.push(file);
       }
@@ -37,7 +37,6 @@ targetFiles.forEach(file => {
     let trimmed = line.trim();
     if (!trimmed) return "";
 
-    // skip meta and link tags from altering indent rules
     if (trimmed.startsWith("<meta") || trimmed.startsWith("<link")) {
       const spaces = " ".repeat(indentLevel * indentSize);
       return spaces + trimmed;
