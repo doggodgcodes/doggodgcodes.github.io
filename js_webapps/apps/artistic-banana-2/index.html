@@ -463,198 +463,198 @@
                                         <p class="text-spacing white">
                                           #9e1b6f - like the color of a beet
                                           <br>
-                                            #12b667 - meadow green
-                                            <br>
-                                              #1512b6 - solid somewhat dark blue
-                                              <br>
-                                                #0a0959 - navy blue
-                                                <br>
-                                                  #3a78d8 - plastic blue
-                                                  <br>
-                                                    #c8cec2 - green tan
-                                                    <br>
-                                                      #e2bdea - lavender
-                                                      <br>
-                                                        #ea43b5 - pink magenta
-                                                        <br>
-                                                          #f0e264 - dandelion
-                                                          <br>
-                                                            #53bf13 - grassy green
-                                                            <br>
-                                                              #f75982 - coral
-                                                              <br>
-                                                                #738c87 - teal gray
-                                                                <br>
-                                                                  #91c0ef - sky
-                                                                  <br>
-                                                                    #db25f7 - energetic magenta
-                                                                    <br>
-                                                                      #9bde05 - droid
-                                                                      <br>
-                                                                        #b29541 - brown
-                                                                        <br>
-                                                                          #ff794a - blocky orange
-                                                                          <br>
-                                                                          </p>
-                                                                        </div>
+                                          #12b667 - meadow green
+                                          <br>
+                                          #1512b6 - solid somewhat dark blue
+                                          <br>
+                                          #0a0959 - navy blue
+                                          <br>
+                                          #3a78d8 - plastic blue
+                                          <br>
+                                          #c8cec2 - green tan
+                                          <br>
+                                          #e2bdea - lavender
+                                          <br>
+                                          #ea43b5 - pink magenta
+                                          <br>
+                                          #f0e264 - dandelion
+                                          <br>
+                                          #53bf13 - grassy green
+                                          <br>
+                                          #f75982 - coral
+                                          <br>
+                                          #738c87 - teal gray
+                                          <br>
+                                          #91c0ef - sky
+                                          <br>
+                                          #db25f7 - energetic magenta
+                                          <br>
+                                          #9bde05 - droid
+                                          <br>
+                                          #b29541 - brown
+                                          <br>
+                                          #ff794a - blocky orange
+                                          <br>
+                                        </p>
+                                      </div>
 
-                                                                        <script>
-                                                                          const canvas = document.getElementById("canvas");
-                                                                          const ctx = canvas.getContext("2d");
-                                                                          const colorPicker = document.getElementById("colorPicker");
-                                                                          const input = document.getElementById('colorInput');
-                                                                          const saveBtn = document.getElementById('saveBtn');
+                                      <script>
+                                        const canvas = document.getElementById("canvas");
+                                        const ctx = canvas.getContext("2d");
+                                        const colorPicker = document.getElementById("colorPicker");
+                                        const input = document.getElementById('colorInput');
+                                        const saveBtn = document.getElementById('saveBtn');
 
-                                                                          let isDrawing = false;
-                                                                          let currentColor = "#000000";
-                                                                          let brushSize = 10;
-                                                                          let lastX = 0;
-                                                                          let lastY = 0;
+                                        let isDrawing = false;
+                                        let currentColor = "#000000";
+                                        let brushSize = 10;
+                                        let lastX = 0;
+                                        let lastY = 0;
 
-                                                                          // Initialize canvas with white background
-                                                                          ctx.fillStyle = "white";
-                                                                          ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                        // Initialize canvas with white background
+                                        ctx.fillStyle = "white";
+                                        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                                                                          // Color picker event
-                                                                          colorPicker.addEventListener("input", (e) => {
-                                                                            currentColor = e.target.value;
-                                                                          });
+                                        // Color picker event
+                                        colorPicker.addEventListener("input", (e) => {
+                                          currentColor = e.target.value;
+                                        });
 
-                                                                          // Mouse events for drawing
-                                                                          canvas.addEventListener("mousedown", startDrawing);
-                                                                          canvas.addEventListener("mousemove", draw);
-                                                                          canvas.addEventListener("mouseup", stopDrawing);
-                                                                          canvas.addEventListener("mouseout", stopDrawing);
+                                        // Mouse events for drawing
+                                        canvas.addEventListener("mousedown", startDrawing);
+                                        canvas.addEventListener("mousemove", draw);
+                                        canvas.addEventListener("mouseup", stopDrawing);
+                                        canvas.addEventListener("mouseout", stopDrawing);
 
-                                                                          // Touch events for mobile
-                                                                          canvas.addEventListener("touchstart", handleTouchStart);
-                                                                          canvas.addEventListener("touchmove", handleTouchMove);
-                                                                          canvas.addEventListener("touchend", stopDrawing);
+                                        // Touch events for mobile
+                                        canvas.addEventListener("touchstart", handleTouchStart);
+                                        canvas.addEventListener("touchmove", handleTouchMove);
+                                        canvas.addEventListener("touchend", stopDrawing);
 
-                                                                          function startDrawing(e) {
-                                                                            isDrawing = true;
-                                                                            const rect = canvas.getBoundingClientRect();
-                                                                            lastX = e.clientX - rect.left;
-                                                                            lastY = e.clientY - rect.top;
-                                                                          }
+                                        function startDrawing(e) {
+                                          isDrawing = true;
+                                          const rect = canvas.getBoundingClientRect();
+                                          lastX = e.clientX - rect.left;
+                                          lastY = e.clientY - rect.top;
+                                        }
 
-                                                                          function draw(e) {
-                                                                            if (!isDrawing) return;
+                                        function draw(e) {
+                                          if (!isDrawing) return;
 
-                                                                            const rect = canvas.getBoundingClientRect();
-                                                                            const x = e.clientX - rect.left;
-                                                                            const y = e.clientY - rect.top;
+                                          const rect = canvas.getBoundingClientRect();
+                                          const x = e.clientX - rect.left;
+                                          const y = e.clientY - rect.top;
 
-                                                                            ctx.strokeStyle = currentColor;
-                                                                            ctx.lineWidth = brushSize;
-                                                                            ctx.lineCap = "round";
-                                                                            ctx.lineJoin = "round";
+                                          ctx.strokeStyle = currentColor;
+                                          ctx.lineWidth = brushSize;
+                                          ctx.lineCap = "round";
+                                          ctx.lineJoin = "round";
 
-                                                                            ctx.beginPath();
-                                                                            ctx.moveTo(lastX, lastY);
-                                                                            ctx.lineTo(x, y);
-                                                                            ctx.stroke();
+                                          ctx.beginPath();
+                                          ctx.moveTo(lastX, lastY);
+                                          ctx.lineTo(x, y);
+                                          ctx.stroke();
 
-                                                                            lastX = x;
-                                                                            lastY = y;
-                                                                          }
+                                          lastX = x;
+                                          lastY = y;
+                                        }
 
-                                                                          function stopDrawing() {
-                                                                            isDrawing = false;
-                                                                          }
+                                        function stopDrawing() {
+                                          isDrawing = false;
+                                        }
 
-                                                                          function handleTouchStart(e) {
-                                                                            e.preventDefault();
-                                                                            const rect = canvas.getBoundingClientRect();
-                                                                            const touch = e.touches[0];
-                                                                            const scaleX = canvas.width / rect.width;
-                                                                            const scaleY = canvas.height / rect.height;
-                                                                            lastX = (touch.clientX - rect.left) * scaleX;
-                                                                            lastY = (touch.clientY - rect.top) * scaleY;
-                                                                            isDrawing = true;
-                                                                          }
+                                        function handleTouchStart(e) {
+                                          e.preventDefault();
+                                          const rect = canvas.getBoundingClientRect();
+                                          const touch = e.touches[0];
+                                          const scaleX = canvas.width / rect.width;
+                                          const scaleY = canvas.height / rect.height;
+                                          lastX = (touch.clientX - rect.left) * scaleX;
+                                          lastY = (touch.clientY - rect.top) * scaleY;
+                                          isDrawing = true;
+                                        }
 
-                                                                          function handleTouchMove(e) {
-                                                                            if (!isDrawing) return;
-                                                                            e.preventDefault();
+                                        function handleTouchMove(e) {
+                                          if (!isDrawing) return;
+                                          e.preventDefault();
 
-                                                                            const rect = canvas.getBoundingClientRect();
-                                                                            const touch = e.touches[0];
-                                                                            const scaleX = canvas.width / rect.width;
-                                                                            const scaleY = canvas.height / rect.height;
-                                                                            const x = (touch.clientX - rect.left) * scaleX;
-                                                                            const y = (touch.clientY - rect.top) * scaleY;
+                                          const rect = canvas.getBoundingClientRect();
+                                          const touch = e.touches[0];
+                                          const scaleX = canvas.width / rect.width;
+                                          const scaleY = canvas.height / rect.height;
+                                          const x = (touch.clientX - rect.left) * scaleX;
+                                          const y = (touch.clientY - rect.top) * scaleY;
 
-                                                                            ctx.strokeStyle = currentColor;
-                                                                            ctx.lineWidth = brushSize;
-                                                                            ctx.lineCap = "round";
-                                                                            ctx.lineJoin = "round";
+                                          ctx.strokeStyle = currentColor;
+                                          ctx.lineWidth = brushSize;
+                                          ctx.lineCap = "round";
+                                          ctx.lineJoin = "round";
 
-                                                                            ctx.beginPath();
-                                                                            ctx.moveTo(lastX, lastY);
-                                                                            ctx.lineTo(x, y);
-                                                                            ctx.stroke();
+                                          ctx.beginPath();
+                                          ctx.moveTo(lastX, lastY);
+                                          ctx.lineTo(x, y);
+                                          ctx.stroke();
 
-                                                                            lastX = x;
-                                                                            lastY = y;
-                                                                          }
+                                          lastX = x;
+                                          lastY = y;
+                                        }
 
-                                                                          function setColor(color) {
-                                                                            currentColor = color;
-                                                                            colorPicker.value = color;
-                                                                          }
+                                        function setColor(color) {
+                                          currentColor = color;
+                                          colorPicker.value = color;
+                                        }
 
-                                                                          function setBrushSize(size) {
-                                                                            brushSize = size;
+                                        function setBrushSize(size) {
+                                          brushSize = size;
 
-                                                                            // Update active button
-                                                                            document.querySelectorAll(".brush-btn").forEach((btn) => {
-                                                                              btn.classList.remove("active");
-                                                                            });
-                                                                            event.target.closest(".brush-btn").classList.add("active");
-                                                                          }
+                                          // Update active button
+                                          document.querySelectorAll(".brush-btn").forEach((btn) => {
+                                            btn.classList.remove("active");
+                                          });
+                                          event.target.closest(".brush-btn").classList.add("active");
+                                        }
 
-                                                                          function clearCanvas() {
-                                                                            if (
-                                                                            confirm(
-                                                                            "Do you actually want to clear the canvas, or did you accidentally press it?",
-                                                                            )
-                                                                            ) {
-                                                                              ctx.fillStyle = "white";
-                                                                              ctx.fillRect(0, 0, canvas.width, canvas.height);
-                                                                            }
-                                                                          }
+                                        function clearCanvas() {
+                                          if (
+                                          confirm(
+                                          "Do you actually want to clear the canvas, or did you accidentally press it?",
+                                          )
+                                          ) {
+                                            ctx.fillStyle = "white";
+                                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                          }
+                                        }
 
-                                                                          function saveCanvas() {
-                                                                            const link = document.createElement("a");
-                                                                            let imgId = Math.floor(Math.random() * 99999) + 1;
-                                                                            link.download = `artistic-banana-drawing-${imgId}.png`;
-                                                                            link.href = canvas.toDataURL();
-                                                                            link.click();
-                                                                            alert("Your doodle is on your device now! 🎨");
-                                                                          }
+                                        function saveCanvas() {
+                                          const link = document.createElement("a");
+                                          let imgId = Math.floor(Math.random() * 99999) + 1;
+                                          link.download = `artistic-banana-drawing-${imgId}.png`;
+                                          link.href = canvas.toDataURL();
+                                          link.click();
+                                          alert("Your doodle is on your device now! 🎨");
+                                        }
 
-                                                                          // Load saved color on page load
-                                                                          const savedColor = localStorage.getItem('savedColor');
-                                                                          if (savedColor) {
-                                                                            input.value = savedColor;
-                                                                          }
+                                        // Load saved color on page load
+                                        const savedColor = localStorage.getItem('savedColor');
+                                        if (savedColor) {
+                                          input.value = savedColor;
+                                        }
 
-                                                                          // Save new color when button is clicked
-                                                                          saveBtn.addEventListener('click', () => {
-                                                                            const color = input.value.trim();
+                                        // Save new color when button is clicked
+                                        saveBtn.addEventListener('click', () => {
+                                          const color = input.value.trim();
 
-                                                                            // Basic validation (check it starts with # and is 7 chars long)
-                                                                            if (/^#[0-9A-Fa-f]{6}$/.test(color)) {
-                                                                              localStorage.setItem('savedColor', color);
-                                                                              setColor(color)
-                                                                              alert('Switched color successfully!');
-                                                                            }
-                                                                            else {
-                                                                              alert('Please enter a valid hex color code (e.g. #ff5733)');
-                                                                            }
-                                                                          });
+                                          // Basic validation (check it starts with # and is 7 chars long)
+                                          if (/^#[0-9A-Fa-f]{6}$/.test(color)) {
+                                            localStorage.setItem('savedColor', color);
+                                            setColor(color)
+                                            alert('Switched color successfully!');
+                                          }
+                                          else {
+                                            alert('Please enter a valid hex color code (e.g. #ff5733)');
+                                          }
+                                        });
 
-                                                                        </script>
-                                                                      </body>
-                                                                    </html>
+                                      </script>
+                                    </body>
+                                  </html>

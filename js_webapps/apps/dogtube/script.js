@@ -143,7 +143,7 @@ function formatDate(dateString) {
             moreContent.innerHTML = `
             <p>Want more funny dog content?</p>
             <a href="https://youtube.com/@flyingdogwithapencil" target="_blank" class="channel-link">
-              Visit DoggoWing21's channel on YouTube →
+            Visit DoggoWing21's channel on YouTube →
             </a>
             `;
             grid.appendChild(moreContent);
