@@ -1,5 +1,12 @@
 export default [
   {
+    ignores: [
+      "**/*.min.js",
+      "min/**",
+      "node_modules/**",
+    ],
+  },
+  {
     files: ["**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
@@ -25,6 +32,8 @@ export default [
       "no-unreachable": "error",
       "semi": ["warn", "always"],
       "quotes": ["warn", "double"],
+      "indent": ["warn", 2],
+      "comma-dangle": ["warn", "always-multiline"],
     },
   },
 ];
