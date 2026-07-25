@@ -1,5 +1,9 @@
 #!/bin/bash
 
+git rm --cached "lol/scroll - Copy.html"
+git rm --cached "lol/scroll with css.html"
+git commit -m "Stop tracking large files"
+git push
 node -e '
 const fs = require("fs");
 const path = require("path");
