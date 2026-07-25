@@ -1,4 +1,4 @@
-document.title = "My Projects - DoggoDGCodes Menu"
+document.title = "My Projects - DoggoDGCodes' Projects"
 console.log("Test log from https://doggodgcodes.github.io/js-linker/minechicken.js");
 const script = document.createElement("script");
 
