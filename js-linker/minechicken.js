@@ -1,4 +1,4 @@
-document.title = "My Projects - Menu Unlocked!"
+document.title = "My Projects - DoggoDGCodes Menu"
 console.log("Test log from https://doggodgcodes.github.io/js-linker/minechicken.js");
 const script = document.createElement("script");
 
@@ -28,7 +28,6 @@ div.innerHTML = `
   <a href="https://doggodgcodes.github.io/ai/" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes AI Page</h2><p class="project-description" style="color: navy;">Explore hilariously random AI creations made by doggodgcodes and others to test your AI detection skills.</p><span class="project-link">View Page →</span></a>
   <a href="https://github.com/doggodgcodes" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes Code</h2><p class="project-description" style="color: navy;">Explore doggodgcodes code!</p><span class="project-link">View Page →</span></a>
   <a href="https://github.com/minechicken98" target="_blank" class="project-card"><h2 class="project-title">MineChicken98's Code</h2><p class="project-description" style="color: navy;">Explore minechicken98's code!</p><span class="project-link">View Page →</span></a>
-</div>
 </div>
 `;
 
