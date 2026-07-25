@@ -37,7 +37,7 @@ targetFiles.forEach(file => {
     let trimmed = line.trim();
     if (!trimmed) return "";
 
-    if (trimmed.startsWith("<meta") || trimmed.startsWith("<link")) {
+    if (trimmed.startsWith("<meta") || trimmed.startsWith("<link") || trimmed.startsWith("<a") || trimmed.startsWith("</a")  || trimmed.startsWith("<br") || trimmed.startsWith("<hr")) {
       const spaces = " ".repeat(indentLevel * indentSize);
       return spaces + trimmed;
     }
