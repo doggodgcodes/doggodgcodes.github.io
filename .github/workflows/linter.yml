@@ -1,4 +1,4 @@
-name: ESLint Linter
+name: ESLint Auto Fix
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   eslint:
-    name: Run ESLint
+    name: Run ESLint with autofix
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +21,13 @@ jobs:
       - name: Install ESLint
         run: npm install --no-save eslint
 
-      - name: Run ESLint
-        run: npx eslint .
+      - name: Run ESLint autofix
+        run: npx eslint . --fix
+
+      - name: Commit ESLint fixes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "style: eslint autofix run ${{ github.run_number }}"
+          git push
