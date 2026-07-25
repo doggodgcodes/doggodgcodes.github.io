@@ -1,28 +1,28 @@
 // credits to google gemini for coding almost all of this one script
 
 function checkNewsUpdate(targetMonthDay, newMessage) {
-    const today = new Date();
-    const currentYear = today.getFullYear(); // This fetches 2026 (or whatever year it is!)
-    const elementId = "news-banner";
-    
-    // We combine the current year with your Month-Day to make a real date
-    // Your input should be "MM-DD" (Example: "12-25")
-    const switchDate = new Date(`${currentYear}-${targetMonthDay}T00:00:00`);
-    const banner = document.getElementById(elementId);
+  const today = new Date();
+  const currentYear = today.getFullYear(); // This fetches 2026 (or whatever year it is!)
+  const elementId = "news-banner";
 
-    // If today is equal to the switch date, update the banner!
-    if (today == switchDate) {
-        if (banner) {
-            banner.textContent = newMessage; 
-            console.log("News updated for " + targetMonthDay);
-        }
+  // We combine the current year with your Month-Day to make a real date
+  // Your input should be "MM-DD" (Example: "12-25")
+  const switchDate = new Date(`${currentYear}-${targetMonthDay}T00:00:00`);
+  const banner = document.getElementById(elementId);
+
+  // If today is equal to the switch date, update the banner!
+  if (today == switchDate) {
+    if (banner) {
+      banner.textContent = newMessage;
+      console.log("News updated for " + targetMonthDay);
     }
-    else {
-        if (banner) {
-            banner.textContent = "No news today"; 
-            console.log("Nothing new");
-        }
+  }
+  else {
+    if (banner) {
+      banner.textContent = "No news today";
+      console.log("Nothing new");
     }
+  }
 }
 
 // HOW TO USE THE MAGIC:

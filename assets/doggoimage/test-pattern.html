@@ -1,69 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Doggoimage - doggodgcodes (credits to ChatGPT)</title>
-  <style>
-    body {
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: #f0f0f0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Doggoimage - doggodgcodes (credits to ChatGPT)</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f0f0f0;
+      }
 
-    canvas {
-      background: #fff;
-      border: 1px solid #ccc;
-    }
-  </style>
-</head>
-<body>
-  <canvas id="canvas" width="300" height="100"></canvas>
+      canvas {
+        background: #fff;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="100"></canvas>
 
-<script src="test.doggopicture" type="text/javascript"></script>
-  <script>
-	// chatgpt thanks for the help
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-const pixelsPerFrame = 1024;
+    <script src="test.doggopicture" type="text/javascript"></script>
+    <script>
+      // chatgpt thanks for the help
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const pixelsPerFrame = 1024;
 
-// Set canvas size
-canvas.width = pixels;
-canvas.height = pixels;
+      // Set canvas size
+      canvas.width = pixels;
+      canvas.height = pixels;
 
-const brushSize = 1;
-ctx.lineWidth = brushSize;
-ctx.lineCap = "butt";
+      const brushSize = 1;
+      ctx.lineWidth = brushSize;
+      ctx.lineCap = "butt";
 
-let x = 0;
-let y = 0;
-let colorIndex = 0;
+      let x = 0;
+      let y = 0;
+      let colorIndex = 0;
 
-function draw() {
-  if (y >= pixels) return;
+      function draw() {
+        if (y >= pixels) return;
 
-  for (let i = 0; i < pixelsPerFrame; i++) {
-    if (y >= pixels) break; // stop if at bottom
+        for (let i = 0; i < pixelsPerFrame; i++) {
+          if (y >= pixels) break; // stop if at bottom
 
-    const color = colorData[colorIndex % colorData.length];
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, 1, 1);
+          const color = colorData[colorIndex % colorData.length];
+          ctx.fillStyle = color;
+          ctx.fillRect(x, y, 1, 1);
 
-    x++;
-    colorIndex++;
+          x++;
+          colorIndex++;
 
-    if (x >= pixels) {
-      x = 0;
-      y++;
-    }
-  }
+          if (x >= pixels) {
+            x = 0;
+            y++;
+          }
+        }
 
-  requestAnimationFrame(draw);
-}
+        requestAnimationFrame(draw);
+      }
 
-draw();
-  </script>
-</body>
+      draw();
+    </script>
+  </body>
 </html>

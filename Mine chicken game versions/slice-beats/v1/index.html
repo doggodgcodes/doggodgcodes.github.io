@@ -5,22 +5,22 @@
 <html lang="en">
 
 
-<head>
+  <head>
 
 
     <meta charset="UTF-8">
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>Slice Beats - Beat Saber Clone</title>
+        <title>Slice Beats - Beat Saber Clone</title>
 
 
-    <style>
+        <style>
 
 
-        * {
+          * {
 
 
             margin: 0;
@@ -32,13 +32,13 @@
             box-sizing: border-box;
 
 
-        }
+          }
 
 
 
 
 
-        body {
+          body {
 
 
             font-family: 'Arial', sans-serif;
@@ -62,13 +62,13 @@
             height: 100vh;
 
 
-        }
+          }
 
 
 
 
 
-        #gameCanvas {
+          #gameCanvas {
 
 
             border: 3px solid #fff;
@@ -83,13 +83,13 @@
             background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
 
 
-        }
+          }
 
 
 
 
 
-        #ui {
+          #ui {
 
 
             position: absolute;
@@ -116,13 +116,13 @@
             pointer-events: none;
 
 
-        }
+          }
 
 
 
 
 
-        #score {
+          #score {
 
 
             font-weight: bold;
@@ -134,13 +134,13 @@
             color: #ffd700;
 
 
-        }
+          }
 
 
 
 
 
-        #combo {
+          #combo {
 
 
             font-size: 20px;
@@ -152,13 +152,13 @@
             margin-top: 10px;
 
 
-        }
+          }
 
 
 
 
 
-        #gameOver {
+          #gameOver {
 
 
             position: absolute;
@@ -194,13 +194,13 @@
             z-index: 100;
 
 
-        }
+          }
 
 
 
 
 
-        #gameOver h1 {
+          #gameOver h1 {
 
 
             font-size: 48px;
@@ -212,13 +212,13 @@
             color: #ffd700;
 
 
-        }
+          }
 
 
 
 
 
-        #gameOver button {
+          #gameOver button {
 
 
             margin-top: 20px;
@@ -248,25 +248,25 @@
             transition: transform 0.2s;
 
 
-        }
+          }
 
 
 
 
 
-        #gameOver button:hover {
+          #gameOver button:hover {
 
 
             transform: scale(1.1);
 
 
-        }
+          }
 
 
 
 
 
-        #startScreen {
+          #startScreen {
 
 
             position: absolute;
@@ -299,13 +299,13 @@
             z-index: 100;
 
 
-        }
+          }
 
 
 
 
 
-        #startScreen h1 {
+          #startScreen h1 {
 
 
             font-size: 56px;
@@ -320,13 +320,13 @@
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 
 
-        }
+          }
 
 
 
 
 
-        #startScreen p {
+          #startScreen p {
 
 
             font-size: 18px;
@@ -338,13 +338,13 @@
             color: #ddd;
 
 
-        }
+          }
 
 
 
 
 
-        #startScreen button {
+          #startScreen button {
 
 
             padding: 15px 40px;
@@ -374,97 +374,97 @@
             margin: 10px;
 
 
-        }
+          }
 
 
 
 
 
-        #startScreen button:hover {
+          #startScreen button:hover {
 
 
             transform: scale(1.1);
 
 
-        }
+          }
 
 
-    </style>
+        </style>
 
 
-</head>
+      </head>
 
 
-<body>
+      <body>
 
 
-    <div id="ui">
+        <div id="ui">
 
 
-        <div id="score">Score: 0</div>
+          <div id="score">Score: 0</div>
 
 
-        <div id="combo">Combo: 0x</div>
+          <div id="combo">Combo: 0x</div>
 
 
-    </div>
-
-
-
-
-
-    <div id="startScreen">
-
-
-        <h1>🎵 SLICE BEATS 🎵</h1>
-
-
-        <p>Move your mouse to slice the blocks!</p>
-
-
-        <p>Match the color of your saber with the blocks</p>
-
-
-        <button id="startBtn">START GAME</button>
-
-
-    </div>
+        </div>
 
 
 
 
 
-    <div id="gameOver">
+        <div id="startScreen">
 
 
-        <h1>GAME OVER!</h1>
+          <h1>🎵 SLICE BEATS 🎵</h1>
 
 
-        <div id="finalScore"></div>
+          <p>Move your mouse to slice the blocks!</p>
 
 
-        <div id="finalCombo"></div>
+          <p>Match the color of your saber with the blocks</p>
 
 
-        <button id="restartBtn">PLAY AGAIN</button>
+          <button id="startBtn">START GAME</button>
 
 
-    </div>
-
-
-
-
-
-    <canvas id="gameCanvas"></canvas>
+        </div>
 
 
 
 
 
-    <script src="game.js"></script>
+        <div id="gameOver">
 
 
-</body>
+          <h1>GAME OVER!</h1>
 
 
-</html>
+          <div id="finalScore"></div>
+
+
+          <div id="finalCombo"></div>
+
+
+          <button id="restartBtn">PLAY AGAIN</button>
+
+
+        </div>
+
+
+
+
+
+        <canvas id="gameCanvas"></canvas>
+
+
+
+
+
+        <script src="game.js"></script>
+
+
+      </body>
+
+
+    </html>

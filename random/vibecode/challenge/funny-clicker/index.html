@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css" />
     <style>
       body {
-        background-color: #0e7373; 
+        background-color: #0e7373;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -71,80 +71,80 @@
       </div>
       <div class="window-body">
         <img class="meme-img" src="https://doggodgcodes.github.io/assets/retro/certified-burger.jpg">
-        <div id="counter">0 BONKS</div>
-        <button id="clickBtn" style="padding: 10px 20px; cursor: pointer;">CLICK TO BONK!</button>
-        <p>Your progress is saved! 🦍💾</p>
-        <button id="resetBtn" style="margin-top: 10px; color: red;">RESET GAME</button>
-        <img id="thumbsUp" src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png">
-      </div>
-    </div>
-
-    <div class="window">
-      <div class="title-bar"><div class="title-bar-text">Shop</div></div>
-      <div class="window-body">
-        <div class="shop-item">
-          <span>PBJ Jam (2x)</span>
-          <button id="buyPBJ">Cost: 50</button>
+          <div id="counter">0 BONKS</div>
+          <button id="clickBtn" style="padding: 10px 20px; cursor: pointer;">CLICK TO BONK!</button>
+          <p>Your progress is saved! 🦍💾</p>
+          <button id="resetBtn" style="margin-top: 10px; color: red;">RESET GAME</button>
+          <img id="thumbsUp" src="https://doggodgcodes.github.io/assets/memes/Thumbs up guy!.png">
+          </div>
         </div>
-        
-      </div>
-    </div>
 
-    <script>
-      // LOAD DATA FROM THE INTERNET BRAIN (LocalStorage)
-      let count = parseInt(localStorage.getItem('bonks')) || 0;
-      let multiplier = parseInt(localStorage.getItem('mult')) || 1;
-      let hasPBJ = localStorage.getItem('hasPBJ') === 'true';
+        <div class="window">
+          <div class="title-bar"><div class="title-bar-text">Shop</div></div>
+          <div class="window-body">
+            <div class="shop-item">
+              <span>PBJ Jam (2x)</span>
+              <button id="buyPBJ">Cost: 50</button>
+            </div>
 
-      const btn = document.getElementById('clickBtn');
-      const display = document.getElementById('counter');
-      const info = document.getElementById('info');
-      const pbjBtn = document.getElementById('buyPBJ');
-      const thumbs = document.getElementById('thumbsUp');
+          </div>
+        </div>
 
-      function updateDisplay() {
-        display.textContent = count + " BONKS";
-        localStorage.setItem('bonks', count); // Save every time!
-        if(count >= 20) thumbs.style.display = "block";
-      }
+        <script>
+          // LOAD DATA FROM THE INTERNET BRAIN (LocalStorage)
+          let count = parseInt(localStorage.getItem('bonks')) || 0;
+          let multiplier = parseInt(localStorage.getItem('mult')) || 1;
+          let hasPBJ = localStorage.getItem('hasPBJ') === 'true';
 
-      // Initial setup
-      if(hasPBJ) {
-        pbjBtn.innerText = "BOUGHT!";
-        pbjBtn.disabled = true;
-      }
-      updateDisplay();
+          const btn = document.getElementById('clickBtn');
+          const display = document.getElementById('counter');
+          const info = document.getElementById('info');
+          const pbjBtn = document.getElementById('buyPBJ');
+          const thumbs = document.getElementById('thumbsUp');
 
-      btn.addEventListener('click', () => {
-        count += multiplier;
-        updateDisplay();
-        alertSwitch("BONKED!");
-      });
+          function updateDisplay() {
+            display.textContent = count + " BONKS";
+            localStorage.setItem('bonks', count); // Save every time!
+            if(count >= 20) thumbs.style.display = "block";
+          }
 
-      pbjBtn.addEventListener('click', () => {
-        if (count >= 50) {
-          count -= 50;
-          multiplier = 2;
-          hasPBJ = true;
-          localStorage.setItem('mult', 2);
-          localStorage.setItem('hasPBJ', 'true');
-          pbjBtn.innerText = "BOUGHT!";
-          pbjBtn.disabled = true;
+          // Initial setup
+          if(hasPBJ) {
+            pbjBtn.innerText = "BOUGHT!";
+            pbjBtn.disabled = true;
+          }
           updateDisplay();
-          alertSwitch("PBJ SAVED TO BRAIN! 🥪");
-        }
-      });
 
-      // RESET BUTTON FOR TESTING
-      document.getElementById('resetBtn').addEventListener('click', () => {
-        localStorage.clear();
-        location.reload();
-        alert("Well, you just reset!")
-      });
+          btn.addEventListener('click', () => {
+            count += multiplier;
+            updateDisplay();
+            alertSwitch("BONKED!");
+          });
 
-      function alertSwitch(myAlert) {
-        info.textContent = "🚨 " + myAlert + " 🚨";
-      }
-    </script>
-  </body>
-</html>
+          pbjBtn.addEventListener('click', () => {
+            if (count >= 50) {
+              count -= 50;
+              multiplier = 2;
+              hasPBJ = true;
+              localStorage.setItem('mult', 2);
+              localStorage.setItem('hasPBJ', 'true');
+              pbjBtn.innerText = "BOUGHT!";
+              pbjBtn.disabled = true;
+              updateDisplay();
+              alertSwitch("PBJ SAVED TO BRAIN! 🥪");
+            }
+          });
+
+          // RESET BUTTON FOR TESTING
+          document.getElementById('resetBtn').addEventListener('click', () => {
+            localStorage.clear();
+            location.reload();
+            alert("Well, you just reset!")
+          });
+
+          function alertSwitch(myAlert) {
+            info.textContent = "🚨 " + myAlert + " 🚨";
+          }
+        </script>
+      </body>
+    </html>

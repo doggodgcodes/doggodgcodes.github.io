@@ -4,6 +4,6 @@ btnClick.addEventListener("click", clickFunction);
 let clicks = 0
 
 function clickFunction() {
-clicks++;
+  clicks++;
   document.getElementById("numberValue").textContent = clicks;
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <title>Gwaugu Online</title>
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
-    <style>
+      <title>Gwaugu Online</title>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+      <style>
         body { margin: 0; background: #121212; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; height: 100vh; }
         #header { padding: 15px 25px; background: #1f1f1f; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
         #container { display: flex; flex: 1; overflow: hidden; }
@@ -18,20 +18,20 @@
         button:hover { background: #005fa3; }
         button:disabled { background: #444; cursor: not-allowed; }
         code { background: #333; padding: 2px 4px; border-radius: 3px; }
-    </style>
-</head>
-<body>
+      </style>
+    </head>
+    <body>
 
-<div id="header">
-    <div style="font-weight: bold; font-size: 1.2rem;">Gwaugu Online</div>
-    <button id="run-btn" onclick="execute()">Run Code</button>
-</div>
+      <div id="header">
+        <div style="font-weight: bold; font-size: 1.2rem;">Gwaugu Online</div>
+        <button id="run-btn" onclick="execute()">Run Code</button>
+      </div>
 
-<div id="container">
-    <div id="sidebar">
-        <h3>Guide</h3>
-        <p>Use characters to control the <code>asc</code> value</p>
-        <ul>
+      <div id="container">
+        <div id="sidebar">
+          <h3>Guide</h3>
+          <p>Use characters to control the <code>asc</code> value</p>
+          <ul>
             <li><code>g</code>: Increment by 1</li>
             <li><code>w</code>: Decrement by 1</li>
             <li><code>@</code>: Remove 40</li>
@@ -39,110 +39,110 @@
             <li><code>y</code>: Add 10</li></li>
             <li><code>q</code>: Remove 10</li>
             <li><code>!</code>: Output char</li>
-        </ul>
-    </div>
+          </ul>
+        </div>
 
-    <div id="editor-stack">
-        <div class="pane">
+        <div id="editor-stack">
+          <div class="pane">
             <div class="label">STDIN</div>
             <textarea id="user-stdin" placeholder="$!www!wwwy!!ggg!@wwwwwww!$yggggg!qgg!ggg!qgggg!qgg!">$!www!wwwy!!ggg!@wwwwwww!$yggggg!qgg!ggg!qgggg!qgg!</textarea>
+          </div>
+          <div id="output">Loading Pyodide ~15 MB (Python in browser)</div>
         </div>
-        <div id="output">Loading Pyodide ~15 MB (Python in browser)</div>
-    </div>
-</div>
+      </div>
 
-<script>
-    let pyodide;
-    const outputArea = document.getElementById('output');
-    const runBtn = document.getElementById('run-btn');
+      <script>
+        let pyodide;
+        const outputArea = document.getElementById('output');
+        const runBtn = document.getElementById('run-btn');
 
-console.log("Gemini made the Python work in browser")
-    
-    async function init() {
-        pyodide = await loadPyodide();
-        outputArea.innerText = "Ready to run!";
-    }
-    init();
+        console.log("Gemini made the Python work in browser")
 
-    async function execute() {
-        if (!pyodide) return;
-        
-        const userInput = document.getElementById('user-stdin').value;
-        outputArea.innerText = "Running...\n";
-        
-        // Your exact Python logic, escaped for JS
-        const interpreterCode = `
-import sys
-import io
+        async function init() {
+          pyodide = await loadPyodide();
+          outputArea.innerText = "Ready to run!";
+        }
+        init();
 
-# Setup the input/output streams
-sys.stdin = io.StringIO("""${userInput}""")
-sys.stdout = io.StringIO()
+        async function execute() {
+          if (!pyodide) return;
 
-def run_interpreter():
-    # Read the entire code from the redirected stdin
-    code = sys.stdin.read()
-    
-    # Initialize Gwaugu state
-    asc = 32
-    final = ""
+          const userInput = document.getElementById('user-stdin').value;
+          outputArea.innerText = "Running...\n";
 
-    for char in code:
-        # Commands
-        if char == "g":
-            asc += 1
-        elif char == "!":
-            final += chr(asc)
-        elif char == "w":
-            asc -= 1
-        elif char == "y":
-            asc += 10
-        elif char == "q":
-            asc -= 10
-        elif char == "$":
-            asc += 40
-        elif char == "@":
-            asc -= 40
-        
-        # In your previous esolang, '!' printed the current numeric value
-        # If you want that behavior in Gwaugu too, uncomment the next line:
-        # print(asc)
+          // Your exact Python logic, escaped for JS
+          const interpreterCode = `
+          import sys
+          import io
 
-    # Output the final decoded string
-    print(final, end="")
+          # Setup the input/output streams
+          sys.stdin = io.StringIO("""${userInput}""")
+          sys.stdout = io.StringIO()
 
-try:
-    run_interpreter()
-    # Retrieve everything written to sys.stdout
-    result = sys.stdout.getvalue()
-except Exception as e:
-    result = f"Runtime Error: {str(e)}"
+          def run_interpreter():
+          # Read the entire code from the redirected stdin
+          code = sys.stdin.read()
 
-# The last line evaluated is what Pyodide returns to JavaScript
-result
-`;
+          # Initialize Gwaugu state
+          asc = 32
+          final = ""
 
-        try {
+          for char in code:
+          # Commands
+          if char == "g":
+          asc += 1
+          elif char == "!":
+          final += chr(asc)
+          elif char == "w":
+          asc -= 1
+          elif char == "y":
+          asc += 10
+          elif char == "q":
+          asc -= 10
+          elif char == "$":
+          asc += 40
+          elif char == "@":
+          asc -= 40
+
+          # In your previous esolang, '!' printed the current numeric value
+          # If you want that behavior in Gwaugu too, uncomment the next line:
+          # print(asc)
+
+          # Output the final decoded string
+          print(final, end="")
+
+          try:
+          run_interpreter()
+          # Retrieve everything written to sys.stdout
+          result = sys.stdout.getvalue()
+          except Exception as e:
+          result = f"Runtime Error: {str(e)}"
+
+          # The last line evaluated is what Pyodide returns to JavaScript
+          result
+          `;
+
+          try {
             const out = await pyodide.runPythonAsync(interpreterCode);
             outputArea.innerText = out;
-        } catch (err) {
+          } catch (err) {
             outputArea.innerText = "System Error: " + err;
+          }
         }
-    }
 
-  // Save code on every keystroke
-const editor = document.getElementById('user-stdin');
-editor.addEventListener('input', () => {
-    localStorage.setItem('saved_code', editor.value);
-});
+        // Save code on every keystroke
+        const editor = document.getElementById('user-stdin');
+        editor.addEventListener('input', () => {
+          localStorage.setItem('saved_code', editor.value);
+        });
 
-// Load code when the page opens
-window.onload = () => {
-    const saved = localStorage.getItem('saved_code');
-    if (saved) editor.value = saved;
-    init(); // Start Pyodide
-};
-</script>
+        // Load code when the page opens
+        window.onload = () => {
+          const saved = localStorage.getItem('saved_code');
+          if (saved) editor.value = saved;
+          init(); // Start Pyodide
+        };
+      </script>
 
-</body>
-</html>
+    </body>
+  </html>

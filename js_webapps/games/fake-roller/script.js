@@ -2,10 +2,10 @@ const possibleRolls = [
   "Skibidi",
   "Cheezburger",
   "Bussin",
-	"Geometry crashed",
-	"Bingus",
-	"Subscribe",
-	"Spooky"
+  "Geometry crashed",
+  "Bingus",
+  "Subscribe",
+  "Spooky"
 ];
 
 function onRoll() {

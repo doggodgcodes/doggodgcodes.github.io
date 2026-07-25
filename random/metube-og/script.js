@@ -166,18 +166,18 @@ function generateVideoGrid() {
 
   switch (currentView) {
     case "home":
-      pageTitle.textContent = "Home";
-      // Show user videos + fake videos
-      userVideos.forEach((video, index) => {
-        const card = createUserVideoCard(video, index);
-        videoGrid.appendChild(card);
-      });
+    pageTitle.textContent = "Home";
+    // Show user videos + fake videos
+    userVideos.forEach((video, index) => {
+      const card = createUserVideoCard(video, index);
+      videoGrid.appendChild(card);
+    });
 
-      // Add fake videos
-      fakeVideos.forEach((video, index) => {
-        const card = createFakeVideoCard(video, index);
-        videoGrid.appendChild(card);
-      });
+    // Add fake videos
+    fakeVideos.forEach((video, index) => {
+      const card = createFakeVideoCard(video, index);
+      videoGrid.appendChild(card);
+    });
   }
 
   function createFakeVideoCard(video, index) {
@@ -188,18 +188,18 @@ function generateVideoGrid() {
     const gradient = getRandomGradient();
 
     card.innerHTML = `
-        <div class="video-thumbnail" style="background: ${gradient}">
-            <div style="font-size: 64px;">${video.emoji}</div>
-            <div class="video-duration">${Math.floor(Math.random() * 20) + 1}:${String(Math.floor(Math.random() * 60)).padStart(2, "0")}</div>
-        </div>
-        <div class="video-info-card">
-            <div class="channel-icon">AI</div>
-            <div class="video-details">
-                <h3>${video.title}</h3>
-                <p>${video.channel}</p>
-                <p>${video.views} views • ${Math.floor(Math.random() * 24)} hours ago</p>
-            </div>
-        </div>
+    <div class="video-thumbnail" style="background: ${gradient}">
+      <div style="font-size: 64px;">${video.emoji}</div>
+      <div class="video-duration">${Math.floor(Math.random() * 20) + 1}:${String(Math.floor(Math.random() * 60)).padStart(2, "0")}</div>
+    </div>
+    <div class="video-info-card">
+      <div class="channel-icon">AI</div>
+      <div class="video-details">
+        <h3>${video.title}</h3>
+        <p>${video.channel}</p>
+        <p>${video.views} views • ${Math.floor(Math.random() * 24)} hours ago</p>
+      </div>
+    </div>
     `;
 
     return card;
@@ -211,18 +211,18 @@ function generateVideoGrid() {
     card.onclick = () => openUserVideo(video);
 
     card.innerHTML = `
-        <div class="video-thumbnail user-video">
-            <video src="${video.url}" style="pointer-events: none;"></video>
-            <div class="video-duration">${video.duration || "0:00"}</div>
-        </div>
-        <div class="video-info-card">
-            <div class="channel-icon">ME</div>
-            <div class="video-details">
-                <h3>${video.title}</h3>
-                <p>My Channel</p>
-                <p>Just uploaded</p>
-            </div>
-        </div>
+    <div class="video-thumbnail user-video">
+      <video src="${video.url}" style="pointer-events: none;"></video>
+      <div class="video-duration">${video.duration || "0:00"}</div>
+    </div>
+    <div class="video-info-card">
+      <div class="channel-icon">ME</div>
+      <div class="video-details">
+        <h3>${video.title}</h3>
+        <p>My Channel</p>
+        <p>Just uploaded</p>
+      </div>
+    </div>
     `;
 
     return card;
@@ -252,7 +252,7 @@ function generateVideoGrid() {
     channelName.textContent = video.channel;
     channelIcon.textContent = "AI";
     subscriberCount.textContent =
-      Math.floor(Math.random() * 5 + 1) + "M subscribers";
+    Math.floor(Math.random() * 5 + 1) + "M subscribers";
 
     hahaPlayer.style.display = "flex";
     realPlayer.style.display = "none";
@@ -435,7 +435,7 @@ function generateVideoGrid() {
 
     // Update comment count
     document.getElementById("commentCount").textContent =
-      videoComments[currentVideo].length + 3;
+    videoComments[currentVideo].length + 3;
   }
 
   function loadComments() {
@@ -443,33 +443,33 @@ function generateVideoGrid() {
 
     // Default comments
     let html = `
-        <div class="comment">
-            <div class="comment-author">AI Bot #1</div>
-            <div class="comment-text">This is definitely a real video!</div>
-        </div>
-        <div class="comment">
-            <div class="comment-author">Totally Real Person</div>
-            <div class="comment-text">I can't believe this is real!</div>
-        </div>
-        <div class="comment">
-            <div class="comment-author">Not A Robot</div>
-            <div class="comment-text">HAHAHAHAHAHA</div>
-        </div>
+    <div class="comment">
+      <div class="comment-author">AI Bot #1</div>
+      <div class="comment-text">This is definitely a real video!</div>
+    </div>
+    <div class="comment">
+      <div class="comment-author">Totally Real Person</div>
+      <div class="comment-text">I can't believe this is real!</div>
+    </div>
+    <div class="comment">
+      <div class="comment-author">Not A Robot</div>
+      <div class="comment-text">HAHAHAHAHAHA</div>
+    </div>
     `;
 
     // Add user comments
     if (currentVideo && videoComments[currentVideo]) {
       videoComments[currentVideo].forEach((comment) => {
         html += `
-                <div class="comment">
-                    <div class="comment-author">${comment.author}</div>
-                    <div class="comment-text">${comment.text}</div>
-                </div>
-            `;
+        <div class="comment">
+          <div class="comment-author">${comment.author}</div>
+          <div class="comment-text">${comment.text}</div>
+        </div>
+        `;
       });
 
       document.getElementById("commentCount").textContent =
-        videoComments[currentVideo].length + 3;
+      videoComments[currentVideo].length + 3;
     } else {
       document.getElementById("commentCount").textContent = "3";
     }
@@ -547,8 +547,8 @@ function generateVideoGrid() {
       item.classList.remove("active");
     });
     document
-      .querySelector(`.sidebar-item[data-view="${currentView}"]`)
-      ?.classList.add("active");
+    .querySelector(`.sidebar-item[data-view="${currentView}"]`)
+    ?.classList.add("active");
   }
 
   // Close modals when clicking outside
@@ -592,8 +592,8 @@ function generateVideoGrid() {
   document.querySelectorAll(".chip").forEach((chip) => {
     chip.addEventListener("click", function () {
       document
-        .querySelectorAll(".chip")
-        .forEach((c) => c.classList.remove("active"));
+      .querySelectorAll(".chip")
+      .forEach((c) => c.classList.remove("active"));
       this.classList.add("active");
     });
   });
@@ -644,7 +644,7 @@ function generateVideoGrid() {
 
     if (subscriptions.length === 0) {
       list.innerHTML =
-        '<div class="sidebar-item" style="color: #aaa; font-size: 12px;">No subscriptions yet</div>';
+      '<div class="sidebar-item" style="color: #aaa; font-size: 12px;">No subscriptions yet</div>';
       return;
     }
 
@@ -671,7 +671,7 @@ function generateVideoGrid() {
 
     if (channelVideos.length === 0) {
       videoGrid.innerHTML =
-        '<p style="color: #aaa; font-size: 18px; padding: 40px;">No videos from this channel.</p>';
+      '<p style="color: #aaa; font-size: 18px; padding: 40px;">No videos from this channel.</p>';
     } else {
       channelVideos.forEach((video) => {
         const card = createFakeVideoCard(video, 0);
