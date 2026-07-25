@@ -1,35 +1,55 @@
 #!/bin/bash
 
-# run inline node script to fix indentation across javascript files
+# run inline node script to fix indentation across all js and html files
 node -e '
 const fs = require("fs");
-const file = "chatbot.js"; // replace with your file name
-const content = fs.readFileSync(file, "utf-8");
-const lines = content.split("\n");
+const path = require("path");
 
-let indentLevel = 0;
-const indentSize = 2; // 2 spaces per level
+function getFiles(dir) {
+  let results = [];
+  const list = fs.readdirSync(dir);
+  list.forEach(file => {
+    file = path.join(dir, file);
+    const stat = fs.statSync(file);
+    if (stat && stat.isDirectory()) {
+      if (!file.includes("node_modules") && !file.includes(".git")) {
+        results = results.concat(getFiles(file));
+      }
+    } else if (file.endsWith(".js") || file.endsWith(".html")) {
+      results.push(file);
+    }
+  });
+  return results;
+}
 
-const formattedLines = lines.map(line => {
-  let trimmed = line.trim();
-  if (!trimmed) return "";
+const targetFiles = getFiles(".");
 
-  // decrease indent level if line starts with closing bracket
-  if (trimmed.startsWith("}") || trimmed.startsWith("]")) {
-    indentLevel = Math.max(0, indentLevel - 1);
-  }
+targetFiles.forEach(file => {
+  const content = fs.readFileSync(file, "utf-8");
+  const lines = content.split("\n");
 
-  const spaces = " ".repeat(indentLevel * indentSize);
-  const result = spaces + trimmed;
+  let indentLevel = 0;
+  const indentSize = 2;
 
-  // increase indent level if line ends with opening bracket
-  if (trimmed.endsWith("{") || trimmed.endsWith("[")) {
-    indentLevel++;
-  }
+  const formattedLines = lines.map(line => {
+    let trimmed = line.trim();
+    if (!trimmed) return "";
 
-  return result;
+    if (trimmed.startsWith("}") || trimmed.startsWith("]") || trimmed.startsWith("</")) {
+      indentLevel = Math.max(0, indentLevel - 1);
+    }
+
+    const spaces = " ".repeat(indentLevel * indentSize);
+    const result = spaces + trimmed;
+
+    if (trimmed.endsWith("{") || trimmed.endsWith("[") || (trimmed.includes("<") && !trimmed.includes("</") && !trimmed.endsWith("/>") && !trimmed.startsWith("<!"))) {
+      indentLevel++;
+    }
+
+    return result;
+  });
+
+  fs.writeFileSync(file, formattedLines.join("\n"));
+  console.log("successfully formatted " + file);
 });
-
-fs.writeFileSync(file, formattedLines.join("\n"));
-console.log("Successfully formatted " + file + " with custom script!");
 '
