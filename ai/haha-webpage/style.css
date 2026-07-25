@@ -16,7 +16,7 @@ header {
   animation: flash 2s infinite;
 }
 .title {
-	color: #5C6AC4;
+  color: #5C6AC4;
 }
 #currentTime {
   font-size: 3em;

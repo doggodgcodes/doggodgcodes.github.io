@@ -1,41 +1,41 @@
 body {
-    background: #142079;
-    color: #e0e0e0;
-    font-family: 'Segoe UI', sans-serif;
+  background: #142079;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #C8FFFF;
-    text-shadow: 0 0 5px #000000, 0 0 10px #111111;
+  color: #C8FFFF;
+  text-shadow: 0 0 5px #000000, 0 0 10px #111111;
 }
 
 .button {
-    background-color: white;
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 .button:hover {
-    background-color: #364b5c;
-	color: #81b3db;
+  background-color: #364b5c;
+  color: #81b3db;
 }
 
 iframe {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 870px;
-    height: 470px;
-    border: 10px solid #324fce;
-	border-radius: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 870px;
+  height: 470px;
+  border: 10px solid #324fce;
+  border-radius: 20px;
 }
 
 #gameSelector, #collapseBtn {

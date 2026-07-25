@@ -1,27 +1,27 @@
 .r {
-	background-color: #ff0000
+  background-color: #ff0000
 }
 .o {
-	background-color: #ffa500
+  background-color: #ffa500
 }
 .y {
-	background-color: #ffff00
+  background-color: #ffff00
 }
 .g {
-	background-color: #00ff00
+  background-color: #00ff00
 }
 .b {
-	background-color: #0000ff
+  background-color: #0000ff
 }
 .i {
-	background-color: #4b0082
+  background-color: #4b0082
 }
 .v {
-	background-color: #550aa3
+  background-color: #550aa3
 }
 .opz {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 .box-shadow {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

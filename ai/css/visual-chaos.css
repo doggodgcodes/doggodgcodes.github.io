@@ -37,9 +37,9 @@ h1, h2, h3 {
   letter-spacing: 4px;
   color: var(--radioactive-green);
   text-shadow:
-    2px 2px 0 var(--ugly-pink),
-    -2px -2px 0 var(--mystery-blue),
-    5px 5px 10px black;
+  2px 2px 0 var(--ugly-pink),
+  -2px -2px 0 var(--mystery-blue),
+  5px 5px 10px black;
   animation: jitter 0.2s infinite;
 }
 
@@ -76,11 +76,11 @@ button {
 button:hover {
   transform: rotate(360deg) scale(1.5);
   background: repeating-linear-gradient(
-    45deg,
-    red,
-    red 10px,
-    yellow 10px,
-    yellow 20px
+  45deg,
+  red,
+  red 10px,
+  yellow 10px,
+  yellow 20px
   );
   color: white;
 }
@@ -117,8 +117,8 @@ a::after {
   border-radius: 20px;
   border: 2px solid hotpink;
   box-shadow:
-    0 0 20px cyan,
-    inset 0 0 30px magenta;
+  0 0 20px cyan,
+  inset 0 0 30px magenta;
   padding: 20px;
   animation: floaty 3s infinite ease-in-out;
 }
@@ -137,11 +137,11 @@ a::after {
 
 ::-webkit-scrollbar-track {
   background: repeating-linear-gradient(
-    0deg,
-    black,
-    black 10px,
-    yellow 10px,
-    yellow 20px
+  0deg,
+  black,
+  black 10px,
+  yellow 10px,
+  yellow 20px
   );
 }
 

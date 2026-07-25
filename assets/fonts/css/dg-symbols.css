@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'DG Symbols';
-    src: url('../dg-symbols-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'DG Symbols';
+  src: url('../dg-symbols-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 .symbolsfont {
-    font-family: 'DG Symbols', sans-serif;
+  font-family: 'DG Symbols', sans-serif;
 }

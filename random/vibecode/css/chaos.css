@@ -1,13 +1,13 @@
-/* 
+/*
 ===========================================
-  CHAOS.CSS
-  Made by ChatGPT 😎
-  You are not ready.
+CHAOS.CSS
+Made by ChatGPT 😎
+You are not ready.
 ===========================================
 */
 
 /* ------------------------------
-   Global Vibes
+Global Vibes
 ------------------------------ */
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Comic+Neue:wght@700&display=swap');
@@ -39,7 +39,7 @@ body {
 }
 
 /* ------------------------------
-   Headings = Drama
+Headings = Drama
 ------------------------------ */
 
 h1, h2, h3 {
@@ -54,12 +54,12 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(2rem, 8vw, 6rem);
   text-shadow:
-    3px 3px 0 var(--neon-pink),
-    -3px -3px 0 var(--neon-blue);
+  3px 3px 0 var(--neon-pink),
+  -3px -3px 0 var(--neon-blue);
 }
 
 /* ------------------------------
-   Paragraphs = Suspicious
+Paragraphs = Suspicious
 ------------------------------ */
 
 p {
@@ -79,7 +79,7 @@ p:hover {
 }
 
 /* ------------------------------
-   Buttons = Danger
+Buttons = Danger
 ------------------------------ */
 
 button {
@@ -106,7 +106,7 @@ button:hover {
 }
 
 /* ------------------------------
-   Links = Suspicious Portals
+Links = Suspicious Portals
 ------------------------------ */
 
 a {
@@ -127,7 +127,7 @@ a:hover::after {
 }
 
 /* ------------------------------
-   Images = Dramatic
+Images = Dramatic
 ------------------------------ */
 
 img {
@@ -145,7 +145,7 @@ img:hover {
 }
 
 /* ------------------------------
-   Divs = Chaos Containers
+Divs = Chaos Containers
 ------------------------------ */
 
 div {
@@ -162,7 +162,7 @@ div:hover {
 }
 
 /* ------------------------------
-   Scrollbar = Custom Vibes
+Scrollbar = Custom Vibes
 ------------------------------ */
 
 ::-webkit-scrollbar {
@@ -179,7 +179,7 @@ div:hover {
 }
 
 /* ------------------------------
-   Animations
+Animations
 ------------------------------ */
 
 @keyframes backgroundShift {
@@ -197,7 +197,7 @@ div:hover {
 }
 
 /* ------------------------------
-   Secret Chaos
+Secret Chaos
 ------------------------------ */
 
 body::after {
