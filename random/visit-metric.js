@@ -2,7 +2,7 @@ function setCookie(name, value, daysToLive){
   const date = new Date();
   date.setTime(date.getTime() +  (daysToLive * 24 * 60 * 60 * 1000));
   let expires = "expires=" + date.toUTCString();
-  document.cookie = `${name}=${value}; ${expires}; path=/`
+  document.cookie = `${name}=${value}; ${expires}; path=/`;
 }
 function deleteCookie(name){
   setCookie(name, null, null);
@@ -14,9 +14,9 @@ function getCookie(name){
 
   cArray.forEach(element => {
     if(element.indexOf(name) == 0){
-      result = element.substring(name.length + 1)
+      result = element.substring(name.length + 1);
     }
-  })
+  });
   return result;
 }
 
@@ -40,4 +40,4 @@ if (cookieVisits != null) {
 // Display the number of visits
 document.getElementById("visitCount").innerText = `You have visited the random webpage ${visits} times`;
 console.log(visits);
-console.log(window.location.href)
+console.log(window.location.href);

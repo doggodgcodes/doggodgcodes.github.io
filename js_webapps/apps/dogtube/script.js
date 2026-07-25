@@ -12,7 +12,7 @@ let subscriberCount = "283";
 async function fetchSubscriberCount() {
   try {
     const response = await fetch(
-    `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`,
     );
     const data = await response.json();
     if (data.items && data.items.length > 0) {
@@ -56,7 +56,7 @@ async function fetchVideos() {
 
       // Get view count from media:statistics
       const statsElement = entry.querySelector(
-      "media\\:statistics, statistics",
+        "media\\:statistics, statistics",
       );
       const views = statsElement?.getAttribute("views") || "0";
 
@@ -75,7 +75,7 @@ async function fetchVideos() {
   } catch (error) {
     console.error("Error fetching videos:", error);
     document.getElementById("videoGrid").innerHTML =
-    '<div class="error">404 Not Found</div>';
+    "<div class=\"error\">404 Not Found</div>";
   }
 }
 
@@ -97,28 +97,28 @@ function formatDate(dateString) {
   if (diffDays === 0) return "Today";
   if (diffDays === 1) return "Yesterday";
   if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
-      if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
-        return `${Math.floor(diffDays / 365)} years ago`;
-      }
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+  return `${Math.floor(diffDays / 365)} years ago`;
+}
 
-      function displayVideos() {
-        const grid = document.getElementById("videoGrid");
-        grid.innerHTML = "";
+function displayVideos() {
+  const grid = document.getElementById("videoGrid");
+  grid.innerHTML = "";
 
-        // Show only the first 15 videos
-        const displayedVideos = videos.slice(0, 15);
+  // Show only the first 15 videos
+  const displayedVideos = videos.slice(0, 15);
 
-        displayedVideos.forEach((video) => {
-          const card = document.createElement("div");
-          card.className = "video-card";
-          card.onclick = () => openVideo(video);
+  displayedVideos.forEach((video) => {
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.onclick = () => openVideo(video);
 
-          const avatarImg = channelAvatar
-          ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile" style="width: 36px; height: 36px; border-radius: 50%;">`
-            : "";
+    const avatarImg = channelAvatar
+      ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile" style="width: 36px; height: 36px; border-radius: 50%;">`
+      : "";
 
-            card.innerHTML = `
+    card.innerHTML = `
             <div class="thumbnail">
               <img src="${video.thumbnail}" alt="${video.title}">
             </div>
@@ -134,63 +134,63 @@ function formatDate(dateString) {
             </div>
             `;
 
-            grid.appendChild(card);
-          });
+    grid.appendChild(card);
+  });
 
-          // Add message at the bottom
-          const moreContent = document.createElement("div");
-          moreContent.className = "more-videos-message";
-          moreContent.innerHTML = `
+  // Add message at the bottom
+  const moreContent = document.createElement("div");
+  moreContent.className = "more-videos-message";
+  moreContent.innerHTML = `
           <p>Want more funny dog content?</p>
           <a href="https://youtube.com/@flyingdogwithapencil" target="_blank" class="channel-link">
             Visit DoggoWing21's channel on YouTube →
           </a>
           `;
-          grid.appendChild(moreContent);
-        }
+  grid.appendChild(moreContent);
+}
 
-        function updateChannelStats() {
-          const statsElement = document.querySelector(".channel-stats");
-          if (statsElement) {
-            statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
-          }
-        }
+function updateChannelStats() {
+  const statsElement = document.querySelector(".channel-stats");
+  if (statsElement) {
+    statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
+  }
+}
 
-        function updateChannelAvatar() {
-          const headerAvatar = document.querySelector(".channel-avatar");
-          if (headerAvatar && channelAvatar) {
-            headerAvatar.innerHTML = `<img src="${channelAvatar}" alt="DoggoWing21" style="width: 80px; height: 80px; border-radius: 50%;">`;
-            }
-          }
+function updateChannelAvatar() {
+  const headerAvatar = document.querySelector(".channel-avatar");
+  if (headerAvatar && channelAvatar) {
+    headerAvatar.innerHTML = `<img src="${channelAvatar}" alt="DoggoWing21" style="width: 80px; height: 80px; border-radius: 50%;">`;
+  }
+}
 
-          function openVideo(video) {
-            const modal = document.getElementById("videoModal");
-            const player = document.getElementById("videoPlayer");
-            const title = document.getElementById("modalVideoTitle");
+function openVideo(video) {
+  const modal = document.getElementById("videoModal");
+  const player = document.getElementById("videoPlayer");
+  const title = document.getElementById("modalVideoTitle");
 
-            player.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-            title.textContent = video.title;
+  player.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  title.textContent = video.title;
 
-            modal.classList.add("active");
-          }
+  modal.classList.add("active");
+}
 
-          function closeModal() {
-            const modal = document.getElementById("videoModal");
-            const player = document.getElementById("videoPlayer");
+function closeModal() {
+  const modal = document.getElementById("videoModal");
+  const player = document.getElementById("videoPlayer");
 
-            player.innerHTML = "";
-            modal.classList.remove("active");
-          }
+  player.innerHTML = "";
+  modal.classList.remove("active");
+}
 
-          // Close modal when clicking outside
-          document.getElementById("videoModal")?.addEventListener("click", (e) => {
-            if (e.target.id === "videoModal") {
-              closeModal();
-            }
-          });
+// Close modal when clicking outside
+document.getElementById("videoModal")?.addEventListener("click", (e) => {
+  if (e.target.id === "videoModal") {
+    closeModal();
+  }
+});
 
-          // Load videos and subscriber count on page load
-          document.addEventListener("DOMContentLoaded", async () => {
-            await fetchSubscriberCount();
-            await fetchVideos();
-          });
+// Load videos and subscriber count on page load
+document.addEventListener("DOMContentLoaded", async () => {
+  await fetchSubscriberCount();
+  await fetchVideos();
+});

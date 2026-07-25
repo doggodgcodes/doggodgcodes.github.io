@@ -165,7 +165,7 @@ function generateVideoGrid() {
   videoGrid.innerHTML = "";
 
   switch (currentView) {
-    case "home":
+  case "home":
     pageTitle.textContent = "Home";
     // Show user videos + fake videos
     userVideos.forEach((video, index) => {
@@ -547,8 +547,8 @@ function generateVideoGrid() {
       item.classList.remove("active");
     });
     document
-    .querySelector(`.sidebar-item[data-view="${currentView}"]`)
-    ?.classList.add("active");
+      .querySelector(`.sidebar-item[data-view="${currentView}"]`)
+      ?.classList.add("active");
   }
 
   // Close modals when clicking outside
@@ -592,8 +592,8 @@ function generateVideoGrid() {
   document.querySelectorAll(".chip").forEach((chip) => {
     chip.addEventListener("click", function () {
       document
-      .querySelectorAll(".chip")
-      .forEach((c) => c.classList.remove("active"));
+        .querySelectorAll(".chip")
+        .forEach((c) => c.classList.remove("active"));
       this.classList.add("active");
     });
   });
@@ -644,7 +644,7 @@ function generateVideoGrid() {
 
     if (subscriptions.length === 0) {
       list.innerHTML =
-      '<div class="sidebar-item" style="color: #aaa; font-size: 12px;">No subscriptions yet</div>';
+      "<div class=\"sidebar-item\" style=\"color: #aaa; font-size: 12px;\">No subscriptions yet</div>";
       return;
     }
 
@@ -671,7 +671,7 @@ function generateVideoGrid() {
 
     if (channelVideos.length === 0) {
       videoGrid.innerHTML =
-      '<p style="color: #aaa; font-size: 18px; padding: 40px;">No videos from this channel.</p>';
+      "<p style=\"color: #aaa; font-size: 18px; padding: 40px;\">No videos from this channel.</p>";
     } else {
       channelVideos.forEach((video) => {
         const card = createFakeVideoCard(video, 0);

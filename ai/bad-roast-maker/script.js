@@ -4,7 +4,7 @@ const words = [
   "awkward", "spoon", "keyboard", "mystery", "soup",
   "gravity", "noodle", "error", "vibes", "cheese",
   "lamp", "confused", "pickle", "toaster", "juice",
-  "beige", "gremlin", "static", "crumbs", "fortnite", "battlepass", "yoooooo"
+  "beige", "gremlin", "static", "crumbs", "fortnite", "battlepass", "yoooooo",
 ];
 
 function generateRoast() {

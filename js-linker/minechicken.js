@@ -1,4 +1,4 @@
-document.title = "My Projects - DoggoDGCodes' Projects"
+document.title = "My Projects - DoggoDGCodes' Projects";
 console.log("Test log from https://doggodgcodes.github.io/js-linker/minechicken.js");
 const script = document.createElement("script");
 
@@ -64,6 +64,6 @@ const a2 = document.createElement("script");
 a2.src = "https://doggodgcodes.github.io/april_fools.js";
 
 // IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
-console.log("Appended April Fools.js")
+console.log("Appended April Fools.js");
 document.body.appendChild(a);
 document.body.appendChild(a2);

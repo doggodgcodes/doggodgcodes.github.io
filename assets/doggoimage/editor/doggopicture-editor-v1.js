@@ -7,7 +7,7 @@ const colors = [
 ];
 
 function c(color) {
-  console.log('"' + colors[color] + '",');
+  console.log("\"" + colors[color] + "\",");
 }
 
 // run this in the browser to make color data

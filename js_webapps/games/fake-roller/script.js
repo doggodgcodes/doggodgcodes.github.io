@@ -5,7 +5,7 @@ const possibleRolls = [
   "Geometry crashed",
   "Bingus",
   "Subscribe",
-  "Spooky"
+  "Spooky",
 ];
 
 function onRoll() {

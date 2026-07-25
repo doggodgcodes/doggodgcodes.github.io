@@ -1,1 +1,1 @@
-console.log("fortnite battlepass")
+console.log("fortnite battlepass");

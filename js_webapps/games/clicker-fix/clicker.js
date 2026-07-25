@@ -1,7 +1,7 @@
 const btnClick = document.getElementById("btnClick");
 
 btnClick.addEventListener("click", clickFunction);
-let clicks = 0
+let clicks = 0;
 
 function clickFunction() {
   clicks++;

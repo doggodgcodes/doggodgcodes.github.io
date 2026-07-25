@@ -1,7 +1,7 @@
 (function() {
   // 1. Updated CSS with a "wobble" animation
   // trail by gemini
-  const style = document.createElement('style');
+  const style = document.createElement("style");
   style.textContent = `
   .click-popup {
     position: fixed;
@@ -32,21 +32,21 @@
   `;
   document.head.appendChild(style);
 
-  document.addEventListener('click', function(e) {
-    const img = document.createElement('img');
-    console.log("trail clicky")
+  document.addEventListener("click", function(e) {
+    const img = document.createElement("img");
+    console.log("trail clicky");
 
     // Randomize size (5px to 25px)
     const size = Math.floor(Math.random() * (25 - 5 + 1)) + 5;
 
     img.src = "https://doggodgcodes.github.io/assets/memes/Thumbs%20up%20guy!.png";
-    img.className = 'click-popup';
+    img.className = "click-popup";
 
     // Styling and positioning
-    img.style.width = size + 'px';
-    img.style.height = 'auto';
-    img.style.left = (e.clientX - size / 2) + 'px';
-    img.style.top = (e.clientY - size / 2) + 'px';
+    img.style.width = size + "px";
+    img.style.height = "auto";
+    img.style.left = (e.clientX - size / 2) + "px";
+    img.style.top = (e.clientY - size / 2) + "px";
 
     document.body.appendChild(img);
 

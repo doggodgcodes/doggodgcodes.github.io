@@ -1,1 +1,1 @@
-Game.lumpMatureAge = 1
+Game.lumpMatureAge = 1;
