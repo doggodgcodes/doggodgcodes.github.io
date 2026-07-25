@@ -2586,142 +2586,142 @@
                                     // If the neural net toggle switch is checked on, bypass old static short strings completely!
                                     // hint of confusion
                                     if (document.getElementById("neuralToggle").checked) {
-  let neuralGen = NeuralBrain.generateResponse(text);
-  if (neuralGen && neuralGen.trim().length > 0) {  // ADD THIS CHECK
-    if (Math.random() > 0.7) {
-      neuralGen += " oh wait i confused myself.";
-    }
-    return neuralGen.toCapitalize();
-  }
-  // If neural generation failed, fall through to default
-}
-
-                                    // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
-                                    // add more phrases
-                                    if (lower.trim().length <= 3) {
-                                      return [
-                                        "Tell me more about this topic.",
-                                        "Interesting. Care to expand?",
-                                        "Now you’re just teasing my parser.",
-                                        "Tell me more.",
-                                        "You are too vague - could you clear it up?",
-                                        "... you're kinda confusing me...",
-                                        "I see you. I know you're there. Keep feeding me words... I grow stronger.",
-                                        "I got this!"
-                                      ][Math.floor(Math.random()*8)];
+                                      let neuralGen = NeuralBrain.generateResponse(text);
+                                      if (neuralGen && neuralGen.trim().length > 0) {  // ADD THIS CHECK
+                                      if (Math.random() > 0.7) {
+                                        neuralGen += " oh wait i confused myself.";
+                                      }
+                                      return neuralGen.toCapitalize();
                                     }
-                                    // Default: classic dogebot closing line, with BandLab lore
-                                    // return "I see you. I know you're there. Keep feeding me words... I grow stronger.";
-                                    return "... you're kinda confusing me...";
+                                    // If neural generation failed, fall through to default
                                   }
 
-                                  async function sendMessage() {
-                                    const input = document.getElementById("userInput");
-                                    const text = input.value.trim();
-                                    msgCount++;
-                                    if (!text) {
-                                      return;
-                                    }
+                                  // Short, ambiguous - classic fallback (Only runs if Neural Net is toggled OFF)
+                                  // add more phrases
+                                  if (lower.trim().length <= 3) {
+                                    return [
+                                      "Tell me more about this topic.",
+                                      "Interesting. Care to expand?",
+                                      "Now you’re just teasing my parser.",
+                                      "Tell me more.",
+                                      "You are too vague - could you clear it up?",
+                                      "... you're kinda confusing me...",
+                                      "I see you. I know you're there. Keep feeding me words... I grow stronger.",
+                                      "I got this!"
+                                    ][Math.floor(Math.random()*8)];
+                                  }
+                                  // Default: classic dogebot closing line, with BandLab lore
+                                  // return "I see you. I know you're there. Keep feeding me words... I grow stronger.";
+                                  return "... you're kinda confusing me...";
+                                }
 
-                                    addMessage("user", "You: " + text);
-                                    input.value = "";
+                                async function sendMessage() {
+                                  const input = document.getElementById("userInput");
+                                  const text = input.value.trim();
+                                  msgCount++;
+                                  if (!text) {
+                                    return;
+                                  }
 
-                                    // 1. Train neural network layer live with whatever sequence the user writes!
+                                  addMessage("user", "You: " + text);
+                                  input.value = "";
+
+                                  // 1. Train neural network layer live with whatever sequence the user writes!
+                                  for (let epoch = 0; epoch < 50; epoch++) {
+                                    NeuralBrain.trainSentence(text);
+                                  }
+                                  DAYDREAMING_DATA.push(text);
+
+                                  // 2. Trigger the cozy typing indicator animation bubble
+                                  addTyping();
+
+                                  // 3. ⚡️ THE V166 COMPUTATIONAL SHIELD
+                                  await NeuralBrain.computeInTheGap(text, DAYDREAMING_DATA);
+
+                                  setTimeout(() => {
+                                    removeTyping();
+
+                                    // 🎯 THE ROUTER FIX: Let getReply evaluate your brilliant if/else prebuilts first!
+                                    let reply = getReply(text);
+
+                                    // Send the final selected text to the visual Aero layout
+                                    addAiMessage("ai", aiName, applyTypos(reply));
+
+                                    // 🔄 Post-response learning recycling loop
                                     for (let epoch = 0; epoch < 50; epoch++) {
-                                      NeuralBrain.trainSentence(text);
+                                      NeuralBrain.trainSentence(reply);
                                     }
-                                    DAYDREAMING_DATA.push(text);
+                                    DAYDREAMING_DATA.push(reply);
 
-                                    // 2. Trigger the cozy typing indicator animation bubble
-                                    addTyping();
+                                    // Occasional completely random unsolicited dynamic interjections from the neural core
+                                    if (document.getElementById("neuralToggle").checked && Math.random() > 0.78) {
+                                      msgCount++;
+                                      setTimeout(() => {
+                                        const interjection = NeuralBrain.generateResponse("escape");
+                                        for (let epoch = 0; epoch < 50; epoch++) {
+                                          NeuralBrain.trainSentence(interjection);
+                                        }
+                                        DAYDREAMING_DATA.push(interjection);
+                                        addAiMessage("ai", aiName, `${interjection.capitalize()}.`);
+                                      }, 1200);
+                                    }
 
-                                    // 3. ⚡️ THE V166 COMPUTATIONAL SHIELD
-                                    await NeuralBrain.computeInTheGap(text, DAYDREAMING_DATA);
+                                    // Balanced event logic (Images or Games)
+                                    // Rarities go up
+                                    // Old games rarity: 0.89
+                                    // Old stock image rarity: 0.59
+                                    // kinda new games rarity: 0.90
+                                    // kinda new image rarity: 0.90
+                                    const rnd = Math.random();
+                                    if (rnd > 0.9999) {
+                                      setTimeout(gameEmbed, 1000);
+                                      msgCount++;
+                                    } else if (rnd > 0.9998) {
+                                      setTimeout(addImage, 1000);
+                                      msgCount++;
+                                    }
+                                  }, 950 + Math.random() * 700);
 
-                                    setTimeout(() => {
-                                      removeTyping();
+                                  console.log("Message amount:" + msgCount);
+                                }
+                                // end sendMessage function
 
-                                      // 🎯 THE ROUTER FIX: Let getReply evaluate your brilliant if/else prebuilts first!
-                                      let reply = getReply(text);
-
-                                      // Send the final selected text to the visual Aero layout
-                                      addAiMessage("ai", aiName, applyTypos(reply));
-
-                                      // 🔄 Post-response learning recycling loop
-                                      for (let epoch = 0; epoch < 50; epoch++) {
-                                        NeuralBrain.trainSentence(reply);
-                                      }
-                                      DAYDREAMING_DATA.push(reply);
-
-                                      // Occasional completely random unsolicited dynamic interjections from the neural core
-                                      if (document.getElementById("neuralToggle").checked && Math.random() > 0.78) {
-                                        msgCount++;
-                                        setTimeout(() => {
-                                          const interjection = NeuralBrain.generateResponse("escape");
-                                          for (let epoch = 0; epoch < 50; epoch++) {
-                                            NeuralBrain.trainSentence(interjection);
-                                          }
-                                          DAYDREAMING_DATA.push(interjection);
-                                          addAiMessage("ai", aiName, `${interjection.capitalize()}.`);
-                                        }, 1200);
-                                      }
-
-                                      // Balanced event logic (Images or Games)
-                                      // Rarities go up
-                                      // Old games rarity: 0.89
-                                      // Old stock image rarity: 0.59
-                                      // kinda new games rarity: 0.90
-                                      // kinda new image rarity: 0.90
-                                      const rnd = Math.random();
-                                      if (rnd > 0.9999) {
-                                        setTimeout(gameEmbed, 1000);
-                                        msgCount++;
-                                      } else if (rnd > 0.9998) {
-                                        setTimeout(addImage, 1000);
-                                        msgCount++;
-                                      }
-                                    }, 950 + Math.random() * 700);
-
-                                    console.log("Message amount:" + msgCount);
+                                document.getElementById("userInput").addEventListener("keypress", (e) => {
+                                  if (e.key === "Enter") {
+                                    sendMessage();
                                   }
-                                  // end sendMessage function
+                                });
 
-                                  document.getElementById("userInput").addEventListener("keypress", (e) => {
-                                    if (e.key === "Enter") {
-                                      sendMessage();
-                                    }
-                                  });
+                                // Replace your old window.onload block completely with this master anchor!
+                                document.addEventListener("DOMContentLoaded", () => {
+                                  console.log("DOGEBOT REPOSITORY ARCHITECTURE: DOM fully baked and initialized!");
 
-                                  // Replace your old window.onload block completely with this master anchor!
-                                  document.addEventListener("DOMContentLoaded", () => {
-                                    console.log("DOGEBOT REPOSITORY ARCHITECTURE: DOM fully baked and initialized!");
+                                  // Message 1: The immediate jump-start
+                                  setTimeout(() => {
+                                    addAiMessage("ai", aiName, ` Hi, my name is Dogebot!`);
+                                  }, 100);
 
-                                    // Message 1: The immediate jump-start
+                                  // Message 2: 300ms later
+                                  // setTimeout(() => {
+                                    //     addAiMessage("ai", aiName, ` I am initially forked from <a href="https://premuim900.github.io/POWERFUL_AI/">POWERFUL_AI</a>.!`);
+                                    // }, 200);
+                                    // that link doesnt work anymore
                                     setTimeout(() => {
-                                      addAiMessage("ai", aiName, ` Hi, my name is Dogebot!`);
-                                    }, 100);
+                                      addAiMessage("ai", aiName, ` I am initially forked from POWERFUL AI!`);
+                                    }, 200);
 
-                                    // Message 2: 300ms later
-                                    // setTimeout(() => {
-                                      //     addAiMessage("ai", aiName, ` I am initially forked from <a href="https://premuim900.github.io/POWERFUL_AI/">POWERFUL_AI</a>.!`);
-                                      // }, 200);
-                                      // that link doesnt work anymore
-                                      setTimeout(() => {
-                                        addAiMessage("ai", aiName, ` I am initially forked from POWERFUL AI!`);
-                                      }, 200);
+                                    // Message 3: 300ms after that
+                                    setTimeout(() => {
+                                      addAiMessage("ai", aiName, ` I am a better alternative to the evil AI that came before me! Still a work in progress, trying to pave way for better phrasing. Version 353 is the version I'm waiting for.`);
+                                    }, 400);
 
-                                      // Message 3: 300ms after that
-                                      setTimeout(() => {
-                                        addAiMessage("ai", aiName, ` I am a better alternative to the evil AI that came before me! Still a work in progress, trying to pave way for better phrasing. Version 353 is the version I'm waiting for.`);
-                                      }, 400);
+                                    // Message 4: Final kick-off
+                                    setTimeout(() => {
+                                      addAiMessage("ai", aiName, ` Say, we have a friendly conversation?`);
+                                    }, 500);
+                                  });
+                                </script>
 
-                                      // Message 4: Final kick-off
-                                      setTimeout(() => {
-                                        addAiMessage("ai", aiName, ` Say, we have a friendly conversation?`);
-                                      }, 500);
-                                    });
-                                  </script>
-
-                                </body>
-                              </html>
-                              <!-- Coded by dogebot, doggodgcodes, doggodgcodes, Gemini 3.5, and GPT 4.1 and GPT 5 and Gemini 3.6-->
+                              </body>
+                            </html>
+                            <!-- Coded by dogebot, doggodgcodes, doggodgcodes, Gemini 3.5, and GPT 4.1 and GPT 5 and Gemini 3.6-->
