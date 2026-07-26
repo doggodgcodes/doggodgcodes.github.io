@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-    <title>DOGEBOT V265 • ENJOY THE ICOSAHEDRON</title>
+    <title>DOGEBOT V266 • ENJOY THE ICOSAHEDRON</title>
     <style id="css">
       /* =========================================================
       💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@
   <body class="fadein-zoom">
     <div id="news-thingy"></div>
 
-    <h1 id="title">🐕 DOGEBOT V265 • ENJOY THE ICOSAHEDRON</h1>
+    <h1 id="title">🐕 DOGEBOT V266 • ENJOY THE ICOSAHEDRON</h1>
     <p>Smart • Kind • Calculates • Chatty • Great</p>
 
     <div id="chat"></div>
@@ -1608,10 +1608,13 @@
 
                           let msgCount = 0;
 
-
                           String.prototype.capitalize = function() {
                             if (this.length === 0) return this;
                             return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+                          };
+                          String.prototype.reverse = function() {
+                            if (this.length === 0) return this;
+                            return this.split('').reverse().join('');
                           };
                           // Handle UI status switches visually
                           document.getElementById("neuralToggle").addEventListener("change", (e) => {
@@ -2148,7 +2151,7 @@
 
                                     let value = 0
                                     let multiplier = 1
-                                    for (let i = 0; i++) {
+                                    for (let i = 0; i < reverse.length; i++) {
                                       if (reverse[i] === "1") {
                                         value += multiplier;
                                       }
