@@ -1468,30 +1468,30 @@
                             }
                           }
 
-async function importTextDataset(url) {
-  try {
-    const response = await fetch(url);
-    const rawText = await response.text();
+                          async function importTextDataset(url) {
+                            try {
+                              const response = await fetch(url);
+                              const rawText = await response.text();
 
-    const lines = rawText.split('\n');
-    let cleanedLines = [];
+                              const lines = rawText.split('\n');
+                              let cleanedLines = [];
 
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i].trim();
-      if (line.length > 0) {
-        cleanedLines.push(line);
-      }
-    }
+                              for (let i = 0; i < lines.length; i++) {
+                                const line = lines[i].trim();
+                                if (line.length > 0) {
+                                  cleanedLines.push(line);
+                                }
+                              }
 
-    DAYDREAMING_DATA.push(...cleanedLines);
-    console.log("purr added raw text lines directly to training array:", DAYDREAMING_DATA);
-  } catch (error) {
-    console.error("paws error fetching text file:", error);
-  }
-}
+                              DAYDREAMING_DATA.push(...cleanedLines);
+                              console.log("purr added raw text lines directly to training array:", DAYDREAMING_DATA);
+                            } catch (error) {
+                              console.error("paws error fetching text file:", error);
+                            }
+                          }
 
-importTextDataset("https://huggingface.co/datasets/Jahid05/Shakespeare_sonnet154/raw/main/shakespeare_poems.txt");
-          
+                          importTextDataset("https://huggingface.co/datasets/Jahid05/Shakespeare_sonnet154/raw/main/shakespeare_poems.txt");
+
                           importJsonlDataset("https://huggingface.co/datasets/AliGamerz05/minecraft-facts-jsonl-en/raw/main/minecraftfacts_dataset.jsonl");
 
                           const news = [
