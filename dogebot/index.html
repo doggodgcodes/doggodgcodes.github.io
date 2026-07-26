@@ -1412,27 +1412,27 @@
                           // the news is just some feature i guess
                           // its good but the aero glass on the news bar is not good for rendering
                           // dogebot probably wont get optimized
-          
-async function importChattingDataset(url) {
-  try {
-    const response = await fetch(url);
-    const rawData = await response.json();
-    
-    // flatten nested role objects into clean text strings
-    const cleanedDataset = rawData.flatMap(conversation => 
-      conversation.map(msg => msg.content)
-    );
 
-    DAYDREAMING_DATA.push(...cleanedDataset);
-    console.log("purr updated training array:", DAYDREAMING_DATA);
-  } catch (error) {
-    console.error("error loading chatting dataset:", error);
-  }
-}
+                          async function importChattingDataset(url) {
+                            try {
+                              const response = await fetch(url);
+                              const rawData = await response.json();
 
-// target the raw endpoint directly
-importChattingDataset("https://huggingface.co/datasets/olathepavilion/Conversational-datasets-json/raw/main/conversations.json");
-          
+                              // flatten nested role objects into clean text strings
+                              const cleanedDataset = rawData.flatMap(conversation =>
+                              conversation.map(msg => msg.content)
+                              );
+
+                              DAYDREAMING_DATA.push(...cleanedDataset);
+                              console.log("purr updated training array:", DAYDREAMING_DATA);
+                            } catch (error) {
+                              console.error("error loading chatting dataset:", error);
+                            }
+                          }
+
+                          // target the raw endpoint directly
+                          importChattingDataset("https://huggingface.co/datasets/olathepavilion/Conversational-datasets-json/raw/main/conversations.json");
+
                           const news = [
                             "Dogebot updates to version 197!",
                             "New fast food store takes the world by storm.",
