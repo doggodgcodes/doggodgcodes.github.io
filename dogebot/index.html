@@ -2142,21 +2142,21 @@
                                     `;
                                   }
 
-function binaryToChar(binary) {
-  binary = binary.toString();
-  let reverse = binary.reverse();
+                                  function binaryToChar(binary) {
+                                    binary = binary.toString();
+                                    let reverse = binary.reverse();
 
-  let value = 0
-  let multiplier = 1
-  for (let i = 0; i++) {
-    if (reverse[i] === "1") {
-        value += multiplier;
-    }
-    multiplier *= 2;
-  }
-  return String.fromCharCode(value);
-}
-          
+                                    let value = 0
+                                    let multiplier = 1
+                                    for (let i = 0; i++) {
+                                      if (reverse[i] === "1") {
+                                        value += multiplier;
+                                      }
+                                      multiplier *= 2;
+                                    }
+                                    return String.fromCharCode(value);
+                                  }
+
                                   function getReply(text) {
                                     const lower = text.trim().toLowerCase();
 
