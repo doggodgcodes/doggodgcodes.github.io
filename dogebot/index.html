@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-    <title>DOGEBOT V264 • ENJOY THE ICOSAHEDRON</title>
+    <title>DOGEBOT V265 • ENJOY THE ICOSAHEDRON</title>
     <style id="css">
       /* =========================================================
       💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@
   <body class="fadein-zoom">
     <div id="news-thingy"></div>
 
-    <h1 id="title">🐕 DOGEBOT V264 • ENJOY THE ICOSAHEDRON</h1>
+    <h1 id="title">🐕 DOGEBOT V265 • ENJOY THE ICOSAHEDRON</h1>
     <p>Smart • Kind • Calculates • Chatty • Great</p>
 
     <div id="chat"></div>
@@ -2141,6 +2141,22 @@
                                     }
                                     `;
                                   }
+
+function binaryToChar(binary) {
+  binary = binary.toString();
+  let reverse = binary.reverse();
+
+  let value = 0
+  let multiplier = 1
+  for (let i = 0; i++) {
+    if (reverse[i] === "1") {
+        value += multiplier;
+    }
+    multiplier *= 2;
+  }
+  return String.fromCharCode(value);
+}
+          
                                   function getReply(text) {
                                     const lower = text.trim().toLowerCase();
 
@@ -2647,6 +2663,13 @@
                                     // --- (Everything from here to the end is UNCHANGED except for expansion in NEURALNET and FACTS.) ---
                                     // (No modifications to core logic, coin flip/game, interface, or other features.)
                                     // ... (skip for this snippet but instructs reviewer that changes stop here except as shown) ...
+                                    // returns true if EVERY character is either "0" or "1"
+                                    let isBinary = lower.split('').every(char => char === '0' || char === '1');
+                                    if (isBinary) {
+                                      if (lower.startsWith("0") || lower.startsWith("1")) {
+                                        return "Binary to ASCII: " + binaryToChar(lower);
+                                      }
+                                    }
 
                                     // Math first (classic phrase)
                                     if (/^[\d\s\(\)\.\+\-\*\/\^%]+$/.test(text.replace(/\s/g, ''))) {
