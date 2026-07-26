@@ -165,7 +165,7 @@ function generateVideoGrid() {
   videoGrid.innerHTML = "";
 
   switch (currentView) {
-  case "home":
+    case "home":
     pageTitle.textContent = "Home";
     // Show user videos + fake videos
     userVideos.forEach((video, index) => {
@@ -547,8 +547,8 @@ function generateVideoGrid() {
       item.classList.remove("active");
     });
     document
-      .querySelector(`.sidebar-item[data-view="${currentView}"]`)
-      ?.classList.add("active");
+    .querySelector(`.sidebar-item[data-view="${currentView}"]`)
+    ?.classList.add("active");
   }
 
   // Close modals when clicking outside
@@ -592,8 +592,8 @@ function generateVideoGrid() {
   document.querySelectorAll(".chip").forEach((chip) => {
     chip.addEventListener("click", function () {
       document
-        .querySelectorAll(".chip")
-        .forEach((c) => c.classList.remove("active"));
+      .querySelectorAll(".chip")
+      .forEach((c) => c.classList.remove("active"));
       this.classList.add("active");
     });
   });

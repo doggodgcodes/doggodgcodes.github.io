@@ -521,70 +521,7 @@ class Particle {
     return this.alpha <= 0;
 
 
-  }
-
-
-}
-
-
-
-
-
-function createParticles(x, y, color) {
-
-
-  for (let i = 0; i < 15; i++) {
-
-
-    particles.push(new Particle(x, y, color));
-
-
-  }
-
-
-}
-
-
-
-
-
-// Mouse events
-
-
-canvas.addEventListener("mousemove", (e) => {
-
-
-  const rect = canvas.getBoundingClientRect();
-
-
-  lastMouseX = mouseX;
-
-
-  lastMouseY = mouseY;
-
-
-  mouseX = e.clientX - rect.left;
-
-
-  mouseY = e.clientY - rect.top;
-
-
-
-
-
-  // Calculate saber angle based on movement
-
-
-  const dx = mouseX - lastMouseX;
-
-
-  const dy = mouseY - lastMouseY;
-
-
-  if (dx !== 0 || dy !== 0) {
-
-
-    saberAngle = Math.atan2(dy, dx);
+    }
 
 
   }
@@ -593,112 +530,175 @@ canvas.addEventListener("mousemove", (e) => {
 
 
 
-  // Add to trail
+  function createParticles(x, y, color) {
 
 
-  saberTrail.push({ x: mouseX, y: mouseY, alpha: 1 });
+    for (let i = 0; i < 15; i++) {
 
 
-  if (saberTrail.length > 15) {
+      particles.push(new Particle(x, y, color));
 
 
-    saberTrail.shift();
+    }
 
 
   }
 
 
-});
 
 
 
+  // Mouse events
 
 
-// Start button
+  canvas.addEventListener("mousemove", (e) => {
 
 
-document.getElementById("startBtn").addEventListener("click", () => {
+    const rect = canvas.getBoundingClientRect();
 
 
-  document.getElementById("startScreen").style.display = "none";
+    lastMouseX = mouseX;
 
 
-  gameState = "playing";
+    lastMouseY = mouseY;
 
 
-  resetGame();
+    mouseX = e.clientX - rect.left;
 
 
-});
+    mouseY = e.clientY - rect.top;
 
 
 
 
 
-// Restart button
+    // Calculate saber angle based on movement
 
 
-document.getElementById("restartBtn").addEventListener("click", () => {
+    const dx = mouseX - lastMouseX;
 
 
-  document.getElementById("gameOver").style.display = "none";
+    const dy = mouseY - lastMouseY;
 
 
-  gameState = "playing";
+    if (dx !== 0 || dy !== 0) {
 
 
-  resetGame();
+      saberAngle = Math.atan2(dy, dx);
 
 
-});
+    }
 
 
 
 
 
-function resetGame() {
+    // Add to trail
 
 
-  score = 0;
+    saberTrail.push({ x: mouseX, y: mouseY, alpha: 1 });
 
 
-  combo = 0;
+    if (saberTrail.length > 15) {
 
 
-  missed = 0;
+      saberTrail.shift();
 
 
-  blocks = [];
+    }
 
 
-  particles = [];
+  });
 
 
-  blockSpawnTimer = 0;
 
 
-}
 
+  // Start button
 
 
+  document.getElementById("startBtn").addEventListener("click", () => {
 
 
-function spawnBlock() {
+    document.getElementById("startScreen").style.display = "none";
 
 
-  blocks.push(new Block());
+    gameState = "playing";
 
 
-}
+    resetGame();
 
 
+  });
 
 
 
-function checkCollisions() {
 
 
-  const speed = Math.sqrt(
+  // Restart button
+
+
+  document.getElementById("restartBtn").addEventListener("click", () => {
+
+
+    document.getElementById("gameOver").style.display = "none";
+
+
+    gameState = "playing";
+
+
+    resetGame();
+
+
+  });
+
+
+
+
+
+  function resetGame() {
+
+
+    score = 0;
+
+
+    combo = 0;
+
+
+    missed = 0;
+
+
+    blocks = [];
+
+
+    particles = [];
+
+
+    blockSpawnTimer = 0;
+
+
+  }
+
+
+
+
+
+  function spawnBlock() {
+
+
+    blocks.push(new Block());
+
+
+  }
+
+
+
+
+
+  function checkCollisions() {
+
+
+    const speed = Math.sqrt(
 
 
     Math.pow(mouseX - lastMouseX, 2) +
@@ -707,349 +707,358 @@ function checkCollisions() {
     Math.pow(mouseY - lastMouseY, 2),
 
 
-  );
-
-
-
-
-
-  // Only slice if moving fast enough
-
-
-  if (speed < 5) return;
-
-
-
-
-
-  for (let block of blocks) {
-
-
-    if (block.sliced) continue;
-
-
-
-
-
-    // Check if saber passes through block
-
-
-    const blockCenterX = block.x + block.size / 2;
-
-
-    const blockCenterY = block.y + block.size / 2;
-
-
-
-
-
-    // Distance from mouse to block center
-
-
-    const dist = Math.sqrt(
-
-
-      Math.pow(mouseX - blockCenterX, 2) +
-
-
-        Math.pow(mouseY - blockCenterY, 2),
-
-
     );
 
 
 
 
 
-    if (dist < block.size) {
+    // Only slice if moving fast enough
 
 
-      block.slice(saberAngle);
+    if (speed < 5) return;
 
 
-      combo++;
 
 
-      score += 10 * combo;
 
+      for (let block of blocks) {
 
-      updateUI();
 
+        if (block.sliced) continue;
 
-    }
 
 
-  }
 
 
-}
+        // Check if saber passes through block
 
 
+        const blockCenterX = block.x + block.size / 2;
 
 
+        const blockCenterY = block.y + block.size / 2;
 
-function updateUI() {
 
 
-  document.getElementById("score").textContent = `Score: ${score}`;
 
 
-  document.getElementById("combo").textContent = `Combo: ${combo}x`;
+        // Distance from mouse to block center
 
 
-}
+        const dist = Math.sqrt(
 
 
+        Math.pow(mouseX - blockCenterX, 2) +
 
 
+        Math.pow(mouseY - blockCenterY, 2),
 
-function drawSaber() {
 
+        );
 
-  // Draw trail
 
 
-  for (let i = 0; i < saberTrail.length; i++) {
 
 
-    const trail = saberTrail[i];
+        if (dist < block.size) {
 
 
-    const alpha = (i / saberTrail.length) * 0.5;
+          block.slice(saberAngle);
 
 
+          combo++;
 
 
-
-    ctx.save();
-
-
-    ctx.globalAlpha = alpha;
-
-
-    ctx.strokeStyle = saberColor;
-
-
-    ctx.lineWidth = 8;
-
-
-    ctx.lineCap = "round";
-
-
-
-
-
-    if (i > 0) {
-
-
-      ctx.beginPath();
-
-
-      ctx.moveTo(saberTrail[i - 1].x, saberTrail[i - 1].y);
-
-
-      ctx.lineTo(trail.x, trail.y);
-
-
-      ctx.stroke();
-
-
-    }
-
-
-    ctx.restore();
-
-
-  }
-
-
-
-
-
-  // Draw saber
-
-
-  ctx.save();
-
-
-  ctx.translate(mouseX, mouseY);
-
-
-  ctx.rotate(saberAngle);
-
-
-
-
-
-  // Saber glow
-
-
-  ctx.shadowBlur = 20;
-
-
-  ctx.shadowColor = saberColor;
-
-
-
-
-
-  // Saber blade
-
-
-  const gradient = ctx.createLinearGradient(0, 0, saberLength, 0);
-
-
-  gradient.addColorStop(0, "rgba(255, 255, 255, 0.9)");
-
-
-  gradient.addColorStop(0.3, saberColor);
-
-
-  gradient.addColorStop(1, "rgba(0, 255, 255, 0.3)");
-
-
-
-
-
-  ctx.fillStyle = gradient;
-
-
-  ctx.fillRect(0, -5, saberLength, 10);
-
-
-
-
-
-  // Saber handle
-
-
-  ctx.fillStyle = "#666";
-
-
-  ctx.fillRect(-20, -8, 25, 16);
-
-
-  ctx.fillStyle = "#333";
-
-
-  ctx.fillRect(-20, -6, 25, 12);
-
-
-
-
-
-  ctx.restore();
-
-
-
-
-
-  // Draw cursor point
-
-
-  ctx.fillStyle = saberColor;
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(mouseX, mouseY, 5, 0, Math.PI * 2);
-
-
-  ctx.fill();
-
-
-}
-
-
-
-
-
-function gameLoop() {
-
-
-  // Clear canvas
-
-
-  ctx.fillStyle = "rgba(15, 15, 30, 0.3)";
-
-
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-
-
-
-
-  if (gameState === "playing") {
-
-
-    // Spawn blocks
-
-
-    blockSpawnTimer++;
-
-
-    if (blockSpawnTimer >= blockSpawnInterval) {
-
-
-      spawnBlock();
-
-
-      blockSpawnTimer = 0;
-
-
-    }
-
-
-
-
-
-    // Update and draw blocks
-
-
-    for (let i = blocks.length - 1; i >= 0; i--) {
-
-
-      blocks[i].update();
-
-
-      blocks[i].draw();
-
-
-
-
-
-      if (blocks[i].isOffScreen()) {
-
-
-        if (!blocks[i].sliced) {
-
-
-          missed++;
-
-
-          combo = 0;
+          score += 10 * combo;
 
 
           updateUI();
 
 
+        }
+
+
+      }
+
+
+    }
 
 
 
-          if (missed >= maxMissed) {
 
 
-            gameState = "gameover";
+    function updateUI() {
 
 
-            document.getElementById("gameOver").style.display = "block";
+      document.getElementById("score").textContent = `Score: ${score}`;
 
 
-            document.getElementById("finalScore").textContent = `Final Score: ${score}`;
+      document.getElementById("combo").textContent = `Combo: ${combo}x`;
 
 
-            document.getElementById("finalCombo").textContent = `Best Combo: ${combo}x`;
+    }
+
+
+
+
+
+    function drawSaber() {
+
+
+      // Draw trail
+
+
+      for (let i = 0; i < saberTrail.length; i++) {
+
+
+        const trail = saberTrail[i];
+
+
+        const alpha = (i / saberTrail.length) * 0.5;
+
+
+
+
+
+        ctx.save();
+
+
+        ctx.globalAlpha = alpha;
+
+
+        ctx.strokeStyle = saberColor;
+
+
+        ctx.lineWidth = 8;
+
+
+        ctx.lineCap = "round";
+
+
+
+
+
+        if (i > 0) {
+
+
+          ctx.beginPath();
+
+
+          ctx.moveTo(saberTrail[i - 1].x, saberTrail[i - 1].y);
+
+
+          ctx.lineTo(trail.x, trail.y);
+
+
+          ctx.stroke();
+
+
+        }
+
+
+        ctx.restore();
+
+
+      }
+
+
+
+
+
+      // Draw saber
+
+
+      ctx.save();
+
+
+      ctx.translate(mouseX, mouseY);
+
+
+      ctx.rotate(saberAngle);
+
+
+
+
+
+      // Saber glow
+
+
+      ctx.shadowBlur = 20;
+
+
+      ctx.shadowColor = saberColor;
+
+
+
+
+
+      // Saber blade
+
+
+      const gradient = ctx.createLinearGradient(0, 0, saberLength, 0);
+
+
+      gradient.addColorStop(0, "rgba(255, 255, 255, 0.9)");
+
+
+      gradient.addColorStop(0.3, saberColor);
+
+
+      gradient.addColorStop(1, "rgba(0, 255, 255, 0.3)");
+
+
+
+
+
+      ctx.fillStyle = gradient;
+
+
+      ctx.fillRect(0, -5, saberLength, 10);
+
+
+
+
+
+      // Saber handle
+
+
+      ctx.fillStyle = "#666";
+
+
+      ctx.fillRect(-20, -8, 25, 16);
+
+
+      ctx.fillStyle = "#333";
+
+
+      ctx.fillRect(-20, -6, 25, 12);
+
+
+
+
+
+      ctx.restore();
+
+
+
+
+
+      // Draw cursor point
+
+
+      ctx.fillStyle = saberColor;
+
+
+      ctx.beginPath();
+
+
+      ctx.arc(mouseX, mouseY, 5, 0, Math.PI * 2);
+
+
+      ctx.fill();
+
+
+    }
+
+
+
+
+
+    function gameLoop() {
+
+
+      // Clear canvas
+
+
+      ctx.fillStyle = "rgba(15, 15, 30, 0.3)";
+
+
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+
+
+
+      if (gameState === "playing") {
+
+
+        // Spawn blocks
+
+
+        blockSpawnTimer++;
+
+
+        if (blockSpawnTimer >= blockSpawnInterval) {
+
+
+          spawnBlock();
+
+
+          blockSpawnTimer = 0;
+
+
+        }
+
+
+
+
+
+        // Update and draw blocks
+
+
+        for (let i = blocks.length - 1; i >= 0; i--) {
+
+
+          blocks[i].update();
+
+
+          blocks[i].draw();
+
+
+
+
+
+          if (blocks[i].isOffScreen()) {
+
+
+            if (!blocks[i].sliced) {
+
+
+              missed++;
+
+
+              combo = 0;
+
+
+              updateUI();
+
+
+
+
+
+              if (missed >= maxMissed) {
+
+
+                gameState = "gameover";
+
+
+                document.getElementById("gameOver").style.display = "block";
+
+
+                document.getElementById("finalScore").textContent = `Final Score: ${score}`;
+
+
+                document.getElementById("finalCombo").textContent = `Best Combo: ${combo}x`;
+
+
+              }
+
+
+            }
+
+
+            blocks.splice(i, 1);
 
 
           }
@@ -1058,10 +1067,94 @@ function gameLoop() {
         }
 
 
-        blocks.splice(i, 1);
+
+
+
+        // Update and draw particles
+
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+
+
+          particles[i].update();
+
+
+          particles[i].draw();
+
+
+
+
+
+          if (particles[i].isDead()) {
+
+
+            particles.splice(i, 1);
+
+
+          }
+
+
+        }
+
+
+
+
+
+        // Check collisions
+
+
+        checkCollisions();
+
+
+
+
+
+        // Draw saber
+
+
+        drawSaber();
+
+
+
+
+
+        // Draw missed counter
+
+
+        ctx.fillStyle = "white";
+
+
+        ctx.font = "20px Arial";
+
+
+        ctx.textAlign = "right";
+
+
+        ctx.fillText(`Missed: ${missed}/${maxMissed}`, canvas.width - 20, 30);
+
+
+        ctx.textAlign = "left";
+
+
+
+
+
+      } else if (gameState === "start") {
+
+
+        // Draw saber on start screen
+
+
+        drawSaber();
 
 
       }
+
+
+
+
+
+      requestAnimationFrame(gameLoop);
 
 
     }
@@ -1070,100 +1163,7 @@ function gameLoop() {
 
 
 
-    // Update and draw particles
+    // Start game loop
 
 
-    for (let i = particles.length - 1; i >= 0; i--) {
-
-
-      particles[i].update();
-
-
-      particles[i].draw();
-
-
-
-
-
-      if (particles[i].isDead()) {
-
-
-        particles.splice(i, 1);
-
-
-      }
-
-
-    }
-
-
-
-
-
-    // Check collisions
-
-
-    checkCollisions();
-
-
-
-
-
-    // Draw saber
-
-
-    drawSaber();
-
-
-
-
-
-    // Draw missed counter
-
-
-    ctx.fillStyle = "white";
-
-
-    ctx.font = "20px Arial";
-
-
-    ctx.textAlign = "right";
-
-
-    ctx.fillText(`Missed: ${missed}/${maxMissed}`, canvas.width - 20, 30);
-
-
-    ctx.textAlign = "left";
-
-
-
-
-
-  } else if (gameState === "start") {
-
-
-    // Draw saber on start screen
-
-
-    drawSaber();
-
-
-  }
-
-
-
-
-
-  requestAnimationFrame(gameLoop);
-
-
-}
-
-
-
-
-
-// Start game loop
-
-
-gameLoop();
+    gameLoop();

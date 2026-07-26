@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => chaosZone.classList.remove("pulsing"), 500);
 
     if (moreClickCount === 3)
-      chaosText.textContent += "\n(Are you okay? The bananas are watching.)";
+    chaosText.textContent += "\n(Are you okay? The bananas are watching.)";
   });
 
   // Reset Button
@@ -111,42 +111,42 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let i = 0; i < 50; i++) {
       const confetti = document.createElement("div");
       confetti.textContent = Math.random() < 0.5 ? "🍌" : "🍝";
-      confetti.style.cssText = `
+        confetti.style.cssText = `
         position: fixed; left: ${Math.random()*window.innerWidth}px; top: -20px;
         font-size: 2em; pointer-events: none; z-index: 9999;
         animation: confetti-fall ${2+Math.random()*2}s linear forwards;
         `;
-      document.body.appendChild(confetti);
-      setTimeout(() => confetti.remove(), 4000);
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
     }
-  }
 
-  // Keyboard shortcuts
-  document.addEventListener("keydown", (e) => {
-    if (e.key.toLowerCase() === "b") { chaosText.textContent = "🍌 QUANTUM BANANAS ARRIVE! 🍌"; crazyBtn.click(); }
-    if (e.key.toLowerCase() === "s") { chaosText.textContent = "🍝 SPAGHETTI NETWORK ACTIVE! 🍝"; createFloatingText("🍝 SPAGHETTI DETECTED! 🍝"); }
-  });
+    // Keyboard shortcuts
+    document.addEventListener("keydown", (e) => {
+      if (e.key.toLowerCase() === "b") { chaosText.textContent = "🍌 QUANTUM BANANAS ARRIVE! 🍌"; crazyBtn.click(); }
+      if (e.key.toLowerCase() === "s") { chaosText.textContent = "🍝 SPAGHETTI NETWORK ACTIVE! 🍝"; createFloatingText("🍝 SPAGHETTI DETECTED! 🍝"); }
+    });
 
-  // Mouse sparkle
-  document.addEventListener("mousemove", (e) => {
-    if (Math.random() < 0.02) {
-      const sparkle = document.createElement("div");
-      sparkle.textContent = "✨";
-      sparkle.style.cssText = `
+    // Mouse sparkle
+    document.addEventListener("mousemove", (e) => {
+      if (Math.random() < 0.02) {
+        const sparkle = document.createElement("div");
+        sparkle.textContent = "✨";
+        sparkle.style.cssText = `
         position: fixed; left: ${e.clientX + (Math.random()-0.5)*30}px;
         top: ${e.clientY + (Math.random()-0.5)*30}px;
         font-size: 1.5em; pointer-events: none; z-index: 9999;
         animation: sparkle-fade 1s ease-out forwards;
         `;
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 1000);
-    }
-  });
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    });
 
-  // Welcome
-  window.addEventListener("load", () => {
-    console.log("🍌 WELCOME TO ULTRA SILLY VIBES! 🍌");
-    console.log("🍝 The sentient bananas are watching! 🍝");
-    console.log("✨ Press 'B' for banana chaos or 'S' for spaghetti chaos! ✨");
+    // Welcome
+    window.addEventListener("load", () => {
+      console.log("🍌 WELCOME TO ULTRA SILLY VIBES! 🍌");
+      console.log("🍝 The sentient bananas are watching! 🍝");
+      console.log("✨ Press 'B' for banana chaos or 'S' for spaghetti chaos! ✨");
+    });
   });
-});

@@ -4,19 +4,19 @@
 /* == Custom View Modes == */
 
 viewInfo[4] = { // Small Pixels
-  name: "grid",
-  pre: function(ctx) {
+name: "grid",
+pre: function(ctx) {
   // run any code before pixels are rendered
-    drawSquare(ctx,"#00ff00",20,20,5);
-  },
-  pixel: function(pixel,ctx) {
+  drawSquare(ctx,"#00ff00",20,20,5);
+},
+pixel: function(pixel,ctx) {
   // run any code when each individual pixel is rendered
-    drawSquare(ctx,pixel.color,pixel.x,pixel.y,0.66);
-  },
-  post: function(ctx) {
+  drawSquare(ctx,pixel.color,pixel.x,pixel.y,0.66);
+},
+post: function(ctx) {
   // run any code after pixels are rendered
-    drawPlus(ctx,"#ff0000",10,10); // Like a gas
-  },
+  drawPlus(ctx,"#ff0000",10,10); // Like a gas
+},
 };
 
 // Number keys will automatically switch views.

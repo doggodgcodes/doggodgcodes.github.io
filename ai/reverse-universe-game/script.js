@@ -51,13 +51,13 @@ function checkWinCondition() {
 // Check lose condition
 function checkLoseCondition() {
   return playerScore < 0; // Example condition
-}
+  }
 
-// Function to restart the game
-function resetGame() {
-  console.log("Game has been reset.");
+  // Function to restart the game
+  function resetGame() {
+    console.log("Game has been reset.");
+    startGame();
+  }
+
+  // Start the game when the script loads
   startGame();
-}
-
-// Start the game when the script loads
-startGame();
