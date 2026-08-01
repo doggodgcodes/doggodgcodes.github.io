@@ -2,8 +2,6 @@
 
 #### Commit records: 1, 10, 25, 50, 100, 250, 500, 1000, 1100, 1200, ???
 
-![Repo Stats](https://github-readme-stats.vercel.app/api/pin/?username=doggodgcodes&repo=doggodgcodes.github.io&theme=tokyonight&show_owner=true)
-
 ![Commits](https://img.shields.io/github/commit-activity/t/doggodgcodes/doggodgcodes.github.io?label=Commits&color=blue&style=for-the-badge)
 
 # A website because why not?
