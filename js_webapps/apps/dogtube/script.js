@@ -2,12 +2,11 @@ const CORS_PROXY = "https://cors-anywhere.followalong.com/";
 const CHANNEL_RSS =
 "https://www.youtube.com/feeds/videos.xml?channel_id=UCoDdAhc_ve3qtimWFFblNTw"; // DoggoWing21 channel
 const CHANNEL_ID = "UCzHeWI-gvnXPf7JpbRXCW_g";
-const YOUTUBE_API_KEY = "AIzaSyB7YDdZSX4CLxCU02fy5tDCW21GnCLDF5U"; // Use MineChicken API key - he gave me permission to use it
 // Use the actual YouTube channel avatar - this URL format works for any channel
 const channelAvatar =
 "https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo";
 let videos = [];
-let subscriberCount = "283";
+let subscriberCount = "???";
 
 async function fetchSubscriberCount() {
   try {
@@ -127,7 +126,7 @@ function formatDate(dateString) {
               <div class="video-details">
                 <h3>${video.title}</h3>
                 <div class="video-meta">
-                  <div>DoggoWing21</div>
+                  <div>???</div>
                   <div>${video.views} views • ${formatDate(video.published)}</div>
                 </div>
               </div>
