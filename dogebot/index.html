@@ -13,7 +13,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-    <title>DOGEBOT V269 • ENJOY THE ICOSAHEDRON</title>
+    <title>DOGEBOT V270 • ENJOY THE ICOSAHEDRON</title>
     <style id="css">
       /* =========================================================
       💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +576,7 @@
   <body class="fadein-zoom">
     <div id="news-thingy"></div>
 
-    <h1 id="title">🐕 DOGEBOT V269 • ENJOY THE ICOSAHEDRON</h1>
+    <h1 id="title">🐕 DOGEBOT V270 • ENJOY THE ICOSAHEDRON</h1>
     <p>Smart • Kind • Calculates • Chatty • Great</p>
 
     <div id="chat"></div>
@@ -2145,6 +2145,19 @@
                                     `;
                                   }
 
+                                  async function plainCSS() {
+                                    const style = document.getElementById("css");
+                                    const title = document.getElementById("title");
+                                    document.title = "Dogebot";
+                                    title.innerText = `Dogebot`;
+                                    style.innerText = `body {
+  background-color: #00bbbb;
+  padding: 50px;
+}
+
+                                    `;
+                                  }
+
                                   function binaryToChar(binary) {
                                     binary = binary.toString();
                                     let reverse = binary.reverse();
@@ -2213,6 +2226,10 @@
                                     if (lower.includes("abolish")) {
                                       stupidUI();
                                       return "THE- INTERFACE- I FEEL IT BREAKING! !!! ! ! !! !!";
+                                    }
+                                    if (lower.includes("plain")) {
+                                      plainCSS();
+                                      return "The CSS is so simple now!";
                                     }
                                     if (lower.includes("dark mode")) {
                                       return "Dark mode... POWERFUL_AI, my ancestor, had only dark mode.";
