@@ -1,4 +1,4 @@
-// credits to google gemini for coding almost all of this one script
+// credits to google gemini 3.5 flash for coding almost all of this one script
 
 function checkNewsUpdate(targetMonthDay, newMessage) {
   const today = new Date();
@@ -19,7 +19,7 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
   }
   else {
     if (banner) {
-      banner.textContent = "No news today";
+      banner.textContent = "No news today.";
       console.log("Nothing new");
     }
   }
