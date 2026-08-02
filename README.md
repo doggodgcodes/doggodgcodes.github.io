@@ -6,8 +6,6 @@
 
 # A website because why not?
 
-random web stuff, 
-dingus ahh website for fun yippee also 
 this site was built using [GitHub Pages](https://pages.github.com/).
 https://github.com/doggodgcodes/doggodgcodes.github.io/tree/d1bf3c2e742ef65cb740d1337edfb6fb91e6d094
 
