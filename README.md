@@ -8,33 +8,3 @@
 
 this site was built using [GitHub Pages](https://pages.github.com/).
 https://github.com/doggodgcodes/doggodgcodes.github.io/tree/d1bf3c2e742ef65cb740d1337edfb6fb91e6d094
-
-# Why it exists!
-
-Originally buit as a random test, but then became something much bigger than a simple test.
-There is many HTML, CSS, and JavaScript files that form these wacky webpages!
-Exploring the webpage comes with a lot of random stuff and maybe hidden secrets too.
-
-# Why is there TypeScript?
-
-TypeScript was added into this as a dumb test. Maybe meaningful stuff was made with TypeScript in this.
-
-# Why is there AI stuff?
-
-JavaScript is quite annoying.
-
-# What is Mine Chicken stuff?
-
-There are bits of minechicken98's /minechicken.github.io/ repository code.
-
-# Where is AI located?
-
-It is located in /ai/ and /random/vibecode/.
-
-# Do you credit AI?
-
-The AI will get proper attribution for helping out.
-
-# Credits
-
-Me, Gemini, Claude, GPT, Le Chat, Copilot, CodeQL, MineChicken98, Grok, Premuim900. (mostly me)
