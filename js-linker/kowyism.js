@@ -5,3 +5,4 @@ console.log("doggodgcodes script loaded");
 const button = document.createElement("button");
 button.onclick = "document.querySelector('link').hasAttribute('href').remove();";
 button.innerText = "Click to remove CSS";
+document.body.appendChild(button);
