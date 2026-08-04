@@ -3,6 +3,6 @@ console.log("doggodgcodes script loaded");
 // iframe.src = "https://minechicken98.github.io/pokemon-frost/";
 // document.body.appendChild(iframe);
 const button = document.createElement("button");
-button.onclick = "document.querySelector('link').hasAttribute('href').remove();";
+button.onclick = () => { document.querySelector('link').hasAttribute('href').remove(); };
 button.innerText = "Click to remove CSS";
 document.body.appendChild(button);
