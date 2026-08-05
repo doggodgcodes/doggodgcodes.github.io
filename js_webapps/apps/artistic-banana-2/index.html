@@ -299,362 +299,362 @@
         alt="You, the banana"
         class="banana-character-img"
         />
-        <p class="character-text">"I'm a goofy goober!"</p>
-          </div>
+      <p class="character-text">"I'm a goofy goober!"</p>
+        </div>
 
-        <div class="main-content">
-          <div class="header">
-            <h1>🍌 Artistic Banana 2.0 🎨</h1>
-              <p class="subtitle">Not a professional drawing tool!</p>
-                </div>
+      <div class="main-content">
+        <div class="header">
+          <h1>🍌 Artistic Banana 2.0 🎨</h1>
+            <p class="subtitle">Not a professional drawing tool!</p>
+              </div>
 
-              <div class="container">
-                <div class="controls">
+            <div class="container">
+              <div class="controls">
+                <div class="control-group">
+                  <span class="control-label">🎨 Advanced Colors</span>
+                    <input
+                      type="color"
+                      id="colorPicker"
+                      value="#000000"
+                      class="color-picker"
+                      />
+                    </div>
+
                   <div class="control-group">
-                    <span class="control-label">🎨 Advanced Colors</span>
-                      <input
-                        type="color"
-                        id="colorPicker"
-                        value="#000000"
-                        class="color-picker"
-                        />
-                        </div>
-
-                      <div class="control-group">
-                        <span class="control-label">🌈 Default Colors</span>
-                          <div class="preset-colors">
+                    <span class="control-label">🌈 Default Colors</span>
+                      <div class="preset-colors">
+                        <div
+                          class="color-btn"
+                          style="background: #ffffff; border-color: #666"
+                          onclick="setColor('#ffffff')"
+                          ></div>
+                          <div
+                            class="color-btn"
+                            style="background: #000000"
+                            onclick="setColor('#000000')"
+                            ></div>
                             <div
                               class="color-btn"
-                              style="background: #ffffff; border-color: #666"
-                              onclick="setColor('#ffffff')"
+                              style="background: #ff0000"
+                              onclick="setColor('#ff0000')"
                               ></div>
                               <div
                                 class="color-btn"
-                                style="background: #000000"
-                                onclick="setColor('#000000')"
+                                style="background: #FF8C00"
+                                onclick="setColor('#FF8C00')"
                                 ></div>
                                 <div
                                   class="color-btn"
-                                  style="background: #ff0000"
-                                  onclick="setColor('#ff0000')"
+                                  style="background: #ffff00"
+                                  onclick="setColor('#ffff00')"
                                   ></div>
                                   <div
                                     class="color-btn"
-                                    style="background: #FF8C00"
-                                    onclick="setColor('#FF8C00')"
+                                    style="background: #00ff00"
+                                    onclick="setColor('#00ff00')"
                                     ></div>
                                     <div
                                       class="color-btn"
-                                      style="background: #ffff00"
-                                      onclick="setColor('#ffff00')"
+                                      style="background: #00ffff"
+                                      onclick="setColor('#00ffff')"
                                       ></div>
                                       <div
                                         class="color-btn"
-                                        style="background: #00ff00"
-                                        onclick="setColor('#00ff00')"
+                                        style="background: #0000ff"
+                                        onclick="setColor('#0000ff')"
                                         ></div>
                                         <div
                                           class="color-btn"
-                                          style="background: #00ffff"
-                                          onclick="setColor('#00ffff')"
+                                          style="background: #c800ff"
+                                          onclick="setColor('#c800ff')"
                                           ></div>
-                                          <div
-                                            class="color-btn"
-                                            style="background: #0000ff"
-                                            onclick="setColor('#0000ff')"
-                                            ></div>
-                                            <div
-                                              class="color-btn"
-                                              style="background: #c800ff"
-                                              onclick="setColor('#c800ff')"
-                                              ></div>
-                                              </div>
-                                            </div>
+                                          </div>
+                                        </div>
 
-                                          <div class="control-group">
-                                            <span class="control-label">🖌️ Brush Size</span>
-                                              <div class="brush-sizes">
+                                      <div class="control-group">
+                                        <span class="control-label">🖌️ Brush Size</span>
+                                          <div class="brush-sizes">
+                                            <button
+                                              class="brush-btn"
+                                              onclick="setBrushSize(1)"
+                                              data-size="1"
+                                              >
+                                              <div
+                                                class="brush-preview"
+                                                style="width: 3px; height: 3px"
+                                                ></div>
+                                                </button>
+                                              <button
+                                                class="brush-btn"
+                                                onclick="setBrushSize(5)"
+                                                data-size="5"
+                                                >
+                                                <div
+                                                  class="brush-preview"
+                                                  style="width: 8px; height: 8px"
+                                                  ></div>
+                                                  </button>
                                                 <button
-                                                  class="brush-btn"
-                                                  onclick="setBrushSize(1)"
-                                                  data-size="1"
+                                                  class="brush-btn active"
+                                                  onclick="setBrushSize(10)"
+                                                  data-size="10"
                                                   >
                                                   <div
                                                     class="brush-preview"
-                                                    style="width: 3px; height: 3px"
+                                                    style="width: 12px; height: 12px"
                                                     ></div>
                                                     </button>
                                                   <button
                                                     class="brush-btn"
-                                                    onclick="setBrushSize(5)"
-                                                    data-size="5"
+                                                    onclick="setBrushSize(20)"
+                                                    data-size="20"
                                                     >
                                                     <div
                                                       class="brush-preview"
-                                                      style="width: 8px; height: 8px"
+                                                      style="width: 20px; height: 20px"
                                                       ></div>
                                                       </button>
                                                     <button
-                                                      class="brush-btn active"
-                                                      onclick="setBrushSize(10)"
-                                                      data-size="10"
+                                                      class="brush-btn"
+                                                      onclick="setBrushSize(40)"
+                                                      data-size="40"
                                                       >
                                                       <div
                                                         class="brush-preview"
-                                                        style="width: 12px; height: 12px"
+                                                        style="width: 30px; height: 30px"
                                                         ></div>
                                                         </button>
-                                                      <button
-                                                        class="brush-btn"
-                                                        onclick="setBrushSize(20)"
-                                                        data-size="20"
-                                                        >
-                                                        <div
-                                                          class="brush-preview"
-                                                          style="width: 20px; height: 20px"
-                                                          ></div>
-                                                          </button>
-                                                        <button
-                                                          class="brush-btn"
-                                                          onclick="setBrushSize(40)"
-                                                          data-size="40"
-                                                          >
-                                                          <div
-                                                            class="brush-preview"
-                                                            style="width: 30px; height: 30px"
-                                                            ></div>
-                                                            </button>
 
-                                                          <div class="control-group">
-                                                            <span class="control-label">🔴🟢🔵 Hex Colors</span>
-                                                              <input class="input" type="text" id="colorInput" placeholder="any hex color" maxlength="7">
-                                                                <button class="btn btn-save" id="saveBtn">Switch Color</button>
-                                                                  </div>
-                                                                </div>
+                                                      <div class="control-group">
+                                                        <span class="control-label">🔴🟢🔵 Hex Colors</span>
+                                                          <input class="input" type="text" id="colorInput" placeholder="any hex color" maxlength="7">
+                                                            <button class="btn btn-save" id="saveBtn">Switch Color</button>
                                                               </div>
+                                                            </div>
+                                                          </div>
 
-                                                            <div class="control-group">
-                                                              <span class="control-label">:3 Canvas Utilities</span>
-                                                                <div class="action-buttons">
-                                                                  <button
-                                                                    class="btn btn-clear"
-                                                                    onclick="clearCanvas()"
-                                                                    >
-                                                                    🗑️ Clear canvas
-                                                                    </button>
-                                                                  <button class="btn btn-save" onclick="saveCanvas()">
-                                                                    💾 Save as PNG
-                                                                    </button>
-                                                                  </div>
-                                                                </div>
+                                                        <div class="control-group">
+                                                          <span class="control-label">:3 Canvas Utilities</span>
+                                                            <div class="action-buttons">
+                                                              <button
+                                                                class="btn btn-clear"
+                                                                onclick="clearCanvas()"
+                                                                >
+                                                                🗑️ Clear canvas
+                                                                </button>
+                                                              <button class="btn btn-save" onclick="saveCanvas()">
+                                                                💾 Save as PNG
+                                                                </button>
                                                               </div>
+                                                            </div>
+                                                          </div>
 
-                                                            <div class="canvas-container">
-                                                              <canvas id="canvas" width="800" height="600"></canvas>
-                                                                </div>
+                                                        <div class="canvas-container">
+                                                          <canvas id="canvas" width="800" height="600"></canvas>
+                                                            </div>
 
-                                                              <p class="tip">
-                                                                💡 Tip: Click/Touch and drag to paint! Use different colors and
-                                                                brush sizes to make a very Kool drawing.
-                                                                </p>
-                                                              </div>
+                                                          <p class="tip">
+                                                            💡 Tip: Click/Touch and drag to paint! Use different colors and
+                                                            brush sizes to make a very Kool drawing.
+                                                            </p>
+                                                          </div>
 
-                                                            <h1 class="text-spacing">Hex codes you can use</h1>
-                                                              <p class="text-spacing white">
-                                                                #9e1b6f - like the color of a beet
-                                                                <br>
-                                                                #12b667 - meadow green
-                                                                <br>
-                                                                #1512b6 - solid somewhat dark blue
-                                                                <br>
-                                                                #0a0959 - navy blue
-                                                                <br>
-                                                                #3a78d8 - plastic blue
-                                                                <br>
-                                                                #c8cec2 - green tan
-                                                                <br>
-                                                                #e2bdea - lavender
-                                                                <br>
-                                                                #ea43b5 - pink magenta
-                                                                <br>
-                                                                #f0e264 - dandelion
-                                                                <br>
-                                                                #53bf13 - grassy green
-                                                                <br>
-                                                                #f75982 - coral
-                                                                <br>
-                                                                #738c87 - teal gray
-                                                                <br>
-                                                                #91c0ef - sky
-                                                                <br>
-                                                                #db25f7 - energetic magenta
-                                                                <br>
-                                                                #9bde05 - droid
-                                                                <br>
-                                                                #b29541 - brown
-                                                                <br>
-                                                                #ff794a - blocky orange
-                                                                <br>
-                                                                </p>
-                                                              </div>
+                                                        <h1 class="text-spacing">Hex codes you can use</h1>
+                                                          <p class="text-spacing white">
+                                                            #9e1b6f - like the color of a beet
+                                                            <br>
+                                                            #12b667 - meadow green
+                                                            <br>
+                                                            #1512b6 - solid somewhat dark blue
+                                                            <br>
+                                                            #0a0959 - navy blue
+                                                            <br>
+                                                            #3a78d8 - plastic blue
+                                                            <br>
+                                                            #c8cec2 - green tan
+                                                            <br>
+                                                            #e2bdea - lavender
+                                                            <br>
+                                                            #ea43b5 - pink magenta
+                                                            <br>
+                                                            #f0e264 - dandelion
+                                                            <br>
+                                                            #53bf13 - grassy green
+                                                            <br>
+                                                            #f75982 - coral
+                                                            <br>
+                                                            #738c87 - teal gray
+                                                            <br>
+                                                            #91c0ef - sky
+                                                            <br>
+                                                            #db25f7 - energetic magenta
+                                                            <br>
+                                                            #9bde05 - droid
+                                                            <br>
+                                                            #b29541 - brown
+                                                            <br>
+                                                            #ff794a - blocky orange
+                                                            <br>
+                                                            </p>
+                                                          </div>
 
-                                                            <script>
-                                                              const canvas = document.getElementById("canvas");
-                                                              const ctx = canvas.getContext("2d");
-                                                              const colorPicker = document.getElementById("colorPicker");
-                                                              const input = document.getElementById('colorInput');
-                                                              const saveBtn = document.getElementById('saveBtn');
+                                                        <script>
+                                                          const canvas = document.getElementById("canvas");
+                                                          const ctx = canvas.getContext("2d");
+                                                          const colorPicker = document.getElementById("colorPicker");
+                                                          const input = document.getElementById('colorInput');
+                                                          const saveBtn = document.getElementById('saveBtn');
 
-                                                              let isDrawing = false;
-                                                              let currentColor = "#000000";
-                                                              let brushSize = 10;
-                                                              let lastX = 0;
-                                                              let lastY = 0;
+                                                          let isDrawing = false;
+                                                          let currentColor = "#000000";
+                                                          let brushSize = 10;
+                                                          let lastX = 0;
+                                                          let lastY = 0;
 
-                                                              // Initialize canvas with white background
+                                                          // Initialize canvas with white background
+                                                          ctx.fillStyle = "white";
+                                                          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                                                          // Color picker event
+                                                          colorPicker.addEventListener("input", (e) => {
+                                                            currentColor = e.target.value;
+                                                            });
+
+                                                          // Mouse events for drawing
+                                                          canvas.addEventListener("mousedown", startDrawing);
+                                                          canvas.addEventListener("mousemove", draw);
+                                                          canvas.addEventListener("mouseup", stopDrawing);
+                                                          canvas.addEventListener("mouseout", stopDrawing);
+
+                                                          // Touch events for mobile
+                                                          canvas.addEventListener("touchstart", handleTouchStart);
+                                                          canvas.addEventListener("touchmove", handleTouchMove);
+                                                          canvas.addEventListener("touchend", stopDrawing);
+
+                                                          function startDrawing(e) {
+                                                            isDrawing = true;
+                                                            const rect = canvas.getBoundingClientRect();
+                                                            lastX = e.clientX - rect.left;
+                                                            lastY = e.clientY - rect.top;
+                                                            }
+
+                                                          function draw(e) {
+                                                            if (!isDrawing) return;
+
+                                                            const rect = canvas.getBoundingClientRect();
+                                                            const x = e.clientX - rect.left;
+                                                            const y = e.clientY - rect.top;
+
+                                                            ctx.strokeStyle = currentColor;
+                                                            ctx.lineWidth = brushSize;
+                                                            ctx.lineCap = "round";
+                                                            ctx.lineJoin = "round";
+
+                                                            ctx.beginPath();
+                                                            ctx.moveTo(lastX, lastY);
+                                                            ctx.lineTo(x, y);
+                                                            ctx.stroke();
+
+                                                            lastX = x;
+                                                            lastY = y;
+                                                            }
+
+                                                          function stopDrawing() {
+                                                            isDrawing = false;
+                                                            }
+
+                                                          function handleTouchStart(e) {
+                                                            e.preventDefault();
+                                                            const rect = canvas.getBoundingClientRect();
+                                                            const touch = e.touches[0];
+                                                            const scaleX = canvas.width / rect.width;
+                                                            const scaleY = canvas.height / rect.height;
+                                                            lastX = (touch.clientX - rect.left) * scaleX;
+                                                            lastY = (touch.clientY - rect.top) * scaleY;
+                                                            isDrawing = true;
+                                                            }
+
+                                                          function handleTouchMove(e) {
+                                                            if (!isDrawing) return;
+                                                            e.preventDefault();
+
+                                                            const rect = canvas.getBoundingClientRect();
+                                                            const touch = e.touches[0];
+                                                            const scaleX = canvas.width / rect.width;
+                                                            const scaleY = canvas.height / rect.height;
+                                                            const x = (touch.clientX - rect.left) * scaleX;
+                                                            const y = (touch.clientY - rect.top) * scaleY;
+
+                                                            ctx.strokeStyle = currentColor;
+                                                            ctx.lineWidth = brushSize;
+                                                            ctx.lineCap = "round";
+                                                            ctx.lineJoin = "round";
+
+                                                            ctx.beginPath();
+                                                            ctx.moveTo(lastX, lastY);
+                                                            ctx.lineTo(x, y);
+                                                            ctx.stroke();
+
+                                                            lastX = x;
+                                                            lastY = y;
+                                                            }
+
+                                                          function setColor(color) {
+                                                            currentColor = color;
+                                                            colorPicker.value = color;
+                                                            }
+
+                                                          function setBrushSize(size) {
+                                                            brushSize = size;
+
+                                                            // Update active button
+                                                            document.querySelectorAll(".brush-btn").forEach((btn) => {
+                                                              btn.classList.remove("active");
+                                                              });
+                                                            event.target.closest(".brush-btn").classList.add("active");
+                                                            }
+
+                                                          function clearCanvas() {
+                                                            if (
+                                                            confirm(
+                                                            "Do you actually want to clear the canvas, or did you accidentally press it?",
+                                                            )
+                                                            ) {
                                                               ctx.fillStyle = "white";
                                                               ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                                              }
+                                                            }
 
-                                                              // Color picker event
-                                                              colorPicker.addEventListener("input", (e) => {
-                                                                currentColor = e.target.value;
-                                                                });
+                                                          function saveCanvas() {
+                                                            const link = document.createElement("a");
+                                                            let imgId = Math.floor(Math.random() * 99999) + 1;
+                                                            link.download = `artistic-banana-drawing-${imgId}.png`;
+                                                            link.href = canvas.toDataURL();
+                                                            link.click();
+                                                            alert("Your doodle is on your device now! 🎨");
+                                                            }
 
-                                                              // Mouse events for drawing
-                                                              canvas.addEventListener("mousedown", startDrawing);
-                                                              canvas.addEventListener("mousemove", draw);
-                                                              canvas.addEventListener("mouseup", stopDrawing);
-                                                              canvas.addEventListener("mouseout", stopDrawing);
+                                                          // Load saved color on page load
+                                                          const savedColor = localStorage.getItem('savedColor');
+                                                          if (savedColor) {
+                                                            input.value = savedColor;
+                                                            }
 
-                                                              // Touch events for mobile
-                                                              canvas.addEventListener("touchstart", handleTouchStart);
-                                                              canvas.addEventListener("touchmove", handleTouchMove);
-                                                              canvas.addEventListener("touchend", stopDrawing);
+                                                          // Save new color when button is clicked
+                                                          saveBtn.addEventListener('click', () => {
+                                                            const color = input.value.trim();
 
-                                                              function startDrawing(e) {
-                                                                isDrawing = true;
-                                                                const rect = canvas.getBoundingClientRect();
-                                                                lastX = e.clientX - rect.left;
-                                                                lastY = e.clientY - rect.top;
-                                                                }
+                                                            // Basic validation (check it starts with # and is 7 chars long)
+                                                            if (/^#[0-9A-Fa-f]{6}$/.test(color)) {
+                                                              localStorage.setItem('savedColor', color);
+                                                              setColor(color)
+                                                              alert('Switched color successfully!');
+                                                              }
+                                                            else {
+                                                              alert('Please enter a valid hex color code (e.g. #ff5733)');
+                                                              }
+                                                            });
 
-                                                              function draw(e) {
-                                                                if (!isDrawing) return;
-
-                                                                const rect = canvas.getBoundingClientRect();
-                                                                const x = e.clientX - rect.left;
-                                                                const y = e.clientY - rect.top;
-
-                                                                ctx.strokeStyle = currentColor;
-                                                                ctx.lineWidth = brushSize;
-                                                                ctx.lineCap = "round";
-                                                                ctx.lineJoin = "round";
-
-                                                                ctx.beginPath();
-                                                                ctx.moveTo(lastX, lastY);
-                                                                ctx.lineTo(x, y);
-                                                                ctx.stroke();
-
-                                                                lastX = x;
-                                                                lastY = y;
-                                                                }
-
-                                                              function stopDrawing() {
-                                                                isDrawing = false;
-                                                                }
-
-                                                              function handleTouchStart(e) {
-                                                                e.preventDefault();
-                                                                const rect = canvas.getBoundingClientRect();
-                                                                const touch = e.touches[0];
-                                                                const scaleX = canvas.width / rect.width;
-                                                                const scaleY = canvas.height / rect.height;
-                                                                lastX = (touch.clientX - rect.left) * scaleX;
-                                                                lastY = (touch.clientY - rect.top) * scaleY;
-                                                                isDrawing = true;
-                                                                }
-
-                                                              function handleTouchMove(e) {
-                                                                if (!isDrawing) return;
-                                                                e.preventDefault();
-
-                                                                const rect = canvas.getBoundingClientRect();
-                                                                const touch = e.touches[0];
-                                                                const scaleX = canvas.width / rect.width;
-                                                                const scaleY = canvas.height / rect.height;
-                                                                const x = (touch.clientX - rect.left) * scaleX;
-                                                                const y = (touch.clientY - rect.top) * scaleY;
-
-                                                                ctx.strokeStyle = currentColor;
-                                                                ctx.lineWidth = brushSize;
-                                                                ctx.lineCap = "round";
-                                                                ctx.lineJoin = "round";
-
-                                                                ctx.beginPath();
-                                                                ctx.moveTo(lastX, lastY);
-                                                                ctx.lineTo(x, y);
-                                                                ctx.stroke();
-
-                                                                lastX = x;
-                                                                lastY = y;
-                                                                }
-
-                                                              function setColor(color) {
-                                                                currentColor = color;
-                                                                colorPicker.value = color;
-                                                                }
-
-                                                              function setBrushSize(size) {
-                                                                brushSize = size;
-
-                                                                // Update active button
-                                                                document.querySelectorAll(".brush-btn").forEach((btn) => {
-                                                                  btn.classList.remove("active");
-                                                                  });
-                                                                event.target.closest(".brush-btn").classList.add("active");
-                                                                }
-
-                                                              function clearCanvas() {
-                                                                if (
-                                                                confirm(
-                                                                "Do you actually want to clear the canvas, or did you accidentally press it?",
-                                                                )
-                                                                ) {
-                                                                  ctx.fillStyle = "white";
-                                                                  ctx.fillRect(0, 0, canvas.width, canvas.height);
-                                                                  }
-                                                                }
-
-                                                              function saveCanvas() {
-                                                                const link = document.createElement("a");
-                                                                let imgId = Math.floor(Math.random() * 99999) + 1;
-                                                                link.download = `artistic-banana-drawing-${imgId}.png`;
-                                                                link.href = canvas.toDataURL();
-                                                                link.click();
-                                                                alert("Your doodle is on your device now! 🎨");
-                                                                }
-
-                                                              // Load saved color on page load
-                                                              const savedColor = localStorage.getItem('savedColor');
-                                                              if (savedColor) {
-                                                                input.value = savedColor;
-                                                                }
-
-                                                              // Save new color when button is clicked
-                                                              saveBtn.addEventListener('click', () => {
-                                                                const color = input.value.trim();
-
-                                                                // Basic validation (check it starts with # and is 7 chars long)
-                                                                if (/^#[0-9A-Fa-f]{6}$/.test(color)) {
-                                                                  localStorage.setItem('savedColor', color);
-                                                                  setColor(color)
-                                                                  alert('Switched color successfully!');
-                                                                  }
-                                                                else {
-                                                                  alert('Please enter a valid hex color code (e.g. #ff5733)');
-                                                                  }
-                                                                });
-
-                                                              </script>
-                                                            </body>
-                                                          </html>
+                                                          </script>
+                                                        </body>
+                                                      </html>
