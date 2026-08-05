@@ -87,117 +87,117 @@
     </head>
     <body>
       <h1>Dingus Note</h1>
-        <br>
+      <br>
 
-        <textarea id="note" rows="9" cols="60" placeholder="type stuff, idk..."></textarea>
-          <br><br>
+      <textarea id="note" rows="9" cols="60" placeholder="type stuff, idk..."></textarea>
+        <br><br>
 
-          <!-- Audio player -->
-          <audio id="audioPlayer" controls loop></audio>
+        <!-- Audio player -->
+        <audio id="audioPlayer" controls loop></audio>
 
-            <div class="bottom-bar">
-              <h3 class="bar-text">Controls</h3>
-                <input id="filename" placeholder="something.txt" value="note.txt">
+          <div class="bottom-bar">
+            <h3 class="bar-text">Controls</h3>
+            <input id="filename" placeholder="something.txt" value="note.txt">
 
-                  <button id="save">Save File</button>
+              <button id="save">Save File</button>
 
-                    <!-- File input -->
-                    <input type="file" id="fileInput" accept="audio/*">
+                <!-- File input -->
+                <input type="file" id="fileInput" accept="audio/*">
 
-                      <button id="switchHtm">HTML Mode</button>
+                  <button id="switchHtm">HTML Mode</button>
 
-                        <button id="switchTxt">Text Mode</button>
+                    <button id="switchTxt">Text Mode</button>
 
-                          <!-- Copy Button -->
-                          <button id="copyButton">Copy Dingus Note Text</button>
+                      <!-- Copy Button -->
+                      <button id="copyButton">Copy Dingus Note Text</button>
 
-                            <img width="50" height="50" src="smiley.gif">
-                          </div>
+                        <img width="50" height="50" src="smiley.gif">
+                      </div>
 
-                          <script>
-                            const fileInput = document.getElementById("fileInput");
-                            // FIX: Define audioPlayer so the change listener can find it
-                            const audioPlayer = document.getElementById("audioPlayer");
+                      <script>
+                        const fileInput = document.getElementById("fileInput");
+                        // FIX: Define audioPlayer so the change listener can find it
+                        const audioPlayer = document.getElementById("audioPlayer");
 
-                            document.getElementById("save").onclick = () => {
-                              const text = document.getElementById("note").value;
-                              let filename = document.getElementById("filename").value.trim();
+                        document.getElementById("save").onclick = () => {
+                          const text = document.getElementById("note").value;
+                          let filename = document.getElementById("filename").value.trim();
 
-                              if (!filename) filename = "note.txt";
-                              if (!filename.includes(".")) filename += ".txt";
+                          if (!filename) filename = "note.txt";
+                          if (!filename.includes(".")) filename += ".txt";
 
-                              const blob = new Blob([text], { type: "text/plain" });
-                              const url = URL.createObjectURL(blob);
+                          const blob = new Blob([text], { type: "text/plain" });
+                          const url = URL.createObjectURL(blob);
 
-                              const a = document.createElement("a");
-                              a.href = url;
-                              a.download = filename;
-                              a.click();
+                          const a = document.createElement("a");
+                          a.href = url;
+                          a.download = filename;
+                          a.click();
 
-                              URL.revokeObjectURL(url);
-                            };
+                          URL.revokeObjectURL(url);
+                        };
 
-                            document.getElementById("switchHtm").onclick = () => {
-                              const note = document.getElementById("note");
-                              document.getElementById("filename").value = "index.html";
-                              note.value = `<!doctype html>
-                              <html lang="en">
-                                <head>
-                                  <title>Title</title>
-                                    <style>
-                                      h1, h2, h3, h4, h5, h6 {
-                                        font-family: "Segoe UI", sans-serif;
-                                      }
-                                    </style>
-                                  </head>
-                                  <body>
-                                    <h1>My Webpage</h1>
-                                    </body>
-                                  </html>`;
-                                };
-
-                                document.getElementById("switchTxt").onclick = () => {
-                                  const note = document.getElementById("note");
-                                  document.getElementById("filename").value = "note.txt";
-                                  note.value = "Write a note, todo, story, or shopping list.";
-                                };
-
-                                fileInput.addEventListener('change', function() {
-                                  const file = this.files[0];
-                                  const file = this.files[0];
-
-                                  const file = this.files[0];
-
-                                  if (file) {
-                                    // 1. Create the blob URL
-                                    const fileURL = URL.createObjectURL(file);
-
-                                    // 2. Clear the old source first (the "reset" boogie)
-                                    audioPlayer.removeAttribute('src');
-                                    audioPlayer.load();
-
-                                    // 3. Set the new source
-                                    // If CodeQL is STILL mad, it's hallucinating like a doge in a double rainbow.
-                                    // Ensure 'audioPlayer' is a true HTMLAudioElement!
-                                    audioPlayer.src = fileURL;
-
-                                    // 4. Play it loud! 🎶
-                                    audioPlayer.play().catch(err => {
-                                      console.log("Oof, play blocked! Need a user click first! 🚫🔊", err);
-                                    });
+                        document.getElementById("switchHtm").onclick = () => {
+                          const note = document.getElementById("note");
+                          document.getElementById("filename").value = "index.html";
+                          note.value = `<!doctype html>
+                          <html lang="en">
+                            <head>
+                              <title>Title</title>
+                                <style>
+                                  h1, h2, h3, h4, h5, h6 {
+                                    font-family: "Segoe UI", sans-serif;
                                   }
-
-                                  document.getElementById("copyButton").onclick = () => {
-                                    const note = document.getElementById("note");
-                                    note.select();
-                                    note.setSelectionRange(0, 99999);
-
-                                    // FIX: Added note.value inside the parentheses
-                                    navigator.clipboard.writeText(note.value);
-
-                                    alert("Copied!");
-                                  };
-                                  // FIX: Added the missing closing script brace below
-                                </script>
+                                </style>
+                              </head>
+                              <body>
+                                <h1>My Webpage</h1>
                               </body>
-                            </html>
+                            </html>`;
+                          };
+
+                          document.getElementById("switchTxt").onclick = () => {
+                            const note = document.getElementById("note");
+                            document.getElementById("filename").value = "note.txt";
+                            note.value = "Write a note, todo, story, or shopping list.";
+                          };
+
+                          fileInput.addEventListener('change', function() {
+                            const file = this.files[0];
+                            const file = this.files[0];
+
+                            const file = this.files[0];
+
+                            if (file) {
+                              // 1. Create the blob URL
+                              const fileURL = URL.createObjectURL(file);
+
+                              // 2. Clear the old source first (the "reset" boogie)
+                              audioPlayer.removeAttribute('src');
+                              audioPlayer.load();
+
+                              // 3. Set the new source
+                              // If CodeQL is STILL mad, it's hallucinating like a doge in a double rainbow.
+                              // Ensure 'audioPlayer' is a true HTMLAudioElement!
+                              audioPlayer.src = fileURL;
+
+                              // 4. Play it loud! 🎶
+                              audioPlayer.play().catch(err => {
+                                console.log("Oof, play blocked! Need a user click first! 🚫🔊", err);
+                              });
+                            }
+
+                            document.getElementById("copyButton").onclick = () => {
+                              const note = document.getElementById("note");
+                              note.select();
+                              note.setSelectionRange(0, 99999);
+
+                              // FIX: Added note.value inside the parentheses
+                              navigator.clipboard.writeText(note.value);
+
+                              alert("Copied!");
+                            };
+                            // FIX: Added the missing closing script brace below
+                          </script>
+                        </body>
+                      </html>

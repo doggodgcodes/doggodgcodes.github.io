@@ -59,98 +59,98 @@
                 </div>
                 <div class="window-body">
                   <p style="text-align:center">Current Toast Density:</p>
-                    <div id="toaster-btn" onclick="toastBread()">🍞</div>
-                      <div class="field-row" style="justify-content: center">
-                        <label>Total Toasted:</label>
-                        <input id="counter" type="text" value="0" readonly />
-                      </div>
-                      <div class="field-row" style="justify-content: center; margin-top:10px;">
-                        <button onclick="buyButter()">Install Butter.vxd (10 Slices)</button>
-                        </div>
+                  <div id="toaster-btn" onclick="toastBread()">🍞</div>
+                    <div class="field-row" style="justify-content: center">
+                      <label>Total Toasted:</label>
+                      <input id="counter" type="text" value="0" readonly />
+                    </div>
+                    <div class="field-row" style="justify-content: center; margin-top:10px;">
+                      <button onclick="buyButter()">Install Butter.vxd (10 Slices)</button>
                       </div>
                     </div>
+                  </div>
 
-                    <div class="window">
-                      <div class="title-bar">
-                        <div class="title-bar-text">Top Feline Toast Enthusiasts</div>
-                        </div>
-                        <div class="window-body">
-                          <table style="width: 100%">
-                            <thead>
-                              <tr><th>Rank</th><th>User</th><th>Score</th></tr>
-                              </thead>
-                              <tbody>
-                                <tr><td>1</td><td>Grumpy_Cat_69</td><td>9,999,999</td></tr>
-                                  <tr><td>2</td><td>Nyan_Technician</td><td>8,420,111</td></tr>
-                                    <tr><td>3</td><td><span style="color:blue">You (Player 1)</span></td><td><span id="user-score">0</span></td></tr>
-                                    </tbody>
-                                  </table>
-                                </div>
+                  <div class="window">
+                    <div class="title-bar">
+                      <div class="title-bar-text">Top Feline Toast Enthusiasts</div>
+                      </div>
+                      <div class="window-body">
+                        <table style="width: 100%">
+                          <thead>
+                            <tr><th>Rank</th><th>User</th><th>Score</th></tr>
+                            </thead>
+                            <tbody>
+                              <tr><td>1</td><td>Grumpy_Cat_69</td><td>9,999,999</td></tr>
+                                <tr><td>2</td><td>Nyan_Technician</td><td>8,420,111</td></tr>
+                                  <tr><td>3</td><td><span style="color:blue">You (Player 1)</span></td><td><span id="user-score">0</span></td></tr>
+                                  </tbody>
+                                </table>
                               </div>
+                            </div>
 
-                              <div class="window" style="width: 350px">
-                                <div class="title-bar">
-                                  <div class="title-bar-text">System Info / Credits</div>
+                            <div class="window" style="width: 350px">
+                              <div class="title-bar">
+                                <div class="title-bar-text">System Info / Credits</div>
+                                </div>
+                                <div class="window-body">
+                                  <p><b>Developed by the Dream Team:</b></p>
+                                  <ul>
+                                  <li>Template by <b>DoggoDGCodes</b></li>
+                                    <li>Code by <b>Gemini</b></li>
+                                      <li>Chaos by <b>The User</b></li>
+                                      </ul>
+                                      <p style="font-size: 10px">© 1998-2026 ToastSoft Corp. All rights reserved.</p>
+                                    </div>
                                   </div>
-                                  <div class="window-body">
-                                    <p><b>Developed by the Dream Team:</b></p>
-                                      <ul>
-                                      <li>Template by <b>DoggoDGCodes</b></li>
-                                        <li>Code by <b>Gemini</b></li>
-                                          <li>Chaos by <b>The User</b></li>
-                                          </ul>
-                                          <p style="font-size: 10px">© 1998-2026 ToastSoft Corp. All rights reserved.</p>
-                                          </div>
-                                        </div>
 
-                                        <div id="clippy-container">
-                                          <div id="clippy-bubble">It looks like you're trying to toast bread. Would you like help with that?</div>
-                                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Clippy-letter.png/120px-Clippy-letter.png" alt="Clippy" style="width: 80px; float: right;">
-                                          </div>
+                                  <div id="clippy-container">
+                                    <div id="clippy-bubble">It looks like you're trying to toast bread. Would you like help with that?</div>
+                                      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7b/Clippy-letter.png/120px-Clippy-letter.png" alt="Clippy" style="width: 80px; float: right;">
+                                    </div>
 
-                                          <script>
-                                            let count = 0;
-                                            let butterMultiplier = 1;
-                                            const clippyMessages = [
-                                              "It looks like you're trying to toast bread. Need help?",
-                                              "Have you tried clicking faster? Your wrist looks lazy.",
-                                              "A slice of toast is just bread that went to the gym.",
-                                              "Error: Your toaster is 100% imaginary.",
-                                              "Would you like to subscribe to Bread Monthly?",
-                                              "Warning: High levels of gluten detected."
-                                            ];
+                                    <script>
+                                      let count = 0;
+                                      let butterMultiplier = 1;
+                                      const clippyMessages = [
+                                        "It looks like you're trying to toast bread. Need help?",
+                                        "Have you tried clicking faster? Your wrist looks lazy.",
+                                        "A slice of toast is just bread that went to the gym.",
+                                        "Error: Your toaster is 100% imaginary.",
+                                        "Would you like to subscribe to Bread Monthly?",
+                                        "Warning: High levels of gluten detected."
+                                      ];
 
-                                            function toastBread() {
-                                              count += butterMultiplier;
-                                              document.getElementById('counter').value = count;
-                                              document.getElementById('user-score').innerText = count;
+                                      function toastBread() {
+                                        count += butterMultiplier;
+                                        document.getElementById('counter').value = count;
+                                        document.getElementById('user-score').innerText = count;
 
-                                              // Randomly trigger Clippy
-                                              if (Math.random() > 0.85) {
-                                                showClippy();
-                                              }
-                                            }
+                                        // Randomly trigger Clippy
+                                        if (Math.random() > 0.85) {
+                                          showClippy();
+                                        }
+                                      }
 
-                                            function buyButter() {
-                                              if (count >= 10) {
-                                                count -= 10;
-                                                butterMultiplier += 1;
-                                                document.getElementById('counter').value = count;
-                                                document.getElementById('user-score').innerText = count;
-                                                alert("SUCCESS: Butter Driver installed. You are now a Toast Professional.");
-                                              } else {
-                                                alert("SYSTEM ERROR: You cannot afford the butter DLC.");
-                                              }
-                                            }
+                                      function buyButter() {
+                                        if (count >= 10) {
+                                          count -= 10;
+                                          butterMultiplier += 1;
+                                          document.getElementById('counter').value = count;
+                                          document.getElementById('user-score').innerText = count;
+                                          alert("SUCCESS: Butter Driver installed. You are now a Toast Professional.");
+                                        } else {
+                                          alert("SYSTEM ERROR: You cannot afford the butter DLC.");
+                                        }
+                                      }
 
-                                            function showClippy() {
-                                              const bubble = document.getElementById('clippy-bubble');
-                                              const randomMsg = clippyMessages[Math.floor(Math.random() * clippyMessages.length)];
-                                              bubble.innerText = randomMsg;
-                                              bubble.style.display = 'block';
-                                              setTimeout(() => { bubble.style.display = 'none'; }, 4000);
-                                            }
-                                          </script>
+                                      function showClippy() {
+                                        const bubble = document.getElementById('clippy-bubble');
+                                        const randomMsg = clippyMessages[Math.floor(Math.random() * clippyMessages.length)];
+                                        bubble.innerText = randomMsg;
+                                        bubble.style.display = 'block';
+                                        setTimeout(() => { bubble.style.display = 'none'; }, 4000);
+                                      }
+                                    </script>
 
-                                        </body>
-                                      </html>
+                                  </body>
+                                </html>

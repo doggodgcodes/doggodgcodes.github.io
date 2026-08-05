@@ -111,191 +111,191 @@
     <body>
       <div class="container">
         <h1>🐱 Battle Cats Capsule 🎰</h1>
-          <div class="currency-display">
-            <h2>Cat Food | Total Value: <span id="catValue">0</span></h2>
-              <div class="amount" id="catFood">8388607</div>
+        <div class="currency-display">
+          <h2>Cat Food | Total Value: <span id="catValue">0</span></h2>
+          <div class="amount" id="catFood">8388607</div>
+          </div>
+
+          <div class="capsule-machine">
+            <div class="capsule-display" id="capsuleDisplay">
+              <div class="capsule-animation">🎰</div>
+                <p>READY TO BONK!</p>
               </div>
-
-              <div class="capsule-machine">
-                <div class="capsule-display" id="capsuleDisplay">
-                  <div class="capsule-animation">🎰</div>
-                    <p>READY TO BONK!</p>
+              <div class="pull-buttons" style="margin-top:20px;">
+                <button class="pull-btn pull-1" onclick="pullCapsule(1)">Pull 1x (150 CF)</button>
+                  <button class="pull-btn pull-10" onclick="pullCapsule(10)">Pull 10x (1500 CF)</button>
+                    <button class="pull-btn pull-11" onclick="pullCapsule(11)">Pull 11x (1500 CF)</button>
                     </div>
-                    <div class="pull-buttons" style="margin-top:20px;">
-                      <button class="pull-btn pull-1" onclick="pullCapsule(1)">Pull 1x (150 CF)</button>
-                        <button class="pull-btn pull-10" onclick="pullCapsule(10)">Pull 10x (1500 CF)</button>
-                          <button class="pull-btn pull-11" onclick="pullCapsule(11)">Pull 11x (1500 CF)</button>
-                          </div>
-                        </div>
+                  </div>
 
-                        <div class="hamburger-pass">
-                          <h3>🍔 Hamburger Pass Active: <span id="passStatus">OFF</span></h3>
-                            <button class="pull-btn" style="background:white; color:black;" onclick="purchaseHamburgerPass()" id="hamburgerPassBtn">Activate (1 CF)</button>
-                              <button class="pull-btn pull-11" onclick="pullHamburgerCapsule(100)" id="roll100Btn" disabled>ROLL 100 LEGENDS!</button>
+                  <div class="hamburger-pass">
+                    <h3>🍔 Hamburger Pass Active: <span id="passStatus">OFF</span></h3>
+                    <button class="pull-btn" style="background:white; color:black;" onclick="purchaseHamburgerPass()" id="hamburgerPassBtn">Activate (1 CF)</button>
+                      <button class="pull-btn pull-11" onclick="pullHamburgerCapsule(100)" id="roll100Btn" disabled>ROLL 100 LEGENDS!</button>
+                      </div>
+
+                      <div class="inventory">
+                        <h3>📦 Collection (Saves Automatically!)</h3>
+                        <div class="cats-grid" id="catsGrid"></div>
+                          <div id="stats" style="margin-top: 15px; display: flex; justify-content: space-between;">
+                            <span>Total Pulls: <span id="totalPulls">0</span></span>
+                              <span>Ubers/Legends: <span id="uberCount">0</span></span>
                               </div>
+                            </div>
+                          </div>
 
-                              <div class="inventory">
-                                <h3>📦 Collection (Saves Automatically!)</h3>
-                                  <div class="cats-grid" id="catsGrid"></div>
-                                    <div id="stats" style="margin-top: 15px; display: flex; justify-content: space-between;">
-                                      <span>Total Pulls: <span id="totalPulls">0</span></span>
-                                        <span>Ubers/Legends: <span id="uberCount">0</span></span>
-                                        </div>
-                                      </div>
+                          <script>
+                            const cats = [
+                              { name: "Cat", icon: "🐱", rarity: "normal", value: 10 },
+                              { name: "Tank Cat", icon: "🛡️", rarity: "normal", value: 10 },
+                              { name: "Axe Cat", icon: "🪓", rarity: "normal", value: 10 },
+                              { name: "Gross Cat", icon: "🤢", rarity: "normal", value: 10 },
+                              { name: "Ninja Cat", icon: "🥷", rarity: "special", value: 50 },
+                              { name: "Zombie Cat", icon: "🧟", rarity: "special", value: 50 },
+                              { name: "Paris Cat", icon: "🗼", rarity: "rare", value: 100 },
+                              { name: "Jurassic Cat", icon: "🦖", rarity: "rare", value: 100 },
+                              { name: "Hacker Cat", icon: "💻", rarity: "super-rare", value: 500 },
+                              { name: "Sushi Cat", icon: "🍣", rarity: "super-rare", value: 500 },
+                              { name: "Dragon Cat", icon: "🐉", rarity: "uber-rare", value: 2000 },
+                              { name: "Kamukura", icon: "👑", rarity: "uber-rare", value: 2500 },
+                              // MORE LEGENDS!
+                              { name: "Legend Cat", icon: "⭐", rarity: "legend", value: 10000 },
+                              { name: "Mythic Cat", icon: "🌟", rarity: "legend", value: 10000 },
+                              { name: "Graffiti Cat", icon: "🥫", rarity: "legend", value: 10000 },
+                              { name: "Galaxy Cat", icon: "🌌", rarity: "legend", value: 15000 },
+                              { name: "Doge King", icon: "🐕", rarity: "legend", value: 20000 },
+                              { name: "Gorilla Tag Cat", icon: "🦍", rarity: "legend", value: 25000 },
+                              { name: "Absolute Universe Cat", icon: "🌌", rarity: "legend", value: 99999 }
+                            ];
+
+                            // --- UPDATE YOUR SCRIPT SECTION WITH THIS BOOGIE WOOGIE LOGIC ---
+
+                            // 1. Load Cat Food from storage or use your legendary default!
+                            let catFood = parseInt(localStorage.getItem('battleCatsFood')) || 8388607;
+                            let inventory = JSON.parse(localStorage.getItem('battleCatsInventory')) || {};
+                            let totalPulls = parseInt(localStorage.getItem('battleCatsPulls')) || 0;
+                            let hamburgerPassActive = false;
+
+                            function saveGame() {
+                              localStorage.setItem('battleCatsInventory', JSON.stringify(inventory));
+                              localStorage.setItem('battleCatsPulls', totalPulls);
+                              localStorage.setItem('battleCatsFood', catFood); // Save that food!
+                            }
+
+                            function purchaseHamburgerPass() {
+                              if (catFood < 1 || hamburgerPassActive) return;
+                              catFood -= 1;
+                              hamburgerPassActive = true;
+
+                              // UI Update for the Pass
+                              document.getElementById('roll100Btn').disabled = false;
+                              document.getElementById('passStatus').textContent = "ON! 🌈";
+                              document.getElementById('hamburgerPassBtn').style.display = "none"; // Hide after use!
+                              updateUI();
+                              saveGame();
+
+                              // PASSIVE INCOME LOOP - Chilly like a Costco Freezer!
+                              setInterval(() => {
+                                if(hamburgerPassActive && Math.random() > 0.95) { // Adjusted frequency
+                                const randomCat = cats[Math.floor(Math.random() * cats.length)];
+                                addToInventory(randomCat);
+                                updateUI();
+                                updateInventoryDisplay();
+                                saveGame();
+                              }
+                            }, 1000);
+                          }
+
+                          // Ensure 100x roll actually works!
+                          function pullHamburgerCapsule(count) {
+                            if(!hamburgerPassActive) return;
+                            roll(count, true);
+                          }
+
+                          function getRarityChance() {
+                            const rand = Math.random() * 100;
+                            if (rand < 0.1) return "legend";
+                            if (rand < 1) return "uber-rare";
+                            if (rand < 5) return "super-rare";
+                            if (rand < 15) return "rare";
+                            if (rand < 40) return "special";
+                            return "normal";
+                          }
+
+                          function pullCapsule(count) {
+                            let cost = (count === 1) ? 150 : 1500;
+                            if (catFood < cost) return;
+                            catFood -= cost;
+                            roll(count, false);
+                          }
+
+                          function roll(count, isLegendOnly) {
+                            const display = document.getElementById('capsuleDisplay');
+                            display.innerHTML = '<div class="capsule-animation">🎰</div><p>Rolling...</p>';
+
+                            setTimeout(() => {
+                              const results = [];
+                              for (let i = 0; i < count; i++) {
+                                const targetRarity = isLegendOnly ? "legend" : getRarityChance();
+                                const available = cats.filter(c => c.rarity === targetRarity);
+                                const pulled = available[Math.floor(Math.random() * available.length)];
+                                results.push(pulled);
+                                addToInventory(pulled);
+                                totalPulls++;
+                              }
+                              displayResults(results);
+                              updateInventoryDisplay();
+                              updateUI();
+                              saveGame();
+                            }, 800);
+                          }
+
+                          function addToInventory(cat) {
+                            if (!inventory[cat.name]) {
+                              inventory[cat.name] = { ...cat, count: 0 };
+                            }
+                            inventory[cat.name].count++;
+                          }
+
+                          function displayResults(results) {
+                            const display = document.getElementById('capsuleDisplay');
+                            if (results.length === 1) {
+                              const cat = results[0];
+                              display.innerHTML = `<div><div style="font-size:5em">${cat.icon}</div><h2>${cat.name}</h2></div>`;
+                            } else {
+                              display.innerHTML = `<div class="multi-results">${results.map(c => `<div>${c.icon}</div>`).join('')}</div>`;
+                            }
+                          }
+
+                          function updateInventoryDisplay() {
+                            const grid = document.getElementById('catsGrid');
+                            grid.innerHTML = Object.values(inventory).map(cat => `
+                            <div class="cat-card">
+                              <div class="rarity ${cat.rarity}">${cat.rarity.toUpperCase()}</div>
+                                <div style="font-size:2em">${cat.icon}</div>
+                                  <div style="font-size:0.8em">${cat.name}</div>
+                                    <div>x${cat.count}</div>
                                     </div>
+                                    `).join('');
+                                  }
 
-                                    <script>
-                                      const cats = [
-                                        { name: "Cat", icon: "🐱", rarity: "normal", value: 10 },
-                                        { name: "Tank Cat", icon: "🛡️", rarity: "normal", value: 10 },
-                                        { name: "Axe Cat", icon: "🪓", rarity: "normal", value: 10 },
-                                        { name: "Gross Cat", icon: "🤢", rarity: "normal", value: 10 },
-                                        { name: "Ninja Cat", icon: "🥷", rarity: "special", value: 50 },
-                                        { name: "Zombie Cat", icon: "🧟", rarity: "special", value: 50 },
-                                        { name: "Paris Cat", icon: "🗼", rarity: "rare", value: 100 },
-                                        { name: "Jurassic Cat", icon: "🦖", rarity: "rare", value: 100 },
-                                        { name: "Hacker Cat", icon: "💻", rarity: "super-rare", value: 500 },
-                                        { name: "Sushi Cat", icon: "🍣", rarity: "super-rare", value: 500 },
-                                        { name: "Dragon Cat", icon: "🐉", rarity: "uber-rare", value: 2000 },
-                                        { name: "Kamukura", icon: "👑", rarity: "uber-rare", value: 2500 },
-                                        // MORE LEGENDS!
-                                        { name: "Legend Cat", icon: "⭐", rarity: "legend", value: 10000 },
-                                        { name: "Mythic Cat", icon: "🌟", rarity: "legend", value: 10000 },
-                                        { name: "Graffiti Cat", icon: "🥫", rarity: "legend", value: 10000 },
-                                        { name: "Galaxy Cat", icon: "🌌", rarity: "legend", value: 15000 },
-                                        { name: "Doge King", icon: "🐕", rarity: "legend", value: 20000 },
-                                        { name: "Gorilla Tag Cat", icon: "🦍", rarity: "legend", value: 25000 },
-                                        { name: "Absolute Universe Cat", icon: "🌌", rarity: "legend", value: 99999 }
-                                      ];
+                                  function updateUI() {
+                                    document.getElementById('catFood').textContent = catFood;
+                                    document.getElementById('totalPulls').textContent = totalPulls;
 
-                                      // --- UPDATE YOUR SCRIPT SECTION WITH THIS BOOGIE WOOGIE LOGIC ---
+                                    let totalVal = 0;
+                                    let ubers = 0;
+                                    Object.values(inventory).forEach(c => {
+                                      totalVal += (c.value * c.count);
+                                      if(c.rarity === 'uber-rare' || c.rarity === 'legend') ubers += c.count;
+                                    });
+                                    document.getElementById('catValue').textContent = totalVal;
+                                    document.getElementById('uberCount').textContent = ubers;
+                                  }
 
-                                      // 1. Load Cat Food from storage or use your legendary default!
-                                      let catFood = parseInt(localStorage.getItem('battleCatsFood')) || 8388607;
-                                      let inventory = JSON.parse(localStorage.getItem('battleCatsInventory')) || {};
-                                      let totalPulls = parseInt(localStorage.getItem('battleCatsPulls')) || 0;
-                                      let hamburgerPassActive = false;
-
-                                      function saveGame() {
-                                        localStorage.setItem('battleCatsInventory', JSON.stringify(inventory));
-                                        localStorage.setItem('battleCatsPulls', totalPulls);
-                                        localStorage.setItem('battleCatsFood', catFood); // Save that food!
-                                      }
-
-                                      function purchaseHamburgerPass() {
-                                        if (catFood < 1 || hamburgerPassActive) return;
-                                        catFood -= 1;
-                                        hamburgerPassActive = true;
-
-                                        // UI Update for the Pass
-                                        document.getElementById('roll100Btn').disabled = false;
-                                        document.getElementById('passStatus').textContent = "ON! 🌈";
-                                        document.getElementById('hamburgerPassBtn').style.display = "none"; // Hide after use!
-                                        updateUI();
-                                        saveGame();
-
-                                        // PASSIVE INCOME LOOP - Chilly like a Costco Freezer!
-                                        setInterval(() => {
-                                          if(hamburgerPassActive && Math.random() > 0.95) { // Adjusted frequency
-                                          const randomCat = cats[Math.floor(Math.random() * cats.length)];
-                                          addToInventory(randomCat);
-                                          updateUI();
-                                          updateInventoryDisplay();
-                                          saveGame();
-                                        }
-                                      }, 1000);
-                                    }
-
-                                    // Ensure 100x roll actually works!
-                                    function pullHamburgerCapsule(count) {
-                                      if(!hamburgerPassActive) return;
-                                      roll(count, true);
-                                    }
-
-                                    function getRarityChance() {
-                                      const rand = Math.random() * 100;
-                                      if (rand < 0.1) return "legend";
-                                      if (rand < 1) return "uber-rare";
-                                      if (rand < 5) return "super-rare";
-                                      if (rand < 15) return "rare";
-                                      if (rand < 40) return "special";
-                                      return "normal";
-                                    }
-
-                                    function pullCapsule(count) {
-                                      let cost = (count === 1) ? 150 : 1500;
-                                      if (catFood < cost) return;
-                                      catFood -= cost;
-                                      roll(count, false);
-                                    }
-
-                                    function roll(count, isLegendOnly) {
-                                      const display = document.getElementById('capsuleDisplay');
-                                      display.innerHTML = '<div class="capsule-animation">🎰</div><p>Rolling...</p>';
-
-                                      setTimeout(() => {
-                                        const results = [];
-                                        for (let i = 0; i < count; i++) {
-                                          const targetRarity = isLegendOnly ? "legend" : getRarityChance();
-                                          const available = cats.filter(c => c.rarity === targetRarity);
-                                          const pulled = available[Math.floor(Math.random() * available.length)];
-                                          results.push(pulled);
-                                          addToInventory(pulled);
-                                          totalPulls++;
-                                        }
-                                        displayResults(results);
-                                        updateInventoryDisplay();
-                                        updateUI();
-                                        saveGame();
-                                      }, 800);
-                                    }
-
-                                    function addToInventory(cat) {
-                                      if (!inventory[cat.name]) {
-                                        inventory[cat.name] = { ...cat, count: 0 };
-                                      }
-                                      inventory[cat.name].count++;
-                                    }
-
-                                    function displayResults(results) {
-                                      const display = document.getElementById('capsuleDisplay');
-                                      if (results.length === 1) {
-                                        const cat = results[0];
-                                        display.innerHTML = `<div><div style="font-size:5em">${cat.icon}</div><h2>${cat.name}</h2></div>`;
-                                      } else {
-                                        display.innerHTML = `<div class="multi-results">${results.map(c => `<div>${c.icon}</div>`).join('')}</div>`;
-                                      }
-                                    }
-
-                                    function updateInventoryDisplay() {
-                                      const grid = document.getElementById('catsGrid');
-                                      grid.innerHTML = Object.values(inventory).map(cat => `
-                                      <div class="cat-card">
-                                        <div class="rarity ${cat.rarity}">${cat.rarity.toUpperCase()}</div>
-                                          <div style="font-size:2em">${cat.icon}</div>
-                                            <div style="font-size:0.8em">${cat.name}</div>
-                                              <div>x${cat.count}</div>
-                                              </div>
-                                              `).join('');
-                                            }
-
-                                            function updateUI() {
-                                              document.getElementById('catFood').textContent = catFood;
-                                              document.getElementById('totalPulls').textContent = totalPulls;
-
-                                              let totalVal = 0;
-                                              let ubers = 0;
-                                              Object.values(inventory).forEach(c => {
-                                                totalVal += (c.value * c.count);
-                                                if(c.rarity === 'uber-rare' || c.rarity === 'legend') ubers += c.count;
-                                              });
-                                              document.getElementById('catValue').textContent = totalVal;
-                                              document.getElementById('uberCount').textContent = ubers;
-                                            }
-
-                                            // INIT
-                                            updateInventoryDisplay();
-                                            updateUI();
-                                          </script>
-                                        </body>
-                                      </html>
+                                  // INIT
+                                  updateInventoryDisplay();
+                                  updateUI();
+                                </script>
+                              </body>
+                            </html>

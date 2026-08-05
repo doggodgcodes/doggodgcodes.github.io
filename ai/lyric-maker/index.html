@@ -140,67 +140,67 @@
       <div class="container">
         <h1>🚨 BONK LYRIC ENGINE 🚨</h1>
 
-          <!-- Verbatim file references added to the UI panel -->
-          <div class="media-container">
-            <div class="media-box">📷 Reference Link: Screenshot 2025-05-17 151139.png[cite: 1]</div>
-              <div class="media-box">👍 Status: Thumbs up guy!.png[cite: 1]</div>
-              </div>
+        <!-- Verbatim file references added to the UI panel -->
+        <div class="media-container">
+          <div class="media-box">📷 Reference Link: Screenshot 2025-05-17 151139.png[cite: 1]</div>
+            <div class="media-box">👍 Status: Thumbs up guy!.png[cite: 1]</div>
+            </div>
 
-              <div class="lyrics-box" id="lyricsDisplay">✨ Press the button to drop raw fire bars... ✨</div>
+            <div class="lyrics-box" id="lyricsDisplay">✨ Press the button to drop raw fire bars... ✨</div>
 
-                <button id="generateBtn">GENERATE 8 BARS 🎉</button>
+              <button id="generateBtn">GENERATE 8 BARS 🎉</button>
 
-                  <div class="footer-credit">User: doggodgcodes | Powered by 1000000% Bonk Energy</div>
-                  </div>
+                <div class="footer-credit">User: doggodgcodes | Powered by 1000000% Bonk Energy</div>
+                </div>
 
-                  <script>
-                    // Syllable pools packed with the requested vocabulary strings
-                    const words2 = [
-                      "ham jam", "gorilla", "whopper", "creeper", "im blue",
-                      "cheetos", "rave time", "sprite lines", "saucy", "burger",
-                      "doge time", "pepe", "monke", "yapper", "dorito",
-                      "noodles", "ramen", "boop boop", "bytebeat", "gatorade"
-                    ];
+                <script>
+                  // Syllable pools packed with the requested vocabulary strings
+                  const words2 = [
+                    "ham jam", "gorilla", "whopper", "creeper", "im blue",
+                    "cheetos", "rave time", "sprite lines", "saucy", "burger",
+                    "doge time", "pepe", "monke", "yapper", "dorito",
+                    "noodles", "ramen", "boop boop", "bytebeat", "gatorade"
+                  ];
 
-                    const words3 = [
-                      "cheezburger", "orange juice", "chicken jockey", "ender pearl", "minecraft world",
-                      "mario", "water flow", "double rainbow", "tootsie rolls", "geometry",
-                      "croissant beans", "peanut butter", "goofy dev", "anychar", "jmancurly"
-                    ];
+                  const words3 = [
+                    "cheezburger", "orange juice", "chicken jockey", "ender pearl", "minecraft world",
+                    "mario", "water flow", "double rainbow", "tootsie rolls", "geometry",
+                    "croissant beans", "peanut butter", "goofy dev", "anychar", "jmancurly"
+                  ];
 
-                    const words4 = [
-                      "virtual dance floor", "frutiger aero", "internet cheezburger", "cookie cupcake", "holiday sandwich",
-                      "maximalism", "breakcore boogie", "esolang coding", "costco freezer", "coconut frosting"
-                    ];
+                  const words4 = [
+                    "virtual dance floor", "frutiger aero", "internet cheezburger", "cookie cupcake", "holiday sandwich",
+                    "maximalism", "breakcore boogie", "esolang coding", "costco freezer", "coconut frosting"
+                  ];
 
-                    function getRandomWord(wordArray) {
-                      return wordArray[Math.floor(Math.random() * wordArray.length)];
+                  function getRandomWord(wordArray) {
+                    return wordArray[Math.floor(Math.random() * wordArray.length)];
+                  }
+
+                  function generateBars() {
+                    const display = document.getElementById("lyricsDisplay");
+                    display.innerHTML = ""; // Clear existing output
+
+                    // Loop to construct exactly 8 bars matching the [2][3][4][2] syllable structure
+                    for (let i = 1; i <= 8; i++) {
+                      const w2_1 = getRandomWord(words2);
+                      const w3 = getRandomWord(words3);
+                      const w4 = getRandomWord(words4);
+                      const w2_2 = getRandomWord(words2);
+
+                      const lineText = `🔥 Bar ${i}: ${w2_1} // ${w3} // ${w4} // ${w2_2}!`;
+
+                      const lineElement = document.createElement("div");
+                      lineElement.className = "bar-line";
+                      lineElement.style.animationDelay = `${i * 0.1}s`;
+                      lineElement.textContent = lineText;
+
+                      display.appendChild(lineElement);
                     }
+                  }
 
-                    function generateBars() {
-                      const display = document.getElementById("lyricsDisplay");
-                      display.innerHTML = ""; // Clear existing output
+                  document.getElementById("generateBtn").addEventListener("click", generateBars);
+                </script>
 
-                      // Loop to construct exactly 8 bars matching the [2][3][4][2] syllable structure
-                      for (let i = 1; i <= 8; i++) {
-                        const w2_1 = getRandomWord(words2);
-                        const w3 = getRandomWord(words3);
-                        const w4 = getRandomWord(words4);
-                        const w2_2 = getRandomWord(words2);
-
-                        const lineText = `🔥 Bar ${i}: ${w2_1} // ${w3} // ${w4} // ${w2_2}!`;
-
-                        const lineElement = document.createElement("div");
-                        lineElement.className = "bar-line";
-                        lineElement.style.animationDelay = `${i * 0.1}s`;
-                        lineElement.textContent = lineText;
-
-                        display.appendChild(lineElement);
-                      }
-                    }
-
-                    document.getElementById("generateBtn").addEventListener("click", generateBars);
-                  </script>
-
-                </body>
-              </html>
+              </body>
+            </html>

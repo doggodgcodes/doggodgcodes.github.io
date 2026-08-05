@@ -26,260 +26,260 @@
       <main class="wrap">
         <section class="card" role="application" aria-label="Copilot Clicker">
           <h1>Copilot Clicker</h1>
-            <div id="count" class="count" aria-live="polite">0</div>
-              <div class="row">
-                <button id="clicker" class="btn" aria-label="Click to increase">Click</button>
-                  <div style="flex:1"></div>
-                    <div class="meta">Per click: <strong id="perClick">1</strong></div>
-                    </div>
+          <div id="count" class="count" aria-live="polite">0</div>
+            <div class="row">
+              <button id="clicker" class="btn" aria-label="Click to increase">Click</button>
+                <div style="flex:1"></div>
+                  <div class="meta">Per click: <strong id="perClick">1</strong></div>
+                  </div>
 
-                    <div class="controls">
-                      <button id="buyAuto" class="btn small">Buy auto-clicker (<span id="autoCost">50</span>)</button>
-                        <button id="buyMult" class="btn small">Buy x2 (<span id="multCost">100</span>)</button>
-                        </div>
+                  <div class="controls">
+                    <button id="buyAuto" class="btn small">Buy auto-clicker (<span id="autoCost">50</span>)</button>
+                      <button id="buyMult" class="btn small">Buy x2 (<span id="multCost">100</span>)</button>
+                      </div>
 
-                        <div class="log" id="log">Welcome — press the big Click button or hit Space.</div>
+                      <div class="log" id="log">Welcome — press the big Click button or hit Space.</div>
 
-                          <footer>Progress is saved to your browser.</footer>
-                          </section>
-                        </main>
+                        <footer>Progress is saved to your browser.</footer>
+                        </section>
+                      </main>
 
-                        <script>
-                          (function(){
-                            // State with defaults
-                            const stateKey = 'copilot-clicker-v1';
-                            const defaults = {count:0, multiplier:1, autos:0, autoCost:50, multCost:100};
+                      <script>
+                        (function(){
+                          // State with defaults
+                          const stateKey = 'copilot-clicker-v1';
+                          const defaults = {count:0, multiplier:1, autos:0, autoCost:50, multCost:100};
 
-                            let state = Object.assign({}, defaults);
-                            let autoIntervalId = null;
+                          let state = Object.assign({}, defaults);
+                          let autoIntervalId = null;
 
-                            // Elements
-                            const eCount = document.getElementById('count');
-                            const eClick = document.getElementById('clicker');
-                            const eAutoCost = document.getElementById('autoCost');
-                            const eMultCost = document.getElementById('multCost');
-                            const ePerClick = document.getElementById('perClick');
-                            const eBuyAuto = document.getElementById('buyAuto');
-                            const eBuyMult = document.getElementById('buyMult');
-                            const eLog = document.getElementById('log');
+                          // Elements
+                          const eCount = document.getElementById('count');
+                          const eClick = document.getElementById('clicker');
+                          const eAutoCost = document.getElementById('autoCost');
+                          const eMultCost = document.getElementById('multCost');
+                          const ePerClick = document.getElementById('perClick');
+                          const eBuyAuto = document.getElementById('buyAuto');
+                          const eBuyMult = document.getElementById('buyMult');
+                          const eLog = document.getElementById('log');
 
-                            function save(){
-                              try{localStorage.setItem(stateKey, JSON.stringify(state));}catch(e){console.warn('ls failed', e)}
-                            }
+                          function save(){
+                            try{localStorage.setItem(stateKey, JSON.stringify(state));}catch(e){console.warn('ls failed', e)}
+                          }
 
-                            function load(){
-                              try{
-                                const raw = localStorage.getItem(stateKey);
-                                if(raw){
-                                  const parsed = JSON.parse(raw);
-                                  // only pick known keys to avoid corruption
-                                  state.count = Number(parsed.count) || 0;
-                                  state.multiplier = Number(parsed.multiplier) || 1;
-                                  state.autos = Number(parsed.autos) || 0;
-                                  state.autoCost = Number(parsed.autoCost) || 50;
-                                  state.multCost = Number(parsed.multCost) || 100;
-                                }
-                              }catch(e){console.warn('load failed', e)}
-                            }
-
-                            function updateUI(){
-                              eCount.textContent = Math.floor(state.count).toLocaleString();
-                              eAutoCost.textContent = Math.ceil(state.autoCost).toLocaleString();
-                              eMultCost.textContent = Math.ceil(state.multCost).toLocaleString();
-                              ePerClick.textContent = (state.multiplier).toString();
-                              // disable buy buttons if not affordable
-                              eBuyAuto.disabled = state.count < state.autoCost;
-                              eBuyMult.disabled = state.count < state.multCost;
-                            }
-
-                            function log(msg){
-                              eLog.textContent = msg;
-                            }
-
-                            function gain(n){
-                              state.count += n;
-                              save();
-                              updateUI();
-                            }
-
-                            function clickAction(){
-                              gain(state.multiplier);
-                              log(`+${state.multiplier} (click)`);
-                            }
-
-                            function buyAuto(){
-                              if(state.count < state.autoCost) { log('Not enough cookies.'); return; }
-                              state.count -= state.autoCost;
-                              state.autos += 1;
-                              // cost scales gently
-                              state.autoCost = Math.ceil(state.autoCost * 1.5);
-                              save();
-                              updateUI();
-                              startAuto();
-                              log(`Bought auto-clicker (#${state.autos})`);
-                            }
-
-                            function buyMult(){
-                              if(state.count < state.multCost) { log('Not enough cookies.'); return; }
-                              state.count -= state.multCost;
-                              state.multiplier = state.multiplier * 2;
-                              state.multCost = Math.ceil(state.multCost * 2.5);
-                              save();
-                              updateUI();
-                              log(`Multiplier increased — now x${state.multiplier}`);
-                            }
-
-                            function startAuto(){
-                              if(autoIntervalId) return; // already running
-                              // run every second, add autos * multiplier
-                              autoIntervalId = setInterval(()=>{
-                                if(state.autos > 0){
-                                  const gainAmount = state.autos * state.multiplier;
-                                  state.count += gainAmount;
-                                  save();
-                                  updateUI();
-                                  log(`+${gainAmount} (auto)`);
-                                }
-                              }, 1000);
-                            }
-
-                            // Event listeners
-                            eClick.addEventListener('click', clickAction);
-                            eBuyAuto.addEventListener('click', buyAuto);
-                            eBuyMult.addEventListener('click', buyMult);
-
-                            // keyboard: Space to click
-                            window.addEventListener('keydown', (ev)=>{
-                              if(ev.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
-                                ev.preventDefault();
-                                clickAction();
+                          function load(){
+                            try{
+                              const raw = localStorage.getItem(stateKey);
+                              if(raw){
+                                const parsed = JSON.parse(raw);
+                                // only pick known keys to avoid corruption
+                                state.count = Number(parsed.count) || 0;
+                                state.multiplier = Number(parsed.multiplier) || 1;
+                                state.autos = Number(parsed.autos) || 0;
+                                state.autoCost = Number(parsed.autoCost) || 50;
+                                state.multCost = Number(parsed.multCost) || 100;
                               }
-                            });
+                            }catch(e){console.warn('load failed', e)}
+                          }
 
-                            // load state and start
-                            load();
+                          function updateUI(){
+                            eCount.textContent = Math.floor(state.count).toLocaleString();
+                            eAutoCost.textContent = Math.ceil(state.autoCost).toLocaleString();
+                            eMultCost.textContent = Math.ceil(state.multCost).toLocaleString();
+                            ePerClick.textContent = (state.multiplier).toString();
+                            // disable buy buttons if not affordable
+                            eBuyAuto.disabled = state.count < state.autoCost;
+                            eBuyMult.disabled = state.count < state.multCost;
+                          }
+
+                          function log(msg){
+                            eLog.textContent = msg;
+                          }
+
+                          function gain(n){
+                            state.count += n;
+                            save();
                             updateUI();
-                            if(state.autos > 0) startAuto();
+                          }
 
-                            // expose for debugging in console (optional)
-                            window.copilotClicker = {state, save, gain};
-                          })();
-                        </script>
-                        <script>
-                          (function() {
-                            let audioCtx = null;
+                          function clickAction(){
+                            gain(state.multiplier);
+                            log(`+${state.multiplier} (click)`);
+                          }
 
-                            /**
-                            * Initializes the AudioContext as a singleton.
-                            * Browsers require a user gesture to resume the context.
-                            */
-                            async function ensureAudio() {
-                              if (!audioCtx) {
-                                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                          function buyAuto(){
+                            if(state.count < state.autoCost) { log('Not enough cookies.'); return; }
+                            state.count -= state.autoCost;
+                            state.autos += 1;
+                            // cost scales gently
+                            state.autoCost = Math.ceil(state.autoCost * 1.5);
+                            save();
+                            updateUI();
+                            startAuto();
+                            log(`Bought auto-clicker (#${state.autos})`);
+                          }
+
+                          function buyMult(){
+                            if(state.count < state.multCost) { log('Not enough cookies.'); return; }
+                            state.count -= state.multCost;
+                            state.multiplier = state.multiplier * 2;
+                            state.multCost = Math.ceil(state.multCost * 2.5);
+                            save();
+                            updateUI();
+                            log(`Multiplier increased — now x${state.multiplier}`);
+                          }
+
+                          function startAuto(){
+                            if(autoIntervalId) return; // already running
+                            // run every second, add autos * multiplier
+                            autoIntervalId = setInterval(()=>{
+                              if(state.autos > 0){
+                                const gainAmount = state.autos * state.multiplier;
+                                state.count += gainAmount;
+                                save();
+                                updateUI();
+                                log(`+${gainAmount} (auto)`);
                               }
-                              if (audioCtx.state === 'suspended') {
-                                await audioCtx.resume();
-                              }
-                              return audioCtx;
+                            }, 1000);
+                          }
+
+                          // Event listeners
+                          eClick.addEventListener('click', clickAction);
+                          eBuyAuto.addEventListener('click', buyAuto);
+                          eBuyMult.addEventListener('click', buyMult);
+
+                          // keyboard: Space to click
+                          window.addEventListener('keydown', (ev)=>{
+                            if(ev.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
+                              ev.preventDefault();
+                              clickAction();
+                            }
+                          });
+
+                          // load state and start
+                          load();
+                          updateUI();
+                          if(state.autos > 0) startAuto();
+
+                          // expose for debugging in console (optional)
+                          window.copilotClicker = {state, save, gain};
+                        })();
+                      </script>
+                      <script>
+                        (function() {
+                          let audioCtx = null;
+
+                          /**
+                          * Initializes the AudioContext as a singleton.
+                          * Browsers require a user gesture to resume the context.
+                          */
+                          async function ensureAudio() {
+                            if (!audioCtx) {
+                              audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                            }
+                            if (audioCtx.state === 'suspended') {
+                              await audioCtx.resume();
+                            }
+                            return audioCtx;
+                          }
+
+                          /**
+                          * Generates a percussive pop with a feedback delay.
+                          */
+                          function playPop({ volume = 0.9, delayTime = 0.12, feedback = 0.22 } = {}) {
+                            if (!audioCtx || audioCtx.state !== 'running') return;
+
+                            const ac = audioCtx;
+                            const now = ac.currentTime;
+
+                            // 1. Create Noise Buffer (Percussive Pop)
+                            const len = Math.floor(ac.sampleRate * 0.04);
+                            const buf = ac.createBuffer(1, len, ac.sampleRate);
+                            const data = buf.getChannelData(0);
+                            for (let i = 0; i < len; i++) {
+                              const env = Math.exp(-i / (len * 0.12));
+                              data[i] = (Math.random() * 2 - 1) * env;
                             }
 
-                            /**
-                            * Generates a percussive pop with a feedback delay.
-                            */
-                            function playPop({ volume = 0.9, delayTime = 0.12, feedback = 0.22 } = {}) {
-                              if (!audioCtx || audioCtx.state !== 'running') return;
+                            const src = ac.createBufferSource();
+                            src.buffer = buf;
 
-                              const ac = audioCtx;
-                              const now = ac.currentTime;
+                            // 2. Filter for brightness
+                            const hp = ac.createBiquadFilter();
+                            hp.type = 'highpass';
+                            hp.frequency.setValueAtTime(800 + Math.random() * 1200, now);
 
-                              // 1. Create Noise Buffer (Percussive Pop)
-                              const len = Math.floor(ac.sampleRate * 0.04);
-                              const buf = ac.createBuffer(1, len, ac.sampleRate);
-                              const data = buf.getChannelData(0);
-                              for (let i = 0; i < len; i++) {
-                                const env = Math.exp(-i / (len * 0.12));
-                                data[i] = (Math.random() * 2 - 1) * env;
-                              }
+                            // 3. Dry Path (The initial 'Click')
+                            const dryGain = ac.createGain();
+                            dryGain.gain.setValueAtTime(0.0001, now);
+                            dryGain.gain.exponentialRampToValueAtTime(0.1 * volume, now + 0.002);
+                            dryGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
 
-                              const src = ac.createBufferSource();
-                              src.buffer = buf;
+                            // 4. Wet Path (The Echo)
+                            const delay = ac.createDelay(0.5);
+                            delay.delayTime.setValueAtTime(delayTime, now);
 
-                              // 2. Filter for brightness
-                              const hp = ac.createBiquadFilter();
-                              hp.type = 'highpass';
-                              hp.frequency.setValueAtTime(800 + Math.random() * 1200, now);
+                            const fb = ac.createGain();
+                            fb.gain.setValueAtTime(feedback, now);
 
-                              // 3. Dry Path (The initial 'Click')
-                              const dryGain = ac.createGain();
-                              dryGain.gain.setValueAtTime(0.0001, now);
-                              dryGain.gain.exponentialRampToValueAtTime(0.1 * volume, now + 0.002);
-                              dryGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+                            const wetGain = ac.createGain();
+                            wetGain.gain.setValueAtTime(0.3 * volume, now);
 
-                              // 4. Wet Path (The Echo)
-                              const delay = ac.createDelay(0.5);
-                              delay.delayTime.setValueAtTime(delayTime, now);
+                            // 5. Connect Graph
+                            src.connect(hp);
+                            hp.connect(dryGain);
+                            dryGain.connect(ac.destination);
 
-                              const fb = ac.createGain();
-                              fb.gain.setValueAtTime(feedback, now);
+                            hp.connect(wetGain);
+                            wetGain.connect(delay);
+                            delay.connect(fb);
+                            fb.connect(delay); // Feedback loop
+                            delay.connect(ac.destination);
 
-                              const wetGain = ac.createGain();
-                              wetGain.gain.setValueAtTime(0.3 * volume, now);
+                            // Cleanup: Stop source and disconnect nodes to free memory
+                            src.start(now);
+                            src.stop(now + 0.5);
 
-                              // 5. Connect Graph
-                              src.connect(hp);
-                              hp.connect(dryGain);
-                              dryGain.connect(ac.destination);
+                            // Explicitly disconnect after sound finishes to prevent memory leaks
+                            setTimeout(() => {
+                              src.disconnect();
+                              dryGain.disconnect();
+                              delay.disconnect();
+                            }, 700);
+                          }
 
-                              hp.connect(wetGain);
-                              wetGain.connect(delay);
-                              delay.connect(fb);
-                              fb.connect(delay); // Feedback loop
-                              delay.connect(ac.destination);
-
-                              // Cleanup: Stop source and disconnect nodes to free memory
-                              src.start(now);
-                              src.stop(now + 0.5);
-
-                              // Explicitly disconnect after sound finishes to prevent memory leaks
-                              setTimeout(() => {
-                                src.disconnect();
-                                dryGain.disconnect();
-                                delay.disconnect();
-                              }, 700);
+                          // Unified Trigger Function
+                          async function triggerSound() {
+                            try {
+                              await ensureAudio();
+                              playPop();
+                            } catch (e) {
+                              console.warn("Audio blocked by browser policy.");
                             }
+                          }
 
-                            // Unified Trigger Function
-                            async function triggerSound() {
-                              try {
-                                await ensureAudio();
-                                playPop();
-                              } catch (e) {
-                                console.warn("Audio blocked by browser policy.");
-                              }
+                          // Pointer Interaction
+                          document.addEventListener('pointerdown', (e) => {
+                            // Only trigger if it's a left click or touch
+                            if (e.button === 0 || e.pointerType === 'touch') {
+                              triggerSound();
                             }
+                          }, { passive: true });
 
-                            // Pointer Interaction
-                            document.addEventListener('pointerdown', (e) => {
-                              // Only trigger if it's a left click or touch
-                              if (e.button === 0 || e.pointerType === 'touch') {
-                                triggerSound();
-                              }
-                            }, { passive: true });
+                          // Keyboard Interaction (Space)
+                          window.addEventListener('keydown', (e) => {
+                            const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) ||
+                            document.activeElement.isContentEditable;
 
-                            // Keyboard Interaction (Space)
-                            window.addEventListener('keydown', (e) => {
-                              const isInput = ['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName) ||
-                              document.activeElement.isContentEditable;
+                            if (e.code === 'Space' && !isInput) {
+                              e.preventDefault();
+                              triggerSound();
+                            }
+                          });
 
-                              if (e.code === 'Space' && !isInput) {
-                                e.preventDefault();
-                                triggerSound();
-                              }
-                            });
-
-                            // Global API
-                            window.clickSoundAPI = { trigger: triggerSound, playPop };
-                          })();
-                        </script>
-                      </body>
-                    </html>
+                          // Global API
+                          window.clickSoundAPI = { trigger: triggerSound, playPop };
+                        })();
+                      </script>
+                    </body>
+                  </html>
