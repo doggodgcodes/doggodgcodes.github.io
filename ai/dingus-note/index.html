@@ -10,7 +10,7 @@
           --accent: #8e88de;
           --padding: 7px;
           --rad: 10px;
-        }
+          }
 
         body {
           background-color: var(--bg);
@@ -19,7 +19,7 @@
           align-content: center;
           font-family: "Tahoma", sans-serif;
           padding-bottom: 120px; /* Prevent content from being hidden behind bar */
-        }
+          }
 
         input, button, textarea {
           background-color: var(--main);
@@ -28,34 +28,34 @@
           margin: var(--padding);
           border-radius: var(--rad);
           transition: box-shadow 0.3s ease-in-out transform 0.3s ease-in-out;
-        }
+          }
 
         input:hover, button:hover, textarea:hover {
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           transform: translateY(-1px);
-        }
+          }
 
         textarea {
           padding: calc(var(--padding) * 2);
           margin: calc(var(--padding) * 2);
-        }
+          }
 
         textarea:hover {
           transform: translateY(2px) translateX(5px);
-        }
+          }
 
         img {
           margin-left: var(--padding);
-        }
+          }
 
         h1 {
           margin-top: var(--padding);
-        }
+          }
 
         .bar-text {
           margin-left: var(--padding);
           margin-right: calc(var(--padding) * 2);
-        }
+          }
 
         .bottom-bar {
           display: flex;
@@ -65,7 +65,7 @@
           border-top: 1px solid #ccc;
           border-radius: calc(var(--rad) * 2);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
+          }
 
         .bottom-bar input[type="text"] {
           flex: 1; /* Take all available space */
@@ -73,7 +73,7 @@
           font-size: 16px;
           border: 1px solid #ccc;
           outline: none;
-        }
+          }
 
         audio {
           background: linear-gradient(to right, #404045, var(--accent));
@@ -81,9 +81,9 @@
           border-radius: calc(var(--rad) * 3);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
           padding: calc(var(--padding) * 1.5);
-        }
-      </style>
-    </head>
+          }
+        </style>
+      </head>
     <body>
       <h1>Dingus Note</h1>
         <br>
@@ -102,7 +102,7 @@
 
                     <img width="76" height="76" src="smiley.gif">
 
-                  </div>
+                    </div>
 
                   <!-- Audio player -->
                   <audio id="audioPlayer" controls loop></audio>
@@ -126,7 +126,7 @@
                         a.click();
 
                         URL.revokeObjectURL(url);
-                      };
+                        };
 
                       fileInput.addEventListener('change', function() {
                         const file = this.files[0];
@@ -136,9 +136,9 @@
                           // Set the audio src to the file
                           audioPlayer.src = fileURL;
                           audioPlayer.play();
-                        }
-                      });
-                    </script>
+                          }
+                        });
+                      </script>
 
-                  </body>
-                </html>
+                    </body>
+                  </html>

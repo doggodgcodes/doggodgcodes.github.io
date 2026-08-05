@@ -6,6 +6,6 @@
     setTimeout(() => {
       window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
       console.log("From doggodgcodes: get rickrolled bucko 🤣");
-    }, 5000); // 5000 ms = 5 seconds
-  }
-})();
+      }, 5000); // 5000 ms = 5 seconds
+    }
+  })();

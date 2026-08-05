@@ -12,7 +12,7 @@
           background: radial-gradient(lime 0%, skyblue 50%, #667eea 100%); /* #667eea #764ba2 lime*/
           color: white;
           height: 150vh;
-        }
+          }
         .container {
           background: rgba(255,255,200,0.5);
           color: #333;
@@ -21,16 +21,16 @@
           max-width: 600px;
           margin: 0 auto;
           box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
+          }
         h1 {
           font-size: 3em;
           margin: 0;
           color: #ff6b6b;
-        }
+          }
         .laptop {
           font-size: 5em;
           margin: 20px 0;
-        }
+          }
         button {
           background: #ff6b6b;
           color: white;
@@ -41,27 +41,27 @@
           cursor: pointer;
           margin: 20px 0;
           transition: transform 0.2s;
-        }
+          }
         button:hover {
           transform: scale(1.05);
-        }
+          }
         .hidden {
           display: none;
-        }
+          }
         .reveal {
           font-size: 4em;
           margin: 20px 0;
-        }
+          }
         .footer-text {
           margin-top: 30px;
           font-size: 0.9em;
           color: #666;
-        }
+          }
         #initial {
           font-family: "Segoe UI", Arial, sans-serif;
-        }
-      </style>
-    </head>
+          }
+        </style>
+      </head>
     <body>
       <div class="container">
         <div id="initial">
@@ -70,7 +70,7 @@
               <h2>You're the 100th visitor!</h2>
                 <p style="font-size: 1.2em">Click below to get perks!</p>
                   <button onclick="reveal()">CLAIM MY PERKS!</button>
-                  </div>
+                    </div>
 
                   <div id="joke" class="hidden">
                     <div class="reveal">😂</div>
@@ -78,22 +78,22 @@
                         <p style="font-size: 1.3em; margin: 20px 0">
                           Gotcha! There's no free perks... but you DID get a good
                           laugh! If this was on a shady website, you would have gotten malware for sure!
-                        </p>
+                          </p>
                         <p style="font-size: 1em; color: #666">
                           (This is just a harmless prank page 😄)
-                        </p>
+                          </p>
                         <div class="footer-text">
                           Remember: If something seems too good to be true, it
                           probably is! Stay safe online! 🔒
+                          </div>
                         </div>
                       </div>
-                    </div>
 
                     <script>
                       function reveal() {
                         document.getElementById("initial").classList.add("hidden");
                         document.getElementById("joke").classList.remove("hidden");
-                      }
-                    </script>
-                  </body>
-                </html>
+                        }
+                      </script>
+                    </body>
+                  </html>

@@ -9,33 +9,33 @@
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-        }
+          }
 
         body {
           font-family: Arial, sans-serif;
           background-color: #eaeded;
-        }
+          }
 
         /* Header Styles */
         .header {
           background-color: #131921;
           color: white;
           padding: 10px 20px;
-        }
+          }
 
         .header-top {
           display: flex;
           align-items: center;
           gap: 20px;
           margin-bottom: 10px;
-        }
+          }
 
         @media (max-width: 768px) {
           .header-top {
             flex-wrap: wrap;
             gap: 10px;
+            }
           }
-        }
 
         .logo {
           font-size: 28px;
@@ -45,39 +45,39 @@
           padding: 5px 10px;
           border: 1px solid transparent;
           cursor: pointer;
-        }
+          }
 
         @media (max-width: 768px) {
           .logo {
             font-size: 22px;
+            }
           }
-        }
 
         .logo:hover {
           border: 1px solid white;
-        }
+          }
 
         .logo-text {
           letter-spacing: -1px;
-        }
+          }
 
         .logo-smile {
           color: #ff9900;
-        }
+          }
 
         /* Search Bar */
         .search-container {
           flex: 1;
           display: flex;
           max-width: 800px;
-        }
+          }
 
         .search-input {
           flex: 1;
           padding: 10px;
           border: none;
           font-size: 16px;
-        }
+          }
 
         .search-button {
           background-color: #febd69;
@@ -85,15 +85,15 @@
           padding: 10px 20px;
           cursor: pointer;
           border-radius: 0 4px 4px 0;
-        }
+          }
 
         .search-button:hover {
           background-color: #f3a847;
-        }
+          }
 
         .search-icon {
           font-size: 18px;
-        }
+          }
 
         .search-suggestion {
           background-color: #ffffff;
@@ -104,11 +104,11 @@
           display: none;
           color: #333;
           font-size: 14px;
-        }
+          }
 
         .search-suggestion.show {
           display: block;
-        }
+          }
 
         .header-nav {
           display: flex;
@@ -116,15 +116,15 @@
           font-size: 14px;
           overflow-x: auto;
           white-space: nowrap;
-        }
+          }
 
         @media (max-width: 768px) {
           .header-nav {
             gap: 10px;
             font-size: 12px;
             padding-bottom: 5px;
+            }
           }
-        }
 
         .nav-item {
           color: white;
@@ -132,11 +132,11 @@
           padding: 5px;
           border: 1px solid transparent;
           cursor: pointer;
-        }
+          }
 
         .nav-item:hover {
           border: 1px solid white;
-        }
+          }
 
         .cart-count {
           background-color: #ff9900;
@@ -146,7 +146,7 @@
           font-size: 12px;
           font-weight: bold;
           margin-left: 5px;
-        }
+          }
 
         /* Main Content */
         .main-banner {
@@ -155,33 +155,33 @@
           text-align: center;
           font-size: 14px;
           color: #333;
-        }
+          }
 
         .container {
           max-width: 1500px;
           margin: 0 auto;
           padding: 20px;
-        }
+          }
 
         @media (max-width: 768px) {
           .container {
             padding: 10px;
+            }
           }
-        }
 
         .products-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
           gap: 20px;
           margin-top: 20px;
-        }
+          }
 
         @media (max-width: 768px) {
           .products-grid {
             grid-template-columns: 1fr;
             gap: 15px;
+            }
           }
-        }
 
         .product-card {
           background: white;
@@ -190,19 +190,19 @@
           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
           transition: transform 0.2s;
           cursor: pointer;
-        }
+          }
 
         .product-card:hover {
           transform: translateY(-5px);
           box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
+          }
 
         .product-image {
           width: 100%;
           height: 200px;
           object-fit: contain;
           margin-bottom: 15px;
-        }
+          }
 
         .product-title {
           font-size: 16px;
@@ -210,24 +210,24 @@
           margin-bottom: 10px;
           min-height: 48px;
           line-height: 1.5;
-        }
+          }
 
         .product-rating {
           color: #ff9900;
           margin-bottom: 10px;
-        }
+          }
 
         .product-price {
           font-size: 24px;
           color: #b12704;
           margin-bottom: 10px;
-        }
+          }
 
         .product-prime {
           color: #007185;
           font-size: 12px;
           margin-bottom: 10px;
-        }
+          }
 
         .add-to-cart {
           background-color: #ffd814;
@@ -238,11 +238,11 @@
           cursor: pointer;
           font-size: 14px;
           margin-bottom: 5px;
-        }
+          }
 
         .add-to-cart:hover {
           background-color: #f7ca00;
-        }
+          }
 
         .buy-now {
           background-color: #ffa41c;
@@ -252,11 +252,11 @@
           width: 100%;
           cursor: pointer;
           font-size: 14px;
-        }
+          }
 
         .buy-now:hover {
           background-color: #fa8900;
-        }
+          }
 
         /* Product Detail Page */
         .product-detail {
@@ -266,66 +266,66 @@
           margin: 20px auto;
           padding: 30px;
           border-radius: 8px;
-        }
+          }
 
         .product-detail.show {
           display: block;
-        }
+          }
 
         .product-detail-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 40px;
           margin-bottom: 40px;
-        }
+          }
 
         @media (max-width: 768px) {
           .product-detail-grid {
             grid-template-columns: 1fr;
             gap: 20px;
+            }
           }
-        }
 
         .product-detail-image {
           width: 100%;
           max-height: 500px;
           object-fit: contain;
-        }
+          }
 
         .product-detail-info h1 {
           font-size: 24px;
           color: #0f1111;
           margin-bottom: 10px;
-        }
+          }
 
         .product-detail-rating {
           color: #ff9900;
           margin-bottom: 20px;
           font-size: 14px;
-        }
+          }
 
         .product-detail-price {
           font-size: 28px;
           color: #b12704;
           margin-bottom: 10px;
-        }
+          }
 
         .product-detail-prime {
           color: #007185;
           margin-bottom: 20px;
-        }
+          }
 
         .product-detail-description {
           margin-bottom: 20px;
           line-height: 1.6;
-        }
+          }
 
         .product-detail-buttons {
           display: flex;
           flex-direction: column;
           gap: 10px;
           max-width: 300px;
-        }
+          }
 
         .back-button {
           background-color: #e7e9ec;
@@ -337,65 +337,65 @@
           margin-bottom: 20px;
           display: inline-block;
           width: 100px;
-        }
+          }
 
         .back-button:hover {
           background-color: #d5d9d9;
-        }
+          }
 
         /* Reviews Section */
         .reviews-section {
           margin-top: 40px;
           border-top: 1px solid #ddd;
           padding-top: 30px;
-        }
+          }
 
         .reviews-section h2 {
           font-size: 24px;
           margin-bottom: 20px;
-        }
+          }
 
         .review {
           border-bottom: 1px solid #ddd;
           padding: 20px 0;
-        }
+          }
 
         .review-header {
           display: flex;
           align-items: center;
           gap: 10px;
           margin-bottom: 10px;
-        }
+          }
 
         .review-author {
           font-weight: bold;
-        }
+          }
 
         .review-date {
           color: #565959;
           font-size: 14px;
-        }
+          }
 
         .review-rating {
           color: #ff9900;
           margin-bottom: 10px;
-        }
+          }
 
         .review-title {
           font-weight: bold;
           margin-bottom: 5px;
-        }
+          }
 
         .review-text {
           color: #0f1111;
           line-height: 1.6;
-        }
+          }
 
         .review-helpful {
           color: #565959;
           font-size: 14px;
           margin-top: 10px;
-        }
+          }
 
         /* Cart Sidebar */
         .cart-sidebar {
@@ -409,18 +409,18 @@
           transition: right 0.3s;
           z-index: 1000;
           overflow-y: auto;
-        }
+          }
 
         @media (max-width: 768px) {
           .cart-sidebar {
             width: 100%;
             right: -100%;
+            }
           }
-        }
 
         .cart-sidebar.show {
           right: 0;
-        }
+          }
 
         .cart-header {
           background-color: #232f3e;
@@ -429,7 +429,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-        }
+          }
 
         .close-cart {
           background: none;
@@ -437,39 +437,39 @@
           color: white;
           font-size: 24px;
           cursor: pointer;
-        }
+          }
 
         .cart-items {
           padding: 20px;
-        }
+          }
 
         .cart-item {
           display: flex;
           gap: 15px;
           padding: 15px 0;
           border-bottom: 1px solid #ddd;
-        }
+          }
 
         .cart-item-image {
           width: 80px;
           height: 80px;
           object-fit: contain;
-        }
+          }
 
         .cart-item-info {
           flex: 1;
-        }
+          }
 
         .cart-item-title {
           font-size: 14px;
           margin-bottom: 5px;
-        }
+          }
 
         .cart-item-price {
           color: #b12704;
           font-weight: bold;
           margin-bottom: 5px;
-        }
+          }
 
         .remove-item {
           background: none;
@@ -477,19 +477,19 @@
           color: #007185;
           cursor: pointer;
           font-size: 12px;
-        }
+          }
 
         .remove-item:hover {
           color: #c7511f;
           text-decoration: underline;
-        }
+          }
 
         .cart-total {
           padding: 20px;
           border-top: 2px solid #ddd;
           font-size: 18px;
           font-weight: bold;
-        }
+          }
 
         .checkout-button {
           background-color: #ffd814;
@@ -501,17 +501,17 @@
           cursor: pointer;
           font-size: 16px;
           font-weight: bold;
-        }
+          }
 
         .checkout-button:hover {
           background-color: #f7ca00;
-        }
+          }
 
         .empty-cart {
           text-align: center;
           padding: 40px;
           color: #565959;
-        }
+          }
 
         .cart-overlay {
           display: none;
@@ -522,11 +522,11 @@
           height: 100%;
           background: rgba(0, 0, 0, 0.5);
           z-index: 999;
-        }
+          }
 
         .cart-overlay.show {
           display: block;
-        }
+          }
 
         /* Footer */
         .footer {
@@ -535,7 +535,7 @@
           padding: 40px 20px;
           margin-top: 40px;
           text-align: center;
-        }
+          }
 
         .back-to-top {
           background-color: #37475a;
@@ -543,11 +543,11 @@
           padding: 15px;
           text-align: center;
           cursor: pointer;
-        }
+          }
 
         .back-to-top:hover {
           background-color: #485769;
-        }
+          }
 
         /* Toast Notification */
         .toast {
@@ -561,21 +561,21 @@
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
           display: none;
           z-index: 2000;
-        }
+          }
 
         .toast.show {
           display: block;
           animation: slideIn 0.3s;
-        }
+          }
 
         @keyframes slideIn {
           from {
             transform: translateX(400px);
-          }
+            }
           to {
             transform: translateX(0);
+            }
           }
-        }
 
         /* Login Modal */
         .login-modal {
@@ -589,11 +589,11 @@
           z-index: 3000;
           justify-content: center;
           align-items: center;
-        }
+          }
 
         .login-modal.show {
           display: flex;
-        }
+          }
 
         .login-content {
           background: white;
@@ -602,19 +602,19 @@
           width: 400px;
           max-width: 90%;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
+          }
 
         @media (max-width: 768px) {
           .login-content {
             padding: 30px 20px;
             width: 90%;
+            }
           }
-        }
 
         .login-content h2 {
           margin-bottom: 20px;
           color: #0f1111;
-        }
+          }
 
         .login-input {
           width: 100%;
@@ -623,13 +623,13 @@
           border: 1px solid #ddd;
           border-radius: 4px;
           font-size: 14px;
-        }
+          }
 
         .login-input:focus {
           outline: none;
           border-color: #e77600;
           box-shadow: 0 0 3px 2px rgba(228, 121, 17, 0.5);
-        }
+          }
 
         .login-button {
           width: 100%;
@@ -640,11 +640,11 @@
           cursor: pointer;
           font-size: 16px;
           margin-bottom: 10px;
-        }
+          }
 
         .login-button:hover {
           background-color: #f7ca00;
-        }
+          }
 
         .login-close {
           background-color: #e7e9ec;
@@ -654,56 +654,56 @@
           cursor: pointer;
           font-size: 14px;
           width: 100%;
-        }
+          }
 
         .login-close:hover {
           background-color: #d5d9d9;
-        }
+          }
 
         .user-greeting {
           font-size: 12px;
-        }
+          }
 
         @media (max-width: 768px) {
           .search-container {
             order: 3;
             width: 100%;
             max-width: 100%;
-          }
+            }
 
           .header-top > div:last-child {
             font-size: 12px;
-          }
+            }
 
           .nav-item {
             font-size: 11px;
             padding: 3px;
-          }
+            }
 
           .product-card {
             padding: 15px;
-          }
+            }
 
           .product-detail {
             padding: 20px 10px;
-          }
+            }
 
           .product-detail-info h1 {
             font-size: 20px;
-          }
+            }
 
           .product-detail-price {
             font-size: 24px;
-          }
+            }
 
           .toast {
             right: 10px;
             left: 10px;
             top: 70px;
+            }
           }
-        }
-      </style>
-    </head>
+        </style>
+      </head>
     <body>
       <!-- Header -->
       <div class="header">
@@ -711,7 +711,7 @@
           <div class="logo" onclick="showHomePage()">
             <span class="logo-text">bananazon</span
               ><span class="logo-smile">🍌</span>
-            </div>
+              </div>
 
             <div class="search-container">
               <input
@@ -722,8 +722,8 @@
                 />
                 <button class="search-button" onclick="search()">
                   <span class="search-icon">🔍</span>
-                  </button>
-                </div>
+                    </button>
+                  </div>
 
                 <div style="display: flex; gap: 15px">
                   <div class="nav-item" onclick="signIn()" id="accountButton">
@@ -732,49 +732,49 @@
                       >Account & Lists</strong
                       ></span
                       >
-                    </div>
+                      </div>
                     <div class="nav-item" onclick="showOrders()">
                       Returns<br /><strong>& Orders</strong>
-                    </div>
+                      </div>
                     <div
                       class="nav-item"
                       style="font-size: 20px"
                       onclick="toggleCart()"
                       >
                       🛒 Cart<span class="cart-count" id="cartCount">0</span>
+                      </div>
                     </div>
                   </div>
-                </div>
 
                 <div class="header-nav">
                   <div class="nav-item" onclick="showCategory('All Bananas')">
                     All Bananas
-                  </div>
+                    </div>
                   <div class="nav-item" onclick="showCategory('Today\'s Deals')">
                     Today's Deals
-                  </div>
+                    </div>
                   <div class="nav-item" onclick="showCategory('Fresh Bananas')">
                     Fresh Bananas
-                  </div>
+                    </div>
                   <div class="nav-item" onclick="showCategory('Organic Bananas')">
                     Organic Bananas
-                  </div>
+                    </div>
                   <div class="nav-item" onclick="showCategory('Gift Bananas')">
                     Gift Bananas
-                  </div>
+                    </div>
                   <div class="nav-item" onclick="showCategory('Registry')">
                     Registry
-                  </div>
+                    </div>
                   <div class="nav-item" onclick="showCategory('Sell Bananas')">
                     Sell Bananas
+                    </div>
                   </div>
                 </div>
-              </div>
 
               <!-- Search Suggestion -->
               <div class="search-suggestion" id="searchSuggestion">
                 Did you mean: <strong>banana</strong>?
-              </div>
+                </div>
 
               <!-- Toast Notification -->
               <div class="toast" id="toast"></div>
@@ -803,12 +803,12 @@
                           />
                           <button class="login-button" onclick="handleLogin()">
                             Sign In
-                          </button>
+                            </button>
                           <button class="login-close" onclick="closeLoginModal()">
                             Cancel
-                          </button>
+                            </button>
+                          </div>
                         </div>
-                      </div>
 
                       <!-- Cart Overlay -->
                       <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
@@ -818,13 +818,13 @@
                           <div class="cart-header">
                             <h2>Shopping Cart</h2>
                               <button class="close-cart" onclick="toggleCart()">×</button>
-                              </div>
+                                </div>
                               <div class="cart-items" id="cartItems">
                                 <div class="empty-cart">Your cart is empty</div>
-                                </div>
+                                  </div>
                                 <div class="cart-total" id="cartTotal" style="display: none">
                                   Subtotal: <span id="totalPrice">$0.00</span>
-                                </div>
+                                  </div>
                                 <button
                                   class="checkout-button"
                                   id="checkoutButton"
@@ -832,14 +832,14 @@
                                   onclick="checkout()"
                                   >
                                   Proceed to Checkout
-                                </button>
-                              </div>
+                                  </button>
+                                </div>
 
                               <!-- Main Banner -->
                               <div class="main-banner">
                                 You are on bananazon.com. You can also shop on Bananazon Australia
                                 for millions of bananas.
-                              </div>
+                                </div>
 
                               <!-- Home Page Products -->
                               <div class="container" id="homePage">
@@ -847,8 +847,8 @@
 
                                   <div class="products-grid" id="productsGrid">
                                     <!-- Products will be generated by JavaScript -->
+                                    </div>
                                   </div>
-                                </div>
 
                                 <!-- Product Detail Page -->
                                 <div class="product-detail" id="productDetail">
@@ -861,14 +861,14 @@
                                         src=""
                                         alt="Product"
                                         />
-                                      </div>
+                                        </div>
                                       <div class="product-detail-info">
                                         <h1 id="detailTitle"></h1>
                                           <div class="product-detail-rating" id="detailRating"></div>
                                             <div class="product-detail-price" id="detailPrice"></div>
                                               <div class="product-detail-prime">
                                                 🚚 FREE Delivery with Prime
-                                              </div>
+                                                </div>
                                               <div
                                                 class="product-detail-description"
                                                 id="detailDescription"
@@ -879,35 +879,35 @@
                                                     onclick="addToCartFromDetail()"
                                                     >
                                                     Add to Cart
-                                                  </button>
+                                                    </button>
                                                   <button class="buy-now" onclick="buyNow()">
                                                     Buy Now
-                                                  </button>
+                                                    </button>
+                                                  </div>
                                                 </div>
                                               </div>
-                                            </div>
 
                                             <!-- Reviews Section -->
                                             <div class="reviews-section">
                                               <h2>Customer Reviews</h2>
                                                 <div id="reviewsList">
                                                   <!-- Reviews will be generated by JavaScript -->
+                                                  </div>
                                                 </div>
                                               </div>
-                                            </div>
 
                                             <!-- Back to Top -->
                                             <div class="back-to-top" onclick="window.scrollTo(0,0)">
                                               Back to top
-                                            </div>
+                                              </div>
 
                                             <!-- Footer -->
                                             <div class="footer">
                                               <p style="margin-bottom: 20px">Made with 🍌 by Bananazon</p>
                                                 <p style="font-size: 12px; color: #999">
                                                   2026, Bananazon Modified running
-                                                </p>
-                                              </div>
+                                                  </p>
+                                                </div>
 
                                               <script>
                                                 // Product Data
@@ -921,7 +921,7 @@
                                                     image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
                                                     description:
                                                     "Premium organic bananas, hand-selected for perfect ripeness. Grown without pesticides on sustainable farms. Perfect for snacking, smoothies, or baking!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 2,
                                                     title: "Premium Yellow Bananas - Perfectly Ripe, Family Size Pack",
@@ -931,7 +931,7 @@
                                                     image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Family-sized pack of perfectly ripe yellow bananas. Great value for families who love bananas! Each banana is carefully inspected for quality.",
-                                                  },
+                                                    },
                                                   {
                                                     id: 3,
                                                     title: "Single Banana - Perfect for Snacking",
@@ -941,7 +941,7 @@
                                                     image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Just one banana. That's it. Perfect for when you only need one banana. The most popular single banana on Bananazon!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 4,
                                                     title: "Organic Fair Trade Bananas - Ethically Sourced, Premium Quality",
@@ -951,7 +951,7 @@
                                                     image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
                                                     description:
                                                     "Support fair trade with these ethically sourced organic bananas. Every purchase helps farming communities around the world.",
-                                                  },
+                                                    },
                                                   {
                                                     id: 5,
                                                     title: "Baby Bananas - Mini Size, Big Flavor (12 Count)",
@@ -961,7 +961,7 @@
                                                     image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Adorable baby bananas pack a sweet punch! Perfect for lunch boxes and small hands. Sweeter than regular bananas!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 6,
                                                     title: "Plantain Bananas - Green, Perfect for Cooking (4 Pack)",
@@ -971,7 +971,7 @@
                                                     image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Green plantains ideal for frying, baking, or boiling. A staple in Caribbean and Latin American cuisine. Starchy and delicious!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 7,
                                                     title: "Red Bananas - Exotic Sweet Variety, Bunch of 5",
@@ -981,7 +981,7 @@
                                                     image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
                                                     description:
                                                     "Experience the exotic! Red bananas are sweeter and creamier than yellow bananas. A unique tropical treat you'll love.",
-                                                  },
+                                                    },
                                                   {
                                                     id: 8,
                                                     title: "Banana Starter Kit - 3 Different Varieties, Perfect for Banana Lovers",
@@ -991,7 +991,7 @@
                                                     image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Can't decide? Try them all! Includes yellow, baby, and red bananas. The perfect introduction to the wonderful world of bananas!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 9,
                                                     title: "Overripe Bananas - Perfect for Banana Bread (Discounted!)",
@@ -1001,7 +1001,7 @@
                                                     image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Spotted and ready for baking! These overripe bananas are perfect for banana bread, muffins, or smoothies. Save money and reduce waste!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 10,
                                                     title: "Jumbo Bananas - Extra Large Size, Premium Select",
@@ -1011,7 +1011,7 @@
                                                     image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
                                                     description:
                                                     "Massive bananas for massive appetites! Each banana is oversized and full of flavor. The biggest bananas you'll ever see!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 11,
                                                     title: "Freeze-Dried Banana Chips - NOT Actually Bananas, Just Chips Shaped Like Bananas",
@@ -1021,7 +1021,7 @@
                                                     image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Wait, what? These aren't real bananas? Just chips? In banana shape? Well, they're still delicious! Crunchy snacking fun!",
-                                                  },
+                                                    },
                                                   {
                                                     id: 12,
                                                     title: "Mystery Banana Box - 20 Random Bananas, Could Be Any Variety!",
@@ -1031,8 +1031,8 @@
                                                     image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
                                                     description:
                                                     "Feeling adventurous? You'll get 20 random bananas - could be any variety! It's like Christmas morning but with bananas!",
-                                                  },
-                                                ];
+                                                    },
+                                                  ];
 
                                                 // Sample reviews data
                                                 const reviewsData = {
@@ -1044,7 +1044,7 @@
                                                       title: "Best bananas ever!",
                                                       text: "These are hands down the best organic bananas I've ever purchased. Perfect ripeness, great taste, and they lasted over a week!",
                                                       helpful: 342,
-                                                    },
+                                                      },
                                                     {
                                                       author: "HealthyEater",
                                                       date: "December 10, 2024",
@@ -1052,7 +1052,7 @@
                                                       title: "So fresh!",
                                                       text: "Arrived in perfect condition. Great for my morning smoothies!",
                                                       helpful: 156,
-                                                    },
+                                                      },
                                                     {
                                                       author: "MonkeyBusiness",
                                                       date: "December 5, 2024",
@@ -1060,8 +1060,8 @@
                                                       title: "Good but expensive",
                                                       text: "Quality is excellent but the price is a bit high compared to my local store.",
                                                       helpful: 89,
-                                                    },
-                                                  ],
+                                                      },
+                                                    ],
                                                   2: [
                                                     {
                                                       author: "MomOf4",
@@ -1070,7 +1070,7 @@
                                                       title: "Perfect for my family",
                                                       text: "Family size is no joke! Plenty of bananas for all my kids. Will definitely order again.",
                                                       helpful: 234,
-                                                    },
+                                                      },
                                                     {
                                                       author: "BananaLover99",
                                                       date: "December 8, 2024",
@@ -1078,8 +1078,8 @@
                                                       title: "Great value",
                                                       text: "Good quality and quantity. One banana had a bruise but overall happy with the purchase.",
                                                       helpful: 112,
-                                                    },
-                                                  ],
+                                                      },
+                                                    ],
                                                   3: [
                                                     {
                                                       author: "JustOneGuy",
@@ -1088,7 +1088,7 @@
                                                       title: "It's literally just one banana",
                                                       text: "I needed exactly one banana and this is exactly one banana. 11/10 would banana again.",
                                                       helpful: 1289,
-                                                    },
+                                                      },
                                                     {
                                                       author: "SingleLife",
                                                       date: "December 14, 2024",
@@ -1096,7 +1096,7 @@
                                                       title: "Perfect portion",
                                                       text: "As a single person, I don't need a whole bunch. This is ideal!",
                                                       helpful: 456,
-                                                    },
+                                                      },
                                                     {
                                                       author: "Confused",
                                                       date: "December 1, 2024",
@@ -1104,9 +1104,9 @@
                                                       title: "Why did I buy this?",
                                                       text: "I could have just bought one banana at the store but here we are. 5 stars because it arrived.",
                                                       helpful: 2103,
-                                                    },
-                                                  ],
-                                                };
+                                                      },
+                                                    ],
+                                                  };
 
                                                 // Shopping cart
                                                 let cart = [];
@@ -1116,7 +1116,7 @@
                                                 window.onload = function () {
                                                   renderProducts();
                                                   updateCartCount();
-                                                };
+                                                  };
 
                                                 // Render products
                                                 function renderProducts() {
@@ -1132,11 +1132,11 @@
                                                           <div class="product-prime">🚚 FREE Delivery with Prime</div>
                                                             <button class="add-to-cart" onclick="addToCart(event, ${product.id})">Add to Cart</button>
                                                               <button class="buy-now" onclick="buyNowFromCard(event, ${product.id})">Buy Now</button>
-                                                              </div>
+                                                                </div>
                                                               `,
                                                               )
                                                               .join("");
-                                                            }
+                                                              }
 
                                                             // Show product detail
                                                             function showProductDetail(productId) {
@@ -1164,8 +1164,8 @@
                                                                   title: "Amazing bananas!",
                                                                   text: "These bananas exceeded all my expectations. Highly recommend!",
                                                                   helpful: 123,
-                                                                },
-                                                              ];
+                                                                  },
+                                                                ];
 
                                                               document.getElementById("reviewsList").innerHTML = reviews
                                                               .map(
@@ -1174,12 +1174,12 @@
                                                                 <div class="review-header">
                                                                   <span class="review-author">${review.author}</span>
                                                                     <span class="review-date">on ${review.date}</span>
-                                                                    </div>
+                                                                      </div>
                                                                     <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
                                                                       <div class="review-title">${review.title}</div>
                                                                         <div class="review-text">${review.text}</div>
                                                                           <div class="review-helpful">${review.helpful} people found this helpful</div>
-                                                                          </div>
+                                                                            </div>
                                                                           `,
                                                                           )
                                                                           .join("");
@@ -1187,7 +1187,7 @@
                                                                           document.getElementById("homePage").style.display = "none";
                                                                           document.getElementById("productDetail").classList.add("show");
                                                                           window.scrollTo(0, 0);
-                                                                        }
+                                                                          }
 
                                                                         // Show home page
                                                                         function showHomePage() {
@@ -1197,7 +1197,7 @@
                                                                           document.getElementById("homePage").style.display = "block";
                                                                           currentProduct = null;
                                                                           window.scrollTo(0, 0);
-                                                                        }
+                                                                          }
 
                                                                         // Add to cart from product card
                                                                         function addToCart(event, productId) {
@@ -1209,7 +1209,7 @@
                                                                           updateCartCount();
                                                                           updateCartDisplay();
                                                                           showToast(`${product.title} added to cart!`);
-                                                                        }
+                                                                          }
 
                                                                         // Add to cart from detail page
                                                                         function addToCartFromDetail() {
@@ -1218,7 +1218,7 @@
                                                                           updateCartCount();
                                                                           updateCartDisplay();
                                                                           showToast(`${currentProduct.title} added to cart!`);
-                                                                        }
+                                                                          }
 
                                                                         // Buy now from card
                                                                         function buyNowFromCard(event, productId) {
@@ -1226,8 +1226,8 @@
                                                                           addToCart(event, productId);
                                                                           setTimeout(() => {
                                                                             toggleCart();
-                                                                          }, 500);
-                                                                        }
+                                                                            }, 500);
+                                                                          }
 
                                                                         // Buy now from detail page
                                                                         function buyNow() {
@@ -1238,13 +1238,13 @@
                                                                           showToast(`${currentProduct.title} added to cart!`);
                                                                           setTimeout(() => {
                                                                             toggleCart();
-                                                                          }, 500);
-                                                                        }
+                                                                            }, 500);
+                                                                          }
 
                                                                         // Update cart count
                                                                         function updateCartCount() {
                                                                           document.getElementById("cartCount").textContent = cart.length;
-                                                                        }
+                                                                          }
 
                                                                         // Update cart display
                                                                         function updateCartDisplay() {
@@ -1259,7 +1259,7 @@
                                                                             cartTotal.style.display = "none";
                                                                             checkoutButton.style.display = "none";
                                                                             return;
-                                                                          }
+                                                                            }
 
                                                                           const total = cart.reduce((sum, item) => sum + item.price, 0);
 
@@ -1272,8 +1272,8 @@
                                                                               <div class="cart-item-title">${item.title}</div>
                                                                                 <div class="cart-item-price">$${item.price.toFixed(2)}</div>
                                                                                   <button class="remove-item" onclick="removeFromCart(${index})">Remove</button>
+                                                                                    </div>
                                                                                   </div>
-                                                                                </div>
                                                                                 `,
                                                                                 )
                                                                                 .join("");
@@ -1282,7 +1282,7 @@
                                                                                 `$${total.toFixed(2)}`;
                                                                                 cartTotal.style.display = "block";
                                                                                 checkoutButton.style.display = "block";
-                                                                              }
+                                                                                }
 
                                                                               // Remove from cart
                                                                               function removeFromCart(index) {
@@ -1291,7 +1291,7 @@
                                                                                 updateCartCount();
                                                                                 updateCartDisplay();
                                                                                 showToast(`${removedItem.title} removed from cart`);
-                                                                              }
+                                                                                }
 
                                                                               // Toggle cart
                                                                               function toggleCart() {
@@ -1303,8 +1303,8 @@
 
                                                                                 if (cartSidebar.classList.contains("show")) {
                                                                                   updateCartDisplay();
+                                                                                  }
                                                                                 }
-                                                                              }
 
                                                                               // Checkout
                                                                               function checkout() {
@@ -1319,7 +1319,7 @@
                                                                                 updateCartCount();
                                                                                 updateCartDisplay();
                                                                                 toggleCart();
-                                                                              }
+                                                                                }
 
                                                                               // Show toast notification
                                                                               function showToast(message) {
@@ -1329,8 +1329,8 @@
 
                                                                                 setTimeout(() => {
                                                                                   toast.classList.remove("show");
-                                                                                }, 3000);
-                                                                              }
+                                                                                  }, 3000);
+                                                                                }
 
                                                                               // Search functionality
                                                                               const searchInput = document.getElementById("searchInput");
@@ -1340,23 +1340,23 @@
                                                                               searchInput.addEventListener("input", function () {
                                                                                 if (this.value.trim() !== "") {
                                                                                   searchSuggestion.classList.add("show");
-                                                                                } else {
+                                                                                  } else {
                                                                                   searchSuggestion.classList.remove("show");
-                                                                                }
-                                                                              });
+                                                                                  }
+                                                                                });
 
                                                                               function search() {
                                                                                 const searchTerm = searchInput.value.trim();
                                                                                 if (searchTerm !== "") {
                                                                                   searchSuggestion.classList.add("show");
+                                                                                  }
                                                                                 }
-                                                                              }
 
                                                                               searchInput.addEventListener("keypress", function (e) {
                                                                                 if (e.key === "Enter") {
                                                                                   search();
-                                                                                }
-                                                                              });
+                                                                                  }
+                                                                                });
 
                                                                               // Category navigation
                                                                               function showCategory(category) {
@@ -1375,10 +1375,10 @@
                                                                                   "📝 Banana Registry\n\nCreate your banana wishlist today!\n\n\"We're registered at Bananazon!\"\n\nYour guests can buy you:\n• Bananas\n• More bananas\n• Even more bananas\n• (Spoiler: it's all bananas)",
                                                                                   "Sell Bananas":
                                                                                   "💼 Sell Your Bananas on Bananazon!\n\nDo you have bananas? We want them!\n\nRequirements:\n✅ Must be a banana\n✅ Should look like a banana\n✅ Bonus points if it's yellow\n\nStart your banana empire today! 🍌📈",
-                                                                                };
+                                                                                  };
 
                                                                                 alert(messages[category]);
-                                                                              }
+                                                                                }
 
                                                                               // User state
                                                                               let currentUser = null;
@@ -1390,12 +1390,12 @@
                                                                                   alert(
                                                                                   `👤 Account: ${currentUser}\n\n✅ You're signed in!\n\nYour benefits:\n• Unlimited banana browsing\n• Access to all bananas\n• Ability to buy bananas\n• Exclusive deals on... bananas!\n\n🍌 Happy banana shopping!`,
                                                                                   );
-                                                                                } else {
+                                                                                  } else {
                                                                                   // Show login modal
                                                                                   document.getElementById("loginModal").classList.add("show");
                                                                                   document.getElementById("usernameInput").focus();
+                                                                                  }
                                                                                 }
-                                                                              }
 
                                                                               // Handle login
                                                                               function handleLogin() {
@@ -1407,12 +1407,12 @@
                                                                                 if (!username) {
                                                                                   alert("Please enter a username!");
                                                                                   return;
-                                                                                }
+                                                                                  }
 
                                                                                 if (!password) {
                                                                                   alert("Please enter a password!");
                                                                                   return;
-                                                                                }
+                                                                                  }
 
                                                                                 // "Log in" the user (no actual authentication, just store the username)
                                                                                 currentUser = username;
@@ -1437,8 +1437,8 @@
                                                                                   alert(
                                                                                   `🎉 Welcome back, ${currentUser}!\n\nLooking for more bananas?\n\nYour banana shopping experience just got even better!\n\n✨ Account benefits:\n• Unlimited banana browsing\n• Access to all bananas\n• Ability to buy bananas\n• Exclusive deals on... bananas!\n\nHappy shopping! 🍌`,
                                                                                   );
-                                                                                }, 500);
-                                                                              }
+                                                                                  }, 500);
+                                                                                }
 
                                                                               // Update user greeting in header
                                                                               function updateUserGreeting() {
@@ -1455,7 +1455,7 @@
                                                                                 const strongElement = document.createElement("strong");
                                                                                 strongElement.textContent = "Account & Lists";
                                                                                 greetingElement.appendChild(strongElement);
-                                                                              }
+                                                                                }
 
                                                                               // Close login modal
                                                                               function closeLoginModal(event) {
@@ -1464,16 +1464,16 @@
                                                                                 event.target !== document.getElementById("loginModal")
                                                                                 ) {
                                                                                   return;
-                                                                                }
+                                                                                  }
                                                                                 document.getElementById("loginModal").classList.remove("show");
-                                                                              }
+                                                                                }
 
                                                                               // Handle Enter key in login inputs
                                                                               function handleLoginKeypress(event) {
                                                                                 if (event.key === "Enter") {
                                                                                   handleLogin();
+                                                                                  }
                                                                                 }
-                                                                              }
 
                                                                               // Returns & Orders
                                                                               function showOrders() {
@@ -1481,12 +1481,12 @@
                                                                                   alert("Please sign in to view your orders!");
                                                                                   signIn();
                                                                                   return;
-                                                                                }
+                                                                                  }
 
                                                                                 alert(
                                                                                 `📦 ${currentUser}'s Orders\n\nRecent Orders:\n\n1. Single Banana - Delivered Dec 18\n   ⭐⭐⭐⭐⭐ "It was a banana"\n\n2. Mystery Banana Box - Arriving Dec 25\n   🎁 Tracking: BANANA-12345\n\n3. Organic Bananas - Delivered Dec 15\n   ⭐⭐⭐⭐⭐ "Very banana-like"\n\nAll orders are bananas. Did you expect anything else? 🍌📦`,
                                                                                 );
-                                                                              }
-                                                                            </script>
-                                                                          </body>
-                                                                        </html>
+                                                                                }
+                                                                              </script>
+                                                                            </body>
+                                                                          </html>

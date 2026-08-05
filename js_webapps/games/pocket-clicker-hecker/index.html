@@ -8,7 +8,7 @@
       body {
         padding: 20px;
         background-image: url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExeW1pMXUzb3Z4cmM2OGNmdnpjY2J2dGU4Y3o5YTZuM2dxZmFhNjZubCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/wwg1suUiTbCY8H8vIA/giphy.gif");
-      }
+        }
       button {
         margin: 10px;
         transition: transform 0.3s;
@@ -22,19 +22,19 @@
         0 6px 20px 0 rgba(0, 0, 0, 0.19);
         text-align: center;
         background-image: linear-gradient(to bottom right, #774502, #f68f04);
-      }
+        }
       button:hover {
         transform: scale(1.05);
-      }
+        }
       button:active {
         background-image: linear-gradient(to bottom right, #f68f04, #774502);
-      }
+        }
       h1, h2, h3, h4, h5, h6 {
         font-family: TikTok Sans;
-      }
-    </style>
+        }
+      </style>
     <title>Pocket Clicker (w/hecks) - doggodgcodes</title>
-    </head>
+      </head>
     <body>
       <button id="displayClicks" onclick="clickBtn()">Clicks: 0</button>
         <hr>
@@ -82,7 +82,7 @@
                                     function clickBtn() {
                                       count += clickPower;
                                       displayClick.textContent = `Clicks: ${count}`;
-                                    }
+                                      }
 
                                     // Generic upgrade function
                                     function buyUpgrade(costObj, powerIncrease, displayElement) {
@@ -95,52 +95,52 @@
                                         displayCount.textContent = `Click Power: ${clickPower}`;
                                         displayElement.textContent = `Upgrade Click Power: Costs ${costObj.value}`;
                                         displayClick.textContent = `Clicks: ${count}`;
+                                        }
                                       }
-                                    }
 
                                     function buyClickPower() {
                                       buyUpgrade(cost1, 1, displayCost);
-                                    }
+                                      }
 
                                     function buyClickPower2() {
                                       buyUpgrade(cost2, 5, displayCost2);
-                                    }
+                                      }
 
                                     function buyClickPower3() {
                                       buyUpgrade(cost3, 10, displayCost3);
-                                    }
+                                      }
 
                                     function buyClickPower4() {
                                       buyUpgrade(cost4, 100, displayCost4);
-                                    }
+                                      }
 
                                     function buyClickPower5() {
                                       buyUpgrade(cost5, 1000, displayCost5);
-                                    }
+                                      }
 
                                     function buyClickPower6() {
                                       buyUpgrade(cost6, 2500, displayCost6);
-                                    }
+                                      }
 
                                     function buyClickPower7() {
                                       buyUpgrade(cost7, 10000, displayCost7);
-                                    }
+                                      }
 
                                     function buyClickPower8() {
                                       buyUpgrade(cost8, 50000, displayCost8);
-                                    }
+                                      }
 
                                     function buyClickPower9() {
                                       buyUpgrade(cost9, 500000, displayCost9);
-                                    }
+                                      }
 
                                     function buyClickPower10() {
                                       buyUpgrade(cost10, 1000000, displayCost10);
-                                    }
+                                      }
 
                                     function heck() {
                                       buyUpgrade(noCost, 1000000, heckerId);
-                                    }
-                                  </script>
-                                </body>
-                              </html>
+                                      }
+                                    </script>
+                                  </body>
+                                </html>

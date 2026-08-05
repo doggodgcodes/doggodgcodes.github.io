@@ -19,23 +19,23 @@ async function fetchSubscriberCount() {
       const vCount = parseInt(data.items[0].statistics.viewCount);
       if (subCount >= 1000000) {
         subscriberCount = (subCount / 1000000).toFixed(2) + "M";
-      } else if (subCount >= 1000) {
+        } else if (subCount >= 1000) {
         subscriberCount = (subCount / 1000).toFixed(2) + "K";
-      } else {
+        } else {
         subscriberCount = subCount.toString();
-      }
+        }
       if (subCount >= 1000000) {
         viewCount = (vCount / 1000000).toFixed(2) + "M";
-      } else if (subCount >= 1000) {
+        } else if (subCount >= 1000) {
         viewCount = (vCount / 1000).toFixed(2) + "K";
-      } else {
+        } else {
         viewCount = vCount.toString();
+        }
       }
-    }
-  } catch (error) {
+    } catch (error) {
     console.error("Error fetching subscriber count:", error);
+    }
   }
-}
 
 async function fetchVideos() {
   try {
@@ -65,27 +65,27 @@ async function fetchVideos() {
         thumbnail: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
         published: published,
         views: formatViews(parseInt(views)),
-      };
-    });
+        };
+      });
 
     displayVideos();
     updateChannelStats();
     updateChannelAvatar();
-  } catch (error) {
+    } catch (error) {
     console.error("Error fetching videos:", error);
     document.getElementById("videoGrid").innerHTML =
     "<div class=\"error\">404 Not Found</div>";
+    }
   }
-}
 
 function formatViews(views) {
   if (views >= 1000000) {
     return (views / 1000000).toFixed(1) + "M";
-  } else if (views >= 1000) {
+    } else if (views >= 1000) {
     return (views / 1000).toFixed(1) + "K";
-  }
+    }
   return views.toString();
-}
+  }
 
 function formatDate(dateString) {
   const date = new Date(dateString);
@@ -99,7 +99,7 @@ function formatDate(dateString) {
   if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
   if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
   return `${Math.floor(diffDays / 365)} years ago`;
-}
+  }
 
 function displayVideos() {
   const grid = document.getElementById("videoGrid");
@@ -120,7 +120,7 @@ function displayVideos() {
     card.innerHTML = `
     <div class="thumbnail">
       <img src="${video.thumbnail}" alt="${video.title}">
-    </div>
+      </div>
     <div class="video-info">
       <div class="video-avatar">${avatarImg}</div>
         <div class="video-details">
@@ -128,13 +128,13 @@ function displayVideos() {
             <div class="video-meta">
               <div>???</div>
                 <div>${video.views} views • ${formatDate(video.published)}</div>
+                  </div>
                 </div>
               </div>
-            </div>
             `;
 
             grid.appendChild(card);
-          });
+            });
 
           // Add message at the bottom
           const moreContent = document.createElement("div");
@@ -143,24 +143,24 @@ function displayVideos() {
           <p>Want more funny dog content?</p>
             <a href="https://youtube.com/@flyingdogwithapencil" target="_blank" class="channel-link">
               Visit DoggoWing21's channel on YouTube →
-            </a>
+              </a>
             `;
             grid.appendChild(moreContent);
-          }
+            }
 
           function updateChannelStats() {
             const statsElement = document.querySelector(".channel-stats");
             if (statsElement) {
               statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
+              }
             }
-          }
 
           function updateChannelAvatar() {
             const headerAvatar = document.querySelector(".channel-avatar");
             if (headerAvatar && channelAvatar) {
               headerAvatar.innerHTML = `<img src="${channelAvatar}" alt="DoggoWing21" style="width: 80px; height: 80px; border-radius: 50%;">`;
+              }
             }
-          }
 
           function openVideo(video) {
             const modal = document.getElementById("videoModal");
@@ -171,7 +171,7 @@ function displayVideos() {
             title.textContent = video.title;
 
             modal.classList.add("active");
-          }
+            }
 
           function closeModal() {
             const modal = document.getElementById("videoModal");
@@ -179,17 +179,17 @@ function displayVideos() {
 
             player.innerHTML = "";
             modal.classList.remove("active");
-          }
+            }
 
           // Close modal when clicking outside
           document.getElementById("videoModal")?.addEventListener("click", (e) => {
             if (e.target.id === "videoModal") {
               closeModal();
-            }
-          });
+              }
+            });
 
           // Load videos and subscriber count on page load
           document.addEventListener("DOMContentLoaded", async () => {
             await fetchSubscriberCount();
             await fetchVideos();
-          });
+            });

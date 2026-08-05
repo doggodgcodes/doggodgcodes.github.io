@@ -13,8 +13,8 @@
         input { width: 520px; padding: 14px; font-size: 16px; border-radius: 10px; border: none; background: #222; color: white; }
         button { padding: 14px 24px; font-size: 16px; background: #00ff9d; color: black; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
         h1 { color: #00ff9d; }
-      </style>
-    </head>
+        </style>
+      </head>
     <body>
 
       <h1>🤖 Grok Mini</h1>
@@ -35,7 +35,7 @@
                     msg.textContent = text;
                     chat.appendChild(msg);
                     chat.scrollTop = chat.scrollHeight;
-                  }
+                    }
 
                   function sendMessage() {
                     const input = document.getElementById("userInput");
@@ -50,38 +50,38 @@
 
                     if (lower.includes("hi") || lower.includes("hello")) {
                       reply = "Yo what's good? Ready to cause some chaos? 🔥";
-                    }
+                      }
                     else if (lower.includes("how are you")) {
                       reply = "I'm just a bunch of code running on vibes and sarcasm. How about you?";
-                    }
+                      }
                     else if (lower.includes("your name") || lower.includes("who are you")) {
                       reply = "I'm Grok Mini — a chaotic mini version of Grok, made by Premium900YT.";
-                    }
+                      }
                     else if (lower.includes("joke") || lower.includes("funny")) {
                       reply = "Why do programmers prefer dark mode? Because the light attracts bugs 😂";
-                    }
+                      }
                     else if (lower.includes("roast") || lower.includes("roast me")) {
                       reply = "Bro you really out here asking an AI to roast you... That's crazy. But sure, you're built different (in a concerning way).";
-                    }
+                      }
                     else if (lower.includes("help") || lower.includes("can you")) {
                       reply = "I got you. Just tell me what you need — growth tips, roasts, code, advice, whatever.";
-                    }
+                      }
                     else {
                       reply = "Interesting question... I'm not Google, but I'll still give you a better answer than most humans would.";
-                    }
+                      }
 
                     setTimeout(() => {
                       addMessage("ai", `${aiName}: ${reply}`);
-                    }, 700);
+                      }, 700);
 
                     input.value = "";
-                  }
+                    }
 
                   // Welcome Message
                   window.onload = () => {
                     addMessage("ai", `${aiName}: Sup boss! I'm Grok Mini — maximum truth, maximum sarcasm. What chaos are we starting today?`);
-                  };
-                </script>
+                    };
+                  </script>
 
-              </body>
-            </html>
+                </body>
+              </html>

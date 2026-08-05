@@ -16,12 +16,12 @@
           height: 100vh;
           display: flex;
           flex-direction: column;
-        }
+          }
         #game-container {
           position: relative;
           width: 100vw;
           height: 100vh;
-        }
+          }
         #flappy-cat {
           position: absolute;
           width: 60px;
@@ -30,7 +30,7 @@
           top: 50%;
           transition: transform 0.1s;
           z-index: 10;
-        }
+          }
         .water-drop {
           position: absolute;
           width: 30px;
@@ -38,19 +38,19 @@
           background: linear-gradient(to right, #00ffff, #00ddff, #00aaff);
           border-radius: 5px;
           z-index: 5;
-        }
+          }
         .enemy {
           position: absolute;
           width: 60px;
           height: 60px;
           z-index: 4;
-        }
+          }
         .cat {
           position: absolute;
           width: 50px;
           height: 50px;
           z-index: 3;
-        }
+          }
         .world-bar {
           display: flex;
           justify-content: space-between;
@@ -65,7 +65,7 @@
           top: 0;
           width: 100%;
           z-index: 100;
-        }
+          }
         .controls {
           position: fixed;
           bottom: 20px;
@@ -74,7 +74,7 @@
           justify-content: center;
           gap: 20px;
           z-index: 100;
-        }
+          }
         .btn {
           padding: 15px 30px;
           font-size: 20px;
@@ -87,36 +87,36 @@
           user-select: none;
           transition: 0.1s;
           background: #4CAF50;
-        }
+          }
         .btn:active {
           transform: scale(0.9);
-        }
+          }
         #flap-btn {
           background: #ff4757;
-        }
+          }
         #waterball-btn {
           background: #1e90ff;
-        }
+          }
         #summon-btn {
           background: #4CAF50;
-        }
-      </style>
+          }
+        </style>
       <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
-    </head>
+      </head>
     <body>
       <div class="world-bar">
         <div id="score">SCORE: 0</div>
           <div id="money">MONEY: 0</div>
-          </div>
+            </div>
 
           <div id="game-container">
             <img id="flappy-cat" src="https://doggodgcodes.github.io/assets/bird-water-gun.png" alt="Flappy Cat">
-          </div>
+            </div>
           <div class="controls">
             <div id="flap-btn" class="btn">Flap (Space)</div>
               <div id="waterball-btn" class="btn">Waterball (F)</div>
                 <div id="summon-btn" class="btn">Summon Cat (Q)</div>
-                </div>
+                  </div>
 
                 <script>
                   // Game state
@@ -141,7 +141,7 @@
                     { name: "Basic Cat", cost: 100, hp: 100, damage: 10, speed: 1, img: "https://minechicken98.github.io/funny/battle-cats-capsule/images/cat.png" },
                     { name: "Tank Cat", cost: 200, hp: 300, damage: 5, speed: 0.5, img: "https://minechicken98.github.io/funny/battle-cats-capsule/images/tank.png" },
                     { name: "Axe Cat", cost: 300, hp: 80, damage: 35, speed: 2, img: "https://minechicken98.github.io/funny/battle-cats-capsule/images/axe.png" }
-                  ];
+                    ];
 
                   // Flap function
                   function flap() {
@@ -149,8 +149,8 @@
                     flappyCat.style.transform = "rotate(-25deg)";
                     setTimeout(() => {
                       flappyCat.style.transform = "rotate(0deg)";
-                    }, 200);
-                  }
+                      }, 200);
+                    }
 
                   // Waterball function
                   function water() {
@@ -181,19 +181,19 @@
                             money += 5;
                             scoreDisplay.innerText = "SCORE: " + score;
                             moneyDisplay.innerText = "MONEY: " + money;
-                          }
+                            }
                           drop.remove();
                           clearInterval(moveDrop);
                           return;
+                          }
                         }
-                      }
 
                       if (dropX >= window.innerWidth - 5) {
                         drop.remove();
                         clearInterval(moveDrop);
-                      }
-                    }, 20);
-                  }
+                        }
+                      }, 20);
+                    }
 
                   // Summon cat function
                   function summonCat() {
@@ -215,9 +215,9 @@
                         speed: catTypes[0].speed,
                         x: window.innerWidth - 60,
                         y: (Math.random() * (window.innerHeight - 100))
-                      });
+                        });
+                      }
                     }
-                  }
 
                   // Spawn enemy function
                   function spawnEnemy() {
@@ -233,7 +233,7 @@
                       hp: 100,
                       x: window.innerWidth,
                       y: Math.random() * (window.innerHeight - 200) + 50
-                    });
+                      });
 
                     let enemyX = window.innerWidth;
                     const moveEnemy = setInterval(() => {
@@ -258,18 +258,18 @@
                               money += 10;
                               scoreDisplay.innerText = "SCORE: " + score;
                               moneyDisplay.innerText = "MONEY: " + money;
+                              }
                             }
                           }
                         }
-                      }
 
                       if (enemyX < -80) {
                         enemy.remove();
                         activeEnemies = activeEnemies.filter(e => e.element !== enemy);
                         clearInterval(moveEnemy);
-                      }
-                    }, 20);
-                  }
+                        }
+                      }, 20);
+                    }
 
                   // Update summoned cats
                   function updateCats() {
@@ -281,9 +281,9 @@
                       if (cat.x < -60) {
                         cat.element.remove();
                         summonedCats.splice(i, 1);
+                        }
                       }
                     }
-                  }
 
                   // Update game state
                   function update() {
@@ -294,10 +294,10 @@
                     if (catY > window.innerHeight || catY < -50) {
                       catY = window.innerHeight / 2;
                       velocity = 0;
-                    }
+                      }
                     updateCats();
                     requestAnimationFrame(update);
-                  }
+                    }
 
                   // Event listeners
                   flapBtn.addEventListener('mousedown', (e) => { e.preventDefault(); flap(); });
@@ -308,7 +308,7 @@
                     if (e.code === 'Space') flap();
                     if (e.code === 'KeyF') water();
                     if (e.code === 'KeyQ') summonCat();
-                  });
+                    });
 
                   // Spawn enemies every 2 seconds
                   setInterval(spawnEnemy, 2000);
@@ -316,6 +316,6 @@
                   // Start game
                   moneyDisplay.innerText = "MONEY: " + money;
                   update();
-                </script>
-              </body>
-            </html>
+                  </script>
+                </body>
+              </html>

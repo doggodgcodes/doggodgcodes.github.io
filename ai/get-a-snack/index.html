@@ -17,7 +17,7 @@
           font-family: 'source sans 3', sans-serif;
           user-select: none;
           text-transform: lowercase; /* forces total lowercase immersion! */
-        }
+          }
         #ui-container {
           position: absolute;
           top: 12px;
@@ -25,7 +25,7 @@
           color: #fff;
           text-shadow: 2px 2px #000;
           z-index: 999;
-        }
+          }
         .hud-element {
           background: rgba(15, 10, 30, 0.85);
           padding: 12px;
@@ -34,7 +34,7 @@
           font-family: 'comic neue', cursive;
           font-size: 1.1rem;
           margin-bottom: 8px;
-        }
+          }
         /* sleek black button update */
         .gui-btn {
           background: #111111;
@@ -51,11 +51,11 @@
           transition: 0.1s;
           display: block;
           text-transform: lowercase;
-        }
+          }
         .gui-btn:active {
           transform: translateY(4px);
           box-shadow: 0 0px #000000;
-        }
+          }
         /* achievements menu box */
         #achievements-menu {
           position: absolute;
@@ -72,14 +72,14 @@
           display: none;
           font-family: 'comic neue', cursive;
           z-index: 10000;
-        }
+          }
         #achievements-menu h2 {
           margin-top: 0;
           text-align: center;
           color: #ffcc00;
           border-bottom: 3px dashed #ff007f;
           padding-bottom: 8px;
-        }
+          }
         .badge-row {
           display: flex;
           align-items: center;
@@ -89,22 +89,22 @@
           border-radius: 6px;
           margin-bottom: 8px;
           border: 1px solid #555;
-        }
+          }
         .badge-icon {
           font-size: 2rem;
-        }
+          }
         .badge-info {
           display: flex;
           flex-direction: column;
-        }
+          }
         .badge-title {
           font-weight: bold;
           font-size: 1.1rem;
-        }
+          }
         .badge-status {
           font-size: 0.85rem;
           color: #ff9999;
-        }
+          }
         .close-btn {
           background: #222222;
           color: white;
@@ -117,7 +117,7 @@
           margin-top: 10px;
           font-family: 'comic neue', cursive;
           text-transform: lowercase;
-        }
+          }
         #achievement-popup {
           position: absolute;
           bottom: 25px;
@@ -133,7 +133,7 @@
           display: none;
           box-shadow: 0 0 15px rgba(0,0,0,0.8);
           z-index: 9999;
-        }
+          }
         /* clerk speech dialogue container */
         #clerk-dialogue {
           position: absolute;
@@ -152,21 +152,21 @@
           z-index: 9999;
           text-align: center;
           box-shadow: 0 0 20px rgba(255,0,0,0.4);
-        }
-      </style>
+          }
+        </style>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-      </head>
+        </head>
       <body>
 
         <!-- background music element -->
         <audio id="bg-music" loop>
           <source src="https://web.archive.org/web/20260518134414/https://audio.ngfiles.com/1085000/1085523_Konekos-Caf.mp3" type="audio/mp3">
-          </audio>
+            </audio>
 
           <div id="ui-container">
             <div class="hud-element">wasd / arrows to walk | right-click drag to look | scroll wheel to zoom</div>
               <button class="gui-btn" onclick="toggleMenu()">view achievements</button>
-              </div>
+                </div>
 
               <div id="achievements-menu">
                 <h2>badge storage box</h2>
@@ -175,24 +175,24 @@
                       <div class="badge-info">
                         <span class="badge-title">mansion dweller</span>
                           <span class="badge-status" id="badge-spawn">locked</span>
+                            </div>
                           </div>
-                        </div>
                         <div class="badge-row">
                           <div class="badge-icon">🌫️</div>
                             <div class="badge-info">
                               <span class="badge-title">into the 4am fog</span>
                                 <span class="badge-status" id="badge-outside">locked</span>
+                                  </div>
                                 </div>
-                              </div>
                               <div class="badge-row">
                                 <div class="badge-icon">🏪</div>
                                   <div class="badge-info">
                                     <span class="badge-title">late night snack run</span>
                                       <span class="badge-status" id="badge-store">locked</span>
+                                        </div>
                                       </div>
-                                    </div>
                                     <button class="close-btn" onclick="toggleMenu()">close menu</button>
-                                    </div>
+                                      </div>
 
                                     <div id="achievement-popup">achievement unlocked!</div>
                                       <div id="clerk-dialogue">clerk: "dude, it's 4am... buy something or leave, i want to go home."</div>
@@ -204,8 +204,8 @@
                                             if (music.paused) {
                                               music.volume = 0.3;
                                               music.play().catch(e => console.log("audio auto-play blocked until interaction"));
-                                            }
-                                          });
+                                              }
+                                            });
 
                                           // --- 1. SPARK THE WORLD WITH BRIGHTER EXPONENTIAL FOG ---
                                           const scene = new THREE.Scene();
@@ -248,7 +248,7 @@
                                             const line = new THREE.Mesh(lineGeo, lineMat);
                                             line.position.set(i, -1, 35);
                                             scene.add(line);
-                                          }
+                                            }
 
                                           // GLOWING STREET LAMPS ENGINE
                                           function createStreetLamp(x, z) {
@@ -281,7 +281,7 @@
                                             lampGroup.add(lampLight);
 
                                             scene.add(lampGroup);
-                                          }
+                                            }
 
                                           // drop lamps all along the front road curb lines
                                           createStreetLamp(-60, 22);
@@ -299,7 +299,7 @@
                                               roughness: 0.7,
                                               transparent: transparent,
                                               opacity: opacity
-                                            });
+                                              });
                                             const mesh = new THREE.Mesh(geo, mat);
                                             mesh.position.set(x, y, z);
                                             scene.add(mesh);
@@ -307,7 +307,7 @@
                                             const box = new THREE.Box3().setFromObject(mesh);
                                             collidableBoxes.push(box);
                                             return mesh;
-                                          }
+                                            }
 
                                           // --- 6. THE EXPANDED TAN MANSION ---
                                           const tanWallColor = 0xd2b48c;
@@ -420,12 +420,12 @@
                                           window.addEventListener('keydown', (e) => {
                                             if (e.key.toLowerCase() in keys) keys[e.key.toLowerCase()] = true;
                                             if (e.key in keys) keys[e.key] = true;
-                                          });
+                                            });
 
                                           window.addEventListener('keyup', (e) => {
                                             if (e.key.toLowerCase() in keys) keys[e.key.toLowerCase()] = false;
                                             if (e.key in keys) keys[e.key] = false;
-                                          });
+                                            });
 
                                           window.addEventListener('contextmenu', e => e.preventDefault());
 
@@ -433,8 +433,8 @@
                                             if (e.button === 2) {
                                               isRightMouseDown = true;
                                               previousMousePosition = { x: e.clientX, y: e.clientY };
-                                            }
-                                          });
+                                              }
+                                            });
 
                                           window.addEventListener('mousemove', (e) => {
                                             if (isRightMouseDown) {
@@ -443,33 +443,33 @@
                                               cameraAngleH -= deltaX * 0.007;
                                               cameraAngleV = Math.max(0.05, Math.min(Math.PI / 2.1, cameraAngleV + deltaY * 0.007));
                                               previousMousePosition = { x: e.clientX, y: e.clientY };
-                                            }
-                                          });
+                                              }
+                                            });
 
                                           window.addEventListener('mouseup', (e) => {
                                             if (e.button === 2) isRightMouseDown = false;
-                                          });
+                                            });
 
                                           window.addEventListener('wheel', (e) => {
                                             cameraRadius += e.deltaY * 0.02;
                                             cameraRadius = Math.max(5, Math.min(85, cameraRadius));
-                                          });
+                                            });
 
                                           // --- 11. TRACKING BADGES & GUI POPUP REVEAL INTERFACE ---
                                           function updateMenuGUI() {
                                             if(localStorage.getItem('gasa4_spawn_mansion')) {
                                               document.getElementById('badge-spawn').innerText = "✅ unlocked!";
                                               document.getElementById('badge-spawn').style.color = "#00ffcc";
-                                            }
+                                              }
                                             if(localStorage.getItem('gasa4_left_mansion')) {
                                               document.getElementById('badge-outside').innerText = "✅ unlocked!";
                                               document.getElementById('badge-outside').style.color = "#00ffcc";
-                                            }
+                                              }
                                             if(localStorage.getItem('gasa4_reached_store')) {
                                               document.getElementById('badge-store').innerText = "✅ unlocked!";
                                               document.getElementById('badge-store').style.color = "#00ffcc";
+                                              }
                                             }
-                                          }
 
                                           function triggerBadge(key, text) {
                                             if (!localStorage.getItem(key)) {
@@ -479,18 +479,18 @@
                                               popup.style.display = 'block';
                                               updateMenuGUI();
                                               setTimeout(() => { popup.style.display = 'none'; }, 4000);
+                                              }
                                             }
-                                          }
 
                                           function toggleMenu() {
                                             const menu = document.getElementById('achievements-menu');
                                             if (menu.style.display === 'block') {
                                               menu.style.display = 'none';
-                                            } else {
+                                              } else {
                                               updateMenuGUI();
                                               menu.style.display = 'block';
+                                              }
                                             }
-                                          }
 
                                           triggerBadge('gasa4_spawn_mansion', 'mansion dweller!');
                                           updateMenuGUI();
@@ -525,7 +525,7 @@
                                               let collideX = false;
                                               for (let box of collidableBoxes) {
                                                 if (playerBox.intersectsBox(box)) { collideX = true; break; }
-                                              }
+                                                }
                                               if (!collideX) playerGroup.position.x = nextX;
 
                                               // Z wall block check
@@ -534,7 +534,7 @@
                                               let collideZ = false;
                                               for (let box of collidableBoxes) {
                                                 if (playerBox.intersectsBox(box)) { collideZ = true; break; }
-                                              }
+                                                }
                                               if (!collideZ) playerGroup.position.z = nextZ;
 
                                               const targetRotation = Math.atan2(moveDirection.x, moveDirection.z);
@@ -543,20 +543,20 @@
                                               // objective distance tracking thresholds
                                               if (playerGroup.position.z > 6) {
                                                 triggerBadge('gasa4_left_mansion', 'into the 4am fog!');
-                                              }
+                                                }
                                               if (playerGroup.position.z > 58) {
                                                 triggerBadge('gasa4_reached_store', 'late night snack run!');
+                                                }
                                               }
-                                            }
 
                                             // clerk proximity grumpy complaining subtitle engine trigger
                                             const distToClerk = playerGroup.position.distanceTo(clerkGroup.position);
                                             const dialogueBox = document.getElementById('clerk-dialogue');
                                             if (distToClerk < 10) {
                                               dialogueBox.style.display = 'block';
-                                            } else {
+                                              } else {
                                               dialogueBox.style.display = 'none';
-                                            }
+                                              }
 
                                             // camera offset math positions
                                             const targetCamX = playerGroup.position.x + cameraRadius * Math.sin(cameraAngleH) * Math.cos(cameraAngleV);
@@ -567,15 +567,15 @@
                                             camera.lookAt(playerGroup.position.x, playerGroup.position.y + 2.5, playerGroup.position.z);
 
                                             renderer.render(scene, camera);
-                                          }
+                                            }
 
                                           window.addEventListener('resize', () => {
                                             camera.aspect = window.innerWidth / window.innerHeight;
                                             camera.updateProjectionMatrix();
                                             renderer.setSize(window.innerWidth, window.innerHeight);
-                                          });
+                                            });
 
                                           animate();
-                                        </script>
-                                      </body>
-                                    </html>
+                                          </script>
+                                        </body>
+                                      </html>

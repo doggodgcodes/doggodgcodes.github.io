@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  }
 
 body {
   display: flex;
@@ -19,7 +19,7 @@ body {
   );
   font-family: "Arial", sans-serif;
   overflow: hidden;
-}
+  }
 
 .game-container {
   position: relative;
@@ -35,15 +35,15 @@ body {
   border: 3px solid #000;
   overflow: hidden;
   cursor: pointer;
-}
+  }
 
 @media (max-width: 450px) {
   .game-container {
     width: 100vw;
     height: 100vh;
     border: none;
+    }
   }
-}
 
 #bird {
   position: absolute;
@@ -54,7 +54,7 @@ body {
   background-repeat: no-repeat;
   left: 80px;
   transition: transform 0.1s;
-}
+  }
 
 .pipe {
   position: absolute;
@@ -68,12 +68,12 @@ body {
   border: 3px solid #2d5016;
   transition: left 0.05s linear;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-}
+  }
 
 .pipe-top {
   top: 0;
   border-bottom: none;
-}
+  }
 
 .pipe-top::after {
   content: "";
@@ -90,12 +90,12 @@ body {
   );
   border: 3px solid #2d5016;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-}
+  }
 
 .pipe-bottom {
   bottom: 0;
   border-top: none;
-}
+  }
 
 .pipe-bottom::before {
   content: "";
@@ -112,7 +112,7 @@ body {
   );
   border: 3px solid #2d5016;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
-}
+  }
 
 .score {
   position: absolute;
@@ -124,7 +124,7 @@ body {
   color: #fff;
   text-shadow: 3px 3px #000;
   z-index: 10;
-}
+  }
 
 .game-over {
   position: absolute;
@@ -138,22 +138,22 @@ body {
   text-align: center;
   display: none;
   z-index: 100;
-}
+  }
 
 .game-over.show {
   display: block;
-}
+  }
 
 .game-over h1 {
   font-size: 36px;
   margin-bottom: 15px;
   color: #f00;
-}
+  }
 
 .game-over p {
   font-size: 20px;
   margin: 10px 0;
-}
+  }
 
 .game-over button {
   margin-top: 20px;
@@ -165,11 +165,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-}
+  }
 
 .game-over button:hover {
   background: #4a934a;
-}
+  }
 
 .start-screen {
   position: absolute;
@@ -182,18 +182,18 @@ body {
   border-radius: 10px;
   text-align: center;
   z-index: 100;
-}
+  }
 
 .start-screen h1 {
   font-size: 36px;
   margin-bottom: 15px;
   color: #ff0;
-}
+  }
 
 .start-screen p {
   font-size: 18px;
   margin: 10px 0;
-}
+  }
 
 .start-screen button {
   margin-top: 20px;
@@ -205,11 +205,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-}
+  }
 
 .start-screen button:hover {
   background: #4a934a;
-}
+  }
 
 .high-score {
   position: absolute;
@@ -221,4 +221,4 @@ body {
   color: #fff;
   text-shadow: 2px 2px #000;
   z-index: 10;
-}
+  }

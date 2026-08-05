@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
     "🍌 SOMEWHERE, A BANANA IS READING THIS ABOUT YOU! 🍌",
     "🌊 THE OCEAN JUST CALLED, IT WANTS ITS WATER BACK! 🌊",
     "🎯 YOU HAVE BEEN RANDOMLY SELECTED FOR EXTRA SILLINESS! 🎯",
-  ];
+    ];
 
   let clickCount = 0;
   let moreClickCount = 0;
@@ -32,15 +32,15 @@ document.addEventListener("DOMContentLoaded", function() {
   @keyframes float-up {
     0% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
     100% { opacity: 0; transform: translateY(-500px) rotate(360deg) scale(1.5); }
-  }
+    }
   @keyframes confetti-fall {
     0% { opacity: 1; transform: translateY(0) translateX(0) rotate(0deg); }
     100% { opacity: 0; transform: translateY(${window.innerHeight}px) translateX(0) rotate(720deg); }
-  }
+    }
   @keyframes sparkle-fade {
     0% { opacity: 1; transform: scale(1); }
     100% { opacity: 0; transform: scale(0); }
-  }
+    }
   `;
   document.head.appendChild(globalStyle);
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.body.style.transform = `rotate(${(Math.random() - 0.5) * 2}deg)`;
     setTimeout(() => document.body.style.transform = "rotate(0deg)", 100);
-  });
+    });
 
   // More Button
   moreBtn.addEventListener("click", () => {
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
       "✨ EXTRA SILLY MODE! ✨",
       "🎪 CHAOS ENGAGED! 🎪",
       "🚀 DIMENSIONAL TRAVEL INITIATED! 🚀",
-    ];
+      ];
     createFloatingText(phrases[Math.floor(Math.random() * phrases.length)]);
 
     chaosZone.classList.add("pulsing");
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (moreClickCount === 3)
     chaosText.textContent += "\n(Are you okay? The bananas are watching.)";
-  });
+    });
 
   // Reset Button
   resetBtn.addEventListener("click", () => {
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
     chaosZone.style.filter = "hue-rotate(0deg)";
     document.body.style.transform = "rotate(0deg)";
     alert("🔄 REALITY HAS BEEN RESTORED!");
-  });
+    });
 
   // Floating Text
   function createFloatingText(text) {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
     `;
     document.body.appendChild(div);
     setTimeout(() => div.remove(), 3000);
-  }
+    }
 
   // Confetti
   function createConfetti() {
@@ -118,14 +118,14 @@ document.addEventListener("DOMContentLoaded", function() {
       `;
       document.body.appendChild(confetti);
       setTimeout(() => confetti.remove(), 4000);
+      }
     }
-  }
 
   // Keyboard shortcuts
   document.addEventListener("keydown", (e) => {
     if (e.key.toLowerCase() === "b") { chaosText.textContent = "🍌 QUANTUM BANANAS ARRIVE! 🍌"; crazyBtn.click(); }
     if (e.key.toLowerCase() === "s") { chaosText.textContent = "🍝 SPAGHETTI NETWORK ACTIVE! 🍝"; createFloatingText("🍝 SPAGHETTI DETECTED! 🍝"); }
-  });
+    });
 
   // Mouse sparkle
   document.addEventListener("mousemove", (e) => {
@@ -140,13 +140,13 @@ document.addEventListener("DOMContentLoaded", function() {
       `;
       document.body.appendChild(sparkle);
       setTimeout(() => sparkle.remove(), 1000);
-    }
-  });
+      }
+    });
 
   // Welcome
   window.addEventListener("load", () => {
     console.log("🍌 WELCOME TO ULTRA SILLY VIBES! 🍌");
     console.log("🍝 The sentient bananas are watching! 🍝");
     console.log("✨ Press 'B' for banana chaos or 'S' for spaghetti chaos! ✨");
+    });
   });
-});

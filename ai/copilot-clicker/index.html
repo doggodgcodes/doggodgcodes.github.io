@@ -20,8 +20,8 @@
         .row{display:flex;gap:8px;align-items:center}
         footer{margin-top:16px;color:var(--muted);font-size:0.8rem;text-align:center}
         @media (max-width:420px){.card{padding:18px}.count{font-size:2rem}}
-      </style>
-    </head>
+        </style>
+      </head>
     <body>
       <main class="wrap">
         <section class="card" role="application" aria-label="Copilot Clicker">
@@ -31,18 +31,18 @@
                 <button id="clicker" class="btn" aria-label="Click to increase">Click</button>
                   <div style="flex:1"></div>
                     <div class="meta">Per click: <strong id="perClick">1</strong></div>
-                    </div>
+                      </div>
 
                     <div class="controls">
                       <button id="buyAuto" class="btn small">Buy auto-clicker (<span id="autoCost">50</span>)</button>
                         <button id="buyMult" class="btn small">Buy x2 (<span id="multCost">100</span>)</button>
-                        </div>
+                          </div>
 
                         <div class="log" id="log">Welcome — press the big Click button or hit Space.</div>
 
                           <footer>Progress is saved to your browser.</footer>
-                          </section>
-                        </main>
+                            </section>
+                          </main>
 
                         <script>
                           (function(){
@@ -65,7 +65,7 @@
 
                             function save(){
                               try{localStorage.setItem(stateKey, JSON.stringify(state));}catch(e){console.warn('ls failed', e)}
-                            }
+                              }
 
                             function load(){
                               try{
@@ -78,9 +78,9 @@
                                   state.autos = Number(parsed.autos) || 0;
                                   state.autoCost = Number(parsed.autoCost) || 50;
                                   state.multCost = Number(parsed.multCost) || 100;
-                                }
-                              }catch(e){console.warn('load failed', e)}
-                            }
+                                  }
+                                }catch(e){console.warn('load failed', e)}
+                              }
 
                             function updateUI(){
                               eCount.textContent = Math.floor(state.count).toLocaleString();
@@ -90,22 +90,22 @@
                               // disable buy buttons if not affordable
                               eBuyAuto.disabled = state.count < state.autoCost;
                               eBuyMult.disabled = state.count < state.multCost;
-                            }
+                              }
 
                             function log(msg){
                               eLog.textContent = msg;
-                            }
+                              }
 
                             function gain(n){
                               state.count += n;
                               save();
                               updateUI();
-                            }
+                              }
 
                             function clickAction(){
                               gain(state.multiplier);
                               log(`+${state.multiplier} (click)`);
-                            }
+                              }
 
                             function buyAuto(){
                               if(state.count < state.autoCost) { log('Not enough cookies.'); return; }
@@ -117,7 +117,7 @@
                               updateUI();
                               startAuto();
                               log(`Bought auto-clicker (#${state.autos})`);
-                            }
+                              }
 
                             function buyMult(){
                               if(state.count < state.multCost) { log('Not enough cookies.'); return; }
@@ -127,7 +127,7 @@
                               save();
                               updateUI();
                               log(`Multiplier increased — now x${state.multiplier}`);
-                            }
+                              }
 
                             function startAuto(){
                               if(autoIntervalId) return; // already running
@@ -139,9 +139,9 @@
                                   save();
                                   updateUI();
                                   log(`+${gainAmount} (auto)`);
-                                }
-                              }, 1000);
-                            }
+                                  }
+                                }, 1000);
+                              }
 
                             // Event listeners
                             eClick.addEventListener('click', clickAction);
@@ -153,8 +153,8 @@
                               if(ev.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
                                 ev.preventDefault();
                                 clickAction();
-                              }
-                            });
+                                }
+                              });
 
                             // load state and start
                             load();
@@ -163,8 +163,8 @@
 
                             // expose for debugging in console (optional)
                             window.copilotClicker = {state, save, gain};
-                          })();
-                        </script>
+                            })();
+                          </script>
                         <script>
                           (function() {
                             let audioCtx = null;
@@ -176,12 +176,12 @@
                             async function ensureAudio() {
                               if (!audioCtx) {
                                 audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                              }
+                                }
                               if (audioCtx.state === 'suspended') {
                                 await audioCtx.resume();
-                              }
+                                }
                               return audioCtx;
-                            }
+                              }
 
                             /**
                             * Generates a percussive pop with a feedback delay.
@@ -199,7 +199,7 @@
                               for (let i = 0; i < len; i++) {
                                 const env = Math.exp(-i / (len * 0.12));
                                 data[i] = (Math.random() * 2 - 1) * env;
-                              }
+                                }
 
                               const src = ac.createBufferSource();
                               src.buffer = buf;
@@ -245,26 +245,26 @@
                                 src.disconnect();
                                 dryGain.disconnect();
                                 delay.disconnect();
-                              }, 700);
-                            }
+                                }, 700);
+                              }
 
                             // Unified Trigger Function
                             async function triggerSound() {
                               try {
                                 await ensureAudio();
                                 playPop();
-                              } catch (e) {
+                                } catch (e) {
                                 console.warn("Audio blocked by browser policy.");
+                                }
                               }
-                            }
 
                             // Pointer Interaction
                             document.addEventListener('pointerdown', (e) => {
                               // Only trigger if it's a left click or touch
                               if (e.button === 0 || e.pointerType === 'touch') {
                                 triggerSound();
-                              }
-                            }, { passive: true });
+                                }
+                              }, { passive: true });
 
                             // Keyboard Interaction (Space)
                             window.addEventListener('keydown', (e) => {
@@ -274,12 +274,12 @@
                               if (e.code === 'Space' && !isInput) {
                                 e.preventDefault();
                                 triggerSound();
-                              }
-                            });
+                                }
+                              });
 
                             // Global API
                             window.clickSoundAPI = { trigger: triggerSound, playPop };
-                          })();
-                        </script>
-                      </body>
-                    </html>
+                            })();
+                          </script>
+                        </body>
+                      </html>

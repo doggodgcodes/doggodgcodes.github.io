@@ -9,7 +9,7 @@
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-        }
+          }
 
         body {
           font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -21,7 +21,7 @@
           justify-content: center;
           align-items: flex-start;
           gap: 30px;
-        }
+          }
 
         .banana-character {
           position: sticky;
@@ -33,30 +33,30 @@
           padding: 20px;
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
           text-align: center;
-        }
+          }
 
         .banana-character-img {
           width: 160px;
           height: 160px;
           margin: 0 auto 15px;
           display: block;
-        }
+          }
 
         .character-text {
           font-size: 14px;
           color: #555;
           font-style: italic;
-        }
+          }
 
         .main-content {
           flex: 1;
           max-width: 1000px;
-        }
+          }
 
         .header {
           text-align: center;
           margin-bottom: 30px;
-        }
+          }
 
         h1 {
           color: #fff;
@@ -65,14 +65,14 @@
           margin-bottom: 10px;
           letter-spacing: 1px;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
+          }
 
         .subtitle {
           color: #fff;
           font-size: 18px;
           font-weight: 400;
           opacity: 0.95;
-        }
+          }
 
         .container {
           background: white;
@@ -80,7 +80,7 @@
           padding: 30px;
           box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
           width: 100%;
-        }
+          }
 
         .controls {
           display: flex;
@@ -93,14 +93,14 @@
           padding: 20px;
           border-radius: 10px;
           border: 2px solid #ffd700;
-        }
+          }
 
         .control-group {
           display: flex;
           flex-direction: column;
           gap: 8px;
           align-items: center;
-        }
+          }
 
         .control-label {
           font-weight: 600;
@@ -108,7 +108,7 @@
           font-size: 13px;
           text-transform: uppercase;
           letter-spacing: 0.5px;
-        }
+          }
 
         .color-picker {
           width: 80px;
@@ -117,17 +117,17 @@
           border-radius: 50%;
           cursor: pointer;
           transition: transform 0.2s;
-        }
+          }
 
         .color-picker:hover {
           transform: scale(1.1);
-        }
+          }
 
         .preset-colors {
           display: flex;
           gap: 10px;
           flex-wrap: wrap;
-        }
+          }
 
         .color-btn {
           width: 40px;
@@ -136,17 +136,17 @@
           border-radius: 50%;
           cursor: pointer;
           transition: transform 0.2s;
-        }
+          }
 
         .color-btn:hover {
           transform: scale(1.2);
           border-width: 3px;
-        }
+          }
 
         .brush-sizes {
           display: flex;
           gap: 10px;
-        }
+          }
 
         .brush-btn {
           width: 50px;
@@ -160,32 +160,32 @@
           justify-content: center;
           font-weight: bold;
           transition: all 0.2s;
-        }
+          }
 
         .brush-btn:hover {
           background: #f8f9fa;
           transform: scale(1.05);
           border-color: #495057;
-        }
+          }
 
         .brush-btn.active {
           background: #ffd700;
           border-color: #ff8c00;
-        }
+          }
 
         .brush-btn.active .brush-preview {
           background: #333;
-        }
+          }
 
         .brush-preview {
           border-radius: 50%;
           background: #333;
-        }
+          }
 
         .action-buttons {
           display: flex;
           gap: 10px;
-        }
+          }
 
         .btn {
           padding: 12px 24px;
@@ -196,26 +196,26 @@
           cursor: pointer;
           transition: all 0.2s;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
+          }
 
         .btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-        }
+          }
 
         .btn:active {
           transform: translateY(0);
-        }
+          }
 
         .btn-clear {
           background: #dc3545;
           color: white;
-        }
+          }
 
         .btn-save {
           background: #28a745;
           color: white;
-        }
+          }
 
         .canvas-container {
           display: flex;
@@ -224,7 +224,7 @@
           border-radius: 10px;
           padding: 20px;
           border: 2px dashed #ffd700;
-        }
+          }
 
         #canvas {
           background: white;
@@ -232,44 +232,44 @@
           border-radius: 5px;
           cursor: crosshair;
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
+          }
 
         .tip {
           text-align: center;
           margin-top: 15px;
           color: #666;
           font-style: italic;
-        }
+          }
 
         @media (max-width: 768px) {
           body {
             flex-direction: column;
-          }
+            }
 
           .banana-character {
             width: 100%;
             position: relative;
-          }
+            }
 
           .banana-character-img {
             font-size: 80px;
-          }
+            }
 
           h1 {
             font-size: 32px;
-          }
+            }
 
           .controls {
             gap: 15px;
-          }
+            }
 
           #canvas {
             width: 100% !important;
             height: 500px !important;
+            }
           }
-        }
-      </style>
-    </head>
+        </style>
+      </head>
     <body>
       <div class="banana-character">
         <img
@@ -278,13 +278,13 @@
         class="banana-character-img"
         />
         <p class="character-text">"Create your masterpiece!"</p>
-        </div>
+          </div>
 
         <div class="main-content">
           <div class="header">
             <h1>🍌 Artistic Banana 🎨</h1>
               <p class="subtitle">Professional Digital Canvas</p>
-              </div>
+                </div>
 
               <div class="container">
                 <div class="controls">
@@ -296,7 +296,7 @@
                         value="#000000"
                         class="color-picker"
                         />
-                      </div>
+                        </div>
 
                       <div class="control-group">
                         <span class="control-label">🌈 Quick Colors</span>
@@ -341,8 +341,8 @@
                                             style="background: #ffffff; border-color: #666"
                                             onclick="setColor('#ffffff')"
                                             ></div>
+                                            </div>
                                           </div>
-                                        </div>
 
                                         <div class="control-group">
                                           <span class="control-label">🖌️ Brush Size</span>
@@ -356,7 +356,7 @@
                                                   class="brush-preview"
                                                   style="width: 8px; height: 8px"
                                                   ></div>
-                                                </button>
+                                                  </button>
                                                 <button
                                                   class="brush-btn active"
                                                   onclick="setBrushSize(10)"
@@ -366,7 +366,7 @@
                                                     class="brush-preview"
                                                     style="width: 12px; height: 12px"
                                                     ></div>
-                                                  </button>
+                                                    </button>
                                                   <button
                                                     class="brush-btn"
                                                     onclick="setBrushSize(20)"
@@ -376,7 +376,7 @@
                                                       class="brush-preview"
                                                       style="width: 20px; height: 20px"
                                                       ></div>
-                                                    </button>
+                                                      </button>
                                                     <button
                                                       class="brush-btn"
                                                       onclick="setBrushSize(40)"
@@ -386,9 +386,9 @@
                                                         class="brush-preview"
                                                         style="width: 30px; height: 30px"
                                                         ></div>
-                                                      </button>
+                                                        </button>
+                                                      </div>
                                                     </div>
-                                                  </div>
 
                                                   <div class="control-group">
                                                     <span class="control-label">⚡ Actions</span>
@@ -398,24 +398,24 @@
                                                           onclick="clearCanvas()"
                                                           >
                                                           🗑️ Clear
-                                                        </button>
+                                                          </button>
                                                         <button class="btn btn-save" onclick="saveCanvas()">
                                                           💾 Save
-                                                        </button>
+                                                          </button>
+                                                        </div>
                                                       </div>
                                                     </div>
-                                                  </div>
 
                                                   <div class="canvas-container">
                                                     <canvas id="canvas" width="800" height="600"></canvas>
-                                                    </div>
+                                                      </div>
 
                                                     <p class="tip">
                                                       💡 Tip: Click and drag to paint! Use different colors and
                                                       brush sizes to create your artwork.
-                                                    </p>
+                                                      </p>
+                                                    </div>
                                                   </div>
-                                                </div>
 
                                                 <script>
                                                   const canvas = document.getElementById("canvas");
@@ -435,7 +435,7 @@
                                                   // Color picker event
                                                   colorPicker.addEventListener("input", (e) => {
                                                     currentColor = e.target.value;
-                                                  });
+                                                    });
 
                                                   // Mouse events for drawing
                                                   canvas.addEventListener("mousedown", startDrawing);
@@ -453,7 +453,7 @@
                                                     const rect = canvas.getBoundingClientRect();
                                                     lastX = e.clientX - rect.left;
                                                     lastY = e.clientY - rect.top;
-                                                  }
+                                                    }
 
                                                   function draw(e) {
                                                     if (!isDrawing) return;
@@ -474,11 +474,11 @@
 
                                                     lastX = x;
                                                     lastY = y;
-                                                  }
+                                                    }
 
                                                   function stopDrawing() {
                                                     isDrawing = false;
-                                                  }
+                                                    }
 
                                                   function handleTouchStart(e) {
                                                     e.preventDefault();
@@ -489,7 +489,7 @@
                                                     lastX = (touch.clientX - rect.left) * scaleX;
                                                     lastY = (touch.clientY - rect.top) * scaleY;
                                                     isDrawing = true;
-                                                  }
+                                                    }
 
                                                   function handleTouchMove(e) {
                                                     if (!isDrawing) return;
@@ -514,12 +514,12 @@
 
                                                     lastX = x;
                                                     lastY = y;
-                                                  }
+                                                    }
 
                                                   function setColor(color) {
                                                     currentColor = color;
                                                     colorPicker.value = color;
-                                                  }
+                                                    }
 
                                                   function setBrushSize(size) {
                                                     brushSize = size;
@@ -527,9 +527,9 @@
                                                     // Update active button
                                                     document.querySelectorAll(".brush-btn").forEach((btn) => {
                                                       btn.classList.remove("active");
-                                                    });
+                                                      });
                                                     event.target.closest(".brush-btn").classList.add("active");
-                                                  }
+                                                    }
 
                                                   function clearCanvas() {
                                                     if (
@@ -539,8 +539,8 @@
                                                     ) {
                                                       ctx.fillStyle = "white";
                                                       ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                                      }
                                                     }
-                                                  }
 
                                                   function saveCanvas() {
                                                     const link = document.createElement("a");
@@ -548,7 +548,7 @@
                                                     link.href = canvas.toDataURL();
                                                     link.click();
                                                     alert("Your artwork has been saved! 🎨");
-                                                  }
-                                                </script>
-                                              </body>
-                                            </html>
+                                                    }
+                                                  </script>
+                                                </body>
+                                              </html>

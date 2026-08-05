@@ -47,8 +47,8 @@ dgDiv.innerHTML = `
                 <img class="dg-fbar-img" src="https://i.chzbgr.com/full/10555248128/hEA6A8B63/will-open-this-coca-co-1127">
                 <img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/tony.jpg">
                 <img class="dg-fbar-img" src="https://doggodgcodes.github.io/assets/memes/cat.png">
+                </div>
               </div>
-            </div>
             `;
 
 

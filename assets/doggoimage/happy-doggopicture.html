@@ -11,14 +11,14 @@
           align-items: center;
           height: 100vh;
           background: #f0f0f0;
-        }
+          }
 
         canvas {
           background: #fff;
           border: 1px solid #ccc;
-        }
-      </style>
-    </head>
+          }
+        </style>
+      </head>
     <body>
       <canvas id="canvas" width="300" height="100"></canvas>
 
@@ -57,13 +57,13 @@
                 if (x >= pixels) {
                   x = 0;
                   y++;
+                  }
                 }
-              }
 
               requestAnimationFrame(draw);
-            }
+              }
 
             draw();
-          </script>
-        </body>
-      </html>
+            </script>
+          </body>
+        </html>

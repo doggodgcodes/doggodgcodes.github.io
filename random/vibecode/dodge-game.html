@@ -9,14 +9,14 @@
           margin: 0;
           padding: 0;
           overflow: hidden;
-        }
+          }
 
         canvas {
           display: block;
           background: linear-gradient(to bottom, #87ceeb, #4682b4); /* Blue gradient */
-        }
-      </style>
-    </head>
+          }
+        </style>
+      </head>
     <body>
       <canvas id="gameCanvas"></canvas>
 
@@ -32,7 +32,7 @@
             'https://doggodgcodes.github.io/assets/dg-memes-half-hd.png',
             'https://owendallasread.com/bananazon/banana1.jpg', // Sample image from Banana Stock
             'https://owendallasread.com/bananazon/banana2.jpg'  // Sample image from Banana Stock
-          ];
+            ];
 
           canvas.width = window.innerWidth;
           canvas.height = window.innerHeight;
@@ -46,7 +46,7 @@
 
           const mouseMoveHandler = (e) => {
             playerY = e.clientY;
-          };
+            };
 
           // Player object
           const player = {
@@ -55,7 +55,7 @@
             width: playerWidth,
             height: playerHeight,
             color: 'limegreen',
-          };
+            };
 
           // Bullet object
           class Bullet {
@@ -67,15 +67,15 @@
               this.x = Math.random() * canvas.width;
               this.y = -this.height;
               this.speed = 3 + Math.random() * 4;
-            }
+              }
 
             move() {
               this.y += this.speed;
-            }
+              }
 
             draw() {
               ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-            }
+              }
 
             checkCollision() {
               if (
@@ -85,17 +85,17 @@
               this.y + this.height > player.y
               ) {
                 return true;
-              }
+                }
               return false;
+              }
             }
-          }
 
           // Create bullets at random intervals
           setInterval(() => {
             const randomImage = images[Math.floor(Math.random() * images.length)];
             const newBullet = new Bullet(randomImage);
             bullets.push(newBullet);
-          }, 800);
+            }, 800);
 
           // Main game loop
           function gameLoop() {
@@ -119,19 +119,19 @@
               if (bullets[i].checkCollision()) {
                 alert('Game Over!');
                 window.location.reload(); // Reload the page for restarting
-              }
+                }
 
               // Remove bullets that go off-screen
               if (bullets[i].y > canvas.height) {
                 bullets.splice(i, 1);
+                }
               }
-            }
 
             requestAnimationFrame(gameLoop);
-          }
+            }
 
           window.addEventListener('mousemove', mouseMoveHandler);
           gameLoop();
-        </script>
-      </body>
-    </html>
+          </script>
+        </body>
+      </html>

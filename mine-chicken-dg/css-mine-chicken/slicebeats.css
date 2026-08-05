@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  }
 
 body {
   font-family: "Arial", sans-serif;
@@ -14,7 +14,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
+  }
 
 .warning-banner {
   background-color: #ff0000;
@@ -27,14 +27,14 @@ body {
   position: fixed;
   top: 0;
   z-index: 1000;
-}
+  }
 
 #gameCanvas {
   border: 3px solid #fff;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
   cursor: none;
   background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
-}
+  }
 
 #ui {
   position: absolute;
@@ -45,19 +45,19 @@ body {
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
   z-index: 10;
   pointer-events: none;
-}
+  }
 
 #score {
   font-weight: bold;
   font-size: 32px;
   color: #ffd700;
-}
+  }
 
 #combo {
   font-size: 20px;
   color: #ff6b6b;
   margin-top: 10px;
-}
+  }
 
 #gameOver {
   position: absolute;
@@ -71,13 +71,13 @@ body {
   color: white;
   display: none;
   z-index: 100;
-}
+  }
 
 #gameOver h1 {
   font-size: 48px;
   margin-bottom: 20px;
   color: #ffd700;
-}
+  }
 
 #gameOver button {
   margin-top: 20px;
@@ -89,11 +89,11 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s;
-}
+  }
 
 #gameOver button:hover {
   transform: scale(1.1);
-}
+  }
 
 #startScreen {
   position: absolute;
@@ -106,20 +106,20 @@ body {
   text-align: center;
   color: white;
   z-index: 100;
-}
+  }
 
 #startScreen h1 {
   font-size: 56px;
   margin-bottom: 20px;
   color: #ffd700;
   text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-}
+  }
 
 #startScreen p {
   font-size: 18px;
   margin-bottom: 30px;
   color: #ddd;
-}
+  }
 
 #startScreen button {
   padding: 15px 40px;
@@ -131,11 +131,11 @@ body {
   cursor: pointer;
   transition: transform 0.2s;
   margin: 10px;
-}
+  }
 
 #startScreen button:hover {
   transform: scale(1.1);
-}
+  }
 
 #winScreen {
   position: absolute;
@@ -151,14 +151,14 @@ body {
   z-index: 100;
   border: 3px solid #00ff00;
   box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
-}
+  }
 
 #winScreen h1 {
   font-size: 56px;
   margin-bottom: 20px;
   color: #00ff00;
   text-shadow: 0 0 30px rgba(0, 255, 0, 0.8);
-}
+  }
 
 #winScreen button {
   margin-top: 20px;
@@ -170,11 +170,11 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s;
-}
+  }
 
 #winScreen button:hover {
   transform: scale(1.1);
-}
+  }
 
 #pauseBtn {
   position: absolute;
@@ -191,12 +191,12 @@ body {
   backdrop-filter: blur(5px);
   transition: all 0.2s;
   display: none;
-}
+  }
 
 #pauseBtn:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.05);
-}
+  }
 
 #pauseScreen {
   position: absolute;
@@ -210,14 +210,14 @@ body {
   color: white;
   display: none;
   z-index: 100;
-}
+  }
 
 #pauseScreen h1 {
   font-size: 48px;
   margin-bottom: 20px;
   color: #00ffff;
   text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-}
+  }
 
 #pauseScreen button {
   margin: 10px;
@@ -229,8 +229,8 @@ body {
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.2s;
-}
+  }
 
 #pauseScreen button:hover {
   transform: scale(1.1);
-}
+  }

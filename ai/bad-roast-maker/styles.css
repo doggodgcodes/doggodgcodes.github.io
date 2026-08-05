@@ -4,7 +4,7 @@ body {
   font-family: monospace;
   text-align: center;
   margin-top: 100px;
-}
+  }
 
 button {
   padding: 10px 20px;
@@ -14,11 +14,11 @@ button {
   border: none;
   cursor: pointer;
   border-radius: 10px;
-}
+  }
 
 button:hover {
   background: #555;
-}
+  }
 
 #output {
   margin-top: 40px;
@@ -26,4 +26,4 @@ button:hover {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-}
+  }

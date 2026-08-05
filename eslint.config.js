@@ -4,8 +4,8 @@ export default [
       "**/*.min.js",
       "min/**",
       "node_modules/**",
-    ],
-  },
+      ],
+    },
   {
     files: ["**/*.js"],
     languageOptions: {
@@ -24,8 +24,8 @@ export default [
         clearInterval: "readonly",
         Doge: "readonly",
         Dogebork: "readonly",
+        },
       },
-    },
     rules: {
       "no-unused-vars": "warn",
       "no-undef": "warn",
@@ -34,6 +34,6 @@ export default [
       "quotes": ["warn", "double"],
       "indent": ["warn", 2],
       "comma-dangle": ["warn", "always-multiline"],
+      },
     },
-  },
-];
+  ];

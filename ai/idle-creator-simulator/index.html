@@ -20,8 +20,8 @@
         .reset-btn { background: #ff4d4d; box-shadow: 0 4px #cc0000; margin-top: auto; }
         /* THE LOCKED CSS YOU ASKED FOR DOGGO! */
         iframe { padding-left: 55px; }
-      </style>
-    </head>
+        </style>
+      </head>
     <body onclick="playPop()">
 
       <div class="main-area">
@@ -35,28 +35,28 @@
                   <input type="text" id="vidTitle" placeholder="Video Title...">
                     <button onclick="uploadVideo()">UPLOAD!</button>
                       <div id="videoList"></div>
-                      </div>
+                        </div>
 
                       <div id="comments" class="tab-content">
                         <h3>LIVE COMMENTS 🗣️</h3>
                           <div id="commentFeed"></div>
-                          </div>
+                            </div>
 
                           <div id="ads" class="tab-content">
                             <h3>SPONSOR OFFERS 💵</h3>
                               <div id="adBox">
                                 <h4 id="adText">Scanning for cheezburger sponsors... 🍔</h4>
                                   <button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
+                                    </div>
                                   </div>
-                                </div>
 
                                 <div id="shop" class="tab-content">
                                   <h3>SHOP</h3>
                                     <button onclick="buyUpgrade(50n, 'New Mic')">New Mic ($50)</button><br><br>
                                       <button onclick="buyUpgrade(500n, 'Aero PC')">Aero PC ($500)</button>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
 
                                   <div class="sidebar">
                                     <h3>MENU</h3>
@@ -66,7 +66,7 @@
                                             <button onclick="showTab('shop')">SHOP</button>
                                               <iframe width="110" height="110" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
                                                 <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
-                                                </div>
+                                                  </div>
 
                                                 <script>
                                                   const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke", "Toaster"];
@@ -82,30 +82,30 @@
                                                     stats.money = BigInt(saved.money || "1");
                                                     stats.gear = BigInt(saved.gear || "1");
                                                     stats.vids = (saved.vids || []).map(v => ({ title: v.title, views: BigInt(v.views || "0"), subs: BigInt(v.subs || "0"), rate: BigInt(v.rate || "5") }));
-                                                  }
+                                                    }
 
                                                   function playPop() {
                                                     let pop = new Audio('https://www.myinstants.com/media/sounds/pop_7e9Is8L.mp3');
                                                     pop.volume = 0.2;
                                                     pop.play().catch(()=>{});
-                                                  }
+                                                    }
 
                                                   function showTab(id) {
                                                     document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
                                                     document.getElementById(id).classList.add('active');
-                                                  }
+                                                    }
 
                                                   function uploadVideo() {
                                                     let t = document.getElementById('vidTitle').value || randomTitles[Math.floor(Math.random() * randomTitles.length)];
                                                     stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
                                                     document.getElementById('vidTitle').value = "";
                                                     renderVids();
-                                                  }
+                                                    }
 
                                                   function renderVids() {
                                                     document.getElementById('videoList').innerHTML = stats.vids.map((v, i) =>
                                                     `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${v.views.toString()}</span> | 🚩 <span id="v-subs-${i}">${v.subs.toString()}</span></div>`).reverse().join('');
-                                                  }
+                                                    }
 
                                                   function addComment() {
                                                     const user = finalSquadList[Math.floor(Math.random() * finalSquadList.length)];
@@ -116,7 +116,7 @@
                                                     cEl.innerHTML = `<b>${user}:</b> ${text}`;
                                                     feed.prepend(cEl);
                                                     if(feed.children.length > 20) feed.lastChild.remove();
-                                                  }
+                                                    }
 
                                                   setInterval(() => {
                                                     stats.vids.forEach((v, i) => {
@@ -127,7 +127,7 @@
                                                       stats.money += v.rate / 10n;
                                                       let vEl = document.getElementById(`v-views-${i}`);
                                                       if(vEl) vEl.innerText = v.views.toString();
-                                                    });
+                                                      });
                                                     document.getElementById('subs').innerText = stats.subs.toString();
                                                     document.getElementById('views').innerText = stats.views.toString();
                                                     document.getElementById('money').innerText = stats.money.toString();
@@ -138,9 +138,9 @@
                                                       subs: stats.subs.toString(), views: stats.views.toString(),
                                                       money: stats.money.toString(), gear: stats.gear.toString(),
                                                       vids: stats.vids.map(v => ({...v, views: v.views.toString(), subs: v.subs.toString(), rate: v.rate.toString()}))
-                                                    };
+                                                      };
                                                     localStorage.setItem('bonkStats', JSON.stringify(saveData));
-                                                  }, 100);
+                                                    }, 100);
 
                                                   function resetGame() {
                                                     if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
@@ -150,10 +150,10 @@
                                                       stats.views = 0n;
                                                       stats.money = 1n;
                                                       location.reload();
+                                                      }
                                                     }
-                                                  }
                                                   renderVids();
                                                   console.log("Created by doggodgcodes and Gemini")
-                                                </script>
-                                              </body>
-                                            </html>
+                                                  </script>
+                                                </body>
+                                              </html>

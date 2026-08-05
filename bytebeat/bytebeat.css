@@ -3,14 +3,14 @@
   --grey: #919191;
   --dark-grey: #262c3c;
   --radius: 20px;
-}
+  }
 
 body {
   background-color: var(--grey);
   background-image: linear-gradient(to left, var(--grey), var(--dark-grey));
   font-family: "Segoe UI", sans-serif;
   color: white;
-}
+  }
 
 button {
   background-color: var(--grey);
@@ -22,5 +22,5 @@ button {
   &:active {
     background-color: var(--grey);
     background-image: linear-gradient(to top, var(--grey), var(--dark-grey));
+    }
   }
-}

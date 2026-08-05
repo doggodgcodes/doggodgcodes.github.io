@@ -18,14 +18,14 @@ fetch("https://doggodgcodes.github.io/random/")
     if (!/^https?:\/\//i.test(randomLink)) {
       const baseURL = new URL("https://doggodgcodes.github.io/random/");
       randomLink = new URL(randomLink, baseURL).href;
-    }
+      }
 
     // Redirect to the random link (now guaranteed to have "https://")
     window.location.href = randomLink;
-  } else {
+    } else {
     console.error("No links found on the page.");
-  }
-})
+    }
+  })
 .catch(error => {
   console.error("Error fetching the page:", error);
-});
+  });
