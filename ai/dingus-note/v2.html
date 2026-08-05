@@ -10,7 +10,7 @@
           --accent: #8e88de;
           --padding: 7px;
           --rad: 10px;
-          }
+        }
 
         body {
           background-color: var(--bg);
@@ -19,7 +19,7 @@
           align-content: center;
           font-family: "Tahoma", sans-serif;
           padding-bottom: 120px; /* Prevent content from being hidden behind bar */
-          }
+        }
 
         input, button, textarea {
           background-color: var(--main);
@@ -28,35 +28,35 @@
           margin: var(--padding);
           border-radius: var(--rad);
           transition: box-shadow 0.3s ease-in-out transform 0.3s ease-in-out;
-          }
+        }
 
         input:hover, button:hover, textarea:hover {
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           transform: translateY(-1px);
-          }
+        }
 
         textarea {
           padding: calc(var(--padding) * 2);
           margin: calc(var(--padding) * 2);
           resize: vertical; /* Allow vertical resizing */
-          }
+        }
 
         textarea:hover {
           transform: translateY(2px) translateX(5px);
-          }
+        }
 
         img {
           margin-left: var(--padding);
-          }
+        }
 
         h1 {
           margin-top: var(--padding);
-          }
+        }
 
         .bar-text {
           margin-left: var(--padding);
           margin-right: calc(var(--padding) * 2);
-          }
+        }
 
         .bottom-bar {
           display: flex;
@@ -66,7 +66,7 @@
           border-top: 1px solid #ccc;
           border-radius: calc(var(--rad) * 2);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-          }
+        }
 
         .bottom-bar input[type="text"] {
           flex: 1; /* Take all available space */
@@ -74,7 +74,7 @@
           font-size: 16px;
           border: 1px solid #ccc;
           outline: none;
-          }
+        }
 
         audio {
           background: linear-gradient(to right, #404045, var(--accent));
@@ -82,9 +82,9 @@
           border-radius: calc(var(--rad) * 3);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
           padding: calc(var(--padding) * 1.5);
-          }
-        </style>
-      </head>
+        }
+      </style>
+    </head>
     <body>
       <h1>Dingus Note</h1>
         <br>
@@ -112,7 +112,7 @@
                           <button id="copyButton">Copy Dingus Note Text</button>
 
                             <img width="50" height="50" src="smiley.gif">
-                            </div>
+                          </div>
 
                           <script>
                             const fileInput = document.getElementById("fileInput");
@@ -135,7 +135,7 @@
                               a.click();
 
                               URL.revokeObjectURL(url);
-                              };
+                            };
 
                             document.getElementById("switchHtm").onclick = () => {
                               const note = document.getElementById("note");
@@ -147,20 +147,20 @@
                                     <style>
                                       h1, h2, h3, h4, h5, h6 {
                                         font-family: "Segoe UI", sans-serif;
-                                        }
-                                      </style>
-                                    </head>
+                                      }
+                                    </style>
+                                  </head>
                                   <body>
                                     <h1>My Webpage</h1>
-                                      </body>
-                                    </html>`;
-                                  };
+                                    </body>
+                                  </html>`;
+                                };
 
                                 document.getElementById("switchTxt").onclick = () => {
                                   const note = document.getElementById("note");
                                   document.getElementById("filename").value = "note.txt";
                                   note.value = "Write a note, todo, story, or shopping list.";
-                                  };
+                                };
 
                                 fileInput.addEventListener('change', function() {
                                   const file = this.files[0];
@@ -184,8 +184,8 @@
                                     // 4. Play it loud! 🎶
                                     audioPlayer.play().catch(err => {
                                       console.log("Oof, play blocked! Need a user click first! 🚫🔊", err);
-                                      });
-                                    }
+                                    });
+                                  }
 
                                   document.getElementById("copyButton").onclick = () => {
                                     const note = document.getElementById("note");
@@ -196,8 +196,8 @@
                                     navigator.clipboard.writeText(note.value);
 
                                     alert("Copied!");
-                                    };
+                                  };
                                   // FIX: Added the missing closing script brace below
-                                  </script>
-                                </body>
-                              </html>
+                                </script>
+                              </body>
+                            </html>

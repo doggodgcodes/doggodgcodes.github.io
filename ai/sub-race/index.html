@@ -13,14 +13,14 @@
           --bg-dark: #050505; --card-bg: #0f0f0f; --accent: #00ff88;
           --hype: #ff00ff; --doggo-glow: #ffae00; --text-dim: #666;
           --verified: #3897f0;
-          }
+        }
 
         body {
           background-color: var(--bg-dark); color: #fff;
           font-family: "Segoe UI", Roboto, "Noto Sans Lao", sans-serif;
           margin: 0; padding: 10px; display: flex; flex-direction: column; align-items: center;
           overflow-x: hidden;
-          }
+        }
 
         .dashboard { width: 95%; max-width: 1400px; background: var(--card-bg); padding: 20px; border-radius: 24px; border: 1px solid #1a1a1a; box-shadow: 0 0 100px rgba(0,255,136,0.05); }
 
@@ -28,7 +28,7 @@
           background: #111; padding: 20px; border-radius: 20px; margin-bottom: 20px;
           position: sticky; top: 10px; z-index: 1000; border: 1px solid #222;
           box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-          }
+        }
 
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
         .stat-item { background: #000; padding: 12px; border-radius: 12px; text-align: center; color: var(--accent); border: 1px solid #222; }
@@ -38,7 +38,7 @@
         .chart-viewport {
           width: 100%; height: 600px; overflow-y: auto; background: #000;
           border-radius: 16px; border: 1px solid #222; padding: 10px; scrollbar-width: none;
-          }
+        }
         #chart-container { position: relative; width: 100%; }
 
         .channel-row { position: absolute; width: 100%; height: 42px; display: flex; align-items: center; transition: all 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); cursor: pointer; }
@@ -77,8 +77,8 @@
         .train-msg { border-left-color: #00e5ff; background: #001a1a; color: #00e5ff; }
 
         @keyframes slideIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        </style>
-      </head>
+      </style>
+    </head>
     <body>
 
       <div class="dashboard">
@@ -88,7 +88,7 @@
               <div class="stat-item"><span class="stat-label">Total Empire Views</span><span class="stat-value" id="global-views">0</span></div>
                 <div class="stat-item"><span class="stat-label">Active Hype</span><span class="stat-value" id="hype-level" style="color:var(--hype)">NORMAL</span></div>
                   <div class="stat-item"><span class="stat-label">Chat Velocity</span><span class="stat-value" id="chat-v">1.2/s</span></div>
-                    </div>
+                  </div>
 
                   <div class="controls">
                     <input type="text" id="newChannelName" placeholder="New Creator Name...">
@@ -97,14 +97,14 @@
                           <span style="font-size:0.7rem; color:var(--text-dim)">LATENCY (MS)</span>
                             <input type="range" id="speedSlider" min="1" max="1000" value="100">
                               <span id="speedValue" style="font-family:monospace; min-width:40px;">100</span>
-                                </div>
-                              <button class="btn btn-red" onclick="megaBoost()">HYPER DRIVE ⚡</button>
-                                </div>
                               </div>
+                              <button class="btn btn-red" onclick="megaBoost()">HYPER DRIVE ⚡</button>
+                              </div>
+                            </div>
 
                             <div class="chart-viewport">
                               <div id="chart-container"></div>
-                                </div>
+                              </div>
 
                               <div class="video-grid" id="videoGrid"></div>
 
@@ -112,10 +112,10 @@
                                   <div style="color:var(--accent); font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
                                     <span>📡 EMPIRE COMMAND CHAT</span>
                                       <span id="active-watchers" style="color:var(--text-dim); font-size: 0.8rem;">Watchers: 0</span>
-                                        </div>
-                                      <div id="comment-feed"></div>
-                                        </div>
                                       </div>
+                                      <div id="comment-feed"></div>
+                                      </div>
+                                    </div>
 
                                     <script>
                                       console.log("Credits: Gemini, Claude, Doggodgcodes, MineChicken98, CodeQL");
@@ -125,7 +125,7 @@
                                         "UCzHeWI-gvnXPf7JpbRXCW_g", // MineChicken98
                                         "UCoDdAhc_ve3qtimWFFblNTw", // FlyingDogWithAPencil
                                         "UCepde9Wk-PDJtw8S_s2MoiA"  // Tony-the-pet-ghost
-                                        ];
+                                      ];
 
                                       const finalSquadList = [
                                         "DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil",
@@ -140,7 +140,7 @@
                                         "Default_Skin", "Glitch_In_Matrix", "PizzaTime", "Lofi_Vibes", "CodingWizard",
                                         "MemeLord", "GhostInTheShell", "BinaryBot", "SimplyHuman", "BreadSticks",
                                         "ToasterFan", "MathIsCool", "HyperGrowth", "spinningdonut32"
-                                        ];
+                                      ];
 
                                       let channels = finalSquadList.map((name, i) => ({
                                         id: 'ch-' + i,
@@ -150,7 +150,7 @@
                                         color: `hsl(${(i * 137.5) % 360}, 75%, 55%)`,
                                         milestones: [10000, 50000, 100000, 1000000, 10000000],
                                         verified: name === "DoggoWing21" || name === "MineChicken98" || name === "Tony the pet ghost" ? true : false
-                                        }));
+                                      }));
 
                                       let boost = false;
                                       let hypeTrainActive = false;
@@ -165,7 +165,7 @@
                                         div.appendChild(document.createTextNode(' ' + text));
                                         feed.prepend(div);
                                         if(feed.children.length > 40) feed.removeChild(feed.lastChild);
-                                        }
+                                      }
 
                                       function doChat() {
                                         const speed = parseInt(document.getElementById('speedSlider').value);
@@ -175,12 +175,12 @@
                                           const c = channels[Math.floor(Math.random() * channels.length)];
                                           const msgs = ["W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling", "bro is 🍞", "W doggo", "W in the chat", "yap yap yap"];
                                           addComment(c.name, msgs[Math.floor(Math.random()*msgs.length)]);
-                                          }
+                                        }
 
                                         document.getElementById('chat-v').innerText = (1000/interval).toFixed(1) + "/s";
                                         document.getElementById('active-watchers').innerText = `Watchers: ${Math.floor(500000 / (speed/100)).toLocaleString()}`;
                                         setTimeout(doChat, interval);
-                                        }
+                                      }
 
                                       function addNewChannel() {
                                         const val = document.getElementById('newChannelName').value;
@@ -188,8 +188,8 @@
                                           channels.push({ id: 'c-'+Date.now(), name: val, subs: 0, views: 0, color: '#fff', milestones: [1000, 10000] });
                                           document.getElementById('newChannelName').value = "";
                                           addComment("SYSTEM", `NEW CHALLENGER: ${val} HAS ENTERED!`, 'milestone');
-                                          }
                                         }
+                                      }
 
                                       function render() {
                                         const speed = parseInt(document.getElementById('speedSlider').value);
@@ -205,7 +205,7 @@
                                           const d = channels.splice(dIdx, 1)[0];
                                           channels.splice(0, 0, d);
                                           d.subs = channels[1].subs + (boost ? 500 : 50);
-                                          }
+                                        }
 
                                         let totalS = 0, totalV = 0;
                                         const max = channels[0].subs || 1;
@@ -220,7 +220,7 @@
                                             row.onclick = () => { c.subs += 1000; addComment("BOOST", `Gave 1k subs to ${c.name}!`); };
                                             row.innerHTML = `<div class="avatar" style="background:${c.color}"><div class="verified-badge" id="v-${c.id}">✓</div></div><div class="bar-wrapper" id="bar-${c.id}"><div class="name-and-subs"><span>${c.name}</span><span id="data-${c.id}"></span></div></div>`;
                                             container.appendChild(row);
-                                            }
+                                          }
 
                                           row.style.top = `${i * 42}px`;
                                           const bar = document.getElementById(`bar-${c.id}`);
@@ -235,18 +235,18 @@
                                             const m = c.milestones.shift();
                                             addComment("🏆 MILESTONE", `${c.name} HIT ${m.toLocaleString()}!`, 'milestone');
                                             triggerHypeTrain();
-                                            }
+                                          }
 
                                           let growthFactor = (boost ? 500 : 20) * (hypeTrainActive ? 5 : 1);
                                           c.subs += (Math.random() * growthFactor);
                                           c.views += (Math.random() * growthFactor * 10);
-                                          });
+                                        });
 
                                         document.getElementById('global-subs').innerText = Math.floor(totalS).toLocaleString();
                                         document.getElementById('global-views').innerText = Math.floor(totalV).toLocaleString();
 
                                         setTimeout(render, speed);
-                                        }
+                                      }
 
                                       async function updateVideos() {
                                         try {
@@ -261,10 +261,10 @@
                                               id: e.querySelector("videoId").textContent,
                                               title: e.querySelector("title").textContent,
                                               fakeCreator: finalSquadList[Math.floor(Math.random() * finalSquadList.length)]
-                                              }));
+                                            }));
 
                                             allVideos = allVideos.concat(entries);
-                                            }
+                                          }
 
                                           const grid = document.getElementById('videoGrid');
                                           grid.innerHTML = "";
@@ -274,17 +274,17 @@
                                             <div class="video-card">
                                               <div class="thumbnail">
                                                 <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg">
-                                                </div>
+                                              </div>
                                               <div style="padding:6px;">
                                                 <strong style="display:block; height:2.4em; overflow:hidden;">${v.title}</strong>
                                                   <span class="video-creator">${v.fakeCreator}</span>
-                                                    </div>
-                                                  </div>`;
-                                                });
-                                              } catch(err) {
+                                                  </div>
+                                                </div>`;
+                                              });
+                                            } catch(err) {
                                               console.warn("Video Fetch failed:", err);
-                                              }
                                             }
+                                          }
 
                                           function triggerHypeTrain() {
                                             if(hypeTrainActive) return;
@@ -296,20 +296,20 @@
                                               hypeTrainActive = false;
                                               document.getElementById('hype-level').innerText = boost ? "WARP SPEED" : "NORMAL";
                                               document.getElementById('hype-level').style.color = boost ? "red" : "var(--hype)";
-                                              }, 3000);
-                                            }
+                                            }, 3000);
+                                          }
 
                                           function megaBoost() {
                                             boost = true;
                                             document.getElementById('hype-level').innerText = "WARP SPEED";
                                             addComment("COMMAND", "VIRAL PAYLOAD DELIVERED. ENGINE OVERHEATING.", 'doggo');
                                             setTimeout(() => { boost = false; document.getElementById('hype-level').innerText = "NORMAL"; }, 8000);
-                                            }
+                                          }
 
                                           updateVideos();
                                           setInterval(updateVideos, 120000);
                                           render();
                                           doChat();
-                                          </script>
-                                        </body>
-                                      </html>
+                                        </script>
+                                      </body>
+                                    </html>

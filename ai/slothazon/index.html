@@ -9,14 +9,14 @@
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          }
+        }
 
         body {
           font-family: 'Comic Sans MS', cursive, sans-serif;
           background-color: #f0f8e8;
           color: #333;
           line-height: 1.6;
-          }
+        }
 
         .header {
           background-color: #8b4513;
@@ -26,24 +26,24 @@
           position: sticky;
           top: 0;
           z-index: 100;
-          }
+        }
 
         .logo {
           font-size: 36px;
           font-weight: bold;
           letter-spacing: -2px;
           margin-bottom: 10px;
-          }
+        }
 
         .logo-smile {
           color: #ffa500;
-          }
+        }
 
         .search-container {
           display: flex;
           max-width: 600px;
           margin: 0 auto 20px;
-          }
+        }
 
         .search-input {
           flex: 1;
@@ -51,7 +51,7 @@
           font-size: 16px;
           border: 2px solid #8b4513;
           border-radius: 4px 0 0 4px;
-          }
+        }
 
         .search-button {
           background-color: #ffa500;
@@ -60,11 +60,11 @@
           cursor: pointer;
           border-radius: 0 4px 4px 0;
           font-weight: bold;
-          }
+        }
 
         .search-button:hover {
           background-color: #ff8c00;
-          }
+        }
 
         .main-banner {
           background: linear-gradient(to bottom, #8b4513, #f0f8e8);
@@ -72,20 +72,20 @@
           text-align: center;
           font-size: 20px;
           color: #8b4513;
-          }
+        }
 
         .container {
           max-width: 1200px;
           margin: 0 auto;
           padding: 20px;
-          }
+        }
 
         .products-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
           gap: 20px;
           margin-top: 20px;
-          }
+        }
 
         .product-card {
           background: white;
@@ -95,43 +95,43 @@
           transition: transform 0.5s ease;
           cursor: pointer;
           border: 2px solid transparent;
-          }
+        }
 
         .product-card:hover {
           transform: scale(1.02);
           border: 2px solid #ffa500;
-          }
+        }
 
         .product-image {
           width: 100%;
           height: 200px;
           object-fit: contain;
           margin-bottom: 15px;
-          }
+        }
 
         .product-title {
           font-size: 16px;
           color: #8b4513;
           margin-bottom: 10px;
           min-height: 48px;
-          }
+        }
 
         .product-rating {
           color: #ffa500;
           margin-bottom: 10px;
-          }
+        }
 
         .product-price {
           font-size: 24px;
           color: #8b4513;
           margin-bottom: 10px;
-          }
+        }
 
         .product-prime {
           color: #8b4513;
           font-size: 12px;
           margin-bottom: 10px;
-          }
+        }
 
         .add-to-cart {
           background-color: #ffa500;
@@ -142,11 +142,11 @@
           cursor: pointer;
           font-size: 14px;
           margin-bottom: 5px;
-          }
+        }
 
         .add-to-cart:hover {
           background-color: #ff8c00;
-          }
+        }
 
         .buy-now {
           background-color: #8b4513;
@@ -157,11 +157,11 @@
           width: 100%;
           cursor: pointer;
           font-size: 14px;
-          }
+        }
 
         .buy-now:hover {
           background-color: #a0522d;
-          }
+        }
 
         .jokes-section, .game-section {
           background: #e8f5e9;
@@ -169,13 +169,13 @@
           margin: 40px 0;
           border-radius: 8px;
           border: 2px dashed #8b4513;
-          }
+        }
 
         .jokes-section h2, .game-section h2 {
           color: #8b4513;
           margin-bottom: 20px;
           text-align: center;
-          }
+        }
 
         .joke {
           background: white;
@@ -183,7 +183,7 @@
           margin: 10px 0;
           border-radius: 4px;
           border-left: 4px solid #ffa500;
-          }
+        }
 
         .game-box {
           background: white;
@@ -192,13 +192,13 @@
           border-radius: 8px;
           text-align: center;
           border: 2px solid #ffa500;
-          }
+        }
 
         .game-box img {
           max-width: 100%;
           height: auto;
           border-radius: 4px;
-          }
+        }
 
         .footer {
           background-color: #8b4513;
@@ -206,14 +206,14 @@
           padding: 40px;
           text-align: center;
           margin-top: 40px;
-          }
+        }
 
         .sloth-message {
           text-align: center;
           margin: 40px 0;
           font-style: italic;
           color: #8b4513;
-          }
+        }
 
         .loading {
           position: fixed;
@@ -229,42 +229,42 @@
           font-size: 24px;
           z-index: 1000;
           display: none;
-          }
+        }
 
         .loading.show {
           display: flex;
-          }
+        }
 
         .credit {
           font-size: 12px;
           color: #aaa;
           text-align: center;
           margin-top: 20px;
-          }
-        </style>
-      </head>
+        }
+      </style>
+    </head>
     <body>
       <div class="loading" id="loading">
         Loading... (Sloths are typing your order...)
-        </div>
+      </div>
 
       <div class="header">
         <div class="logo">
           sloth<span class="logo-smile">🦥</span>azon
-          </div>
-        <div class="search-container">
-          <input type="text" class="search-input" placeholder="Search Slothazon..." />
-        <button class="search-button">🔍 Search Slowly</button>
-          </div>
         </div>
+        <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search Slothazon..." />
+        <button class="search-button">🔍 Search Slowly</button>
+        </div>
+      </div>
 
       <div class="main-banner">
         Welcome to Slothazon – Where Every Click Takes a Coffee Break!
-        </div>
+      </div>
 
       <div class="sloth-message">
         <p>Our sloths are working hard (slowly) to bring you the best deals. Please be patient.</p>
-          </div>
+        </div>
 
         <div class="container">
           <h2>Sloth-Approved Products</h2>
@@ -278,7 +278,7 @@
                       <div class="product-prime">🐌 Sloth Prime: Guaranteed Slow Delivery</div>
                         <button class="add-to-cart" onclick="showLoading()">Add to Cart (Eventually)</button>
                           <button class="buy-now" onclick="showLoading()">Buy Now (After a Nap)</button>
-                            </div>
+                          </div>
 
                           <div class="product-card">
                             <img src="https://images.unsplash.com/photo-1586495775696-5bf1a7928e4e?w=400&h=400&fit=crop" alt="Slow Cooker" class="product-image" />
@@ -288,7 +288,7 @@
                                   <div class="product-prime">🐌 Sloth Prime: Cooks at the Speed of a Sloth</div>
                                     <button class="add-to-cart" onclick="showLoading()">Add to Cart (In a Bit)</button>
                                       <button class="buy-now" onclick="showLoading()">Buy Now (When You Remember)</button>
-                                        </div>
+                                      </div>
 
                                       <div class="product-card">
                                         <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=400&h=400&fit=crop" alt="Hammock" class="product-image" />
@@ -298,7 +298,7 @@
                                               <div class="product-prime">🐌 Sloth Prime: Nap Guaranteed</div>
                                                 <button class="add-to-cart" onclick="showLoading()">Add to Cart (After Lunch)</button>
                                                   <button class="buy-now" onclick="showLoading()">Buy Now (Tomorrow)</button>
-                                                    </div>
+                                                  </div>
 
                                                   <div class="product-card">
                                                     <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=400&fit=crop" alt="Coffee" class="product-image" />
@@ -308,7 +308,7 @@
                                                           <div class="product-prime">🐌 Sloth Prime: Caffeine Optional</div>
                                                             <button class="add-to-cart" onclick="showLoading()">Add to Cart (Maybe Later)</button>
                                                               <button class="buy-now" onclick="showLoading()">Buy Now (If You Wake Up)</button>
-                                                                </div>
+                                                              </div>
 
                                                               <div class="product-card">
                                                                 <img src="https://images.unsplash.com/photo-1551524559-8af4e2bf487a?w=400&h=400&fit=crop" alt="Yoga Mat" class="product-image" />
@@ -318,7 +318,7 @@
                                                                       <div class="product-prime">🐌 Sloth Prime: Stretch at Your Own Pace</div>
                                                                         <button class="add-to-cart" onclick="showLoading()">Add to Cart (Sometime)</button>
                                                                           <button class="buy-now" onclick="showLoading()">Buy Now (Next Week)</button>
-                                                                            </div>
+                                                                          </div>
 
                                                                           <div class="product-card">
                                                                             <img src="https://images.unsplash.com/photo-1599492911051-588f7900c6f5?w=400&h=400&fit=crop" alt="Puzzle" class="product-image" />
@@ -328,7 +328,7 @@
                                                                                   <div class="product-prime">🐌 Sloth Prime: Finish by Next Year</div>
                                                                                     <button class="add-to-cart" onclick="showLoading()">Add to Cart (When You Feel Like It)</button>
                                                                                       <button class="buy-now" onclick="showLoading()">Buy Now (If You Find All the Pieces)</button>
-                                                                                        </div>
+                                                                                      </div>
 
                                                                                       <div class="product-card">
                                                                                         <img src="https://images.unsplash.com/photo-1598515214212-922e4b3ddb42?w=400&h=400&fit=crop" alt="Book" class="product-image" />
@@ -338,7 +338,7 @@
                                                                                               <div class="product-prime">🐌 Sloth Prime: Read at Your Leisure</div>
                                                                                                 <button class="add-to-cart" onclick="showLoading()">Add to Cart (If You Remember)</button>
                                                                                                   <button class="buy-now" onclick="showLoading()">Buy Now (After a Long Think)</button>
-                                                                                                    </div>
+                                                                                                  </div>
 
                                                                                                   <div class="product-card">
                                                                                                     <img src="https://images.unsplash.com/photo-1581235720830-979932b12263?w=400&h=400&fit=crop" alt="Snack Box" class="product-image" />
@@ -348,28 +348,28 @@
                                                                                                           <div class="product-prime">🐌 Sloth Prime: Snacks Delivered at Snail's Pace</div>
                                                                                                             <button class="add-to-cart" onclick="showLoading()">Add to Cart (When Hungry)</button>
                                                                                                               <button class="buy-now" onclick="showLoading()">Buy Now (If You Can Reach the Kitchen)</button>
-                                                                                                                </div>
                                                                                                               </div>
+                                                                                                            </div>
 
                                                                                                             <div class="jokes-section">
                                                                                                               <h2>🦥 Sloth Jokes – Guaranteed to Make You Smile (Slowly) 🦥</h2>
                                                                                                                 <div class="joke">
-                                                                                                                  <p><strong>What do you call a sloth magician?</strong><br />
+                                                                                                                <p><strong>What do you call a sloth magician?</strong><br />
                                                                                                                 A slow-dini!</p>
-                                                                                                                </div>
-                                                                                                              <div class="joke">
-                                                                                                                <p><strong>Why don’t sloths ever get speeding tickets?</strong><br />
-                                                                                                              Because they’re always under the speed limit!</p>
                                                                                                               </div>
-                                                                                                            <div class="joke">
-                                                                                                              <p><strong>How do sloths send emails?</strong><br />
-                                                                                                            Snail mail!</p>
+                                                                                                              <div class="joke">
+                                                                                                              <p><strong>Why don’t sloths ever get speeding tickets?</strong><br />
+                                                                                                              Because they’re always under the speed limit!</p>
                                                                                                             </div>
-                                                                                                          <div class="joke">
-                                                                                                            <p><strong>What’s a sloth’s favorite kind of music?</strong><br />
-                                                                                                          Slow jam!</p>
+                                                                                                            <div class="joke">
+                                                                                                            <p><strong>How do sloths send emails?</strong><br />
+                                                                                                            Snail mail!</p>
                                                                                                           </div>
+                                                                                                          <div class="joke">
+                                                                                                          <p><strong>What’s a sloth’s favorite kind of music?</strong><br />
+                                                                                                          Slow jam!</p>
                                                                                                         </div>
+                                                                                                      </div>
 
                                                                                                       <div class="game-section">
                                                                                                         <h2>🎮 Slow-Motion Flappy Bird – The Sloth Edition 🎮</h2>
@@ -377,17 +377,17 @@
                                                                                                             <p>Experience the thrill of Flappy Bird... in slow motion!</p>
                                                                                                               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Flappy_Bird.png/400px-Flappy_Bird.png" alt="Slow-Motion Flappy Bird" />
                                                                                                               <p style="margin-top: 10px; font-style: italic;">(Gameplay moves at the speed of a sloth. High score: 1 flap per hour.)</p>
-                                                                                                                </div>
                                                                                                               </div>
+                                                                                                            </div>
 
                                                                                                             <div class="credit">
                                                                                                               <p>Page generated by Le Chat, your friendly AI assistant 🦥✨</p>
-                                                                                                                </div>
                                                                                                               </div>
+                                                                                                            </div>
 
                                                                                                             <div class="footer">
                                                                                                               <p>Slothazon – Proudly Moving at the Speed of Sloth Since 2026</p>
-                                                                                                                </div>
+                                                                                                              </div>
 
                                                                                                               <script>
                                                                                                                 function showLoading() {
@@ -396,8 +396,8 @@
                                                                                                                   setTimeout(() => {
                                                                                                                     loading.classList.remove('show');
                                                                                                                     alert('Your request has been received! Our sloths will process it... eventually.');
-                                                                                                                    }, 3000);
-                                                                                                                  }
-                                                                                                                </script>
-                                                                                                              </body>
-                                                                                                            </html>
+                                                                                                                  }, 3000);
+                                                                                                                }
+                                                                                                              </script>
+                                                                                                            </body>
+                                                                                                          </html>

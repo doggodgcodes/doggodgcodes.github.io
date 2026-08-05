@@ -22,7 +22,7 @@
     height: paddleHeight,
     speed: 6,
     dy: 0,
-    };
+  };
 
   let rightPaddle = {
     x: WIDTH - paddleInset - paddleWidth,
@@ -30,7 +30,7 @@
     width: paddleWidth,
     height: paddleHeight,
     speed: 5,
-    };
+  };
 
   let ball = {
     x: WIDTH / 2,
@@ -39,7 +39,7 @@
     speed: 5,
     vx: 5,
     vy: 0,
-    };
+  };
 
   let scores = { left: 0, right: 0 };
 
@@ -56,7 +56,7 @@
     const dir = server === "left" ? 1 : -1;
     ball.vx = dir * ball.speed * Math.cos(angle);
     ball.vy = ball.speed * Math.sin(angle);
-    }
+  }
 
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
@@ -65,8 +65,8 @@
     const segment = 12;
     for (let y = 0; y < HEIGHT; y += segment * 2) {
       ctx.fillRect(WIDTH / 2 - 1, y, 2, segment);
-      }
     }
+  }
 
   function draw() {
     // clear
@@ -91,7 +91,7 @@
     ctx.fill();
 
     // scores are in DOM, so nothing here
-    }
+  }
 
   function roundRect(ctx, x, y, w, h, r) {
     if (w < 2 * r) r = w / 2;
@@ -104,7 +104,7 @@
     ctx.arcTo(x, y, x + w, y, r);
     ctx.closePath();
     ctx.fill();
-    }
+  }
 
   // Collision detection - paddles
   function checkPaddleCollision(paddle) {
@@ -114,7 +114,7 @@
     const dy = ball.y - closestY;
     const distSq = dx * dx + dy * dy;
     return distSq <= ball.radius * ball.radius;
-    }
+  }
 
   // Apply paddle bounce using angle based on impact position
   function handlePaddleBounce(paddle, isLeftPaddle) {
@@ -133,10 +133,10 @@
     // nudge ball out so it won't get stuck inside paddle
     if (isLeftPaddle) {
       ball.x = paddle.x + paddle.width + ball.radius + 0.1;
-      } else {
+    } else {
       ball.x = paddle.x - ball.radius - 0.1;
-      }
     }
+  }
 
   function update(dt) {
     // Player paddle movement via keys
@@ -161,20 +161,20 @@
     if (ball.y - ball.radius <= 0) {
       ball.y = ball.radius;
       ball.vy = -ball.vy;
-      } else if (ball.y + ball.radius >= HEIGHT) {
+    } else if (ball.y + ball.radius >= HEIGHT) {
       ball.y = HEIGHT - ball.radius;
       ball.vy = -ball.vy;
-      }
+    }
 
     // Paddle collisions
     // left paddle
     if (ball.vx < 0 && checkPaddleCollision(leftPaddle)) {
       handlePaddleBounce(leftPaddle, true);
-      }
+    }
     // right paddle
     if (ball.vx > 0 && checkPaddleCollision(rightPaddle)) {
       handlePaddleBounce(rightPaddle, false);
-      }
+    }
 
     // Scoring
     if (ball.x + ball.radius < 0) {
@@ -182,18 +182,18 @@
       scores.right += 1;
       updateScoreboard();
       resetBall("right"); // next serve towards left (server param flips direction)
-      } else if (ball.x - ball.radius > WIDTH) {
+    } else if (ball.x - ball.radius > WIDTH) {
       // left scores
       scores.left += 1;
       updateScoreboard();
       resetBall("left");
-      }
     }
+  }
 
   function updateScoreboard() {
     leftScoreEl.textContent = String(scores.left);
     rightScoreEl.textContent = String(scores.right);
-    }
+  }
 
   // Input handlers
   canvas.addEventListener("mousemove", (e) => {
@@ -201,21 +201,21 @@
     const y = e.clientY - rect.top;
     // center paddle on mouse Y
     leftPaddle.y = clamp(y - leftPaddle.height / 2, 0, HEIGHT - leftPaddle.height);
-    });
+  });
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowUp" || e.key === "ArrowDown") {
       keys[e.key] = true;
       e.preventDefault();
-      }
-    }, {passive:false});
+    }
+  }, {passive:false});
 
   window.addEventListener("keyup", (e) => {
     if (e.key === "ArrowUp" || e.key === "ArrowDown") {
       keys[e.key] = false;
       e.preventDefault();
-      }
-    }, {passive:false});
+    }
+  }, {passive:false});
 
   restartBtn.addEventListener("click", () => {
     scores.left = 0;
@@ -224,7 +224,7 @@
     leftPaddle.y = (HEIGHT - leftPaddle.height) / 2;
     rightPaddle.y = (HEIGHT - rightPaddle.height) / 2;
     resetBall(Math.random() < 0.5 ? "left" : "right");
-    });
+  });
 
   // Main loop
   let last = performance.now();
@@ -234,10 +234,10 @@
     update(dt);
     draw();
     requestAnimationFrame(loop);
-    }
+  }
 
   // start
   resetBall(Math.random() < 0.5 ? "left" : "right");
   updateScoreboard();
   requestAnimationFrame(loop);
-  })();
+})();

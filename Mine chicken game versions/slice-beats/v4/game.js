@@ -59,7 +59,7 @@ const DIRECTIONS = [
   { name: "up-right", arrow: "↗", dx: 1, dy: -1 },
   { name: "down-left", arrow: "↙", dx: -1, dy: 1 },
   { name: "down-right", arrow: "↘", dx: 1, dy: 1 },
-  ];
+];
 
 // Block class - Beat Saber style
 class Block {
@@ -78,14 +78,14 @@ class Block {
       const leftGridPos = Math.floor(Math.random() * 6); // 0-5 (2 cols x 3 rows)
       this.gridX = leftGridPos % 2; // Column 0 or 1
       this.gridY = Math.floor(leftGridPos / 2); // Row 0, 1, or 2
-      } else {
+    } else {
       // Blue blocks on right (columns 2-3)
       this.color = "#00a0ff";
       this.saberType = "blue";
       const rightGridPos = Math.floor(Math.random() * 6); // 0-5 (2 cols x 3 rows)
       this.gridX = 2 + (rightGridPos % 2); // Column 2 or 3
       this.gridY = Math.floor(rightGridPos / 2); // Row 0, 1, or 2
-      }
+    }
 
     // Target screen position
     this.targetX = GRID_OFFSET_X + this.gridX * GRID_SPACING;
@@ -101,13 +101,13 @@ class Block {
     this.sliceTime = 0;
     this.sliceParts = [];
     this.rotation = 0;
-    }
+  }
 
   update() {
     if (!this.sliced) {
       this.z += this.speed;
       // Remove rotation - blocks stay still like Beat Saber
-      } else {
+    } else {
       this.sliceTime++;
       // Animate slice parts
       for (let part of this.sliceParts) {
@@ -117,9 +117,9 @@ class Block {
         part.vy += 0.5; // gravity
         // Don't rotate sliced parts
         part.alpha -= 0.02;
-        }
       }
     }
+  }
 
   // Get current screen position with perspective
   getScreenPos() {
@@ -134,7 +134,7 @@ class Block {
     const y = startY + (this.targetY - startY) * this.z;
 
     return { x, y, size, scale };
-    }
+  }
 
   draw() {
     if (!this.sliced) {
@@ -154,10 +154,10 @@ class Block {
       if (inHitZone) {
         ctx.shadowBlur = 35 * pos.scale;
         ctx.shadowColor = this.color;
-        } else {
+      } else {
         ctx.shadowBlur = 20 * pos.scale;
         ctx.shadowColor = this.color;
-        }
+      }
 
       // Main block (cube-like with slight 3D effect)
       ctx.fillStyle = this.color;
@@ -192,7 +192,7 @@ class Block {
         pos.size + 4,
         pos.size + 4,
         );
-        }
+      }
 
       // Draw white dot in center (dot note style)
       ctx.shadowBlur = 8;
@@ -203,7 +203,7 @@ class Block {
       ctx.fill();
 
       ctx.restore();
-      } else {
+    } else {
       // Draw sliced parts
       for (let part of this.sliceParts) {
         if (part.alpha <= 0) continue;
@@ -219,17 +219,17 @@ class Block {
         ctx.fillRect(-part.size / 2, -part.size / 2, part.size, part.size);
 
         ctx.restore();
-        }
       }
     }
+  }
 
   isOffScreen() {
     if (!this.sliced) {
       return this.z > 1.2; // Past the player
-      } else {
+    } else {
       return this.sliceTime > 100 || this.sliceParts[0].alpha <= 0;
-      }
     }
+  }
 
   checkSlice(mouseX, mouseY, lastMouseX, lastMouseY, velocity) {
     if (this.sliced) return false;
@@ -248,10 +248,10 @@ class Block {
       const dy = mouseY - lastMouseY;
       this.slice(dx, dy);
       return true;
-      }
+    }
 
     return false;
-    }
+  }
 
   slice(dx, dy) {
     this.sliced = true;
@@ -267,7 +267,7 @@ class Block {
         rotation: 0,
         alpha: 1,
         size: pos.size * 0.5,
-        },
+      },
       {
         x: pos.x + pos.size * 0.25,
         y: pos.y,
@@ -276,13 +276,13 @@ class Block {
         rotation: 0,
         alpha: 1,
         size: pos.size * 0.5,
-        },
-      ];
+      },
+    ];
 
     // Create particles
     createParticles(pos.x, pos.y, this.color);
-    }
   }
+}
 
 // Particle class
 class Particle {
@@ -295,7 +295,7 @@ class Particle {
     this.color = color;
     this.alpha = 1;
     this.decay = Math.random() * 0.04 + 0.02;
-    }
+  }
 
   update() {
     this.x += this.vx;
@@ -303,7 +303,7 @@ class Particle {
     this.vx *= 0.97;
     this.vy *= 0.97;
     this.alpha -= this.decay;
-    }
+  }
 
   draw() {
     ctx.save();
@@ -315,18 +315,18 @@ class Particle {
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
-    }
+  }
 
   isDead() {
     return this.alpha <= 0;
-    }
   }
+}
 
 function createParticles(x, y, color) {
   for (let i = 0; i < 25; i++) {
     particles.push(new Particle(x, y, color));
-    }
   }
+}
 
 // Mouse events
 canvas.addEventListener("mousemove", (e) => {
@@ -345,8 +345,8 @@ canvas.addEventListener("mousemove", (e) => {
   saberTrail.push({ x: mouseX, y: mouseY, time: Date.now() });
   if (saberTrail.length > trailLength) {
     saberTrail.shift();
-    }
-  });
+  }
+});
 
 // Song selection buttons
 document.querySelectorAll(".songBtn").forEach((btn) => {
@@ -358,7 +358,7 @@ document.querySelectorAll(".songBtn").forEach((btn) => {
     if (bgMusic) {
       bgMusic.pause();
       bgMusic.currentTime = 0;
-      }
+    }
     bgMusic = new Audio(songFile);
     bgMusic.loop = true;
     bgMusic.volume = isMuted ? 0 : 0.5;
@@ -368,10 +368,10 @@ document.querySelectorAll(".songBtn").forEach((btn) => {
     if (difficulty === "easy") {
       baseSpawnInterval = 60;
       minSpawnInterval = 30;
-      } else if (difficulty === "expert") {
+    } else if (difficulty === "expert") {
       baseSpawnInterval = 25;
       minSpawnInterval = 10;
-      }
+    }
 
     // Start game
     document.getElementById("startScreen").style.display = "none";
@@ -379,15 +379,15 @@ document.querySelectorAll(".songBtn").forEach((btn) => {
     gameState = "playing";
     bgMusic.play();
     resetGame();
-    });
   });
+});
 
 // Restart button
 document.getElementById("restartBtn").addEventListener("click", () => {
   document.getElementById("gameOver").style.display = "none";
   gameState = "playing";
   resetGame();
-  });
+});
 
 // Win restart button
 document.getElementById("winRestartBtn").addEventListener("click", () => {
@@ -395,7 +395,7 @@ document.getElementById("winRestartBtn").addEventListener("click", () => {
   document.getElementById("pauseBtn").style.display = "block";
   gameState = "playing";
   resetGame();
-  });
+});
 
 // Pause button
 document.getElementById("pauseBtn").addEventListener("click", () => {
@@ -403,8 +403,8 @@ document.getElementById("pauseBtn").addEventListener("click", () => {
     gameState = "paused";
     document.getElementById("pauseScreen").style.display = "block";
     bgMusic.pause();
-    }
-  });
+  }
+});
 
 // Resume button
 document.getElementById("resumeBtn").addEventListener("click", () => {
@@ -412,8 +412,8 @@ document.getElementById("resumeBtn").addEventListener("click", () => {
   gameState = "playing";
   if (!isMuted) {
     bgMusic.play();
-    }
-  });
+  }
+});
 
 // Mute/Unmute button
 document.getElementById("muteBtn").addEventListener("click", () => {
@@ -423,11 +423,11 @@ document.getElementById("muteBtn").addEventListener("click", () => {
   if (isMuted) {
     bgMusic.volume = 0;
     muteBtn.textContent = "🔇 UNMUTE MUSIC";
-    } else {
+  } else {
     bgMusic.volume = 0.5;
     muteBtn.textContent = "🔊 MUTE MUSIC";
-    }
-  });
+  }
+});
 
 // Quit to menu button
 document.getElementById("quitBtn").addEventListener("click", () => {
@@ -438,7 +438,7 @@ document.getElementById("quitBtn").addEventListener("click", () => {
   bgMusic.pause();
   bgMusic.currentTime = 0;
   resetGame();
-  });
+});
 
 function resetGame() {
   score = 0;
@@ -451,11 +451,11 @@ function resetGame() {
   blockSpawnInterval = baseSpawnInterval; // Reset to starting difficulty based on song
   blocksSliced = 0;
   updateUI();
-  }
+}
 
 function spawnBlock() {
   blocks.push(new Block());
-  }
+}
 
 function checkCollisions() {
   if (mouseVelocity < 8) return;
@@ -477,22 +477,22 @@ function checkCollisions() {
         `Final Score: ${score}`;
         document.getElementById("winCombo").textContent =
         `Max Combo: ${maxCombo}x`;
-        }
+      }
 
       // Increase difficulty every 10 blocks sliced
       if (blocksSliced % 10 === 0 && blockSpawnInterval > minSpawnInterval) {
         blockSpawnInterval -= 3; // Spawn blocks faster
-        }
+      }
 
       updateUI();
-      }
     }
   }
+}
 
 function updateUI() {
   document.getElementById("combo").textContent = `${combo}x`;
   document.getElementById("score").textContent = `Score: ${score}`;
-  }
+}
 
 function drawSaber() {
   // Draw glowing trail
@@ -517,8 +517,8 @@ function drawSaber() {
       ctx.lineTo(saberTrail[i].x, saberTrail[i].y);
       ctx.stroke();
       ctx.restore();
-      }
     }
+  }
 
   // Draw cursor (changes color based on side)
   const cursorColor = mouseX < canvas.width / 2 ? "#ff0040" : "#00a0ff";
@@ -539,7 +539,7 @@ function drawSaber() {
   ctx.arc(mouseX, mouseY, 12, 0, Math.PI * 2);
   ctx.stroke();
   ctx.restore();
-  }
+}
 
 function drawBackground() {
   // Neon gradient background
@@ -561,7 +561,7 @@ function drawBackground() {
     ctx.moveTo(0, y);
     ctx.lineTo(canvas.width, y);
     ctx.stroke();
-    }
+  }
 
   // Vertical accent lines
   ctx.strokeStyle = "rgba(200, 50, 200, 0.1)";
@@ -569,7 +569,7 @@ function drawBackground() {
   ctx.moveTo(canvas.width / 2, 0);
   ctx.lineTo(canvas.width / 2, canvas.height);
   ctx.stroke();
-  }
+}
 
 function gameLoop() {
   // Clear completely (no fade trail effect)
@@ -581,7 +581,7 @@ function gameLoop() {
     if (blockSpawnTimer >= blockSpawnInterval) {
       spawnBlock();
       blockSpawnTimer = 0;
-      }
+    }
 
     // Update and draw blocks
     for (let i = blocks.length - 1; i >= 0; i--) {
@@ -601,11 +601,11 @@ function gameLoop() {
             `Final Score: ${score}`;
             document.getElementById("finalCombo").textContent =
             `Max Combo: ${maxCombo}x`;
-            }
           }
-        blocks.splice(i, 1);
         }
+        blocks.splice(i, 1);
       }
+    }
 
     // Update and draw particles
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -614,8 +614,8 @@ function gameLoop() {
 
       if (particles[i].isDead()) {
         particles.splice(i, 1);
-        }
       }
+    }
 
     // Check collisions
     checkCollisions();
@@ -630,12 +630,12 @@ function gameLoop() {
     ctx.textAlign = "right";
     ctx.fillText(`Missed: ${missed}/${maxMissed}`, canvas.width - 20, 30);
     ctx.textAlign = "left";
-    } else if (gameState === "start") {
+  } else if (gameState === "start") {
     drawSaber();
-    }
+  }
 
   requestAnimationFrame(gameLoop);
-  }
+}
 
 // Start game loop
 gameLoop();

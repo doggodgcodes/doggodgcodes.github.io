@@ -140,7 +140,7 @@ class Block {
     this.sliceParts = [];
 
 
-    }
+  }
 
 
 
@@ -158,7 +158,7 @@ class Block {
       this.rotation += this.rotationSpeed;
 
 
-      } else {
+    } else {
 
 
       this.sliceTime++;
@@ -185,13 +185,13 @@ class Block {
         part.alpha -= 0.02;
 
 
-        }
-
-
       }
 
 
     }
+
+
+  }
 
 
 
@@ -248,7 +248,7 @@ class Block {
       ctx.restore();
 
 
-      } else {
+    } else {
 
 
       // Draw sliced parts
@@ -278,13 +278,13 @@ class Block {
         ctx.restore();
 
 
-        }
-
-
       }
 
 
     }
+
+
+  }
 
 
 
@@ -299,16 +299,16 @@ class Block {
       return this.y > canvas.height;
 
 
-      } else {
+    } else {
 
 
       return this.sliceTime > 100;
 
 
-      }
-
-
     }
+
+
+  }
 
 
 
@@ -368,7 +368,7 @@ class Block {
         alpha: 1,
 
 
-        },
+      },
 
 
       {
@@ -401,10 +401,10 @@ class Block {
         alpha: 1,
 
 
-        },
+      },
 
 
-      ];
+    ];
 
 
 
@@ -416,10 +416,10 @@ class Block {
     createParticles(centerX, centerY, this.color);
 
 
-    }
-
-
   }
+
+
+}
 
 
 
@@ -458,7 +458,7 @@ class Particle {
     this.decay = Math.random() * 0.02 + 0.02;
 
 
-    }
+  }
 
 
 
@@ -479,7 +479,7 @@ class Particle {
     this.alpha -= this.decay;
 
 
-    }
+  }
 
 
 
@@ -509,7 +509,7 @@ class Particle {
     ctx.restore();
 
 
-    }
+  }
 
 
 
@@ -521,10 +521,10 @@ class Particle {
     return this.alpha <= 0;
 
 
-    }
-
-
   }
+
+
+}
 
 
 
@@ -539,10 +539,10 @@ function createParticles(x, y, color) {
     particles.push(new Particle(x, y, color));
 
 
-    }
-
-
   }
+
+
+}
 
 
 
@@ -587,7 +587,7 @@ canvas.addEventListener("mousemove", (e) => {
     saberAngle = Math.atan2(dy, dx);
 
 
-    }
+  }
 
 
 
@@ -605,10 +605,10 @@ canvas.addEventListener("mousemove", (e) => {
     saberTrail.shift();
 
 
-    }
+  }
 
 
-  });
+});
 
 
 
@@ -629,7 +629,7 @@ document.getElementById("startBtn").addEventListener("click", () => {
   resetGame();
 
 
-  });
+});
 
 
 
@@ -650,7 +650,7 @@ document.getElementById("restartBtn").addEventListener("click", () => {
   resetGame();
 
 
-  });
+});
 
 
 
@@ -677,7 +677,7 @@ function resetGame() {
   blockSpawnTimer = 0;
 
 
-  }
+}
 
 
 
@@ -689,7 +689,7 @@ function spawnBlock() {
   blocks.push(new Block());
 
 
-  }
+}
 
 
 
@@ -776,13 +776,13 @@ function checkCollisions() {
       updateUI();
 
 
-      }
-
-
     }
 
 
   }
+
+
+}
 
 
 
@@ -797,7 +797,7 @@ function updateUI() {
   document.getElementById("combo").textContent = `Combo: ${combo}x`;
 
 
-  }
+}
 
 
 
@@ -854,13 +854,13 @@ function drawSaber() {
       ctx.stroke();
 
 
-      }
+    }
 
 
     ctx.restore();
 
 
-    }
+  }
 
 
 
@@ -959,7 +959,7 @@ function drawSaber() {
   ctx.fill();
 
 
-  }
+}
 
 
 
@@ -998,7 +998,7 @@ function gameLoop() {
       blockSpawnTimer = 0;
 
 
-      }
+    }
 
 
 
@@ -1052,19 +1052,19 @@ function gameLoop() {
             document.getElementById("finalCombo").textContent = `Best Combo: ${combo}x`;
 
 
-            }
-
-
           }
-
-
-        blocks.splice(i, 1);
 
 
         }
 
 
+        blocks.splice(i, 1);
+
+
       }
+
+
+    }
 
 
 
@@ -1091,10 +1091,10 @@ function gameLoop() {
         particles.splice(i, 1);
 
 
-        }
-
-
       }
+
+
+    }
 
 
 
@@ -1139,7 +1139,7 @@ function gameLoop() {
 
 
 
-    } else if (gameState === "start") {
+  } else if (gameState === "start") {
 
 
     // Draw saber on start screen
@@ -1148,7 +1148,7 @@ function gameLoop() {
     drawSaber();
 
 
-    }
+  }
 
 
 
@@ -1157,7 +1157,7 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 
 
-  }
+}
 
 
 

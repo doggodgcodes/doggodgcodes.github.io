@@ -11,19 +11,19 @@
           text-align: center;
           padding: 20px;
           margin: 0;
-          }
+        }
         h1 {
           color: #00FFCC;
           text-shadow: 4px 4px 0px #FF0066;
           font-size: 2.8rem;
           margin-bottom: 5px;
-          }
+        }
         .subtitle {
           color: #ffb703;
           font-weight: bold;
           font-size: 1.1rem;
           margin-bottom: 20px;
-          }
+        }
         .hacker-panel {
           font-family: 'Courier New', monospace;
           color: #38bdf8;
@@ -35,7 +35,7 @@
           margin: 0 auto 20px auto;
           font-size: 1.1rem;
           box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-          }
+        }
         .visualizer-bar {
           width: 100%;
           height: 10px;
@@ -44,7 +44,7 @@
           border-radius: 5px;
           overflow: hidden;
           transition: background 0.1s ease;
-          }
+        }
         .dashboard {
           background: rgba(15, 23, 42, 0.85);
           padding: 20px;
@@ -58,14 +58,14 @@
           justify-content: center;
           align-items: center;
           box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-          }
+        }
         .control-group {
           display: flex;
           flex-direction: column;
           align-items: center;
           font-weight: bold;
           color: #cbd5e1;
-          }
+        }
         .control-group input, .control-group select {
           margin-top: 8px;
           padding: 5px 10px;
@@ -75,7 +75,7 @@
           border-radius: 6px;
           font-weight: bold;
           cursor: pointer;
-          }
+        }
         .workspace {
           overflow-x: auto;
           max-width: 95vw;
@@ -83,14 +83,14 @@
           padding: 10px;
           background: rgba(0,0,0,0.4);
           border-radius: 12px;
-          }
+        }
         .section-title {
           font-size: 1.2rem;
           text-transform: uppercase;
           letter-spacing: 2px;
           margin: 20px 0 10px 0;
           color: #a5b4fc;
-          }
+        }
         .grid-container {
           display: grid;
           gap: 4px;
@@ -98,7 +98,7 @@
           width: fit-content;
           margin: 0 auto;
           padding: 10px;
-          }
+        }
         .pad {
           width: 32px;
           height: 24px;
@@ -106,7 +106,7 @@
           border-radius: 4px;
           cursor: pointer;
           transition: all 0.05s ease;
-          }
+        }
         .pad.note-c0 { border-left: 3px solid #ff595e; }
         .pad.note-c5 { border-left: 3px solid #e2ca35; }
         .pad.note-c11 { border-left: 3px solid #35ad9e; }
@@ -120,7 +120,7 @@
           border-bottom: 4px solid #475569;
           border-radius: 4px;
           cursor: pointer;
-          }
+        }
         .drum-pad.kick-row { border-bottom-color: #ef4444; }
         .drum-pad.snare-row { border-bottom-color: #3b82f6; }
         .drum-pad.hihat-row { border-bottom-color: #eab308; }
@@ -128,11 +128,11 @@
         .pad.active, .drum-pad.active {
           background-color: #00ffcc !important;
           box-shadow: 0 0 10px #00ffcc;
-          }
+        }
         .pad.playing, .drum-pad.playing {
           filter: brightness(1.6);
           transform: scale(1.05);
-          }
+        }
 
         button {
           background: #ff6b6b;
@@ -145,11 +145,11 @@
           cursor: pointer;
           box-shadow: 0 4px 0 #c92a2a;
           transition: all 0.1s;
-          }
+        }
         button:active {
           transform: translateY(4px);
           box-shadow: none;
-          }
+        }
         .btn-export { background: #059669; box-shadow: 0 4px 0 #047857; }
         .btn-save { background: #3b82f6; box-shadow: 0 4px 0 #1d4ed8; }
         .btn-load { background: #8b5cf6; box-shadow: 0 4px 0 #6d28d9; position: relative; display: inline-block; }
@@ -161,7 +161,7 @@
         .force-download-portal {
           margin-top: 10px;
           display: inline-block;
-          }
+        }
         .portal-link {
           background: #f59e0b;
           color: #000 !important;
@@ -172,7 +172,7 @@
           border: 2px solid #fff;
           display: inline-block;
           box-shadow: 0 0 10px #f59e0b;
-          }
+        }
 
         .dump-section {
           max-width: 1100px;
@@ -182,7 +182,7 @@
           border-radius: 12px;
           padding: 15px;
           box-shadow: 0 0 15px rgba(255, 0, 102, 0.3);
-          }
+        }
         .dump-title {
           font-family: 'Courier New', monospace;
           color: #ff0066;
@@ -190,7 +190,7 @@
           margin-bottom: 10px;
           font-size: 1.1rem;
           text-transform: uppercase;
-          }
+        }
         .dump-box {
           width: 100%;
           height: 140px;
@@ -203,9 +203,9 @@
           padding: 10px;
           box-sizing: border-box;
           resize: vertical;
-          }
-        </style>
-      </head>
+        }
+      </style>
+    </head>
     <body>
 
       <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</h1>
@@ -214,7 +214,7 @@
           <div class="hacker-panel" id="statusLog">
             <div>📡 DISPATCH ENGINE ONLINE: Manipulating URL routing flags dynamically.</div>
               <div id="portalContainer" class="force-download-portal"></div>
-                </div>
+              </div>
 
               <div class="visualizer-bar" id="beatVisualizer"></div>
 
@@ -227,13 +227,13 @@
                         <select id="templateSelect">
                           <option value="empty" selected>Empty Grid</option>
                             <option value="bossa">Bossa Nova Template 🌴 (v15.0)</option>
-                              </select>
-                            </div>
+                            </select>
+                          </div>
 
                           <div class="control-group">
                             <label for="templateNameInput">✍️ TEMPLATE NAME</label>
                               <input type="text" id="templateNameInput" value="My Saved Jam" style="max-width:140px;">
-                                </div>
+                              </div>
                               <button id="saveTemplateBtn" class="btn-save" style="background:#06b6d4; box-shadow:0 4px 0 #0891b2;">SAVE TEMPLATE TO STORAGE 🧠</button>
 
                                 <div class="control-group">
@@ -242,18 +242,18 @@
                                       <option value="sine" selected>Smooth Acoustic Sine</option>
                                         <option value="triangle">Retro Triangle</option>
                                           <option value="square">8-Bit Square Burst</option>
-                                            </select>
-                                          </div>
+                                          </select>
+                                        </div>
 
                                         <div class="control-group">
                                           <label for="bpmSlider">⚡ TEMPO SPEED: <span id="bpmVal">140</span> BPM</label>
                                             <input id="bpmSlider" type="range" min="60" max="240" value="140">
-                                              </div>
+                                            </div>
 
                                             <div class="control-group">
                                               <label for="lengthSlider">📏 MATRIX LENGTH: <span id="lengthVal">32</span> STEPS</label>
                                                 <input id="lengthSlider" type="range" min="4" max="32" value="32" step="4">
-                                                  </div>
+                                                </div>
 
                                                 <button id="randomBtn" class="btn-random">🎲 RANDOM BEAT GENERATOR</button>
 
@@ -264,8 +264,8 @@
                                                         <option value="wav">Lossless WAV 🦴</option>
                                                           <option value="mp3">Gamer MP3 🎛️</option>
                                                             <option value="m4a">Mobile M4A 📱</option>
-                                                              </select>
-                                                            </div>
+                                                            </select>
+                                                          </div>
                                                           <button id="exportBtn" class="btn-export">EXPORT BANGER 💾</button>
 
                                                             <!-- 🎁 BONUS FEATURE: RANDOM CHAOS PENTATONIC JAMMER -->
@@ -275,23 +275,23 @@
                                                               <div class="control-group" style="margin-top: 10px;">
                                                                 <label>🔊 LIVE VOLUME WAVE</label>
                                                                   <canvas id="visualizerCanvas" width="160" height="40" style="background: #111; border: 1px solid #00ffcc; border-radius: 5px; display: block; margin-top: 4px;"></canvas>
-                                                                    </div>
+                                                                  </div>
 
                                                                   <div id="exportStatus" style="color: #00ffcc; font-family: monospace; font-size: 11px; margin-top: 5px;">Ready! 🎸</div>
 
                                                                     <div class="control-group">
                                                                       <label for="fileNameInput">📁 FILE NAME</label>
                                                                         <input type="text" id="fileNameInput" value="matrix_session" style="max-width:140px;">
-                                                                          </div>
+                                                                        </div>
                                                                         <button id="saveBtn" class="btn-save">SAVE PROJECT FILE 📁</button>
 
                                                                           <label class="btn-load" style="padding: 12px 22px; font-weight: bold; border-radius: 25px; cursor: pointer; display: inline-block; text-align: center; margin-top: 5px;">
                                                                             LOAD PROJECT 📂
                                                                             <input type="file" id="fileInput" accept=".🔊🎧" style="display: none;">
-                                                                              </label>
+                                                                            </label>
 
                                                                             <button id="mailBtn" class="btn-mail">📧 MAIL BEAT TO FRIENDS</button>
-                                                                              </div>
+                                                                            </div>
 
                                                                             <div class="workspace">
                                                                               <div class="section-title">🎵 24-TONE TWO-OCTAVE CHROMATIC PITCH MATRIX</div>
@@ -299,14 +299,14 @@
 
                                                                                   <div class="section-title">🥁 COMPACT STEP SEQUENCER DRUM RACK</div>
                                                                                     <div class="grid-container" id="drumGrid"></div>
-                                                                                      </div>
+                                                                                    </div>
 
                                                                                     <div class="dump-section">
                                                                                       <div class="dump-title">🛠️ LIVE TEXT COMPILATION INTERFACE AREA (FAIL-SAFE RECOVERY)</div>
                                                                                         <textarea id="dataDumpBox" class="dump-box" placeholder="Your project saves and WAV data streams will generate here instantly for easy copy-pasting..."></textarea>
                                                                                           <br>
                                                                                           <button id="injectLoadBtn" class="btn-inject-load">LOAD STRING DUMP ⚡</button>
-                                                                                            </div>
+                                                                                          </div>
 
                                                                                           <script>
                                                                                             const synthContainer = document.getElementById('synthGrid');
@@ -359,7 +359,7 @@
                                                                                             const FREQS = [
                                                                                               1046.50, 987.77, 932.33, 880.00, 830.61, 783.99, 739.99, 698.46, 659.25, 622.25, 587.33, 554.37,
                                                                                               523.25, 493.88, 466.16, 440.00, 415.30, 392.00, 369.99, 349.23, 329.63, 311.13, 293.66, 261.63
-                                                                                              ];
+                                                                                            ];
 
                                                                                             let synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
                                                                                             let drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
@@ -375,16 +375,16 @@
                                                                                             function setGridToEmpty() {
                                                                                               synthState = Array(CHROMATIC_ROWS).fill().map(() => Array(32).fill(false));
                                                                                               drumState = Array(DRUM_ROWS).fill().map(() => Array(32).fill(false));
-                                                                                              }
+                                                                                            }
 
                                                                                             function loadInitialBossa() {
                                                                                               setGridToEmpty();
                                                                                               for(let r=0; r<CHROMATIC_ROWS; r++) {
                                                                                                 for(let c=0; c<32; c++) {
                                                                                                   synthState[r][c] = bossaNovaInitial[r][c];
-                                                                                                  }
                                                                                                 }
                                                                                               }
+                                                                                            }
 
                                                                                             function compileCurrentStateToJSONString() {
                                                                                               return JSON.stringify({
@@ -394,8 +394,8 @@
                                                                                                 chosenWave: chosenWave,
                                                                                                 synthState: synthState,
                                                                                                 drumState: drumState
-                                                                                                });
-                                                                                              }
+                                                                                              });
+                                                                                            }
 
                                                                                             // Add this to your <script> section to handle compression
                                                                                             // If you don't want external libs, we use a simple bit-packing method!
@@ -405,16 +405,16 @@
                                                                                               return state.map(row => {
                                                                                                 let bitstring = row.map(cell => cell ? '1' : '0').join('');
                                                                                                 return parseInt(bitstring, 2).toString(36); // Base36 is shorter!
-                                                                                                }).join(',');
-                                                                                              }
+                                                                                              }).join(',');
+                                                                                            }
 
                                                                                             function unpackMatrix(packedString, rows, cols) {
                                                                                               let rowsData = packedString.split(',');
                                                                                               return rowsData.map(rowData => {
                                                                                                 let bits = parseInt(rowData, 36).toString(2).padStart(cols, '0');
                                                                                                 return bits.split('').map(b => b === '1');
-                                                                                                });
-                                                                                              }
+                                                                                              });
+                                                                                            }
 
                                                                                             // 🔄 YOUR NEW UPDATE URL LOGIC
                                                                                             function updateURLState() {
@@ -424,14 +424,14 @@
                                                                                                 w: chosenWave,
                                                                                                 syn: packMatrix(synthState),
                                                                                                 drm: packMatrix(drumState)
-                                                                                                };
+                                                                                              };
 
                                                                                               // Use Base64 but on a much smaller object!
                                                                                               const payload = btoa(JSON.stringify(compactData));
                                                                                               window.history.replaceState(null, "", `?s=${payload}`);
 
                                                                                               return window.location.href;
-                                                                                              }
+                                                                                            }
 
                                                                                             // 🕵️‍♂️ YOUR NEW EXTRACTION LOGIC
                                                                                             function extractAndApplyURLState() {
@@ -449,11 +449,11 @@
 
                                                                                                 renderGrids();
                                                                                                 statusLog.innerHTML = "🔗 COMPRESSION RECOVERY SUCCESSFUL!";
-                                                                                                } catch (e) {
+                                                                                              } catch (e) {
                                                                                                 console.error("Link corrupted!", e);
                                                                                                 setGridToEmpty();
-                                                                                                }
                                                                                               }
+                                                                                            }
 
                                                                                             function renderGrids() {
                                                                                               synthContainer.innerHTML = '';
@@ -473,11 +473,11 @@
                                                                                                     pad.classList.toggle('active');
                                                                                                     if (synthState[r][c] && audioCtx) playSynthTone(FREQS[r], audioCtx.currentTime, audioCtx);
                                                                                                     updateURLState();
-                                                                                                    });
+                                                                                                  });
                                                                                                   synthContainer.appendChild(pad);
                                                                                                   synthPads[r][c] = pad;
-                                                                                                  }
                                                                                                 }
+                                                                                              }
 
                                                                                               const drumClasses = ['kick-row', 'snare-row', 'hihat-row'];
                                                                                               for (let r = 0; r < DRUM_ROWS; r++) {
@@ -492,12 +492,12 @@
                                                                                                     pad.classList.toggle('active');
                                                                                                     if (drumState[r][c] && audioCtx) triggerDrumSound(r, audioCtx.currentTime, audioCtx);
                                                                                                     updateURLState();
-                                                                                                    });
+                                                                                                  });
                                                                                                   drumContainer.appendChild(pad);
                                                                                                   drumPads[r][c] = pad;
-                                                                                                  }
                                                                                                 }
                                                                                               }
+                                                                                            }
 
                                                                                             function playSynthTone(freq, time, ctx) {
                                                                                               const osc = ctx.createOscillator();
@@ -510,7 +510,7 @@
                                                                                               gain.connect(ctx.destination);
                                                                                               osc.start(time);
                                                                                               osc.stop(time + 0.3);
-                                                                                              }
+                                                                                            }
 
                                                                                             function triggerDrumSound(rowType, time, ctx) {
                                                                                               const osc = ctx.createOscillator();
@@ -525,7 +525,7 @@
                                                                                               gain.gain.exponentialRampToValueAtTime(0.001, time + 0.15);
                                                                                               osc.start(time);
                                                                                               osc.stop(time + 0.15);
-                                                                                              }
+                                                                                            }
                                                                                             else if (rowType === 1) { // Snare
                                                                                             osc.type = 'triangle';
                                                                                             osc.frequency.setValueAtTime(170, time);
@@ -547,7 +547,7 @@
                                                                                             noiseGain.connect(ctx.destination);
                                                                                             noise.start(time);
                                                                                             noise.stop(time + 0.08);
-                                                                                            }
+                                                                                          }
                                                                                           else if (rowType === 2) { // Hi-Hat
                                                                                           osc.type = 'square';
                                                                                           osc.frequency.setValueAtTime(9000, time);
@@ -555,32 +555,32 @@
                                                                                           gain.gain.exponentialRampToValueAtTime(0.001, time + 0.04);
                                                                                           osc.start(time);
                                                                                           osc.stop(time + 0.04);
-                                                                                          }
                                                                                         }
+                                                                                      }
 
                                                                                       function scheduler() {
                                                                                         while (nextTickTime < audioCtx.currentTime + 0.1) {
                                                                                           scheduleStep(currentStep, nextTickTime);
                                                                                           advanceStep();
-                                                                                          }
-                                                                                        timerId = setTimeout(scheduler, 25);
                                                                                         }
+                                                                                        timerId = setTimeout(scheduler, 25);
+                                                                                      }
 
                                                                                       function scheduleStep(step, time) {
                                                                                         ctxTimeCallback(step, time);
                                                                                         for (let r = 0; r < CHROMATIC_ROWS; r++) {
                                                                                           if (synthState[r][step]) playSynthTone(FREQS[r], time, audioCtx);
-                                                                                          }
+                                                                                        }
                                                                                         for (let r = 0; r < DRUM_ROWS; r++) {
                                                                                           if (drumState[r][step]) triggerDrumSound(r, time, audioCtx);
-                                                                                          }
                                                                                         }
+                                                                                      }
 
                                                                                       function advanceStep() {
                                                                                         const secondsPerBeat = 60.0 / bpm / 2;
                                                                                         nextTickTime += secondsPerBeat;
                                                                                         currentStep = (currentStep + 1) % totalSteps;
-                                                                                        }
+                                                                                      }
 
                                                                                       function ctxTimeCallback(step, time) {
                                                                                         const delay = Math.max(0, (time - audioCtx.currentTime) * 1000);
@@ -594,8 +594,8 @@
                                                                                           for(let r=0; r<DRUM_ROWS; r++) if(drumPads[r][prevStep]) drumPads[r][prevStep].classList.remove('playing');
                                                                                           for(let r=0; r<CHROMATIC_ROWS; r++) if(synthPads[r][step]) synthPads[r][step].classList.add('playing');
                                                                                           for(let r=0; r<DRUM_ROWS; r++) if(drumPads[r][step]) drumPads[r][step].classList.add('playing');
-                                                                                          }, delay);
-                                                                                        }
+                                                                                        }, delay);
+                                                                                      }
 
                                                                                       function executeDualOutputSave(blob, filename, rawTextPayload = null) {
                                                                                         portalContainer.innerHTML = '';
@@ -604,11 +604,11 @@
 
                                                                                         if (rawTextPayload) {
                                                                                           dataDumpBox.value = rawTextPayload;
-                                                                                          } else {
+                                                                                        } else {
                                                                                           const reader = new FileReader();
                                                                                           reader.onloadend = function() { dataDumpBox.value = reader.result; }
                                                                                           reader.readAsDataURL(blob);
-                                                                                          }
+                                                                                        }
 
                                                                                         const visualPortalBtn = document.createElement('a');
                                                                                         visualPortalBtn.href = linkUrl;
@@ -625,8 +625,8 @@
                                                                                           document.body.appendChild(hiddenLink);
                                                                                           hiddenLink.click();
                                                                                           setTimeout(() => { document.body.removeChild(hiddenLink); }, 300);
-                                                                                          } catch (err) {}
-                                                                                        }
+                                                                                        } catch (err) {}
+                                                                                      }
 
                                                                                       function updateTemplateDropdown() {
                                                                                         templateSelect.innerHTML = `
@@ -641,9 +641,9 @@
                                                                                                 opt.value = key;
                                                                                                 opt.innerText = `🧠 ${displayName} (Custom)`;
                                                                                                 templateSelect.appendChild(opt);
-                                                                                                }
-                                                                                              });
-                                                                                            }
+                                                                                              }
+                                                                                            });
+                                                                                          }
 
                                                                                           saveTemplateBtn.addEventListener('click', () => {
                                                                                             const tplName = templateNameInput.value.trim() || "My Custom Grid";
@@ -653,12 +653,12 @@
                                                                                               chosenWave: chosenWave,
                                                                                               synthState: synthState,
                                                                                               drumState: drumState
-                                                                                              };
+                                                                                            };
                                                                                             localStorage.setItem(`matrix_tpl_${tplName}`, JSON.stringify(templateData));
                                                                                             updateTemplateDropdown();
                                                                                             updateURLState();
                                                                                             statusLog.textContent = `🧠 Saved template "${tplName}" to Local Storage!`;
-                                                                                            });
+                                                                                          });
 
                                                                                           templateSelect.addEventListener('change', (e) => {
                                                                                             const val = e.target.value;
@@ -667,16 +667,16 @@
                                                                                               renderGrids();
                                                                                               updateURLState();
                                                                                               statusLog.innerHTML = "🧹 Grid cleared to blank slate.";
-                                                                                              } else if (val === 'bossa') {
+                                                                                            } else if (val === 'bossa') {
                                                                                               loadInitialBossa();
                                                                                               renderGrids();
                                                                                               updateURLState();
                                                                                               statusLog.innerHTML = "🌴 Loaded preset Bossa Nova Template!";
-                                                                                              } else if (val.startsWith('matrix_tpl_')) {
+                                                                                            } else if (val.startsWith('matrix_tpl_')) {
                                                                                               const dataStr = localStorage.getItem(val);
                                                                                               if (dataStr) parseAndApplyString(dataStr, true);
-                                                                                              }
-                                                                                            });
+                                                                                            }
+                                                                                          });
 
                                                                                           // 📧 GMAIL SAFE DUMP DISPATCH SYSTEM
                                                                                           mailBtn.addEventListener('click', () => {
@@ -697,10 +697,10 @@
                                                                                             // Attempt standard mailto window trigger as a soft launch mechanism
                                                                                             try {
                                                                                               window.location.href = `mailto:?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(rawBodyText)}`;
-                                                                                              } catch (err) {
+                                                                                            } catch (err) {
                                                                                               console.log("Mailto redirect fallback triggered due to data length boundaries.");
-                                                                                              }
-                                                                                            });
+                                                                                            }
+                                                                                          });
 
                                                                                           saveBtn.addEventListener('click', () => {
                                                                                             let rawName = fileNameInput.value.trim() || "matrix_session";
@@ -712,7 +712,7 @@
                                                                                             executeDualOutputSave(blob, finalFilename, dataString);
                                                                                             updateURLState();
                                                                                             statusLog.textContent = `💾 Exported configuration package as: ${finalFilename}`;
-                                                                                            });
+                                                                                          });
 
                                                                                           function parseAndApplyString(jsonString, triggerUrlRewrite = true) {
                                                                                             try {
@@ -721,8 +721,8 @@
                                                                                                 const findUrl = jsonString.match(/\?song=([A-Za-z0-9%=\-_]+)/);
                                                                                                 if (findUrl && findUrl[1]) {
                                                                                                   jsonString = decodeURIComponent(atob(findUrl[1]));
-                                                                                                  }
                                                                                                 }
+                                                                                              }
 
                                                                                               const data = JSON.parse(jsonString);
                                                                                               bpm = data.bpm || 140;
@@ -740,21 +740,21 @@
                                                                                               renderGrids();
                                                                                               if (triggerUrlRewrite) updateURLState();
                                                                                               statusLog.innerHTML = "✅ Matrix data stream parsed successfully!";
-                                                                                              } catch(e) {
+                                                                                            } catch(e) {
                                                                                               alert("Error reading structural parameters.");
-                                                                                              }
                                                                                             }
+                                                                                          }
 
                                                                                           randomBtn.addEventListener('click', () => {
                                                                                             for (let r = 0; r < CHROMATIC_ROWS; r++) {
                                                                                               for (let c = 0; c < 32; c++) synthState[r][c] = Math.random() < 0.12;
-                                                                                              }
+                                                                                            }
                                                                                             for (let r = 0; r < DRUM_ROWS; r++) {
                                                                                               for (let c = 0; c < 32; c++) drumState[r][c] = Math.random() < 0.22;
-                                                                                              }
+                                                                                            }
                                                                                             renderGrids();
                                                                                             updateURLState();
-                                                                                            });
+                                                                                          });
 
                                                                                           playBtn.addEventListener('click', () => {
                                                                                             if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -763,14 +763,14 @@
                                                                                               isPlaying = false;
                                                                                               playBtn.innerText = "START THE RAVE HARDCORE! 🚀";
                                                                                               setupVisualizer(audioCtx, mainGainNode)
-                                                                                              } else {
+                                                                                            } else {
                                                                                               currentStep = 0;
                                                                                               nextTickTime = audioCtx.currentTime;
                                                                                               isPlaying = true;
                                                                                               scheduler();
                                                                                               playBtn.innerText = "FREEZE THE TIMELINE 🛑";
-                                                                                              }
-                                                                                            });
+                                                                                            }
+                                                                                          });
 
                                                                                           bpmSlider.addEventListener('input', (e) => { bpm = parseInt(e.target.value); bpmVal.innerText = bpm; updateURLState(); });
                                                                                           lengthSlider.addEventListener('input', (e) => { totalSteps = parseInt(e.target.value); lengthVal.innerText = totalSteps; renderGrids(); updateURLState(); });
@@ -783,7 +783,7 @@
                                                                                             const reader = new FileReader();
                                                                                             reader.onload = function(event) { parseAndApplyString(event.target.result, true); };
                                                                                             reader.readAsText(file);
-                                                                                            });
+                                                                                          });
 
                                                                                           exportBtn.addEventListener('click', () => {
                                                                                             const secondsPerBeat = 60.0 / bpm / 2;
@@ -795,17 +795,17 @@
                                                                                               let stepTime = step * secondsPerBeat;
                                                                                               for (let r = 0; r < CHROMATIC_ROWS; r++) {
                                                                                                 if (synthState[r][step]) playSynthTone(FREQS[r], stepTime, offlineCtx);
-                                                                                                }
+                                                                                              }
                                                                                               for (let r = 0; r < DRUM_ROWS; r++) {
                                                                                                 if (drumState[r][step]) triggerDrumSound(r, stepTime, offlineCtx);
-                                                                                                }
                                                                                               }
+                                                                                            }
 
                                                                                             offlineCtx.startRendering().then(renderedBuffer => {
                                                                                               const wavBlob = bufferToWav(renderedBuffer);
                                                                                               executeDualOutputSave(wavBlob, `matrix_track_${bpm}bpm.wav`);
-                                                                                              });
                                                                                             });
+                                                                                          });
 
                                                                                           // 📦 LOAD FFmpeg ASYNCHRONOUSLY
                                                                                           const { createFFmpeg, fetchFile } = FFmpeg;
@@ -841,10 +841,10 @@
                                                                                                 canvasCtx.fillStyle = `rgb(0, 255, ${barHeight + 100})`;
                                                                                                 canvasCtx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
                                                                                                 x += barWidth + 2;
-                                                                                                }
                                                                                               }
-                                                                                            draw();
                                                                                             }
+                                                                                            draw();
+                                                                                          }
 
                                                                                           // 🎹 THE MULTI-FORMAT BACKGROUND BUFFER PIPELINE
                                                                                           async function renderSongToBuffer() {
@@ -872,11 +872,11 @@
 
                                                                                                   osc.start(col * stepDuration);
                                                                                                   osc.stop((col + 1) * stepDuration);
-                                                                                                  }
                                                                                                 }
                                                                                               }
-                                                                                            return await offlineCtx.startRendering();
                                                                                             }
+                                                                                            return await offlineCtx.startRendering();
+                                                                                          }
 
                                                                                           // 💽 FAST RIFF-WAV PACKER UTILITY
                                                                                           function bufferToWav(buffer) {
@@ -913,11 +913,11 @@
                                                                                                 sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
                                                                                                 view.setInt16(pos, sample, true);
                                                                                                 pos += 2;
-                                                                                                }
-                                                                                              sampleIdx++;
                                                                                               }
-                                                                                            return new Blob([bufferArr], { type: 'audio/wav' });
+                                                                                              sampleIdx++;
                                                                                             }
+                                                                                            return new Blob([bufferArr], { type: 'audio/wav' });
+                                                                                          }
 
                                                                                           // 🚀 EVENT TRIGGER MOUNTS
                                                                                           document.getElementById('exportBtn').addEventListener('click', async () => {
@@ -934,7 +934,7 @@
                                                                                                 triggerFileDownload(wavBlob, `${sessionName}.wav`);
                                                                                                 status.innerHTML = "✅ WAV DOWNLOADED!";
                                                                                                 return;
-                                                                                                }
+                                                                                              }
 
                                                                                               status.innerHTML = "🧨 LOADING WASM ENGINES...";
                                                                                               if (!ffmpeg.isLoaded()) await ffmpeg.load();
@@ -943,20 +943,20 @@
 
                                                                                               if (format === 'mp3') {
                                                                                                 await ffmpeg.run('-i', 'input.wav', '-codec:a', 'libmp3lame', '-b:a', '192k', 'output.mp3');
-                                                                                                } else if (format === 'm4a') {
+                                                                                              } else if (format === 'm4a') {
                                                                                                 await ffmpeg.run('-i', 'input.wav', '-c:a', 'aac', '-b:a', '192k', 'output.m4a');
-                                                                                                }
+                                                                                              }
 
                                                                                               const data = ffmpeg.FS('readFile', `output.${format}`);
                                                                                               const finalBlob = new Blob([data.buffer], { type: `audio/${format}` });
 
                                                                                               triggerFileDownload(finalBlob, `${sessionName}.${format}`);
                                                                                               status.innerHTML = "✅ HIGH FIDELITY EXPORT DONE! 🦍🎉";
-                                                                                              } catch (err) {
+                                                                                            } catch (err) {
                                                                                               status.innerHTML = "❌ BOOM ENGINE ERRORED!";
                                                                                               console.error(err);
-                                                                                              }
-                                                                                            });
+                                                                                            }
+                                                                                          });
 
                                                                                           function triggerFileDownload(blob, filename) {
                                                                                             const url = URL.createObjectURL(blob);
@@ -964,7 +964,7 @@
                                                                                             link.href = url;
                                                                                             link.download = filename;
                                                                                             link.click();
-                                                                                            }
+                                                                                          }
 
                                                                                           // 🎁 BONUS JAM MERGE LINK: THE PERFECT PENTATONIC RANDOM Melodizer
                                                                                           document.getElementById('bonusChaosBtn').addEventListener('click', () => {
@@ -972,22 +972,22 @@
                                                                                             for (let r = 0; r < 8; r++) {
                                                                                               for (let c = 0; c < totalSteps; c++) {
                                                                                                 synthState[r][c] = false;
-                                                                                                }
                                                                                               }
+                                                                                            }
                                                                                             for (let c = 0; c < totalSteps; c++) {
                                                                                               if (Math.random() < 0.35) {
                                                                                                 const pentatonicRows = [0, 2, 4, 5, 7];
                                                                                                 const randomRow = pentatonicRows[Math.floor(Math.random() * pentatonicRows.length)];
                                                                                                 synthState[randomRow][c] = true;
-                                                                                                }
                                                                                               }
+                                                                                            }
                                                                                             if (typeof drawGrid === 'function') drawGrid();
                                                                                             if (typeof updateURLState === 'function') updateURLState();
                                                                                             document.getElementById('exportStatus').innerHTML = "🎲 CHAOS JAM TRIGGERED LIVE!!!";
-                                                                                            });
+                                                                                          });
 
                                                                                           updateTemplateDropdown();
                                                                                           extractAndApplyURLState();
-                                                                                          </script>
-                                                                                        </body>
-                                                                                      </html>
+                                                                                        </script>
+                                                                                      </body>
+                                                                                    </html>

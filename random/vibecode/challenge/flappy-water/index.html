@@ -15,27 +15,27 @@
           padding: 20px 40px; font-size: 24px; font-weight: bold; color: white;
           border: 5px solid white; border-radius: 15px; cursor: pointer; text-shadow: 2px 2px #000;
           user-select: none; transition: 0.1s;
-          }
+        }
         .btn:active { transform: scale(0.9); }
         #flap-btn { background: #ff4757; }
         #waterball-btn { background: #1e90ff; }
-        </style>
-      </head>
+      </style>
+    </head>
     <body>
 
       <div id="score">SCORE: 0</div>
         <div id="game-container">
           <img id="bird" src="https://doggodgcodes.github.io/assets/bird-water-gun.png" alt="Bird with Water Gun">
-          </div>
+        </div>
 
         <div id="controls">
           <div id="flap-btn" class="btn">Flap (spacebar)</div>
             <div id="waterball-btn" class="btn">Waterball (F)</div>
-              </div>
+            </div>
 
             <audio id="bg-music" loop>
               <source src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party by Mine Chicken.mp3" type="audio/mpeg">
-                </audio>
+              </audio>
 
               <script>
                 const bird = document.getElementById('bird');
@@ -58,13 +58,13 @@
                   soundClone.playbackRate = 0.5 + Math.random() * 1.5;
                   soundClone.volume = 0.4; // This makes it nice and quiet (0.0 to 1.0)
                   soundClone.play();
-                  }
+                }
 
                 function flap() {
                   velocity = -8;
                   bird.style.transform = "rotate(-25deg)";
                   playMeow();
-                  }
+                }
 
                 function water() {
                   playMeow();
@@ -98,15 +98,15 @@
 
                         clearInterval(moveDrop);
                         return;
-                        }
                       }
+                    }
 
                     if (dropX >= window.innerWidth - 5) {
                       drop.remove();
                       clearInterval(moveDrop);
-                      }
-                    }, 20);
-                  }
+                    }
+                  }, 20);
+                }
 
                 function spawnEnemy() {
                   const enemy = document.createElement('img');
@@ -128,11 +128,11 @@
                       if(enemy.parentElement) {
                         enemy.remove();
                         activeEnemies = activeEnemies.filter(e => e !== enemy);
-                        }
-                      clearInterval(moveEnemy);
                       }
-                    }, 20);
-                  }
+                      clearInterval(moveEnemy);
+                    }
+                  }, 20);
+                }
 
                 setInterval(spawnEnemy, 1800);
 
@@ -144,16 +144,16 @@
                   if (birdY > window.innerHeight || birdY < -50) {
                     birdY = window.innerHeight / 2;
                     velocity = 0;
-                    }
-                  requestAnimationFrame(update);
                   }
+                  requestAnimationFrame(update);
+                }
 
                 flapBtn.addEventListener('mousedown', (e) => { e.preventDefault(); flap(); });
                 waterBtn.addEventListener('mousedown', (e) => { e.preventDefault(); water(); });
                 window.addEventListener('keydown', (e) => {
                   if (e.code === 'Space') flap(); score += 0.001; scoreDisplay.innerText = "SCORE: " + score;
                   if (e.code === 'KeyF') water(); score += 0.001; scoreDisplay.innerText = "SCORE: " + score;
-                  });
+                });
 
                 // Browsers need a click to start audio, so we trigger it on the first flap or shot!
                 function startMusic() {
@@ -161,12 +161,12 @@
                   // Remove these listeners after the music starts so we don't restart it every time
                   window.removeEventListener('mousedown', startMusic);
                   window.removeEventListener('keydown', startMusic);
-                  }
+                }
 
                 window.addEventListener('mousedown', startMusic);
                 window.addEventListener('keydown', startMusic);
 
                 update();
-                </script>
-              </body>
-            </html>
+              </script>
+            </body>
+          </html>

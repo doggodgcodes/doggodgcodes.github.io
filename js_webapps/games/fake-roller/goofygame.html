@@ -18,7 +18,7 @@
           --bigshadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           --radius: 15px;
           --padding: 20px;
-          }
+        }
 
         *{box-sizing:border-box}
         html,body{
@@ -33,7 +33,7 @@
           justify-content:center;
           padding:40px;
           color:#222;
-          }
+        }
 
         /* Mini window */
         .mini-window{
@@ -49,7 +49,7 @@
           transition: box-shadow 220ms ease;
           border: 1px solid rgba(255,255,255,0.6);
           padding: var(--padding);
-          }
+        }
 
         /* Header */
         .mini-header{
@@ -61,7 +61,7 @@
           align-items:center;
           gap:10px;
           border-radius: var(--radius);
-          }
+        }
         .mini-header:active{ cursor:grabbing }
 
         .mini-header h1{
@@ -71,7 +71,7 @@
           font-weight:700;
           letter-spacing:0.2px;
           color: #172032;
-          }
+        }
 
         /* Body */
         .mini-body{
@@ -79,19 +79,19 @@
           display:flex;
           flex-direction:column;
           gap:12px;
-          }
+        }
         .info{
           margin:0;
           color:var(--muted);
           font-size:13px;
-          }
+        }
 
         /* Buttons */
         .buttons{
           display:flex;
           flex-direction:column;
           gap:10px;
-          }
+        }
         .btn{
           appearance:none;
           border:0;
@@ -103,17 +103,17 @@
           cursor:pointer;
           background: linear-gradient(90deg, rgba(198,231,255,0.95), rgba(255,215,230,0.95));
           transition: transform 140ms ease, box-shadow 140ms ease, opacity 140ms ease;
-          }
+        }
         .btn:active{
           transform: translateY(1px) scale(0.997)
           box-shadow: var(--shadow);
-          }
+        }
         .btn:hover{
           transform: translateY(-3px)
-          }
+        }
         .btn:focus{
           box-shadow: var(--bigshadow);
-          }
+        }
 
         /* Footer */
         .mini-footer{
@@ -122,31 +122,31 @@
           background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.2));
           font-size:12px;
           color:var(--muted);
-          }
+        }
 
         /* small screen tweaks */
         @media (max-width:420px){
           .mini-window{ width: calc(100% - 32px); left:16px !important; right:16px !important; }
           .mini-header h1{ font-size:13px }
-          }
-        </style>
-      </head>
+        }
+      </style>
+    </head>
     <body>
       <div class="mini-window" id="miniWindow" role="dialog" aria-label="goofy ahh">
         <header class="mini-header" id="miniHeader" aria-hidden="false">
           <h1>Goofy ahh prize roller - THIS IS JUST A GAME YOU CAN'T WIN REAL PRIZES</h1>
-            </header>
+          </header>
 
           <main class="mini-body">
             <p class="info">Lol</p>
               <h3 id="rollContent">You have not rolled yet</h3>
                 <div class="buttons" role="group" aria-label="roll">
                   <button class="btn" id="roll" onclick="onRoll()">Roll goofy ahh</button>
-                    </div>
-                  </main>
+                  </div>
+                </main>
 
                 <footer class="mini-footer">Made by doggodgcodes and UI by GitHub Copilot</footer>
-                  </div>
+                </div>
                 <script src="script.js"></script>
-                  </body>
-                </html>
+                </body>
+              </html>

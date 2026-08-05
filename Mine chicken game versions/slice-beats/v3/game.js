@@ -50,7 +50,7 @@ const DIRECTIONS = [
   { name: "up-right", arrow: "↗", dx: 1, dy: -1 },
   { name: "down-left", arrow: "↙", dx: -1, dy: 1 },
   { name: "down-right", arrow: "↘", dx: 1, dy: 1 },
-  ];
+];
 
 // Block class - Beat Saber style
 class Block {
@@ -81,13 +81,13 @@ class Block {
     this.sliceTime = 0;
     this.sliceParts = [];
     this.rotation = 0;
-    }
+  }
 
   update() {
     if (!this.sliced) {
       this.z += this.speed;
       // Remove rotation - blocks stay still like Beat Saber
-      } else {
+    } else {
       this.sliceTime++;
       // Animate slice parts
       for (let part of this.sliceParts) {
@@ -97,9 +97,9 @@ class Block {
         part.vy += 0.5; // gravity
         // Don't rotate sliced parts
         part.alpha -= 0.02;
-        }
       }
     }
+  }
 
   // Get current screen position with perspective
   getScreenPos() {
@@ -114,7 +114,7 @@ class Block {
     const y = startY + (this.targetY - startY) * this.z;
 
     return { x, y, size, scale };
-    }
+  }
 
   draw() {
     if (!this.sliced) {
@@ -134,10 +134,10 @@ class Block {
       if (inHitZone) {
         ctx.shadowBlur = 35 * pos.scale;
         ctx.shadowColor = this.color;
-        } else {
+      } else {
         ctx.shadowBlur = 20 * pos.scale;
         ctx.shadowColor = this.color;
-        }
+      }
 
       // Main block (cube-like with slight 3D effect)
       ctx.fillStyle = this.color;
@@ -172,7 +172,7 @@ class Block {
         pos.size + 4,
         pos.size + 4,
         );
-        }
+      }
 
       // Draw white dot in center (dot note style)
       ctx.shadowBlur = 8;
@@ -183,7 +183,7 @@ class Block {
       ctx.fill();
 
       ctx.restore();
-      } else {
+    } else {
       // Draw sliced parts
       for (let part of this.sliceParts) {
         if (part.alpha <= 0) continue;
@@ -199,17 +199,17 @@ class Block {
         ctx.fillRect(-part.size / 2, -part.size / 2, part.size, part.size);
 
         ctx.restore();
-        }
       }
     }
+  }
 
   isOffScreen() {
     if (!this.sliced) {
       return this.z > 1.2; // Past the player
-      } else {
+    } else {
       return this.sliceTime > 100 || this.sliceParts[0].alpha <= 0;
-      }
     }
+  }
 
   checkSlice(mouseX, mouseY, lastMouseX, lastMouseY, velocity) {
     if (this.sliced) return false;
@@ -228,10 +228,10 @@ class Block {
       const dy = mouseY - lastMouseY;
       this.slice(dx, dy);
       return true;
-      }
+    }
 
     return false;
-    }
+  }
 
   slice(dx, dy) {
     this.sliced = true;
@@ -247,7 +247,7 @@ class Block {
         rotation: 0,
         alpha: 1,
         size: pos.size * 0.5,
-        },
+      },
       {
         x: pos.x + pos.size * 0.25,
         y: pos.y,
@@ -256,13 +256,13 @@ class Block {
         rotation: 0,
         alpha: 1,
         size: pos.size * 0.5,
-        },
-      ];
+      },
+    ];
 
     // Create particles
     createParticles(pos.x, pos.y, this.color);
-    }
   }
+}
 
 // Particle class
 class Particle {
@@ -275,7 +275,7 @@ class Particle {
     this.color = color;
     this.alpha = 1;
     this.decay = Math.random() * 0.04 + 0.02;
-    }
+  }
 
   update() {
     this.x += this.vx;
@@ -283,7 +283,7 @@ class Particle {
     this.vx *= 0.97;
     this.vy *= 0.97;
     this.alpha -= this.decay;
-    }
+  }
 
   draw() {
     ctx.save();
@@ -295,18 +295,18 @@ class Particle {
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
-    }
+  }
 
   isDead() {
     return this.alpha <= 0;
-    }
   }
+}
 
 function createParticles(x, y, color) {
   for (let i = 0; i < 25; i++) {
     particles.push(new Particle(x, y, color));
-    }
   }
+}
 
 // Mouse events
 canvas.addEventListener("mousemove", (e) => {
@@ -325,22 +325,22 @@ canvas.addEventListener("mousemove", (e) => {
   saberTrail.push({ x: mouseX, y: mouseY, time: Date.now() });
   if (saberTrail.length > trailLength) {
     saberTrail.shift();
-    }
-  });
+  }
+});
 
 // Start button
 document.getElementById("startBtn").addEventListener("click", () => {
   document.getElementById("startScreen").style.display = "none";
   gameState = "playing";
   resetGame();
-  });
+});
 
 // Restart button
 document.getElementById("restartBtn").addEventListener("click", () => {
   document.getElementById("gameOver").style.display = "none";
   gameState = "playing";
   resetGame();
-  });
+});
 
 function resetGame() {
   score = 0;
@@ -351,11 +351,11 @@ function resetGame() {
   particles = [];
   blockSpawnTimer = 0;
   updateUI();
-  }
+}
 
 function spawnBlock() {
   blocks.push(new Block());
-  }
+}
 
 function checkCollisions() {
   if (mouseVelocity < 8) return;
@@ -368,14 +368,14 @@ function checkCollisions() {
       if (combo > maxCombo) maxCombo = combo;
       score += 10 * combo;
       updateUI();
-      }
     }
   }
+}
 
 function updateUI() {
   document.getElementById("score").textContent = `Score: ${score}`;
   document.getElementById("combo").textContent = `Combo: ${combo}x`;
-  }
+}
 
 function drawSaber() {
   // Draw glowing trail
@@ -400,8 +400,8 @@ function drawSaber() {
       ctx.lineTo(saberTrail[i].x, saberTrail[i].y);
       ctx.stroke();
       ctx.restore();
-      }
     }
+  }
 
   // Draw cursor (changes color based on side)
   const cursorColor = mouseX < canvas.width / 2 ? "#ff0040" : "#00a0ff";
@@ -422,7 +422,7 @@ function drawSaber() {
   ctx.arc(mouseX, mouseY, 12, 0, Math.PI * 2);
   ctx.stroke();
   ctx.restore();
-  }
+}
 
 function drawBackground() {
   // Draw Beat Saber style grid/track
@@ -440,8 +440,8 @@ function drawBackground() {
       ctx.strokeStyle = `rgba(0, 255, 200, ${pulseAlpha})`;
       ctx.lineWidth = 2;
       ctx.strokeRect(x - 30, y - 30, 60, 60);
-      }
     }
+  }
 
   // Draw hit zone plane (subtle glowing rectangle)
   const hitZonePulse = 0.08 + Math.sin(Date.now() / 300) * 0.04;
@@ -466,9 +466,9 @@ function drawBackground() {
       ctx.moveTo(canvas.width / 2, canvas.height / 2);
       ctx.lineTo(targetX, targetY);
       ctx.stroke();
-      }
     }
   }
+}
 
 function gameLoop() {
   // Clear with fade effect
@@ -484,7 +484,7 @@ function gameLoop() {
     if (blockSpawnTimer >= blockSpawnInterval) {
       spawnBlock();
       blockSpawnTimer = 0;
-      }
+    }
 
     // Update and draw blocks
     for (let i = blocks.length - 1; i >= 0; i--) {
@@ -504,11 +504,11 @@ function gameLoop() {
             `Final Score: ${score}`;
             document.getElementById("finalCombo").textContent =
             `Max Combo: ${maxCombo}x`;
-            }
           }
-        blocks.splice(i, 1);
         }
+        blocks.splice(i, 1);
       }
+    }
 
     // Update and draw particles
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -517,8 +517,8 @@ function gameLoop() {
 
       if (particles[i].isDead()) {
         particles.splice(i, 1);
-        }
       }
+    }
 
     // Check collisions
     checkCollisions();
@@ -533,12 +533,12 @@ function gameLoop() {
     ctx.textAlign = "right";
     ctx.fillText(`Missed: ${missed}/${maxMissed}`, canvas.width - 20, 30);
     ctx.textAlign = "left";
-    } else if (gameState === "start") {
+  } else if (gameState === "start") {
     drawSaber();
-    }
+  }
 
   requestAnimationFrame(gameLoop);
-  }
+}
 
 // Start game loop
 gameLoop();

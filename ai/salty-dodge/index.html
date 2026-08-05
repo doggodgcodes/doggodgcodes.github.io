@@ -7,8 +7,8 @@
         #player { position: absolute; font-size: 50px; cursor: none; transition: 0.1s; }
         .pizza { position: absolute; font-size: 30px; }
         #score { font-size: 40px; margin-top: 20px; }
-        </style>
-      </head>
+      </style>
+    </head>
     <body>
       <h1>DON'T TOUCH THE SALTY PIZZA! 🍕</h1>
         <div id="score">HAM JAM: 0</div>
@@ -23,7 +23,7 @@
               document.onmousemove = (e) => {
                 player.style.left = e.pageX - 25 + 'px';
                 player.style.top = e.pageY - 25 + 'px';
-                };
+              };
 
               function spawnPizza() {
                 const pizza = document.createElement('div');
@@ -45,18 +45,18 @@
                     alert("THE SALTY PIZZA GOT YOU! Final Ham Jam: " + hamJam);
                     hamJam = 0;
                     location.reload();
-                    }
+                  }
 
                   if (top > window.innerHeight) {
                     pizza.remove();
                     hamJam++;
                     scoreBoard.innerHTML = "HAM JAM: " + hamJam;
                     clearInterval(fall);
-                    }
-                  }, 20);
-                }
+                  }
+                }, 20);
+              }
 
               setInterval(spawnPizza, 500);
-              </script>
-            </body>
-          </html>
+            </script>
+          </body>
+        </html>

@@ -58,13 +58,13 @@ class Block {
     this.sliceTime = 0;
     this.sliceParts = [];
     this.rotation = 0;
-    }
+  }
 
   update() {
     if (!this.sliced) {
       this.z += this.speed;
       this.rotation += 0.02;
-      } else {
+    } else {
       this.sliceTime++;
       // Animate slice parts flying apart
       for (let part of this.sliceParts) {
@@ -73,9 +73,9 @@ class Block {
         part.z += part.vz;
         part.rotation += part.rotSpeed;
         part.alpha -= 0.015;
-        }
       }
     }
+  }
 
   // Convert 3D position to 2D screen position
   project() {
@@ -85,7 +85,7 @@ class Block {
     const screenSize = (this.size * scale) / 4;
 
     return { x: screenX, y: screenY, size: screenSize, scale: scale };
-    }
+  }
 
   draw() {
     if (!this.sliced) {
@@ -124,7 +124,7 @@ class Block {
       ctx.fillText(arrow, 0, 0);
 
       ctx.restore();
-      } else {
+    } else {
       // Draw sliced parts
       for (let part of this.sliceParts) {
         const pos = part.project();
@@ -137,17 +137,17 @@ class Block {
         ctx.fillStyle = this.color;
         ctx.fillRect(-pos.size / 2, -pos.size / 2, pos.size, pos.size);
         ctx.restore();
-        }
       }
     }
+  }
 
   isOffScreen() {
     if (!this.sliced) {
       return this.z > endZ;
-      } else {
+    } else {
       return this.sliceTime > 60;
-      }
     }
+  }
 
   checkSlice(mouseX, mouseY, lastMouseX, lastMouseY, velocity) {
     if (this.sliced) return false;
@@ -169,11 +169,11 @@ class Block {
       if (sliceDirection === this.direction) {
         this.slice(dx, mouseY - lastMouseY);
         return true;
-        }
       }
+    }
 
     return false;
-    }
+  }
 
   slice(dx, dy) {
     this.sliced = true;
@@ -198,9 +198,9 @@ class Block {
             x: vanishingPointX + this.x * scale,
             y: vanishingPointY + this.y * scale,
             size: (this.size * scale) / 4,
-            };
-          },
+          };
         },
+      },
       {
         x: this.x + 0.3,
         y: this.y,
@@ -218,15 +218,15 @@ class Block {
             x: vanishingPointX + this.x * scale,
             y: vanishingPointY + this.y * scale,
             size: (this.size * scale) / 4,
-            };
-          },
+          };
         },
-      ];
+      },
+    ];
 
     // Create particles
     createParticles(pos.x, pos.y, this.color);
-    }
   }
+}
 
 // Particle class
 class Particle {
@@ -239,7 +239,7 @@ class Particle {
     this.color = color;
     this.alpha = 1;
     this.decay = Math.random() * 0.03 + 0.02;
-    }
+  }
 
   update() {
     this.x += this.vx;
@@ -247,7 +247,7 @@ class Particle {
     this.vx *= 0.98;
     this.vy *= 0.98;
     this.alpha -= this.decay;
-    }
+  }
 
   draw() {
     ctx.save();
@@ -257,18 +257,18 @@ class Particle {
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
-    }
+  }
 
   isDead() {
     return this.alpha <= 0;
-    }
   }
+}
 
 function createParticles(x, y, color) {
   for (let i = 0; i < 20; i++) {
     particles.push(new Particle(x, y, color));
-    }
   }
+}
 
 // Mouse events
 canvas.addEventListener("mousemove", (e) => {
@@ -287,22 +287,22 @@ canvas.addEventListener("mousemove", (e) => {
   saberTrail.push({ x: mouseX, y: mouseY, time: Date.now() });
   if (saberTrail.length > trailLength) {
     saberTrail.shift();
-    }
-  });
+  }
+});
 
 // Start button
 document.getElementById("startBtn").addEventListener("click", () => {
   document.getElementById("startScreen").style.display = "none";
   gameState = "playing";
   resetGame();
-  });
+});
 
 // Restart button
 document.getElementById("restartBtn").addEventListener("click", () => {
   document.getElementById("gameOver").style.display = "none";
   gameState = "playing";
   resetGame();
-  });
+});
 
 function resetGame() {
   score = 0;
@@ -313,11 +313,11 @@ function resetGame() {
   particles = [];
   blockSpawnTimer = 0;
   updateUI();
-  }
+}
 
 function spawnBlock() {
   blocks.push(new Block());
-  }
+}
 
 function checkCollisions() {
   if (mouseVelocity < 10) return; // Not moving fast enough
@@ -330,14 +330,14 @@ function checkCollisions() {
       if (combo > maxCombo) maxCombo = combo;
       score += 10 * combo;
       updateUI();
-      }
     }
   }
+}
 
 function updateUI() {
   document.getElementById("score").textContent = `Score: ${score}`;
   document.getElementById("combo").textContent = `Combo: ${combo}x`;
-  }
+}
 
 function drawSaber() {
   // Draw trail with glow
@@ -355,8 +355,8 @@ function drawSaber() {
       ctx.moveTo(saberTrail[i - 1].x, saberTrail[i - 1].y);
       ctx.lineTo(saberTrail[i].x, saberTrail[i].y);
       ctx.stroke();
-      }
     }
+  }
 
   // Draw cursor
   ctx.shadowBlur = 20;
@@ -372,7 +372,7 @@ function drawSaber() {
   ctx.beginPath();
   ctx.arc(mouseX, mouseY, 15, 0, Math.PI * 2);
   ctx.stroke();
-  }
+}
 
 function drawBackground() {
   // Draw grid lines for depth perception
@@ -391,12 +391,12 @@ function drawBackground() {
 
       if (z === startZ) {
         ctx.moveTo(x, y);
-        } else {
+      } else {
         ctx.lineTo(x, y);
-        }
       }
-    ctx.stroke();
     }
+    ctx.stroke();
+  }
 
   // Horizontal lines
   for (let i = -2; i <= 2; i++) {
@@ -409,13 +409,13 @@ function drawBackground() {
 
       if (z === startZ) {
         ctx.moveTo(x, y);
-        } else {
+      } else {
         ctx.lineTo(x, y);
-        }
       }
-    ctx.stroke();
     }
+    ctx.stroke();
   }
+}
 
 function gameLoop() {
   // Clear canvas with fade effect
@@ -431,7 +431,7 @@ function gameLoop() {
     if (blockSpawnTimer >= blockSpawnInterval) {
       spawnBlock();
       blockSpawnTimer = 0;
-      }
+    }
 
     // Update and draw blocks
     for (let i = blocks.length - 1; i >= 0; i--) {
@@ -451,11 +451,11 @@ function gameLoop() {
             `Final Score: ${score}`;
             document.getElementById("finalCombo").textContent =
             `Max Combo: ${maxCombo}x`;
-            }
           }
-        blocks.splice(i, 1);
         }
+        blocks.splice(i, 1);
       }
+    }
 
     // Update and draw particles
     for (let i = particles.length - 1; i >= 0; i--) {
@@ -464,8 +464,8 @@ function gameLoop() {
 
       if (particles[i].isDead()) {
         particles.splice(i, 1);
-        }
       }
+    }
 
     // Check collisions
     checkCollisions();
@@ -480,13 +480,13 @@ function gameLoop() {
     ctx.textAlign = "right";
     ctx.fillText(`Missed: ${missed}/${maxMissed}`, canvas.width - 20, 30);
     ctx.textAlign = "left";
-    } else if (gameState === "start") {
+  } else if (gameState === "start") {
     // Draw saber on start screen
     drawSaber();
-    }
+  }
 
   requestAnimationFrame(gameLoop);
-  }
+}
 
 // Start game loop
 gameLoop();

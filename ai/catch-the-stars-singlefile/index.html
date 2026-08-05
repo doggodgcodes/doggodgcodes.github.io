@@ -19,8 +19,8 @@
         .help{margin-top:8px;color:#9fb3d9;font-size:13px}
         footer{margin-top:14px;color:#86a2cf;font-size:13px}
         @media (max-width:600px){canvas{height:420px}}
-        </style>
-      </head>
+      </style>
+    </head>
     <body>
       <div class="wrap">
         <header>
@@ -29,8 +29,8 @@
               <div class="badge" id="score">Score: 0</div>
                 <div class="badge" id="lives">Lives: 3</div>
                   <div class="badge" id="level">Level: 1</div>
-                    </div>
-                  </header>
+                  </div>
+                </header>
 
                 <canvas id="game"></canvas>
 
@@ -38,11 +38,11 @@
                     <button id="startBtn">Start</button>
                       <button id="pauseBtn">Pause</button>
                         <button id="resetBtn">Reset</button>
-                          </div>
+                        </div>
 
                         <div class="help">Controls: Arrow keys or A/D to move. Click or touch to move the catcher. Catch falling stars to score. Missing stars costs a life.</div>
                           <footer>Single-file demo bundled into ai/catch-the-stars-singlefile/index.html</footer>
-                            </div>
+                          </div>
 
                           <script>
                             (function(){
@@ -58,7 +58,7 @@
                                 canvas.style.width = rect.width + 'px';
                                 canvas.style.height = rect.height + 'px';
                                 ctx.setTransform(scale,0,0,scale,0,0);
-                                }
+                              }
                               new ResizeObserver(resize).observe(canvas);
                               resize();
 
@@ -81,13 +81,13 @@
                                 score = 0; lives = 3; level = 1; stars = [];
                                 spawnInterval = 900; player.w = Math.min(160, Math.floor(W/6)); player.speed = 8;
                                 updateHud();
-                                }
+                              }
 
                               function updateHud(){
                                 scoreEl.textContent = 'Score: ' + score;
                                 livesEl.textContent = 'Lives: ' + lives;
                                 levelEl.textContent = 'Level: ' + level;
-                                }
+                              }
 
                               function rand(min,max){return Math.random()*(max-min)+min}
 
@@ -96,7 +96,7 @@
                                 const x = rand(r, W - r);
                                 const speed = rand(80,160) + (level-1)*30; // px/s
                                 stars.push({x,y:-r,r,vy:speed,angle:rand(0,Math.PI*2),spin:rand(-2,2)});
-                                }
+                              }
 
                               function step(dt){
                                 if(!running || paused) return;
@@ -113,15 +113,15 @@
                                     score += Math.round(10 + s.r);
                                     stars.splice(i,1);
                                     if(score % 200 === 0){ level++; spawnInterval = Math.max(300, spawnInterval - 80); player.w = Math.max(60, player.w - 6); updateHud(); }
-                                    } else if(s.y - s.r > H){
+                                  } else if(s.y - s.r > H){
                                     // missed
                                     stars.splice(i,1);
                                     lives -= 1;
                                     if(lives <= 0){ running = false; showGameOver(); }
-                                    }
                                   }
-                                updateHud();
                                 }
+                                updateHud();
+                              }
 
                               function showGameOver(){
                                 // simple overlay
@@ -135,7 +135,7 @@
                                 ctx.font = '16px system-ui, Arial';
                                 ctx.fillText('Score: ' + score, W/2, H/2 + 20);
                                 ctx.restore();
-                                }
+                              }
 
                               function render(){
                                 // background
@@ -155,7 +155,7 @@
                                   drawStar(ctx,0,0,s.r,5);
                                   ctx.fill();
                                   ctx.restore();
-                                  }
+                                }
 
                                 // player catcher
                                 ctx.fillStyle = '#d1e8ff';
@@ -165,7 +165,7 @@
 
                                 // HUD (transparent)
                                 ctx.fillStyle = 'rgba(255,255,255,0.02)'; ctx.fillRect(8,8,160,34);
-                                }
+                              }
 
                               function drawStar(ctx,x,y,R,points){
                                 const step = Math.PI / points;
@@ -176,16 +176,16 @@
                                   const sx = Math.cos(a)*r;
                                   const sy = Math.sin(a)*r;
                                   if(i===0) ctx.moveTo(sx,sy); else ctx.lineTo(sx,sy);
-                                  }
-                                ctx.closePath();
                                 }
+                                ctx.closePath();
+                              }
 
                               function gameLoop(now){
                                 const dt = now - last; last = now;
                                 step(dt);
                                 render();
                                 if(running) requestAnimationFrame(gameLoop);
-                                }
+                              }
 
                               // Input
                               let keys = {};
@@ -199,19 +199,19 @@
                                 if(right) player.x += player.speed * (dt/16);
                                 // clamp
                                 player.x = Math.max(0, Math.min(W - player.w, player.x));
-                                }
+                              }
 
                               // pointer support: click to move center
                               canvas.addEventListener('pointerdown', e=>{
                                 const rect = canvas.getBoundingClientRect();
                                 const x = (e.clientX - rect.left);
                                 player.x = Math.max(0, Math.min(W - player.w, x - player.w/2));
-                                });
+                              });
 
                               // game control buttons
                               startBtn.addEventListener('click', ()=>{
                                 if(!running){ running = true; paused = false; last = performance.now(); requestAnimationFrame(gameLoop); }
-                                });
+                              });
                               pauseBtn.addEventListener('click', ()=>{ paused = !paused; pauseBtn.textContent = paused? 'Resume':'Pause'; if(!paused && running){ last = performance.now(); requestAnimationFrame(gameLoop); } });
                               resetBtn.addEventListener('click', ()=>{ resetState(); running = false; paused = false; updateHud(); render(); });
 
@@ -222,7 +222,7 @@
                                 const dt = now - accLast; accLast = now;
                                 updatePlayerFromInput(dt);
                                 requestAnimationFrame(ticker);
-                                }
+                              }
                               ticker();
 
                               // initial layout
@@ -231,7 +231,7 @@
                                 player.h = Math.max(14, Math.floor(H*0.035));
                                 player.x = (W - player.w)/2;
                                 player.y = H - player.h - 12;
-                                }
+                              }
 
                               // small loop to keep layout & rendering when not running so user sees the canvas
                               function idleRender(){ render(); requestAnimationFrame(idleRender); }
@@ -246,9 +246,9 @@
                               (function frameLoop(){
                                 if(running && !paused){ last = performance.now(); requestAnimationFrame(gameLoop); }
                                 setTimeout(frameLoop, 500);
-                                })();
-
                               })();
-                            </script>
-                          </body>
-                        </html>
+
+                            })();
+                          </script>
+                        </body>
+                      </html>

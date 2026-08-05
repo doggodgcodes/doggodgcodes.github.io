@@ -13,20 +13,20 @@ body {
   color: white;
   padding: 75px;
   padding-top: 50px;
-  }
+}
 
 @keyframes moveUpDiagonal {
   from {
     background-position: 0 0;
-    }
+  }
   to {
     /* Moves the image 1 full tile up and left so the loop is seamless */
     background-position: -250px -227px;
-    }
   }
+}
 /* code by gemini */
 .vt323-regular,body {
   font-family: "VT323", monospace;
   font-weight: 400;
   font-style: normal;
-  }
+}

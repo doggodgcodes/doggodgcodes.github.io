@@ -13,20 +13,20 @@
           const display = document.getElementById("qwerty");
           if(display) {
             display.textContent = burgers;
-            }
+          }
 
           // RAINBOW RAVE TRIGGER
           if (burgers > 100000) {
             document.body.style.backgroundColor = 'rgb(' + Math.random()*255 + ',' + Math.random()*255 + ',' + Math.random()*255 + ')';
-            }
+          }
 
           // SPAWN FLYING DOG AT 1 MILLION!
           if (burgers >= 1000000) {
             const dog = document.getElementById("flying-dog");
             dog.style.display = "block";
-            }
           }
-        </script>
+        }
+      </script>
 
       <style>
         body {
@@ -35,11 +35,11 @@
           overflow-x: hidden;
           padding: 20px;
           transition: background-color 0.1s;
-          }
+        }
 
         .stock-box {
           animation: boogie 0.5s infinite linear;
-          }
+        }
 
         @keyframes boogie {
           0% { transform: translate(1px, 1px) rotate(0deg); }
@@ -47,7 +47,7 @@
           50% { transform: translate(-3px, 0px) rotate(1deg); }
           75% { transform: translate(3px, 2px) rotate(0deg); }
           100% { transform: translate(1px, -1px) rotate(1deg); }
-          }
+        }
 
         #flying-dog {
           position: fixed;
@@ -57,19 +57,19 @@
           display: none;
           animation: flyAcross 4s infinite linear;
           z-index: 999;
-          }
+        }
 
         @keyframes flyAcross {
           0% { left: -200px; transform: rotate(0deg); }
           50% { transform: rotate(20deg); }
           100% { left: 100%; transform: rotate(0deg); }
-          }
+        }
 
         .gorilla-tag {
           color: #5d4037;
           font-weight: bold;
           text-shadow: 2px 2px #ffffff;
-          }
+        }
 
         .bonk-button {
           padding: 20px;
@@ -78,7 +78,7 @@
           border-radius: 50px;
           cursor: pointer;
           transition: transform 0.2s;
-          }
+        }
 
         .bonk-button:hover { transform: scale(1.5) rotate(10deg); }
 
@@ -91,7 +91,7 @@
           color: navy;
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           margin: 20px;
-          }
+        }
 
         .dg-fbar-img {
           border-radius: 25px;
@@ -99,7 +99,7 @@
           margin: 10px;
           width: 176px;
           height: 176px;
-          }
+        }
 
         .creeper-zone {
           background-color: #4CAF50;
@@ -107,15 +107,15 @@
           border: 4px solid #000;
           margin: 20px;
           padding: 10px;
-          }
+        }
 
         #qwerty {
           font-size: 80px;
           color: red;
           text-shadow: 5px 5px black;
-          }
-        </style>
-      </head>
+        }
+      </style>
+    </head>
     <body>
 
       <img src="https://doggodgcodes.github.io/assets/bird-water-gun.png" id="flying-dog" alt="FLYING DOGGO!">
@@ -140,14 +140,14 @@
                       <br>
 
                       <button class="bonk-button" onclick="alert('BONK! GO TO YOUTUBE!'); qwFunc();">CLICK FOR MAXIMUM BONK</button>
-                        </div>
+                      </div>
 
                       <div class="creeper-zone">
                         <h1 id="qwerty">0</h1>
                           <h3>🧊 CHILLY DOODLING ZONE 🧊</h3>
                             <p>Creeper? Aw man.</p>
                               <button onclick="confirm('Warning: Chicken Jockey detected!'); qwFunc();">SPAWN CHICKEN JOCKEY</button>
-                                </div>
+                              </div>
 
                               <marquee direction="right" scrollamount="40">🍔🍟🌭🥓🥞🌮🌯🍕🍭🍦🚨👍💫💖🎃🌲🏅😺🤣🍔🤓📎👋🛑♾️🧊🧊🔎😂📰🛷🪨💪🔥💯🍥🍪🥘🍰🍬🥣🍡🍦🍨🎂🍭🍡🍮🍰🍦🥛🍷🍻🥃🍴🍷🫖🧃🍐🍅🍅🍐🌽🥒🥑🥑🥜🥜🍄‍🟫🌹☘️🌱🌼🚗🚌🚐🛺🚔🚚🚍🚘🚘🦼🦽🚘🏍️🚉🚃🚅🚉🚟🛫🚂🚡🚆</marquee>
 
@@ -156,9 +156,9 @@
                                     <p><strong>Subscribe to DoggoWing21! 🐶🍦</strong></p>
                                       <a target="_blank" href="https://youtube.com/@flyingdogwithapencil">
                                         <img class="dg-fbar-img" src="https://yt3.ggpht.com/ERio1I1-viDXodzrvSgS_7ooGyD6UpAimGgQkUha23WTAl1oYfOqIqdcjI48yNtJ1b8t_9Fh=s176-c-k-c0x00ffffff-no-rj-mo" alt="Flying Dog With A Pencil">
-                                        </a>
-                                      </footer>
-                                    </div>
+                                      </a>
+                                    </footer>
+                                  </div>
 
-                                  </body>
-                                </html>
+                                </body>
+                              </html>

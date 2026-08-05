@@ -21,13 +21,13 @@
           flex-direction: column;
           align-items: center;
           padding: 20px;
-          }
+        }
 
         @keyframes slowRainbow {
           0% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
-          }
+        }
 
         .container {
           background: rgba(255, 255, 255, 0.95);
@@ -36,7 +36,7 @@
           width: 100%;
           max-width: 800px;
           padding: 30px;
-          }
+        }
         h1 { font-size: 2.5em; color: #FF6B9D; text-align: center; margin-bottom: 10px; }
         .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
 
@@ -47,7 +47,7 @@
           text-align: center;
           margin-bottom: 30px;
           color: white;
-          }
+        }
         .amount { font-size: 3em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
         .capsule-machine {
@@ -55,7 +55,7 @@
           border-radius: 20px;
           padding: 30px;
           margin-bottom: 30px;
-          }
+        }
         .capsule-display {
           background: white;
           border-radius: 15px;
@@ -68,7 +68,7 @@
           align-items: center;
           max-height: 400px;
           overflow-y: auto;
-          }
+        }
         .capsule-animation { font-size: 5em; animation: bounce 0.5s infinite; }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
@@ -81,7 +81,7 @@
           cursor: pointer;
           color: white;
           font-family: "Luckiest Guy", cursive;
-          }
+        }
         .pull-1 { background: #667eea; }
         .pull-10 { background: #f093fb; }
         .pull-11 { background: #FFD700; color: #333; }
@@ -95,7 +95,7 @@
           animation: slowRainbow 5s linear infinite;
           color: white;
           text-align: center;
-          }
+        }
 
         .inventory { background: #f8f9fa; border-radius: 15px; padding: 20px; margin-top: 30px; }
         .cats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
@@ -106,33 +106,33 @@
         .rarity.uber-rare { background: gold; color: black; }
 
         .multi-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 5px; width: 100%; }
-        </style>
-      </head>
+      </style>
+    </head>
     <body>
       <div class="container">
         <h1>🐱 Battle Cats Capsule 🎰</h1>
           <div class="currency-display">
             <h2>Cat Food | Total Value: <span id="catValue">0</span></h2>
               <div class="amount" id="catFood">8388607</div>
-                </div>
+              </div>
 
               <div class="capsule-machine">
                 <div class="capsule-display" id="capsuleDisplay">
                   <div class="capsule-animation">🎰</div>
                     <p>READY TO BONK!</p>
-                      </div>
+                    </div>
                     <div class="pull-buttons" style="margin-top:20px;">
                       <button class="pull-btn pull-1" onclick="pullCapsule(1)">Pull 1x (150 CF)</button>
                         <button class="pull-btn pull-10" onclick="pullCapsule(10)">Pull 10x (1500 CF)</button>
                           <button class="pull-btn pull-11" onclick="pullCapsule(11)">Pull 11x (1500 CF)</button>
-                            </div>
                           </div>
+                        </div>
 
                         <div class="hamburger-pass">
                           <h3>🍔 Hamburger Pass Active: <span id="passStatus">OFF</span></h3>
                             <button class="pull-btn" style="background:white; color:black;" onclick="purchaseHamburgerPass()" id="hamburgerPassBtn">Activate (1 CF)</button>
                               <button class="pull-btn pull-11" onclick="pullHamburgerCapsule(100)" id="roll100Btn" disabled>ROLL 100 LEGENDS!</button>
-                                </div>
+                              </div>
 
                               <div class="inventory">
                                 <h3>📦 Collection (Saves Automatically!)</h3>
@@ -140,9 +140,9 @@
                                     <div id="stats" style="margin-top: 15px; display: flex; justify-content: space-between;">
                                       <span>Total Pulls: <span id="totalPulls">0</span></span>
                                         <span>Ubers/Legends: <span id="uberCount">0</span></span>
-                                          </div>
                                         </div>
                                       </div>
+                                    </div>
 
                                     <script>
                                       const cats = [
@@ -166,7 +166,7 @@
                                         { name: "Doge King", icon: "🐕", rarity: "legend", value: 20000 },
                                         { name: "Gorilla Tag Cat", icon: "🦍", rarity: "legend", value: 25000 },
                                         { name: "Absolute Universe Cat", icon: "🌌", rarity: "legend", value: 99999 }
-                                        ];
+                                      ];
 
                                       // --- UPDATE YOUR SCRIPT SECTION WITH THIS BOOGIE WOOGIE LOGIC ---
 
@@ -180,7 +180,7 @@
                                         localStorage.setItem('battleCatsInventory', JSON.stringify(inventory));
                                         localStorage.setItem('battleCatsPulls', totalPulls);
                                         localStorage.setItem('battleCatsFood', catFood); // Save that food!
-                                        }
+                                      }
 
                                       function purchaseHamburgerPass() {
                                         if (catFood < 1 || hamburgerPassActive) return;
@@ -202,15 +202,15 @@
                                           updateUI();
                                           updateInventoryDisplay();
                                           saveGame();
-                                          }
-                                        }, 1000);
-                                      }
+                                        }
+                                      }, 1000);
+                                    }
 
                                     // Ensure 100x roll actually works!
                                     function pullHamburgerCapsule(count) {
                                       if(!hamburgerPassActive) return;
                                       roll(count, true);
-                                      }
+                                    }
 
                                     function getRarityChance() {
                                       const rand = Math.random() * 100;
@@ -220,14 +220,14 @@
                                       if (rand < 15) return "rare";
                                       if (rand < 40) return "special";
                                       return "normal";
-                                      }
+                                    }
 
                                     function pullCapsule(count) {
                                       let cost = (count === 1) ? 150 : 1500;
                                       if (catFood < cost) return;
                                       catFood -= cost;
                                       roll(count, false);
-                                      }
+                                    }
 
                                     function roll(count, isLegendOnly) {
                                       const display = document.getElementById('capsuleDisplay');
@@ -242,30 +242,30 @@
                                           results.push(pulled);
                                           addToInventory(pulled);
                                           totalPulls++;
-                                          }
+                                        }
                                         displayResults(results);
                                         updateInventoryDisplay();
                                         updateUI();
                                         saveGame();
-                                        }, 800);
-                                      }
+                                      }, 800);
+                                    }
 
                                     function addToInventory(cat) {
                                       if (!inventory[cat.name]) {
                                         inventory[cat.name] = { ...cat, count: 0 };
-                                        }
-                                      inventory[cat.name].count++;
                                       }
+                                      inventory[cat.name].count++;
+                                    }
 
                                     function displayResults(results) {
                                       const display = document.getElementById('capsuleDisplay');
                                       if (results.length === 1) {
                                         const cat = results[0];
                                         display.innerHTML = `<div><div style="font-size:5em">${cat.icon}</div><h2>${cat.name}</h2></div>`;
-                                        } else {
+                                      } else {
                                         display.innerHTML = `<div class="multi-results">${results.map(c => `<div>${c.icon}</div>`).join('')}</div>`;
-                                        }
                                       }
+                                    }
 
                                     function updateInventoryDisplay() {
                                       const grid = document.getElementById('catsGrid');
@@ -275,9 +275,9 @@
                                           <div style="font-size:2em">${cat.icon}</div>
                                             <div style="font-size:0.8em">${cat.name}</div>
                                               <div>x${cat.count}</div>
-                                                </div>
+                                              </div>
                                               `).join('');
-                                              }
+                                            }
 
                                             function updateUI() {
                                               document.getElementById('catFood').textContent = catFood;
@@ -288,14 +288,14 @@
                                               Object.values(inventory).forEach(c => {
                                                 totalVal += (c.value * c.count);
                                                 if(c.rarity === 'uber-rare' || c.rarity === 'legend') ubers += c.count;
-                                                });
+                                              });
                                               document.getElementById('catValue').textContent = totalVal;
                                               document.getElementById('uberCount').textContent = ubers;
-                                              }
+                                            }
 
                                             // INIT
                                             updateInventoryDisplay();
                                             updateUI();
-                                            </script>
-                                          </body>
-                                        </html>
+                                          </script>
+                                        </body>
+                                      </html>

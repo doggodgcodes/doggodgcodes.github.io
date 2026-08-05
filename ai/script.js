@@ -1,10 +1,10 @@
 function showTime() {
   document.getElementById("currentTime").innerHTML = new Date().toUTCString();
-  }
+}
 showTime();
 setInterval(function () {
   showTime();
-  }, 1000);
+}, 1000);
 console.log("this is gonna be a long commit thanks to this so many lines of code");
 console.log("this is gonna be a long commit thanks to this so many lines of code");
 console.log("this is gonna be a long commit thanks to this so many lines of code");

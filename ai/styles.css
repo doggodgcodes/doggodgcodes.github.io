@@ -8,19 +8,19 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  }
+}
 
 header {
   text-align: center;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.8);
   margin-bottom: 20px;
-  }
+}
 
 header h1 {
   margin: 0;
   color: #333;
-  }
+}
 
 .grid-container {
   display: grid;
@@ -30,7 +30,7 @@ header h1 {
   margin: 0 auto;
   padding: 0 20px;
   flex: 1;
-  }
+}
 
 .grid-item {
   backdrop-filter: blur(100px);          /* the magic */
@@ -59,7 +59,7 @@ header h1 {
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease, transform 0.2s, box-shadow 0.3s ease;
-  }
+}
 
 .grid-item:hover {
   background-color: skyblue;
@@ -67,19 +67,19 @@ header h1 {
   transform: perspective(500px) rotateX(5deg) rotateY(-5deg) scale(1.05);
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   transform: translateY(-5px);
-  }
+}
 
 footer {
   text-align: center;
   padding: 15px;
   background-color: rgba(255, 255, 255, 0.8);
   margin-top: 20px;
-  }
+}
 
 .credit {
   font-size: 0.9em;
   color: #666;
-  }
+}
 hr {
   margin: 25px;
-  }
+}

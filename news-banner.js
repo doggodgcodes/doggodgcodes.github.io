@@ -15,15 +15,15 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
     if (banner) {
       banner.textContent = newMessage;
       console.log("News updated for " + targetMonthDay);
-      }
     }
+  }
   else {
     if (banner) {
       banner.textContent = "No news today.";
       console.log("Nothing new");
-      }
     }
   }
+}
 
 // HOW TO USE THE MAGIC:
 // Just put the Month and the Day. The script handles the year!

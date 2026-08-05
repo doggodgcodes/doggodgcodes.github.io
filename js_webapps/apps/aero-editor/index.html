@@ -19,7 +19,7 @@
           display: flex;
           flex-direction: column;
           font-family: 'Segoe UI', sans-serif;
-          }
+        }
 
         .editor-container {
           display: flex;
@@ -27,7 +27,7 @@
           gap: 5px;
           padding: 5px;
           box-sizing: border-box;
-          }
+        }
 
         /* The Frosted Glass Textarea */
         textarea {
@@ -49,7 +49,7 @@
           resize: none;
           box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
           tab-size: 2;
-          }
+        }
 
         /* The Output Box (Also a bit glassy!) */
         .output-box {
@@ -59,7 +59,7 @@
           padding: 20px;
           overflow: auto;
           border: 1px solid white;
-          }
+        }
 
         .world-bar {
           display: flex;
@@ -71,7 +71,7 @@
           background: rgba(0,0,0,0.2);
           margin: 0;
           padding: 12px;
-          }
+        }
         #saveBtn {
           background: rgba(0, 242, 255, 0.6);
           color: white;
@@ -81,16 +81,16 @@
           cursor: pointer;
           font-weight: bold;
           transition: 0.3s;
-          }
+        }
         #saveBtn:hover {
           background: #9cbb54;
           transform: scale(1.1);
-          }
+        }
         #title {
           background: rgba(0, 242, 255, 0.1);
-          }
-        </style>
-      </head>
+        }
+      </style>
+    </head>
     <body>
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-+Kqbt7BxoT20OXHT6OYj0KpETulwb2UXMJQTdvzJspYi6vE2SsbsTsOB91E93l3AVz8Y41/2bZUhKDQa/lAZgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -106,17 +106,17 @@
                     <style>
                       body {
                         font-family: "Segoe UI", sans-serif;
-                        }
-                      </style>
-                    </head>
+                      }
+                    </style>
+                  </head>
                   <body>
                     <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
-                      </body>
-                    </html>
-                  </textarea>
+                    </body>
+                  </html>
+                </textarea>
                 <div class="output-box">
-                  </div>
                 </div>
+              </div>
 
               <script>
                 // 1. Grab the monke-tools
@@ -134,8 +134,8 @@
                   if (match && match[1]) {
                     document.title = match[1] + " - doggodgcodes";
                     displayTitle.textContent = " " + match[1];
-                    }
-                  });
+                  }
+                });
 
                 const saveBtn = document.getElementById('saveBtn');
 
@@ -149,7 +149,7 @@
                   // 2. Make sure it ends in .html
                   if (!fileName.endsWith(".html")) {
                     fileName += ".html";
-                    }
+                  }
 
                   // 3. Create the "Jar" of code
                   const blob = new Blob([input.value + `<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->`], { type: "text/html" });
@@ -164,7 +164,7 @@
 
                   // 6. Clean up the ghost link
                   URL.revokeObjectURL(link.href);
-                  });
-                </script>
-              </body>
-            </html>
+                });
+              </script>
+            </body>
+          </html>

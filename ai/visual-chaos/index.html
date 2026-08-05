@@ -23,7 +23,7 @@
           display: flex;
           flex-direction: column;
           overflow-x: hidden;
-          }
+        }
 
         /* Header */
         header {
@@ -31,14 +31,14 @@
           padding: 20px;
           background-color: rgba(255,255,255,0.8);
           margin-bottom: 20px;
-          }
+        }
 
         header h1 {
           margin: 0;
           color: #333;
           font-family: monospace;
           animation: bulge 2s infinite alternate;
-          }
+        }
 
         /* GRID */
         .grid-container {
@@ -49,7 +49,7 @@
           margin: 0 auto;
           padding: 0 20px;
           flex: 1;
-          }
+        }
 
         .grid-item {
           backdrop-filter: blur(100px);
@@ -72,14 +72,14 @@
           align-items: center;
           justify-content: center;
           filter: url(#glitchFilter);
-          }
+        }
 
         .grid-item:hover {
           background-color: skyblue;
           color: navy;
           transform: perspective(500px) rotateX(5deg) rotateY(-5deg) scale(1.05);
           box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-          }
+        }
 
         /* Footer */
         footer {
@@ -87,12 +87,12 @@
           padding: 15px;
           background-color: rgba(255,255,255,0.8);
           margin-top: 20px;
-          }
+        }
         .credit {
           font-size: 0.9em;
           color: #666;
           font-weight: bold;
-          }
+        }
 
         /* XP POPUPS */
         .xp {
@@ -106,7 +106,7 @@
           padding: 10px;
           cursor: grab;
           z-index:1000;
-          }
+        }
 
         /* PARTICLES */
         .particle {
@@ -116,10 +116,10 @@
           pointer-events: none;
           border-radius: 50%;
           animation: explode 1s linear forwards;
-          }
+        }
         @keyframes explode {
           to { transform: translate(var(--x),var(--y)) scale(0); opacity:0; }
-          }
+        }
         .trail {
           position: fixed;
           width: 10px;
@@ -129,10 +129,10 @@
           border-radius: 50%;
           opacity: 0.7;
           animation: fade 0.5s linear forwards;
-          }
+        }
         @keyframes fade {
           to { opacity:0; transform: scale(0.5); }
-          }
+        }
 
         /* MINI BSOD */
         #bsod {
@@ -144,12 +144,12 @@
           display:none;
           z-index:99999;
           padding:40px;
-          }
+        }
 
         /* CURSOR */
         body.cursor-glitch {
           cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text y="15" font-size="15">❌</text></svg>'), auto;
-          }
+        }
 
         /* GLITCHY BULGE ANIMATION */
         @keyframes bulge {
@@ -158,8 +158,8 @@
           50% { transform: scale(0.95) rotate(1deg) skew(-1deg); filter: hue-rotate(90deg); }
           75% { transform: scale(1.05) rotate(-1deg) skew(1deg); filter: hue-rotate(135deg); }
           100% { transform: scale(1) rotate(0deg) skew(0deg); filter: hue-rotate(180deg); }
-          }
-        </style>
+        }
+      </style>
 
       <body class="cursor-glitch">
         <iframe src="https://minechicken98.github.io/funny/glitchazon"></iframe>
@@ -167,21 +167,21 @@
             <iframe width="560" height="315" src="https://www.youtube.com/embed/weyMeZ0uwTM?si=4KY_i7OJ0JnOW_zr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               <header>
                 <h1 class="glitch">CHAOS YOUTUBE</h1>
-                  </header>
+                </header>
 
                 <div class="grid-container">
                   <a href="https://www.youtube.com/" target="_blank" class="grid-item">YouTube: Cat Chaos</a>
-                    </div>
+                  </div>
 
                   <footer>
                     <div class="credit">Created by ChatGPT and doggodgcodes</div>
-                      </footer>
+                    </footer>
 
                     <div id="bsod">
                       <h2>A problem has been detected and this is not a real bluescreen.</h2>
                         <p>yum</p>
                           <p>Beginning dump of nonexistent memory...</p>
-                            </div>
+                          </div>
 
                           <script>
                             /* MEOWSYNTH AUDIO */
@@ -201,7 +201,7 @@
                               div.innerHTML="<b>⚠️ ERROR</b><br>Something went terribly wrong.";
                               document.body.appendChild(div);
                               bounce(div);
-                              }
+                            }
                             function bounce(el){
                               let dx=2+Math.random()*3, dy=2+Math.random()*3;
                               function move(){
@@ -211,9 +211,9 @@
                                 el.style.left=rect.left+dx+"px";
                                 el.style.top=rect.top+dy+"px";
                                 requestAnimationFrame(move);
-                                }
-                              move();
                               }
+                              move();
+                            }
                             setInterval(spawnXP,3000);
 
                             /* CURSOR TRAIL */
@@ -224,7 +224,7 @@
                               t.style.top=e.clientY+"px";
                               document.body.appendChild(t);
                               setTimeout(()=>t.remove(),500);
-                              });
+                            });
 
                             /* PARTICLES ON CLICK */
                             document.addEventListener("click", e=>{
@@ -240,20 +240,20 @@
                                 p.style.setProperty("--y",Math.sin(angle)*dist+"px");
                                 document.body.appendChild(p);
                                 setTimeout(()=>p.remove(),1000);
-                                }
-                              });
+                              }
+                            });
 
                             /* MINI BSOD */
                             function triggerBSOD(){
                               const bsod=document.getElementById("bsod");
                               bsod.style.display="block";
                               setTimeout(()=>bsod.style.display="none",1500);
-                              }
+                            }
                             setInterval(()=>{if(Math.random()<0.2)triggerBSOD()},5000);
 
                             /* GLITCH BODY */
                             setInterval(()=>document.body.classList.toggle("glitch"),2000);
-                            </script>
+                          </script>
 
-                          </body>
-                        </html>
+                        </body>
+                      </html>
