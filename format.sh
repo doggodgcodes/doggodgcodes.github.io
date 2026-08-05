@@ -45,15 +45,15 @@ targetFiles.forEach(file => {
     const spaces = " ".repeat(indentLevel * indentSize);
     const result = spaces + trimmed;
 
-    if (trimmed.endsWith("{") || trimmed.endsWith("[") || (trimmed.startsWith("<") && !trimmed.startsWith("</") && !trimmed.endsWith("/>") && !trimmed.startsWith("<!"))) {
-      indentLevel++;
-    }
-
     if (trimmed.startsWith("}") || trimmed.startsWith("]") || trimmed.startsWith("</") || trimmed.endsWith("/>")) {
       indentLevel--;
       if (indentLevel < 0) {
         indentLevel = 0;
       }
+    }
+
+    if (trimmed.endsWith("{") || trimmed.endsWith("[") || (trimmed.startsWith("<") && !trimmed.startsWith("</") && !trimmed.endsWith("/>") && !trimmed.startsWith("<!"))) {
+      indentLevel++;
     }
 
     return result;
