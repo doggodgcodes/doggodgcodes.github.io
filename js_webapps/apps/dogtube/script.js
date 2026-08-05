@@ -96,38 +96,38 @@ function formatDate(dateString) {
   if (diffDays === 0) return "Today";
   if (diffDays === 1) return "Yesterday";
   if (diffDays < 7) return `${diffDays} days ago`;
-    if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
-      if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
-        return `${Math.floor(diffDays / 365)} years ago`;
-      }
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)} months ago`;
+  return `${Math.floor(diffDays / 365)} years ago`;
+}
 
-      function displayVideos() {
-        const grid = document.getElementById("videoGrid");
-        grid.innerHTML = "";
+function displayVideos() {
+  const grid = document.getElementById("videoGrid");
+  grid.innerHTML = "";
 
-        // Show only the first 15 videos
-        const displayedVideos = videos.slice(0, 15);
+  // Show only the first 15 videos
+  const displayedVideos = videos.slice(0, 15);
 
-        displayedVideos.forEach((video) => {
-          const card = document.createElement("div");
-          card.className = "video-card";
-          card.onclick = () => openVideo(video);
+  displayedVideos.forEach((video) => {
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.onclick = () => openVideo(video);
 
-          const avatarImg = channelAvatar
-          ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile" style="width: 36px; height: 36px; border-radius: 50%;">`
-            : "";
+    const avatarImg = channelAvatar
+    ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile" style="width: 36px; height: 36px; border-radius: 50%;">`
+    : "";
 
-            card.innerHTML = `
-            <div class="thumbnail">
-              <img src="${video.thumbnail}" alt="${video.title}">
-            </div>
-            <div class="video-info">
-              <div class="video-avatar">${avatarImg}</div>
-              <div class="video-details">
-                <h3>${video.title}</h3>
-                <div class="video-meta">
-                  <div>???</div>
-                  <div>${video.views} views • ${formatDate(video.published)}</div>
+    card.innerHTML = `
+    <div class="thumbnail">
+      <img src="${video.thumbnail}" alt="${video.title}">
+    </div>
+    <div class="video-info">
+      <div class="video-avatar">${avatarImg}</div>
+        <div class="video-details">
+          <h3>${video.title}</h3>
+            <div class="video-meta">
+              <div>???</div>
+                <div>${video.views} views • ${formatDate(video.published)}</div>
                 </div>
               </div>
             </div>
@@ -141,24 +141,24 @@ function formatDate(dateString) {
           moreContent.className = "more-videos-message";
           moreContent.innerHTML = `
           <p>Want more funny dog content?</p>
-          <a href="https://youtube.com/@flyingdogwithapencil" target="_blank" class="channel-link">
-            Visit DoggoWing21's channel on YouTube →
-          </a>
-          `;
-          grid.appendChild(moreContent);
-        }
-
-        function updateChannelStats() {
-          const statsElement = document.querySelector(".channel-stats");
-          if (statsElement) {
-            statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
+            <a href="https://youtube.com/@flyingdogwithapencil" target="_blank" class="channel-link">
+              Visit DoggoWing21's channel on YouTube →
+            </a>
+            `;
+            grid.appendChild(moreContent);
           }
-        }
 
-        function updateChannelAvatar() {
-          const headerAvatar = document.querySelector(".channel-avatar");
-          if (headerAvatar && channelAvatar) {
-            headerAvatar.innerHTML = `<img src="${channelAvatar}" alt="DoggoWing21" style="width: 80px; height: 80px; border-radius: 50%;">`;
+          function updateChannelStats() {
+            const statsElement = document.querySelector(".channel-stats");
+            if (statsElement) {
+              statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
+            }
+          }
+
+          function updateChannelAvatar() {
+            const headerAvatar = document.querySelector(".channel-avatar");
+            if (headerAvatar && channelAvatar) {
+              headerAvatar.innerHTML = `<img src="${channelAvatar}" alt="DoggoWing21" style="width: 80px; height: 80px; border-radius: 50%;">`;
             }
           }
 

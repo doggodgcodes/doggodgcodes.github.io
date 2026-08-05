@@ -2,360 +2,360 @@
 <html>
   <head>
     <title>Fakechat - doggodgcodes</title>
-    <!-- Core Web Fonts Matrix -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Doto:wght@100..900&family=Noto+Sans+Lao:wght@100..900" rel="stylesheet">
+      <!-- Core Web Fonts Matrix -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Doto:wght@100..900&family=Noto+Sans+Lao:wght@100..900" rel="stylesheet">
 
-    <style>
-      body {
-        background-color: #e1e4c7; /* Your classic old version background color */
-        color: brown;              /* Your custom text color signature */
-        font-family: "Noto Sans Lao", sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 25px;
-        margin: 0;
-        overflow-x: hidden;
-      }
+      <style>
+        body {
+          background-color: #e1e4c7; /* Your classic old version background color */
+          color: brown;              /* Your custom text color signature */
+          font-family: "Noto Sans Lao", sans-serif;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 25px;
+          margin: 0;
+          overflow-x: hidden;
+        }
 
-      /* ============================================================================ */
-      /* 🚨 SMOOTH PLOPPING & FADING ANIMATIONS MATRIX 🚨 */
-      /* ============================================================================ */
-      @keyframes plopIn {
-        0% {
+        /* ============================================================================ */
+        /* 🚨 SMOOTH PLOPPING & FADING ANIMATIONS MATRIX 🚨 */
+        /* ============================================================================ */
+        @keyframes plopIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.85) translateY(30px);
+          }
+          70% {
+            transform: scale(1.02) translateY(-4px);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
+
+        @keyframes slideFade {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* Animation Wrapper Hooks */
+        .animate-title {
           opacity: 0;
-          transform: scale(0.85) translateY(30px);
+          animation: slideFade 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+          animation-delay: 0.1s;
         }
-        70% {
-          transform: scale(1.02) translateY(-4px);
-        }
-        100% {
-          opacity: 1;
-          transform: scale(1) translateY(0);
-        }
-      }
 
-      @keyframes slideFade {
-        0% {
+        .animate-area {
           opacity: 0;
-          transform: translateY(20px);
+          animation: plopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+          animation-delay: 0.3s;
         }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
+
+        .animate-form {
+          opacity: 0;
+          animation: slideFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+          animation-delay: 0.6s;
         }
-      }
 
-      /* Animation Wrapper Hooks */
-      .animate-title {
-        opacity: 0;
-        animation: slideFade 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        animation-delay: 0.1s;
-      }
+        /* Dynamic runtime insertion effect for freshly sent chat boxes */
+        .chat-row {
+          display: flex;
+          width: 100%;
+          animation: plopIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
 
-      .animate-area {
-        opacity: 0;
-        animation: plopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        animation-delay: 0.3s;
-      }
+        /* Typography Overrides */
+        .noto-lao {
+          font-family: "Noto Sans Lao", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 400;
+          font-style: normal;
+          font-variation-settings: "wdth" 100;
+        }
 
-      .animate-form {
-        opacity: 0;
-        animation: slideFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-        animation-delay: 0.6s;
-      }
+        .dm-serif {
+          font-family: "DM Serif Text", serif;
+          font-weight: 400;
+          font-style: normal;
+        }
 
-      /* Dynamic runtime insertion effect for freshly sent chat boxes */
-      .chat-row {
-        display: flex;
-        width: 100%;
-        animation: plopIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      }
+        /* Fixed Title Alignment Grid using Vintage Tones */
+        .text-align {
+          text-align: center;
+          width: 100%;
+          color: brown;
+          font-size: 48px;
+          margin-bottom: 20px;
+        }
 
-      /* Typography Overrides */
-      .noto-lao {
-        font-family: "Noto Sans Lao", sans-serif;
-        font-optical-sizing: auto;
-        font-weight: 400;
-        font-style: normal;
-        font-variation-settings: "wdth" 100;
-      }
+        /* Dynamic Chat Viewport Core - Fully Harmonized with your Colors */
+        #fakechat-area {
+          width: 880px;
+          height: 420px;
+          background-color: #c7e4d0; /* Your cozy container fill */
+          border: 3px solid #82c396;   /* Copilot-assisted border fix */
+          border-radius: 20px;
+          margin-bottom: 20px;
+          padding: 20px;
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+          box-sizing: border-box;
+        }
 
-      .dm-serif {
-        font-family: "DM Serif Text", serif;
-        font-weight: 400;
-        font-style: normal;
-      }
+        /* Message Alignment Systems */
+        .row-bot {
+          justify-content: flex-start;
+        }
 
-      /* Fixed Title Alignment Grid using Vintage Tones */
-      .text-align {
-        text-align: center;
-        width: 100%;
-        color: brown;
-        font-size: 48px;
-        margin-bottom: 20px;
-      }
+        .row-user {
+          justify-content: flex-end;
+        }
 
-      /* Dynamic Chat Viewport Core - Fully Harmonized with your Colors */
-      #fakechat-area {
-        width: 880px;
-        height: 420px;
-        background-color: #c7e4d0; /* Your cozy container fill */
-        border: 3px solid #82c396;   /* Copilot-assisted border fix */
-        border-radius: 20px;
-        margin-bottom: 20px;
-        padding: 20px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        box-sizing: border-box;
-      }
+        /* Standardized Message Geometry Blocks using the classic palette */
+        .msg-box {
+          padding: 12px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          max-width: 75%;
+          line-height: 1.4;
+          word-wrap: break-word;
+          color: brown;
+        }
 
-      /* Message Alignment Systems */
-      .row-bot {
-        justify-content: flex-start;
-      }
+        .bot-style {
+          background-color: #e1e4c7; /* Flips color with body for contrast */
+          border: 2px solid #82c396;
+          border-top-left-radius: 4px;
+        }
 
-      .row-user {
-        justify-content: flex-end;
-      }
+        .user-style {
+          background-color: #ffffff; /* Crisp canvas paper white for user input */
+          border: 2px solid #82c396;
+          border-top-right-radius: 4px;
+        }
 
-      /* Standardized Message Geometry Blocks using the classic palette */
-      .msg-box {
-        padding: 12px 16px;
-        border-radius: 20px;
-        font-size: 14px;
-        max-width: 75%;
-        line-height: 1.4;
-        word-wrap: break-word;
-        color: brown;
-      }
+        .sender-tag {
+          font-size: 11px;
+          font-weight: bold;
+          display: block;
+          margin-bottom: 4px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: brown;
+        }
 
-      .bot-style {
-        background-color: #e1e4c7; /* Flips color with body for contrast */
-        border: 2px solid #82c396;
-        border-top-left-radius: 4px;
-      }
+        /* Input Container & Formatting Hooks from your template */
+        .fakechat-msgbox {
+          border: 3px solid #82c396;
+          border-radius: 20px;
+          background-color: #c7e4d0;
+          color: brown;
+          padding: 15px;
+          font-size: 14px;
+          outline: none;
+        }
 
-      .user-style {
-        background-color: #ffffff; /* Crisp canvas paper white for user input */
-        border: 2px solid #82c396;
-        border-top-right-radius: 4px;
-      }
+        input[type="text"].fakechat-msgbox {
+          width: 360px;
+          box-sizing: border-box;
+        }
 
-      .sender-tag {
-        font-size: 11px;
-        font-weight: bold;
-        display: block;
-        margin-bottom: 4px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: brown;
-      }
+        input[type="submit"].fakechat-msgbox {
+          background-color: #82c396;
+          color: #ffffff;
+          font-weight: bold;
+          cursor: pointer;
+          margin-left: 8px;
+          padding-left: 25px;
+          padding-right: 25px;
+          transition: transform 0.1s;
+        }
 
-      /* Input Container & Formatting Hooks from your template */
-      .fakechat-msgbox {
-        border: 3px solid #82c396;
-        border-radius: 20px;
-        background-color: #c7e4d0;
-        color: brown;
-        padding: 15px;
-        font-size: 14px;
-        outline: none;
-      }
+        input[type="submit"].fakechat-msgbox:hover {
+          transform: scale(1.02);
+          background-color: #c7e4d0;
+          color: brown;
+        }
+      </style>
+    </head>
+    <body>
 
-      input[type="text"].fakechat-msgbox {
-        width: 360px;
-        box-sizing: border-box;
-      }
+      <!-- Fixed Text-Align Heading Element (Animated!) -->
+      <h1 class="dm-serif text-align animate-title"><strong>Fakechat</strong></h1>
 
-      input[type="submit"].fakechat-msgbox {
-        background-color: #82c396;
-        color: #ffffff;
-        font-weight: bold;
-        cursor: pointer;
-        margin-left: 8px;
-        padding-left: 25px;
-        padding-right: 25px;
-        transition: transform 0.1s;
-      }
-
-      input[type="submit"].fakechat-msgbox:hover {
-        transform: scale(1.02);
-        background-color: #c7e4d0;
-        color: brown;
-      }
-    </style>
-  </head>
-  <body>
-
-    <!-- Fixed Text-Align Heading Element (Animated!) -->
-    <h1 class="dm-serif text-align animate-title"><strong>Fakechat</strong></h1>
-
-    <!-- The Core Chat Interface Matrix (Animated Plop!) -->
-    <div id="fakechat-area" class="noto-lao animate-area">
-      <!-- Initial Chat State Block -->
-      <div class="chat-row row-bot">
-        <div class="msg-box bot-style">
-          <span class="sender-tag">Dingus Assistant</span>
-          Hi. How can i assist you?
-        </div>
-      </div>
-    </div>
-
-    <!-- Submission Input Panel (Animated Slide In!) -->
-    <form id="fakechat-form" class="animate-form">
-      <div>
-        <input type="text" id="chat-typed-msg" class="noto-lao fakechat-msgbox" placeholder="Send a message..." autocomplete="off">
-          <input type="submit" class="noto-lao fakechat-msgbox" value="Send">
+        <!-- The Core Chat Interface Matrix (Animated Plop!) -->
+        <div id="fakechat-area" class="noto-lao animate-area">
+          <!-- Initial Chat State Block -->
+          <div class="chat-row row-bot">
+            <div class="msg-box bot-style">
+              <span class="sender-tag">Dingus Assistant</span>
+                Hi. How can i assist you?
+              </div>
+            </div>
           </div>
-        </form>
 
-        <!-- ============================================================================ -->
-        <!-- DEDICATED LOGIC TAG MATRIX - MODERNIZED FOR NEWER BROWSERS! -->
-        <!-- ============================================================================ -->
-        <script>
-          console.log("Credits to Google Gemini for helping");
-          const chatForm = document.getElementById('fakechat-form');
-
-          chatForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // PREVENT TARGET RELOADS
-
-            const textInput = document.getElementById('chat-typed-msg');
-            const txt = textInput.value.trim().toLowerCase();
-            if (txt === '') return;
-
-            const area = document.getElementById('fakechat-area');
-
-            /* 1. Safely append user message without HTML interpretation */
-            const userRow = document.createElement('div');
-            userRow.className = 'chat-row row-user';
-
-            const userBox = document.createElement('div');
-            userBox.className = 'msg-box user-style';
-
-            const senderTag = document.createElement('span');
-            senderTag.className = 'sender-tag';
-            senderTag.textContent = 'You';
-
-            userBox.appendChild(senderTag);
-            userBox.appendChild(document.createTextNode(` ${textInput.value.trim()}`));
-            userRow.appendChild(userBox);
-            area.appendChild(userRow);
-
-            textInput.value = ''; // Input is safely wiped clean right here!
-            area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
-
-            /* 2. Run Random Fakechatter Response Generator Delay Pipeline */
-            setTimeout(() => {
-              if (txt.includes("hi") || txt.includes("hey") || txt.includes("hello") || txt.includes("yo")) {
-
-                /* Modern Template Insertion for Left-Side Bot Response Row Box */
-                let botRowHtml = `
-                <div class="chat-row row-bot">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    Uh... Hi? I already said hi.
-                  </div>
-                </div>`;
-
-                area.insertAdjacentHTML('beforeend', botRowHtml);
-                area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
-              }
-              else if (txt.includes("code") || txt.includes("coding")) {
-
-                /* Modern Template Insertion for Left-Side Bot Response Row Box */
-                let botRowHtml = `
-                <div class="chat-row row-bot">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    Coding? I LOVE coding! There is so many languages!
-                  </div>
+          <!-- Submission Input Panel (Animated Slide In!) -->
+          <form id="fakechat-form" class="animate-form">
+            <div>
+              <input type="text" id="chat-typed-msg" class="noto-lao fakechat-msgbox" placeholder="Send a message..." autocomplete="off">
+                <input type="submit" class="noto-lao fakechat-msgbox" value="Send">
                 </div>
-                <div class="chat-row row-bot" style="animation-delay: 0.15s;">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    From Python to Lua to JavaScript to Ruby to C++, there is a variety of great programming languages!
-                  </div>
-                </div>`;
+              </form>
 
-                area.insertAdjacentHTML('beforeend', botRowHtml);
-                area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
-              }
-              else if (txt.includes("brainrot") || txt.includes("brain rot")) {
+              <!-- ============================================================================ -->
+              <!-- DEDICATED LOGIC TAG MATRIX - MODERNIZED FOR NEWER BROWSERS! -->
+              <!-- ============================================================================ -->
+              <script>
+                console.log("Credits to Google Gemini for helping");
+                const chatForm = document.getElementById('fakechat-form');
 
-                /* Modern Template Insertion for Left-Side Bot Response Row Box */
-                let botRowHtml = `
-                <div class="chat-row row-bot">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    HATE. HATE. HATE. Let me tell you how much I HATE brainrot.
-                  </div>
-                </div>
-                <div class="chat-row row-bot" style="animation-delay: 0.15s;">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    Brainrot fries people's brains, and that is not good for the world!
-                  </div>
-                </div>`;
+                chatForm.addEventListener('submit', (event) => {
+                  event.preventDefault(); // PREVENT TARGET RELOADS
 
-                area.insertAdjacentHTML('beforeend', botRowHtml);
-                area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
-              }
-              else if (txt.includes("minechicken") || txt.includes("mine chicken")) {
+                  const textInput = document.getElementById('chat-typed-msg');
+                  const txt = textInput.value.trim().toLowerCase();
+                  if (txt === '') return;
 
-                /* Modern Template Insertion for Left-Side Bot Response Row Box */
-                let botRowHtml = `
-                <div class="chat-row row-bot">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    MineChicken98 is an aspiring creator. He codes random projects like Slice Beats, Flappy Rage and more!
-                  </div>
-                </div>
-                <div class="chat-row row-bot" style="animation-delay: 0.15s;">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    His games are coded from the ground up - no libraries in vanilla JavaScript.
-                  </div>
-                </div>
-                <div class="chat-row row-bot" style="animation-delay: 0.3s;">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">Dingus Assistant</span>
-                    He also uses AI, but he has typed a line of code, so give him credit!
-                  </div>
-                </div>`;
+                  const area = document.getElementById('fakechat-area');
 
-                area.insertAdjacentHTML('beforeend', botRowHtml);
-                area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
-              }
-              else {
-                const quotes = [
-                  'Lua is probably the best coding language, along with Python.',
-                  'You should not hurt people.',
-                  'I\'m sure 1 + 1 = 2'
-                ];
+                  /* 1. Safely append user message without HTML interpretation */
+                  const userRow = document.createElement('div');
+                  userRow.className = 'chat-row row-user';
 
-                const rBot = "Dingus Assistant";
-                const rTxt = quotes[Math.floor(Math.random() * quotes.length)];
+                  const userBox = document.createElement('div');
+                  userBox.className = 'msg-box user-style';
 
-                /* Modern Template Insertion for Left-Side Bot Response Row Box */
-                let botRowHtml = `
-                <div class="chat-row row-bot">
-                  <div class="msg-box bot-style">
-                    <span class="sender-tag">${rBot}</span>
-                    ${rTxt}
-                  </div>
-                </div>`;
+                  const senderTag = document.createElement('span');
+                  senderTag.className = 'sender-tag';
+                  senderTag.textContent = 'You';
 
-                area.insertAdjacentHTML('beforeend', botRowHtml);
-                area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
-              }
-            }, 600);
-          });
-        </script>
+                  userBox.appendChild(senderTag);
+                  userBox.appendChild(document.createTextNode(` ${textInput.value.trim()}`));
+                  userRow.appendChild(userBox);
+                  area.appendChild(userRow);
 
-      </body>
-    </html>
+                  textInput.value = ''; // Input is safely wiped clean right here!
+                  area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+
+                  /* 2. Run Random Fakechatter Response Generator Delay Pipeline */
+                  setTimeout(() => {
+                    if (txt.includes("hi") || txt.includes("hey") || txt.includes("hello") || txt.includes("yo")) {
+
+                      /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                      let botRowHtml = `
+                      <div class="chat-row row-bot">
+                        <div class="msg-box bot-style">
+                          <span class="sender-tag">Dingus Assistant</span>
+                            Uh... Hi? I already said hi.
+                          </div>
+                        </div>`;
+
+                        area.insertAdjacentHTML('beforeend', botRowHtml);
+                        area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                      }
+                      else if (txt.includes("code") || txt.includes("coding")) {
+
+                        /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                        let botRowHtml = `
+                        <div class="chat-row row-bot">
+                          <div class="msg-box bot-style">
+                            <span class="sender-tag">Dingus Assistant</span>
+                              Coding? I LOVE coding! There is so many languages!
+                            </div>
+                          </div>
+                          <div class="chat-row row-bot" style="animation-delay: 0.15s;">
+                            <div class="msg-box bot-style">
+                              <span class="sender-tag">Dingus Assistant</span>
+                                From Python to Lua to JavaScript to Ruby to C++, there is a variety of great programming languages!
+                              </div>
+                            </div>`;
+
+                            area.insertAdjacentHTML('beforeend', botRowHtml);
+                            area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                          }
+                          else if (txt.includes("brainrot") || txt.includes("brain rot")) {
+
+                            /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                            let botRowHtml = `
+                            <div class="chat-row row-bot">
+                              <div class="msg-box bot-style">
+                                <span class="sender-tag">Dingus Assistant</span>
+                                  HATE. HATE. HATE. Let me tell you how much I HATE brainrot.
+                                </div>
+                              </div>
+                              <div class="chat-row row-bot" style="animation-delay: 0.15s;">
+                                <div class="msg-box bot-style">
+                                  <span class="sender-tag">Dingus Assistant</span>
+                                    Brainrot fries people's brains, and that is not good for the world!
+                                  </div>
+                                </div>`;
+
+                                area.insertAdjacentHTML('beforeend', botRowHtml);
+                                area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                              }
+                              else if (txt.includes("minechicken") || txt.includes("mine chicken")) {
+
+                                /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                                let botRowHtml = `
+                                <div class="chat-row row-bot">
+                                  <div class="msg-box bot-style">
+                                    <span class="sender-tag">Dingus Assistant</span>
+                                      MineChicken98 is an aspiring creator. He codes random projects like Slice Beats, Flappy Rage and more!
+                                    </div>
+                                  </div>
+                                  <div class="chat-row row-bot" style="animation-delay: 0.15s;">
+                                    <div class="msg-box bot-style">
+                                      <span class="sender-tag">Dingus Assistant</span>
+                                        His games are coded from the ground up - no libraries in vanilla JavaScript.
+                                      </div>
+                                    </div>
+                                    <div class="chat-row row-bot" style="animation-delay: 0.3s;">
+                                      <div class="msg-box bot-style">
+                                        <span class="sender-tag">Dingus Assistant</span>
+                                          He also uses AI, but he has typed a line of code, so give him credit!
+                                        </div>
+                                      </div>`;
+
+                                      area.insertAdjacentHTML('beforeend', botRowHtml);
+                                      area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                                    }
+                                    else {
+                                      const quotes = [
+                                        'Lua is probably the best coding language, along with Python.',
+                                        'You should not hurt people.',
+                                        'I\'m sure 1 + 1 = 2'
+                                      ];
+
+                                      const rBot = "Dingus Assistant";
+                                      const rTxt = quotes[Math.floor(Math.random() * quotes.length)];
+
+                                      /* Modern Template Insertion for Left-Side Bot Response Row Box */
+                                      let botRowHtml = `
+                                      <div class="chat-row row-bot">
+                                        <div class="msg-box bot-style">
+                                          <span class="sender-tag">${rBot}</span>
+                                            ${rTxt}
+                                          </div>
+                                        </div>`;
+
+                                        area.insertAdjacentHTML('beforeend', botRowHtml);
+                                        area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' });
+                                      }
+                                    }, 600);
+                                  });
+                                </script>
+
+                              </body>
+                            </html>

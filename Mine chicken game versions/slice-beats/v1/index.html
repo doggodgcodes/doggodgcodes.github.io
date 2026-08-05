@@ -17,454 +17,454 @@
     <title>Slice Beats - Beat Saber Clone</title>
 
 
-    <style>
+      <style>
 
 
-      * {
+        * {
 
 
-        margin: 0;
+          margin: 0;
 
 
-        padding: 0;
+          padding: 0;
 
 
-        box-sizing: border-box;
+          box-sizing: border-box;
 
 
-      }
+        }
 
 
 
 
 
-      body {
+        body {
 
 
-        font-family: 'Arial', sans-serif;
+          font-family: 'Arial', sans-serif;
 
 
-        overflow: hidden;
+          overflow: hidden;
 
 
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
 
-        display: flex;
+          display: flex;
 
 
-        justify-content: center;
+          justify-content: center;
 
 
-        align-items: center;
+          align-items: center;
 
 
-        height: 100vh;
+          height: 100vh;
 
 
-      }
+        }
 
 
 
 
 
-      #gameCanvas {
+        #gameCanvas {
 
 
-        border: 3px solid #fff;
+          border: 3px solid #fff;
 
 
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 
 
-        cursor: none;
+          cursor: none;
 
 
-        background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
+          background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
 
 
-      }
+        }
 
 
 
 
 
-      #ui {
+        #ui {
 
 
-        position: absolute;
+          position: absolute;
 
 
-        top: 20px;
+          top: 20px;
 
 
-        left: 20px;
+          left: 20px;
 
 
-        color: white;
+          color: white;
 
 
-        font-size: 24px;
+          font-size: 24px;
 
 
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 
 
-        z-index: 10;
+          z-index: 10;
 
 
-        pointer-events: none;
+          pointer-events: none;
 
 
-      }
+        }
 
 
 
 
 
-      #score {
+        #score {
 
 
-        font-weight: bold;
+          font-weight: bold;
 
 
-        font-size: 32px;
+          font-size: 32px;
 
 
-        color: #ffd700;
+          color: #ffd700;
 
 
-      }
+        }
 
 
 
 
 
-      #combo {
+        #combo {
 
 
-        font-size: 20px;
+          font-size: 20px;
 
 
-        color: #ff6b6b;
+          color: #ff6b6b;
 
 
-        margin-top: 10px;
+          margin-top: 10px;
 
 
-      }
+        }
 
 
 
 
 
-      #gameOver {
+        #gameOver {
 
 
-        position: absolute;
+          position: absolute;
 
 
-        top: 50%;
+          top: 50%;
 
 
-        left: 50%;
+          left: 50%;
 
 
-        transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 
 
-        background: rgba(0, 0, 0, 0.9);
+          background: rgba(0, 0, 0, 0.9);
 
 
-        padding: 40px 60px;
+          padding: 40px 60px;
 
 
-        border-radius: 20px;
+          border-radius: 20px;
 
 
-        text-align: center;
+          text-align: center;
 
 
-        color: white;
+          color: white;
 
 
-        display: none;
+          display: none;
 
 
-        z-index: 100;
+          z-index: 100;
 
 
-      }
+        }
 
 
 
 
 
-      #gameOver h1 {
+        #gameOver h1 {
 
 
-        font-size: 48px;
+          font-size: 48px;
 
 
-        margin-bottom: 20px;
+          margin-bottom: 20px;
 
 
-        color: #ffd700;
+          color: #ffd700;
 
 
-      }
+        }
 
 
 
 
 
-      #gameOver button {
+        #gameOver button {
 
 
-        margin-top: 20px;
+          margin-top: 20px;
 
 
-        padding: 15px 40px;
+          padding: 15px 40px;
 
 
-        font-size: 20px;
+          font-size: 20px;
 
 
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
 
-        color: white;
+          color: white;
 
 
-        border: none;
+          border: none;
 
 
-        border-radius: 10px;
+          border-radius: 10px;
 
 
-        cursor: pointer;
+          cursor: pointer;
 
 
-        transition: transform 0.2s;
+          transition: transform 0.2s;
 
 
-      }
+        }
 
 
 
 
 
-      #gameOver button:hover {
+        #gameOver button:hover {
 
 
-        transform: scale(1.1);
+          transform: scale(1.1);
 
 
-      }
+        }
 
 
 
 
 
-      #startScreen {
+        #startScreen {
 
 
-        position: absolute;
+          position: absolute;
 
 
-        top: 50%;
+          top: 50%;
 
 
-        left: 50%;
+          left: 50%;
 
 
-        transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 
 
-        background: rgba(0, 0, 0, 0.9);
+          background: rgba(0, 0, 0, 0.9);
 
 
-        padding: 40px 60px;
+          padding: 40px 60px;
 
 
-        border-radius: 20px;
+          border-radius: 20px;
 
 
-        text-align: center;
+          text-align: center;
 
 
-        color: white;
+          color: white;
 
 
-        z-index: 100;
+          z-index: 100;
 
 
-      }
+        }
 
 
 
 
 
-      #startScreen h1 {
+        #startScreen h1 {
 
 
-        font-size: 56px;
+          font-size: 56px;
 
 
-        margin-bottom: 20px;
+          margin-bottom: 20px;
 
 
-        color: #ffd700;
+          color: #ffd700;
 
 
-        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+          text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 
 
-      }
+        }
 
 
 
 
 
-      #startScreen p {
+        #startScreen p {
 
 
-        font-size: 18px;
+          font-size: 18px;
 
 
-        margin-bottom: 30px;
+          margin-bottom: 30px;
 
 
-        color: #ddd;
+          color: #ddd;
 
 
-      }
+        }
 
 
 
 
 
-      #startScreen button {
+        #startScreen button {
 
 
-        padding: 15px 40px;
+          padding: 15px 40px;
 
 
-        font-size: 24px;
+          font-size: 24px;
 
 
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
 
-        color: white;
+          color: white;
 
 
-        border: none;
+          border: none;
 
 
-        border-radius: 10px;
+          border-radius: 10px;
 
 
-        cursor: pointer;
+          cursor: pointer;
 
 
-        transition: transform 0.2s;
+          transition: transform 0.2s;
 
 
-        margin: 10px;
+          margin: 10px;
 
 
-      }
+        }
 
 
 
 
 
-      #startScreen button:hover {
+        #startScreen button:hover {
 
 
-        transform: scale(1.1);
+          transform: scale(1.1);
 
 
-      }
+        }
 
 
-    </style>
+      </style>
 
 
-  </head>
+    </head>
 
 
-  <body>
+    <body>
 
 
-    <div id="ui">
+      <div id="ui">
 
 
-      <div id="score">Score: 0</div>
+        <div id="score">Score: 0</div>
 
 
-      <div id="combo">Combo: 0x</div>
+          <div id="combo">Combo: 0x</div>
 
 
-    </div>
+          </div>
 
 
 
 
 
-    <div id="startScreen">
+          <div id="startScreen">
 
 
-      <h1>🎵 SLICE BEATS 🎵</h1>
+            <h1>🎵 SLICE BEATS 🎵</h1>
 
 
-      <p>Move your mouse to slice the blocks!</p>
+              <p>Move your mouse to slice the blocks!</p>
 
 
-      <p>Match the color of your saber with the blocks</p>
+                <p>Match the color of your saber with the blocks</p>
 
 
-      <button id="startBtn">START GAME</button>
+                  <button id="startBtn">START GAME</button>
 
 
-    </div>
+                  </div>
 
 
 
 
 
-    <div id="gameOver">
+                  <div id="gameOver">
 
 
-      <h1>GAME OVER!</h1>
+                    <h1>GAME OVER!</h1>
 
 
-      <div id="finalScore"></div>
+                      <div id="finalScore"></div>
 
 
-      <div id="finalCombo"></div>
+                        <div id="finalCombo"></div>
 
 
-      <button id="restartBtn">PLAY AGAIN</button>
+                          <button id="restartBtn">PLAY AGAIN</button>
 
 
-    </div>
+                          </div>
 
 
 
 
 
-    <canvas id="gameCanvas"></canvas>
+                          <canvas id="gameCanvas"></canvas>
 
 
 
 
 
-    <script src="game.js"></script>
+                            <script src="game.js"></script>
 
 
-  </body>
+                            </body>
 
 
-</html>
+                          </html>
