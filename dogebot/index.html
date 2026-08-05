@@ -3,7 +3,6 @@
   <head>
     <meta name="robots" content="noindex, nofollow">
     <script src="https://doggodgcodes.github.io/ai/api/asyncdelay.js"></script>
-      <script src="https://doggodgcodes.github.io/min/dogebork/v7.0/dogebork.min.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="doggodgcodes">
@@ -13,7 +12,7 @@
         <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary_large_image">
         <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-        <title>DOGEBOT V274 • ENJOY THE ICOSAHEDRON</title>
+        <title>DOGEBOT V275 • ENJOY THE ICOSAHEDRON</title>
           <style id="css">
             /* =========================================================
             💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -576,7 +575,7 @@
         <body class="fadein-zoom">
           <div id="news-thingy"></div>
 
-            <h1 id="title">🐕 DOGEBOT V274 • ENJOY THE ICOSAHEDRON</h1>
+            <h1 id="title">🐕 DOGEBOT V275 • ENJOY THE ICOSAHEDRON</h1>
               <p>Smart • Kind • Calculates • Chatty • Great</p>
 
                 <div id="chat"></div>
@@ -2245,7 +2244,9 @@
                                         return "I am not dumb. But I am not turing complete, I believe.";
                                       }
                                       if (lower.includes("news")) {
-                                        return newsName + news[Doge.lcg(0,news.length-1)];
+                                        const integer2 = new Uint16Array(1);
+                                        crypto.getRandomValues(integer2);
+                                        return newsName + news[integer2[0]%(news.length)];
                                       }
                                       if (lower.includes("icosahedron")) {
                                         return "The icosahedron... WHAT DO THEY LOOK LIKE I HAVE NEVER WITNESSED SEEING AN ICOSAHEDRON!";
