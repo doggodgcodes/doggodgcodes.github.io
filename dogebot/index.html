@@ -13,570 +13,570 @@
       <meta name="twitter:card" content="summary_large_image">
       <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
       <title>DOGEBOT V275 • ENJOY THE ICOSAHEDRON</title>
-        <style id="css">
-          /* =========================================================
-          💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
-          Between Skeuo + Optimized Flat
-          ========================================================= */
-          /* DOGEBOT v191 CSS Updates */
-          /* v193 CSS updates */
-          /* =========================================
-          GLOBAL
-          ========================================= */
+      <style id="css">
+        /* =========================================================
+        💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
+        Between Skeuo + Optimized Flat
+        ========================================================= */
+        /* DOGEBOT v191 CSS Updates */
+        /* v193 CSS updates */
+        /* =========================================
+        GLOBAL
+        ========================================= */
 
-          *,
-          *::before,
-          *::after {
-            box-sizing: border-box;
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          padding: 20px;
+
+          overflow-x: hidden;
+
+          font-family: "Segoe UI", -apple-system, sans-serif;
+          color: #1a2a3a;
+          text-align: center;
+
+          background-color: lightskyblue;
+          /* soft Aero gradient (not flat, not neon) */
+          /*
+          background:
+          linear-gradient(
+          135deg,
+          #a7d4ff 0%,
+          #dff3ff 45%,
+          #dcd6ff 100%
+          );
+          */
+
+          background-size: 300% 300%;
+          /*
+          background-image: url("https://frutigeraeroarchive.org/images/wallpapers/asadal_stock/asadal_stock_114.jpg");
+          */
+          background-image:
+          linear-gradient(
+          rgba(170,220,255,0.35),
+          rgba(220,214,255,0.35)
+          ),
+          url("https://frutigeraeroarchive.org/images/wallpapers/asadal_stock/asadal_stock_114.jpg");
+          background-size: cover;
+          background-position: center;
+          background-attachment: fixed;
+
+          animation: flowBackground 20s ease infinite;
+        }
+
+        /* thanks to chatgpt and minechicken for the news banner */
+        #news-thingy {
+          background: rgba(255,255,255,0.35);
+          color: #174a7a;
+
+          text-align: center;
+
+          padding: 12px;
+
+          font-weight: bold;
+          font-size: 16px;
+
+          width: 90%;
+          margin: 15px auto;
+
+          border-radius: 18px;
+
+          /*
+          backdrop-filter: blur(3px);
+          */
+
+          border: 1px solid rgba(255,255,255,0.6);
+
+          box-shadow:
+          0 8px 20px rgba(0,100,200,0.18),
+          inset 0 1px 2px rgba(255,255,255,0.8);
+        }
+        /* =========================================
+        CHAT PANEL (light glass, not heavy blur)
+        ========================================= */
+
+        #chat {
+          position: relative;
+
+          width: 860px;
+          height: 28vw;
+
+          margin: 20px auto;
+          padding: 24px;
+
+          overflow-y: auto;
+
+          border-radius: 26px;
+
+          background: rgba(255,255,255,0.25);
+
+          /*
+          -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+          */
+
+          /* border: 1px solid rgba(255,255,255,0.6); */
+          border: 2px solid rgba(255,255,255,0.6);
+
+          box-shadow:
+          0 25px 60px rgba(0,80,160,0.25),
+          inset 0 2px 4px rgba(255,255,255,0.9),
+          inset 0 -3px 8px rgba(0,80,150,0.12);
+
+
+          /*
+          box-shadow:
+          0 12px 35px rgba(0,0,0,0.12),
+          inset 0 1px 0 rgba(255,255,255,0.75);
+          */
+
+          animation: floatPanel 7s ease-in-out infinite;
+        }
+
+        /* subtle top gloss (not overpowering) */
+
+        #chat::before {
+          content: "";
+
+          position: absolute;
+
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 38%;
+
+          pointer-events: none;
+
+          border-radius: 26px;
+
+          background:
+          linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.35),
+          transparent
+          );
+        }
+
+        #chat::after {
+          content: "";
+
+          position: absolute;
+          inset: 8px;
+
+          border-radius: 20px;
+
+          pointer-events: none;
+
+          box-shadow:
+          inset 0 0 30px rgba(255,255,255,0.35);
+
+          opacity: 0.8;
+        }
+
+        /* =========================================
+        MESSAGES (balanced depth)
+        ========================================= */
+
+        .message {
+          position: relative;
+
+          margin: 14px 0;
+          padding: 14px 16px;
+
+          border-radius: 16px;
+
+          font-weight: 500;
+
+          transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+          /* Apply the animation */
+          animation: popInFromLeft 0.075s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+
+          /* Good practice: keep it invisible before the animation starts */
+          opacity: 0;
+        }
+
+        /* soft hover lift */
+        .message:hover {
+          transform: translateY(-2px);
+
+          box-shadow:
+          0 6px 16px rgba(0,0,0,0.10);
+        }
+
+        /* subtle gloss highlight (kept, but light) */
+
+        .message::before {
+          content: "";
+
+          position: absolute;
+
+          top: 0;
+          left: 0;
+
+          width: 100%;
+          height: 45%;
+
+          pointer-events: none;
+
+          border-radius: inherit;
+
+          background:
+          linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.22),
+          transparent
+          );
+        }
+
+        /* USER (slightly more depth than flat version) */
+
+        .user {
+          text-align: right;
+
+          color: #173a5c;
+
+          background:
+          linear-gradient(
+          145deg,
+          #f2f9ff,
+          #dcebff
+          );
+
+          border-right: 5px solid #4aa3ff;
+
+          box-shadow:
+          0 3px 10px rgba(0,0,0,0.06),
+          inset 0 1px 2px rgba(255,255,255,0.6);
+        }
+
+        /* AI (balanced green, not neon, not flat) */
+
+        .ai, .ai-message {
+          text-align: left;
+
+          color: #1f4b2f;
+
+          background:
+          linear-gradient(
+          145deg,
+          #f0fbf2,
+          #dbf3df
+          );
+
+          border-left: 5px solid #3dbb73;
+
+          box-shadow:
+          0 3px 10px rgba(0,0,0,0.06),
+          inset 0 1px 2px rgba(255,255,255,0.6);
+        }
+
+        /* =========================================
+        INPUT (slightly glossy again)
+        ========================================= */
+
+        input {
+          width: 650px;
+
+          padding: 16px;
+
+          font-size: 17px;
+
+          border-radius: 14px;
+
+          border: 1px solid rgba(0,0,0,0.08);
+
+          background:
+          linear-gradient(
+          to bottom,
+          #ffffff,
+          #f3f7ff
+          );
+
+          box-shadow:
+          inset 0 2px 4px rgba(0,0,0,0.05),
+          0 4px 12px rgba(0,0,0,0.06);
+
+          transition: 0.2s ease;
+        }
+
+        input:focus {
+          border-color: #4aa3ff;
+
+          box-shadow:
+          0 0 12px rgba(0,160,255,0.20),
+          inset 0 2px 4px rgba(255,255,255,0.8);
+        }
+
+        /* =========================================
+        BUTTONS (gloss returns but controlled)
+        ========================================= */
+
+        button {
+          position: relative;
+
+          padding: 16px 38px;
+
+          border: none;
+          border-radius: 16px;
+
+          cursor: pointer;
+
+          font-size: 17px;
+          font-weight: 600;
+
+          color: white;
+
+          background:
+          linear-gradient(
+          to bottom,
+          #4fbfff,
+          #2f7fff
+          );
+
+          box-shadow:
+          0 7px 18px rgba(0,0,0,0.15),
+          inset 0 2px 0 rgba(255,255,255,0.55);
+
+          transition:
+          transform 0.15s ease,
+          box-shadow 0.2s ease;
+        }
+
+        /* glossy highlight (this is the “missed” part you wanted back) */
+
+        button::before {
+          content: "";
+
+          position: absolute;
+
+          top: 2px;
+          left: 4px;
+          right: 4px;
+
+          height: 45%;
+
+          border-radius: 14px;
+
+          background:
+          linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.45),
+          transparent
+          );
+        }
+
+        button:hover {
+          transform: translateY(-2px);
+
+          box-shadow:
+          0 10px 22px rgba(0,0,0,0.18),
+          inset 0 2px 0 rgba(255,255,255,0.6);
+        }
+
+        button:active {
+          transform: translateY(1px);
+        }
+
+        /* =========================================
+        TITLE (light glow returns slightly)
+        ========================================= */
+
+        h1 {
+          font-size: 42px;
+
+          color: #1f6fff;
+
+          text-shadow:
+          0 1px 0 rgba(255,255,255,0.7),
+          0 6px 12px rgba(0,120,255,0.18);
+        }
+
+        /* =========================================
+        TOGGLE (unchanged stable version)
+        ========================================= */
+
+        .toggle-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 12px;
+
+          margin: 15px auto;
+
+          font-weight: 600;
+          color: #245aa6;
+        }
+
+        .switch {
+          position: relative;
+          width: 54px;
+          height: 30px;
+          display: inline-block;
+        }
+
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        .slider {
+          position: absolute;
+          inset: 0;
+
+          border-radius: 34px;
+
+          background: linear-gradient(to bottom, #dbe6f2, #b9c7d6);
+
+          box-shadow:
+          inset 0 2px 4px rgba(255,255,255,0.7),
+          inset 0 -2px 4px rgba(0,0,0,0.10),
+          0 2px 6px rgba(0,0,0,0.10);
+
+          overflow: hidden; /* important for gloss clipping */
+
+          transition: background 0.25s ease;
+        }
+
+        /* glossy sweep layer */
+        .slider::after {
+          content: "";
+
+          position: absolute;
+          top: -40%;
+          left: -20%;
+
+          width: 140%;
+          height: 80%;
+
+          background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.55),
+          rgba(255,255,255,0.05)
+          );
+
+          transform: rotate(-10deg);
+
+          pointer-events: none;
+
+          border-radius: 50px;
+        }
+
+        /* knob stays simple (don’t over-gloss this) */
+        .slider::before {
+          content: "";
+
+          position: absolute;
+
+          left: 3px;
+          top: 3px;
+
+          width: 24px;
+          height: 24px;
+
+          border-radius: 50%;
+
+          background: linear-gradient(to bottom, #ffffff, #e8eef6);
+
+          box-shadow:
+          0 3px 8px rgba(0,0,0,0.25),
+          inset 0 1px 2px rgba(255,255,255,0.8);
+
+          transition: transform 0.25s ease;
+        }
+
+        /* active state */
+        input:checked + .slider {
+          background: linear-gradient(135deg, #3dbb73, #2f7fff);
+        }
+
+        input:checked + .slider::before {
+          transform: translateX(24px);
+        }
+
+        /* =========================================
+        KEYFRAMES
+        ========================================= */
+
+        @keyframes flowBackground {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
+
+        @keyframes floatPanel {
+          0%,100% { transform: translateY(0); }
+          50% { transform: translateY(-2px); }
+        }
+        .fadein-zoom {
+          opacity: 0;
+          transform: scale(0.95);
+          animation: fadeZoomIn 1.3s cubic-bezier(.38,1.03,.34,.97) forwards;
+        }
+        @keyframes fadeZoomIn {
+          to {
+            opacity: 1;
+            transform: scale(1);
           }
-
-          body {
-            margin: 0;
-            padding: 20px;
-
-            overflow-x: hidden;
-
-            font-family: "Segoe UI", -apple-system, sans-serif;
-            color: #1a2a3a;
-            text-align: center;
-
-            background-color: lightskyblue;
-            /* soft Aero gradient (not flat, not neon) */
-            /*
-            background:
-            linear-gradient(
-            135deg,
-            #a7d4ff 0%,
-            #dff3ff 45%,
-            #dcd6ff 100%
-            );
-            */
-
-            background-size: 300% 300%;
-            /*
-            background-image: url("https://frutigeraeroarchive.org/images/wallpapers/asadal_stock/asadal_stock_114.jpg");
-            */
-            background-image:
-            linear-gradient(
-            rgba(170,220,255,0.35),
-            rgba(220,214,255,0.35)
-            ),
-            url("https://frutigeraeroarchive.org/images/wallpapers/asadal_stock/asadal_stock_114.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-
-            animation: flowBackground 20s ease infinite;
-          }
-
-          /* thanks to chatgpt and minechicken for the news banner */
-          #news-thingy {
-            background: rgba(255,255,255,0.35);
-            color: #174a7a;
-
-            text-align: center;
-
-            padding: 12px;
-
-            font-weight: bold;
-            font-size: 16px;
-
-            width: 90%;
-            margin: 15px auto;
-
-            border-radius: 18px;
-
-            /*
-            backdrop-filter: blur(3px);
-            */
-
-            border: 1px solid rgba(255,255,255,0.6);
-
-            box-shadow:
-            0 8px 20px rgba(0,100,200,0.18),
-            inset 0 1px 2px rgba(255,255,255,0.8);
-          }
-          /* =========================================
-          CHAT PANEL (light glass, not heavy blur)
-          ========================================= */
-
-          #chat {
-            position: relative;
-
-            width: 860px;
-            height: 28vw;
-
-            margin: 20px auto;
-            padding: 24px;
-
-            overflow-y: auto;
-
-            border-radius: 26px;
-
-            background: rgba(255,255,255,0.25);
-
-            /*
-            -webkit-backdrop-filter: blur(3px);
-            backdrop-filter: blur(3px);
-            */
-
-            /* border: 1px solid rgba(255,255,255,0.6); */
-            border: 2px solid rgba(255,255,255,0.6);
-
-            box-shadow:
-            0 25px 60px rgba(0,80,160,0.25),
-            inset 0 2px 4px rgba(255,255,255,0.9),
-            inset 0 -3px 8px rgba(0,80,150,0.12);
-
-
-            /*
-            box-shadow:
-            0 12px 35px rgba(0,0,0,0.12),
-            inset 0 1px 0 rgba(255,255,255,0.75);
-            */
-
-            animation: floatPanel 7s ease-in-out infinite;
-          }
-
-          /* subtle top gloss (not overpowering) */
-
-          #chat::before {
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 38%;
-
-            pointer-events: none;
-
-            border-radius: 26px;
-
-            background:
-            linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.35),
-            transparent
-            );
-          }
-
-          #chat::after {
-            content: "";
-
-            position: absolute;
-            inset: 8px;
-
-            border-radius: 20px;
-
-            pointer-events: none;
-
-            box-shadow:
-            inset 0 0 30px rgba(255,255,255,0.35);
-
-            opacity: 0.8;
-          }
-
-          /* =========================================
-          MESSAGES (balanced depth)
-          ========================================= */
-
-          .message {
-            position: relative;
-
-            margin: 14px 0;
-            padding: 14px 16px;
-
-            border-radius: 16px;
-
-            font-weight: 500;
-
-            transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
-            /* Apply the animation */
-            animation: popInFromLeft 0.075s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-
-            /* Good practice: keep it invisible before the animation starts */
+        }
+        @keyframes popInFromLeft {
+          0% {
             opacity: 0;
+            transform: translateX(-150px);
           }
-
-          /* soft hover lift */
-          .message:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-            0 6px 16px rgba(0,0,0,0.10);
+          100% {
+            opacity: 1;
+            transform: translateX(0);
           }
-
-          /* subtle gloss highlight (kept, but light) */
-
-          .message::before {
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 45%;
-
-            pointer-events: none;
-
-            border-radius: inherit;
-
-            background:
-            linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.22),
-            transparent
-            );
-          }
-
-          /* USER (slightly more depth than flat version) */
-
-          .user {
-            text-align: right;
-
-            color: #173a5c;
-
-            background:
-            linear-gradient(
-            145deg,
-            #f2f9ff,
-            #dcebff
-            );
-
-            border-right: 5px solid #4aa3ff;
-
-            box-shadow:
-            0 3px 10px rgba(0,0,0,0.06),
-            inset 0 1px 2px rgba(255,255,255,0.6);
-          }
-
-          /* AI (balanced green, not neon, not flat) */
-
-          .ai, .ai-message {
-            text-align: left;
-
-            color: #1f4b2f;
-
-            background:
-            linear-gradient(
-            145deg,
-            #f0fbf2,
-            #dbf3df
-            );
-
-            border-left: 5px solid #3dbb73;
-
-            box-shadow:
-            0 3px 10px rgba(0,0,0,0.06),
-            inset 0 1px 2px rgba(255,255,255,0.6);
-          }
-
-          /* =========================================
-          INPUT (slightly glossy again)
-          ========================================= */
-
-          input {
-            width: 650px;
-
-            padding: 16px;
-
-            font-size: 17px;
-
-            border-radius: 14px;
-
-            border: 1px solid rgba(0,0,0,0.08);
-
-            background:
-            linear-gradient(
-            to bottom,
-            #ffffff,
-            #f3f7ff
-            );
-
-            box-shadow:
-            inset 0 2px 4px rgba(0,0,0,0.05),
-            0 4px 12px rgba(0,0,0,0.06);
-
-            transition: 0.2s ease;
-          }
-
-          input:focus {
-            border-color: #4aa3ff;
-
-            box-shadow:
-            0 0 12px rgba(0,160,255,0.20),
-            inset 0 2px 4px rgba(255,255,255,0.8);
-          }
-
-          /* =========================================
-          BUTTONS (gloss returns but controlled)
-          ========================================= */
-
-          button {
-            position: relative;
-
-            padding: 16px 38px;
-
-            border: none;
-            border-radius: 16px;
-
-            cursor: pointer;
-
-            font-size: 17px;
-            font-weight: 600;
-
-            color: white;
-
-            background:
-            linear-gradient(
-            to bottom,
-            #4fbfff,
-            #2f7fff
-            );
-
-            box-shadow:
-            0 7px 18px rgba(0,0,0,0.15),
-            inset 0 2px 0 rgba(255,255,255,0.55);
-
-            transition:
-            transform 0.15s ease,
-            box-shadow 0.2s ease;
-          }
-
-          /* glossy highlight (this is the “missed” part you wanted back) */
-
-          button::before {
-            content: "";
-
-            position: absolute;
-
-            top: 2px;
-            left: 4px;
-            right: 4px;
-
-            height: 45%;
-
-            border-radius: 14px;
-
-            background:
-            linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.45),
-            transparent
-            );
-          }
-
-          button:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-            0 10px 22px rgba(0,0,0,0.18),
-            inset 0 2px 0 rgba(255,255,255,0.6);
-          }
-
-          button:active {
-            transform: translateY(1px);
-          }
-
-          /* =========================================
-          TITLE (light glow returns slightly)
-          ========================================= */
-
-          h1 {
-            font-size: 42px;
-
-            color: #1f6fff;
-
-            text-shadow:
-            0 1px 0 rgba(255,255,255,0.7),
-            0 6px 12px rgba(0,120,255,0.18);
-          }
-
-          /* =========================================
-          TOGGLE (unchanged stable version)
-          ========================================= */
-
-          .toggle-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-
-            margin: 15px auto;
-
-            font-weight: 600;
-            color: #245aa6;
-          }
-
-          .switch {
-            position: relative;
-            width: 54px;
-            height: 30px;
-            display: inline-block;
-          }
-
-          .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-          }
-
-          .slider {
-            position: absolute;
-            inset: 0;
-
-            border-radius: 34px;
-
-            background: linear-gradient(to bottom, #dbe6f2, #b9c7d6);
-
-            box-shadow:
-            inset 0 2px 4px rgba(255,255,255,0.7),
-            inset 0 -2px 4px rgba(0,0,0,0.10),
-            0 2px 6px rgba(0,0,0,0.10);
-
-            overflow: hidden; /* important for gloss clipping */
-
-            transition: background 0.25s ease;
-          }
-
-          /* glossy sweep layer */
-          .slider::after {
-            content: "";
-
-            position: absolute;
-            top: -40%;
-            left: -20%;
-
-            width: 140%;
-            height: 80%;
-
-            background: linear-gradient(
-            to bottom,
-            rgba(255,255,255,0.55),
-            rgba(255,255,255,0.05)
-            );
-
-            transform: rotate(-10deg);
-
-            pointer-events: none;
-
-            border-radius: 50px;
-          }
-
-          /* knob stays simple (don’t over-gloss this) */
-          .slider::before {
-            content: "";
-
-            position: absolute;
-
-            left: 3px;
-            top: 3px;
-
-            width: 24px;
-            height: 24px;
-
-            border-radius: 50%;
-
-            background: linear-gradient(to bottom, #ffffff, #e8eef6);
-
-            box-shadow:
-            0 3px 8px rgba(0,0,0,0.25),
-            inset 0 1px 2px rgba(255,255,255,0.8);
-
-            transition: transform 0.25s ease;
-          }
-
-          /* active state */
-          input:checked + .slider {
-            background: linear-gradient(135deg, #3dbb73, #2f7fff);
-          }
-
-          input:checked + .slider::before {
-            transform: translateX(24px);
-          }
-
-          /* =========================================
-          KEYFRAMES
-          ========================================= */
-
-          @keyframes flowBackground {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-          }
-
-          @keyframes floatPanel {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-2px); }
-          }
-          .fadein-zoom {
-            opacity: 0;
-            transform: scale(0.95);
-            animation: fadeZoomIn 1.3s cubic-bezier(.38,1.03,.34,.97) forwards;
-          }
-          @keyframes fadeZoomIn {
-            to {
-              opacity: 1;
-              transform: scale(1);
-            }
-          }
-          @keyframes popInFromLeft {
-            0% {
-              opacity: 0;
-              transform: translateX(-150px);
-            }
-            100% {
-              opacity: 1;
-              transform: translateX(0);
-            }
-          }
-          /* ===== Scrollbar Styling (All Major Browsers) ===== */
-
-          /* Firefox */
-          * {
-            scrollbar-width: thin;
-            scrollbar-color: #888 #f1f1f1;
-          }
-
-          /* Chrome, Edge, Safari */
-          *::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-          }
-
-          *::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 999px;
-          }
-
-          *::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 999px;
-            border: 2px solid transparent;
-            background-clip: content-box;
-          }
-
-          *::-webkit-scrollbar-thumb:hover {
-            background: #555;
-          }
-
-          /* Optional: Corner where horizontal + vertical scrollbars meet */
-          *::-webkit-scrollbar-corner {
-            background: transparent;
-          }
-        </style>
-      </head>
-      <body class="fadein-zoom">
-        <div id="news-thingy"></div>
-
-          <h1 id="title">🐕 DOGEBOT V275 • ENJOY THE ICOSAHEDRON</h1>
-          <p>Smart • Kind • Calculates • Chatty • Great</p>
+        }
+        /* ===== Scrollbar Styling (All Major Browsers) ===== */
+
+        /* Firefox */
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: #888 #f1f1f1;
+        }
+
+        /* Chrome, Edge, Safari */
+        *::-webkit-scrollbar {
+          width: 10px;
+          height: 10px;
+        }
+
+        *::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 999px;
+        }
+
+        *::-webkit-scrollbar-thumb {
+          background: #888;
+          border-radius: 999px;
+          border: 2px solid transparent;
+          background-clip: content-box;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+
+        /* Optional: Corner where horizontal + vertical scrollbars meet */
+        *::-webkit-scrollbar-corner {
+          background: transparent;
+        }
+      </style>
+    </head>
+    <body class="fadein-zoom">
+      <div id="news-thingy"></div>
+
+        <h1 id="title">🐕 DOGEBOT V275 • ENJOY THE ICOSAHEDRON</h1>
+        <p>Smart • Kind • Calculates • Chatty • Great</p>
 
           <div id="chat"></div>
 

@@ -3,213 +3,213 @@
   <head>
     <meta charset="UTF-8">
     <title>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</title>
-      <style>
-        body {
-          background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
-          color: #fff;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          text-align: center;
-          padding: 20px;
-          margin: 0;
-        }
-        h1 {
-          color: #00FFCC;
-          text-shadow: 4px 4px 0px #FF0066;
-          font-size: 2.8rem;
-          margin-bottom: 5px;
-        }
-        .subtitle {
-          color: #ffb703;
-          font-weight: bold;
-          font-size: 1.1rem;
-          margin-bottom: 20px;
-        }
-        .hacker-panel {
-          font-family: 'Courier New', monospace;
-          color: #38bdf8;
-          background: rgba(0, 0, 0, 0.8);
-          padding: 14px;
-          border-radius: 8px;
-          border: 2px dashed #00FFCC;
-          max-width: 1100px;
-          margin: 0 auto 20px auto;
-          font-size: 1.1rem;
-          box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-        }
-        .visualizer-bar {
-          width: 100%;
-          height: 10px;
-          background: #1e1b4b;
-          margin: 10px 0;
-          border-radius: 5px;
-          overflow: hidden;
-          transition: background 0.1s ease;
-        }
-        .dashboard {
-          background: rgba(15, 23, 42, 0.85);
-          padding: 20px;
-          border-radius: 15px;
-          border: 2px solid #38bdf8;
-          max-width: 1100px;
-          margin: 0 auto 20px auto;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 15px;
-          justify-content: center;
-          align-items: center;
-          box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-        }
-        .control-group {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          font-weight: bold;
-          color: #cbd5e1;
-        }
-        .control-group input, .control-group select {
-          margin-top: 8px;
-          padding: 5px 10px;
-          background: #1e293b;
-          color: #00FFCC;
-          border: 2px solid #38bdf8;
-          border-radius: 6px;
-          font-weight: bold;
-          cursor: pointer;
-        }
-        .workspace {
-          overflow-x: auto;
-          max-width: 95vw;
-          margin: 0 auto;
-          padding: 10px;
-          background: rgba(0,0,0,0.4);
-          border-radius: 12px;
-        }
-        .section-title {
-          font-size: 1.2rem;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          margin: 20px 0 10px 0;
-          color: #a5b4fc;
-        }
-        .grid-container {
-          display: grid;
-          gap: 4px;
-          justify-content: start;
-          width: fit-content;
-          margin: 0 auto;
-          padding: 10px;
-        }
-        .pad {
-          width: 32px;
-          height: 24px;
-          background-color: #334155;
-          border-radius: 4px;
-          cursor: pointer;
-          transition: all 0.05s ease;
-        }
-        .pad.note-c0 { border-left: 3px solid #ff595e; }
-        .pad.note-c5 { border-left: 3px solid #e2ca35; }
-        .pad.note-c11 { border-left: 3px solid #35ad9e; }
-        .pad.note-c17 { border-left: 3px solid #903199; }
-        .pad.note-c23 { border-left: 3px solid #ff4799; }
+    <style>
+      body {
+        background: linear-gradient(135deg, #020617, #1e1b4b, #311042);
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+      }
+      h1 {
+        color: #00FFCC;
+        text-shadow: 4px 4px 0px #FF0066;
+        font-size: 2.8rem;
+        margin-bottom: 5px;
+      }
+      .subtitle {
+        color: #ffb703;
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+      .hacker-panel {
+        font-family: 'Courier New', monospace;
+        color: #38bdf8;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 14px;
+        border-radius: 8px;
+        border: 2px dashed #00FFCC;
+        max-width: 1100px;
+        margin: 0 auto 20px auto;
+        font-size: 1.1rem;
+        box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+      }
+      .visualizer-bar {
+        width: 100%;
+        height: 10px;
+        background: #1e1b4b;
+        margin: 10px 0;
+        border-radius: 5px;
+        overflow: hidden;
+        transition: background 0.1s ease;
+      }
+      .dashboard {
+        background: rgba(15, 23, 42, 0.85);
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #38bdf8;
+        max-width: 1100px;
+        margin: 0 auto 20px auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+      }
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-weight: bold;
+        color: #cbd5e1;
+      }
+      .control-group input, .control-group select {
+        margin-top: 8px;
+        padding: 5px 10px;
+        background: #1e293b;
+        color: #00FFCC;
+        border: 2px solid #38bdf8;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .workspace {
+        overflow-x: auto;
+        max-width: 95vw;
+        margin: 0 auto;
+        padding: 10px;
+        background: rgba(0,0,0,0.4);
+        border-radius: 12px;
+      }
+      .section-title {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 20px 0 10px 0;
+        color: #a5b4fc;
+      }
+      .grid-container {
+        display: grid;
+        gap: 4px;
+        justify-content: start;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 10px;
+      }
+      .pad {
+        width: 32px;
+        height: 24px;
+        background-color: #334155;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.05s ease;
+      }
+      .pad.note-c0 { border-left: 3px solid #ff595e; }
+      .pad.note-c5 { border-left: 3px solid #e2ca35; }
+      .pad.note-c11 { border-left: 3px solid #35ad9e; }
+      .pad.note-c17 { border-left: 3px solid #903199; }
+      .pad.note-c23 { border-left: 3px solid #ff4799; }
 
-        .drum-pad {
-          width: 32px;
-          height: 40px;
-          background-color: #1e293b;
-          border-bottom: 4px solid #475569;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-        .drum-pad.kick-row { border-bottom-color: #ef4444; }
-        .drum-pad.snare-row { border-bottom-color: #3b82f6; }
-        .drum-pad.hihat-row { border-bottom-color: #eab308; }
+      .drum-pad {
+        width: 32px;
+        height: 40px;
+        background-color: #1e293b;
+        border-bottom: 4px solid #475569;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .drum-pad.kick-row { border-bottom-color: #ef4444; }
+      .drum-pad.snare-row { border-bottom-color: #3b82f6; }
+      .drum-pad.hihat-row { border-bottom-color: #eab308; }
 
-        .pad.active, .drum-pad.active {
-          background-color: #00ffcc !important;
-          box-shadow: 0 0 10px #00ffcc;
-        }
-        .pad.playing, .drum-pad.playing {
-          filter: brightness(1.6);
-          transform: scale(1.05);
-        }
+      .pad.active, .drum-pad.active {
+        background-color: #00ffcc !important;
+        box-shadow: 0 0 10px #00ffcc;
+      }
+      .pad.playing, .drum-pad.playing {
+        filter: brightness(1.6);
+        transform: scale(1.05);
+      }
 
-        button {
-          background: #ff6b6b;
-          color: white;
-          border: none;
-          padding: 12px 22px;
-          font-size: 0.95rem;
-          font-weight: bold;
-          border-radius: 25px;
-          cursor: pointer;
-          box-shadow: 0 4px 0 #c92a2a;
-          transition: all 0.1s;
-        }
-        button:active {
-          transform: translateY(4px);
-          box-shadow: none;
-        }
-        .btn-export { background: #059669; box-shadow: 0 4px 0 #047857; }
-        .btn-save { background: #3b82f6; box-shadow: 0 4px 0 #1d4ed8; }
-        .btn-load { background: #8b5cf6; box-shadow: 0 4px 0 #6d28d9; position: relative; display: inline-block; }
-        .btn-random { background: #eab308; box-shadow: 0 4px 0 #ca8a04; color: black; }
-        .btn-inject-load { background: #d946ef; box-shadow: 0 4px 0 #a21caf; margin-top: 10px; }
-        .btn-mail { background: #ec4899; box-shadow: 0 4px 0 #be185d; }
-        #fileInput { display: none; }
+      button {
+        background: #ff6b6b;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        font-size: 0.95rem;
+        font-weight: bold;
+        border-radius: 25px;
+        cursor: pointer;
+        box-shadow: 0 4px 0 #c92a2a;
+        transition: all 0.1s;
+      }
+      button:active {
+        transform: translateY(4px);
+        box-shadow: none;
+      }
+      .btn-export { background: #059669; box-shadow: 0 4px 0 #047857; }
+      .btn-save { background: #3b82f6; box-shadow: 0 4px 0 #1d4ed8; }
+      .btn-load { background: #8b5cf6; box-shadow: 0 4px 0 #6d28d9; position: relative; display: inline-block; }
+      .btn-random { background: #eab308; box-shadow: 0 4px 0 #ca8a04; color: black; }
+      .btn-inject-load { background: #d946ef; box-shadow: 0 4px 0 #a21caf; margin-top: 10px; }
+      .btn-mail { background: #ec4899; box-shadow: 0 4px 0 #be185d; }
+      #fileInput { display: none; }
 
-        .force-download-portal {
-          margin-top: 10px;
-          display: inline-block;
-        }
-        .portal-link {
-          background: #f59e0b;
-          color: #000 !important;
-          padding: 6px 12px;
-          border-radius: 6px;
-          font-weight: bold;
-          text-decoration: none;
-          border: 2px solid #fff;
-          display: inline-block;
-          box-shadow: 0 0 10px #f59e0b;
-        }
+      .force-download-portal {
+        margin-top: 10px;
+        display: inline-block;
+      }
+      .portal-link {
+        background: #f59e0b;
+        color: #000 !important;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        text-decoration: none;
+        border: 2px solid #fff;
+        display: inline-block;
+        box-shadow: 0 0 10px #f59e0b;
+      }
 
-        .dump-section {
-          max-width: 1100px;
-          margin: 30px auto 10px auto;
-          background: rgba(15, 23, 42, 0.9);
-          border: 2px solid #ff0066;
-          border-radius: 12px;
-          padding: 15px;
-          box-shadow: 0 0 15px rgba(255, 0, 102, 0.3);
-        }
-        .dump-title {
-          font-family: 'Courier New', monospace;
-          color: #ff0066;
-          font-weight: bold;
-          margin-bottom: 10px;
-          font-size: 1.1rem;
-          text-transform: uppercase;
-        }
-        .dump-box {
-          width: 100%;
-          height: 140px;
-          background: #020617;
-          color: #00ffcc;
-          border: 1px solid #334155;
-          border-radius: 6px;
-          font-family: 'Courier New', monospace;
-          font-size: 0.9rem;
-          padding: 10px;
-          box-sizing: border-box;
-          resize: vertical;
-        }
-      </style>
-    </head>
-    <body>
+      .dump-section {
+        max-width: 1100px;
+        margin: 30px auto 10px auto;
+        background: rgba(15, 23, 42, 0.9);
+        border: 2px solid #ff0066;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 0 15px rgba(255, 0, 102, 0.3);
+      }
+      .dump-title {
+        font-family: 'Courier New', monospace;
+        color: #ff0066;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+      }
+      .dump-box {
+        width: 100%;
+        height: 140px;
+        background: #020617;
+        color: #00ffcc;
+        border: 1px solid #334155;
+        border-radius: 6px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        padding: 10px;
+        box-sizing: border-box;
+        resize: vertical;
+      }
+    </style>
+  </head>
+  <body>
 
-      <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</h1>
-      <p class="subtitle">🚀 SAFE-DUMP RECOVERY ENGINE + EXTENDED GMAIL FAIL-SAFE CHANNELS 🚀</p>
+    <h1>🎹 CHROMATIC MATRIX INTERACTIVE STATION v18.0 🥁</h1>
+    <p class="subtitle">🚀 SAFE-DUMP RECOVERY ENGINE + EXTENDED GMAIL FAIL-SAFE CHANNELS 🚀</p>
 
       <div class="hacker-panel" id="statusLog">
         <div>📡 DISPATCH ENGINE ONLINE: Manipulating URL routing flags dynamically.</div>

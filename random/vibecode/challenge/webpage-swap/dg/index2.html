@@ -2,21 +2,21 @@
 <html>
   <head>
     <title>Meatballs 2.0: The Bonkening</title>
-      <link rel="stylesheet" href="https://idiotspeed.neocities.org/style.css">
-      <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css">
-      <style>
-        .aero-panel:hover {
-          transform: scale(1.05) rotate(1deg);
-          transition: 0.2s;
-          box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
-        }
-      </style>
-    </head>
-    <body>
-      <div class="not-done"><marquee behavior="alternate">🚨 Meatball News: Man eats tacos then spaghetti. Monke climbs gorilla tag stump. Tea shop becomes stinky. Dog eats sushi for lunch and burgers. Vacuum becomes evil muncher of doom. DVD logo bounces off a wall. Famous candy brand finds a way to stop gravity. 🚨</marquee></div>
-        <div class="aero-panel">
-          <h1>🧆 MEATBALLS 🧆</h1>
-          <p>Now with 100% more <b>Creamy Peanut Butter</b>!</p>
+    <link rel="stylesheet" href="https://idiotspeed.neocities.org/style.css">
+    <link rel="stylesheet" href="https://doggodgcodes.github.io/style.css">
+    <style>
+      .aero-panel:hover {
+        transform: scale(1.05) rotate(1deg);
+        transition: 0.2s;
+        box-shadow: 0 0 50px rgba(0, 255, 255, 0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="not-done"><marquee behavior="alternate">🚨 Meatball News: Man eats tacos then spaghetti. Monke climbs gorilla tag stump. Tea shop becomes stinky. Dog eats sushi for lunch and burgers. Vacuum becomes evil muncher of doom. DVD logo bounces off a wall. Famous candy brand finds a way to stop gravity. 🚨</marquee></div>
+      <div class="aero-panel">
+        <h1>🧆 MEATBALLS 🧆</h1>
+        <p>Now with 100% more <b>Creamy Peanut Butter</b>!</p>
 
           <button onclick="burger()">Click for 🚨</button>
 
@@ -28,29 +28,29 @@
 
             <p><i>Powered by Chicken Jockey Technologies</i> 🐥</p>
 
-            <script src="https://doggodgcodes.github.io/min/dogebork/v3.0/dogebork.min.js"></script>
-            </div>
+              <script src="https://doggodgcodes.github.io/min/dogebork/v3.0/dogebork.min.js"></script>
+              </div>
 
-            <script>
-              let sirens = "🚨"
-              console.log("WUSUUUUUU! Meatball mode engaged.");
-              document.body.onclick = function() {
-                let b = document.createElement("div");
-                b.innerHTML = "🚨BONK🚨";
-                b.style.position = "fixed";
-                b.style.left = lcg(1, window.innerWidth) + "px";
-                b.style.top = lcg(1, window.innerHeight) + "px";
-                b.style.color = "yellow";
-                b.style.fontSize = "30px";
-                b.style.fontWeight = "bold";
-                document.body.appendChild(b);
-                setTimeout(() => b.remove(), 1000);
-              };
-              function burger() {
-                const brgr = fetchId("brgr");
-                brgr.textContent = sirens;
-                sirens = sirens + sirens;
-              };
-            </script>
-          </body>
-        </html>
+              <script>
+                let sirens = "🚨"
+                console.log("WUSUUUUUU! Meatball mode engaged.");
+                document.body.onclick = function() {
+                  let b = document.createElement("div");
+                  b.innerHTML = "🚨BONK🚨";
+                  b.style.position = "fixed";
+                  b.style.left = lcg(1, window.innerWidth) + "px";
+                  b.style.top = lcg(1, window.innerHeight) + "px";
+                  b.style.color = "yellow";
+                  b.style.fontSize = "30px";
+                  b.style.fontWeight = "bold";
+                  document.body.appendChild(b);
+                  setTimeout(() => b.remove(), 1000);
+                };
+                function burger() {
+                  const brgr = fetchId("brgr");
+                  brgr.textContent = sirens;
+                  sirens = sirens + sirens;
+                };
+              </script>
+            </body>
+          </html>

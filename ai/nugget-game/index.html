@@ -4,95 +4,95 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Chicken Nugget XP - Frog Clicker</title>
-      <style>
-        /* Import the requested font - to use it add class="dingus font" to an element */
-        @import url("https://doggodgcodes.github.io/assets/fonts/css/dg-dingus.css");
+    <style>
+      /* Import the requested font - to use it add class="dingus font" to an element */
+      @import url("https://doggodgcodes.github.io/assets/fonts/css/dg-dingus.css");
 
-        :root{
-          --bg:#0b1020;
-          --card:#0f1724;
-          --accent:#ffcc33;
-          --muted:#9aa4b2;
-          --green:#4ee29a;
-        }
-        html,body{height:100%;}
-        body{
-          margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(180deg,#071025 0%, #071a2b 100%);font-family:Inter, system-ui, Arial, sans-serif;color:#e6eef6;
-        }
-        .app{
-          width:960px;max-width:96%;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:22px;box-shadow:0 8px 30px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.04);
-        }
-        header{display:flex;align-items:center;gap:16px;margin-bottom:12px}
-        .logo{font-size:22px;font-weight:700}
-        .dingus.font.logo{font-size:24px}
+      :root{
+        --bg:#0b1020;
+        --card:#0f1724;
+        --accent:#ffcc33;
+        --muted:#9aa4b2;
+        --green:#4ee29a;
+      }
+      html,body{height:100%;}
+      body{
+        margin:0;display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(180deg,#071025 0%, #071a2b 100%);font-family:Inter, system-ui, Arial, sans-serif;color:#e6eef6;
+      }
+      .app{
+        width:960px;max-width:96%;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:22px;box-shadow:0 8px 30px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.04);
+      }
+      header{display:flex;align-items:center;gap:16px;margin-bottom:12px}
+      .logo{font-size:22px;font-weight:700}
+      .dingus.font.logo{font-size:24px}
 
-        .row{display:flex;gap:18px}
-        .col{flex:1}
-        .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+      .row{display:flex;gap:18px}
+      .col{flex:1}
+      .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
 
-        .xp-display{display:flex;align-items:center;justify-content:space-between;gap:12px}
-        .xp-info{display:flex;flex-direction:column}
-        .xp-value{font-size:30px;font-weight:800;color:var(--accent)}
-        .xp-bar{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;margin-top:8px}
-        .xp-bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffd46b);width:0%}
-        .nugget-area{display:flex;align-items:center;justify-content:center;gap:30px;padding:28px}
+      .xp-display{display:flex;align-items:center;justify-content:space-between;gap:12px}
+      .xp-info{display:flex;flex-direction:column}
+      .xp-value{font-size:30px;font-weight:800;color:var(--accent)}
+      .xp-bar{height:12px;background:rgba(255,255,255,0.04);border-radius:999px;overflow:hidden;margin-top:8px}
+      .xp-bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffd46b);width:0%}
+      .nugget-area{display:flex;align-items:center;justify-content:center;gap:30px;padding:28px}
 
-        .nugget{font-size:110px;display:inline-block;transition:transform .25s ease}
-        .stick{font-size:80px;display:inline-block;opacity:0.95}
-        .eat{animation:eatAnim .9s ease forwards}
-        @keyframes eatAnim{0%{transform:translateX(0) scale(1)}50%{transform:translateX(18px) scale(0.9) rotate(-10deg)}100%{transform:translateX(36px) scale(0) rotate(20deg);opacity:0}}
+      .nugget{font-size:110px;display:inline-block;transition:transform .25s ease}
+      .stick{font-size:80px;display:inline-block;opacity:0.95}
+      .eat{animation:eatAnim .9s ease forwards}
+      @keyframes eatAnim{0%{transform:translateX(0) scale(1)}50%{transform:translateX(18px) scale(0.9) rotate(-10deg)}100%{transform:translateX(36px) scale(0) rotate(20deg);opacity:0}}
 
-        .floating-xp{position:absolute;pointer-events:none;font-weight:700;color:var(--green);opacity:0;transform:translateY(0);transition:all .9s ease}
+      .floating-xp{position:absolute;pointer-events:none;font-weight:700;color:var(--green);opacity:0;transform:translateY(0);transition:all .9s ease}
 
-        .controls{display:flex;gap:10px;align-items:center}
-        button{background:#0e1730;color:#eaf4ff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer}
-        .frog{font-size:36px;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,#143c2e,#0b2b20);border:1px solid rgba(255,255,255,0.03)}
-        .frog:active{transform:translateY(2px)}
+      .controls{display:flex;gap:10px;align-items:center}
+      button{background:#0e1730;color:#eaf4ff;border:0;padding:8px 12px;border-radius:10px;cursor:pointer}
+      .frog{font-size:36px;padding:10px 14px;border-radius:12px;background:linear-gradient(180deg,#143c2e,#0b2b20);border:1px solid rgba(255,255,255,0.03)}
+      .frog:active{transform:translateY(2px)}
 
-        .meta{font-size:13px;color:var(--muted);margin-top:8px}
-        .small{font-size:13px;color:var(--muted)}
+      .meta{font-size:13px;color:var(--muted);margin-top:8px}
+      .small{font-size:13px;color:var(--muted)}
 
-        /* show how to use the dingus font class */
-        .example-dingus{margin-top:10px;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));display:inline-block}
-        .footer{margin-top:14px;color:var(--muted);font-size:13px}
-      </style>
-    </head>
-    <body>
-      <div class="app">
-        <header>
-          <div class="logo dingus font">DG Nugget XP</div>
-            <div style="flex:1"></div>
-              <div class="small">Auto XP every 5s • Click the frog for bonus XP</div>
-              </header>
+      /* show how to use the dingus font class */
+      .example-dingus{margin-top:10px;padding:10px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));display:inline-block}
+      .footer{margin-top:14px;color:var(--muted);font-size:13px}
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div class="logo dingus font">DG Nugget XP</div>
+          <div style="flex:1"></div>
+            <div class="small">Auto XP every 5s • Click the frog for bonus XP</div>
+            </header>
 
-              <div class="row">
-                <div class="col card">
-                  <div class="xp-display">
-                    <div class="xp-info">
-                      <div class="xp-value" id="xpVal">0 XP</div>
-                        <div class="small">Level: <strong id="level">1</strong> • Next: <span id="nextXp">100</span> XP</div>
-                          <div class="xp-bar" title="XP progress"><i id="xpBarFill"></i></div>
-                          </div>
-                          <div class="controls">
-                            <button id="pauseBtn">Pause Auto XP</button>
-                              <div style="width:6px"></div>
-                                <button id="resetBtn">Reset</button>
-                                </div>
+            <div class="row">
+              <div class="col card">
+                <div class="xp-display">
+                  <div class="xp-info">
+                    <div class="xp-value" id="xpVal">0 XP</div>
+                      <div class="small">Level: <strong id="level">1</strong> • Next: <span id="nextXp">100</span> XP</div>
+                        <div class="xp-bar" title="XP progress"><i id="xpBarFill"></i></div>
+                        </div>
+                        <div class="controls">
+                          <button id="pauseBtn">Pause Auto XP</button>
+                            <div style="width:6px"></div>
+                              <button id="resetBtn">Reset</button>
                               </div>
+                            </div>
 
-                              <div class="nugget-area" style="position:relative;min-height:160px">
-                                <div id="nugget" class="nugget" aria-hidden="true">🟠</div>
-                                  <div id="stick" class="stick">🍗</div>
-                                    <div id="float" class="floating-xp" style="left:50%;top:16%"></div>
-                                    </div>
+                            <div class="nugget-area" style="position:relative;min-height:160px">
+                              <div id="nugget" class="nugget" aria-hidden="true">🟠</div>
+                                <div id="stick" class="stick">🍗</div>
+                                  <div id="float" class="floating-xp" style="left:50%;top:16%"></div>
+                                  </div>
 
-                                    <div class="meta">Each 5 seconds the chicken nugget eats a chicken stick and gains random XP. When it eats, you'll see a little XP float up.</div>
+                                  <div class="meta">Each 5 seconds the chicken nugget eats a chicken stick and gains random XP. When it eats, you'll see a little XP float up.</div>
 
-                                    </div>
+                                  </div>
 
-                                    <div class="col card">
-                                      <h3 style="margin-top:0">Frog Clicker</h3>
-                                      <p class="small">Click the frog to make the nugget happy and earn bonus XP. Use the frog or let the auto-eater run.</p>
+                                  <div class="col card">
+                                    <h3 style="margin-top:0">Frog Clicker</h3>
+                                    <p class="small">Click the frog to make the nugget happy and earn bonus XP. Use the frog or let the auto-eater run.</p>
                                       <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
                                         <button id="frogBtn" class="frog">🐸</button>
                                           <div>
