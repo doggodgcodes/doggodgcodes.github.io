@@ -37,7 +37,7 @@ targetFiles.forEach(file => {
     let trimmed = line.trim();
     if (!trimmed) return "";
 
-    if (trimmed.startsWith("<meta") || trimmed.startsWith("<link") || trimmed.startsWith("<br") || trimmed.startsWith("<hr") || trimmed.startsWith("<img") || trimmed.startsWith("<ul") || trimmed.startsWith("<il") || trimmed.startsWith("<small")) {
+    if (trimmed.startsWith("<meta") || trimmed.startsWith("<link") || trimmed.startsWith("<br") || trimmed.startsWith("<hr") || trimmed.startsWith("<img") || trimmed.startsWith("<ul") || trimmed.startsWith("<il") || trimmed.startsWith("<small") || trimmed.startsWith("<h1") || trimmed.startsWith("<h2") || trimmed.startsWith("<h3") || trimmed.startsWith("<h4") || trimmed.startsWith("<h5") || trimmed.startsWith("<h6") || trimmed.startsWith("<p")) {
       const spaces = " ".repeat(indentLevel * indentSize);
       return spaces + trimmed;
     }
