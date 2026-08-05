@@ -49,8 +49,11 @@ targetFiles.forEach(file => {
       indentLevel++;
     }
 
-    if (trimmed.startsWith("}") || trimmed.startsWith("]") || trimmed.startsWith("</")) {
-      indentLevel = Math.max(0, indentLevel - 1);
+    if (trimmed.startsWith("}") || trimmed.startsWith("]") || trimmed.startsWith("</") || trimmed.endsWith("/>")) {
+      indentLevel--;
+      if (indentLevel < 0) {
+        indentLevel = 0;
+      }
     }
 
     return result;
