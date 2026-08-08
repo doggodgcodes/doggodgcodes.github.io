@@ -107,38 +107,38 @@
             <!-- Audio player -->
             <audio id="audioPlayer" controls loop></audio>
 
-              <script>
-                const fileInput = document.getElementById("fileInput")
+            <script>
+              const fileInput = document.getElementById("fileInput")
 
-                document.getElementById("save").onclick = () => {
-                  const text = document.getElementById("note").value;
-                  let filename = document.getElementById("filename").value.trim();
+              document.getElementById("save").onclick = () => {
+                const text = document.getElementById("note").value;
+                let filename = document.getElementById("filename").value.trim();
 
-                  if (!filename) filename = "note.txt";
-                  if (!filename.includes(".")) filename += ".txt";
+                if (!filename) filename = "note.txt";
+                if (!filename.includes(".")) filename += ".txt";
 
-                  const blob = new Blob([text], { type: "text/plain" });
-                  const url = URL.createObjectURL(blob);
+                const blob = new Blob([text], { type: "text/plain" });
+                const url = URL.createObjectURL(blob);
 
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = filename;
-                  a.click();
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                a.click();
 
-                  URL.revokeObjectURL(url);
-                };
+                URL.revokeObjectURL(url);
+              };
 
-                fileInput.addEventListener('change', function() {
-                  const file = this.files[0];
-                  if (file) {
-                    // Create a temporary URL for the file
-                    const fileURL = URL.createObjectURL(file);
-                    // Set the audio src to the file
-                    audioPlayer.src = fileURL;
-                    audioPlayer.play();
-                  }
-                });
-              </script>
+              fileInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                  // Create a temporary URL for the file
+                  const fileURL = URL.createObjectURL(file);
+                  // Set the audio src to the file
+                  audioPlayer.src = fileURL;
+                  audioPlayer.play();
+                }
+              });
+            </script>
 
-            </body>
-          </html>
+          </body>
+        </html>
