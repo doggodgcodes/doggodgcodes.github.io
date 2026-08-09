@@ -33,117 +33,117 @@
       <p>Use characters to control the <code>asc</code> value</p>
         <ul>
         <li><code>+</code>: Increment by 1</li>
-          <li><code>-</code>: Decrement by 1</li>
-            <li><code>*</code>: Square "asc"</li>
-              <li><code>/</code>: Reset to 1</li>
-                <li><code>^</code>: Square "asc" then decrement "asc"</li></li>
-                  <li><code>.</code>: Append character to output</li>
-                    <li><code>!</code>: Debug</li>
-                      <li><code>;</code>: Multiply by 2</li>
-                      </ul>
-                      </div>
+        <li><code>-</code>: Decrement by 1</li>
+        <li><code>*</code>: Square "asc"</li>
+        <li><code>/</code>: Reset to 1</li>
+        <li><code>^</code>: Square "asc" then decrement "asc"</li></li>
+        <li><code>.</code>: Append character to output</li>
+        <li><code>!</code>: Debug</li>
+        <li><code>;</code>: Multiply by 2</li>
+      </ul>
+      </div>
 
-                      <div id="editor-stack">
-                      <div class="pane">
-                      <div class="label">STDIN</div>
-                      <textarea id="user-stdin" placeholder="+;**;;++++++++.+++++++++++++++++++++++++++++.+++++++..+++./;;;;;++++++++++++.------------.;+++++++++++++++++++++++.++++++++++++++++++++++++.+++.------.--------./+;;;;+.">+;**;;++++++++.+++++++++++++++++++++++++++++.+++++++..+++./;;;;;++++++++++++.------------.;+++++++++++++++++++++++.++++++++++++++++++++++++.+++.------.--------./+;;;;+.</textarea>
-                        </div>
-                        <div id="output">Loading Pyodide ~15 MB (Python in browser)</div>
-                        </div>
-                        </div>
+      <div id="editor-stack">
+      <div class="pane">
+      <div class="label">STDIN</div>
+      <textarea id="user-stdin" placeholder="+;**;;++++++++.+++++++++++++++++++++++++++++.+++++++..+++./;;;;;++++++++++++.------------.;+++++++++++++++++++++++.++++++++++++++++++++++++.+++.------.--------./+;;;;+.">+;**;;++++++++.+++++++++++++++++++++++++++++.+++++++..+++./;;;;;++++++++++++.------------.;+++++++++++++++++++++++.++++++++++++++++++++++++.+++.------.--------./+;;;;+.</textarea>
+        </div>
+        <div id="output">Loading Pyodide ~15 MB (Python in browser)</div>
+        </div>
+        </div>
 
-                        <script>
-                          let pyodide;
-                          const outputArea = document.getElementById('output');
-                          const runBtn = document.getElementById('run-btn');
+        <script>
+          let pyodide;
+          const outputArea = document.getElementById('output');
+          const runBtn = document.getElementById('run-btn');
 
-                          console.log("Gemini made the Python work in browser")
+          console.log("Gemini made the Python work in browser")
 
-                          async function init() {
-                            pyodide = await loadPyodide();
-                            outputArea.innerText = "Engine Ready. Enter symbols and click Run.";
-                          }
-                          init();
+          async function init() {
+            pyodide = await loadPyodide();
+            outputArea.innerText = "Engine Ready. Enter symbols and click Run.";
+          }
+          init();
 
-                          async function execute() {
-                            if (!pyodide) return;
+          async function execute() {
+            if (!pyodide) return;
 
-                            const userInput = document.getElementById('user-stdin').value;
-                            outputArea.innerText = "Running...\n";
+            const userInput = document.getElementById('user-stdin').value;
+            outputArea.innerText = "Running...\n";
 
-                            // Your exact Python logic, escaped for JS
-                            const interpreterCode = `
-                            import sys
-                            import math
-                            import io
+            // Your exact Python logic, escaped for JS
+            const interpreterCode = `
+            import sys
+            import math
+            import io
 
-                            # Setup the input stream from the text area
-                            sys.stdin = io.StringIO("""${userInput}""")
-                            sys.stdout = io.StringIO()
+            # Setup the input stream from the text area
+            sys.stdin = io.StringIO("""${userInput}""")
+            sys.stdout = io.StringIO()
 
-                            def run_interpreter():
-                            chars = sys.stdin.read()
-                            asc = 0
-                            final = ""
+            def run_interpreter():
+            chars = sys.stdin.read()
+            asc = 0
+            final = ""
 
-                            for character in chars:
-                            if character == "-":
-                            asc = asc - 1
-                            elif character == "+":
-                            asc = asc + 1
-                            elif character == ".":
-                            if asc > 255:
-                            asc = asc - 255
-                            # Simplified the comparison for browser stability
-                            if int(asc) == 10:
-                            print(final)
-                            final = ""
-                            else:
-                            final = final + chr(math.floor(asc))
-                            elif character == "*":
-                            asc = asc * asc
-                            elif character == "/":
-                            # Guard against division by zero if asc is 0
-                            asc = asc / asc if asc != 0 else 0
-                            elif character == "^":
-                            asc = asc * asc - asc
-                            elif character == "!":
-                            print(asc)
-                            elif character == ";":
-                            asc = asc * 2
+            for character in chars:
+            if character == "-":
+            asc = asc - 1
+            elif character == "+":
+            asc = asc + 1
+            elif character == ".":
+            if asc > 255:
+            asc = asc - 255
+            # Simplified the comparison for browser stability
+            if int(asc) == 10:
+            print(final)
+            final = ""
+            else:
+            final = final + chr(math.floor(asc))
+            elif character == "*":
+            asc = asc * asc
+            elif character == "/":
+            # Guard against division by zero if asc is 0
+            asc = asc / asc if asc != 0 else 0
+            elif character == "^":
+            asc = asc * asc - asc
+            elif character == "!":
+            print(asc)
+            elif character == ";":
+            asc = asc * 2
 
-                            print(final, end="")
+            print(final, end="")
 
-                            try:
-                            run_interpreter()
-                            result = sys.stdout.getvalue()
-                            except Exception as e:
-                            result = f"Runtime Error: {str(e)}"
+            try:
+            run_interpreter()
+            result = sys.stdout.getvalue()
+            except Exception as e:
+            result = f"Runtime Error: {str(e)}"
 
-                            result
-                            `;
+            result
+            `;
 
-                            try {
-                              const out = await pyodide.runPythonAsync(interpreterCode);
-                              outputArea.innerText = out;
-                            } catch (err) {
-                              outputArea.innerText = "System Error: " + err;
-                            }
-                          }
+            try {
+              const out = await pyodide.runPythonAsync(interpreterCode);
+              outputArea.innerText = out;
+            } catch (err) {
+              outputArea.innerText = "System Error: " + err;
+            }
+          }
 
-                          // Save code on every keystroke
-                          const editor = document.getElementById('user-stdin');
-                          editor.addEventListener('input', () => {
-                            localStorage.setItem('saved_code', editor.value);
-                          });
+          // Save code on every keystroke
+          const editor = document.getElementById('user-stdin');
+          editor.addEventListener('input', () => {
+            localStorage.setItem('saved_code', editor.value);
+          });
 
-                          // Load code when the page opens
-                          window.onload = () => {
-                            const saved = localStorage.getItem('saved_code');
-                            if (saved) editor.value = saved;
-                            init(); // Start Pyodide
-                          };
-                        </script>
+          // Load code when the page opens
+          window.onload = () => {
+            const saved = localStorage.getItem('saved_code');
+            if (saved) editor.value = saved;
+            init(); // Start Pyodide
+          };
+        </script>
 
-                      </body>
-                    </html>
+      </body>
+    </html>

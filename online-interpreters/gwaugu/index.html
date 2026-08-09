@@ -33,116 +33,116 @@
       <p>Use characters to control the <code>asc</code> value</p>
         <ul>
         <li><code>g</code>: Increment by 1</li>
-          <li><code>w</code>: Decrement by 1</li>
-            <li><code>@</code>: Remove 40</li>
-              <li><code>$</code>: Add 40</li>
-                <li><code>y</code>: Add 10</li></li>
-                  <li><code>q</code>: Remove 10</li>
-                    <li><code>!</code>: Output char</li>
-                    </ul>
-                    </div>
+        <li><code>w</code>: Decrement by 1</li>
+        <li><code>@</code>: Remove 40</li>
+        <li><code>$</code>: Add 40</li>
+        <li><code>y</code>: Add 10</li></li>
+        <li><code>q</code>: Remove 10</li>
+        <li><code>!</code>: Output char</li>
+      </ul>
+      </div>
 
-                    <div id="editor-stack">
-                    <div class="pane">
-                    <div class="label">STDIN</div>
-                    <textarea id="user-stdin" placeholder="$!www!wwwy!!ggg!@wwwwwww!$yggggg!qgg!ggg!qgggg!qgg!">$!www!wwwy!!ggg!@wwwwwww!$yggggg!qgg!ggg!qgggg!qgg!</textarea>
-                      </div>
-                      <div id="output">Loading Pyodide ~15 MB (Python in browser)</div>
-                      </div>
-                      </div>
+      <div id="editor-stack">
+      <div class="pane">
+      <div class="label">STDIN</div>
+      <textarea id="user-stdin" placeholder="$!www!wwwy!!ggg!@wwwwwww!$yggggg!qgg!ggg!qgggg!qgg!">$!www!wwwy!!ggg!@wwwwwww!$yggggg!qgg!ggg!qgggg!qgg!</textarea>
+        </div>
+        <div id="output">Loading Pyodide ~15 MB (Python in browser)</div>
+        </div>
+        </div>
 
-                      <script>
-                        let pyodide;
-                        const outputArea = document.getElementById('output');
-                        const runBtn = document.getElementById('run-btn');
+        <script>
+          let pyodide;
+          const outputArea = document.getElementById('output');
+          const runBtn = document.getElementById('run-btn');
 
-                        console.log("Gemini made the Python work in browser")
+          console.log("Gemini made the Python work in browser")
 
-                        async function init() {
-                          pyodide = await loadPyodide();
-                          outputArea.innerText = "Ready to run!";
-                        }
-                        init();
+          async function init() {
+            pyodide = await loadPyodide();
+            outputArea.innerText = "Ready to run!";
+          }
+          init();
 
-                        async function execute() {
-                          if (!pyodide) return;
+          async function execute() {
+            if (!pyodide) return;
 
-                          const userInput = document.getElementById('user-stdin').value;
-                          outputArea.innerText = "Running...\n";
+            const userInput = document.getElementById('user-stdin').value;
+            outputArea.innerText = "Running...\n";
 
-                          // Your exact Python logic, escaped for JS
-                          const interpreterCode = `
-                          import sys
-                          import io
+            // Your exact Python logic, escaped for JS
+            const interpreterCode = `
+            import sys
+            import io
 
-                          # Setup the input/output streams
-                          sys.stdin = io.StringIO("""${userInput}""")
-                          sys.stdout = io.StringIO()
+            # Setup the input/output streams
+            sys.stdin = io.StringIO("""${userInput}""")
+            sys.stdout = io.StringIO()
 
-                          def run_interpreter():
-                          # Read the entire code from the redirected stdin
-                          code = sys.stdin.read()
+            def run_interpreter():
+            # Read the entire code from the redirected stdin
+            code = sys.stdin.read()
 
-                          # Initialize Gwaugu state
-                          asc = 32
-                          final = ""
+            # Initialize Gwaugu state
+            asc = 32
+            final = ""
 
-                          for char in code:
-                          # Commands
-                          if char == "g":
-                          asc += 1
-                          elif char == "!":
-                          final += chr(asc)
-                          elif char == "w":
-                          asc -= 1
-                          elif char == "y":
-                          asc += 10
-                          elif char == "q":
-                          asc -= 10
-                          elif char == "$":
-                          asc += 40
-                          elif char == "@":
-                          asc -= 40
+            for char in code:
+            # Commands
+            if char == "g":
+            asc += 1
+            elif char == "!":
+            final += chr(asc)
+            elif char == "w":
+            asc -= 1
+            elif char == "y":
+            asc += 10
+            elif char == "q":
+            asc -= 10
+            elif char == "$":
+            asc += 40
+            elif char == "@":
+            asc -= 40
 
-                          # In your previous esolang, '!' printed the current numeric value
-                          # If you want that behavior in Gwaugu too, uncomment the next line:
-                          # print(asc)
+            # In your previous esolang, '!' printed the current numeric value
+            # If you want that behavior in Gwaugu too, uncomment the next line:
+            # print(asc)
 
-                          # Output the final decoded string
-                          print(final, end="")
+            # Output the final decoded string
+            print(final, end="")
 
-                          try:
-                          run_interpreter()
-                          # Retrieve everything written to sys.stdout
-                          result = sys.stdout.getvalue()
-                          except Exception as e:
-                          result = f"Runtime Error: {str(e)}"
+            try:
+            run_interpreter()
+            # Retrieve everything written to sys.stdout
+            result = sys.stdout.getvalue()
+            except Exception as e:
+            result = f"Runtime Error: {str(e)}"
 
-                          # The last line evaluated is what Pyodide returns to JavaScript
-                          result
-                          `;
+            # The last line evaluated is what Pyodide returns to JavaScript
+            result
+            `;
 
-                          try {
-                            const out = await pyodide.runPythonAsync(interpreterCode);
-                            outputArea.innerText = out;
-                          } catch (err) {
-                            outputArea.innerText = "System Error: " + err;
-                          }
-                        }
+            try {
+              const out = await pyodide.runPythonAsync(interpreterCode);
+              outputArea.innerText = out;
+            } catch (err) {
+              outputArea.innerText = "System Error: " + err;
+            }
+          }
 
-                        // Save code on every keystroke
-                        const editor = document.getElementById('user-stdin');
-                        editor.addEventListener('input', () => {
-                          localStorage.setItem('saved_code', editor.value);
-                        });
+          // Save code on every keystroke
+          const editor = document.getElementById('user-stdin');
+          editor.addEventListener('input', () => {
+            localStorage.setItem('saved_code', editor.value);
+          });
 
-                        // Load code when the page opens
-                        window.onload = () => {
-                          const saved = localStorage.getItem('saved_code');
-                          if (saved) editor.value = saved;
-                          init(); // Start Pyodide
-                        };
-                      </script>
+          // Load code when the page opens
+          window.onload = () => {
+            const saved = localStorage.getItem('saved_code');
+            if (saved) editor.value = saved;
+            init(); // Start Pyodide
+          };
+        </script>
 
-                    </body>
-                  </html>
+      </body>
+    </html>
