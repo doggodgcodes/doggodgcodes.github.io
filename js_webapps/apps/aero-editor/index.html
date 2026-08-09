@@ -97,74 +97,74 @@
 
       <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
 
-        <div class="editor-container">
-          <textarea placeholder="Make your webpage...">
-            <!doctype html>
-            <html>
-              <head>
-                <title>My Webpage</title>
-                <style>
-                  body {
-                    font-family: "Segoe UI", sans-serif;
-                  }
-                </style>
-              </head>
-              <body>
-                <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
-                </body>
-              </html>
-            </textarea>
-            <div class="output-box">
-            </div>
-          </div>
-
-          <script>
-            // 1. Grab the monke-tools
-            const input = document.querySelector('textarea');
-            const output = document.querySelector('.output-box');
-            const displayTitle = document.getElementById('title');
-
-            // 2. Listen for the boogie woogie (typing)
-            input.addEventListener('input', () => {
-              // 3. Teleport the code to the preview window!
-              output.innerHTML = DOMPurify.sanitize(input.value);
-
-              // We look for the <title> tag inside the textarea and grab its text
-              const match = input.value.match(/<title>(.*?)<\/title>/i);
-              if (match && match[1]) {
-                document.title = match[1] + " - doggodgcodes";
-                displayTitle.textContent = " " + match[1];
+      <div class="editor-container">
+      <textarea placeholder="Make your webpage...">
+        <!doctype html>
+        <html>
+          <head>
+            <title>My Webpage</title>
+            <style>
+              body {
+                font-family: "Segoe UI", sans-serif;
               }
-            });
+            </style>
+          </head>
+          <body>
+            <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
+            </body>
+          </html>
+        </textarea>
+        <div class="output-box">
+        </div>
+        </div>
 
-            const saveBtn = document.getElementById('saveBtn');
+        <script>
+          // 1. Grab the monke-tools
+          const input = document.querySelector('textarea');
+          const output = document.querySelector('.output-box');
+          const displayTitle = document.getElementById('title');
 
-            saveBtn.addEventListener('click', () => {
-              // 1. Ask the user for a name (The Prompt!)
-              let fileName = prompt("What you gonna call it?", "my_webpage");
+          // 2. Listen for the boogie woogie (typing)
+          input.addEventListener('input', () => {
+            // 3. Teleport the code to the preview window!
+            output.innerHTML = DOMPurify.sanitize(input.value);
 
-              // If they hit cancel, don't do anything!
-              if (!fileName) return;
+            // We look for the <title> tag inside the textarea and grab its text
+            const match = input.value.match(/<title>(.*?)<\/title>/i);
+            if (match && match[1]) {
+              document.title = match[1] + " - doggodgcodes";
+              displayTitle.textContent = " " + match[1];
+            }
+          });
 
-              // 2. Make sure it ends in .html
-              if (!fileName.endsWith(".html")) {
-                fileName += ".html";
-              }
+          const saveBtn = document.getElementById('saveBtn');
 
-              // 3. Create the "Jar" of code
-              const blob = new Blob([input.value + `<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->`], { type: "text/html" });
+          saveBtn.addEventListener('click', () => {
+            // 1. Ask the user for a name (The Prompt!)
+            let fileName = prompt("What you gonna call it?", "my_webpage");
 
-              // 4. Create a hidden "ghost" link to trigger the download
-              const link = document.createElement("a");
-              link.href = URL.createObjectURL(blob);
-              link.download = fileName;
+            // If they hit cancel, don't do anything!
+            if (!fileName) return;
 
-              // 5. CLICK!
-              link.click();
+            // 2. Make sure it ends in .html
+            if (!fileName.endsWith(".html")) {
+              fileName += ".html";
+            }
 
-              // 6. Clean up the ghost link
-              URL.revokeObjectURL(link.href);
-            });
-          </script>
-        </body>
-      </html>
+            // 3. Create the "Jar" of code
+            const blob = new Blob([input.value + `<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->`], { type: "text/html" });
+
+            // 4. Create a hidden "ghost" link to trigger the download
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = fileName;
+
+            // 5. CLICK!
+            link.click();
+
+            // 6. Clean up the ghost link
+            URL.revokeObjectURL(link.href);
+          });
+        </script>
+      </body>
+    </html>

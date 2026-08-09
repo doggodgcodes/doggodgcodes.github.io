@@ -707,102 +707,102 @@
   <body>
     <!-- Header -->
     <div class="header">
-      <div class="header-top">
-        <div class="logo" onclick="showHomePage()">
-          <span class="logo-text">bananazon</span
-          ><span class="logo-smile">🍌</span>
-        </div>
-
-        <div class="search-container">
-          <input
-          type="text"
-          class="search-input"
-          id="searchInput"
-          placeholder="Search Bananazon"
-        />
-        <button class="search-button" onclick="search()">
-        <span class="search-icon">🔍</span>
-      </button>
+    <div class="header-top">
+    <div class="logo" onclick="showHomePage()">
+    <span class="logo-text">bananazon</span
+    ><span class="logo-smile">🍌</span>
     </div>
 
-    <div style="display: flex; gap: 15px">
-      <div class="nav-item" onclick="signIn()" id="accountButton">
-        <span id="userGreeting"
-        >Hello, Sign in<br /><strong
-        >Account & Lists</strong
-        ></span
-        >
-      </div>
-      <div class="nav-item" onclick="showOrders()">
-        Returns<br /><strong>& Orders</strong>
-      </div>
-      <div
-        class="nav-item"
-        style="font-size: 20px"
-        onclick="toggleCart()"
-        >
-        🛒 Cart<span class="cart-count" id="cartCount">0</span>
-      </div>
-    </div>
-  </div>
+    <div class="search-container">
+    <input
+    type="text"
+    class="search-input"
+    id="searchInput"
+    placeholder="Search Bananazon"
+  />
+  <button class="search-button" onclick="search()">
+  <span class="search-icon">🔍</span>
+</button>
+</div>
 
-  <div class="header-nav">
-    <div class="nav-item" onclick="showCategory('All Bananas')">
-      All Bananas
-    </div>
-    <div class="nav-item" onclick="showCategory('Today\'s Deals')">
-      Today's Deals
-    </div>
-    <div class="nav-item" onclick="showCategory('Fresh Bananas')">
-      Fresh Bananas
-    </div>
-    <div class="nav-item" onclick="showCategory('Organic Bananas')">
-      Organic Bananas
-    </div>
-    <div class="nav-item" onclick="showCategory('Gift Bananas')">
-      Gift Bananas
-    </div>
-    <div class="nav-item" onclick="showCategory('Registry')">
-      Registry
-    </div>
-    <div class="nav-item" onclick="showCategory('Sell Bananas')">
-      Sell Bananas
-    </div>
-  </div>
+<div style="display: flex; gap: 15px">
+<div class="nav-item" onclick="signIn()" id="accountButton">
+<span id="userGreeting"
+>Hello, Sign in<br /><strong
+>Account & Lists</strong
+></span
+>
+</div>
+<div class="nav-item" onclick="showOrders()">
+Returns<br /><strong>& Orders</strong>
+</div>
+<div
+class="nav-item"
+style="font-size: 20px"
+onclick="toggleCart()"
+>
+🛒 Cart<span class="cart-count" id="cartCount">0</span>
+</div>
+</div>
+</div>
+
+<div class="header-nav">
+<div class="nav-item" onclick="showCategory('All Bananas')">
+All Bananas
+</div>
+<div class="nav-item" onclick="showCategory('Today\'s Deals')">
+Today's Deals
+</div>
+<div class="nav-item" onclick="showCategory('Fresh Bananas')">
+Fresh Bananas
+</div>
+<div class="nav-item" onclick="showCategory('Organic Bananas')">
+Organic Bananas
+</div>
+<div class="nav-item" onclick="showCategory('Gift Bananas')">
+Gift Bananas
+</div>
+<div class="nav-item" onclick="showCategory('Registry')">
+Registry
+</div>
+<div class="nav-item" onclick="showCategory('Sell Bananas')">
+Sell Bananas
+</div>
+</div>
 </div>
 
 <!-- Search Suggestion -->
 <div class="search-suggestion" id="searchSuggestion">
-  Did you mean: <strong>banana</strong>?
+Did you mean: <strong>banana</strong>?
 </div>
 
 <!-- Toast Notification -->
 <div class="toast" id="toast"></div>
 
-  <!-- Login Modal -->
-  <div
-    class="login-modal"
-    id="loginModal"
-    onclick="closeLoginModal(event)"
-    >
-    <div class="login-content" onclick="event.stopPropagation()">
-      <h2>Sign in to Bananazon</h2>
-      <input
-      type="text"
-      class="login-input"
-      id="usernameInput"
-      placeholder="Username"
-      onkeypress="handleLoginKeypress(event)"
-    />
-    <input
-    type="password"
-    class="login-input"
-    id="passwordInput"
-    placeholder="Password"
-    onkeypress="handleLoginKeypress(event)"
-  />
-  <button class="login-button" onclick="handleLogin()">
-  Sign In
+<!-- Login Modal -->
+<div
+class="login-modal"
+id="loginModal"
+onclick="closeLoginModal(event)"
+>
+<div class="login-content" onclick="event.stopPropagation()">
+<h2>Sign in to Bananazon</h2>
+<input
+type="text"
+class="login-input"
+id="usernameInput"
+placeholder="Username"
+onkeypress="handleLoginKeypress(event)"
+/>
+<input
+type="password"
+class="login-input"
+id="passwordInput"
+placeholder="Password"
+onkeypress="handleLoginKeypress(event)"
+/>
+<button class="login-button" onclick="handleLogin()">
+Sign In
 </button>
 <button class="login-close" onclick="closeLoginModal()">
 Cancel
@@ -813,680 +813,680 @@ Cancel
 <!-- Cart Overlay -->
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 
-  <!-- Cart Sidebar -->
-  <div class="cart-sidebar" id="cartSidebar">
-    <div class="cart-header">
-      <h2>Shopping Cart</h2>
-      <button class="close-cart" onclick="toggleCart()">×</button>
-    </div>
-    <div class="cart-items" id="cartItems">
-      <div class="empty-cart">Your cart is empty</div>
-      </div>
-      <div class="cart-total" id="cartTotal" style="display: none">
-        Subtotal: <span id="totalPrice">$0.00</span>
-      </div>
-      <button
-      class="checkout-button"
-      id="checkoutButton"
-      style="display: none"
-      onclick="checkout()"
-      >
-      Proceed to Checkout
-    </button>
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+<div class="cart-header">
+<h2>Shopping Cart</h2>
+<button class="close-cart" onclick="toggleCart()">×</button>
+</div>
+<div class="cart-items" id="cartItems">
+<div class="empty-cart">Your cart is empty</div>
+</div>
+<div class="cart-total" id="cartTotal" style="display: none">
+Subtotal: <span id="totalPrice">$0.00</span>
+</div>
+<button
+class="checkout-button"
+id="checkoutButton"
+style="display: none"
+onclick="checkout()"
+>
+Proceed to Checkout
+</button>
+</div>
+
+<!-- Main Banner -->
+<div class="main-banner">
+You are on bananazon.com. You can also shop on Bananazon Australia
+for millions of bananas.
+</div>
+
+<!-- Home Page Products -->
+<div class="container" id="homePage">
+<h2 style="margin-bottom: 20px">Top Bananas For You</h2>
+
+<div class="products-grid" id="productsGrid">
+<!-- Products will be generated by JavaScript -->
+</div>
+</div>
+
+<!-- Product Detail Page -->
+<div class="product-detail" id="productDetail">
+<button class="back-button" onclick="showHomePage()">← Back</button>
+<div class="product-detail-grid">
+<div>
+<img
+id="detailImage"
+class="product-detail-image"
+src=""
+alt="Product"
+/>
+</div>
+<div class="product-detail-info">
+<h1 id="detailTitle"></h1>
+<div class="product-detail-rating" id="detailRating"></div>
+<div class="product-detail-price" id="detailPrice"></div>
+<div class="product-detail-prime">
+🚚 FREE Delivery with Prime
+</div>
+<div
+class="product-detail-description"
+id="detailDescription"
+></div>
+<div class="product-detail-buttons">
+<button
+class="add-to-cart"
+onclick="addToCartFromDetail()"
+>
+Add to Cart
+</button>
+<button class="buy-now" onclick="buyNow()">
+Buy Now
+</button>
+</div>
+</div>
+</div>
+
+<!-- Reviews Section -->
+<div class="reviews-section">
+<h2>Customer Reviews</h2>
+<div id="reviewsList">
+<!-- Reviews will be generated by JavaScript -->
+</div>
+</div>
+</div>
+
+<!-- Back to Top -->
+<div class="back-to-top" onclick="window.scrollTo(0,0)">
+Back to top
+</div>
+
+<!-- Footer -->
+<div class="footer">
+<p style="margin-bottom: 20px">Made with 🍌 by Bananazon</p>
+  <p style="font-size: 12px; color: #999">
+    2026, Bananazon Modified running
+  </p>
   </div>
 
-  <!-- Main Banner -->
-  <div class="main-banner">
-    You are on bananazon.com. You can also shop on Bananazon Australia
-    for millions of bananas.
-  </div>
+  <script>
+    // Product Data
+    const products = [
+      {
+        id: 1,
+        title: "Fresh Organic Bananas, 1 Bunch (6-8 Bananas)",
+        price: 3.99,
+        rating: 5,
+        reviews: 45892,
+        image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
+        description:
+        "Premium organic bananas, hand-selected for perfect ripeness. Grown without pesticides on sustainable farms. Perfect for snacking, smoothies, or baking!",
+      },
+      {
+        id: 2,
+        title: "Premium Yellow Bananas - Perfectly Ripe, Family Size Pack",
+        price: 5.49,
+        rating: 4,
+        reviews: 32441,
+        image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
+        description:
+        "Family-sized pack of perfectly ripe yellow bananas. Great value for families who love bananas! Each banana is carefully inspected for quality.",
+      },
+      {
+        id: 3,
+        title: "Single Banana - Perfect for Snacking",
+        price: 0.59,
+        rating: 5,
+        reviews: 89234,
+        image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
+        description:
+        "Just one banana. That's it. Perfect for when you only need one banana. The most popular single banana on Bananazon!",
+      },
+      {
+        id: 4,
+        title: "Organic Fair Trade Bananas - Ethically Sourced, Premium Quality",
+        price: 6.99,
+        rating: 5,
+        reviews: 12678,
+        image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
+        description:
+        "Support fair trade with these ethically sourced organic bananas. Every purchase helps farming communities around the world.",
+      },
+      {
+        id: 5,
+        title: "Baby Bananas - Mini Size, Big Flavor (12 Count)",
+        price: 4.29,
+        rating: 4,
+        reviews: 23456,
+        image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
+        description:
+        "Adorable baby bananas pack a sweet punch! Perfect for lunch boxes and small hands. Sweeter than regular bananas!",
+      },
+      {
+        id: 6,
+        title: "Plantain Bananas - Green, Perfect for Cooking (4 Pack)",
+        price: 3.49,
+        rating: 5,
+        reviews: 18903,
+        image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
+        description:
+        "Green plantains ideal for frying, baking, or boiling. A staple in Caribbean and Latin American cuisine. Starchy and delicious!",
+      },
+      {
+        id: 7,
+        title: "Red Bananas - Exotic Sweet Variety, Bunch of 5",
+        price: 7.99,
+        rating: 4,
+        reviews: 9234,
+        image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
+        description:
+        "Experience the exotic! Red bananas are sweeter and creamier than yellow bananas. A unique tropical treat you'll love.",
+      },
+      {
+        id: 8,
+        title: "Banana Starter Kit - 3 Different Varieties, Perfect for Banana Lovers",
+        price: 12.99,
+        rating: 5,
+        reviews: 56789,
+        image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
+        description:
+        "Can't decide? Try them all! Includes yellow, baby, and red bananas. The perfect introduction to the wonderful world of bananas!",
+      },
+      {
+        id: 9,
+        title: "Overripe Bananas - Perfect for Banana Bread (Discounted!)",
+        price: 1.99,
+        rating: 4,
+        reviews: 34567,
+        image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
+        description:
+        "Spotted and ready for baking! These overripe bananas are perfect for banana bread, muffins, or smoothies. Save money and reduce waste!",
+      },
+      {
+        id: 10,
+        title: "Jumbo Bananas - Extra Large Size, Premium Select",
+        price: 4.99,
+        rating: 5,
+        reviews: 28901,
+        image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
+        description:
+        "Massive bananas for massive appetites! Each banana is oversized and full of flavor. The biggest bananas you'll ever see!",
+      },
+      {
+        id: 11,
+        title: "Freeze-Dried Banana Chips - NOT Actually Bananas, Just Chips Shaped Like Bananas",
+        price: 8.99,
+        rating: 3,
+        reviews: 5432,
+        image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
+        description:
+        "Wait, what? These aren't real bananas? Just chips? In banana shape? Well, they're still delicious! Crunchy snacking fun!",
+      },
+      {
+        id: 12,
+        title: "Mystery Banana Box - 20 Random Bananas, Could Be Any Variety!",
+        price: 19.99,
+        rating: 5,
+        reviews: 67890,
+        image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
+        description:
+        "Feeling adventurous? You'll get 20 random bananas - could be any variety! It's like Christmas morning but with bananas!",
+      },
+    ];
 
-  <!-- Home Page Products -->
-  <div class="container" id="homePage">
-    <h2 style="margin-bottom: 20px">Top Bananas For You</h2>
-
-    <div class="products-grid" id="productsGrid">
-      <!-- Products will be generated by JavaScript -->
-    </div>
-  </div>
-
-  <!-- Product Detail Page -->
-  <div class="product-detail" id="productDetail">
-    <button class="back-button" onclick="showHomePage()">← Back</button>
-    <div class="product-detail-grid">
-      <div>
-        <img
-        id="detailImage"
-        class="product-detail-image"
-        src=""
-        alt="Product"
-      />
-    </div>
-    <div class="product-detail-info">
-      <h1 id="detailTitle"></h1>
-      <div class="product-detail-rating" id="detailRating"></div>
-        <div class="product-detail-price" id="detailPrice"></div>
-          <div class="product-detail-prime">
-            🚚 FREE Delivery with Prime
-          </div>
-          <div
-            class="product-detail-description"
-            id="detailDescription"
-            ></div>
-            <div class="product-detail-buttons">
-              <button
-              class="add-to-cart"
-              onclick="addToCartFromDetail()"
-              >
-              Add to Cart
-            </button>
-            <button class="buy-now" onclick="buyNow()">
-            Buy Now
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Reviews Section -->
-    <div class="reviews-section">
-      <h2>Customer Reviews</h2>
-      <div id="reviewsList">
-        <!-- Reviews will be generated by JavaScript -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Back to Top -->
-  <div class="back-to-top" onclick="window.scrollTo(0,0)">
-    Back to top
-  </div>
-
-  <!-- Footer -->
-  <div class="footer">
-    <p style="margin-bottom: 20px">Made with 🍌 by Bananazon</p>
-      <p style="font-size: 12px; color: #999">
-        2026, Bananazon Modified running
-      </p>
-    </div>
-
-    <script>
-      // Product Data
-      const products = [
+    // Sample reviews data
+    const reviewsData = {
+      1: [
         {
-          id: 1,
-          title: "Fresh Organic Bananas, 1 Bunch (6-8 Bananas)",
-          price: 3.99,
+          author: "BananaFan42",
+          date: "December 15, 2024",
           rating: 5,
-          reviews: 45892,
-          image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
-          description:
-          "Premium organic bananas, hand-selected for perfect ripeness. Grown without pesticides on sustainable farms. Perfect for snacking, smoothies, or baking!",
+          title: "Best bananas ever!",
+          text: "These are hands down the best organic bananas I've ever purchased. Perfect ripeness, great taste, and they lasted over a week!",
+          helpful: 342,
         },
         {
-          id: 2,
-          title: "Premium Yellow Bananas - Perfectly Ripe, Family Size Pack",
-          price: 5.49,
+          author: "HealthyEater",
+          date: "December 10, 2024",
+          rating: 5,
+          title: "So fresh!",
+          text: "Arrived in perfect condition. Great for my morning smoothies!",
+          helpful: 156,
+        },
+        {
+          author: "MonkeyBusiness",
+          date: "December 5, 2024",
           rating: 4,
-          reviews: 32441,
-          image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
-          description:
-          "Family-sized pack of perfectly ripe yellow bananas. Great value for families who love bananas! Each banana is carefully inspected for quality.",
+          title: "Good but expensive",
+          text: "Quality is excellent but the price is a bit high compared to my local store.",
+          helpful: 89,
         },
+      ],
+      2: [
         {
-          id: 3,
-          title: "Single Banana - Perfect for Snacking",
-          price: 0.59,
+          author: "MomOf4",
+          date: "December 12, 2024",
           rating: 5,
-          reviews: 89234,
-          image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
-          description:
-          "Just one banana. That's it. Perfect for when you only need one banana. The most popular single banana on Bananazon!",
+          title: "Perfect for my family",
+          text: "Family size is no joke! Plenty of bananas for all my kids. Will definitely order again.",
+          helpful: 234,
         },
         {
-          id: 4,
-          title: "Organic Fair Trade Bananas - Ethically Sourced, Premium Quality",
-          price: 6.99,
-          rating: 5,
-          reviews: 12678,
-          image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
-          description:
-          "Support fair trade with these ethically sourced organic bananas. Every purchase helps farming communities around the world.",
-        },
-        {
-          id: 5,
-          title: "Baby Bananas - Mini Size, Big Flavor (12 Count)",
-          price: 4.29,
+          author: "BananaLover99",
+          date: "December 8, 2024",
           rating: 4,
-          reviews: 23456,
-          image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
-          description:
-          "Adorable baby bananas pack a sweet punch! Perfect for lunch boxes and small hands. Sweeter than regular bananas!",
+          title: "Great value",
+          text: "Good quality and quantity. One banana had a bruise but overall happy with the purchase.",
+          helpful: 112,
         },
+      ],
+      3: [
         {
-          id: 6,
-          title: "Plantain Bananas - Green, Perfect for Cooking (4 Pack)",
-          price: 3.49,
+          author: "JustOneGuy",
+          date: "December 18, 2024",
           rating: 5,
-          reviews: 18903,
-          image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
-          description:
-          "Green plantains ideal for frying, baking, or boiling. A staple in Caribbean and Latin American cuisine. Starchy and delicious!",
+          title: "It's literally just one banana",
+          text: "I needed exactly one banana and this is exactly one banana. 11/10 would banana again.",
+          helpful: 1289,
         },
         {
-          id: 7,
-          title: "Red Bananas - Exotic Sweet Variety, Bunch of 5",
-          price: 7.99,
-          rating: 4,
-          reviews: 9234,
-          image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
-          description:
-          "Experience the exotic! Red bananas are sweeter and creamier than yellow bananas. A unique tropical treat you'll love.",
-        },
-        {
-          id: 8,
-          title: "Banana Starter Kit - 3 Different Varieties, Perfect for Banana Lovers",
-          price: 12.99,
+          author: "SingleLife",
+          date: "December 14, 2024",
           rating: 5,
-          reviews: 56789,
-          image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
-          description:
-          "Can't decide? Try them all! Includes yellow, baby, and red bananas. The perfect introduction to the wonderful world of bananas!",
+          title: "Perfect portion",
+          text: "As a single person, I don't need a whole bunch. This is ideal!",
+          helpful: 456,
         },
         {
-          id: 9,
-          title: "Overripe Bananas - Perfect for Banana Bread (Discounted!)",
-          price: 1.99,
-          rating: 4,
-          reviews: 34567,
-          image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
-          description:
-          "Spotted and ready for baking! These overripe bananas are perfect for banana bread, muffins, or smoothies. Save money and reduce waste!",
-        },
-        {
-          id: 10,
-          title: "Jumbo Bananas - Extra Large Size, Premium Select",
-          price: 4.99,
+          author: "Confused",
+          date: "December 1, 2024",
           rating: 5,
-          reviews: 28901,
-          image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=400&h=400&fit=crop",
-          description:
-          "Massive bananas for massive appetites! Each banana is oversized and full of flavor. The biggest bananas you'll ever see!",
+          title: "Why did I buy this?",
+          text: "I could have just bought one banana at the store but here we are. 5 stars because it arrived.",
+          helpful: 2103,
         },
+      ],
+    };
+
+    // Shopping cart
+    let cart = [];
+    let currentProduct = null;
+
+    // Initialize page
+    window.onload = function () {
+      renderProducts();
+      updateCartCount();
+    };
+
+    // Render products
+    function renderProducts() {
+      const grid = document.getElementById("productsGrid");
+      grid.innerHTML = products
+      .map(
+      (product) => `
+      <div class="product-card" onclick="showProductDetail(${product.id})">
+      <img src="${product.image}" alt="${product.title}" class="product-image">
+      <div class="product-title">${product.title}</div>
+      <div class="product-rating">${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings</div>
+      <div class="product-price">$${product.price.toFixed(2)}</div>
+      <div class="product-prime">🚚 FREE Delivery with Prime</div>
+      <button class="add-to-cart" onclick="addToCart(event, ${product.id})">Add to Cart</button>
+      <button class="buy-now" onclick="buyNowFromCard(event, ${product.id})">Buy Now</button>
+      </div>
+      `,
+      )
+      .join("");
+    }
+
+    // Show product detail
+    function showProductDetail(productId) {
+      const product = products.find((p) => p.id === productId);
+      if (!product) return;
+
+      currentProduct = product;
+
+      document.getElementById("detailImage").src = product.image;
+      document.getElementById("detailTitle").textContent =
+      product.title;
+      document.getElementById("detailRating").innerHTML =
+      `${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings`;
+      document.getElementById("detailPrice").textContent =
+      `$${product.price.toFixed(2)}`;
+      document.getElementById("detailDescription").textContent =
+      product.description;
+
+      // Render reviews
+      const reviews = reviewsData[productId] || [
         {
-          id: 11,
-          title: "Freeze-Dried Banana Chips - NOT Actually Bananas, Just Chips Shaped Like Bananas",
-          price: 8.99,
-          rating: 3,
-          reviews: 5432,
-          image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=400&fit=crop",
-          description:
-          "Wait, what? These aren't real bananas? Just chips? In banana shape? Well, they're still delicious! Crunchy snacking fun!",
-        },
-        {
-          id: 12,
-          title: "Mystery Banana Box - 20 Random Bananas, Could Be Any Variety!",
-          price: 19.99,
+          author: "BananaEnthusiast",
+          date: "December 1, 2024",
           rating: 5,
-          reviews: 67890,
-          image: "https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=400&h=400&fit=crop",
-          description:
-          "Feeling adventurous? You'll get 20 random bananas - could be any variety! It's like Christmas morning but with bananas!",
+          title: "Amazing bananas!",
+          text: "These bananas exceeded all my expectations. Highly recommend!",
+          helpful: 123,
         },
       ];
 
-      // Sample reviews data
-      const reviewsData = {
-        1: [
-          {
-            author: "BananaFan42",
-            date: "December 15, 2024",
-            rating: 5,
-            title: "Best bananas ever!",
-            text: "These are hands down the best organic bananas I've ever purchased. Perfect ripeness, great taste, and they lasted over a week!",
-            helpful: 342,
-          },
-          {
-            author: "HealthyEater",
-            date: "December 10, 2024",
-            rating: 5,
-            title: "So fresh!",
-            text: "Arrived in perfect condition. Great for my morning smoothies!",
-            helpful: 156,
-          },
-          {
-            author: "MonkeyBusiness",
-            date: "December 5, 2024",
-            rating: 4,
-            title: "Good but expensive",
-            text: "Quality is excellent but the price is a bit high compared to my local store.",
-            helpful: 89,
-          },
-        ],
-        2: [
-          {
-            author: "MomOf4",
-            date: "December 12, 2024",
-            rating: 5,
-            title: "Perfect for my family",
-            text: "Family size is no joke! Plenty of bananas for all my kids. Will definitely order again.",
-            helpful: 234,
-          },
-          {
-            author: "BananaLover99",
-            date: "December 8, 2024",
-            rating: 4,
-            title: "Great value",
-            text: "Good quality and quantity. One banana had a bruise but overall happy with the purchase.",
-            helpful: 112,
-          },
-        ],
-        3: [
-          {
-            author: "JustOneGuy",
-            date: "December 18, 2024",
-            rating: 5,
-            title: "It's literally just one banana",
-            text: "I needed exactly one banana and this is exactly one banana. 11/10 would banana again.",
-            helpful: 1289,
-          },
-          {
-            author: "SingleLife",
-            date: "December 14, 2024",
-            rating: 5,
-            title: "Perfect portion",
-            text: "As a single person, I don't need a whole bunch. This is ideal!",
-            helpful: 456,
-          },
-          {
-            author: "Confused",
-            date: "December 1, 2024",
-            rating: 5,
-            title: "Why did I buy this?",
-            text: "I could have just bought one banana at the store but here we are. 5 stars because it arrived.",
-            helpful: 2103,
-          },
-        ],
+      document.getElementById("reviewsList").innerHTML = reviews
+      .map(
+      (review) => `
+      <div class="review">
+      <div class="review-header">
+      <span class="review-author">${review.author}</span>
+      <span class="review-date">on ${review.date}</span>
+      </div>
+      <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
+      <div class="review-title">${review.title}</div>
+      <div class="review-text">${review.text}</div>
+      <div class="review-helpful">${review.helpful} people found this helpful</div>
+      </div>
+      `,
+      )
+      .join("");
+
+      document.getElementById("homePage").style.display = "none";
+      document.getElementById("productDetail").classList.add("show");
+      window.scrollTo(0, 0);
+    }
+
+    // Show home page
+    function showHomePage() {
+      document
+      .getElementById("productDetail")
+      .classList.remove("show");
+      document.getElementById("homePage").style.display = "block";
+      currentProduct = null;
+      window.scrollTo(0, 0);
+    }
+
+    // Add to cart from product card
+    function addToCart(event, productId) {
+      event.stopPropagation();
+      const product = products.find((p) => p.id === productId);
+      if (!product) return;
+
+      cart.push({ ...product });
+      updateCartCount();
+      updateCartDisplay();
+      showToast(`${product.title} added to cart!`);
+    }
+
+    // Add to cart from detail page
+    function addToCartFromDetail() {
+      if (!currentProduct) return;
+      cart.push({ ...currentProduct });
+      updateCartCount();
+      updateCartDisplay();
+      showToast(`${currentProduct.title} added to cart!`);
+    }
+
+    // Buy now from card
+    function buyNowFromCard(event, productId) {
+      event.stopPropagation();
+      addToCart(event, productId);
+      setTimeout(() => {
+        toggleCart();
+      }, 500);
+    }
+
+    // Buy now from detail page
+    function buyNow() {
+      if (!currentProduct) return;
+      cart.push({ ...currentProduct });
+      updateCartCount();
+      updateCartDisplay();
+      showToast(`${currentProduct.title} added to cart!`);
+      setTimeout(() => {
+        toggleCart();
+      }, 500);
+    }
+
+    // Update cart count
+    function updateCartCount() {
+      document.getElementById("cartCount").textContent = cart.length;
+    }
+
+    // Update cart display
+    function updateCartDisplay() {
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      const checkoutButton =
+      document.getElementById("checkoutButton");
+
+      if (cart.length === 0) {
+        cartItems.innerHTML =
+        '<div class="empty-cart">Your cart is empty</div>';
+        cartTotal.style.display = "none";
+        checkoutButton.style.display = "none";
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      cartItems.innerHTML = cart
+      .map(
+      (item, index) => `
+      <div class="cart-item">
+      <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+      <div class="cart-item-info">
+      <div class="cart-item-title">${item.title}</div>
+      <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+      <button class="remove-item" onclick="removeFromCart(${index})">Remove</button>
+      </div>
+      </div>
+      `,
+      )
+      .join("");
+
+      document.getElementById("totalPrice").textContent =
+      `$${total.toFixed(2)}`;
+      cartTotal.style.display = "block";
+      checkoutButton.style.display = "block";
+    }
+
+    // Remove from cart
+    function removeFromCart(index) {
+      const removedItem = cart[index];
+      cart.splice(index, 1);
+      updateCartCount();
+      updateCartDisplay();
+      showToast(`${removedItem.title} removed from cart`);
+    }
+
+    // Toggle cart
+    function toggleCart() {
+      const cartSidebar = document.getElementById("cartSidebar");
+      const cartOverlay = document.getElementById("cartOverlay");
+
+      cartSidebar.classList.toggle("show");
+      cartOverlay.classList.toggle("show");
+
+      if (cartSidebar.classList.contains("show")) {
+        updateCartDisplay();
+      }
+    }
+
+    // Checkout
+    function checkout() {
+      if (cart.length === 0) return;
+
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      alert(
+      `🍌 Thank you for your order!\n\nTotal: $${total.toFixed(2)}\n\nYour ${cart.length} banana product${cart.length > 1 ? "s" : ""} will arrive in 2 days!\n\n(This is just a demo - no actual purchase was made)`,
+      );
+
+      cart = [];
+      updateCartCount();
+      updateCartDisplay();
+      toggleCart();
+    }
+
+    // Show toast notification
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById("searchInput");
+    const searchSuggestion =
+    document.getElementById("searchSuggestion");
+
+    searchInput.addEventListener("input", function () {
+      if (this.value.trim() !== "") {
+        searchSuggestion.classList.add("show");
+      } else {
+        searchSuggestion.classList.remove("show");
+      }
+    });
+
+    function search() {
+      const searchTerm = searchInput.value.trim();
+      if (searchTerm !== "") {
+        searchSuggestion.classList.add("show");
+      }
+    }
+
+    searchInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        search();
+      }
+    });
+
+    // Category navigation
+    function showCategory(category) {
+      const messages = {
+        "All Bananas":
+        "🍌 Welcome to All Bananas!\n\nBrowsing through our entire collection of... bananas! Every single product is a banana. Surprise! 🎉",
+        "Today's Deals":
+        "💰 Today's Banana Deals!\n\n🍌 Single Banana - Now only $0.59!\n🍌 Overripe Bananas - Just $1.99!\n🍌 Mystery Banana Box - Save $5!\n\nEvery day is banana deal day!",
+        "Fresh Bananas":
+        "🌿 Fresh Bananas Section\n\nYou're already looking at fresh bananas! In fact, ALL our bananas are fresh. We only sell fresh bananas. Did we mention they're fresh?",
+        "Organic Bananas":
+        "🌱 Organic Bananas\n\nLooking for organic bananas? Great choice! We have:\n• Fresh Organic Bananas\n• Organic Fair Trade Bananas\n• Organically grown... bananas\n\nBasically all bananas but fancier! 🌿",
+        "Gift Bananas":
+        '🎁 Gift Bananas\n\n"Here\'s a banana!" - The perfect gift for any occasion!\n\n💝 Birthdays? Banana.\n💍 Weddings? Banana.\n🎓 Graduation? Believe it or not, banana.\n\nNothing says "I love you" like a banana! 🍌',
+        Registry:
+        "📝 Banana Registry\n\nCreate your banana wishlist today!\n\n\"We're registered at Bananazon!\"\n\nYour guests can buy you:\n• Bananas\n• More bananas\n• Even more bananas\n• (Spoiler: it's all bananas)",
+        "Sell Bananas":
+        "💼 Sell Your Bananas on Bananazon!\n\nDo you have bananas? We want them!\n\nRequirements:\n✅ Must be a banana\n✅ Should look like a banana\n✅ Bonus points if it's yellow\n\nStart your banana empire today! 🍌📈",
       };
 
-      // Shopping cart
-      let cart = [];
-      let currentProduct = null;
+      alert(messages[category]);
+    }
 
-      // Initialize page
-      window.onload = function () {
-        renderProducts();
-        updateCartCount();
-      };
+    // User state
+    let currentUser = null;
 
-      // Render products
-      function renderProducts() {
-        const grid = document.getElementById("productsGrid");
-        grid.innerHTML = products
-        .map(
-        (product) => `
-        <div class="product-card" onclick="showProductDetail(${product.id})">
-          <img src="${product.image}" alt="${product.title}" class="product-image">
-          <div class="product-title">${product.title}</div>
-            <div class="product-rating">${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings</div>
-              <div class="product-price">$${product.price.toFixed(2)}</div>
-                <div class="product-prime">🚚 FREE Delivery with Prime</div>
-                  <button class="add-to-cart" onclick="addToCart(event, ${product.id})">Add to Cart</button>
-                  <button class="buy-now" onclick="buyNowFromCard(event, ${product.id})">Buy Now</button>
-                </div>
-                `,
-                )
-                .join("");
-              }
+    // Sign In
+    function signIn() {
+      if (currentUser) {
+        // Already signed in, show account info
+        alert(
+        `👤 Account: ${currentUser}\n\n✅ You're signed in!\n\nYour benefits:\n• Unlimited banana browsing\n• Access to all bananas\n• Ability to buy bananas\n• Exclusive deals on... bananas!\n\n🍌 Happy banana shopping!`,
+        );
+      } else {
+        // Show login modal
+        document.getElementById("loginModal").classList.add("show");
+        document.getElementById("usernameInput").focus();
+      }
+    }
 
-              // Show product detail
-              function showProductDetail(productId) {
-                const product = products.find((p) => p.id === productId);
-                if (!product) return;
+    // Handle login
+    function handleLogin() {
+      const username = document
+      .getElementById("usernameInput")
+      .value.trim();
+      const password = document.getElementById("passwordInput").value;
 
-                currentProduct = product;
+      if (!username) {
+        alert("Please enter a username!");
+        return;
+      }
 
-                document.getElementById("detailImage").src = product.image;
-                document.getElementById("detailTitle").textContent =
-                product.title;
-                document.getElementById("detailRating").innerHTML =
-                `${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings`;
-                document.getElementById("detailPrice").textContent =
-                `$${product.price.toFixed(2)}`;
-                document.getElementById("detailDescription").textContent =
-                product.description;
+      if (!password) {
+        alert("Please enter a password!");
+        return;
+      }
 
-                // Render reviews
-                const reviews = reviewsData[productId] || [
-                  {
-                    author: "BananaEnthusiast",
-                    date: "December 1, 2024",
-                    rating: 5,
-                    title: "Amazing bananas!",
-                    text: "These bananas exceeded all my expectations. Highly recommend!",
-                    helpful: 123,
-                  },
-                ];
+      // "Log in" the user (no actual authentication, just store the username)
+      currentUser = username;
 
-                document.getElementById("reviewsList").innerHTML = reviews
-                .map(
-                (review) => `
-                <div class="review">
-                  <div class="review-header">
-                    <span class="review-author">${review.author}</span>
-                    <span class="review-date">on ${review.date}</span>
-                  </div>
-                  <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
-                    <div class="review-title">${review.title}</div>
-                      <div class="review-text">${review.text}</div>
-                        <div class="review-helpful">${review.helpful} people found this helpful</div>
-                        </div>
-                        `,
-                        )
-                        .join("");
+      // Update the greeting
+      updateUserGreeting();
 
-                        document.getElementById("homePage").style.display = "none";
-                        document.getElementById("productDetail").classList.add("show");
-                        window.scrollTo(0, 0);
-                      }
+      // Close modal
+      closeLoginModal();
 
-                      // Show home page
-                      function showHomePage() {
-                        document
-                        .getElementById("productDetail")
-                        .classList.remove("show");
-                        document.getElementById("homePage").style.display = "block";
-                        currentProduct = null;
-                        window.scrollTo(0, 0);
-                      }
+      // Clear inputs
+      document.getElementById("usernameInput").value = "";
+      document.getElementById("passwordInput").value = "";
 
-                      // Add to cart from product card
-                      function addToCart(event, productId) {
-                        event.stopPropagation();
-                        const product = products.find((p) => p.id === productId);
-                        if (!product) return;
+      // Show welcome message
+      showToast(
+      `Welcome back, ${currentUser}! Looking for more bananas? 🍌`,
+      );
 
-                        cart.push({ ...product });
-                        updateCartCount();
-                        updateCartDisplay();
-                        showToast(`${product.title} added to cart!`);
-                      }
+      // Also show an alert
+      setTimeout(() => {
+        alert(
+        `🎉 Welcome back, ${currentUser}!\n\nLooking for more bananas?\n\nYour banana shopping experience just got even better!\n\n✨ Account benefits:\n• Unlimited banana browsing\n• Access to all bananas\n• Ability to buy bananas\n• Exclusive deals on... bananas!\n\nHappy shopping! 🍌`,
+        );
+      }, 500);
+    }
 
-                      // Add to cart from detail page
-                      function addToCartFromDetail() {
-                        if (!currentProduct) return;
-                        cart.push({ ...currentProduct });
-                        updateCartCount();
-                        updateCartDisplay();
-                        showToast(`${currentProduct.title} added to cart!`);
-                      }
+    // Update user greeting in header
+    function updateUserGreeting() {
+      const greetingElement = document.getElementById("userGreeting");
+      greetingElement.textContent = "";
 
-                      // Buy now from card
-                      function buyNowFromCard(event, productId) {
-                        event.stopPropagation();
-                        addToCart(event, productId);
-                        setTimeout(() => {
-                          toggleCart();
-                        }, 500);
-                      }
+      const greetingText = currentUser
+      ? `Hello, ${currentUser}`
+      : "Hello, Sign in";
 
-                      // Buy now from detail page
-                      function buyNow() {
-                        if (!currentProduct) return;
-                        cart.push({ ...currentProduct });
-                        updateCartCount();
-                        updateCartDisplay();
-                        showToast(`${currentProduct.title} added to cart!`);
-                        setTimeout(() => {
-                          toggleCart();
-                        }, 500);
-                      }
+      greetingElement.appendChild(document.createTextNode(greetingText));
+      greetingElement.appendChild(document.createElement("br"));
 
-                      // Update cart count
-                      function updateCartCount() {
-                        document.getElementById("cartCount").textContent = cart.length;
-                      }
+      const strongElement = document.createElement("strong");
+      strongElement.textContent = "Account & Lists";
+      greetingElement.appendChild(strongElement);
+    }
 
-                      // Update cart display
-                      function updateCartDisplay() {
-                        const cartItems = document.getElementById("cartItems");
-                        const cartTotal = document.getElementById("cartTotal");
-                        const checkoutButton =
-                        document.getElementById("checkoutButton");
+    // Close login modal
+    function closeLoginModal(event) {
+      if (
+      event &&
+      event.target !== document.getElementById("loginModal")
+      ) {
+        return;
+      }
+      document.getElementById("loginModal").classList.remove("show");
+    }
 
-                        if (cart.length === 0) {
-                          cartItems.innerHTML =
-                          '<div class="empty-cart">Your cart is empty</div>';
-                          cartTotal.style.display = "none";
-                          checkoutButton.style.display = "none";
-                          return;
-                        }
+    // Handle Enter key in login inputs
+    function handleLoginKeypress(event) {
+      if (event.key === "Enter") {
+        handleLogin();
+      }
+    }
 
-                        const total = cart.reduce((sum, item) => sum + item.price, 0);
+    // Returns & Orders
+    function showOrders() {
+      if (!currentUser) {
+        alert("Please sign in to view your orders!");
+        signIn();
+        return;
+      }
 
-                        cartItems.innerHTML = cart
-                        .map(
-                        (item, index) => `
-                        <div class="cart-item">
-                          <img src="${item.image}" alt="${item.title}" class="cart-item-image">
-                          <div class="cart-item-info">
-                            <div class="cart-item-title">${item.title}</div>
-                              <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                                <button class="remove-item" onclick="removeFromCart(${index})">Remove</button>
-                              </div>
-                            </div>
-                            `,
-                            )
-                            .join("");
-
-                            document.getElementById("totalPrice").textContent =
-                            `$${total.toFixed(2)}`;
-                            cartTotal.style.display = "block";
-                            checkoutButton.style.display = "block";
-                          }
-
-                          // Remove from cart
-                          function removeFromCart(index) {
-                            const removedItem = cart[index];
-                            cart.splice(index, 1);
-                            updateCartCount();
-                            updateCartDisplay();
-                            showToast(`${removedItem.title} removed from cart`);
-                          }
-
-                          // Toggle cart
-                          function toggleCart() {
-                            const cartSidebar = document.getElementById("cartSidebar");
-                            const cartOverlay = document.getElementById("cartOverlay");
-
-                            cartSidebar.classList.toggle("show");
-                            cartOverlay.classList.toggle("show");
-
-                            if (cartSidebar.classList.contains("show")) {
-                              updateCartDisplay();
-                            }
-                          }
-
-                          // Checkout
-                          function checkout() {
-                            if (cart.length === 0) return;
-
-                            const total = cart.reduce((sum, item) => sum + item.price, 0);
-                            alert(
-                            `🍌 Thank you for your order!\n\nTotal: $${total.toFixed(2)}\n\nYour ${cart.length} banana product${cart.length > 1 ? "s" : ""} will arrive in 2 days!\n\n(This is just a demo - no actual purchase was made)`,
-                            );
-
-                            cart = [];
-                            updateCartCount();
-                            updateCartDisplay();
-                            toggleCart();
-                          }
-
-                          // Show toast notification
-                          function showToast(message) {
-                            const toast = document.getElementById("toast");
-                            toast.textContent = message;
-                            toast.classList.add("show");
-
-                            setTimeout(() => {
-                              toast.classList.remove("show");
-                            }, 3000);
-                          }
-
-                          // Search functionality
-                          const searchInput = document.getElementById("searchInput");
-                          const searchSuggestion =
-                          document.getElementById("searchSuggestion");
-
-                          searchInput.addEventListener("input", function () {
-                            if (this.value.trim() !== "") {
-                              searchSuggestion.classList.add("show");
-                            } else {
-                              searchSuggestion.classList.remove("show");
-                            }
-                          });
-
-                          function search() {
-                            const searchTerm = searchInput.value.trim();
-                            if (searchTerm !== "") {
-                              searchSuggestion.classList.add("show");
-                            }
-                          }
-
-                          searchInput.addEventListener("keypress", function (e) {
-                            if (e.key === "Enter") {
-                              search();
-                            }
-                          });
-
-                          // Category navigation
-                          function showCategory(category) {
-                            const messages = {
-                              "All Bananas":
-                              "🍌 Welcome to All Bananas!\n\nBrowsing through our entire collection of... bananas! Every single product is a banana. Surprise! 🎉",
-                              "Today's Deals":
-                              "💰 Today's Banana Deals!\n\n🍌 Single Banana - Now only $0.59!\n🍌 Overripe Bananas - Just $1.99!\n🍌 Mystery Banana Box - Save $5!\n\nEvery day is banana deal day!",
-                              "Fresh Bananas":
-                              "🌿 Fresh Bananas Section\n\nYou're already looking at fresh bananas! In fact, ALL our bananas are fresh. We only sell fresh bananas. Did we mention they're fresh?",
-                              "Organic Bananas":
-                              "🌱 Organic Bananas\n\nLooking for organic bananas? Great choice! We have:\n• Fresh Organic Bananas\n• Organic Fair Trade Bananas\n• Organically grown... bananas\n\nBasically all bananas but fancier! 🌿",
-                              "Gift Bananas":
-                              '🎁 Gift Bananas\n\n"Here\'s a banana!" - The perfect gift for any occasion!\n\n💝 Birthdays? Banana.\n💍 Weddings? Banana.\n🎓 Graduation? Believe it or not, banana.\n\nNothing says "I love you" like a banana! 🍌',
-                              Registry:
-                              "📝 Banana Registry\n\nCreate your banana wishlist today!\n\n\"We're registered at Bananazon!\"\n\nYour guests can buy you:\n• Bananas\n• More bananas\n• Even more bananas\n• (Spoiler: it's all bananas)",
-                              "Sell Bananas":
-                              "💼 Sell Your Bananas on Bananazon!\n\nDo you have bananas? We want them!\n\nRequirements:\n✅ Must be a banana\n✅ Should look like a banana\n✅ Bonus points if it's yellow\n\nStart your banana empire today! 🍌📈",
-                            };
-
-                            alert(messages[category]);
-                          }
-
-                          // User state
-                          let currentUser = null;
-
-                          // Sign In
-                          function signIn() {
-                            if (currentUser) {
-                              // Already signed in, show account info
-                              alert(
-                              `👤 Account: ${currentUser}\n\n✅ You're signed in!\n\nYour benefits:\n• Unlimited banana browsing\n• Access to all bananas\n• Ability to buy bananas\n• Exclusive deals on... bananas!\n\n🍌 Happy banana shopping!`,
-                              );
-                            } else {
-                              // Show login modal
-                              document.getElementById("loginModal").classList.add("show");
-                              document.getElementById("usernameInput").focus();
-                            }
-                          }
-
-                          // Handle login
-                          function handleLogin() {
-                            const username = document
-                            .getElementById("usernameInput")
-                            .value.trim();
-                            const password = document.getElementById("passwordInput").value;
-
-                            if (!username) {
-                              alert("Please enter a username!");
-                              return;
-                            }
-
-                            if (!password) {
-                              alert("Please enter a password!");
-                              return;
-                            }
-
-                            // "Log in" the user (no actual authentication, just store the username)
-                            currentUser = username;
-
-                            // Update the greeting
-                            updateUserGreeting();
-
-                            // Close modal
-                            closeLoginModal();
-
-                            // Clear inputs
-                            document.getElementById("usernameInput").value = "";
-                            document.getElementById("passwordInput").value = "";
-
-                            // Show welcome message
-                            showToast(
-                            `Welcome back, ${currentUser}! Looking for more bananas? 🍌`,
-                            );
-
-                            // Also show an alert
-                            setTimeout(() => {
-                              alert(
-                              `🎉 Welcome back, ${currentUser}!\n\nLooking for more bananas?\n\nYour banana shopping experience just got even better!\n\n✨ Account benefits:\n• Unlimited banana browsing\n• Access to all bananas\n• Ability to buy bananas\n• Exclusive deals on... bananas!\n\nHappy shopping! 🍌`,
-                              );
-                            }, 500);
-                          }
-
-                          // Update user greeting in header
-                          function updateUserGreeting() {
-                            const greetingElement = document.getElementById("userGreeting");
-                            greetingElement.textContent = "";
-
-                            const greetingText = currentUser
-                            ? `Hello, ${currentUser}`
-                            : "Hello, Sign in";
-
-                            greetingElement.appendChild(document.createTextNode(greetingText));
-                            greetingElement.appendChild(document.createElement("br"));
-
-                            const strongElement = document.createElement("strong");
-                            strongElement.textContent = "Account & Lists";
-                            greetingElement.appendChild(strongElement);
-                          }
-
-                          // Close login modal
-                          function closeLoginModal(event) {
-                            if (
-                            event &&
-                            event.target !== document.getElementById("loginModal")
-                            ) {
-                              return;
-                            }
-                            document.getElementById("loginModal").classList.remove("show");
-                          }
-
-                          // Handle Enter key in login inputs
-                          function handleLoginKeypress(event) {
-                            if (event.key === "Enter") {
-                              handleLogin();
-                            }
-                          }
-
-                          // Returns & Orders
-                          function showOrders() {
-                            if (!currentUser) {
-                              alert("Please sign in to view your orders!");
-                              signIn();
-                              return;
-                            }
-
-                            alert(
-                            `📦 ${currentUser}'s Orders\n\nRecent Orders:\n\n1. Single Banana - Delivered Dec 18\n   ⭐⭐⭐⭐⭐ "It was a banana"\n\n2. Mystery Banana Box - Arriving Dec 25\n   🎁 Tracking: BANANA-12345\n\n3. Organic Bananas - Delivered Dec 15\n   ⭐⭐⭐⭐⭐ "Very banana-like"\n\nAll orders are bananas. Did you expect anything else? 🍌📦`,
-                            );
-                          }
-                        </script>
-                      </body>
-                    </html>
+      alert(
+      `📦 ${currentUser}'s Orders\n\nRecent Orders:\n\n1. Single Banana - Delivered Dec 18\n   ⭐⭐⭐⭐⭐ "It was a banana"\n\n2. Mystery Banana Box - Arriving Dec 25\n   🎁 Tracking: BANANA-12345\n\n3. Organic Bananas - Delivered Dec 15\n   ⭐⭐⭐⭐⭐ "Very banana-like"\n\nAll orders are bananas. Did you expect anything else? 🍌📦`,
+      );
+    }
+  </script>
+</body>
+</html>
