@@ -291,264 +291,264 @@
             <div class="control-group">
               <span class="control-label">🎨 Color Picker</span>
                 <input
-                  type="color"
-                  id="colorPicker"
-                  value="#000000"
-                  class="color-picker"
-                />
-              </div>
+                type="color"
+                id="colorPicker"
+                value="#000000"
+                class="color-picker"
+              />
+            </div>
 
-              <div class="control-group">
-                <span class="control-label">🌈 Quick Colors</span>
-                  <div class="preset-colors">
+            <div class="control-group">
+              <span class="control-label">🌈 Quick Colors</span>
+                <div class="preset-colors">
+                  <div
+                    class="color-btn"
+                    style="background: #000000"
+                    onclick="setColor('#000000')"
+                    ></div>
                     <div
                       class="color-btn"
-                      style="background: #000000"
-                      onclick="setColor('#000000')"
+                      style="background: #ff0000"
+                      onclick="setColor('#ff0000')"
                       ></div>
                       <div
                         class="color-btn"
-                        style="background: #ff0000"
-                        onclick="setColor('#ff0000')"
+                        style="background: #00ff00"
+                        onclick="setColor('#00ff00')"
                         ></div>
                         <div
                           class="color-btn"
-                          style="background: #00ff00"
-                          onclick="setColor('#00ff00')"
+                          style="background: #0000ff"
+                          onclick="setColor('#0000ff')"
                           ></div>
                           <div
                             class="color-btn"
-                            style="background: #0000ff"
-                            onclick="setColor('#0000ff')"
+                            style="background: #ffff00"
+                            onclick="setColor('#ffff00')"
                             ></div>
                             <div
                               class="color-btn"
-                              style="background: #ffff00"
-                              onclick="setColor('#ffff00')"
+                              style="background: #ff00ff"
+                              onclick="setColor('#ff00ff')"
                               ></div>
                               <div
                                 class="color-btn"
-                                style="background: #ff00ff"
-                                onclick="setColor('#ff00ff')"
+                                style="background: #00ffff"
+                                onclick="setColor('#00ffff')"
                                 ></div>
                                 <div
                                   class="color-btn"
-                                  style="background: #00ffff"
-                                  onclick="setColor('#00ffff')"
+                                  style="background: #ffffff; border-color: #666"
+                                  onclick="setColor('#ffffff')"
                                   ></div>
-                                  <div
-                                    class="color-btn"
-                                    style="background: #ffffff; border-color: #666"
-                                    onclick="setColor('#ffffff')"
-                                    ></div>
+                                </div>
+                              </div>
+
+                              <div class="control-group">
+                                <span class="control-label">🖌️ Brush Size</span>
+                                  <div class="brush-sizes">
+                                    <button
+                                    class="brush-btn"
+                                    onclick="setBrushSize(5)"
+                                    data-size="5"
+                                    >
+                                    <div
+                                      class="brush-preview"
+                                      style="width: 8px; height: 8px"
+                                      ></div>
+                                    </button>
+                                    <button
+                                    class="brush-btn active"
+                                    onclick="setBrushSize(10)"
+                                    data-size="10"
+                                    >
+                                    <div
+                                      class="brush-preview"
+                                      style="width: 12px; height: 12px"
+                                      ></div>
+                                    </button>
+                                    <button
+                                    class="brush-btn"
+                                    onclick="setBrushSize(20)"
+                                    data-size="20"
+                                    >
+                                    <div
+                                      class="brush-preview"
+                                      style="width: 20px; height: 20px"
+                                      ></div>
+                                    </button>
+                                    <button
+                                    class="brush-btn"
+                                    onclick="setBrushSize(40)"
+                                    data-size="40"
+                                    >
+                                    <div
+                                      class="brush-preview"
+                                      style="width: 30px; height: 30px"
+                                      ></div>
+                                    </button>
                                   </div>
                                 </div>
 
                                 <div class="control-group">
-                                  <span class="control-label">🖌️ Brush Size</span>
-                                    <div class="brush-sizes">
+                                  <span class="control-label">⚡ Actions</span>
+                                    <div class="action-buttons">
                                       <button
-                                        class="brush-btn"
-                                        onclick="setBrushSize(5)"
-                                        data-size="5"
-                                        >
-                                        <div
-                                          class="brush-preview"
-                                          style="width: 8px; height: 8px"
-                                          ></div>
-                                        </button>
-                                        <button
-                                          class="brush-btn active"
-                                          onclick="setBrushSize(10)"
-                                          data-size="10"
-                                          >
-                                          <div
-                                            class="brush-preview"
-                                            style="width: 12px; height: 12px"
-                                            ></div>
-                                          </button>
-                                          <button
-                                            class="brush-btn"
-                                            onclick="setBrushSize(20)"
-                                            data-size="20"
-                                            >
-                                            <div
-                                              class="brush-preview"
-                                              style="width: 20px; height: 20px"
-                                              ></div>
-                                            </button>
-                                            <button
-                                              class="brush-btn"
-                                              onclick="setBrushSize(40)"
-                                              data-size="40"
-                                              >
-                                              <div
-                                                class="brush-preview"
-                                                style="width: 30px; height: 30px"
-                                                ></div>
-                                              </button>
-                                            </div>
-                                          </div>
+                                      class="btn btn-clear"
+                                      onclick="clearCanvas()"
+                                      >
+                                      🗑️ Clear
+                                    </button>
+                                    <button class="btn btn-save" onclick="saveCanvas()">
+                                      💾 Save
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
 
-                                          <div class="control-group">
-                                            <span class="control-label">⚡ Actions</span>
-                                              <div class="action-buttons">
-                                                <button
-                                                  class="btn btn-clear"
-                                                  onclick="clearCanvas()"
-                                                  >
-                                                  🗑️ Clear
-                                                </button>
-                                                <button class="btn btn-save" onclick="saveCanvas()">
-                                                  💾 Save
-                                                </button>
-                                              </div>
-                                            </div>
-                                          </div>
+                              <div class="canvas-container">
+                                <canvas id="canvas" width="800" height="600"></canvas>
+                                </div>
 
-                                          <div class="canvas-container">
-                                            <canvas id="canvas" width="800" height="600"></canvas>
-                                            </div>
+                                <p class="tip">
+                                  💡 Tip: Click and drag to paint! Use different colors and
+                                  brush sizes to create your artwork.
+                                </p>
+                              </div>
+                            </div>
 
-                                            <p class="tip">
-                                              💡 Tip: Click and drag to paint! Use different colors and
-                                              brush sizes to create your artwork.
-                                            </p>
-                                          </div>
-                                        </div>
+                            <script>
+                              const canvas = document.getElementById("canvas");
+                              const ctx = canvas.getContext("2d");
+                              const colorPicker = document.getElementById("colorPicker");
 
-                                        <script>
-                                          const canvas = document.getElementById("canvas");
-                                          const ctx = canvas.getContext("2d");
-                                          const colorPicker = document.getElementById("colorPicker");
+                              let isDrawing = false;
+                              let currentColor = "#000000";
+                              let brushSize = 10;
+                              let lastX = 0;
+                              let lastY = 0;
 
-                                          let isDrawing = false;
-                                          let currentColor = "#000000";
-                                          let brushSize = 10;
-                                          let lastX = 0;
-                                          let lastY = 0;
+                              // Initialize canvas with white background
+                              ctx.fillStyle = "white";
+                              ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                                          // Initialize canvas with white background
-                                          ctx.fillStyle = "white";
-                                          ctx.fillRect(0, 0, canvas.width, canvas.height);
+                              // Color picker event
+                              colorPicker.addEventListener("input", (e) => {
+                                currentColor = e.target.value;
+                              });
 
-                                          // Color picker event
-                                          colorPicker.addEventListener("input", (e) => {
-                                            currentColor = e.target.value;
-                                          });
+                              // Mouse events for drawing
+                              canvas.addEventListener("mousedown", startDrawing);
+                              canvas.addEventListener("mousemove", draw);
+                              canvas.addEventListener("mouseup", stopDrawing);
+                              canvas.addEventListener("mouseout", stopDrawing);
 
-                                          // Mouse events for drawing
-                                          canvas.addEventListener("mousedown", startDrawing);
-                                          canvas.addEventListener("mousemove", draw);
-                                          canvas.addEventListener("mouseup", stopDrawing);
-                                          canvas.addEventListener("mouseout", stopDrawing);
+                              // Touch events for mobile
+                              canvas.addEventListener("touchstart", handleTouchStart);
+                              canvas.addEventListener("touchmove", handleTouchMove);
+                              canvas.addEventListener("touchend", stopDrawing);
 
-                                          // Touch events for mobile
-                                          canvas.addEventListener("touchstart", handleTouchStart);
-                                          canvas.addEventListener("touchmove", handleTouchMove);
-                                          canvas.addEventListener("touchend", stopDrawing);
+                              function startDrawing(e) {
+                                isDrawing = true;
+                                const rect = canvas.getBoundingClientRect();
+                                lastX = e.clientX - rect.left;
+                                lastY = e.clientY - rect.top;
+                              }
 
-                                          function startDrawing(e) {
-                                            isDrawing = true;
-                                            const rect = canvas.getBoundingClientRect();
-                                            lastX = e.clientX - rect.left;
-                                            lastY = e.clientY - rect.top;
-                                          }
+                              function draw(e) {
+                                if (!isDrawing) return;
 
-                                          function draw(e) {
-                                            if (!isDrawing) return;
+                                const rect = canvas.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
 
-                                            const rect = canvas.getBoundingClientRect();
-                                            const x = e.clientX - rect.left;
-                                            const y = e.clientY - rect.top;
+                                ctx.strokeStyle = currentColor;
+                                ctx.lineWidth = brushSize;
+                                ctx.lineCap = "round";
+                                ctx.lineJoin = "round";
 
-                                            ctx.strokeStyle = currentColor;
-                                            ctx.lineWidth = brushSize;
-                                            ctx.lineCap = "round";
-                                            ctx.lineJoin = "round";
+                                ctx.beginPath();
+                                ctx.moveTo(lastX, lastY);
+                                ctx.lineTo(x, y);
+                                ctx.stroke();
 
-                                            ctx.beginPath();
-                                            ctx.moveTo(lastX, lastY);
-                                            ctx.lineTo(x, y);
-                                            ctx.stroke();
+                                lastX = x;
+                                lastY = y;
+                              }
 
-                                            lastX = x;
-                                            lastY = y;
-                                          }
+                              function stopDrawing() {
+                                isDrawing = false;
+                              }
 
-                                          function stopDrawing() {
-                                            isDrawing = false;
-                                          }
+                              function handleTouchStart(e) {
+                                e.preventDefault();
+                                const rect = canvas.getBoundingClientRect();
+                                const touch = e.touches[0];
+                                const scaleX = canvas.width / rect.width;
+                                const scaleY = canvas.height / rect.height;
+                                lastX = (touch.clientX - rect.left) * scaleX;
+                                lastY = (touch.clientY - rect.top) * scaleY;
+                                isDrawing = true;
+                              }
 
-                                          function handleTouchStart(e) {
-                                            e.preventDefault();
-                                            const rect = canvas.getBoundingClientRect();
-                                            const touch = e.touches[0];
-                                            const scaleX = canvas.width / rect.width;
-                                            const scaleY = canvas.height / rect.height;
-                                            lastX = (touch.clientX - rect.left) * scaleX;
-                                            lastY = (touch.clientY - rect.top) * scaleY;
-                                            isDrawing = true;
-                                          }
+                              function handleTouchMove(e) {
+                                if (!isDrawing) return;
+                                e.preventDefault();
 
-                                          function handleTouchMove(e) {
-                                            if (!isDrawing) return;
-                                            e.preventDefault();
+                                const rect = canvas.getBoundingClientRect();
+                                const touch = e.touches[0];
+                                const scaleX = canvas.width / rect.width;
+                                const scaleY = canvas.height / rect.height;
+                                const x = (touch.clientX - rect.left) * scaleX;
+                                const y = (touch.clientY - rect.top) * scaleY;
 
-                                            const rect = canvas.getBoundingClientRect();
-                                            const touch = e.touches[0];
-                                            const scaleX = canvas.width / rect.width;
-                                            const scaleY = canvas.height / rect.height;
-                                            const x = (touch.clientX - rect.left) * scaleX;
-                                            const y = (touch.clientY - rect.top) * scaleY;
+                                ctx.strokeStyle = currentColor;
+                                ctx.lineWidth = brushSize;
+                                ctx.lineCap = "round";
+                                ctx.lineJoin = "round";
 
-                                            ctx.strokeStyle = currentColor;
-                                            ctx.lineWidth = brushSize;
-                                            ctx.lineCap = "round";
-                                            ctx.lineJoin = "round";
+                                ctx.beginPath();
+                                ctx.moveTo(lastX, lastY);
+                                ctx.lineTo(x, y);
+                                ctx.stroke();
 
-                                            ctx.beginPath();
-                                            ctx.moveTo(lastX, lastY);
-                                            ctx.lineTo(x, y);
-                                            ctx.stroke();
+                                lastX = x;
+                                lastY = y;
+                              }
 
-                                            lastX = x;
-                                            lastY = y;
-                                          }
+                              function setColor(color) {
+                                currentColor = color;
+                                colorPicker.value = color;
+                              }
 
-                                          function setColor(color) {
-                                            currentColor = color;
-                                            colorPicker.value = color;
-                                          }
+                              function setBrushSize(size) {
+                                brushSize = size;
 
-                                          function setBrushSize(size) {
-                                            brushSize = size;
+                                // Update active button
+                                document.querySelectorAll(".brush-btn").forEach((btn) => {
+                                  btn.classList.remove("active");
+                                });
+                                event.target.closest(".brush-btn").classList.add("active");
+                              }
 
-                                            // Update active button
-                                            document.querySelectorAll(".brush-btn").forEach((btn) => {
-                                              btn.classList.remove("active");
-                                            });
-                                            event.target.closest(".brush-btn").classList.add("active");
-                                          }
+                              function clearCanvas() {
+                                if (
+                                confirm(
+                                "Are you sure you want to clear your masterpiece? 🍌",
+                                )
+                                ) {
+                                  ctx.fillStyle = "white";
+                                  ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                }
+                              }
 
-                                          function clearCanvas() {
-                                            if (
-                                            confirm(
-                                            "Are you sure you want to clear your masterpiece? 🍌",
-                                            )
-                                            ) {
-                                              ctx.fillStyle = "white";
-                                              ctx.fillRect(0, 0, canvas.width, canvas.height);
-                                            }
-                                          }
-
-                                          function saveCanvas() {
-                                            const link = document.createElement("a");
-                                            link.download = "artistic-banana-artwork.png";
-                                            link.href = canvas.toDataURL();
-                                            link.click();
-                                            alert("Your artwork has been saved! 🎨");
-                                          }
-                                        </script>
-                                      </body>
-                                    </html>
+                              function saveCanvas() {
+                                const link = document.createElement("a");
+                                link.download = "artistic-banana-artwork.png";
+                                link.href = canvas.toDataURL();
+                                link.click();
+                                alert("Your artwork has been saved! 🎨");
+                              }
+                            </script>
+                          </body>
+                        </html>

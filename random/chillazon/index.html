@@ -716,785 +716,785 @@
 
           <div class="search-container">
             <input
+            type="text"
+            class="search-input"
+            id="searchInput"
+            placeholder="Search Chillazon"
+          />
+          <button class="search-button" onclick="search()">
+            <span class="search-icon">🔍 search...</span>
+            </button>
+          </div>
+
+          <div style="display: flex; gap: 15px">
+            <div class="nav-item" onclick="signIn()" id="accountButton">
+              <span id="userGreeting"
+                >Hello, cold <img src="https://doggodgcodes.github.io/assets/signin.png" alt="Sign In... DG"><br /><strong
+                >Stupid & Liquid Nitrogen is bad</strong
+                ></span
+                >
+              </div>
+              <div class="nav-item" onclick="showOrders()">
+                Returns<br /><strong>& Orders</strong>
+              </div>
+              <div
+                class="nav-item"
+                style="font-size: 20px"
+                onclick="toggleCart()"
+                >
+                🛒 yllihC traC<span class="cart-count" id="cartCount">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="header-nav">
+            <div class="nav-item" onclick="showCategory('All Decor')">
+              Decor
+            </div>
+            <div class="nav-item" onclick="showCategory('Today's Deals')">
+              Decor
+            </div>
+            <div class="nav-item" onclick="showCategory('Fresh Bananas')">
+              Decor
+            </div>
+            <div class="nav-item" onclick="showCategory('Organic Decor')">
+              Decor
+            </div>
+            <div class="nav-item" onclick="showCategory('Play Running from the Internet with Santa!')">
+              Decor
+            </div>
+            <div class="nav-item" onclick="showCategory('Walls')">
+              Decor
+            </div>
+            <div class="nav-item" onclick="showCategory('Sell Decor')">
+              Decor
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Suggestion -->
+        <div class="search-suggestion" id="searchSuggestion">
+          Did you mean: <strong>Decor</strong>?
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast"></div>
+
+          <!-- Login Modal -->
+          <div
+            class="login-modal"
+            id="loginModal"
+            onclick="closeLoginModal(event)"
+            >
+            <div class="login-content" onclick="event.stopPropagation()">
+              <h2>Sign in to Bananazon</h2>
+              <input
               type="text"
-              class="search-input"
-              id="searchInput"
-              placeholder="Search Chillazon"
+              class="login-input"
+              id="usernameInput"
+              placeholder="Username"
+              onkeypress="handleLoginKeypress(event)"
             />
-            <button class="search-button" onclick="search()">
-              <span class="search-icon">🔍 search...</span>
-              </button>
+            <input
+            type="password"
+            class="login-input"
+            id="passwordInput"
+            placeholder="Password"
+            onkeypress="handleLoginKeypress(event)"
+          />
+          <button class="login-button" onclick="handleLogin()">
+            Sign In
+          </button>
+          <button class="login-close" onclick="closeLoginModal()">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <!-- Cart Overlay -->
+      <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+        <!-- Cart Sidebar -->
+        <div class="cart-sidebar" id="cartSidebar">
+          <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">×</button>
             </div>
-
-            <div style="display: flex; gap: 15px">
-              <div class="nav-item" onclick="signIn()" id="accountButton">
-                <span id="userGreeting"
-                  >Hello, cold <img src="https://doggodgcodes.github.io/assets/signin.png" alt="Sign In... DG"><br /><strong
-                  >Stupid & Liquid Nitrogen is bad</strong
-                  ></span
-                  >
-                </div>
-                <div class="nav-item" onclick="showOrders()">
-                  Returns<br /><strong>& Orders</strong>
-                </div>
-                <div
-                  class="nav-item"
-                  style="font-size: 20px"
-                  onclick="toggleCart()"
-                  >
-                  🛒 yllihC traC<span class="cart-count" id="cartCount">0</span>
-                </div>
+            <div class="cart-items" id="cartItems">
+              <div class="empty-cart">Your cart is empty</div>
               </div>
-            </div>
-
-            <div class="header-nav">
-              <div class="nav-item" onclick="showCategory('All Decor')">
-                Decor
+              <div class="cart-total" id="cartTotal" style="display: none">
+                Subtotal: <span id="totalPrice">$0.00</span>
               </div>
-              <div class="nav-item" onclick="showCategory('Today's Deals')">
-                Decor
-              </div>
-              <div class="nav-item" onclick="showCategory('Fresh Bananas')">
-                Decor
-              </div>
-              <div class="nav-item" onclick="showCategory('Organic Decor')">
-                Decor
-              </div>
-              <div class="nav-item" onclick="showCategory('Play Running from the Internet with Santa!')">
-                Decor
-              </div>
-              <div class="nav-item" onclick="showCategory('Walls')">
-                Decor
-              </div>
-              <div class="nav-item" onclick="showCategory('Sell Decor')">
-                Decor
-              </div>
-            </div>
-          </div>
-
-          <!-- Search Suggestion -->
-          <div class="search-suggestion" id="searchSuggestion">
-            Did you mean: <strong>Decor</strong>?
-          </div>
-
-          <!-- Toast Notification -->
-          <div class="toast" id="toast"></div>
-
-            <!-- Login Modal -->
-            <div
-              class="login-modal"
-              id="loginModal"
-              onclick="closeLoginModal(event)"
+              <button
+              class="checkout-button"
+              id="checkoutButton"
+              style="display: none"
+              onclick="checkout()"
               >
-              <div class="login-content" onclick="event.stopPropagation()">
-                <h2>Sign in to Bananazon</h2>
-                <input
-                  type="text"
-                  class="login-input"
-                  id="usernameInput"
-                  placeholder="Username"
-                  onkeypress="handleLoginKeypress(event)"
-                />
-                <input
-                  type="password"
-                  class="login-input"
-                  id="passwordInput"
-                  placeholder="Password"
-                  onkeypress="handleLoginKeypress(event)"
-                />
-                <button class="login-button" onclick="handleLogin()">
-                  Sign In
-                </button>
-                <button class="login-close" onclick="closeLoginModal()">
-                  Cancel
-                </button>
-              </div>
+              Proceed to Checkout
+            </button>
+          </div>
+
+          <!-- Main Banner -->
+          <div class="main-banner">
+            Chilly. Decor yummy yum cookies ice cube Dec 25 Cold.
+          </div>
+
+          <!-- Home Page Products -->
+          <div class="container" id="homePage">
+            <h2 style="margin-bottom: 20px">Top Decor yummy yum cookies ice cube Dec 25 Cold.For You</h2>
+
+            <div class="products-grid" id="productsGrid">
+              <!-- Products will be generated by JavaScript -->
             </div>
+          </div>
 
-            <!-- Cart Overlay -->
-            <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-
-              <!-- Cart Sidebar -->
-              <div class="cart-sidebar" id="cartSidebar">
-                <div class="cart-header">
-                  <h2>Shopping Cart</h2>
-                  <button class="close-cart" onclick="toggleCart()">×</button>
-                  </div>
-                  <div class="cart-items" id="cartItems">
-                    <div class="empty-cart">Your cart is empty</div>
+          <!-- Product Detail Page -->
+          <div class="product-detail" id="productDetail">
+            <button class="back-button" onclick="showHomePage()">← Back</button>
+              <div class="product-detail-grid">
+                <div>
+                  <img
+                  id="detailImage"
+                  class="product-detail-image"
+                  src=""
+                  alt="Product"
+                />
+              </div>
+              <div class="product-detail-info">
+                <h1 id="detailTitle"></h1>
+                <div class="product-detail-rating" id="detailRating"></div>
+                  <div class="product-detail-price" id="detailPrice"></div>
+                    <div class="product-detail-prime">
+                      🛷 FREE Delivery with Santa
                     </div>
-                    <div class="cart-total" id="cartTotal" style="display: none">
-                      Subtotal: <span id="totalPrice">$0.00</span>
-                    </div>
-                    <button
-                      class="checkout-button"
-                      id="checkoutButton"
-                      style="display: none"
-                      onclick="checkout()"
-                      >
-                      Proceed to Checkout
-                    </button>
-                  </div>
-
-                  <!-- Main Banner -->
-                  <div class="main-banner">
-                    Chilly. Decor yummy yum cookies ice cube Dec 25 Cold.
-                  </div>
-
-                  <!-- Home Page Products -->
-                  <div class="container" id="homePage">
-                    <h2 style="margin-bottom: 20px">Top Decor yummy yum cookies ice cube Dec 25 Cold.For You</h2>
-
-                    <div class="products-grid" id="productsGrid">
-                      <!-- Products will be generated by JavaScript -->
+                    <div
+                      class="product-detail-description"
+                      id="detailDescription"
+                      ></div>
+                      <div class="product-detail-buttons">
+                        <button
+                        class="add-to-cart"
+                        onclick="addToCartFromDetail()"
+                        >
+                        Add to yllihC traC
+                      </button>
+                      <button class="buy-now" onclick="buyNow()">
+                        Now Buy Now
+                      </button>
                     </div>
                   </div>
+                </div>
 
-                  <!-- Product Detail Page -->
-                  <div class="product-detail" id="productDetail">
-                    <button class="back-button" onclick="showHomePage()">← Back</button>
-                      <div class="product-detail-grid">
-                        <div>
-                          <img
-                          id="detailImage"
-                          class="product-detail-image"
-                          src=""
-                          alt="Product"
-                        />
-                      </div>
-                      <div class="product-detail-info">
-                        <h1 id="detailTitle"></h1>
-                        <div class="product-detail-rating" id="detailRating"></div>
-                          <div class="product-detail-price" id="detailPrice"></div>
-                            <div class="product-detail-prime">
-                              🛷 FREE Delivery with Santa
-                            </div>
-                            <div
-                              class="product-detail-description"
-                              id="detailDescription"
-                              ></div>
-                              <div class="product-detail-buttons">
-                                <button
-                                  class="add-to-cart"
-                                  onclick="addToCartFromDetail()"
-                                  >
-                                  Add to yllihC traC
-                                </button>
-                                <button class="buy-now" onclick="buyNow()">
-                                  Now Buy Now
-                                </button>
+                <!-- Reviews Section -->
+                <div class="reviews-section">
+                  <h2>Customer Reviews</h2>
+                  <div id="reviewsList">
+                    <!-- Reviews will be generated by JavaScript -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Back to Top -->
+              <div class="back-to-top" onclick="window.scrollTo(0,0)">
+                Yeet up, dingus cold
+              </div>
+
+              <!-- Footer -->
+              <div class="footer">
+                <p style="margin-bottom: 20px">Chilly</p>
+                  <p style="font-size: 12px; color: #999">
+                  2025, 12/20 <a class="add-to-cart" href="https://owendallasread.com/bananazon/">Origin of this wbepage<a/>
+                </p>
+              </div>
+
+              <script>
+                // Product Data
+                const products = [
+                  {
+                    id: 1,
+                    title: "Fresh Organic Bananas, 1 Bunch (6-8 Bananas)",
+                    price: 3.99,
+                    rating: 5,
+                    reviews: 45892,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Premium organic bananas, hand-selected for perfect ripeness. Grown without pesticides on sustainable farms. Perfect for snacking, smoothies, or baking!",
+                  },
+                  {
+                    id: 2,
+                    title: "Premium Yellow Bananas - Perfectly Ripe, Family Size Pack",
+                    price: 5.49,
+                    rating: 4,
+                    reviews: 32441,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Family-sized pack of perfectly ripe yellow bananas. Great value for families who love bananas! Each banana is carefully inspected for quality.",
+                  },
+                  {
+                    id: 3,
+                    title: "Single Banana - Perfect for Snacking",
+                    price: 0.59,
+                    rating: 5,
+                    reviews: 89234,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Just one banana. That's it. Perfect for when you only need one banana. The most popular single banana on Bananazon!",
+                  },
+                  {
+                    id: 4,
+                    title: "Organic Fair Trade Bananas - Ethically Sourced, Premium Quality",
+                    price: 6.99,
+                    rating: 5,
+                    reviews: 12678,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Support fair trade with these ethically sourced organic bananas. Every purchase helps farming communities around the world.",
+                  },
+                  {
+                    id: 5,
+                    title: "Baby Bananas - Mini Size, Big Flavor (12 Count)",
+                    price: 4.29,
+                    rating: 4,
+                    reviews: 23456,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Adorable baby bananas pack a sweet punch! Perfect for lunch boxes and small hands. Sweeter than regular bananas!",
+                  },
+                  {
+                    id: 6,
+                    title: "Plantain Bananas - Green, Perfect for Cooking (4 Pack)",
+                    price: 3.49,
+                    rating: 5,
+                    reviews: 18903,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Green plantains ideal for frying, baking, or boiling. A staple in Caribbean and Latin American cuisine. Starchy and delicious!",
+                  },
+                  {
+                    id: 7,
+                    title: "Red Bananas - Exotic Sweet Variety, Bunch of 5",
+                    price: 7.99,
+                    rating: 4,
+                    reviews: 9234,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Experience the exotic! Red bananas are sweeter and creamier than yellow bananas. A unique tropical treat you'll love.",
+                  },
+                  {
+                    id: 8,
+                    title: "Banana Starter Kit - 3 Different Varieties, Perfect for Banana Lovers",
+                    price: 12.99,
+                    rating: 5,
+                    reviews: 56789,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Can't decide? Try them all! Includes yellow, baby, and red bananas. The perfect introduction to the wonderful world of bananas!",
+                  },
+                  {
+                    id: 9,
+                    title: "Overripe Bananas - Perfect for Banana Bread (Discounted!)",
+                    price: 1.99,
+                    rating: 4,
+                    reviews: 34567,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Spotted and ready for baking! These overripe bananas are perfect for banana bread, muffins, or smoothies. Save money and reduce waste!",
+                  },
+                  {
+                    id: 10,
+                    title: "Jumbo Bananas - Extra Large Size, Premium Select",
+                    price: 4.99,
+                    rating: 5,
+                    reviews: 28901,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Massive bananas for massive appetites! Each banana is oversized and full of flavor. The biggest bananas you'll ever see!",
+                  },
+                  {
+                    id: 11,
+                    title: "Freeze-Dried Banana Chips - NOT Actually Bananas, Just Chips Shaped Like Bananas",
+                    price: 8.99,
+                    rating: 3,
+                    reviews: 5432,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Wait, what? These aren't real bananas? Just chips? In banana shape? Well, they're still delicious! Crunchy snacking fun!",
+                  },
+                  {
+                    id: 12,
+                    title: "Mystery Decor Box - 20 Random Bananas, Could Be Any Variety!",
+                    price: 19.99,
+                    rating: 5,
+                    reviews: 67890,
+                    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
+                    description:
+                    "Feeling adventurous? You'll get 20 random bananas - could be any variety! It's like Christmas morning but with bananas!",
+                  },
+                ];
+
+                // Sample reviews data
+                const reviewsData = {
+                  1: [
+                    {
+                      author: "BananaFan42",
+                      date: "December 15, 2024",
+                      rating: 5,
+                      title: "Best bananas ever!",
+                      text: "These are hands down the best organic bananas I've ever purchased. Perfect ripeness, great taste, and they lasted over a week!",
+                      helpful: 342,
+                    },
+                    {
+                      author: "HealthyEater",
+                      date: "December 10, 2024",
+                      rating: 5,
+                      title: "So fresh!",
+                      text: "Arrived in perfect condition. Great for my morning smoothies!",
+                      helpful: 156,
+                    },
+                    {
+                      author: "MonkeyBusiness",
+                      date: "December 5, 2024",
+                      rating: 4,
+                      title: "Good but expensive",
+                      text: "Quality is excellent but the price is a bit high compared to my local store.",
+                      helpful: 89,
+                    },
+                  ],
+                  2: [
+                    {
+                      author: "DecorDecorDecorDecorDecorDecorDecorDecor4",
+                      date: "December 12, 2024",
+                      rating: 5,
+                      title: "Perfect for my Decor",
+                      text: "Decor size is no joke! Plenty of bananas for all my Decor. Will definitely order again.",
+                      helpful: 234,
+                    },
+                    {
+                      author: "BananaLover99",
+                      date: "December 8, 2024",
+                      rating: 4,
+                      title: "Great value",
+                      text: "Good quality and quantity. One banana had a bruise but overall happy with the purchase.",
+                      helpful: 112,
+                    },
+                  ],
+                  3: [
+                    {
+                      author: "JustOneGuy",
+                      date: "December 18, 2024",
+                      rating: 5,
+                      title: "It's literally just one banana",
+                      text: "I needed exactly one banana and this is exactly one banana. 11/10 would banana again.",
+                      helpful: 1289,
+                    },
+                    {
+                      author: "DecorLife",
+                      date: "December 14, 2024",
+                      rating: 5,
+                      title: "Perfect portion",
+                      text: "As a Decor person, I don't need a whole bunch. This is ideal!",
+                      helpful: 456,
+                    },
+                    {
+                      author: "ConfusedIdoit",
+                      date: "December 1, 2024",
+                      rating: 5,
+                      title: "Why did I buy this?",
+                      text: "I could have just bought one Decor at the store but here we are. 5 stars because it arrived.",
+                      helpful: 2103,
+                    },
+                  ],
+                };
+
+                // Shopping cart
+                let cart = [];
+                let currentProduct = null;
+
+                // Initialize page
+                window.onload = function () {
+                  renderProducts();
+                  updateCartCount();
+                };
+
+                // Render products
+                function renderProducts() {
+                  const grid = document.getElementById("productsGrid");
+                  grid.innerHTML = products
+                  .map(
+                  (product) => `
+                  <div class="product-card" onclick="showProductDetail(${product.id})">
+                    <img src="${product.image}" alt="${product.title}" class="product-image">
+                    <div class="product-title">${product.title}</div>
+                      <div class="product-rating">${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings</div>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                          <div class="product-prime">🚚 FREE Delivery with Prime</div>
+                            <button class="add-to-cart" onclick="addToCart(event, ${product.id})">Add to Cart</button>
+                              <button class="buy-now" onclick="buyNowFromCard(event, ${product.id})">Buy Now</button>
                               </div>
-                            </div>
-                          </div>
+                              `,
+                              )
+                              .join("");
+                            }
 
-                          <!-- Reviews Section -->
-                          <div class="reviews-section">
-                            <h2>Customer Reviews</h2>
-                            <div id="reviewsList">
-                              <!-- Reviews will be generated by JavaScript -->
-                            </div>
-                          </div>
-                        </div>
+                            // Show product detail
+                            function showProductDetail(productId) {
+                              const product = products.find((p) => p.id === productId);
+                              if (!product) return;
 
-                        <!-- Back to Top -->
-                        <div class="back-to-top" onclick="window.scrollTo(0,0)">
-                          Yeet up, dingus cold
-                        </div>
+                              currentProduct = product;
 
-                        <!-- Footer -->
-                        <div class="footer">
-                          <p style="margin-bottom: 20px">Chilly</p>
-                            <p style="font-size: 12px; color: #999">
-                            2025, 12/20 <a class="add-to-cart" href="https://owendallasread.com/bananazon/">Origin of this wbepage<a/>
-                          </p>
-                        </div>
+                              document.getElementById("detailImage").src = product.image;
+                              document.getElementById("detailTitle").textContent =
+                              product.title;
+                              document.getElementById("detailRating").innerHTML =
+                              `${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings`;
+                              document.getElementById("detailPrice").textContent =
+                              `$${product.price.toFixed(2)}`;
+                              document.getElementById("detailDescription").textContent =
+                              product.description;
 
-                        <script>
-                          // Product Data
-                          const products = [
-                            {
-                              id: 1,
-                              title: "Fresh Organic Bananas, 1 Bunch (6-8 Bananas)",
-                              price: 3.99,
-                              rating: 5,
-                              reviews: 45892,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Premium organic bananas, hand-selected for perfect ripeness. Grown without pesticides on sustainable farms. Perfect for snacking, smoothies, or baking!",
-                            },
-                            {
-                              id: 2,
-                              title: "Premium Yellow Bananas - Perfectly Ripe, Family Size Pack",
-                              price: 5.49,
-                              rating: 4,
-                              reviews: 32441,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Family-sized pack of perfectly ripe yellow bananas. Great value for families who love bananas! Each banana is carefully inspected for quality.",
-                            },
-                            {
-                              id: 3,
-                              title: "Single Banana - Perfect for Snacking",
-                              price: 0.59,
-                              rating: 5,
-                              reviews: 89234,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Just one banana. That's it. Perfect for when you only need one banana. The most popular single banana on Bananazon!",
-                            },
-                            {
-                              id: 4,
-                              title: "Organic Fair Trade Bananas - Ethically Sourced, Premium Quality",
-                              price: 6.99,
-                              rating: 5,
-                              reviews: 12678,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Support fair trade with these ethically sourced organic bananas. Every purchase helps farming communities around the world.",
-                            },
-                            {
-                              id: 5,
-                              title: "Baby Bananas - Mini Size, Big Flavor (12 Count)",
-                              price: 4.29,
-                              rating: 4,
-                              reviews: 23456,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Adorable baby bananas pack a sweet punch! Perfect for lunch boxes and small hands. Sweeter than regular bananas!",
-                            },
-                            {
-                              id: 6,
-                              title: "Plantain Bananas - Green, Perfect for Cooking (4 Pack)",
-                              price: 3.49,
-                              rating: 5,
-                              reviews: 18903,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Green plantains ideal for frying, baking, or boiling. A staple in Caribbean and Latin American cuisine. Starchy and delicious!",
-                            },
-                            {
-                              id: 7,
-                              title: "Red Bananas - Exotic Sweet Variety, Bunch of 5",
-                              price: 7.99,
-                              rating: 4,
-                              reviews: 9234,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Experience the exotic! Red bananas are sweeter and creamier than yellow bananas. A unique tropical treat you'll love.",
-                            },
-                            {
-                              id: 8,
-                              title: "Banana Starter Kit - 3 Different Varieties, Perfect for Banana Lovers",
-                              price: 12.99,
-                              rating: 5,
-                              reviews: 56789,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Can't decide? Try them all! Includes yellow, baby, and red bananas. The perfect introduction to the wonderful world of bananas!",
-                            },
-                            {
-                              id: 9,
-                              title: "Overripe Bananas - Perfect for Banana Bread (Discounted!)",
-                              price: 1.99,
-                              rating: 4,
-                              reviews: 34567,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Spotted and ready for baking! These overripe bananas are perfect for banana bread, muffins, or smoothies. Save money and reduce waste!",
-                            },
-                            {
-                              id: 10,
-                              title: "Jumbo Bananas - Extra Large Size, Premium Select",
-                              price: 4.99,
-                              rating: 5,
-                              reviews: 28901,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Massive bananas for massive appetites! Each banana is oversized and full of flavor. The biggest bananas you'll ever see!",
-                            },
-                            {
-                              id: 11,
-                              title: "Freeze-Dried Banana Chips - NOT Actually Bananas, Just Chips Shaped Like Bananas",
-                              price: 8.99,
-                              rating: 3,
-                              reviews: 5432,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Wait, what? These aren't real bananas? Just chips? In banana shape? Well, they're still delicious! Crunchy snacking fun!",
-                            },
-                            {
-                              id: 12,
-                              title: "Mystery Decor Box - 20 Random Bananas, Could Be Any Variety!",
-                              price: 19.99,
-                              rating: 5,
-                              reviews: 67890,
-                              image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzeiEcRvba-ZeeVme3fEljZShBLsEcUgSuEA&s",
-                              description:
-                              "Feeling adventurous? You'll get 20 random bananas - could be any variety! It's like Christmas morning but with bananas!",
-                            },
-                          ];
+                              // Render reviews
+                              const reviews = reviewsData[productId] || [
+                                {
+                                  author: "BananaEnthusiast",
+                                  date: "December 1, 2024",
+                                  rating: 5,
+                                  title: "Amazing bananas!",
+                                  text: "These bananas exceeded all my expectations. Highly recommend!",
+                                  helpful: 123,
+                                },
+                              ];
 
-                          // Sample reviews data
-                          const reviewsData = {
-                            1: [
-                              {
-                                author: "BananaFan42",
-                                date: "December 15, 2024",
-                                rating: 5,
-                                title: "Best bananas ever!",
-                                text: "These are hands down the best organic bananas I've ever purchased. Perfect ripeness, great taste, and they lasted over a week!",
-                                helpful: 342,
-                              },
-                              {
-                                author: "HealthyEater",
-                                date: "December 10, 2024",
-                                rating: 5,
-                                title: "So fresh!",
-                                text: "Arrived in perfect condition. Great for my morning smoothies!",
-                                helpful: 156,
-                              },
-                              {
-                                author: "MonkeyBusiness",
-                                date: "December 5, 2024",
-                                rating: 4,
-                                title: "Good but expensive",
-                                text: "Quality is excellent but the price is a bit high compared to my local store.",
-                                helpful: 89,
-                              },
-                            ],
-                            2: [
-                              {
-                                author: "DecorDecorDecorDecorDecorDecorDecorDecor4",
-                                date: "December 12, 2024",
-                                rating: 5,
-                                title: "Perfect for my Decor",
-                                text: "Decor size is no joke! Plenty of bananas for all my Decor. Will definitely order again.",
-                                helpful: 234,
-                              },
-                              {
-                                author: "BananaLover99",
-                                date: "December 8, 2024",
-                                rating: 4,
-                                title: "Great value",
-                                text: "Good quality and quantity. One banana had a bruise but overall happy with the purchase.",
-                                helpful: 112,
-                              },
-                            ],
-                            3: [
-                              {
-                                author: "JustOneGuy",
-                                date: "December 18, 2024",
-                                rating: 5,
-                                title: "It's literally just one banana",
-                                text: "I needed exactly one banana and this is exactly one banana. 11/10 would banana again.",
-                                helpful: 1289,
-                              },
-                              {
-                                author: "DecorLife",
-                                date: "December 14, 2024",
-                                rating: 5,
-                                title: "Perfect portion",
-                                text: "As a Decor person, I don't need a whole bunch. This is ideal!",
-                                helpful: 456,
-                              },
-                              {
-                                author: "ConfusedIdoit",
-                                date: "December 1, 2024",
-                                rating: 5,
-                                title: "Why did I buy this?",
-                                text: "I could have just bought one Decor at the store but here we are. 5 stars because it arrived.",
-                                helpful: 2103,
-                              },
-                            ],
-                          };
+                              document.getElementById("reviewsList").innerHTML = reviews
+                              .map(
+                              (review) => `
+                              <div class="review">
+                                <div class="review-header">
+                                  <span class="review-author">${review.author}</span>
+                                    <span class="review-date">on ${review.date}</span>
+                                    </div>
+                                    <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
+                                      <div class="review-title">${review.title}</div>
+                                        <div class="review-text">${review.text}</div>
+                                          <div class="review-helpful">${review.helpful} people found this helpful</div>
+                                          </div>
+                                          `,
+                                          )
+                                          .join("");
 
-                          // Shopping cart
-                          let cart = [];
-                          let currentProduct = null;
+                                          document.getElementById("homePage").style.display = "none";
+                                          document.getElementById("productDetail").classList.add("show");
+                                          window.scrollTo(0, 0);
+                                        }
 
-                          // Initialize page
-                          window.onload = function () {
-                            renderProducts();
-                            updateCartCount();
-                          };
+                                        // Show home page
+                                        function showHomePage() {
+                                          document
+                                          .getElementById("productDetail")
+                                          .classList.remove("show");
+                                          document.getElementById("homePage").style.display = "block";
+                                          currentProduct = null;
+                                          window.scrollTo(0, 0);
+                                        }
 
-                          // Render products
-                          function renderProducts() {
-                            const grid = document.getElementById("productsGrid");
-                            grid.innerHTML = products
-                            .map(
-                            (product) => `
-                            <div class="product-card" onclick="showProductDetail(${product.id})">
-                              <img src="${product.image}" alt="${product.title}" class="product-image">
-                              <div class="product-title">${product.title}</div>
-                                <div class="product-rating">${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings</div>
-                                  <div class="product-price">$${product.price.toFixed(2)}</div>
-                                    <div class="product-prime">🚚 FREE Delivery with Prime</div>
-                                      <button class="add-to-cart" onclick="addToCart(event, ${product.id})">Add to Cart</button>
-                                        <button class="buy-now" onclick="buyNowFromCard(event, ${product.id})">Buy Now</button>
-                                        </div>
-                                        `,
-                                        )
-                                        .join("");
-                                      }
+                                        // Add to cart from product card
+                                        function addToCart(event, productId) {
+                                          event.stopPropagation();
+                                          const product = products.find((p) => p.id === productId);
+                                          if (!product) return;
 
-                                      // Show product detail
-                                      function showProductDetail(productId) {
-                                        const product = products.find((p) => p.id === productId);
-                                        if (!product) return;
+                                          cart.push({ ...product });
+                                          updateCartCount();
+                                          updateCartDisplay();
+                                          showToast(`${product.title} added to cart!`);
+                                        }
 
-                                        currentProduct = product;
+                                        // Add to cart from detail page
+                                        function addToCartFromDetail() {
+                                          if (!currentProduct) return;
+                                          cart.push({ ...currentProduct });
+                                          updateCartCount();
+                                          updateCartDisplay();
+                                          showToast(`${currentProduct.title} added to cart!`);
+                                        }
 
-                                        document.getElementById("detailImage").src = product.image;
-                                        document.getElementById("detailTitle").textContent =
-                                        product.title;
-                                        document.getElementById("detailRating").innerHTML =
-                                        `${"★".repeat(product.rating)}${"☆".repeat(5 - product.rating)} ${product.reviews.toLocaleString()} ratings`;
-                                        document.getElementById("detailPrice").textContent =
-                                        `$${product.price.toFixed(2)}`;
-                                        document.getElementById("detailDescription").textContent =
-                                        product.description;
+                                        // Buy now from card
+                                        function buyNowFromCard(event, productId) {
+                                          event.stopPropagation();
+                                          addToCart(event, productId);
+                                          setTimeout(() => {
+                                            toggleCart();
+                                          }, 500);
+                                        }
 
-                                        // Render reviews
-                                        const reviews = reviewsData[productId] || [
-                                          {
-                                            author: "BananaEnthusiast",
-                                            date: "December 1, 2024",
-                                            rating: 5,
-                                            title: "Amazing bananas!",
-                                            text: "These bananas exceeded all my expectations. Highly recommend!",
-                                            helpful: 123,
-                                          },
-                                        ];
+                                        // Buy now from detail page
+                                        function buyNow() {
+                                          if (!currentProduct) return;
+                                          cart.push({ ...currentProduct });
+                                          updateCartCount();
+                                          updateCartDisplay();
+                                          showToast(`${currentProduct.title} added to cart!`);
+                                          setTimeout(() => {
+                                            toggleCart();
+                                          }, 500);
+                                        }
 
-                                        document.getElementById("reviewsList").innerHTML = reviews
-                                        .map(
-                                        (review) => `
-                                        <div class="review">
-                                          <div class="review-header">
-                                            <span class="review-author">${review.author}</span>
-                                              <span class="review-date">on ${review.date}</span>
-                                              </div>
-                                              <div class="review-rating">${"★".repeat(review.rating)}${"☆".repeat(5 - review.rating)}</div>
-                                                <div class="review-title">${review.title}</div>
-                                                  <div class="review-text">${review.text}</div>
-                                                    <div class="review-helpful">${review.helpful} people found this helpful</div>
-                                                    </div>
-                                                    `,
-                                                    )
-                                                    .join("");
+                                        // Update cart count
+                                        function updateCartCount() {
+                                          document.getElementById("cartCount").textContent = cart.length;
+                                        }
 
-                                                    document.getElementById("homePage").style.display = "none";
-                                                    document.getElementById("productDetail").classList.add("show");
-                                                    window.scrollTo(0, 0);
-                                                  }
+                                        // Update cart display
+                                        function updateCartDisplay() {
+                                          const cartItems = document.getElementById("cartItems");
+                                          const cartTotal = document.getElementById("cartTotal");
+                                          const checkoutButton =
+                                          document.getElementById("checkoutButton");
 
-                                                  // Show home page
-                                                  function showHomePage() {
-                                                    document
-                                                    .getElementById("productDetail")
-                                                    .classList.remove("show");
-                                                    document.getElementById("homePage").style.display = "block";
-                                                    currentProduct = null;
-                                                    window.scrollTo(0, 0);
-                                                  }
+                                          if (cart.length === 0) {
+                                            cartItems.innerHTML =
+                                            '<div class="empty-cart">Your cart is empty</div>';
+                                            cartTotal.style.display = "none";
+                                            checkoutButton.style.display = "none";
+                                            return;
+                                          }
 
-                                                  // Add to cart from product card
-                                                  function addToCart(event, productId) {
-                                                    event.stopPropagation();
-                                                    const product = products.find((p) => p.id === productId);
-                                                    if (!product) return;
+                                          const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-                                                    cart.push({ ...product });
-                                                    updateCartCount();
-                                                    updateCartDisplay();
-                                                    showToast(`${product.title} added to cart!`);
-                                                  }
+                                          cartItems.innerHTML = cart
+                                          .map(
+                                          (item, index) => `
+                                          <div class="cart-item">
+                                            <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                                            <div class="cart-item-info">
+                                              <div class="cart-item-title">${item.title}</div>
+                                                <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+                                                  <button class="remove-item" onclick="removeFromCart(${index})">Remove :sad-face:</button>
+                                                  </div>
+                                                </div>
+                                                `,
+                                                )
+                                                .join("");
 
-                                                  // Add to cart from detail page
-                                                  function addToCartFromDetail() {
-                                                    if (!currentProduct) return;
-                                                    cart.push({ ...currentProduct });
-                                                    updateCartCount();
-                                                    updateCartDisplay();
-                                                    showToast(`${currentProduct.title} added to cart!`);
-                                                  }
+                                                document.getElementById("totalPrice").textContent =
+                                                `$${total.toFixed(2)}`;
+                                                cartTotal.style.display = "block";
+                                                checkoutButton.style.display = "block";
+                                              }
 
-                                                  // Buy now from card
-                                                  function buyNowFromCard(event, productId) {
-                                                    event.stopPropagation();
-                                                    addToCart(event, productId);
-                                                    setTimeout(() => {
-                                                      toggleCart();
-                                                    }, 500);
-                                                  }
+                                              // Remove from cart
+                                              function removeFromCart(index) {
+                                                const removedItem = cart[index];
+                                                cart.splice(index, 1);
+                                                updateCartCount();
+                                                updateCartDisplay();
+                                                showToast(`${removedItem.title} removed from cart`);
+                                              }
 
-                                                  // Buy now from detail page
-                                                  function buyNow() {
-                                                    if (!currentProduct) return;
-                                                    cart.push({ ...currentProduct });
-                                                    updateCartCount();
-                                                    updateCartDisplay();
-                                                    showToast(`${currentProduct.title} added to cart!`);
-                                                    setTimeout(() => {
-                                                      toggleCart();
-                                                    }, 500);
-                                                  }
+                                              // Toggle cart
+                                              function toggleCart() {
+                                                const cartSidebar = document.getElementById("cartSidebar");
+                                                const cartOverlay = document.getElementById("cartOverlay");
 
-                                                  // Update cart count
-                                                  function updateCartCount() {
-                                                    document.getElementById("cartCount").textContent = cart.length;
-                                                  }
+                                                cartSidebar.classList.toggle("show");
+                                                cartOverlay.classList.toggle("show");
 
-                                                  // Update cart display
-                                                  function updateCartDisplay() {
-                                                    const cartItems = document.getElementById("cartItems");
-                                                    const cartTotal = document.getElementById("cartTotal");
-                                                    const checkoutButton =
-                                                    document.getElementById("checkoutButton");
+                                                if (cartSidebar.classList.contains("show")) {
+                                                  updateCartDisplay();
+                                                }
+                                              }
 
-                                                    if (cart.length === 0) {
-                                                      cartItems.innerHTML =
-                                                      '<div class="empty-cart">Your cart is empty</div>';
-                                                      cartTotal.style.display = "none";
-                                                      checkoutButton.style.display = "none";
-                                                      return;
-                                                    }
+                                              // Checkout
+                                              function checkout() {
+                                                if (cart.length === 0) return;
 
-                                                    const total = cart.reduce((sum, item) => sum + item.price, 0);
+                                                const total = cart.reduce((sum, item) => sum + item.price, 0);
+                                                alert(
+                                                `🍌 Thank you for your order!\n\nTotal: $${total.toFixed(2)}\n\nYour ${cart.length} banana product${cart.length > 1 ? "s" : ""} will arrive on dec 25 infinitely!\n\n(This is just a demo - no actual purchase was made)`,
+                                                );
 
-                                                    cartItems.innerHTML = cart
-                                                    .map(
-                                                    (item, index) => `
-                                                    <div class="cart-item">
-                                                      <img src="${item.image}" alt="${item.title}" class="cart-item-image">
-                                                      <div class="cart-item-info">
-                                                        <div class="cart-item-title">${item.title}</div>
-                                                          <div class="cart-item-price">$${item.price.toFixed(2)}</div>
-                                                            <button class="remove-item" onclick="removeFromCart(${index})">Remove :sad-face:</button>
-                                                            </div>
-                                                          </div>
-                                                          `,
-                                                          )
-                                                          .join("");
+                                                cart = [];
+                                                updateCartCount();
+                                                updateCartDisplay();
+                                                toggleCart();
+                                              }
 
-                                                          document.getElementById("totalPrice").textContent =
-                                                          `$${total.toFixed(2)}`;
-                                                          cartTotal.style.display = "block";
-                                                          checkoutButton.style.display = "block";
-                                                        }
+                                              // Show toast notification
+                                              function showToast(message) {
+                                                const toast = document.getElementById("toast");
+                                                toast.textContent = message;
+                                                toast.classList.add("show");
 
-                                                        // Remove from cart
-                                                        function removeFromCart(index) {
-                                                          const removedItem = cart[index];
-                                                          cart.splice(index, 1);
-                                                          updateCartCount();
-                                                          updateCartDisplay();
-                                                          showToast(`${removedItem.title} removed from cart`);
-                                                        }
+                                                setTimeout(() => {
+                                                  toast.classList.remove("show");
+                                                }, 3000);
+                                              }
 
-                                                        // Toggle cart
-                                                        function toggleCart() {
-                                                          const cartSidebar = document.getElementById("cartSidebar");
-                                                          const cartOverlay = document.getElementById("cartOverlay");
+                                              // Search functionality
+                                              const searchInput = document.getElementById("searchInput");
+                                              const searchSuggestion =
+                                              document.getElementById("searchSuggestion");
 
-                                                          cartSidebar.classList.toggle("show");
-                                                          cartOverlay.classList.toggle("show");
+                                              searchInput.addEventListener("input", function () {
+                                                if (this.value.trim() !== "") {
+                                                  searchSuggestion.classList.add("show");
+                                                } else {
+                                                  searchSuggestion.classList.remove("show");
+                                                }
+                                              });
 
-                                                          if (cartSidebar.classList.contains("show")) {
-                                                            updateCartDisplay();
-                                                          }
-                                                        }
+                                              function search() {
+                                                const searchTerm = searchInput.value.trim();
+                                                if (searchTerm !== "") {
+                                                  searchSuggestion.classList.add("show");
+                                                }
+                                              }
 
-                                                        // Checkout
-                                                        function checkout() {
-                                                          if (cart.length === 0) return;
+                                              searchInput.addEventListener("keypress", function (e) {
+                                                if (e.key === "Enter") {
+                                                  search();
+                                                }
+                                              });
 
-                                                          const total = cart.reduce((sum, item) => sum + item.price, 0);
-                                                          alert(
-                                                          `🍌 Thank you for your order!\n\nTotal: $${total.toFixed(2)}\n\nYour ${cart.length} banana product${cart.length > 1 ? "s" : ""} will arrive on dec 25 infinitely!\n\n(This is just a demo - no actual purchase was made)`,
-                                                          );
+                                              // Category navigation
+                                              function showCategory(category) {
+                                                const messages = {
+                                                  "All Decor":
+                                                  "🍌 Welcome to All Decor!\n\nBrowsing through our entire collection of... decor! Every single product is a decor item. Surprise! 🎉",
+                                                  "Today's Deals":
+                                                  "💰 Today's Decor Deals!\n\n🍌 Single Decor - Now only $0.59!\n🍌 Overripe Decor - Just $1.99!\n🍌 Mystery Decor Box - Save $5!\n\nEvery day is decor deal day!",
+                                                  "Fresh Bananas":
+                                                  "🌿 Fresh Bananas Section\n\nYou're already looking at fresh bananas! In fact, ALL our bananas are fresh. We only sell fresh bananas. Did we mention they're fresh?",
+                                                  "Organic Decor":
+                                                  "🌱 Organic Decor\n\nLooking for organic bananas? Great choice! We have:\n• Fresh Organic Decor\n• Organic Fair Trade Decor\n• Organically grown... Decor\n\nBasically all Decor but fancier! 🌿",
+                                                  "Play Running from the Internet with Santa!":
+                                                  '🎁 Gifts from Santa\n\n"Here\'s a Decor!" - The perfect memes for any occasion!\n\n💝 Birthdays? Banana.\n💍 Events? Banana.\n🎓 Graduation? Believe it or not, MEMES ARE RUNNING TOWARDS YOU!.\n\nNothing says "Ho Ho Ho" like Santa! 🍌',
+                                                  Wall:
+                                                  "📝 Walls\n\nCreate your Decor wishlist today!\n\n\"We're notv registered at Walls!\"\n\nYour guests can buy you:\n• Decor\n• More Decor\n• Even more Decor\n• (Spoiler: it's all Decor)",
+                                                  "Sell Decor":
+                                                  "NO.",
+                                                };
 
-                                                          cart = [];
-                                                          updateCartCount();
-                                                          updateCartDisplay();
-                                                          toggleCart();
-                                                        }
+                                                alert(messages[category]);
+                                              }
 
-                                                        // Show toast notification
-                                                        function showToast(message) {
-                                                          const toast = document.getElementById("toast");
-                                                          toast.textContent = message;
-                                                          toast.classList.add("show");
+                                              // User state
+                                              let currentUser = null;
 
-                                                          setTimeout(() => {
-                                                            toast.classList.remove("show");
-                                                          }, 3000);
-                                                        }
+                                              // Sign In
+                                              function signIn() {
+                                                if (currentUser) {
+                                                  // Already signed in, show account info
+                                                  alert(
+                                                  `👤 Account: ${currentUser}\n\n✅ You're signed in!\n\nYour benefits:\n• Reverse banana browsing\n• Access to all Decor\n• Ability to not buy Decor\n• Exclusive deals on... Decor!\n\n🍌 Happy DecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecor shopping!`,
+                                                  );
+                                                } else {
+                                                  // Show login modal
+                                                  document.getElementById("loginModal").classList.add("show");
+                                                  document.getElementById("usernameInput").focus();
+                                                }
+                                              }
 
-                                                        // Search functionality
-                                                        const searchInput = document.getElementById("searchInput");
-                                                        const searchSuggestion =
-                                                        document.getElementById("searchSuggestion");
+                                              // Handle login
+                                              function handleLogin() {
+                                                const username = document
+                                                .getElementById("usernameInput")
+                                                .value.trim();
+                                                const password = document.getElementById("passwordInput").value;
 
-                                                        searchInput.addEventListener("input", function () {
-                                                          if (this.value.trim() !== "") {
-                                                            searchSuggestion.classList.add("show");
-                                                          } else {
-                                                            searchSuggestion.classList.remove("show");
-                                                          }
-                                                        });
+                                                if (!username) {
+                                                  alert("Please enter a username!");
+                                                  return;
+                                                }
 
-                                                        function search() {
-                                                          const searchTerm = searchInput.value.trim();
-                                                          if (searchTerm !== "") {
-                                                            searchSuggestion.classList.add("show");
-                                                          }
-                                                        }
+                                                if (!password) {
+                                                  alert("Please enter a password!");
+                                                  return;
+                                                }
 
-                                                        searchInput.addEventListener("keypress", function (e) {
-                                                          if (e.key === "Enter") {
-                                                            search();
-                                                          }
-                                                        });
+                                                // "Log in" the user (no actual authentication, just store the username)
+                                                currentUser = username;
 
-                                                        // Category navigation
-                                                        function showCategory(category) {
-                                                          const messages = {
-                                                            "All Decor":
-                                                            "🍌 Welcome to All Decor!\n\nBrowsing through our entire collection of... decor! Every single product is a decor item. Surprise! 🎉",
-                                                            "Today's Deals":
-                                                            "💰 Today's Decor Deals!\n\n🍌 Single Decor - Now only $0.59!\n🍌 Overripe Decor - Just $1.99!\n🍌 Mystery Decor Box - Save $5!\n\nEvery day is decor deal day!",
-                                                            "Fresh Bananas":
-                                                            "🌿 Fresh Bananas Section\n\nYou're already looking at fresh bananas! In fact, ALL our bananas are fresh. We only sell fresh bananas. Did we mention they're fresh?",
-                                                            "Organic Decor":
-                                                            "🌱 Organic Decor\n\nLooking for organic bananas? Great choice! We have:\n• Fresh Organic Decor\n• Organic Fair Trade Decor\n• Organically grown... Decor\n\nBasically all Decor but fancier! 🌿",
-                                                            "Play Running from the Internet with Santa!":
-                                                            '🎁 Gifts from Santa\n\n"Here\'s a Decor!" - The perfect memes for any occasion!\n\n💝 Birthdays? Banana.\n💍 Events? Banana.\n🎓 Graduation? Believe it or not, MEMES ARE RUNNING TOWARDS YOU!.\n\nNothing says "Ho Ho Ho" like Santa! 🍌',
-                                                            Wall:
-                                                            "📝 Walls\n\nCreate your Decor wishlist today!\n\n\"We're notv registered at Walls!\"\n\nYour guests can buy you:\n• Decor\n• More Decor\n• Even more Decor\n• (Spoiler: it's all Decor)",
-                                                            "Sell Decor":
-                                                            "NO.",
-                                                          };
+                                                // Update the greeting
+                                                updateUserGreeting();
 
-                                                          alert(messages[category]);
-                                                        }
+                                                // Close modal
+                                                closeLoginModal();
 
-                                                        // User state
-                                                        let currentUser = null;
+                                                // Clear inputs
+                                                document.getElementById("usernameInput").value = "";
+                                                document.getElementById("passwordInput").value = "";
 
-                                                        // Sign In
-                                                        function signIn() {
-                                                          if (currentUser) {
-                                                            // Already signed in, show account info
-                                                            alert(
-                                                            `👤 Account: ${currentUser}\n\n✅ You're signed in!\n\nYour benefits:\n• Reverse banana browsing\n• Access to all Decor\n• Ability to not buy Decor\n• Exclusive deals on... Decor!\n\n🍌 Happy DecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecor shopping!`,
-                                                            );
-                                                          } else {
-                                                            // Show login modal
-                                                            document.getElementById("loginModal").classList.add("show");
-                                                            document.getElementById("usernameInput").focus();
-                                                          }
-                                                        }
+                                                // Show welcome message
+                                                showToast(
+                                                `Welcome back, ${currentUser}! Looking for more DecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecor? 🍌`,
+                                                );
 
-                                                        // Handle login
-                                                        function handleLogin() {
-                                                          const username = document
-                                                          .getElementById("usernameInput")
-                                                          .value.trim();
-                                                          const password = document.getElementById("passwordInput").value;
+                                                // Also show an alert
+                                                setTimeout(() => {
+                                                  alert(
+                                                  `🎉 Welcome back, ${currentUser}!\n\nLooking for more Decor?\n\nYour Decorshopping experience just got even better!\n\n✨ Account benefits:\n• Unlimited Decor\n• Access Decor\n• Ability to not buy bananas\n• Exclusive deals on...............!\n\nHappy shopping! 🍌`,
+                                                  );
+                                                }, 500);
+                                              }
 
-                                                          if (!username) {
-                                                            alert("Please enter a username!");
-                                                            return;
-                                                          }
+                                              // Update user greeting in header
+                                              function updateUserGreeting() {
+                                                const greetingElement = document.getElementById("userGreeting");
 
-                                                          if (!password) {
-                                                            alert("Please enter a password!");
-                                                            return;
-                                                          }
+                                                // Clear any existing content
+                                                while (greetingElement.firstChild) {
+                                                  greetingElement.removeChild(greetingElement.firstChild);
+                                                }
 
-                                                          // "Log in" the user (no actual authentication, just store the username)
-                                                          currentUser = username;
+                                                // Create "Hello, <name or Sign in>" text safely
+                                                const greetingText = document.createTextNode(
+                                                currentUser ? `Hello, ${currentUser}` : "Hello, Sign in",
+                                                );
+                                                greetingElement.appendChild(greetingText);
 
-                                                          // Update the greeting
-                                                          updateUserGreeting();
+                                                // Line break
+                                                greetingElement.appendChild(document.createElement("br"));
 
-                                                          // Close modal
-                                                          closeLoginModal();
+                                                // "Account & Lists" in strong tag
+                                                const strong = document.createElement("strong");
+                                                strong.textContent = "Account & Lists";
+                                                greetingElement.appendChild(strong);
+                                              }
 
-                                                          // Clear inputs
-                                                          document.getElementById("usernameInput").value = "";
-                                                          document.getElementById("passwordInput").value = "";
+                                              // Close login modal
+                                              function closeLoginModal(event) {
+                                                if (
+                                                event &&
+                                                event.target !== document.getElementById("loginModal")
+                                                ) {
+                                                  return;
+                                                }
+                                                document.getElementById("loginModal").classList.remove("show");
+                                              }
 
-                                                          // Show welcome message
-                                                          showToast(
-                                                          `Welcome back, ${currentUser}! Looking for more DecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecorDecor? 🍌`,
-                                                          );
+                                              // Handle Enter key in login inputs
+                                              function handleLoginKeypress(event) {
+                                                if (event.key === "Enter") {
+                                                  handleLogin();
+                                                }
+                                              }
 
-                                                          // Also show an alert
-                                                          setTimeout(() => {
-                                                            alert(
-                                                            `🎉 Welcome back, ${currentUser}!\n\nLooking for more Decor?\n\nYour Decorshopping experience just got even better!\n\n✨ Account benefits:\n• Unlimited Decor\n• Access Decor\n• Ability to not buy bananas\n• Exclusive deals on...............!\n\nHappy shopping! 🍌`,
-                                                            );
-                                                          }, 500);
-                                                        }
+                                              // Returns & Orders
+                                              function showOrders() {
+                                                if (!currentUser) {
+                                                  alert("Please Decor sign in to view your xmas orders!");
+                                                  signIn();
+                                                  return;
+                                                }
 
-                                                        // Update user greeting in header
-                                                        function updateUserGreeting() {
-                                                          const greetingElement = document.getElementById("userGreeting");
-
-                                                          // Clear any existing content
-                                                          while (greetingElement.firstChild) {
-                                                            greetingElement.removeChild(greetingElement.firstChild);
-                                                          }
-
-                                                          // Create "Hello, <name or Sign in>" text safely
-                                                          const greetingText = document.createTextNode(
-                                                          currentUser ? `Hello, ${currentUser}` : "Hello, Sign in",
-                                                          );
-                                                          greetingElement.appendChild(greetingText);
-
-                                                          // Line break
-                                                          greetingElement.appendChild(document.createElement("br"));
-
-                                                          // "Account & Lists" in strong tag
-                                                          const strong = document.createElement("strong");
-                                                          strong.textContent = "Account & Lists";
-                                                          greetingElement.appendChild(strong);
-                                                        }
-
-                                                        // Close login modal
-                                                        function closeLoginModal(event) {
-                                                          if (
-                                                          event &&
-                                                          event.target !== document.getElementById("loginModal")
-                                                          ) {
-                                                            return;
-                                                          }
-                                                          document.getElementById("loginModal").classList.remove("show");
-                                                        }
-
-                                                        // Handle Enter key in login inputs
-                                                        function handleLoginKeypress(event) {
-                                                          if (event.key === "Enter") {
-                                                            handleLogin();
-                                                          }
-                                                        }
-
-                                                        // Returns & Orders
-                                                        function showOrders() {
-                                                          if (!currentUser) {
-                                                            alert("Please Decor sign in to view your xmas orders!");
-                                                            signIn();
-                                                            return;
-                                                          }
-
-                                                          alert(
-                                                          `📦 ${currentUser}'s Orders\n\nRecent Orders:\n\n1. Single Decor- Delivered Dec 25\n   ⭐⭐⭐⭐⭐ "It was a Decor"\n\n2. Mystery Decor Box - Arriving Dec 25\n   🎁 Tracking: DECORA-12345\n\n3. Organic Decor - Delivered Dec 15\n   ⭐⭐⭐⭐⭐ "Very Decor-like"\n\nAll orders are CHRISTMAS!!!!!!!!!. Did you expect anything else? 🍌📦`,
-                                                          );
-                                                        }
-                                                      </script>
-                                                    </body>
-                                                  </html>
+                                                alert(
+                                                `📦 ${currentUser}'s Orders\n\nRecent Orders:\n\n1. Single Decor- Delivered Dec 25\n   ⭐⭐⭐⭐⭐ "It was a Decor"\n\n2. Mystery Decor Box - Arriving Dec 25\n   🎁 Tracking: DECORA-12345\n\n3. Organic Decor - Delivered Dec 15\n   ⭐⭐⭐⭐⭐ "Very Decor-like"\n\nAll orders are CHRISTMAS!!!!!!!!!. Did you expect anything else? 🍌📦`,
+                                                );
+                                              }
+                                            </script>
+                                          </body>
+                                        </html>
 

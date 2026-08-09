@@ -426,537 +426,537 @@
                 ></canvas>
               </div>
               <button
-                class="spin-button"
-                id="spinButton"
-                onclick="spinWheel()"
-                >
-                SPIN WHEEL
-              </button>
-              <p style="text-align: center; margin-top: 15px; color: #666">
-                One free spin only!
-              </p>
-            </div>
+              class="spin-button"
+              id="spinButton"
+              onclick="spinWheel()"
+              >
+              SPIN WHEEL
+            </button>
+            <p style="text-align: center; margin-top: 15px; color: #666">
+              One free spin only!
+            </p>
+          </div>
 
-            <div class="packs-section">
-              <h2>📦 Buy Blook Packs</h2>
-              <div class="packs-grid">
-                <div class="pack" onclick="buyPack(10)">
-                  <div class="pack-image">📦</div>
-                    <div class="pack-name">Basic Pack</div>
-                      <div class="pack-price">$10</div>
-                      </div>
-                      <div class="pack" onclick="buyPack(50)">
-                        <div class="pack-image">🎁</div>
-                          <div class="pack-name">Premium Pack</div>
-                            <div class="pack-price">$50</div>
-                            </div>
-                            <div class="pack" onclick="buyPack(100)">
-                              <div class="pack-image">💎</div>
-                                <div class="pack-name">Mega Pack</div>
-                                  <div class="pack-price">$100</div>
-                                  </div>
-                                  <div class="pack" onclick="buyPack(250)">
-                                    <div class="pack-image">🪨</div>
-                                      <div class="pack-name">Super Pack</div>
-                                        <div class="pack-price">$250</div>
-                                        </div>
-                                        <div class="pack" onclick="buyPack(1000)">
-                                          <div class="pack-image">🍔</div>
-                                            <div class="pack-name">Ultimate Cheezburger Pack</div>
-                                              <div class="pack-price">$1000</div>
-                                              </div>
+          <div class="packs-section">
+            <h2>📦 Buy Blook Packs</h2>
+            <div class="packs-grid">
+              <div class="pack" onclick="buyPack(10)">
+                <div class="pack-image">📦</div>
+                  <div class="pack-name">Basic Pack</div>
+                    <div class="pack-price">$10</div>
+                    </div>
+                    <div class="pack" onclick="buyPack(50)">
+                      <div class="pack-image">🎁</div>
+                        <div class="pack-name">Premium Pack</div>
+                          <div class="pack-price">$50</div>
+                          </div>
+                          <div class="pack" onclick="buyPack(100)">
+                            <div class="pack-image">💎</div>
+                              <div class="pack-name">Mega Pack</div>
+                                <div class="pack-price">$100</div>
+                                </div>
+                                <div class="pack" onclick="buyPack(250)">
+                                  <div class="pack-image">🪨</div>
+                                    <div class="pack-name">Super Pack</div>
+                                      <div class="pack-price">$250</div>
+                                      </div>
+                                      <div class="pack" onclick="buyPack(1000)">
+                                        <div class="pack-image">🍔</div>
+                                          <div class="pack-name">Ultimate Cheezburger Pack</div>
+                                            <div class="pack-price">$1000</div>
                                             </div>
+                                          </div>
 
-                                            <details class="rates-info">
-                                              <summary>📊 Drop Rates (Click to view)</summary>
-                                                <div class="rates-list">
-                                                  <div>Common: 4%</div>
-                                                    <div>Uncommon: 1%</div>
-                                                      <div>Rare: 0.5%</div>
-                                                        <div>Epic: 0.1%</div>
-                                                          <div>Legendary: 0.01%</div>
-                                                            <div>Mythical: 0.001%</div>
-                                                              <div style="margin-top: 10px; font-style: italic">
-                                                                Nothing: 94.389%
-                                                              </div>
+                                          <details class="rates-info">
+                                            <summary>📊 Drop Rates (Click to view)</summary>
+                                              <div class="rates-list">
+                                                <div>Common: 4%</div>
+                                                  <div>Uncommon: 1%</div>
+                                                    <div>Rare: 0.5%</div>
+                                                      <div>Epic: 0.1%</div>
+                                                        <div>Legendary: 0.01%</div>
+                                                          <div>Mythical: 0.001%</div>
+                                                            <div style="margin-top: 10px; font-style: italic">
+                                                              Nothing: 94.389%
                                                             </div>
-                                                          </details>
-                                                        </div>
+                                                          </div>
+                                                        </details>
+                                                      </div>
 
-                                                        <div class="inventory">
-                                                          <h2>🎒 Your Blooks</h2>
-                                                          <div id="inventoryGrid" class="blooks-grid">
-                                                            <div class="empty-inventory">
-                                                              No blooks yet... Buy some packs!
-                                                            </div>
+                                                      <div class="inventory">
+                                                        <h2>🎒 Your Blooks</h2>
+                                                        <div id="inventoryGrid" class="blooks-grid">
+                                                          <div class="empty-inventory">
+                                                            No blooks yet... Buy some packs!
                                                           </div>
                                                         </div>
                                                       </div>
+                                                    </div>
 
-                                                      <div class="modal" id="rewardModal">
-                                                        <div class="modal-content">
-                                                          <div class="modal-emoji" id="rewardEmoji"></div>
-                                                            <div class="modal-title" id="rewardTitle"></div>
-                                                              <div class="modal-rarity" id="rewardRarity"></div>
-                                                                <button class="modal-close" onclick="closeModal()">
-                                                                  Awesome!
-                                                                </button>
-                                                              </div>
+                                                    <div class="modal" id="rewardModal">
+                                                      <div class="modal-content">
+                                                        <div class="modal-emoji" id="rewardEmoji"></div>
+                                                          <div class="modal-title" id="rewardTitle"></div>
+                                                            <div class="modal-rarity" id="rewardRarity"></div>
+                                                              <button class="modal-close" onclick="closeModal()">
+                                                                Awesome!
+                                                              </button>
                                                             </div>
+                                                          </div>
 
-                                                            <div class="secret-fire" onclick="activateSecretFire()">🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥</div>
+                                                          <div class="secret-fire" onclick="activateSecretFire()">🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥</div>
 
-                                                              <script>
-                                                                let money = 0;
-                                                                let inventory = {};
-                                                                let spinning = false;
-                                                                let hasSpun = false;
-                                                                let secretFireActivated = false;
+                                                            <script>
+                                                              let money = 0;
+                                                              let inventory = {};
+                                                              let spinning = false;
+                                                              let hasSpun = false;
+                                                              let secretFireActivated = false;
 
-                                                                const wheelPrizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 75, 100, 250, 500, 750, 1000, 10000, 100000, 1000000, 7501000, 8000000000, 999999999999999];
-                                                                const wheelColors = [
-                                                                  "#FF6B6B",
-                                                                  "#4ECDC4",
-                                                                  "#45B7D1",
-                                                                  "#FFA07A",
-                                                                  "#98D8C8",
-                                                                  "#F7DC6F",
-                                                                  "#BB8FCE",
-                                                                  "#85C1E2",
-                                                                  "#8affc7",
-                                                                  "#ff5186",
-                                                                  "#ad8434"
-                                                                ];
+                                                              const wheelPrizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20, 25, 50, 75, 100, 250, 500, 750, 1000, 10000, 100000, 1000000, 7501000, 8000000000, 999999999999999];
+                                                              const wheelColors = [
+                                                                "#FF6B6B",
+                                                                "#4ECDC4",
+                                                                "#45B7D1",
+                                                                "#FFA07A",
+                                                                "#98D8C8",
+                                                                "#F7DC6F",
+                                                                "#BB8FCE",
+                                                                "#85C1E2",
+                                                                "#8affc7",
+                                                                "#ff5186",
+                                                                "#ad8434"
+                                                              ];
 
-                                                                // Blook definitions
-                                                                const blooks = {
-                                                                  common: [
-                                                                    { name: "Red Blook", emoji: "🔴" },
-                                                                    { name: "Blue Blook", emoji: "🔵" },
-                                                                    { name: "Green Blook", emoji: "🟢" },
-                                                                    { name: "Yellow Blook", emoji: "🟡" },
-                                                                    { name: "White Blook", emoji: "⚪" },
-                                                                    { name: "Black Blook", emoji: "⚫" },
-                                                                    { name: "Pink Blook", emoji: "🩷" },
-                                                                    { name: "Gray Blook", emoji: "🔘" },
-                                                                    { name: "Soccer Blook", emoji: "⚽" },
-                                                                    { name: "Basketball Blook", emoji: "🏀" },
-                                                                    { name: "Apple Blook", emoji: "🍎" },
-                                                                    { name: "Banana Blook", emoji: "🍌" },
-                                                                    { name: "Grape Blook", emoji: "🍇" },
-                                                                    { name: "Watermelon Blook", emoji: "🍉" },
-                                                                    { name: "Rock Blook", emoji: "🪨" },
-                                                                  ],
-                                                                  uncommon: [
-                                                                    { name: "Purple Blook", emoji: "🟣" },
-                                                                    { name: "Orange Blook", emoji: "🟠" },
-                                                                    { name: "Brown Blook", emoji: "🟤" },
-                                                                    { name: "Pizza Blook", emoji: "🍕" },
-                                                                    { name: "Burger Blook", emoji: "🍔" },
-                                                                    { name: "Taco Blook", emoji: "🌮" },
-                                                                    { name: "Ice Cream Blook", emoji: "🍦" },
-                                                                    { name: "Donut Blook", emoji: "🍩" },
-                                                                    { name: "Cookie Blook", emoji: "🍪" },
-                                                                    { name: "Cake Blook", emoji: "🍰" },
-                                                                    { name: "Candy Blook", emoji: "🍬" },
-                                                                    { name: "Lollipop Blook", emoji: "🍭" },
-                                                                    { name: "Chocolate Blook", emoji: "🍫" },
-                                                                  ],
-                                                                  rare: [
-                                                                    { name: "Star Blook", emoji: "⭐" },
-                                                                    { name: "Diamond Blook", emoji: "💎" },
-                                                                    { name: "Fire Blook", emoji: "🔥" },
-                                                                    { name: "Lightning Blook", emoji: "⚡" },
-                                                                    { name: "Snowflake Blook", emoji: "❄️" },
-                                                                    { name: "Moon Blook", emoji: "🌙" },
-                                                                    { name: "Sun Blook", emoji: "☀️" },
-                                                                    { name: "Planet Blook", emoji: "🪐" },
-                                                                    { name: "Rocket Blook", emoji: "🚀" },
-                                                                    { name: "Alien Blook", emoji: "👽" },
-                                                                    { name: "Ghost Blook", emoji: "👻" },
-                                                                    { name: "Skull Blook", emoji: "💀" },
-                                                                    { name: "Robot Blook", emoji: "🤖" },
-                                                                  ],
-                                                                  epic: [
-                                                                    { name: "Crown Blook", emoji: "👑" },
-                                                                    { name: "Trophy Blook", emoji: "🏆" },
-                                                                    { name: "Gem Blook", emoji: "💠" },
-                                                                    { name: "Crystal Blook", emoji: "🔮" },
-                                                                    { name: "Magic Blook", emoji: "✨" },
-                                                                    { name: "Ninja Blook", emoji: "🥷" },
-                                                                    { name: "Wizard Blook", emoji: "🧙" },
-                                                                    { name: "Knight Blook", emoji: "🛡️" },
-                                                                    { name: "Pirate Blook", emoji: "🏴‍☠️" },
-                                                                    { name: "Vampire Blook", emoji: "🧛" },
-                                                                    { name: "Angel Blook", emoji: "😇" },
-                                                                    { name: "Devil Blook", emoji: "😈" },
-                                                                    { name: "Thunder Blook", emoji: "⚡" },
-                                                                  ],
-                                                                  legendary: [
-                                                                    { name: "Dragon Blook", emoji: "🐉" },
-                                                                    { name: "Rainbow Blook", emoji: "🌈" },
-                                                                    { name: "Unicorn Blook", emoji: "🦄" },
-                                                                    { name: "Phoenix Blook", emoji: "🔥🦅" },
-                                                                    { name: "Kraken Blook", emoji: "🐙" },
-                                                                    { name: "Griffin Blook", emoji: "🦅" },
-                                                                    { name: "Pegasus Blook", emoji: "🦄" },
-                                                                    { name: "Cerberus Blook", emoji: "🐺" },
-                                                                    { name: "Hydra Blook", emoji: "🐍" },
-                                                                    { name: "Leviathan Blook", emoji: "🐋" },
-                                                                    { name: "Behemoth Blook", emoji: "🦣" },
-                                                                    { name: "Chimera Blook", emoji: "🦁" },
-                                                                    { name: "Basilisk Blook", emoji: "🐲" },
-                                                                  ],
-                                                                  mythical: [
-                                                                    { name: "Red Blook", emoji: "🔴" },
-                                                                    { name: "Blue Blook", emoji: "🔵" },
-                                                                    { name: "Green Blook", emoji: "🟢" },
-                                                                    { name: "Yellow Blook", emoji: "🟡" },
-                                                                    { name: "White Blook", emoji: "⚪" },
-                                                                    { name: "Black Blook", emoji: "⚫" },
-                                                                    { name: "Pink Blook", emoji: "🩷" },
-                                                                    { name: "Gray Blook", emoji: "🔘" },
-                                                                    { name: "Soccer Blook", emoji: "⚽" },
-                                                                    { name: "Basketball Blook", emoji: "🏀" },
-                                                                    { name: "Apple Blook", emoji: "🍎" },
-                                                                    { name: "Banana Blook", emoji: "🍌" },
-                                                                    { name: "Grape Blook", emoji: "🍇" },
-                                                                    { name: "Watermelon Blook", emoji: "🍉" },
-                                                                    { name: "Purple Blook", emoji: "🟣" },
-                                                                    { name: "Orange Blook", emoji: "🟠" },
-                                                                    { name: "Brown Blook", emoji: "🟤" },
-                                                                    { name: "Pizza Blook", emoji: "🍕" },
-                                                                    { name: "Burger Blook", emoji: "🍔" },
-                                                                    { name: "Taco Blook", emoji: "🌮" },
-                                                                    { name: "Ice Cream Blook", emoji: "🍦" },
-                                                                    { name: "Donut Blook", emoji: "🍩" },
-                                                                    { name: "Cookie Blook", emoji: "🍪" },
-                                                                    { name: "Cake Blook", emoji: "🍰" },
-                                                                    { name: "Candy Blook", emoji: "🍬" },
-                                                                    { name: "Lollipop Blook", emoji: "🍭" },
-                                                                    { name: "Chocolate Blook", emoji: "🍫" },
-                                                                    { name: "Star Blook", emoji: "⭐" },
-                                                                    { name: "Diamond Blook", emoji: "💎" },
-                                                                    { name: "Fire Blook", emoji: "🔥" },
-                                                                    { name: "Lightning Blook", emoji: "⚡" },
-                                                                    { name: "Snowflake Blook", emoji: "❄️" },
-                                                                    { name: "Moon Blook", emoji: "🌙" },
-                                                                    { name: "Sun Blook", emoji: "☀️" },
-                                                                    { name: "Planet Blook", emoji: "🪐" },
-                                                                    { name: "Rocket Blook", emoji: "🚀" },
-                                                                    { name: "Alien Blook", emoji: "👽" },
-                                                                    { name: "Ghost Blook", emoji: "👻" },
-                                                                    { name: "Skull Blook", emoji: "💀" },
-                                                                    { name: "Robot Blook", emoji: "🤖" },
-                                                                    { name: "Golden God Blook", emoji: "✨" },
-                                                                    { name: "Cosmic Blook", emoji: "🌌" },
-                                                                    { name: "Celestial Blook", emoji: "🌟" },
-                                                                    { name: "Divine Blook", emoji: "👼" },
-                                                                    { name: "Eternal Blook", emoji: "♾️" },
-                                                                    { name: "Infinity Blook", emoji: "🔱" },
-                                                                    { name: "Supreme Blook", emoji: "🏅" },
-                                                                    { name: "Omnipotent Blook", emoji: "🌠" },
-                                                                    { name: "Transcendent Blook", emoji: "💫" },
-                                                                    { name: "Primordial Blook", emoji: "🌀" },
-                                                                    { name: "Void Blook", emoji: "🕳️" },
-                                                                    { name: "Quantum Blook", emoji: "⚛️" },
-                                                                    { name: "Fire Blook", emoji: "🔥" },
-                                                                    { name: "Duovigintillion Power Blook", emoji: "💪" },
-                                                                    { name: "Great Memes Blook", emoji: "😂" },
-                                                                    { name: "That is NOT a Rock That is a Boulder Blook", emoji: "🪨" },
-                                                                    { name: "Cheezburger Blook", emoji: "🍔" },
-                                                                    { name: "Dragon Blook", emoji: "🐉" },
-                                                                    { name: "Crown Blook", emoji: "👑" },
-                                                                    { name: "Trophy Blook", emoji: "🏆" },
-                                                                    { name: "Gem Blook", emoji: "💠" },
-                                                                    { name: "Crystal Blook", emoji: "🔮" },
-                                                                    { name: "Magic Blook", emoji: "✨" },
-                                                                    { name: "Ninja Blook", emoji: "🥷" },
-                                                                    { name: "Wizard Blook", emoji: "🧙" },
-                                                                    { name: "Knight Blook", emoji: "🛡️" },
-                                                                    { name: "Pirate Blook", emoji: "🏴‍☠️" },
-                                                                    { name: "Vampire Blook", emoji: "🧛" },
-                                                                    { name: "Angel Blook", emoji: "😇" },
-                                                                    { name: "Devil Blook", emoji: "😈" },
-                                                                    { name: "Thunder Blook", emoji: "⚡" },
-                                                                    { name: "Rainbow Blook", emoji: "🌈" },
-                                                                    { name: "Unicorn Blook", emoji: "🦄" },
-                                                                    { name: "Pony Blook", emoji: "🦄" },
-                                                                    { name: "Phoenix Blook", emoji: "🔥🦅" },
-                                                                    { name: "Kraken Blook", emoji: "🐙" },
-                                                                    { name: "Griffin Blook", emoji: "🦅" },
-                                                                    { name: "Pegasus Blook", emoji: "🦄" },
-                                                                    { name: "Cerberus Blook", emoji: "🐺" },
-                                                                    { name: "Hydra Blook", emoji: "🐍" },
-                                                                    { name: "Leviathan Blook", emoji: "🐋" },
-                                                                    { name: "Behemoth Blook", emoji: "🦣" },
-                                                                    { name: "Chimera Blook", emoji: "🦁" },
-                                                                    { name: "Basilisk Blook", emoji: "🐲" }
-                                                                  ],
-                                                                };
+                                                              // Blook definitions
+                                                              const blooks = {
+                                                                common: [
+                                                                  { name: "Red Blook", emoji: "🔴" },
+                                                                  { name: "Blue Blook", emoji: "🔵" },
+                                                                  { name: "Green Blook", emoji: "🟢" },
+                                                                  { name: "Yellow Blook", emoji: "🟡" },
+                                                                  { name: "White Blook", emoji: "⚪" },
+                                                                  { name: "Black Blook", emoji: "⚫" },
+                                                                  { name: "Pink Blook", emoji: "🩷" },
+                                                                  { name: "Gray Blook", emoji: "🔘" },
+                                                                  { name: "Soccer Blook", emoji: "⚽" },
+                                                                  { name: "Basketball Blook", emoji: "🏀" },
+                                                                  { name: "Apple Blook", emoji: "🍎" },
+                                                                  { name: "Banana Blook", emoji: "🍌" },
+                                                                  { name: "Grape Blook", emoji: "🍇" },
+                                                                  { name: "Watermelon Blook", emoji: "🍉" },
+                                                                  { name: "Rock Blook", emoji: "🪨" },
+                                                                ],
+                                                                uncommon: [
+                                                                  { name: "Purple Blook", emoji: "🟣" },
+                                                                  { name: "Orange Blook", emoji: "🟠" },
+                                                                  { name: "Brown Blook", emoji: "🟤" },
+                                                                  { name: "Pizza Blook", emoji: "🍕" },
+                                                                  { name: "Burger Blook", emoji: "🍔" },
+                                                                  { name: "Taco Blook", emoji: "🌮" },
+                                                                  { name: "Ice Cream Blook", emoji: "🍦" },
+                                                                  { name: "Donut Blook", emoji: "🍩" },
+                                                                  { name: "Cookie Blook", emoji: "🍪" },
+                                                                  { name: "Cake Blook", emoji: "🍰" },
+                                                                  { name: "Candy Blook", emoji: "🍬" },
+                                                                  { name: "Lollipop Blook", emoji: "🍭" },
+                                                                  { name: "Chocolate Blook", emoji: "🍫" },
+                                                                ],
+                                                                rare: [
+                                                                  { name: "Star Blook", emoji: "⭐" },
+                                                                  { name: "Diamond Blook", emoji: "💎" },
+                                                                  { name: "Fire Blook", emoji: "🔥" },
+                                                                  { name: "Lightning Blook", emoji: "⚡" },
+                                                                  { name: "Snowflake Blook", emoji: "❄️" },
+                                                                  { name: "Moon Blook", emoji: "🌙" },
+                                                                  { name: "Sun Blook", emoji: "☀️" },
+                                                                  { name: "Planet Blook", emoji: "🪐" },
+                                                                  { name: "Rocket Blook", emoji: "🚀" },
+                                                                  { name: "Alien Blook", emoji: "👽" },
+                                                                  { name: "Ghost Blook", emoji: "👻" },
+                                                                  { name: "Skull Blook", emoji: "💀" },
+                                                                  { name: "Robot Blook", emoji: "🤖" },
+                                                                ],
+                                                                epic: [
+                                                                  { name: "Crown Blook", emoji: "👑" },
+                                                                  { name: "Trophy Blook", emoji: "🏆" },
+                                                                  { name: "Gem Blook", emoji: "💠" },
+                                                                  { name: "Crystal Blook", emoji: "🔮" },
+                                                                  { name: "Magic Blook", emoji: "✨" },
+                                                                  { name: "Ninja Blook", emoji: "🥷" },
+                                                                  { name: "Wizard Blook", emoji: "🧙" },
+                                                                  { name: "Knight Blook", emoji: "🛡️" },
+                                                                  { name: "Pirate Blook", emoji: "🏴‍☠️" },
+                                                                  { name: "Vampire Blook", emoji: "🧛" },
+                                                                  { name: "Angel Blook", emoji: "😇" },
+                                                                  { name: "Devil Blook", emoji: "😈" },
+                                                                  { name: "Thunder Blook", emoji: "⚡" },
+                                                                ],
+                                                                legendary: [
+                                                                  { name: "Dragon Blook", emoji: "🐉" },
+                                                                  { name: "Rainbow Blook", emoji: "🌈" },
+                                                                  { name: "Unicorn Blook", emoji: "🦄" },
+                                                                  { name: "Phoenix Blook", emoji: "🔥🦅" },
+                                                                  { name: "Kraken Blook", emoji: "🐙" },
+                                                                  { name: "Griffin Blook", emoji: "🦅" },
+                                                                  { name: "Pegasus Blook", emoji: "🦄" },
+                                                                  { name: "Cerberus Blook", emoji: "🐺" },
+                                                                  { name: "Hydra Blook", emoji: "🐍" },
+                                                                  { name: "Leviathan Blook", emoji: "🐋" },
+                                                                  { name: "Behemoth Blook", emoji: "🦣" },
+                                                                  { name: "Chimera Blook", emoji: "🦁" },
+                                                                  { name: "Basilisk Blook", emoji: "🐲" },
+                                                                ],
+                                                                mythical: [
+                                                                  { name: "Red Blook", emoji: "🔴" },
+                                                                  { name: "Blue Blook", emoji: "🔵" },
+                                                                  { name: "Green Blook", emoji: "🟢" },
+                                                                  { name: "Yellow Blook", emoji: "🟡" },
+                                                                  { name: "White Blook", emoji: "⚪" },
+                                                                  { name: "Black Blook", emoji: "⚫" },
+                                                                  { name: "Pink Blook", emoji: "🩷" },
+                                                                  { name: "Gray Blook", emoji: "🔘" },
+                                                                  { name: "Soccer Blook", emoji: "⚽" },
+                                                                  { name: "Basketball Blook", emoji: "🏀" },
+                                                                  { name: "Apple Blook", emoji: "🍎" },
+                                                                  { name: "Banana Blook", emoji: "🍌" },
+                                                                  { name: "Grape Blook", emoji: "🍇" },
+                                                                  { name: "Watermelon Blook", emoji: "🍉" },
+                                                                  { name: "Purple Blook", emoji: "🟣" },
+                                                                  { name: "Orange Blook", emoji: "🟠" },
+                                                                  { name: "Brown Blook", emoji: "🟤" },
+                                                                  { name: "Pizza Blook", emoji: "🍕" },
+                                                                  { name: "Burger Blook", emoji: "🍔" },
+                                                                  { name: "Taco Blook", emoji: "🌮" },
+                                                                  { name: "Ice Cream Blook", emoji: "🍦" },
+                                                                  { name: "Donut Blook", emoji: "🍩" },
+                                                                  { name: "Cookie Blook", emoji: "🍪" },
+                                                                  { name: "Cake Blook", emoji: "🍰" },
+                                                                  { name: "Candy Blook", emoji: "🍬" },
+                                                                  { name: "Lollipop Blook", emoji: "🍭" },
+                                                                  { name: "Chocolate Blook", emoji: "🍫" },
+                                                                  { name: "Star Blook", emoji: "⭐" },
+                                                                  { name: "Diamond Blook", emoji: "💎" },
+                                                                  { name: "Fire Blook", emoji: "🔥" },
+                                                                  { name: "Lightning Blook", emoji: "⚡" },
+                                                                  { name: "Snowflake Blook", emoji: "❄️" },
+                                                                  { name: "Moon Blook", emoji: "🌙" },
+                                                                  { name: "Sun Blook", emoji: "☀️" },
+                                                                  { name: "Planet Blook", emoji: "🪐" },
+                                                                  { name: "Rocket Blook", emoji: "🚀" },
+                                                                  { name: "Alien Blook", emoji: "👽" },
+                                                                  { name: "Ghost Blook", emoji: "👻" },
+                                                                  { name: "Skull Blook", emoji: "💀" },
+                                                                  { name: "Robot Blook", emoji: "🤖" },
+                                                                  { name: "Golden God Blook", emoji: "✨" },
+                                                                  { name: "Cosmic Blook", emoji: "🌌" },
+                                                                  { name: "Celestial Blook", emoji: "🌟" },
+                                                                  { name: "Divine Blook", emoji: "👼" },
+                                                                  { name: "Eternal Blook", emoji: "♾️" },
+                                                                  { name: "Infinity Blook", emoji: "🔱" },
+                                                                  { name: "Supreme Blook", emoji: "🏅" },
+                                                                  { name: "Omnipotent Blook", emoji: "🌠" },
+                                                                  { name: "Transcendent Blook", emoji: "💫" },
+                                                                  { name: "Primordial Blook", emoji: "🌀" },
+                                                                  { name: "Void Blook", emoji: "🕳️" },
+                                                                  { name: "Quantum Blook", emoji: "⚛️" },
+                                                                  { name: "Fire Blook", emoji: "🔥" },
+                                                                  { name: "Duovigintillion Power Blook", emoji: "💪" },
+                                                                  { name: "Great Memes Blook", emoji: "😂" },
+                                                                  { name: "That is NOT a Rock That is a Boulder Blook", emoji: "🪨" },
+                                                                  { name: "Cheezburger Blook", emoji: "🍔" },
+                                                                  { name: "Dragon Blook", emoji: "🐉" },
+                                                                  { name: "Crown Blook", emoji: "👑" },
+                                                                  { name: "Trophy Blook", emoji: "🏆" },
+                                                                  { name: "Gem Blook", emoji: "💠" },
+                                                                  { name: "Crystal Blook", emoji: "🔮" },
+                                                                  { name: "Magic Blook", emoji: "✨" },
+                                                                  { name: "Ninja Blook", emoji: "🥷" },
+                                                                  { name: "Wizard Blook", emoji: "🧙" },
+                                                                  { name: "Knight Blook", emoji: "🛡️" },
+                                                                  { name: "Pirate Blook", emoji: "🏴‍☠️" },
+                                                                  { name: "Vampire Blook", emoji: "🧛" },
+                                                                  { name: "Angel Blook", emoji: "😇" },
+                                                                  { name: "Devil Blook", emoji: "😈" },
+                                                                  { name: "Thunder Blook", emoji: "⚡" },
+                                                                  { name: "Rainbow Blook", emoji: "🌈" },
+                                                                  { name: "Unicorn Blook", emoji: "🦄" },
+                                                                  { name: "Pony Blook", emoji: "🦄" },
+                                                                  { name: "Phoenix Blook", emoji: "🔥🦅" },
+                                                                  { name: "Kraken Blook", emoji: "🐙" },
+                                                                  { name: "Griffin Blook", emoji: "🦅" },
+                                                                  { name: "Pegasus Blook", emoji: "🦄" },
+                                                                  { name: "Cerberus Blook", emoji: "🐺" },
+                                                                  { name: "Hydra Blook", emoji: "🐍" },
+                                                                  { name: "Leviathan Blook", emoji: "🐋" },
+                                                                  { name: "Behemoth Blook", emoji: "🦣" },
+                                                                  { name: "Chimera Blook", emoji: "🦁" },
+                                                                  { name: "Basilisk Blook", emoji: "🐲" }
+                                                                ],
+                                                              };
 
-                                                                // Draw wheel
-                                                                const canvas = document.getElementById("wheelCanvas");
-                                                                const ctx = canvas.getContext("2d");
+                                                              // Draw wheel
+                                                              const canvas = document.getElementById("wheelCanvas");
+                                                              const ctx = canvas.getContext("2d");
 
-                                                                let currentRotation = 0;
+                                                              let currentRotation = 0;
 
-                                                                function drawWheel(rotation = 0) {
-                                                                  ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                                              function drawWheel(rotation = 0) {
+                                                                ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                                                                  const centerX = 150;
-                                                                  const centerY = 150;
-                                                                  const radius = 140;
-                                                                  const slices = wheelPrizes.length;
+                                                                const centerX = 150;
+                                                                const centerY = 150;
+                                                                const radius = 140;
+                                                                const slices = wheelPrizes.length;
 
+                                                                ctx.save();
+                                                                ctx.translate(centerX, centerY);
+                                                                ctx.rotate(rotation);
+                                                                ctx.translate(-centerX, -centerY);
+
+                                                                for (let i = 0; i < slices; i++) {
+                                                                  const startAngle = (i * 2 * Math.PI) / slices;
+                                                                  const endAngle = ((i + 1) * 2 * Math.PI) / slices;
+
+                                                                  ctx.beginPath();
+                                                                  ctx.moveTo(centerX, centerY);
+                                                                  ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                                                                  ctx.fillStyle = wheelColors[i];
+                                                                  ctx.fill();
+                                                                  ctx.strokeStyle = "#fff";
+                                                                  ctx.lineWidth = 3;
+                                                                  ctx.stroke();
+
+                                                                  // Draw text
                                                                   ctx.save();
                                                                   ctx.translate(centerX, centerY);
-                                                                  ctx.rotate(rotation);
-                                                                  ctx.translate(-centerX, -centerY);
-
-                                                                  for (let i = 0; i < slices; i++) {
-                                                                    const startAngle = (i * 2 * Math.PI) / slices;
-                                                                    const endAngle = ((i + 1) * 2 * Math.PI) / slices;
-
-                                                                    ctx.beginPath();
-                                                                    ctx.moveTo(centerX, centerY);
-                                                                    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-                                                                    ctx.fillStyle = wheelColors[i];
-                                                                    ctx.fill();
-                                                                    ctx.strokeStyle = "#fff";
-                                                                    ctx.lineWidth = 3;
-                                                                    ctx.stroke();
-
-                                                                    // Draw text
-                                                                    ctx.save();
-                                                                    ctx.translate(centerX, centerY);
-                                                                    ctx.rotate(startAngle + (endAngle - startAngle) / 2);
-                                                                    ctx.textAlign = "center";
-                                                                    ctx.fillStyle = "#fff";
-                                                                    ctx.font = "bold 20px Arial";
-                                                                    ctx.fillText("$" + wheelPrizes[i], radius * 0.7, 5);
-                                                                    ctx.restore();
-                                                                  }
-
+                                                                  ctx.rotate(startAngle + (endAngle - startAngle) / 2);
+                                                                  ctx.textAlign = "center";
+                                                                  ctx.fillStyle = "#fff";
+                                                                  ctx.font = "bold 20px Arial";
+                                                                  ctx.fillText("$" + wheelPrizes[i], radius * 0.7, 5);
                                                                   ctx.restore();
-
-                                                                  // Draw center circle
-                                                                  ctx.beginPath();
-                                                                  ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
-                                                                  ctx.fillStyle = "#333";
-                                                                  ctx.fill();
                                                                 }
 
-                                                                drawWheel();
+                                                                ctx.restore();
 
-                                                                function spinWheel() {
-                                                                  if (spinning || hasSpun) return;
-                                                                  spinning = true;
-                                                                  hasSpun = true;
-                                                                  document.getElementById("spinButton").disabled = true;
+                                                                // Draw center circle
+                                                                ctx.beginPath();
+                                                                ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+                                                                ctx.fillStyle = "#333";
+                                                                ctx.fill();
+                                                              }
 
-                                                                  const randomIndex = Math.floor(
-                                                                  Math.random() * wheelPrizes.length,
-                                                                  );
-                                                                  const prizeMoney = wheelPrizes[randomIndex];
+                                                              drawWheel();
 
-                                                                  // Calculate rotation to align the selected prize with the top pointer
-                                                                  const degreesPerSlice = 360 / wheelPrizes.length;
-                                                                  // In canvas: 0° = 3 o'clock, 90° = 6 o'clock, 180° = 9 o'clock, 270° = 12 o'clock (top)
-                                                                  // Pointer is at top (270° or -90°)
-                                                                  // Slice i center is at: (i + 0.5) * degreesPerSlice
-                                                                  const sliceCenterAngle =
-                                                                  randomIndex * degreesPerSlice + degreesPerSlice / 2;
-                                                                  // We need to rotate the wheel so this slice center ends up at -90° (top)
-                                                                  // rotation + sliceCenterAngle = -90 (mod 360)
-                                                                  const targetDegree = -90 - sliceCenterAngle;
-                                                                  const spins = 5;
-                                                                  const totalRotation = 360 * spins + targetDegree;
+                                                              function spinWheel() {
+                                                                if (spinning || hasSpun) return;
+                                                                spinning = true;
+                                                                hasSpun = true;
+                                                                document.getElementById("spinButton").disabled = true;
 
-                                                                  // Animate the wheel rotation
-                                                                  const startTime = Date.now();
-                                                                  const duration = 3000;
-                                                                  const startRotation = currentRotation;
+                                                                const randomIndex = Math.floor(
+                                                                Math.random() * wheelPrizes.length,
+                                                                );
+                                                                const prizeMoney = wheelPrizes[randomIndex];
 
-                                                                  function animate() {
-                                                                    const elapsed = Date.now() - startTime;
-                                                                    const progress = Math.min(elapsed / duration, 1);
+                                                                // Calculate rotation to align the selected prize with the top pointer
+                                                                const degreesPerSlice = 360 / wheelPrizes.length;
+                                                                // In canvas: 0° = 3 o'clock, 90° = 6 o'clock, 180° = 9 o'clock, 270° = 12 o'clock (top)
+                                                                // Pointer is at top (270° or -90°)
+                                                                // Slice i center is at: (i + 0.5) * degreesPerSlice
+                                                                const sliceCenterAngle =
+                                                                randomIndex * degreesPerSlice + degreesPerSlice / 2;
+                                                                // We need to rotate the wheel so this slice center ends up at -90° (top)
+                                                                // rotation + sliceCenterAngle = -90 (mod 360)
+                                                                const targetDegree = -90 - sliceCenterAngle;
+                                                                const spins = 5;
+                                                                const totalRotation = 360 * spins + targetDegree;
 
-                                                                    // Easing function (ease-out)
-                                                                    const easeProgress = 1 - Math.pow(1 - progress, 3);
+                                                                // Animate the wheel rotation
+                                                                const startTime = Date.now();
+                                                                const duration = 3000;
+                                                                const startRotation = currentRotation;
 
-                                                                    const rotation =
-                                                                    startRotation +
-                                                                    ((totalRotation * Math.PI) / 180) * easeProgress;
-                                                                    currentRotation = rotation;
-                                                                    drawWheel(rotation);
+                                                                function animate() {
+                                                                  const elapsed = Date.now() - startTime;
+                                                                  const progress = Math.min(elapsed / duration, 1);
 
-                                                                    if (progress < 1) {
-                                                                      requestAnimationFrame(animate);
-                                                                    } else {
-                                                                      money += prizeMoney;
-                                                                      updateMoneyDisplay();
-                                                                      showReward(
-                                                                      `You won $${prizeMoney}!`,
-                                                                      "💰",
-                                                                      "Cash Prize",
-                                                                      "success",
-                                                                      );
+                                                                  // Easing function (ease-out)
+                                                                  const easeProgress = 1 - Math.pow(1 - progress, 3);
 
-                                                                      setTimeout(() => {
-                                                                        spinning = false;
-                                                                      }, 100);
-                                                                    }
+                                                                  const rotation =
+                                                                  startRotation +
+                                                                  ((totalRotation * Math.PI) / 180) * easeProgress;
+                                                                  currentRotation = rotation;
+                                                                  drawWheel(rotation);
+
+                                                                  if (progress < 1) {
+                                                                    requestAnimationFrame(animate);
+                                                                  } else {
+                                                                    money += prizeMoney;
+                                                                    updateMoneyDisplay();
+                                                                    showReward(
+                                                                    `You won $${prizeMoney}!`,
+                                                                    "💰",
+                                                                    "Cash Prize",
+                                                                    "success",
+                                                                    );
+
+                                                                    setTimeout(() => {
+                                                                      spinning = false;
+                                                                    }, 100);
                                                                   }
-
-                                                                  animate();
                                                                 }
 
-                                                                function updateMoneyDisplay() {
-                                                                  document.getElementById("money").textContent = money;
+                                                                animate();
+                                                              }
+
+                                                              function updateMoneyDisplay() {
+                                                                document.getElementById("money").textContent = money;
+                                                              }
+
+                                                              function buyPack(cost) {
+                                                                if (money < cost) {
+                                                                  alert("Not enough money! Spin the wheel to get more.");
+                                                                  return;
                                                                 }
 
-                                                                function buyPack(cost) {
-                                                                  if (money < cost) {
-                                                                    alert("Not enough money! Spin the wheel to get more.");
-                                                                    return;
-                                                                  }
+                                                                money -= cost;
+                                                                updateMoneyDisplay();
 
-                                                                  money -= cost;
-                                                                  updateMoneyDisplay();
+                                                                // Roll for blook with RIGGED rates (unless secret fire is activated!)
+                                                                let result = null;
+                                                                let rarity = null;
 
-                                                                  // Roll for blook with RIGGED rates (unless secret fire is activated!)
-                                                                  let result = null;
-                                                                  let rarity = null;
+                                                                if (secretFireActivated) {
+                                                                  // 100% mythical rate!
+                                                                  rarity = "mythical";
+                                                                } else {
+                                                                  const roll = Math.random() * 100;
 
-                                                                  if (secretFireActivated) {
-                                                                    // 100% mythical rate!
+                                                                  if (roll < 0.001) {
                                                                     rarity = "mythical";
-                                                                  } else {
-                                                                    const roll = Math.random() * 100;
-
-                                                                    if (roll < 0.001) {
-                                                                      rarity = "mythical";
-                                                                    } else if (roll < 0.011) {
-                                                                      rarity = "legendary";
-                                                                    } else if (roll < 0.111) {
-                                                                      rarity = "epic";
-                                                                    } else if (roll < 0.611) {
-                                                                      rarity = "rare";
-                                                                    } else if (roll < 1.611) {
-                                                                      rarity = "uncommon";
-                                                                    } else if (roll < 5.611) {
-                                                                      rarity = "common";
-                                                                    }
-                                                                  }
-
-                                                                  if (rarity) {
-                                                                    const rarityBlooks = blooks[rarity];
-                                                                    result =
-                                                                    rarityBlooks[
-                                                                      Math.floor(Math.random() * rarityBlooks.length)
-                                                                    ];
-
-                                                                    const key = `${rarity}-${result.name}`;
-                                                                    inventory[key] = inventory[key] || {
-                                                                      ...result,
-                                                                      rarity,
-                                                                      count: 0,
-                                                                    };
-                                                                    inventory[key].count++;
-
-                                                                    showReward(
-                                                                    `You got a ${result.name}!`,
-                                                                    result.emoji,
-                                                                    rarity,
-                                                                    "blook",
-                                                                    );
-                                                                    updateInventory();
-                                                                  } else {
-                                                                    showReward(
-                                                                    "Nothing!",
-                                                                    "😢",
-                                                                    "Better luck next time...",
-                                                                    "nothing",
-                                                                    );
+                                                                  } else if (roll < 0.011) {
+                                                                    rarity = "legendary";
+                                                                  } else if (roll < 0.111) {
+                                                                    rarity = "epic";
+                                                                  } else if (roll < 0.611) {
+                                                                    rarity = "rare";
+                                                                  } else if (roll < 1.611) {
+                                                                    rarity = "uncommon";
+                                                                  } else if (roll < 5.611) {
+                                                                    rarity = "common";
                                                                   }
                                                                 }
 
-                                                                function showReward(title, emoji, rarity, type) {
-                                                                  document.getElementById("rewardTitle").textContent = title;
-                                                                  document.getElementById("rewardEmoji").textContent = emoji;
-                                                                  const rarityEl = document.getElementById("rewardRarity");
-                                                                  rarityEl.textContent = rarity;
-                                                                  rarityEl.className =
-                                                                  type === "blook"
-                                                                  ? `modal-rarity rarity-${rarity}`
-                                                                  : "modal-rarity";
-                                                                  document.getElementById("rewardModal").classList.add("show");
-                                                                }
-
-                                                                function closeModal() {
-                                                                  document.getElementById("rewardModal").classList.remove("show");
-                                                                }
-
-                                                                function activateSecretFire() {
-                                                                  if (secretFireActivated) {
-                                                                    alert("You already found the fire ya dingus!");
-                                                                    return;
-                                                                  }
-
-                                                                  secretFireActivated = true;
-                                                                  money += 10000;
-                                                                  updateMoneyDisplay();
-
-                                                                  alert(
-                                                                  "Congrats you found the fire! You get 10000 dollars. You also unlocked a 💯% chance to get mythic!",
-                                                                  );
-
-                                                                  // Hide the fire emoji after clicking
-                                                                  document.querySelector(".secret-fire").style.display = "none";
-                                                                }
-
-                                                                function updateInventory() {
-                                                                  const grid = document.getElementById("inventoryGrid");
-
-                                                                  if (Object.keys(inventory).length === 0) {
-                                                                    grid.innerHTML =
-                                                                    '<div class="empty-inventory">No blooks yet... Buy some packs!</div>';
-                                                                    return;
-                                                                  }
-
-                                                                  grid.innerHTML = "";
-
-                                                                  // Sort by rarity
-                                                                  const rarityOrder = [
-                                                                    "mythical",
-                                                                    "legendary",
-                                                                    "epic",
-                                                                    "rare",
-                                                                    "uncommon",
-                                                                    "common",
+                                                                if (rarity) {
+                                                                  const rarityBlooks = blooks[rarity];
+                                                                  result =
+                                                                  rarityBlooks[
+                                                                    Math.floor(Math.random() * rarityBlooks.length)
                                                                   ];
-                                                                  const sorted = Object.values(inventory).sort((a, b) => {
-                                                                    return (
-                                                                    rarityOrder.indexOf(a.rarity) -
-                                                                    rarityOrder.indexOf(b.rarity)
-                                                                    );
-                                                                  });
 
-                                                                  sorted.forEach((item) => {
-                                                                    const div = document.createElement("div");
-                                                                    div.className = `blook blook-${item.rarity}`;
-                                                                    div.innerHTML = `
-                                                                    <div class="blook-count">${item.count}</div>
-                                                                      <div class="blook-emoji">${item.emoji}</div>
-                                                                        <div class="blook-name">${item.name}</div>
-                                                                          <div class="blook-rarity rarity-${item.rarity}">${item.rarity}</div>
-                                                                            `;
-                                                                            grid.appendChild(div);
-                                                                          });
-                                                                        }
+                                                                  const key = `${rarity}-${result.name}`;
+                                                                  inventory[key] = inventory[key] || {
+                                                                    ...result,
+                                                                    rarity,
+                                                                    count: 0,
+                                                                  };
+                                                                  inventory[key].count++;
 
-                                                                        updateMoneyDisplay();
-                                                                      </script>
-                                                                    </body>
-                                                                  </html>
+                                                                  showReward(
+                                                                  `You got a ${result.name}!`,
+                                                                  result.emoji,
+                                                                  rarity,
+                                                                  "blook",
+                                                                  );
+                                                                  updateInventory();
+                                                                } else {
+                                                                  showReward(
+                                                                  "Nothing!",
+                                                                  "😢",
+                                                                  "Better luck next time...",
+                                                                  "nothing",
+                                                                  );
+                                                                }
+                                                              }
+
+                                                              function showReward(title, emoji, rarity, type) {
+                                                                document.getElementById("rewardTitle").textContent = title;
+                                                                document.getElementById("rewardEmoji").textContent = emoji;
+                                                                const rarityEl = document.getElementById("rewardRarity");
+                                                                rarityEl.textContent = rarity;
+                                                                rarityEl.className =
+                                                                type === "blook"
+                                                                ? `modal-rarity rarity-${rarity}`
+                                                                : "modal-rarity";
+                                                                document.getElementById("rewardModal").classList.add("show");
+                                                              }
+
+                                                              function closeModal() {
+                                                                document.getElementById("rewardModal").classList.remove("show");
+                                                              }
+
+                                                              function activateSecretFire() {
+                                                                if (secretFireActivated) {
+                                                                  alert("You already found the fire ya dingus!");
+                                                                  return;
+                                                                }
+
+                                                                secretFireActivated = true;
+                                                                money += 10000;
+                                                                updateMoneyDisplay();
+
+                                                                alert(
+                                                                "Congrats you found the fire! You get 10000 dollars. You also unlocked a 💯% chance to get mythic!",
+                                                                );
+
+                                                                // Hide the fire emoji after clicking
+                                                                document.querySelector(".secret-fire").style.display = "none";
+                                                              }
+
+                                                              function updateInventory() {
+                                                                const grid = document.getElementById("inventoryGrid");
+
+                                                                if (Object.keys(inventory).length === 0) {
+                                                                  grid.innerHTML =
+                                                                  '<div class="empty-inventory">No blooks yet... Buy some packs!</div>';
+                                                                  return;
+                                                                }
+
+                                                                grid.innerHTML = "";
+
+                                                                // Sort by rarity
+                                                                const rarityOrder = [
+                                                                  "mythical",
+                                                                  "legendary",
+                                                                  "epic",
+                                                                  "rare",
+                                                                  "uncommon",
+                                                                  "common",
+                                                                ];
+                                                                const sorted = Object.values(inventory).sort((a, b) => {
+                                                                  return (
+                                                                  rarityOrder.indexOf(a.rarity) -
+                                                                  rarityOrder.indexOf(b.rarity)
+                                                                  );
+                                                                });
+
+                                                                sorted.forEach((item) => {
+                                                                  const div = document.createElement("div");
+                                                                  div.className = `blook blook-${item.rarity}`;
+                                                                  div.innerHTML = `
+                                                                  <div class="blook-count">${item.count}</div>
+                                                                    <div class="blook-emoji">${item.emoji}</div>
+                                                                      <div class="blook-name">${item.name}</div>
+                                                                        <div class="blook-rarity rarity-${item.rarity}">${item.rarity}</div>
+                                                                          `;
+                                                                          grid.appendChild(div);
+                                                                        });
+                                                                      }
+
+                                                                      updateMoneyDisplay();
+                                                                    </script>
+                                                                  </body>
+                                                                </html>

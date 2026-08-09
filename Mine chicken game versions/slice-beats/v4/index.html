@@ -250,81 +250,81 @@
                 SELECT SONG:
               </h2>
               <button
-                class="songBtn"
-                data-song="Chocolate Party by Mine Chicken.mp3"
-                data-difficulty="easy"
-                style="
-                display: block;
-                width: 100%;
-                margin: 10px auto;
-                padding: 15px;
-                font-size: 20px;
-                background: linear-gradient(
-                135deg,
-                #00ff00 0%,
-                #00aa00 100%
-                );
-                color: white;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                "
+              class="songBtn"
+              data-song="Chocolate Party by Mine Chicken.mp3"
+              data-difficulty="easy"
+              style="
+              display: block;
+              width: 100%;
+              margin: 10px auto;
+              padding: 15px;
+              font-size: 20px;
+              background: linear-gradient(
+              135deg,
+              #00ff00 0%,
+              #00aa00 100%
+              );
+              color: white;
+              border: none;
+              border-radius: 10px;
+              cursor: pointer;
+              "
+              >
+              🍫 Choco Party
+              <span style="font-size: 14px; opacity: 0.8">(EASY)</span>
+              </button>
+              <button
+              class="songBtn"
+              data-song="Dumb Song by Mine Chicken.mp3"
+              data-difficulty="expert"
+              style="
+              display: block;
+              width: 100%;
+              margin: 10px auto;
+              padding: 15px;
+              font-size: 20px;
+              background: linear-gradient(
+              135deg,
+              #ff0000 0%,
+              #aa0000 100%
+              );
+              color: white;
+              border: none;
+              border-radius: 10px;
+              cursor: pointer;
+              "
+              >
+              🔥 Dumb Song
+              <span style="font-size: 14px; opacity: 0.8"
+                >(EXPERT - IMPOSSIBLE!)</span
                 >
-                🍫 Choco Party
-                <span style="font-size: 14px; opacity: 0.8">(EASY)</span>
-                </button>
-                <button
-                  class="songBtn"
-                  data-song="Dumb Song by Mine Chicken.mp3"
-                  data-difficulty="expert"
-                  style="
-                  display: block;
-                  width: 100%;
-                  margin: 10px auto;
-                  padding: 15px;
-                  font-size: 20px;
-                  background: linear-gradient(
-                  135deg,
-                  #ff0000 0%,
-                  #aa0000 100%
-                  );
-                  color: white;
-                  border: none;
-                  border-radius: 10px;
-                  cursor: pointer;
-                  "
-                  >
-                  🔥 Dumb Song
-                  <span style="font-size: 14px; opacity: 0.8"
-                    >(EXPERT - IMPOSSIBLE!)</span
-                    >
-                  </button>
+              </button>
+            </div>
+          </div>
+
+          <div id="gameOver">
+            <h1>GAME OVER!</h1>
+            <div id="finalScore"></div>
+              <div id="finalCombo"></div>
+                <button id="restartBtn">PLAY AGAIN</button>
                 </div>
-              </div>
 
-              <div id="gameOver">
-                <h1>GAME OVER!</h1>
-                <div id="finalScore"></div>
-                  <div id="finalCombo"></div>
-                    <button id="restartBtn">PLAY AGAIN</button>
-                    </div>
+                <div id="winScreen">
+                  <h1>🎉 YOU WIN! 🎉</h1>
+                  <div id="winScore"></div>
+                    <div id="winCombo"></div>
+                      <button id="winRestartBtn">PLAY AGAIN</button>
+                      </div>
 
-                    <div id="winScreen">
-                      <h1>🎉 YOU WIN! 🎉</h1>
-                      <div id="winScore"></div>
-                        <div id="winCombo"></div>
-                          <button id="winRestartBtn">PLAY AGAIN</button>
-                          </div>
+                      <div id="pauseScreen">
+                        <h1>⏸ PAUSED</h1>
+                        <button id="resumeBtn">RESUME</button>
+                          <button id="muteBtn">🔊 MUTE MUSIC</button>
+                            <button id="quitBtn">QUIT TO MENU</button>
+                            </div>
 
-                          <div id="pauseScreen">
-                            <h1>⏸ PAUSED</h1>
-                            <button id="resumeBtn">RESUME</button>
-                              <button id="muteBtn">🔊 MUTE MUSIC</button>
-                                <button id="quitBtn">QUIT TO MENU</button>
-                                </div>
+                            <canvas id="gameCanvas"></canvas>
 
-                                <canvas id="gameCanvas"></canvas>
-
-                                  <script src="game.js"></script>
-                                  </body>
-                                </html>
+                              <script src="game.js"></script>
+                              </body>
+                            </html>
