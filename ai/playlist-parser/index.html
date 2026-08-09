@@ -58,67 +58,67 @@
       <p>Calculating the WHOLE length of the party! O I I A! 🌈</p>
 
         <input type="text" id="pUrl" placeholder="PASTE THE GORILLA TAG PLAYLIST URL! 🐒">
-          <br>
-          <button onclick="calculateBoogie()">GET TOTAL LENGTH! 🕒</button>
+        <br>
+        <button onclick="calculateBoogie()">GET TOTAL LENGTH! 🕒</button>
 
-            <div id="status">Ready for the frosting? 🍰</div>
-              <div id="result"></div>
+        <div id="status">Ready for the frosting? 🍰</div>
+          <div id="result"></div>
 
-                <div class="credits">
-                  <hr>
-                  <strong>🏆 THE COOLER CREDITS 🏆</strong><br>
-                    <strong>Lead Coder/Steve:</strong> doggodgcodes 🐶💻<br>
-                      <strong>Art & Pencil Doodles:</strong> <a href="https://www.youtube.com/@flyingdogwithapencil" target="_blank">Go sub to DoggoWIng21!</a> ✏️🐶<br>
-                        <strong>Featured Media:</strong> "The Party Hat Trailer"<br>
-                          <strong>Proxy Wizardry:</strong> cors-anywhere.followalong.com 🌐<br>
-                            <strong>Status:</strong> Subway sandwich to who means subscribe to doggowing21! 🥪✨
-                            </div>
-                          </div>
+            <div class="credits">
+              <hr>
+              <strong>🏆 THE COOLER CREDITS 🏆</strong><br>
+                <strong>Lead Coder/Steve:</strong> doggodgcodes 🐶💻<br>
+                  <strong>Art & Pencil Doodles:</strong> <a href="https://www.youtube.com/@flyingdogwithapencil" target="_blank">Go sub to DoggoWIng21!</a> ✏️🐶<br>
+                    <strong>Featured Media:</strong> "The Party Hat Trailer"<br>
+                      <strong>Proxy Wizardry:</strong> cors-anywhere.followalong.com 🌐<br>
+                        <strong>Status:</strong> Subway sandwich to who means subscribe to doggowing21! 🥪✨
+                        </div>
+                      </div>
 
-                          <script>
-                            async function calculateBoogie() {
-                              const url = document.getElementById('pUrl').value;
-                              const stat = document.getElementById('status');
-                              const res = document.getElementById('result');
-                              const proxy = 'https://cors-anywhere.followalong.com/';[cite: 1]
+                      <script>
+                        async function calculateBoogie() {
+                          const url = document.getElementById('pUrl').value;
+                          const stat = document.getElementById('status');
+                          const res = document.getElementById('result');
+                          const proxy = 'https://cors-anywhere.followalong.com/';[cite: 1]
 
-                              if(!url) { stat.innerText = "Bonk! You forgot the juice! 🥤"; return; }
+                          if(!url) { stat.innerText = "Bonk! You forgot the juice! 🥤"; return; }
 
-                              stat.innerText = "Yapping with the internet tubes for the FULL length... 🗣️";
-                              res.innerText = "";
+                          stat.innerText = "Yapping with the internet tubes for the FULL length... 🗣️";
+                          res.innerText = "";
 
-                              try {
-                                const response = await fetch(proxy + url);
-                                const text = await response.text();
+                          try {
+                            const response = await fetch(proxy + url);
+                            const text = await response.text();
 
-                                // High-precision global scan for ALL video lengths in the JSON blob
-                                const regex = /"lengthSeconds":"(\d+)"/g;
-                                let match;
-                                let totalSec = 0;
-                                let count = 0;
+                            // High-precision global scan for ALL video lengths in the JSON blob
+                            const regex = /"lengthSeconds":"(\d+)"/g;
+                            let match;
+                            let totalSec = 0;
+                            let count = 0;
 
-                                while ((match = regex.exec(text)) !== null) {
-                                  totalSec += parseInt(match[1]);
-                                  count++;
-                                }
-
-                                if (count === 0) {
-                                  stat.innerText = "Is the playlist public? Proxy might be chilly! 🧊";
-                                  return;
-                                }
-
-                                const h = Math.floor(totalSec / 3600);
-                                const m = Math.floor((totalSec % 3600) / 60);
-                                const s = totalSec % 60;
-
-                                stat.innerText = `MLERPCORE DETECTED! Found ${count} slices of ham-jam! 🥪`;
-                                res.innerText = `🏁 ${h}h ${m}m ${s}s 🏁`;
-
-                              } catch (e) {
-                                stat.innerText = "Bonk! The proxy is acting crazy! Check your flint and steel. 🔥";
-                              }
+                            while ((match = regex.exec(text)) !== null) {
+                              totalSec += parseInt(match[1]);
+                              count++;
                             }
-                          </script>
 
-                        </body>
-                      </html>
+                            if (count === 0) {
+                              stat.innerText = "Is the playlist public? Proxy might be chilly! 🧊";
+                              return;
+                            }
+
+                            const h = Math.floor(totalSec / 3600);
+                            const m = Math.floor((totalSec % 3600) / 60);
+                            const s = totalSec % 60;
+
+                            stat.innerText = `MLERPCORE DETECTED! Found ${count} slices of ham-jam! 🥪`;
+                            res.innerText = `🏁 ${h}h ${m}m ${s}s 🏁`;
+
+                          } catch (e) {
+                            stat.innerText = "Bonk! The proxy is acting crazy! Check your flint and steel. 🔥";
+                          }
+                        }
+                      </script>
+
+                    </body>
+                  </html>

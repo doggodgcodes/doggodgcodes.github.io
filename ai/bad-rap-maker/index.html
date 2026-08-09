@@ -57,49 +57,49 @@
     <p class="subtitle">100% accurate raps: make sure you click the button if you wanna roast and toast and made by ChatGPT and doggodgcodes</p>
       <button onclick="generateRap()">generate awful rap</button>
 
-        <div class="rap-lyrics" id="rapLyrics">
-          your rap will appear here
-        </div>
+      <div class="rap-lyrics" id="rapLyrics">
+        your rap will appear here
+      </div>
 
-        <script>
-          // List of quirky and surreal phrases
-          const weirdPhrases = [
-            "you awkward gravity toaster",
-            "confused battlepass spoon",
-            "mystery noodle gremlin",
-            "you socks pickle brain",
-            "awkward fog crumbs cheese",
-            "floating pancake galaxy",
-            "beep bop noodle crayon",
-            "sneaky banana muffin",
-            "chocolate marshmallow toaster",
-            "pizza cupcake whisper",
-            "greasy foggy pillow fight",
-            "lunar taco spaghetti",
-            "pickle moonlight pizza",
-            "soggy keyboard alien",
-            "cheese cloud rocket",
-            "fuzzy rainbow pickle",
-            "ear clacker waffle monster",
-            "soggy pickle jigsaw",
-            "invisible rubber boots",
-            "this aint cooking"
-          ];
+      <script>
+        // List of quirky and surreal phrases
+        const weirdPhrases = [
+          "you awkward gravity toaster",
+          "confused battlepass spoon",
+          "mystery noodle gremlin",
+          "you socks pickle brain",
+          "awkward fog crumbs cheese",
+          "floating pancake galaxy",
+          "beep bop noodle crayon",
+          "sneaky banana muffin",
+          "chocolate marshmallow toaster",
+          "pizza cupcake whisper",
+          "greasy foggy pillow fight",
+          "lunar taco spaghetti",
+          "pickle moonlight pizza",
+          "soggy keyboard alien",
+          "cheese cloud rocket",
+          "fuzzy rainbow pickle",
+          "ear clacker waffle monster",
+          "soggy pickle jigsaw",
+          "invisible rubber boots",
+          "this aint cooking"
+        ];
 
-          // Function to generate a random quirky rap song
-          function generateRap() {
-            let rapSong = "";
-            let numberOfLines = Math.floor(Math.random() * 5) + 3; // Random number between 3 and 7
+        // Function to generate a random quirky rap song
+        function generateRap() {
+          let rapSong = "";
+          let numberOfLines = Math.floor(Math.random() * 5) + 3; // Random number between 3 and 7
 
-            for (let i = 0; i < numberOfLines; i++) {
-              let randomLine = weirdPhrases[Math.floor(Math.random() * weirdPhrases.length)];
-              rapSong += randomLine + "<br>";
-            }
-
-            // Display the generated rap lyrics
-            document.getElementById("rapLyrics").innerHTML = rapSong;
+          for (let i = 0; i < numberOfLines; i++) {
+            let randomLine = weirdPhrases[Math.floor(Math.random() * weirdPhrases.length)];
+            rapSong += randomLine + "<br>";
           }
-        </script>
 
-      </body>
-    </html>
+          // Display the generated rap lyrics
+          document.getElementById("rapLyrics").innerHTML = rapSong;
+        }
+      </script>
+
+    </body>
+  </html>

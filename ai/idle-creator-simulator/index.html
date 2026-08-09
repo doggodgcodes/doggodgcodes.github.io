@@ -33,127 +33,127 @@
           <div id="video" class="tab-content active">
             <h3>UPLOAD CONTENT 📷</h3>
             <input type="text" id="vidTitle" placeholder="Video Title...">
-              <button onclick="uploadVideo()">UPLOAD!</button>
-                <div id="videoList"></div>
+            <button onclick="uploadVideo()">UPLOAD!</button>
+            <div id="videoList"></div>
+            </div>
+
+            <div id="comments" class="tab-content">
+              <h3>LIVE COMMENTS 🗣️</h3>
+              <div id="commentFeed"></div>
+              </div>
+
+              <div id="ads" class="tab-content">
+                <h3>SPONSOR OFFERS 💵</h3>
+                <div id="adBox">
+                  <h4 id="adText">Scanning for cheezburger sponsors... 🍔</h4>
+                  <button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
                 </div>
+              </div>
 
-                <div id="comments" class="tab-content">
-                  <h3>LIVE COMMENTS 🗣️</h3>
-                  <div id="commentFeed"></div>
-                  </div>
+              <div id="shop" class="tab-content">
+                <h3>SHOP</h3>
+                <button onclick="buyUpgrade(50n, 'New Mic')">New Mic ($50)</button><br><br>
+                <button onclick="buyUpgrade(500n, 'Aero PC')">Aero PC ($500)</button>
+              </div>
+            </div>
+          </div>
 
-                  <div id="ads" class="tab-content">
-                    <h3>SPONSOR OFFERS 💵</h3>
-                    <div id="adBox">
-                      <h4 id="adText">Scanning for cheezburger sponsors... 🍔</h4>
-                      <button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
-                      </div>
-                    </div>
+          <div class="sidebar">
+            <h3>MENU</h3>
+            <button onclick="showTab('video')">VIDEOS</button>
+            <button onclick="showTab('comments')">COMMENTS</button>
+            <button onclick="showTab('ads')">SPONSORS</button>
+            <button onclick="showTab('shop')">SHOP</button>
+            <iframe width="110" height="110" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
+              <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
+            </div>
 
-                    <div id="shop" class="tab-content">
-                      <h3>SHOP</h3>
-                      <button onclick="buyUpgrade(50n, 'New Mic')">New Mic ($50)</button><br><br>
-                        <button onclick="buyUpgrade(500n, 'Aero PC')">Aero PC ($500)</button>
-                        </div>
-                      </div>
-                    </div>
+            <script>
+              const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke", "Toaster"];
+              const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Frutiger aero is kool.", "Whopper Whopper!", "EEEAAAOOO!", "Creamy peanut butter!", "Wait, what da...", "W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling", "bro is 🍞", "W doggo", "W in the chat", "yap yap yap", "WOOOOOOOOOOOOOOOOOOOOOOO!"];
+              const randomTitles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero 2000", "Gamer Sandwich Tutorial", "Whopper Whopper Song"];
 
-                    <div class="sidebar">
-                      <h3>MENU</h3>
-                      <button onclick="showTab('video')">VIDEOS</button>
-                        <button onclick="showTab('comments')">COMMENTS</button>
-                          <button onclick="showTab('ads')">SPONSORS</button>
-                            <button onclick="showTab('shop')">SHOP</button>
-                              <iframe width="110" height="110" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
-                                <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
-                                </div>
+              let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
 
-                                <script>
-                                  const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke", "Toaster"];
-                                  const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Frutiger aero is kool.", "Whopper Whopper!", "EEEAAAOOO!", "Creamy peanut butter!", "Wait, what da...", "W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling", "bro is 🍞", "W doggo", "W in the chat", "yap yap yap", "WOOOOOOOOOOOOOOOOOOOOOOO!"];
-                                  const randomTitles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero 2000", "Gamer Sandwich Tutorial", "Whopper Whopper Song"];
+              const saved = JSON.parse(localStorage.getItem('bonkStats'));
+              if (saved) {
+                stats.subs = BigInt(saved.subs || "0");
+                stats.views = BigInt(saved.views || "0");
+                stats.money = BigInt(saved.money || "1");
+                stats.gear = BigInt(saved.gear || "1");
+                stats.vids = (saved.vids || []).map(v => ({ title: v.title, views: BigInt(v.views || "0"), subs: BigInt(v.subs || "0"), rate: BigInt(v.rate || "5") }));
+              }
 
-                                  let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
+              function playPop() {
+                let pop = new Audio('https://www.myinstants.com/media/sounds/pop_7e9Is8L.mp3');
+                pop.volume = 0.2;
+                pop.play().catch(()=>{});
+              }
 
-                                  const saved = JSON.parse(localStorage.getItem('bonkStats'));
-                                  if (saved) {
-                                    stats.subs = BigInt(saved.subs || "0");
-                                    stats.views = BigInt(saved.views || "0");
-                                    stats.money = BigInt(saved.money || "1");
-                                    stats.gear = BigInt(saved.gear || "1");
-                                    stats.vids = (saved.vids || []).map(v => ({ title: v.title, views: BigInt(v.views || "0"), subs: BigInt(v.subs || "0"), rate: BigInt(v.rate || "5") }));
-                                  }
+              function showTab(id) {
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                document.getElementById(id).classList.add('active');
+              }
 
-                                  function playPop() {
-                                    let pop = new Audio('https://www.myinstants.com/media/sounds/pop_7e9Is8L.mp3');
-                                    pop.volume = 0.2;
-                                    pop.play().catch(()=>{});
-                                  }
+              function uploadVideo() {
+                let t = document.getElementById('vidTitle').value || randomTitles[Math.floor(Math.random() * randomTitles.length)];
+                stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
+                document.getElementById('vidTitle').value = "";
+                renderVids();
+              }
 
-                                  function showTab(id) {
-                                    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-                                    document.getElementById(id).classList.add('active');
-                                  }
+              function renderVids() {
+                document.getElementById('videoList').innerHTML = stats.vids.map((v, i) =>
+                `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${v.views.toString()}</span> | 🚩 <span id="v-subs-${i}">${v.subs.toString()}</span></div>`).reverse().join('');
+              }
 
-                                  function uploadVideo() {
-                                    let t = document.getElementById('vidTitle').value || randomTitles[Math.floor(Math.random() * randomTitles.length)];
-                                    stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
-                                    document.getElementById('vidTitle').value = "";
-                                    renderVids();
-                                  }
+              function addComment() {
+                const user = finalSquadList[Math.floor(Math.random() * finalSquadList.length)];
+                const text = catchphrases[Math.floor(Math.random() * catchphrases.length)];
+                const feed = document.getElementById('commentFeed');
+                const cEl = document.createElement('div');
+                cEl.className = 'comment';
+                cEl.innerHTML = `<b>${user}:</b> ${text}`;
+                feed.prepend(cEl);
+                if(feed.children.length > 20) feed.lastChild.remove();
+              }
 
-                                  function renderVids() {
-                                    document.getElementById('videoList').innerHTML = stats.vids.map((v, i) =>
-                                    `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${v.views.toString()}</span> | 🚩 <span id="v-subs-${i}">${v.subs.toString()}</span></div>`).reverse().join('');
-                                  }
+              setInterval(() => {
+                stats.vids.forEach((v, i) => {
+                  v.views += v.rate;
+                  v.subs += v.rate / 5n;
+                  stats.views += v.rate;
+                  stats.subs += v.rate / 5n;
+                  stats.money += v.rate / 10n;
+                  let vEl = document.getElementById(`v-views-${i}`);
+                  if(vEl) vEl.innerText = v.views.toString();
+                });
+                document.getElementById('subs').innerText = stats.subs.toString();
+                document.getElementById('views').innerText = stats.views.toString();
+                document.getElementById('money').innerText = stats.money.toString();
+                if(stats.vids.length > 0 && Math.random() > 0.8) addComment();
 
-                                  function addComment() {
-                                    const user = finalSquadList[Math.floor(Math.random() * finalSquadList.length)];
-                                    const text = catchphrases[Math.floor(Math.random() * catchphrases.length)];
-                                    const feed = document.getElementById('commentFeed');
-                                    const cEl = document.createElement('div');
-                                    cEl.className = 'comment';
-                                    cEl.innerHTML = `<b>${user}:</b> ${text}`;
-                                    feed.prepend(cEl);
-                                    if(feed.children.length > 20) feed.lastChild.remove();
-                                  }
+                let saveData = {
+                  ...stats,
+                  subs: stats.subs.toString(), views: stats.views.toString(),
+                  money: stats.money.toString(), gear: stats.gear.toString(),
+                  vids: stats.vids.map(v => ({...v, views: v.views.toString(), subs: v.subs.toString(), rate: v.rate.toString()}))
+                };
+                localStorage.setItem('bonkStats', JSON.stringify(saveData));
+              }, 100);
 
-                                  setInterval(() => {
-                                    stats.vids.forEach((v, i) => {
-                                      v.views += v.rate;
-                                      v.subs += v.rate / 5n;
-                                      stats.views += v.rate;
-                                      stats.subs += v.rate / 5n;
-                                      stats.money += v.rate / 10n;
-                                      let vEl = document.getElementById(`v-views-${i}`);
-                                      if(vEl) vEl.innerText = v.views.toString();
-                                    });
-                                    document.getElementById('subs').innerText = stats.subs.toString();
-                                    document.getElementById('views').innerText = stats.views.toString();
-                                    document.getElementById('money').innerText = stats.money.toString();
-                                    if(stats.vids.length > 0 && Math.random() > 0.8) addComment();
-
-                                    let saveData = {
-                                      ...stats,
-                                      subs: stats.subs.toString(), views: stats.views.toString(),
-                                      money: stats.money.toString(), gear: stats.gear.toString(),
-                                      vids: stats.vids.map(v => ({...v, views: v.views.toString(), subs: v.subs.toString(), rate: v.rate.toString()}))
-                                    };
-                                    localStorage.setItem('bonkStats', JSON.stringify(saveData));
-                                  }, 100);
-
-                                  function resetGame() {
-                                    if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
-                                      localStorage.removeItem(bonkStats);
-                                      stats.vids = [];
-                                      stats.subs = 0n;
-                                      stats.views = 0n;
-                                      stats.money = 1n;
-                                      location.reload();
-                                    }
-                                  }
-                                  renderVids();
-                                  console.log("Created by doggodgcodes and Gemini")
-                                </script>
-                              </body>
-                            </html>
+              function resetGame() {
+                if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
+                  localStorage.removeItem(bonkStats);
+                  stats.vids = [];
+                  stats.subs = 0n;
+                  stats.views = 0n;
+                  stats.money = 1n;
+                  location.reload();
+                }
+              }
+              renderVids();
+              console.log("Created by doggodgcodes and Gemini")
+            </script>
+          </body>
+        </html>
