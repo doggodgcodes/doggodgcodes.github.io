@@ -1,5 +1,5 @@
 function yap(arg1) {
-  console.log(arg1 + " yap yap yap yap yap yap yap yap yap yap yap yap");
+ console.log(arg1 + " yap yap yap yap yap yap yap yap yap yap yap yap");
 }
 yap("hahhhahhhhahhahahahahhahahahhahahahah");
 yap("random");

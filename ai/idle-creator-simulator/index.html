@@ -1,159 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>IDLE CREATOR SIMULATOR</title>
-    <link rel="icon" href="https://minechicken98.github.io/funny/battle-cats-capsule/images/cat.png">
-    <style>
-      body { font-family: "Segoe UI", Tahoma, sans-serif; background: linear-gradient(180deg, #e0f7fa 0%, #80deea 100%); color: #333; margin: 0; display: flex; height: 100vh; overflow: hidden; }
-      .main-area { flex: 1; padding: 20px; overflow-y: auto; text-align: center; }
-      .sidebar { width: 220px; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-left: 2px solid #fff; display: flex; flex-direction: column; padding: 15px; gap: 10px; }
-      .container { background: rgba(255, 255, 255, 0.7); border-radius: 15px; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-      .tab-content { display: none; }
-      .active { display: block; }
-      button { cursor: pointer; padding: 12px; border-radius: 15px; border: 1px solid #fff; background: #00d2ff; color: white; font-weight: bold; box-shadow: 0 4px #0099cc; transition: 0.1s; }
-      button:active { transform: translateY(2px); box-shadow: 0 2px #0099cc; }
-      .pfp { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fff; cursor: pointer; }
-      .video-card { background: white; padding: 10px; border-radius: 10px; margin: 10px 0; border: 1px solid #ade8f4; text-align: left; }
-      #commentFeed { height: 200px; overflow-y: auto; background: #fff; border-radius: 10px; padding: 10px; text-align: left; border: 1px solid #ddd; font-size: 0.9em; }
-      .comment { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
-      .reset-btn { background: #ff4d4d; box-shadow: 0 4px #cc0000; margin-top: auto; }
-      /* THE LOCKED CSS YOU ASKED FOR DOGGO! */
-      iframe { padding-left: 55px; }
-    </style>
-  </head>
-  <body onclick="playPop()">
+ <head>
+		<meta charset="UTF-8">
+		<title>IDLE CREATOR SIMULATOR</title>
+		<link rel="icon" href="https://minechicken98.github.io/funny/battle-cats-capsule/images/cat.png">
+  <style>
+   body { font-family: "Segoe UI", Tahoma, sans-serif; background: linear-gradient(180deg, #e0f7fa 0%, #80deea 100%); color: #333; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+   .main-area { flex: 1; padding: 20px; overflow-y: auto; text-align: center; }
+   .sidebar { width: 220px; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); border-left: 2px solid #fff; display: flex; flex-direction: column; padding: 15px; gap: 10px; }
+   .container { background: rgba(255, 255, 255, 0.7); border-radius: 15px; padding: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+   .tab-content { display: none; }
+   .active { display: block; }
+   button { cursor: pointer; padding: 12px; border-radius: 15px; border: 1px solid #fff; background: #00d2ff; color: white; font-weight: bold; box-shadow: 0 4px #0099cc; transition: 0.1s; }
+   button:active { transform: translateY(2px); box-shadow: 0 2px #0099cc; }
+   .pfp { width: 80px; height: 80px; border-radius: 50%; border: 3px solid #fff; cursor: pointer; }
+   .video-card { background: white; padding: 10px; border-radius: 10px; margin: 10px 0; border: 1px solid #ade8f4; text-align: left; }
+   #commentFeed { height: 200px; overflow-y: auto; background: #fff; border-radius: 10px; padding: 10px; text-align: left; border: 1px solid #ddd; font-size: 0.9em; }
+   .comment { margin-bottom: 5px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
+   .reset-btn { background: #ff4d4d; box-shadow: 0 4px #cc0000; margin-top: auto; }
+   /* THE LOCKED CSS YOU ASKED FOR DOGGO! */
+   iframe { padding-left: 55px; }
+  </style>
+ </head>
+ <body onclick="playPop()">
 
-    <div class="main-area">
-    <div class="container">
-    <h1>🎧 IDLE CREATOR SIMULATOR V5.2 🎧</h1>
-    <img id="currentPfp" class="pfp" src="https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj" onclick="changePfp()">
-    <p><b>Subs:</b> <span id="subs">0</span> | <b>Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">1</span></p>
+		<div class="main-area">
+		<div class="container">
+		<h1>🎧 IDLE CREATOR SIMULATOR V5.2 🎧</h1>
+		<img id="currentPfp" class="pfp" src="https://yt3.googleusercontent.com/nMwX4c9fVcyxWNcVGKMsesmY3GU75jcDkrcK3ablWbd3xkpy1jxNTF5NXV29Miut87n31SskHw=s160-c-k-c0x00ffffff-no-rj" onclick="changePfp()">
+  <p><b>Subs:</b> <span id="subs">0</span> | <b>Views:</b> <span id="views">0</span> | <b>Money:</b> $<span id="money">1</span></p>
 
-      <div id="video" class="tab-content active">
-      <h3>UPLOAD CONTENT 📷</h3>
-      <input type="text" id="vidTitle" placeholder="Video Title...">
-      <button onclick="uploadVideo()">UPLOAD!</button>
-      <div id="videoList"></div>
-      </div>
+			<div id="video" class="tab-content active">
+			<h3>UPLOAD CONTENT 📷</h3>
+			<input type="text" id="vidTitle" placeholder="Video Title...">
+			<button onclick="uploadVideo()">UPLOAD!</button>
+			<div id="videoList"></div>
+			</div>
 
-      <div id="comments" class="tab-content">
-      <h3>LIVE COMMENTS 🗣️</h3>
-      <div id="commentFeed"></div>
-      </div>
+			<div id="comments" class="tab-content">
+			<h3>LIVE COMMENTS 🗣️</h3>
+			<div id="commentFeed"></div>
+			</div>
 
-      <div id="ads" class="tab-content">
-      <h3>SPONSOR OFFERS 💵</h3>
-      <div id="adBox">
-      <h4 id="adText">Scanning for cheezburger sponsors... 🍔</h4>
-      <button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
-      </div>
-      </div>
+			<div id="ads" class="tab-content">
+			<h3>SPONSOR OFFERS 💵</h3>
+			<div id="adBox">
+			<h4 id="adText">Scanning for cheezburger sponsors... 🍔</h4>
+			<button id="adBtn" style="display:none;" onclick="acceptAd()">Accept Sponsor!</button>
+			</div>
+			</div>
 
-      <div id="shop" class="tab-content">
-      <h3>SHOP</h3>
-      <button onclick="buyUpgrade(50n, 'New Mic')">New Mic ($50)</button><br><br>
-      <button onclick="buyUpgrade(500n, 'Aero PC')">Aero PC ($500)</button>
-      </div>
-      </div>
-      </div>
+			<div id="shop" class="tab-content">
+			<h3>SHOP</h3>
+			<button onclick="buyUpgrade(50n, 'New Mic')">New Mic ($50)</button><br><br>
+			<button onclick="buyUpgrade(500n, 'Aero PC')">Aero PC ($500)</button>
+			</div>
+			</div>
+			</div>
 
-      <div class="sidebar">
-      <h3>MENU</h3>
-      <button onclick="showTab('video')">VIDEOS</button>
-      <button onclick="showTab('comments')">COMMENTS</button>
-      <button onclick="showTab('ads')">SPONSORS</button>
-      <button onclick="showTab('shop')">SHOP</button>
-      <iframe width="110" height="110" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
-        <button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
-        </div>
+			<div class="sidebar">
+			<h3>MENU</h3>
+			<button onclick="showTab('video')">VIDEOS</button>
+			<button onclick="showTab('comments')">COMMENTS</button>
+			<button onclick="showTab('ads')">SPONSORS</button>
+			<button onclick="showTab('shop')">SHOP</button>
+   <iframe width="110" height="110" src="https://www.myinstants.com/instant/pop-sfx-75405/embed/" frameborder="0" scrolling="no"></iframe>
+				<button class="reset-btn" onclick="resetGame()">RESET DATA 💀</button>
+				</div>
 
-        <script>
-          const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke", "Toaster"];
-          const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Frutiger aero is kool.", "Whopper Whopper!", "EEEAAAOOO!", "Creamy peanut butter!", "Wait, what da...", "W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling", "bro is 🍞", "W doggo", "W in the chat", "yap yap yap", "WOOOOOOOOOOOOOOOOOOOOOOO!"];
-          const randomTitles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero 2000", "Gamer Sandwich Tutorial", "Whopper Whopper Song"];
+    <script>
+     const finalSquadList = ["DoggoWing21", "MineChicken98", "Tony the pet ghost", "FlyingDogWithAPencil", "Doge", "JmanCurly", "The Algorithm", "Cheezburger King", "Toasterman592", "Binary Beast", "Pepe", "Monke", "Toaster"];
+     const catchphrases = ["Ham jam-tastic!", "Bonk!", "Go sub to DoggoWing21!", "Frutiger aero is kool.", "Whopper Whopper!", "EEEAAAOOO!", "Creamy peanut butter!", "Wait, what da...", "W GROWTH", "LETS GOOOOO!", "Subscribe!!", "Ratio + dont care", "Is that a bot?", "LEADERBOARD CLIMB!", "POG", "🚀🚀🚀", "All my fellas", "yoooo", "am scrolling", "bro is 🍞", "W doggo", "W in the chat", "yap yap yap", "WOOOOOOOOOOOOOOOOOOOOOOO!"];
+     const randomTitles = ["Eating Cheetos in a Costco Freezer", "EEEAAAOOO Remix", "Gorilla Tag yo", "Minecraft Chicken Jockey", "Frutiger Aero 2000", "Gamer Sandwich Tutorial", "Whopper Whopper Song"];
 
-          let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
+     let stats = { subs: 0n, views: 0n, money: 1n, gear: 1n, pfpIdx: 0, vids: [] };
 
-          const saved = JSON.parse(localStorage.getItem('bonkStats'));
-          if (saved) {
-            stats.subs = BigInt(saved.subs || "0");
-            stats.views = BigInt(saved.views || "0");
-            stats.money = BigInt(saved.money || "1");
-            stats.gear = BigInt(saved.gear || "1");
-            stats.vids = (saved.vids || []).map(v => ({ title: v.title, views: BigInt(v.views || "0"), subs: BigInt(v.subs || "0"), rate: BigInt(v.rate || "5") }));
-          }
+     const saved = JSON.parse(localStorage.getItem('bonkStats'));
+     if (saved) {
+      stats.subs = BigInt(saved.subs || "0");
+      stats.views = BigInt(saved.views || "0");
+      stats.money = BigInt(saved.money || "1");
+      stats.gear = BigInt(saved.gear || "1");
+      stats.vids = (saved.vids || []).map(v => ({ title: v.title, views: BigInt(v.views || "0"), subs: BigInt(v.subs || "0"), rate: BigInt(v.rate || "5") }));
+     }
 
-          function playPop() {
-            let pop = new Audio('https://www.myinstants.com/media/sounds/pop_7e9Is8L.mp3');
-            pop.volume = 0.2;
-            pop.play().catch(()=>{});
-          }
+     function playPop() {
+      let pop = new Audio('https://www.myinstants.com/media/sounds/pop_7e9Is8L.mp3');
+      pop.volume = 0.2;
+      pop.play().catch(()=>{});
+     }
 
-          function showTab(id) {
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-          }
+     function showTab(id) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+     }
 
-          function uploadVideo() {
-            let t = document.getElementById('vidTitle').value || randomTitles[Math.floor(Math.random() * randomTitles.length)];
-            stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
-            document.getElementById('vidTitle').value = "";
-            renderVids();
-          }
+     function uploadVideo() {
+      let t = document.getElementById('vidTitle').value || randomTitles[Math.floor(Math.random() * randomTitles.length)];
+      stats.vids.push({ title: t, views: 0n, subs: 0n, rate: stats.gear * 5n });
+      document.getElementById('vidTitle').value = "";
+      renderVids();
+     }
 
-          function renderVids() {
-            document.getElementById('videoList').innerHTML = stats.vids.map((v, i) =>
-            `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${v.views.toString()}</span> | 🚩 <span id="v-subs-${i}">${v.subs.toString()}</span></div>`).reverse().join('');
-          }
+     function renderVids() {
+      document.getElementById('videoList').innerHTML = stats.vids.map((v, i) =>
+      `<div class="video-card"><b>${v.title}</b><br>👀 <span id="v-views-${i}">${v.views.toString()}</span> | 🚩 <span id="v-subs-${i}">${v.subs.toString()}</span></div>`).reverse().join('');
+     }
 
-          function addComment() {
-            const user = finalSquadList[Math.floor(Math.random() * finalSquadList.length)];
-            const text = catchphrases[Math.floor(Math.random() * catchphrases.length)];
-            const feed = document.getElementById('commentFeed');
-            const cEl = document.createElement('div');
-            cEl.className = 'comment';
-            cEl.innerHTML = `<b>${user}:</b> ${text}`;
-            feed.prepend(cEl);
-            if(feed.children.length > 20) feed.lastChild.remove();
-          }
+     function addComment() {
+      const user = finalSquadList[Math.floor(Math.random() * finalSquadList.length)];
+      const text = catchphrases[Math.floor(Math.random() * catchphrases.length)];
+      const feed = document.getElementById('commentFeed');
+      const cEl = document.createElement('div');
+      cEl.className = 'comment';
+      cEl.innerHTML = `<b>${user}:</b> ${text}`;
+      feed.prepend(cEl);
+      if(feed.children.length > 20) feed.lastChild.remove();
+     }
 
-          setInterval(() => {
-            stats.vids.forEach((v, i) => {
-              v.views += v.rate;
-              v.subs += v.rate / 5n;
-              stats.views += v.rate;
-              stats.subs += v.rate / 5n;
-              stats.money += v.rate / 10n;
-              let vEl = document.getElementById(`v-views-${i}`);
-              if(vEl) vEl.innerText = v.views.toString();
-            });
-            document.getElementById('subs').innerText = stats.subs.toString();
-            document.getElementById('views').innerText = stats.views.toString();
-            document.getElementById('money').innerText = stats.money.toString();
-            if(stats.vids.length > 0 && Math.random() > 0.8) addComment();
+     setInterval(() => {
+      stats.vids.forEach((v, i) => {
+       v.views += v.rate;
+       v.subs += v.rate / 5n;
+       stats.views += v.rate;
+       stats.subs += v.rate / 5n;
+       stats.money += v.rate / 10n;
+       let vEl = document.getElementById(`v-views-${i}`);
+       if(vEl) vEl.innerText = v.views.toString();
+      });
+      document.getElementById('subs').innerText = stats.subs.toString();
+      document.getElementById('views').innerText = stats.views.toString();
+      document.getElementById('money').innerText = stats.money.toString();
+      if(stats.vids.length > 0 && Math.random() > 0.8) addComment();
 
-            let saveData = {
-              ...stats,
-              subs: stats.subs.toString(), views: stats.views.toString(),
-              money: stats.money.toString(), gear: stats.gear.toString(),
-              vids: stats.vids.map(v => ({...v, views: v.views.toString(), subs: v.subs.toString(), rate: v.rate.toString()}))
-            };
-            localStorage.setItem('bonkStats', JSON.stringify(saveData));
-          }, 100);
+      let saveData = {
+       ...stats,
+       subs: stats.subs.toString(), views: stats.views.toString(),
+       money: stats.money.toString(), gear: stats.gear.toString(),
+       vids: stats.vids.map(v => ({...v, views: v.views.toString(), subs: v.subs.toString(), rate: v.rate.toString()}))
+      };
+      localStorage.setItem('bonkStats', JSON.stringify(saveData));
+     }, 100);
 
-          function resetGame() {
-            if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
-              localStorage.removeItem(bonkStats);
-              stats.vids = [];
-              stats.subs = 0n;
-              stats.views = 0n;
-              stats.money = 1n;
-              location.reload();
-            }
-          }
-          renderVids();
-          console.log("Created by doggodgcodes and Gemini")
-        </script>
-      </body>
-    </html>
+     function resetGame() {
+      if(confirm("DO YOU REALLY WANT TO BONK YOUR DATA?")) {
+       localStorage.removeItem(bonkStats);
+       stats.vids = [];
+       stats.subs = 0n;
+       stats.views = 0n;
+       stats.money = 1n;
+       location.reload();
+      }
+     }
+     renderVids();
+     console.log("Created by doggodgcodes and Gemini")
+    </script>
+   </body>
+  </html>
