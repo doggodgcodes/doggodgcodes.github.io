@@ -12,7 +12,7 @@
       <meta property="og:type" content="website">
       <meta name="twitter:card" content="summary_large_image">
       <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-      <title>DOGEBOT V275 • ENJOY THE ICOSAHEDRON</title>
+      <title>DOGEBOT V276 • ENJOY THE ICOSAHEDRON</title>
       <style id="css">
         /* =========================================================
         💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -575,7 +575,7 @@
     <body class="fadein-zoom">
       <div id="news-thingy"></div>
 
-        <h1 id="title">🐕 DOGEBOT V275 • ENJOY THE ICOSAHEDRON</h1>
+        <h1 id="title">🐕 DOGEBOT V276 • ENJOY THE ICOSAHEDRON</h1>
         <p>Smart • Kind • Calculates • Chatty • Great</p>
 
           <div id="chat"></div>
@@ -584,7 +584,7 @@
               <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
                 <div class="toggle-container">
-                  <span>NEOCORE 10 BY GEMINI & CHATGPT:</span>
+                  <span>NEOCORE 11 BY GEMINI & CHATGPT:</span>
                     <label class="switch">
                       <input type="checkbox" id="neuralToggle" checked>
                         <span class="slider"></span>
@@ -641,6 +641,7 @@
                                 this.W_hidden_to_output = [];
                                 this.biasOutput = new Float32Array(dim);
                                 this.learningRate = 0.05;
+                                this.activationName = "sigmoid";
 
                                 for (let i = 0; i < dim; i++) {
                                   const row = new Float32Array(dim);
@@ -675,8 +676,53 @@
                                 this.memories = [];
                               }
 
-                              sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
-                              sigmoidDeriv(y) { return y * (1 - y); }
+// helper to switch activation at runtime
+setActivation(name) {
+  const allowed = ["sigmoid", "relu", "leaky-relu"];
+  if (!allowed.includes(name)) {
+    console.warn("Unknown activation, keeping existing:", this.activationName);
+    return;
+  }
+  this.activationName = name;
+}
+
+// keep existing sigmoid helpers for backward compatibility
+sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
+sigmoidDerivFromActivated(y) { return y * (1 - y); } // derivative given activated output
+
+// ReLU / Leaky ReLU and their derivative wrt pre-activation (not activated output)
+relu(preAct) { return preAct > 0 ? preAct : 0; }
+reluDerivFromPreAct(preAct) { return preAct > 0 ? 1 : 0; }
+
+leakyRelu(preAct, alpha = 0.01) { return preAct > 0 ? preAct : alpha * preAct; }
+leakyReluDerivFromPreAct(preAct, alpha = 0.01) { return preAct > 0 ? 1 : alpha; }
+
+// unified activation function — takes pre-activation sum and returns activated value
+activation(preAct) {
+  switch (this.activationName) {
+    case "relu":
+      return this.relu(preAct);
+    case "leaky-relu":
+      return this.leakyRelu(preAct);
+    case "sigmoid":
+    default:
+      return this.sigmoid(preAct);
+  }
+}
+
+// unified derivative function — we accept both activated value and preAct so both families can be supported
+activationDeriv(activated, preAct) {
+  switch (this.activationName) {
+    case "relu":
+      return this.reluDerivFromPreAct(preAct);
+    case "leaky-relu":
+      return this.leakyReluDerivFromPreAct(preAct);
+    case "sigmoid":
+    default:
+      // sigmoid derivative can be computed from the activated output
+      return this.sigmoidDerivFromActivated(activated);
+  }
+}
                               tanhDeriv(y) { return 1 - y * y; }
 
                               updateEmotion(text) {
@@ -853,21 +899,27 @@
                                   }
 
                                   const outputFeatures = new Float32Array(this.dim);
-                                  for (let o = 0; o < this.dim; o++) {
-                                    let sum = 0;
-                                    for (let h = 0; h < this.dim; h++) {
-                                      sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o];
-                                    }
-                                    outputFeatures[o] = this.sigmoid(sum + this.biasOutput[o]);
-                                  }
+const preActivations = new Float32Array(this.dim);
 
-                                  const targetVec = this.embeddings[b];
+// compute pre-activation sums, then use unified activation()
+for (let o = 0; o < this.dim; o++) {
+  let sum = 0;
+  for (let h = 0; h < this.dim; h++) {
+    sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o];
+  }
+  const outSum = sum + this.biasOutput[o];
+  preActivations[o] = outSum;
+  outputFeatures[o] = this.activation(outSum);
+}
 
-                                  const deltaOutput = new Float32Array(this.dim);
-                                  for (let o = 0; o < this.dim; o++) {
-                                    let error = targetVec[o] - outputFeatures[o];
-                                    deltaOutput[o] = error * this.sigmoidDeriv(outputFeatures[o]);
-                                  }
+const targetVec = this.embeddings[b];
+
+const deltaOutput = new Float32Array(this.dim);
+for (let o = 0; o < this.dim; o++) {
+  let error = targetVec[o] - outputFeatures[o];
+  // activationDeriv takes (activatedValue, preActivation)
+  deltaOutput[o] = error * this.activationDeriv(outputFeatures[o], preActivations[o]);
+}
 
                                   const deltaHidden = new Float32Array(this.dim);
                                   for (let h = 0; h < this.dim; h++) {
@@ -1177,6 +1229,8 @@
                             }
 
                             const NeuralBrain = new NeoCore();
+
+                            NeuralBrain.setActivation("leaky-relu")
 
 
                             // 🚀 THE V163 KICKSTART TRAINING BOOSTER
