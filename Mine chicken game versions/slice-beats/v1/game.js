@@ -104,319 +104,319 @@ let particles = [];
 class Block {
 
 
- constructor() {
+  constructor() {
 
 
-  this.size = 50;
+    this.size = 50;
 
 
-  this.x = Math.random() * (canvas.width - this.size);
+    this.x = Math.random() * (canvas.width - this.size);
 
 
-  this.y = -this.size;
+    this.y = -this.size;
 
 
-  this.speed = 2 + Math.random() * 2;
+    this.speed = 2 + Math.random() * 2;
 
 
-  this.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff"];
+    this.colors = ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff"];
 
 
-  this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
+    this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
 
 
-  this.rotation = Math.random() * Math.PI * 2;
+    this.rotation = Math.random() * Math.PI * 2;
 
 
-  this.rotationSpeed = (Math.random() - 0.5) * 0.1;
+    this.rotationSpeed = (Math.random() - 0.5) * 0.1;
 
 
-  this.sliced = false;
+    this.sliced = false;
 
 
-  this.sliceTime = 0;
+    this.sliceTime = 0;
 
 
-  this.sliceParts = [];
-
-
- }
-
-
-
-
-
- update() {
-
-
-  if (!this.sliced) {
-
-
-   this.y += this.speed;
-
-
-   this.rotation += this.rotationSpeed;
-
-
-  } else {
-
-
-   this.sliceTime++;
-
-
-   // Animate slice parts
-
-
-   for (let part of this.sliceParts) {
-
-
-    part.x += part.vx;
-
-
-    part.y += part.vy;
-
-
-    part.vy += 0.3; // gravity
-
-
-    part.rotation += part.rotSpeed;
-
-
-    part.alpha -= 0.02;
-
-
-   }
+    this.sliceParts = [];
 
 
   }
 
 
- }
 
 
 
+  update() {
 
 
- draw() {
+    if (!this.sliced) {
 
 
-  if (!this.sliced) {
+      this.y += this.speed;
 
 
-   ctx.save();
+      this.rotation += this.rotationSpeed;
 
 
-   ctx.translate(this.x + this.size / 2, this.y + this.size / 2);
+    } else {
 
 
-   ctx.rotate(this.rotation);
+      this.sliceTime++;
 
 
+      // Animate slice parts
 
 
-
-   // Draw block with glow
-
-
-   ctx.shadowBlur = 20;
+      for (let part of this.sliceParts) {
 
 
-   ctx.shadowColor = this.color;
+        part.x += part.vx;
 
 
-   ctx.fillStyle = this.color;
+        part.y += part.vy;
 
 
-   ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+        part.vy += 0.3; // gravity
 
 
+        part.rotation += part.rotSpeed;
 
 
-
-   // Inner square for effect
-
-
-   ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        part.alpha -= 0.02;
 
 
-   ctx.fillRect(-this.size / 2 + 5, -this.size / 2 + 5, this.size - 10, this.size - 10);
+      }
 
 
-
-
-
-   ctx.restore();
-
-
-  } else {
-
-
-   // Draw sliced parts
-
-
-   for (let part of this.sliceParts) {
-
-
-    ctx.save();
-
-
-    ctx.globalAlpha = part.alpha;
-
-
-    ctx.translate(part.x, part.y);
-
-
-    ctx.rotate(part.rotation);
-
-
-    ctx.fillStyle = this.color;
-
-
-    ctx.fillRect(-part.width / 2, -part.height / 2, part.width, part.height);
-
-
-    ctx.restore();
-
-
-   }
+    }
 
 
   }
 
 
- }
+
+
+
+  draw() {
+
+
+    if (!this.sliced) {
+
+
+      ctx.save();
+
+
+      ctx.translate(this.x + this.size / 2, this.y + this.size / 2);
+
+
+      ctx.rotate(this.rotation);
 
 
 
 
 
- isOffScreen() {
+      // Draw block with glow
 
 
-  if (!this.sliced) {
+      ctx.shadowBlur = 20;
 
 
-   return this.y > canvas.height;
+      ctx.shadowColor = this.color;
 
 
-  } else {
+      ctx.fillStyle = this.color;
 
 
-   return this.sliceTime > 100;
+      ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+
+
+
+
+
+      // Inner square for effect
+
+
+      ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+
+
+      ctx.fillRect(-this.size / 2 + 5, -this.size / 2 + 5, this.size - 10, this.size - 10);
+
+
+
+
+
+      ctx.restore();
+
+
+    } else {
+
+
+      // Draw sliced parts
+
+
+      for (let part of this.sliceParts) {
+
+
+        ctx.save();
+
+
+        ctx.globalAlpha = part.alpha;
+
+
+        ctx.translate(part.x, part.y);
+
+
+        ctx.rotate(part.rotation);
+
+
+        ctx.fillStyle = this.color;
+
+
+        ctx.fillRect(-part.width / 2, -part.height / 2, part.width, part.height);
+
+
+        ctx.restore();
+
+
+      }
+
+
+    }
 
 
   }
 
 
- }
 
 
 
+  isOffScreen() {
 
 
- slice(angle) {
+    if (!this.sliced) {
 
 
-  this.sliced = true;
+      return this.y > canvas.height;
 
 
+    } else {
 
 
+      return this.sliceTime > 100;
 
-  // Create two halves
 
+    }
 
-  const centerX = this.x + this.size / 2;
 
+  }
 
-  const centerY = this.y + this.size / 2;
 
 
 
 
+  slice(angle) {
 
-  this.sliceParts = [
 
+    this.sliced = true;
 
-   {
 
 
-    x: centerX - 10,
 
 
-    y: centerY,
+    // Create two halves
 
 
-    width: this.size / 2,
+    const centerX = this.x + this.size / 2;
 
 
-    height: this.size,
+    const centerY = this.y + this.size / 2;
 
 
-    vx: -3 * Math.cos(angle),
 
 
-    vy: -3 * Math.sin(angle) - 2,
 
+    this.sliceParts = [
 
-    rotation: this.rotation,
 
+      {
 
-    rotSpeed: -0.1,
 
+        x: centerX - 10,
 
-    alpha: 1,
 
+        y: centerY,
 
-   },
 
+        width: this.size / 2,
 
-   {
 
+        height: this.size,
 
-    x: centerX + 10,
 
+        vx: -3 * Math.cos(angle),
 
-    y: centerY,
 
+        vy: -3 * Math.sin(angle) - 2,
 
-    width: this.size / 2,
 
+        rotation: this.rotation,
 
-    height: this.size,
 
+        rotSpeed: -0.1,
 
-    vx: 3 * Math.cos(angle),
 
+        alpha: 1,
 
-    vy: 3 * Math.sin(angle) - 2,
 
+      },
 
-    rotation: this.rotation,
 
+      {
 
-    rotSpeed: 0.1,
 
+        x: centerX + 10,
 
-    alpha: 1,
 
+        y: centerY,
 
-   },
 
+        width: this.size / 2,
 
-  ];
 
+        height: this.size,
 
 
+        vx: 3 * Math.cos(angle),
 
 
-  // Create particles
+        vy: 3 * Math.sin(angle) - 2,
 
 
-  createParticles(centerX, centerY, this.color);
+        rotation: this.rotation,
 
 
- }
+        rotSpeed: 0.1,
+
+
+        alpha: 1,
+
+
+      },
+
+
+    ];
+
+
+
+
+
+    // Create particles
+
+
+    createParticles(centerX, centerY, this.color);
+
+
+  }
 
 
 }
@@ -431,97 +431,97 @@ class Block {
 class Particle {
 
 
- constructor(x, y, color) {
+  constructor(x, y, color) {
 
 
-  this.x = x;
+    this.x = x;
 
 
-  this.y = y;
+    this.y = y;
 
 
-  this.vx = (Math.random() - 0.5) * 8;
+    this.vx = (Math.random() - 0.5) * 8;
 
 
-  this.vy = (Math.random() - 0.5) * 8;
+    this.vy = (Math.random() - 0.5) * 8;
 
 
-  this.size = Math.random() * 4 + 2;
+    this.size = Math.random() * 4 + 2;
 
 
-  this.color = color;
+    this.color = color;
 
 
-  this.alpha = 1;
+    this.alpha = 1;
 
 
-  this.decay = Math.random() * 0.02 + 0.02;
+    this.decay = Math.random() * 0.02 + 0.02;
 
 
- }
-
-
-
-
-
- update() {
-
-
-  this.x += this.vx;
-
-
-  this.y += this.vy;
-
-
-  this.vy += 0.2; // gravity
-
-
-  this.alpha -= this.decay;
-
-
- }
+  }
 
 
 
 
 
- draw() {
+  update() {
 
 
-  ctx.save();
+    this.x += this.vx;
 
 
-  ctx.globalAlpha = this.alpha;
+    this.y += this.vy;
 
 
-  ctx.fillStyle = this.color;
+    this.vy += 0.2; // gravity
 
 
-  ctx.beginPath();
+    this.alpha -= this.decay;
 
 
-  ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-
-
-  ctx.fill();
-
-
-  ctx.restore();
-
-
- }
+  }
 
 
 
 
 
- isDead() {
+  draw() {
 
 
-  return this.alpha <= 0;
+    ctx.save();
 
 
- }
+    ctx.globalAlpha = this.alpha;
+
+
+    ctx.fillStyle = this.color;
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+
+
+    ctx.fill();
+
+
+    ctx.restore();
+
+
+  }
+
+
+
+
+
+  isDead() {
+
+
+    return this.alpha <= 0;
+
+
+  }
 
 
 }
@@ -533,13 +533,13 @@ class Particle {
 function createParticles(x, y, color) {
 
 
- for (let i = 0; i < 15; i++) {
+  for (let i = 0; i < 15; i++) {
 
 
-  particles.push(new Particle(x, y, color));
+    particles.push(new Particle(x, y, color));
 
 
- }
+  }
 
 
 }
@@ -554,58 +554,58 @@ function createParticles(x, y, color) {
 canvas.addEventListener("mousemove", (e) => {
 
 
- const rect = canvas.getBoundingClientRect();
+  const rect = canvas.getBoundingClientRect();
 
 
- lastMouseX = mouseX;
+  lastMouseX = mouseX;
 
 
- lastMouseY = mouseY;
+  lastMouseY = mouseY;
 
 
- mouseX = e.clientX - rect.left;
+  mouseX = e.clientX - rect.left;
 
 
- mouseY = e.clientY - rect.top;
-
-
-
-
-
- // Calculate saber angle based on movement
-
-
- const dx = mouseX - lastMouseX;
-
-
- const dy = mouseY - lastMouseY;
-
-
- if (dx !== 0 || dy !== 0) {
-
-
-  saberAngle = Math.atan2(dy, dx);
-
-
- }
+  mouseY = e.clientY - rect.top;
 
 
 
 
 
- // Add to trail
+  // Calculate saber angle based on movement
 
 
- saberTrail.push({ x: mouseX, y: mouseY, alpha: 1 });
+  const dx = mouseX - lastMouseX;
 
 
- if (saberTrail.length > 15) {
+  const dy = mouseY - lastMouseY;
 
 
-  saberTrail.shift();
+  if (dx !== 0 || dy !== 0) {
 
 
- }
+    saberAngle = Math.atan2(dy, dx);
+
+
+  }
+
+
+
+
+
+  // Add to trail
+
+
+  saberTrail.push({ x: mouseX, y: mouseY, alpha: 1 });
+
+
+  if (saberTrail.length > 15) {
+
+
+    saberTrail.shift();
+
+
+  }
 
 
 });
@@ -620,13 +620,13 @@ canvas.addEventListener("mousemove", (e) => {
 document.getElementById("startBtn").addEventListener("click", () => {
 
 
- document.getElementById("startScreen").style.display = "none";
+  document.getElementById("startScreen").style.display = "none";
 
 
- gameState = "playing";
+  gameState = "playing";
 
 
- resetGame();
+  resetGame();
 
 
 });
@@ -641,13 +641,13 @@ document.getElementById("startBtn").addEventListener("click", () => {
 document.getElementById("restartBtn").addEventListener("click", () => {
 
 
- document.getElementById("gameOver").style.display = "none";
+  document.getElementById("gameOver").style.display = "none";
 
 
- gameState = "playing";
+  gameState = "playing";
 
 
- resetGame();
+  resetGame();
 
 
 });
@@ -659,22 +659,22 @@ document.getElementById("restartBtn").addEventListener("click", () => {
 function resetGame() {
 
 
- score = 0;
+  score = 0;
 
 
- combo = 0;
+  combo = 0;
 
 
- missed = 0;
+  missed = 0;
 
 
- blocks = [];
+  blocks = [];
 
 
- particles = [];
+  particles = [];
 
 
- blockSpawnTimer = 0;
+  blockSpawnTimer = 0;
 
 
 }
@@ -686,7 +686,7 @@ function resetGame() {
 function spawnBlock() {
 
 
- blocks.push(new Block());
+  blocks.push(new Block());
 
 
 }
@@ -698,61 +698,13 @@ function spawnBlock() {
 function checkCollisions() {
 
 
- const speed = Math.sqrt(
+  const speed = Math.sqrt(
 
 
- Math.pow(mouseX - lastMouseX, 2) +
+  Math.pow(mouseX - lastMouseX, 2) +
 
 
- Math.pow(mouseY - lastMouseY, 2),
-
-
- );
-
-
-
-
-
- // Only slice if moving fast enough
-
-
- if (speed < 5) return;
-
-
-
-
-
- for (let block of blocks) {
-
-
-  if (block.sliced) continue;
-
-
-
-
-
-  // Check if saber passes through block
-
-
-  const blockCenterX = block.x + block.size / 2;
-
-
-  const blockCenterY = block.y + block.size / 2;
-
-
-
-
-
-  // Distance from mouse to block center
-
-
-  const dist = Math.sqrt(
-
-
-  Math.pow(mouseX - blockCenterX, 2) +
-
-
-  Math.pow(mouseY - blockCenterY, 2),
+  Math.pow(mouseY - lastMouseY, 2),
 
 
   );
@@ -761,25 +713,73 @@ function checkCollisions() {
 
 
 
-  if (dist < block.size) {
+  // Only slice if moving fast enough
 
 
-   block.slice(saberAngle);
+  if (speed < 5) return;
 
 
-   combo++;
 
 
-   score += 10 * combo;
+
+  for (let block of blocks) {
 
 
-   updateUI();
+    if (block.sliced) continue;
+
+
+
+
+
+    // Check if saber passes through block
+
+
+    const blockCenterX = block.x + block.size / 2;
+
+
+    const blockCenterY = block.y + block.size / 2;
+
+
+
+
+
+    // Distance from mouse to block center
+
+
+    const dist = Math.sqrt(
+
+
+    Math.pow(mouseX - blockCenterX, 2) +
+
+
+    Math.pow(mouseY - blockCenterY, 2),
+
+
+    );
+
+
+
+
+
+    if (dist < block.size) {
+
+
+      block.slice(saberAngle);
+
+
+      combo++;
+
+
+      score += 10 * combo;
+
+
+      updateUI();
+
+
+    }
 
 
   }
-
-
- }
 
 
 }
@@ -791,10 +791,10 @@ function checkCollisions() {
 function updateUI() {
 
 
- document.getElementById("score").textContent = `Score: ${score}`;
+  document.getElementById("score").textContent = `Score: ${score}`;
 
 
- document.getElementById("combo").textContent = `Combo: ${combo}x`;
+  document.getElementById("combo").textContent = `Combo: ${combo}x`;
 
 
 }
@@ -806,157 +806,157 @@ function updateUI() {
 function drawSaber() {
 
 
- // Draw trail
+  // Draw trail
 
 
- for (let i = 0; i < saberTrail.length; i++) {
+  for (let i = 0; i < saberTrail.length; i++) {
 
 
-  const trail = saberTrail[i];
+    const trail = saberTrail[i];
 
 
-  const alpha = (i / saberTrail.length) * 0.5;
-
-
-
-
-
-  ctx.save();
-
-
-  ctx.globalAlpha = alpha;
-
-
-  ctx.strokeStyle = saberColor;
-
-
-  ctx.lineWidth = 8;
-
-
-  ctx.lineCap = "round";
+    const alpha = (i / saberTrail.length) * 0.5;
 
 
 
 
 
-  if (i > 0) {
+    ctx.save();
 
 
-   ctx.beginPath();
+    ctx.globalAlpha = alpha;
 
 
-   ctx.moveTo(saberTrail[i - 1].x, saberTrail[i - 1].y);
+    ctx.strokeStyle = saberColor;
 
 
-   ctx.lineTo(trail.x, trail.y);
+    ctx.lineWidth = 8;
 
 
-   ctx.stroke();
+    ctx.lineCap = "round";
+
+
+
+
+
+    if (i > 0) {
+
+
+      ctx.beginPath();
+
+
+      ctx.moveTo(saberTrail[i - 1].x, saberTrail[i - 1].y);
+
+
+      ctx.lineTo(trail.x, trail.y);
+
+
+      ctx.stroke();
+
+
+    }
+
+
+    ctx.restore();
 
 
   }
 
 
+
+
+
+  // Draw saber
+
+
+  ctx.save();
+
+
+  ctx.translate(mouseX, mouseY);
+
+
+  ctx.rotate(saberAngle);
+
+
+
+
+
+  // Saber glow
+
+
+  ctx.shadowBlur = 20;
+
+
+  ctx.shadowColor = saberColor;
+
+
+
+
+
+  // Saber blade
+
+
+  const gradient = ctx.createLinearGradient(0, 0, saberLength, 0);
+
+
+  gradient.addColorStop(0, "rgba(255, 255, 255, 0.9)");
+
+
+  gradient.addColorStop(0.3, saberColor);
+
+
+  gradient.addColorStop(1, "rgba(0, 255, 255, 0.3)");
+
+
+
+
+
+  ctx.fillStyle = gradient;
+
+
+  ctx.fillRect(0, -5, saberLength, 10);
+
+
+
+
+
+  // Saber handle
+
+
+  ctx.fillStyle = "#666";
+
+
+  ctx.fillRect(-20, -8, 25, 16);
+
+
+  ctx.fillStyle = "#333";
+
+
+  ctx.fillRect(-20, -6, 25, 12);
+
+
+
+
+
   ctx.restore();
 
 
- }
 
 
 
+  // Draw cursor point
 
 
- // Draw saber
+  ctx.fillStyle = saberColor;
 
 
- ctx.save();
+  ctx.beginPath();
 
 
- ctx.translate(mouseX, mouseY);
+  ctx.arc(mouseX, mouseY, 5, 0, Math.PI * 2);
 
 
- ctx.rotate(saberAngle);
-
-
-
-
-
- // Saber glow
-
-
- ctx.shadowBlur = 20;
-
-
- ctx.shadowColor = saberColor;
-
-
-
-
-
- // Saber blade
-
-
- const gradient = ctx.createLinearGradient(0, 0, saberLength, 0);
-
-
- gradient.addColorStop(0, "rgba(255, 255, 255, 0.9)");
-
-
- gradient.addColorStop(0.3, saberColor);
-
-
- gradient.addColorStop(1, "rgba(0, 255, 255, 0.3)");
-
-
-
-
-
- ctx.fillStyle = gradient;
-
-
- ctx.fillRect(0, -5, saberLength, 10);
-
-
-
-
-
- // Saber handle
-
-
- ctx.fillStyle = "#666";
-
-
- ctx.fillRect(-20, -8, 25, 16);
-
-
- ctx.fillStyle = "#333";
-
-
- ctx.fillRect(-20, -6, 25, 12);
-
-
-
-
-
- ctx.restore();
-
-
-
-
-
- // Draw cursor point
-
-
- ctx.fillStyle = saberColor;
-
-
- ctx.beginPath();
-
-
- ctx.arc(mouseX, mouseY, 5, 0, Math.PI * 2);
-
-
- ctx.fill();
+  ctx.fill();
 
 
 }
@@ -968,100 +968,184 @@ function drawSaber() {
 function gameLoop() {
 
 
- // Clear canvas
+  // Clear canvas
 
 
- ctx.fillStyle = "rgba(15, 15, 30, 0.3)";
+  ctx.fillStyle = "rgba(15, 15, 30, 0.3)";
 
 
- ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-
-
-
-
- if (gameState === "playing") {
-
-
-  // Spawn blocks
-
-
-  blockSpawnTimer++;
-
-
-  if (blockSpawnTimer >= blockSpawnInterval) {
-
-
-   spawnBlock();
-
-
-   blockSpawnTimer = 0;
-
-
-  }
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 
 
 
 
-  // Update and draw blocks
+  if (gameState === "playing") {
 
 
-  for (let i = blocks.length - 1; i >= 0; i--) {
+    // Spawn blocks
 
 
-   blocks[i].update();
+    blockSpawnTimer++;
 
 
-   blocks[i].draw();
+    if (blockSpawnTimer >= blockSpawnInterval) {
 
 
+      spawnBlock();
 
 
-
-   if (blocks[i].isOffScreen()) {
-
-
-    if (!blocks[i].sliced) {
-
-
-     missed++;
-
-
-     combo = 0;
-
-
-     updateUI();
-
-
-
-
-
-     if (missed >= maxMissed) {
-
-
-      gameState = "gameover";
-
-
-      document.getElementById("gameOver").style.display = "block";
-
-
-      document.getElementById("finalScore").textContent = `Final Score: ${score}`;
-
-
-      document.getElementById("finalCombo").textContent = `Best Combo: ${combo}x`;
-
-
-     }
+      blockSpawnTimer = 0;
 
 
     }
 
 
-    blocks.splice(i, 1);
 
 
-   }
+
+    // Update and draw blocks
+
+
+    for (let i = blocks.length - 1; i >= 0; i--) {
+
+
+      blocks[i].update();
+
+
+      blocks[i].draw();
+
+
+
+
+
+      if (blocks[i].isOffScreen()) {
+
+
+        if (!blocks[i].sliced) {
+
+
+          missed++;
+
+
+          combo = 0;
+
+
+          updateUI();
+
+
+
+
+
+          if (missed >= maxMissed) {
+
+
+            gameState = "gameover";
+
+
+            document.getElementById("gameOver").style.display = "block";
+
+
+            document.getElementById("finalScore").textContent = `Final Score: ${score}`;
+
+
+            document.getElementById("finalCombo").textContent = `Best Combo: ${combo}x`;
+
+
+          }
+
+
+        }
+
+
+        blocks.splice(i, 1);
+
+
+      }
+
+
+    }
+
+
+
+
+
+    // Update and draw particles
+
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+
+
+      particles[i].update();
+
+
+      particles[i].draw();
+
+
+
+
+
+      if (particles[i].isDead()) {
+
+
+        particles.splice(i, 1);
+
+
+      }
+
+
+    }
+
+
+
+
+
+    // Check collisions
+
+
+    checkCollisions();
+
+
+
+
+
+    // Draw saber
+
+
+    drawSaber();
+
+
+
+
+
+    // Draw missed counter
+
+
+    ctx.fillStyle = "white";
+
+
+    ctx.font = "20px Arial";
+
+
+    ctx.textAlign = "right";
+
+
+    ctx.fillText(`Missed: ${missed}/${maxMissed}`, canvas.width - 20, 30);
+
+
+    ctx.textAlign = "left";
+
+
+
+
+
+  } else if (gameState === "start") {
+
+
+    // Draw saber on start screen
+
+
+    drawSaber();
 
 
   }
@@ -1070,91 +1154,7 @@ function gameLoop() {
 
 
 
-  // Update and draw particles
-
-
-  for (let i = particles.length - 1; i >= 0; i--) {
-
-
-   particles[i].update();
-
-
-   particles[i].draw();
-
-
-
-
-
-   if (particles[i].isDead()) {
-
-
-    particles.splice(i, 1);
-
-
-   }
-
-
-  }
-
-
-
-
-
-  // Check collisions
-
-
-  checkCollisions();
-
-
-
-
-
-  // Draw saber
-
-
-  drawSaber();
-
-
-
-
-
-  // Draw missed counter
-
-
-  ctx.fillStyle = "white";
-
-
-  ctx.font = "20px Arial";
-
-
-  ctx.textAlign = "right";
-
-
-  ctx.fillText(`Missed: ${missed}/${maxMissed}`, canvas.width - 20, 30);
-
-
-  ctx.textAlign = "left";
-
-
-
-
-
- } else if (gameState === "start") {
-
-
-  // Draw saber on start screen
-
-
-  drawSaber();
-
-
- }
-
-
-
-
-
- requestAnimationFrame(gameLoop);
+  requestAnimationFrame(gameLoop);
 
 
 }
