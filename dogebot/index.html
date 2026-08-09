@@ -676,53 +676,53 @@
                                 this.memories = [];
                               }
 
-// helper to switch activation at runtime
-setActivation(name) {
-  const allowed = ["sigmoid", "relu", "leaky-relu"];
-  if (!allowed.includes(name)) {
-    console.warn("Unknown activation, keeping existing:", this.activationName);
-    return;
-  }
-  this.activationName = name;
-}
+                              // helper to switch activation at runtime
+                              setActivation(name) {
+                                const allowed = ["sigmoid", "relu", "leaky-relu"];
+                                if (!allowed.includes(name)) {
+                                  console.warn("Unknown activation, keeping existing:", this.activationName);
+                                  return;
+                                }
+                                this.activationName = name;
+                              }
 
-// keep existing sigmoid helpers for backward compatibility
-sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
-sigmoidDerivFromActivated(y) { return y * (1 - y); } // derivative given activated output
+                              // keep existing sigmoid helpers for backward compatibility
+                              sigmoid(x) { return 1 / (1 + Math.exp(-x)); }
+                              sigmoidDerivFromActivated(y) { return y * (1 - y); } // derivative given activated output
 
-// ReLU / Leaky ReLU and their derivative wrt pre-activation (not activated output)
-relu(preAct) { return preAct > 0 ? preAct : 0; }
-reluDerivFromPreAct(preAct) { return preAct > 0 ? 1 : 0; }
+                              // ReLU / Leaky ReLU and their derivative wrt pre-activation (not activated output)
+                              relu(preAct) { return preAct > 0 ? preAct : 0; }
+                              reluDerivFromPreAct(preAct) { return preAct > 0 ? 1 : 0; }
 
-leakyRelu(preAct, alpha = 0.01) { return preAct > 0 ? preAct : alpha * preAct; }
-leakyReluDerivFromPreAct(preAct, alpha = 0.01) { return preAct > 0 ? 1 : alpha; }
+                              leakyRelu(preAct, alpha = 0.01) { return preAct > 0 ? preAct : alpha * preAct; }
+                              leakyReluDerivFromPreAct(preAct, alpha = 0.01) { return preAct > 0 ? 1 : alpha; }
 
-// unified activation function — takes pre-activation sum and returns activated value
-activation(preAct) {
-  switch (this.activationName) {
-    case "relu":
-      return this.relu(preAct);
-    case "leaky-relu":
-      return this.leakyRelu(preAct);
-    case "sigmoid":
-    default:
-      return this.sigmoid(preAct);
-  }
-}
+                              // unified activation function — takes pre-activation sum and returns activated value
+                              activation(preAct) {
+                                switch (this.activationName) {
+                                  case "relu":
+                                  return this.relu(preAct);
+                                  case "leaky-relu":
+                                  return this.leakyRelu(preAct);
+                                  case "sigmoid":
+                                  default:
+                                  return this.sigmoid(preAct);
+                                }
+                              }
 
-// unified derivative function — we accept both activated value and preAct so both families can be supported
-activationDeriv(activated, preAct) {
-  switch (this.activationName) {
-    case "relu":
-      return this.reluDerivFromPreAct(preAct);
-    case "leaky-relu":
-      return this.leakyReluDerivFromPreAct(preAct);
-    case "sigmoid":
-    default:
-      // sigmoid derivative can be computed from the activated output
-      return this.sigmoidDerivFromActivated(activated);
-  }
-}
+                              // unified derivative function — we accept both activated value and preAct so both families can be supported
+                              activationDeriv(activated, preAct) {
+                                switch (this.activationName) {
+                                  case "relu":
+                                  return this.reluDerivFromPreAct(preAct);
+                                  case "leaky-relu":
+                                  return this.leakyReluDerivFromPreAct(preAct);
+                                  case "sigmoid":
+                                  default:
+                                  // sigmoid derivative can be computed from the activated output
+                                  return this.sigmoidDerivFromActivated(activated);
+                                }
+                              }
                               tanhDeriv(y) { return 1 - y * y; }
 
                               updateEmotion(text) {
@@ -899,27 +899,27 @@ activationDeriv(activated, preAct) {
                                   }
 
                                   const outputFeatures = new Float32Array(this.dim);
-const preActivations = new Float32Array(this.dim);
+                                  const preActivations = new Float32Array(this.dim);
 
-// compute pre-activation sums, then use unified activation()
-for (let o = 0; o < this.dim; o++) {
-  let sum = 0;
-  for (let h = 0; h < this.dim; h++) {
-    sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o];
-  }
-  const outSum = sum + this.biasOutput[o];
-  preActivations[o] = outSum;
-  outputFeatures[o] = this.activation(outSum);
-}
+                                  // compute pre-activation sums, then use unified activation()
+                                  for (let o = 0; o < this.dim; o++) {
+                                    let sum = 0;
+                                    for (let h = 0; h < this.dim; h++) {
+                                      sum += hiddenOutputs[h] * this.W_hidden_to_output[h][o];
+                                    }
+                                    const outSum = sum + this.biasOutput[o];
+                                    preActivations[o] = outSum;
+                                    outputFeatures[o] = this.activation(outSum);
+                                  }
 
-const targetVec = this.embeddings[b];
+                                  const targetVec = this.embeddings[b];
 
-const deltaOutput = new Float32Array(this.dim);
-for (let o = 0; o < this.dim; o++) {
-  let error = targetVec[o] - outputFeatures[o];
-  // activationDeriv takes (activatedValue, preActivation)
-  deltaOutput[o] = error * this.activationDeriv(outputFeatures[o], preActivations[o]);
-}
+                                  const deltaOutput = new Float32Array(this.dim);
+                                  for (let o = 0; o < this.dim; o++) {
+                                    let error = targetVec[o] - outputFeatures[o];
+                                    // activationDeriv takes (activatedValue, preActivation)
+                                    deltaOutput[o] = error * this.activationDeriv(outputFeatures[o], preActivations[o]);
+                                  }
 
                                   const deltaHidden = new Float32Array(this.dim);
                                   for (let h = 0; h < this.dim; h++) {
