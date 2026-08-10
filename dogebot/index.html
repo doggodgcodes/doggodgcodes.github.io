@@ -12,7 +12,7 @@
       <meta property="og:type" content="website">
       <meta name="twitter:card" content="summary_large_image">
       <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-      <title>DOGEBOT V282 • ENJOY THE ICOSAHEDRON</title>
+      <title>DOGEBOT V283 • ENJOY THE ICOSAHEDRON</title>
       <style id="css">
         /* =========================================================
         💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -66,7 +66,7 @@
           background-position: center;
           background-attachment: fixed;
 
-          animation: flowBackground 20s ease infinite;
+          /* animation: flowBackground 20s ease infinite; */
         }
 
         /* thanks to chatgpt and minechicken for the news banner */
@@ -135,7 +135,7 @@
           inset 0 1px 0 rgba(255,255,255,0.75);
           */
 
-          animation: floatPanel 7s ease-in-out infinite;
+          /* animation: floatPanel 7s ease-in-out infinite; */
         }
 
         /* subtle top gloss (not overpowering) */
@@ -575,7 +575,7 @@
     <body class="fadein-zoom">
       <div id="news-thingy"></div>
 
-      <h1 id="title">🐕 DOGEBOT V282 • ENJOY THE ICOSAHEDRON</h1>
+      <h1 id="title">🐕 DOGEBOT V283 • ENJOY THE ICOSAHEDRON</h1>
       <p>Smart • Kind • Calculates • Chatty • Great</p>
 
         <div id="chat"></div>
@@ -584,7 +584,7 @@
         <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
         <div class="toggle-container">
-        <span>NEOCORE 13 BY GEMINI & CHATGPT:</span>
+        <span>NEOCORE 14 BY GEMINI & CHATGPT:</span>
         <label class="switch">
           <input type="checkbox" id="neuralToggle" checked>
           <span class="slider"></span>
@@ -592,7 +592,7 @@
           <span id="neuralStatus" style="color: #ff2222;">ACTIVE</span>
           </div>
 
-          <script src="https://doggodgcodes.github.io/js-linker/trail.js"></script>
+          <!-- <script src="https://doggodgcodes.github.io/js-linker/trail.js"></script> -->
             <script>
               const aiName = "dogebot";
               const newsName = "PROBABLY NOT ACCURATE NEWS FROM THE ICOSAHEDRON: ";
@@ -627,8 +627,9 @@
               */
 
               // was maxVocab - 5000, and dim = 48 (NeoCore 8)
+              // then was maxVocab = 4000, and dim = 36
               class NeoCore {
-                constructor(maxVocab = 4000, dim = 36) {
+                constructor(maxVocab = 4000, dim = 28) {
                   this.vocab = [];
                   this.vocabMap = new Map();
 
@@ -1478,7 +1479,10 @@
                     "Dogebot is good at coding.",
                     "You can always code the best things if you try hard enough.",
                     "The grass looks nice with the lake.",
-                    "Coding chicken nuggets right now!"
+                    "Coding chicken nuggets right now!",
+                    "I see a noble plate of something awesome!",
+                    "New fast food store takes the world by storm.",
+                    "Eating multiple types of soup."
                   ];
 
                   // uhh so right below we have the news
