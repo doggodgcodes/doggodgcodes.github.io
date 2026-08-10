@@ -12,7 +12,7 @@
       <meta property="og:type" content="website">
       <meta name="twitter:card" content="summary_large_image">
       <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-      <title>DOGEBOT V278 • ENJOY THE ICOSAHEDRON</title>
+      <title>DOGEBOT V279 • ENJOY THE ICOSAHEDRON</title>
       <style id="css">
         /* =========================================================
         💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -575,7 +575,7 @@
     <body class="fadein-zoom">
       <div id="news-thingy"></div>
 
-      <h1 id="title">🐕 DOGEBOT V278 • ENJOY THE ICOSAHEDRON</h1>
+      <h1 id="title">🐕 DOGEBOT V279 • ENJOY THE ICOSAHEDRON</h1>
       <p>Smart • Kind • Calculates • Chatty • Great</p>
 
         <div id="chat"></div>
@@ -584,7 +584,7 @@
         <button onclick="sendMessage()" class="fadein-zoom">SEND</button>
 
         <div class="toggle-container">
-        <span>NEOCORE 12 BY GEMINI & CHATGPT:</span>
+        <span>NEOCORE 13 BY GEMINI & CHATGPT:</span>
         <label class="switch">
           <input type="checkbox" id="neuralToggle" checked>
           <span class="slider"></span>
@@ -1023,12 +1023,12 @@
                     }
                     out.push(w);
                   }
-                  if (Math.random() > 0.5) {
-                    out.push(" :3");
-                  }
-                  if (Math.random() > 0.7) {
-                    out.push(" xd");
-                  }
+                  // if (Math.random() > 0.5) {
+                  //   out.push(" :3");
+                  // }
+                  // if (Math.random() > 0.7) {
+                  //   out.push(" xd");
+                  // }
                   if (out.length > 0 && !/[.!?]$/.test(out[out.length - 1])) out[out.length - 1] += ".";
                   return out.join(" ");
                 }
@@ -1037,7 +1037,7 @@
                 // 🔮 SEQUENCE GENERATION WITH MULTI-TIER FILTER MATRIX
                 // =========================================================================
                 // base temp og 0.75
-                generateResponse(seed, maxTokens = 15, baseTemperature = 1.2, topK = 8) {
+                generateResponse(seed, maxTokens = 15, baseTemperature = 0.5, topK = 8) {
                   if (this.vocab.length === 0) return "MATRIX FEED COMPROMISED.";
 
                   this.updateEmotion(seed);
@@ -1192,7 +1192,10 @@
                     }
 
                     scores.sort((a, b) => b.score - a.score);
-                    const candidates = scores.slice(0, topK);
+                    // const candidates = scores.slice(0, topK);
+                    // const candidates = scores.filter(c => c.score >= scores[0].score - 0.5).slice(0, topK);
+                    const candidates = scores.slice(0, 1);
+                    // const candidates = scores.slice(0, 1);
 
                     const exps = candidates.map(c => Math.exp(c.score / currentTemperature));
                     const sum = exps.reduce((a, b) => a + b, 0);
