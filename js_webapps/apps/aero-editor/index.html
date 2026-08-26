@@ -93,79 +93,79 @@
   <body>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-+Kqbt7BxoT20OXHT6OYj0KpETulwb2UXMJQTdvzJspYi6vE2SsbsTsOB91E93l3AVz8Y41/2bZUhKDQa/lAZgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js"  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-      <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
+        <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
 
-      <div class="editor-container">
-      <textarea placeholder="Make your webpage...">
-        <!doctype html>
-        <html>
-          <head>
-            <title>My Webpage</title>
-            <style>
-              body {
-                font-family: "Segoe UI", sans-serif;
+        <div class="editor-container">
+        <textarea placeholder="Make your webpage...">
+          <!doctype html>
+          <html>
+            <head>
+              <title>My Webpage</title>
+              <style>
+                body {
+                  font-family: "Segoe UI", sans-serif;
+                }
+              </style>
+            </head>
+            <body>
+              <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
+              </body>
+            </html>
+          </textarea>
+          <div class="output-box">
+          </div>
+          </div>
+
+          <script>
+            // 1. Grab the tools
+            const input = document.querySelector('textarea');
+            const output = document.querySelector('.output-box');
+            const displayTitle = document.getElementById('title');
+
+            // 2. Listen for the typing
+            input.addEventListener('input', () => {
+              // 3. Teleport the code to the preview window!
+              output.innerHTML = DOMPurify.sanitize(input.value);
+
+              // We look for the <title> tag inside the textarea and grab its text
+              const match = input.value.match(/<title>(.*?)<\/title>/i);
+              if (match && match[1]) {
+                document.title = match[1] + " - doggodgcodes";
+                displayTitle.textContent = " " + match[1];
               }
-            </style>
-          </head>
-          <body>
-            <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
-            </body>
-          </html>
-        </textarea>
-        <div class="output-box">
-        </div>
-        </div>
+            });
 
-        <script>
-          // 1. Grab the tools
-          const input = document.querySelector('textarea');
-          const output = document.querySelector('.output-box');
-          const displayTitle = document.getElementById('title');
+            const saveBtn = document.getElementById('saveBtn');
 
-          // 2. Listen for the typing
-          input.addEventListener('input', () => {
-            // 3. Teleport the code to the preview window!
-            output.innerHTML = DOMPurify.sanitize(input.value);
+            saveBtn.addEventListener('click', () => {
+              // 1. Ask the user for a name (The Prompt!)
+              let fileName = prompt("What you gonna call it?", "my_webpage");
 
-            // We look for the <title> tag inside the textarea and grab its text
-            const match = input.value.match(/<title>(.*?)<\/title>/i);
-            if (match && match[1]) {
-              document.title = match[1] + " - doggodgcodes";
-              displayTitle.textContent = " " + match[1];
-            }
-          });
+              // If they hit cancel, don't do anything!
+              if (!fileName) return;
 
-          const saveBtn = document.getElementById('saveBtn');
+              // 2. Make sure it ends in .html
+              if (!fileName.endsWith(".html")) {
+                fileName += ".html";
+              }
 
-          saveBtn.addEventListener('click', () => {
-            // 1. Ask the user for a name (The Prompt!)
-            let fileName = prompt("What you gonna call it?", "my_webpage");
+              // 3. Create the "Jar" of code
+              let userCode = html_beautify(input.value + `<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"><\u002fscript><!-- Ensures where it was made. -->`, { indent_size: 2 })
+              const blob = new Blob([userCode], { type: "text/html" });
 
-            // If they hit cancel, don't do anything!
-            if (!fileName) return;
+              // 4. Create a hidden "ghost" link to trigger the download
+              const link = document.createElement("a");
+              link.href = URL.createObjectURL(blob);
+              link.download = fileName;
 
-            // 2. Make sure it ends in .html
-            if (!fileName.endsWith(".html")) {
-              fileName += ".html";
-            }
+              // 5. CLICK!
+              link.click();
 
-            // 3. Create the "Jar" of code
-            let userCode = html_beautify(input.value + `<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"><\u002fscript><!-- Ensures where it was made. -->`, { indent_size: 2 })
-            const blob = new Blob([userCode], { type: "text/html" });
-
-            // 4. Create a hidden "ghost" link to trigger the download
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = fileName;
-
-            // 5. CLICK!
-            link.click();
-
-            // 6. Clean up the ghost link
-            URL.revokeObjectURL(link.href);
-          });
-        </script>
-      </body>
-    </html>
+              // 6. Clean up the ghost link
+              URL.revokeObjectURL(link.href);
+            });
+          </script>
+        </body>
+      </html>
