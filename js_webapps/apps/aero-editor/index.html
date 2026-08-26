@@ -26,53 +26,69 @@
       .editor-container {
         display: flex;
         flex: 1;
-        gap: 5px;
-        padding: 5px;
+        gap: 12px;
+        padding: 12px;
         box-sizing: border-box;
       }
 
-      /* The Frosted Glass Textarea */
-      textarea {
+      /* Frosted glass wrapper for Monaco */
+      .editor-wrapper {
         flex: 1;
-        /* Half-transparent background */
-        background: rgba(255, 255, 255, 0.2);
-
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px); /* For Safari */
-
-        color: white;
-        text-shadow: 1px 1px 2px black;
-        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 20px;
-        padding: 20px;
-        font-size: 18px;
-        outline: none;
-        resize: none;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        tab-size: 2;
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
+        border: 1px solid rgba(255,255,255,0.15);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Monaco editor container must fill the wrapper */
+      #monaco-editor {
+        width: 100%;
+        height: 100%;
       }
 
       /* The Output Box (Also a bit glassy!) */
       .output-box {
         flex: 1;
-        background: rgba(255, 255, 255, 0.8); /* More solid so we can read! */
         border-radius: 20px;
-        padding: 20px;
-        overflow: auto;
-        border: 1px solid white;
+        padding: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.9);
+        background: rgba(255,255,255,0.85);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .preview-iframe {
+        flex: 1;
+        width: 100%;
+        border-radius: 12px;
+        border: 0;
+        background: white;
       }
 
       .world-bar {
         display: flex;
-        justify-content: space-between; /* Pushes title left, button right! */
-        align-items: center; /* Keeps them perfectly centered vertically */
+        justify-content: space-between; /* Pushes title left, controls right */
+        align-items: center;
         color: white;
-        min-height: 25px;
+        min-height: 48px;
         text-shadow: 0 0 10px rgba(0,0,0,0.5);
         background: rgba(0,0,0,0.2);
         margin: 0;
         padding: 12px;
       }
+
+      .controls {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
       #saveBtn {
         background: rgba(0, 242, 255, 0.6);
         color: white;
@@ -81,107 +97,171 @@
         border-radius: 50px;
         cursor: pointer;
         font-weight: bold;
-        transition: 0.3s;
+        transition: 0.2s;
       }
-      #saveBtn:hover {
-        background: #9cbb54;
-        transform: scale(1.1);
+      #saveBtn:hover { transform: scale(1.05); }
+
+      label.switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255,255,255,0.08);
+        padding: 6px 10px;
+        border-radius: 20px;
       }
-      #title {
-        background: rgba(0, 242, 255, 0.1);
+
+      /* small responsive tweaks */
+      @media (max-width: 900px) {
+        .editor-container { flex-direction: column; }
+        .editor-wrapper, .output-box { height: 45vh; }
       }
     </style>
   </head>
   <body>
 
-    <!-- External libraries: DOMPurify and js-beautify -->
+    <!-- External libraries: DOMPurify, js-beautify, Monaco loader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-+Kqbt7BxoT20OXHT6OYj0KpETulwb2UXMJQTdvzJspYi6vE2SsbsTsOB91E93l3AVz8Y41/2bZUhKDQa/lAZgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/monaco-editor@0.39.0/min/vs/loader.js"></script>
 
-        <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
+    <div class="world-bar">
+      <div>🌊 html editor aero - world bar 🌊 <strong id="title"></strong></div>
+      <div class="controls">
+        <label class="switch" title="Run scripts in preview (unsafe)">
+          <input type="checkbox" id="runScripts" />
+          <span>Run scripts</span>
+        </label>
+        <button id="saveBtn">save code</button>
+      </div>
+    </div>
 
-        <div class="editor-container">
-        <textarea placeholder="Make your webpage..." aria-label="HTML editor"><!doctype html>
-          <html>
-            <head>
-              <title>My Webpage</title>
-              <style>
-                body { font-family: "Segoe UI", sans-serif; }
-              </style>
-            </head>
-            <body>
-              <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
-              </body>
-            </html>
-          </textarea>
-          <div class="output-box" aria-live="polite"></div>
-          </div>
+    <div class="editor-container">
+      <div class="editor-wrapper">
+        <div id="monaco-editor" role="application" aria-label="Code editor (Monaco)"></div>
+      </div>
 
-          <script>
-            (function () {
-              // Elements
-              const input = document.querySelector('textarea');
-              const output = document.querySelector('.output-box');
-              const displayTitle = document.getElementById('title');
-              const saveBtn = document.getElementById('saveBtn');
+      <div class="output-box">
+        <iframe class="preview-iframe" id="previewIframe" sandbox="allow-scripts" title="preview"></iframe>
+      </div>
+    </div>
 
-              function setPreview(html) {
-                if (window.DOMPurify && typeof DOMPurify.sanitize === 'function') {
-                  // sanitize and render HTML (scripts will be removed by DOMPurify)
-                  output.innerHTML = DOMPurify.sanitize(html);
-                } else {
-                  // fallback: render as text to avoid executing unsafe markup
-                  output.textContent = html;
-                  console.warn('DOMPurify not available — rendering raw HTML as text.');
-                }
-              }
+    <script>
+      (function () {
+        // Elements
+        const titleEl = document.getElementById('title');
+        const runScriptsCheckbox = document.getElementById('runScripts');
+        const saveBtn = document.getElementById('saveBtn');
+        const iframe = document.getElementById('previewIframe');
 
-              function updateTitleFromHtml(html) {
-                const match = html.match(/<title>(.*?)<\/title>/i);
-                if (match && match[1]) {
-                  document.title = match[1] + ' - doggodgcodes';
-                  displayTitle.textContent = ' ' + match[1];
-                }
-              }
+        // Initial sample content
+        const initialContent = `<!doctype html>
+<html>
+  <head>
+    <title>My Webpage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>body { font-family: "Segoe UI", sans-serif; }</style>
+  </head>
+  <body>
+    <h1>Hello from Aero</h1>
+    <script>console.log('preview script ran')</script>
+  </body>
+</html>`;
 
-              // Initialize preview and title from initial textarea content
-              setPreview(input.value);
-              updateTitleFromHtml(input.value);
+        // Monaco loader setup
+        require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.39.0/min/vs' } });
+        let editor = null;
 
-              // Update on input
-              input.addEventListener('input', () => {
-                setPreview(input.value);
-                updateTitleFromHtml(input.value);
-              });
+        require(['vs/editor/editor.main'], function () {
+          editor = monaco.editor.create(document.getElementById('monaco-editor'), {
+            value: initialContent,
+            language: 'html',
+            theme: 'vs-dark',
+            automaticLayout: true,
+            tabSize: 2,
+            insertSpaces: true,
+            detectIndentation: false, // prevents workflow auto-indent from messing with existing indentation
+            formatOnType: false,
+            formatOnPaste: false,
+            minimap: { enabled: false }
+          });
 
-              saveBtn.addEventListener('click', () => {
-                let fileName = prompt('What you gonna call it?', 'my_webpage');
-                if (!fileName) return;
-                if (!fileName.endsWith('.html')) fileName += '.html';
+          // initialize preview and title
+          updatePreview();
+          updateTitleFromHtml(editor.getValue());
 
-                // Use beautifier if available
-                let userCode = (typeof html_beautify === 'function') ? html_beautify(input.value) : input.value;
+          // realtime updates (debounced)
+          let timeout = null;
+          editor.onDidChangeModelContent(() => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+              updatePreview();
+              updateTitleFromHtml(editor.getValue());
+            }, 250);
+          });
+        });
 
-                // Ensure the "where it was made" script is included before closing body
-                if (!userCode.includes('extra-doggodgcodes.js')) {
-                  // naive insertion before </body> if present
-                  userCode = userCode.replace(/<\/body>/i, '<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></' + 'script>\n</body>');
-                }
+        function updateTitleFromHtml(html) {
+          const match = html.match(/<title>(.*?)<\/title>/i);
+          if (match && match[1]) {
+            titleEl.textContent = ' ' + match[1];
+            document.title = match[1] + ' - doggodgcodes';
+          }
+        }
 
-                const blob = new Blob([userCode], { type: 'text/html' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = fileName;
-                // append to DOM to make click work reliably in all browsers
-                document.body.appendChild(link);
-                link.click();
-                // cleanup after a short delay to ensure download started
-                setTimeout(() => {
-                  URL.revokeObjectURL(link.href);
-                  if (link.parentNode) link.parentNode.removeChild(link);
-                }, 150);
-              });
-            })();
-          </script>
-        </body>
-      </html>
+        function updatePreview() {
+          const html = editor ? editor.getValue() : initialContent;
+
+          if (!runScriptsCheckbox.checked) {
+            // sanitize and set srcdoc so scripts won't run
+            if (window.DOMPurify && typeof DOMPurify.sanitize === 'function') {
+              iframe.srcdoc = DOMPurify.sanitize(html);
+            } else {
+              // fallback: escape HTML and put into a pre block so user sees code
+              iframe.srcdoc = '<pre>' + escapeHtml(html) + '</pre>';
+            }
+            // keep iframe sandboxed without scripts if possible
+            iframe.setAttribute('sandbox', '');
+          } else {
+            // user opted-in to run scripts in preview. Keep sandbox but allow scripts.
+            // Warning: running untrusted scripts can be unsafe. We allow scripts but not same-origin.
+            iframe.setAttribute('sandbox', 'allow-scripts');
+            iframe.srcdoc = html;
+          }
+        }
+
+        function escapeHtml(str) {
+          return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        saveBtn.addEventListener('click', () => {
+          const content = editor ? editor.getValue() : initialContent;
+          const fileNamePrompt = prompt('What you gonna call it?', 'my_webpage');
+          if (!fileNamePrompt) return;
+          let fileName = fileNamePrompt.endsWith('.html') ? fileNamePrompt : fileNamePrompt + '.html';
+
+          let userCode = (typeof html_beautify === 'function') ? html_beautify(content) : content;
+
+          // ensure marker script present
+          if (!userCode.includes('extra-doggodgcodes.js')) {
+            userCode = userCode.replace(/<\/body>/i, '<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></' + 'script>\n</body>');
+          }
+
+          const blob = new Blob([userCode], { type: 'text/html' });
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = fileName;
+          document.body.appendChild(link);
+          link.click();
+          setTimeout(() => {
+            URL.revokeObjectURL(link.href);
+            if (link.parentNode) link.parentNode.removeChild(link);
+          }, 200);
+        });
+
+        // expose updatePreview for manual testing
+        window.aeroUpdatePreview = updatePreview;
+      })();
+    </script>
+  </body>
+</html>
