@@ -119,32 +119,13 @@
   </head>
   <body>
 
-    <!-- Store the initial HTML as raw text so repository-formatters (YAML workflows) don't change JS template literals -->
-    <script id="initial-content" type="text/plain">
-      <!doctype html>
-      <html>
-        <head>
-          <title>My Webpage</title>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width,initial-scale=1">
-          <style>
-            body { font-family: "Segoe UI", sans-serif; }
-          </style>
-        </head>
-        <body>
-          <h1>Hello from Aero</h1>
-          <script>console.log('preview script ran')</script>
-          </body>
-        </html>
-      </script>
-
       <!-- External libraries: DOMPurify, js-beautify, Monaco loader -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-+Kqbt7BxoT20OXHT6OYj0KpETulwb2UXMJQTdvzJspYi6vE2SsbsTsOB91E93l3AVz8Y41/2bZUhKDQa/lAZgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
           <script src="https://unpkg.com/monaco-editor@0.39.0/min/vs/loader.js"></script>
 
             <div class="world-bar">
-            <div>🌊 html editor aero - world bar 🌊 <strong id="title"></strong></div>
+            <div>🌊 html editor aero - world bar 🌊 - <strong id="title"></strong></div>
             <div class="controls">
             <label class="switch" title="Run scripts in preview (unsafe)">
               <input type="checkbox" id="runScripts" />
@@ -156,7 +137,22 @@
 
               <div class="editor-container">
               <div class="editor-wrapper">
-              <div id="monaco-editor" role="application" aria-label="Code editor (Monaco)"></div>
+              <div id="monaco-editor" role="application" aria-label="Code editor (Monaco)">
+                <!doctype html>
+        <html>
+          <head>
+            <title>My Webpage</title>
+            <style>
+              body {
+                font-family: "Segoe UI", sans-serif;
+              }
+            </style>
+          </head>
+          <body>
+            <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
+            </body>
+          </html>
+              </div>
               </div>
 
               <div class="output-box">
@@ -171,12 +167,6 @@
                     const runScriptsCheckbox = document.getElementById('runScripts');
                     const saveBtn = document.getElementById('saveBtn');
                     const iframe = document.getElementById('previewIframe');
-
-                    // Get initial content from the <script type="text/plain"> block to avoid JS template literal issues
-                    const initialContent = (function () {
-                      const el = document.getElementById('initial-content');
-                      return el ? el.textContent.trim() : '<!doctype html><html><head><title>My Webpage</title></head><body></body></html>';
-                    })();
 
                     // Monaco loader setup
                     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.39.0/min/vs' } });
