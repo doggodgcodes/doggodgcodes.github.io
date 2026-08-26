@@ -96,92 +96,92 @@
 
     <!-- External libraries: DOMPurify and js-beautify -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-+Kqbt7BxoT20OXHT6OYj0KpETulwb2UXMJQTdvzJspYi6vE2SsbsTsOB91E93l3AVz8Y41/2bZUhKDQa/lAZgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
+        <div class="world-bar">🌊 html editor aero - world bar 🌊 (auto-updates and credits to google gemini for helping) <h3 id="title"></h3><div><button id="saveBtn">save code</button></div></div>
 
-    <div class="editor-container">
-      <textarea placeholder="Make your webpage..." aria-label="HTML editor"><!doctype html>
-<html>
-  <head>
-    <title>My Webpage</title>
-    <style>
-      body { font-family: "Segoe UI", sans-serif; }
-    </style>
-  </head>
-  <body>
-    <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
-  </body>
-</html>
-</textarea>
-      <div class="output-box" aria-live="polite"></div>
-    </div>
+        <div class="editor-container">
+        <textarea placeholder="Make your webpage..." aria-label="HTML editor"><!doctype html>
+          <html>
+            <head>
+              <title>My Webpage</title>
+              <style>
+                body { font-family: "Segoe UI", sans-serif; }
+              </style>
+            </head>
+            <body>
+              <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
+              </body>
+            </html>
+          </textarea>
+          <div class="output-box" aria-live="polite"></div>
+          </div>
 
-    <script>
-      (function () {
-        // Elements
-        const input = document.querySelector('textarea');
-        const output = document.querySelector('.output-box');
-        const displayTitle = document.getElementById('title');
-        const saveBtn = document.getElementById('saveBtn');
+          <script>
+            (function () {
+              // Elements
+              const input = document.querySelector('textarea');
+              const output = document.querySelector('.output-box');
+              const displayTitle = document.getElementById('title');
+              const saveBtn = document.getElementById('saveBtn');
 
-        function setPreview(html) {
-          if (window.DOMPurify && typeof DOMPurify.sanitize === 'function') {
-            // sanitize and render HTML (scripts will be removed by DOMPurify)
-            output.innerHTML = DOMPurify.sanitize(html);
-          } else {
-            // fallback: render as text to avoid executing unsafe markup
-            output.textContent = html;
-            console.warn('DOMPurify not available — rendering raw HTML as text.');
-          }
-        }
+              function setPreview(html) {
+                if (window.DOMPurify && typeof DOMPurify.sanitize === 'function') {
+                  // sanitize and render HTML (scripts will be removed by DOMPurify)
+                  output.innerHTML = DOMPurify.sanitize(html);
+                } else {
+                  // fallback: render as text to avoid executing unsafe markup
+                  output.textContent = html;
+                  console.warn('DOMPurify not available — rendering raw HTML as text.');
+                }
+              }
 
-        function updateTitleFromHtml(html) {
-          const match = html.match(/<title>(.*?)<\/title>/i);
-          if (match && match[1]) {
-            document.title = match[1] + ' - doggodgcodes';
-            displayTitle.textContent = ' ' + match[1];
-          }
-        }
+              function updateTitleFromHtml(html) {
+                const match = html.match(/<title>(.*?)<\/title>/i);
+                if (match && match[1]) {
+                  document.title = match[1] + ' - doggodgcodes';
+                  displayTitle.textContent = ' ' + match[1];
+                }
+              }
 
-        // Initialize preview and title from initial textarea content
-        setPreview(input.value);
-        updateTitleFromHtml(input.value);
+              // Initialize preview and title from initial textarea content
+              setPreview(input.value);
+              updateTitleFromHtml(input.value);
 
-        // Update on input
-        input.addEventListener('input', () => {
-          setPreview(input.value);
-          updateTitleFromHtml(input.value);
-        });
+              // Update on input
+              input.addEventListener('input', () => {
+                setPreview(input.value);
+                updateTitleFromHtml(input.value);
+              });
 
-        saveBtn.addEventListener('click', () => {
-          let fileName = prompt('What you gonna call it?', 'my_webpage');
-          if (!fileName) return;
-          if (!fileName.endsWith('.html')) fileName += '.html';
+              saveBtn.addEventListener('click', () => {
+                let fileName = prompt('What you gonna call it?', 'my_webpage');
+                if (!fileName) return;
+                if (!fileName.endsWith('.html')) fileName += '.html';
 
-          // Use beautifier if available
-          let userCode = (typeof html_beautify === 'function') ? html_beautify(input.value) : input.value;
+                // Use beautifier if available
+                let userCode = (typeof html_beautify === 'function') ? html_beautify(input.value) : input.value;
 
-          // Ensure the "where it was made" script is included before closing body
-          if (!userCode.includes('extra-doggodgcodes.js')) {
-            // naive insertion before </body> if present
-            userCode = userCode.replace(/<\/body>/i, '<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></' + 'script>\n</body>');
-          }
+                // Ensure the "where it was made" script is included before closing body
+                if (!userCode.includes('extra-doggodgcodes.js')) {
+                  // naive insertion before </body> if present
+                  userCode = userCode.replace(/<\/body>/i, '<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></' + 'script>\n</body>');
+                }
 
-          const blob = new Blob([userCode], { type: 'text/html' });
-          const link = document.createElement('a');
-          link.href = URL.createObjectURL(blob);
-          link.download = fileName;
-          // append to DOM to make click work reliably in all browsers
-          document.body.appendChild(link);
-          link.click();
-          // cleanup after a short delay to ensure download started
-          setTimeout(() => {
-            URL.revokeObjectURL(link.href);
-            if (link.parentNode) link.parentNode.removeChild(link);
-          }, 150);
-        });
-      })();
-    </script>
-  </body>
-</html>
+                const blob = new Blob([userCode], { type: 'text/html' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = fileName;
+                // append to DOM to make click work reliably in all browsers
+                document.body.appendChild(link);
+                link.click();
+                // cleanup after a short delay to ensure download started
+                setTimeout(() => {
+                  URL.revokeObjectURL(link.href);
+                  if (link.parentNode) link.parentNode.removeChild(link);
+                }, 150);
+              });
+            })();
+          </script>
+        </body>
+      </html>
