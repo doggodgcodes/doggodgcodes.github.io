@@ -121,8 +121,8 @@
 
     <!-- External libraries: DOMPurify, js-beautify, Monaco loader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js" integrity="sha512-+Kqbt7BxoT20OXHT6OYj0KpETulwb2UXMJQTdvzJspYi6vE2SsbsTsOB91E93l3AVz8Y41/2bZUhKDQa/lAZgA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://unpkg.com/monaco-editor@0.39.0/min/vs/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/2.0.3/beautify-html.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/monaco-editor@0.39.0/min/vs/loader.js"></script>
 
           <div class="world-bar">
           <div>🌊 html editor aero - world bar 🌊 - <strong id="title"></strong></div>
@@ -170,7 +170,43 @@
                     const saveBtn = document.getElementById('saveBtn');
                     const iframe = document.getElementById('previewIframe');
 
-                    const initialContent = document.getElementById('initial-content');
+                    // Debug: log presence of DOMPurify so it's obvious in console which branch runs
+                    console.log('DOMPurify present?', !!window.DOMPurify);
+
+                    const initialContent = (function () {
+                      const el = document.getElementById('initial-content');
+                      return el ? el.textContent.trim() : '<!doctype html><html><head><title>My Webpage</title></head><body></body></html>';
+                    })();
+
+                    // Simple fallback sanitizer if DOMPurify fails to load. This removes <script> and <iframe>
+                    // and strips event handler attributes and javascript: hrefs. Not as comprehensive as DOMPurify
+                    // but prevents the editor source from being shown inside a <pre> block.
+                    function sanitizeWithoutDomPurify(html) {
+                      function escapeHtmlForPre(s) {
+                        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                      }
+
+                      try {
+                        const doc = new DOMParser().parseFromString(html, 'text/html');
+                        doc.querySelectorAll('script, iframe').forEach(el => el.remove());
+
+                        const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_ELEMENT, null, false);
+                        let node = walker.nextNode();
+                        while (node) {
+                          Array.from(node.attributes).forEach(attr => {
+                            if (/^on/i.test(attr.name) || (attr.name === 'href' && /^javascript:/i.test(attr.value))) {
+                              node.removeAttribute(attr.name);
+                            }
+                          });
+                          node = walker.nextNode();
+                        }
+
+                        return '<!doctype html>' + doc.documentElement.outerHTML;
+                      } catch (e) {
+                        // If parsing fails, fall back to a safe escaped <pre> so user still sees their code.
+                        return '<pre>' + escapeHtmlForPre(html) + '</pre>';
+                      }
+                    }
 
                     // Monaco loader setup
                     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.39.0/min/vs' } });
@@ -220,9 +256,10 @@
                         // sanitize and set srcdoc so scripts won't run
                         if (window.DOMPurify && typeof DOMPurify.sanitize === 'function') {
                           iframe.srcdoc = DOMPurify.sanitize(html);
+                          console.log('updatePreview: used DOMPurify');
                         } else {
-                          // fallback: escape HTML and put into a pre block so user sees code
-                          iframe.srcdoc = '<pre>' + escapeHtml(html) + '</pre>';
+                          iframe.srcdoc = sanitizeWithoutDomPurify(html);
+                          console.log('updatePreview: used fallback sanitizer');
                         }
                         // keep iframe sandboxed without scripts if possible
                         iframe.setAttribute('sandbox', '');
