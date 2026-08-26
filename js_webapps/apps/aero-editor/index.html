@@ -141,6 +141,8 @@
             <!doctype html>
             <html>
               <head>
+                <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
                 <title>My Webpage</title>
                 <style>
                   body {
@@ -167,6 +169,11 @@
                     const runScriptsCheckbox = document.getElementById('runScripts');
                     const saveBtn = document.getElementById('saveBtn');
                     const iframe = document.getElementById('previewIframe');
+
+                    const initialContent = (function () {
+          const el = document.getElementById('initial-content');
+          return el ? el.textContent.trim() : '<!doctype html><html><head><title>My Webpage</title></head><body></body></html>';
+        })();
 
                     // Monaco loader setup
                     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.39.0/min/vs' } });
