@@ -170,10 +170,7 @@
                     const saveBtn = document.getElementById('saveBtn');
                     const iframe = document.getElementById('previewIframe');
 
-                    const initialContent = (function () {
-                      const el = document.getElementById('initial-content');
-                      return el ? el.textContent.trim() : '<!doctype html><html><head><title>My Webpage</title></head><body></body></html>';
-                    })();
+                    const initialContent = document.getElementById('initial-content');
 
                     // Monaco loader setup
                     require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.39.0/min/vs' } });
