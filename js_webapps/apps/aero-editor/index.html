@@ -173,10 +173,7 @@
                     // Debug: log presence of DOMPurify so it's obvious in console which branch runs
                     console.log('DOMPurify present?', !!window.DOMPurify);
 
-                    const initialContent = (function () {
-                      const el = document.getElementById('initial-content');
-                      return el ? el.textContent.trim() : '<!doctype html><html><head><title>My Webpage</title></head><body></body></html>';
-                    })();
+                    const initialContent = document.getElementById('initial-content');
 
                     // Simple fallback sanitizer if DOMPurify fails to load. This removes <script> and <iframe>
                     // and strips event handler attributes and javascript: hrefs. Not as comprehensive as DOMPurify
