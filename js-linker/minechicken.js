@@ -60,6 +60,10 @@ const brokenElement = document.querySelector('a[href="https://youtube.com/@flyin
 
 brokenElement.remove();
 
+const linkElement = document.querySelector('a[href="https://youtube.com/@nobodyasked67"]');
+
+linkElement.href = "https://youtube.com/@Tony-the-pet-ghost";
+
 // const a = document.createElement("script");
 
 // a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
