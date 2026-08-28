@@ -56,14 +56,18 @@ const gif = document.createElement("style");
 gif.innerHTML = "body { background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnBlbXkweGgyaHUzZThqdjQ3bnNwYjhzaWZlMXUxbHh2OGJiYzJmcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y4nk5bgwpWL6T5Ax9y/giphy.gif'); }";
 document.head.appendChild(gif);
 
-const a = document.createElement("script");
+const brokenElement = document.querySelector('a[href="https://youtube.com/@flyingdogwithapencil"]');
 
-a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
-const a2 = document.createElement("script");
+brokenElement.remove();
 
-a2.src = "https://doggodgcodes.github.io/april_fools.js";
+// const a = document.createElement("script");
+
+// a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
+// const a2 = document.createElement("script");
+
+// a2.src = "https://doggodgcodes.github.io/april_fools.js";
 
 // IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
-console.log("Appended April Fools.js");
-document.body.appendChild(a);
-document.body.appendChild(a2);
+// console.log("Appended April Fools.js");
+// document.body.appendChild(a);
+// document.body.appendChild(a2);
