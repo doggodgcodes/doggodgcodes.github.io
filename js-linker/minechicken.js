@@ -89,8 +89,8 @@ body {
   font-variation-settings:
   "ELSH" 0;
   text-shadow:
-  1px 1px #aa5000,
-  -1px -1px #00a;
+  1px 1px #883000,
+  -1px -1px #008;
 }
 `;
 
