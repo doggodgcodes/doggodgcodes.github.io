@@ -82,14 +82,14 @@ const style = document.createElement("style");
 style.textContent = `
 @import url('https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap');
 body {
-  font-family: "Geist Pixel", sans-serif;
+  font-family: "Geist Pixel", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
   font-variation-settings:
   "ELSH" 0;
   text-shadow:
-  1px 1px #f00,
+  1px 1px #FFA500,
   -1px -1px #0ff;
 }
 `;
