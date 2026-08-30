@@ -61,8 +61,8 @@ body::before {
   position: fixed;
   top: 0;
   left: 0;
-  width: 10%;
-  height: 10vh;
+  width: 100%;
+  height: 100vh;
   background-repeat: repeat;
   background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnBlbXkweGgyaHUzZThqdjQ3bnNwYjhzaWZlMXUxbHh2OGJiYzJmcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y4nk5bgwpWL6T5Ax9y/giphy.gif');
   z-index: -1;
