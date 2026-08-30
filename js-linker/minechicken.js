@@ -87,10 +87,10 @@ body {
   font-weight: 400;
   font-style: normal;
   font-variation-settings:
-    "ELSH" 0;
+  "ELSH" 0;
   text-shadow:
-    1px 1px #f00,
-    -1px -1px #0ff;
+  1px 1px #f00,
+  -1px -1px #0ff;
 }
 `;
 
