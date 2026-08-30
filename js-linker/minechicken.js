@@ -55,7 +55,7 @@ console.log("Appended Trail.js");
 backgroundGif = "body { background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnBlbXkweGgyaHUzZThqdjQ3bnNwYjhzaWZlMXUxbHh2OGJiYzJmcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y4nk5bgwpWL6T5Ax9y/giphy.gif'); }"
 
 const gif = document.createElement("style");
-gif.innerHTML = `
+gif.textContent = `
 body::before {
   content: "";
   position: fixed;
@@ -76,6 +76,23 @@ brokenElement.remove();
 const linkElement = document.querySelector('a[href="https://youtube.com/@nobodyasked67"]');
 
 linkElement.href = "https://youtube.com/@Tony-the-pet-ghost";
+
+const style = document.createElement("style");
+
+style.textContent = `
+@import url('https://fonts.googleapis.com/css2?family=Geist+Pixel&display=swap');
+body {
+  font-family: "Geist Pixel", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "ELSH" 0;
+  text-shadow:
+    1px 1px #f00,
+    -1px -1px #0ff;
+}
+`;
 
 // const a = document.createElement("script");
 
