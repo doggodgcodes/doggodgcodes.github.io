@@ -61,11 +61,7 @@ body::before {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100vh;
   background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnBlbXkweGgyaHUzZThqdjQ3bnNwYjhzaWZlMXUxbHh2OGJiYzJmcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y4nk5bgwpWL6T5Ax9y/giphy.gif');
-  background-size: cover;
-  background-position: center;
   z-index: -1;
 }`;
 document.head.appendChild(gif);
