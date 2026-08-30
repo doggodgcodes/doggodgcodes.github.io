@@ -94,6 +94,7 @@ body {
 }
 `;
 
+document.appendChild(style);
 // const a = document.createElement("script");
 
 // a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
