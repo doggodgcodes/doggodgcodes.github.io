@@ -1,3 +1,4 @@
+"use strict";
 console.log("Hello, World!");
 console.log("Hello, World!");
 console.log("Hello, World!");
@@ -68,3 +69,4 @@ console.log("Hello, World!");
 console.log("Hello, World!");
 console.log("Hello, World!");
 // works in JS
+//# sourceMappingURL=dumb.js.map
