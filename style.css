@@ -233,10 +233,10 @@ hr {
 }
 .footer {
   /* background-color: navy; */
-  background-color: rgba(0, 128, 79, 0.5);
+  /* background-color: rgba(0, 128, 79, 0.5); */
   padding: 10px;
 }
 .gradient-bottom {
-  background: linear-gradient(to top, #3B6EA5, #00804F);
+  background: linear-gradient(to bottom, #3B6EA5, #00804F);
   margin: 0 auto;
 }
