@@ -222,3 +222,6 @@ hr {
   border-color: white;
   border-radius: 3px;
 }
+.gradient-top {
+  background: linear-gradient(to bottom, #f8f8fa, #3B6EA5);
+}
