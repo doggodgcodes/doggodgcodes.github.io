@@ -1,5 +1,11 @@
 # Repository instructions
 
+- Your default task for coding if not specified is to fix bugs.
+- There is an auto indenter that indents everything, so don't worry about indenting.
+- You should never rewrite a whole file when not told to, because you could break the whole site if you did that.
+- If you have to rewrite anything just don't rewrite anything else that you were not told to.
+- Any old data arrays or functions or variables or classes that are unused should never be removed, just leave them alone or comment them out!
+
 - Read the current file and nearby related code before making changes. The repository may contain user edits, so preserve unrelated work.
 - Prefer small, focused fixes that address the root cause. Do not reformat an entire file unless formatting is the task.
 - For HTML, use two spaces per indentation level. Keep matching opening and closing tags aligned, including nested `div`, `main`, `section`, `header`, and `footer` elements.
