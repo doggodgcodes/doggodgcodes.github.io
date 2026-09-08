@@ -225,3 +225,6 @@ hr {
 .gradient-top {
   background: linear-gradient(to bottom, #f8f8fa, #3B6EA5);
 }
+.container-main {
+  padding: 25px;
+}
