@@ -42,6 +42,7 @@ checkNewsUpdate("04-01", "APRIL FOOLS MAN AHHAHAHAHAHHAHAHAHAHHAHAHAHHAHAHAHHAHA
 
 checkNewsUpdate("04-19", "Today is when we hit 1000 commits!");
 
+checkNewsUpdate("05-24", "Dogebot is now a thing!");
 
 checkNewsUpdate("08-06", "another year of this site");
 // Example: Updates the banner on Christmas Day!
