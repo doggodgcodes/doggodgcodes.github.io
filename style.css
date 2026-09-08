@@ -241,5 +241,5 @@ hr {
   margin: 0 auto;
 }
 .panel {
-  background: linear-gradient(to bottom, #3B6EA5, #00804F);
+  background-color: rgba(0, 128, 79, 0.5);
 }
