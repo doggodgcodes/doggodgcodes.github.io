@@ -242,6 +242,7 @@ hr {
 }
 .panel {
   background-color: rgba(0, 36, 135, 0.5);
-  border-color: rgba(0, 6, 177, 0.5);
   border: solid 3px;
+  border-color: rgba(0, 6, 177, 0.5);
+  padding: 10px;
 }
