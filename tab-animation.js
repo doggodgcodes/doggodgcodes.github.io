@@ -2,11 +2,11 @@ frame = ["doggodgcodes", "d oggodgcodes", "do ggodgcodes", "dog godgcodes", "dog
 i = 0;
 
 function tab() {
-    document.title = frame[i];
-    if (i < frame.length - 1) {
-        i++;
-    }
-    setTimeout(tab, 100);
+  document.title = frame[i];
+  if (i < frame.length - 1) {
+    i++;
+  }
+  setTimeout(tab, 100);
 }
 
 tab()
