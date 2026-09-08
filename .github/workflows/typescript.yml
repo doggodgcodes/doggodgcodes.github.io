@@ -5,6 +5,9 @@ on:
     paths:
       - '**.ts'
 
+permissions:
+  contents: write
+
 jobs:
   compile:
     runs-on: ubuntu-latest
