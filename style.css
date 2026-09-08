@@ -224,7 +224,12 @@ hr {
 }
 .gradient-top {
   background: linear-gradient(to bottom, #f8f8fa, #3B6EA5);
+  max-width: 1000px;
+  margin: 0 auto;
 }
 .container-main {
   padding: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
