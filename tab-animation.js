@@ -1,11 +1,10 @@
 const frame = ["doggodgcodes", "d oggodgcodes", "do ggodgcodes", "dog godgcodes", "dogg odgcodes", "doggo dgcodes", "doggod gcodes", "doggodg codes", "doggodgc odes", "doggodgco des", "doggodgcod es", "doggodgcode s"];
-const originalTitle = document.title;
 let i = 0;
 let animationEnabled = true;
 let animationTimer;
 
 function tab() {
-  if (!animationEnabled) {
+  if (animationEnabled == false) {
     return;
   }
 
@@ -23,7 +22,7 @@ function tab() {
 document.addEventListener("DOMContentLoaded", () => {
   const animationCheckbox = document.getElementById("animationCheckbox");
 
-  if (!animationCheckbox) {
+  if (animationCheckbox == false) {
     return;
   }
 
@@ -31,11 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
   animationCheckbox.addEventListener("change", () => {
     animationEnabled = animationCheckbox.checked;
 
-    if (animationEnabled) {
+    if (animationEnabled == true) {
       tab();
     } else {
       clearTimeout(animationTimer);
-      document.title = originalTitle;
+      document.title = frame[0];
     }
   });
 });
