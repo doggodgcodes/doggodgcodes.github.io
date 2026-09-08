@@ -125,182 +125,182 @@
     <script src="https://unpkg.com/monaco-editor@0.39.0/min/vs/loader.js"></script>
 
     <div class="world-bar">
-    <div>🌊 html editor aero - world bar 🌊 - <strong id="title"></strong></div>
-    <div class="controls">
-    <label class="switch" title="Run scripts in preview (unsafe)">
-      <input type="checkbox" id="runScripts" />
-      <span>Run scripts</span>
-      </label>
-      <button id="saveBtn">save code</button>
-      </div>
-      </div>
-
-      <div class="editor-container">
-      <div class="editor-wrapper">
-      <div id="monaco-editor" role="application" aria-label="Code editor (Monaco)">
-      <!doctype html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <meta name="viewport" content="width=device-width,initial-scale=1">
-          <title>My Webpage</title>
-          <style>
-            body {
-              font-family: "Segoe UI", sans-serif;
-            }
-          </style>
-        </head>
-        <body>
-          <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
-          </body>
-        </html>
-        </div>
-        </div>
-
-        <div class="output-box">
-        <iframe class="preview-iframe" id="previewIframe" sandbox="allow-scripts" title="preview"></iframe>
+      <div>🌊 html editor aero - world bar 🌊 - <strong id="title"></strong></div>
+        <div class="controls">
+          <label class="switch" title="Run scripts in preview (unsafe)">
+            <input type="checkbox" id="runScripts" />
+            <span>Run scripts</span>
+            </label>
+            <button id="saveBtn">save code</button>
           </div>
+        </div>
+
+        <div class="editor-container">
+          <div class="editor-wrapper">
+            <div id="monaco-editor" role="application" aria-label="Code editor (Monaco)">
+              <!doctype html>
+              <html>
+                <head>
+                  <meta charset="utf-8">
+                  <meta name="viewport" content="width=device-width,initial-scale=1">
+                  <title>My Webpage</title>
+                  <style>
+                    body {
+                      font-family: "Segoe UI", sans-serif;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></script><!-- Ensures where it was made. -->
+                </body>
+              </html>
+            </div>
+          </div>
+
+          <div class="output-box">
+            <iframe class="preview-iframe" id="previewIframe" sandbox="allow-scripts" title="preview"></iframe>
+            </div>
           </div>
 
           <script>
-            (function () {
-              // Elements
-              const titleEl = document.getElementById('title');
-              const runScriptsCheckbox = document.getElementById('runScripts');
-              const saveBtn = document.getElementById('saveBtn');
-              const iframe = document.getElementById('previewIframe');
+          (function () {
+            // Elements
+            const titleEl = document.getElementById('title');
+            const runScriptsCheckbox = document.getElementById('runScripts');
+            const saveBtn = document.getElementById('saveBtn');
+            const iframe = document.getElementById('previewIframe');
 
-              // Debug: log presence of DOMPurify so it's obvious in console which branch runs
-              console.log('DOMPurify present?', !!window.DOMPurify);
+            // Debug: log presence of DOMPurify so it's obvious in console which branch runs
+            console.log('DOMPurify present?', !!window.DOMPurify);
 
-              const initialContent = document.getElementById('initial-content');
+            const initialContent = document.getElementById('initial-content');
 
-              // Simple fallback sanitizer if DOMPurify fails to load. This removes <script> and <iframe>
-              // and strips event handler attributes and javascript: hrefs. Not as comprehensive as DOMPurify
-              // but prevents the editor source from being shown inside a <pre> block.
-              function sanitizeWithoutDomPurify(html) {
-                function escapeHtmlForPre(s) {
-                  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                }
-
-                try {
-                  const doc = new DOMParser().parseFromString(html, 'text/html');
-                  doc.querySelectorAll('script, iframe').forEach(el => el.remove());
-
-                  const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_ELEMENT, null, false);
-                  let node = walker.nextNode();
-                  while (node) {
-                    Array.from(node.attributes).forEach(attr => {
-                      if (/^on/i.test(attr.name) || (attr.name === 'href' && /^javascript:/i.test(attr.value))) {
-                        node.removeAttribute(attr.name);
-                      }
-                    });
-                    node = walker.nextNode();
-                  }
-
-                  return '<!doctype html>' + doc.documentElement.outerHTML;
-                } catch (e) {
-                  // If parsing fails, fall back to a safe escaped <pre> so user still sees their code.
-                  return '<pre>' + escapeHtmlForPre(html) + '</pre>';
-                }
+            // Simple fallback sanitizer if DOMPurify fails to load. This removes <script> and <iframe>
+            // and strips event handler attributes and javascript: hrefs. Not as comprehensive as DOMPurify
+            // but prevents the editor source from being shown inside a <pre> block.
+            function sanitizeWithoutDomPurify(html) {
+              function escapeHtmlForPre(s) {
+                return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
               }
 
-              // Monaco loader setup
-              require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.39.0/min/vs' } });
-              let editor = null;
+              try {
+                const doc = new DOMParser().parseFromString(html, 'text/html');
+                doc.querySelectorAll('script, iframe').forEach(el => el.remove());
 
-              require(['vs/editor/editor.main'], function () {
-                editor = monaco.editor.create(document.getElementById('monaco-editor'), {
-                  value: initialContent,
-                  language: 'html',
-                  theme: 'vs-dark',
-                  automaticLayout: true,
-                  tabSize: 2,
-                  insertSpaces: true,
-                  detectIndentation: false, // prevents workflow auto-indent from messing with existing indentation
-                  formatOnType: false,
-                  formatOnPaste: false,
-                  minimap: { enabled: false }
-                });
+                const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_ELEMENT, null, false);
+                let node = walker.nextNode();
+                while (node) {
+                  Array.from(node.attributes).forEach(attr => {
+                    if (/^on/i.test(attr.name) || (attr.name === 'href' && /^javascript:/i.test(attr.value))) {
+                      node.removeAttribute(attr.name);
+                    }
+                  });
+                  node = walker.nextNode();
+                }
 
-                // initialize preview and title
-                updatePreview();
-                updateTitleFromHtml(editor.getValue());
+                return '<!doctype html>' + doc.documentElement.outerHTML;
+              } catch (e) {
+                // If parsing fails, fall back to a safe escaped <pre> so user still sees their code.
+                return '<pre>' + escapeHtmlForPre(html) + '</pre>';
+              }
+            }
 
-                // realtime updates (debounced)
-                let timeout = null;
-                editor.onDidChangeModelContent(() => {
-                  clearTimeout(timeout);
-                  timeout = setTimeout(() => {
-                    updatePreview();
-                    updateTitleFromHtml(editor.getValue());
-                  }, 250);
-                });
+            // Monaco loader setup
+            require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@0.39.0/min/vs' } });
+            let editor = null;
+
+            require(['vs/editor/editor.main'], function () {
+              editor = monaco.editor.create(document.getElementById('monaco-editor'), {
+                value: initialContent,
+                language: 'html',
+                theme: 'vs-dark',
+                automaticLayout: true,
+                tabSize: 2,
+                insertSpaces: true,
+                detectIndentation: false, // prevents workflow auto-indent from messing with existing indentation
+                formatOnType: false,
+                formatOnPaste: false,
+                minimap: { enabled: false }
               });
 
-              function updateTitleFromHtml(html) {
-                const match = html.match(/<title>(.*?)<\/title>/i);
-                if (match && match[1]) {
-                  titleEl.textContent = ' ' + match[1];
-                  document.title = match[1] + ' - doggodgcodes';
-                }
+              // initialize preview and title
+              updatePreview();
+              updateTitleFromHtml(editor.getValue());
+
+              // realtime updates (debounced)
+              let timeout = null;
+              editor.onDidChangeModelContent(() => {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                  updatePreview();
+                  updateTitleFromHtml(editor.getValue());
+                }, 250);
+              });
+            });
+
+            function updateTitleFromHtml(html) {
+              const match = html.match(/<title>(.*?)<\/title>/i);
+              if (match && match[1]) {
+                titleEl.textContent = ' ' + match[1];
+                document.title = match[1] + ' - doggodgcodes';
               }
+            }
 
-              function updatePreview() {
-                const html = editor ? editor.getValue() : initialContent;
+            function updatePreview() {
+              const html = editor ? editor.getValue() : initialContent;
 
-                if (!runScriptsCheckbox.checked) {
-                  // sanitize and set srcdoc so scripts won't run
-                  if (window.DOMPurify && typeof DOMPurify.sanitize === 'function') {
-                    iframe.srcdoc = DOMPurify.sanitize(html);
-                    console.log('updatePreview: used DOMPurify');
-                  } else {
-                    iframe.srcdoc = sanitizeWithoutDomPurify(html);
-                    console.log('updatePreview: used fallback sanitizer');
-                  }
-                  // keep iframe sandboxed without scripts if possible
-                  iframe.setAttribute('sandbox', '');
+              if (!runScriptsCheckbox.checked) {
+                // sanitize and set srcdoc so scripts won't run
+                if (window.DOMPurify && typeof DOMPurify.sanitize === 'function') {
+                  iframe.srcdoc = DOMPurify.sanitize(html);
+                  console.log('updatePreview: used DOMPurify');
                 } else {
-                  // user opted-in to run scripts in preview. Keep sandbox but allow scripts.
-                  // Warning: running untrusted scripts can be unsafe. We allow scripts but not same-origin.
-                  iframe.setAttribute('sandbox', 'allow-scripts');
-                  iframe.srcdoc = html;
+                  iframe.srcdoc = sanitizeWithoutDomPurify(html);
+                  console.log('updatePreview: used fallback sanitizer');
                 }
+                // keep iframe sandboxed without scripts if possible
+                iframe.setAttribute('sandbox', '');
+              } else {
+                // user opted-in to run scripts in preview. Keep sandbox but allow scripts.
+                // Warning: running untrusted scripts can be unsafe. We allow scripts but not same-origin.
+                iframe.setAttribute('sandbox', 'allow-scripts');
+                iframe.srcdoc = html;
+              }
+            }
+
+            function escapeHtml(str) {
+              return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            }
+
+            saveBtn.addEventListener('click', () => {
+              const content = editor ? editor.getValue() : initialContent;
+              const fileNamePrompt = prompt('What you gonna call it?', 'my_webpage');
+              if (!fileNamePrompt) return;
+              let fileName = fileNamePrompt.endsWith('.html') ? fileNamePrompt : fileNamePrompt + '.html';
+
+              let userCode = (typeof html_beautify === 'function') ? html_beautify(content) : content;
+
+              // ensure marker script present
+              if (!userCode.includes('extra-doggodgcodes.js')) {
+                userCode = userCode.replace(/<\/body>/i, '<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></' + 'script>\n</body>');
               }
 
-              function escapeHtml(str) {
-                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-              }
+              const blob = new Blob([userCode], { type: 'text/html' });
+              const link = document.createElement('a');
+              link.href = URL.createObjectURL(blob);
+              link.download = fileName;
+              document.body.appendChild(link);
+              link.click();
+              setTimeout(() => {
+                URL.revokeObjectURL(link.href);
+                if (link.parentNode) link.parentNode.removeChild(link);
+              }, 200);
+            });
 
-              saveBtn.addEventListener('click', () => {
-                const content = editor ? editor.getValue() : initialContent;
-                const fileNamePrompt = prompt('What you gonna call it?', 'my_webpage');
-                if (!fileNamePrompt) return;
-                let fileName = fileNamePrompt.endsWith('.html') ? fileNamePrompt : fileNamePrompt + '.html';
-
-                let userCode = (typeof html_beautify === 'function') ? html_beautify(content) : content;
-
-                // ensure marker script present
-                if (!userCode.includes('extra-doggodgcodes.js')) {
-                  userCode = userCode.replace(/<\/body>/i, '<script src="https://doggodgcodes.github.io/js_webapps/apps/aero-editor/extra-doggodgcodes.js"></' + 'script>\n</body>');
-                }
-
-                const blob = new Blob([userCode], { type: 'text/html' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = fileName;
-                document.body.appendChild(link);
-                link.click();
-                setTimeout(() => {
-                  URL.revokeObjectURL(link.href);
-                  if (link.parentNode) link.parentNode.removeChild(link);
-                }, 200);
-              });
-
-              // expose updatePreview for manual testing
-              window.aeroUpdatePreview = updatePreview;
-            })();
-            </script>
-          </body>
-        </html>
-        <!-- Credits to Gemini and Copilot -->
+            // expose updatePreview for manual testing
+            window.aeroUpdatePreview = updatePreview;
+          })();
+          </script>
+        </body>
+      </html>
+      <!-- Credits to Gemini and Copilot -->

@@ -87,23 +87,23 @@
     <h1>Is My Password Compromised?</h1>
 
     <div class="container">
-    <input type="password" id="passwordInput" placeholder="Enter your password to check">
-    <button onclick="checkPassword()">Check Password Status</button>
+      <input type="password" id="passwordInput" placeholder="Enter your password to check">
+      <button onclick="checkPassword()">Check Password Status</button>
 
-    <div class="result" id="result"></div>
+      <div class="result" id="result"></div>
 
-    <div class="generator">
-    <h3>Generate a Strong Password:</h3>
-    <button onclick="generatePassword()">Generate New Password</button>
-    <p id="generatedPassword" style="font-size: 18px; color: #28a745;"></p>
-      </div>
-      </div>
-
-      <div class="credit">
-      <p>Created by <a href="https://chatgpt.com" target="_blank">ChatGPT</a> and <a href="https://doggodgcodes.github.io" target="_blank">doggodgcodes</a></p>
+        <div class="generator">
+          <h3>Generate a Strong Password:</h3>
+          <button onclick="generatePassword()">Generate New Password</button>
+          <p id="generatedPassword" style="font-size: 18px; color: #28a745;"></p>
+          </div>
         </div>
 
-        <script>
+        <div class="credit">
+          <p>Created by <a href="https://chatgpt.com" target="_blank">ChatGPT</a> and <a href="https://doggodgcodes.github.io" target="_blank">doggodgcodes</a></p>
+          </div>
+
+          <script>
           // URL of the text file on GitHub
           const url = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt';
           const url2 = 'https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/Pwdb_top-10000000.txt';

@@ -85,24 +85,24 @@
     <audio id="bgm" src="https://minechicken98.github.io/funny/slice-beats/Chocolate Party By Mine Chicken.mp3" loop></audio>
 
     <div id="game-info">
-    <h1>BONK BLAST 📸</h1>
-    <p>Score: <b id="score">0</b> | 🍫 <i>Chocolate Party Mode!</i></p>
+      <h1>BONK BLAST 📸</h1>
+      <p>Score: <b id="score">0</b> | 🍫 <i>Chocolate Party Mode!</i></p>
       </div>
 
       <div id="main-layout">
-      <div id="game-over">
-      <h2>GAME OVER! 😱</h2>
-      <p>You ran out of moves!</p>
-        <button class="btn-restart" onclick="resetGame()">Restart Party</button>
-        </div>
-
-        <canvas id="gameBoard" width="400" height="400"></canvas>
-          <div class="inventory" id="inventory"></div>
+        <div id="game-over">
+          <h2>GAME OVER! 😱</h2>
+          <p>You ran out of moves!</p>
+            <button class="btn-restart" onclick="resetGame()">Restart Party</button>
           </div>
 
-          <canvas id="dragCanvas" class="drag-preview" width="150" height="150"></canvas>
+          <canvas id="gameBoard" width="400" height="400"></canvas>
+            <div class="inventory" id="inventory"></div>
+            </div>
 
-            <script>
+            <canvas id="dragCanvas" class="drag-preview" width="150" height="150"></canvas>
+
+              <script>
               const canvas = document.getElementById('gameBoard');
               const ctx = canvas.getContext('2d');
               const dragCanvas = document.getElementById('dragCanvas');

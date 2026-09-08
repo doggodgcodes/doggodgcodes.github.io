@@ -101,63 +101,63 @@
   <body onmousemove="moveTooltip(event)">
     <div id="tooltip"></div>
 
-    <h1>🍌 MONKE SOUNDBOARD CLICKER 🦍</h1>
+      <h1>🍌 MONKE SOUNDBOARD CLICKER 🦍</h1>
 
-    <div style="background: white; padding: 10px; border-radius: 20px; display: inline-block; border: 4px solid orange;">
-    <p>🔊 <b>RADIO STATUS: HAM JAMMING</b></p>
-      <iframe width="250" height="40" src="https://www.youtube.com/embed/qzSzylSGuiM" frameborder="0"></iframe>
-        </div>
-
-        <br><br>
-        <h2 id="bananaDisplay">Bananas: 0</h2>
-
-        <div class="game-container">
-        <div>
-        <p><b>OG BANANA</b></p>
-          <img src="https://www.clipartmax.com/png/middle/39-399107_banana-clip-art-banana-clipart-png.png"
-          class="click-target" style="width: 100px;" onclick="clickBtn(event)">
+      <div style="background: white; padding: 10px; border-radius: 20px; display: inline-block; border: 4px solid orange;">
+        <p>🔊 <b>RADIO STATUS: HAM JAMMING</b></p>
+          <iframe width="250" height="40" src="https://www.youtube.com/embed/qzSzylSGuiM" frameborder="0"></iframe>
           </div>
 
-          <div>
-          <p><b>MONKE</b></p>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/157.png"
-            class="click-target" style="width: 130px;" onclick="clickBtn(event)">
-            </div>
+          <br><br>
+          <h2 id="bananaDisplay">Bananas: 0</h2>
 
+          <div class="game-container">
             <div>
-            <p><b>TITAN CAT</b></p>
-              <img src="https://minechicken98.github.io/funny/battle-cats-capsule/images/titan.png"
-              class="click-target" style="width: 110px;" onclick="clickBtn(event)">
+              <p><b>OG BANANA</b></p>
+                <img src="https://www.clipartmax.com/png/middle/39-399107_banana-clip-art-banana-clipart-png.png"
+                class="click-target" style="width: 100px;" onclick="clickBtn(event)">
               </div>
 
               <div>
-              <p><b>SPINNY CAT</b></p>
-                <img id="spinnyCat" src="https://media.tenor.com/Y86p4vW7X80AAAAM/spin-cat.gif"
-                class="click-target" style="width: 100px; border-radius: 50%;" onclick="funnyCatClick(event)">
-                </div>
-                </div>
-
-                <div class="mega-shop">
-                <h2 style="color: #774502;">🔊 SOUNDBOARD SHOP</h2>
-                <button onclick="playMemeSound()" style="background: #ff00ff; color: white;">📢 PLAY RANDOM MEME SOUND</button>
-                <br>
-                <button id="btn1" onclick="buyUpgrade(0, 1)">🥜 Extra PB (+1)<br>Cost: 10</button>
-                <button id="btn2" onclick="buyUpgrade(1, 5)">🥪 Gamer Sandwich (+5)<br>Cost: 100</button>
-                <button id="btn3" onclick="buyUpgrade(2, 20)">👑 Party Hat (+20)<br>Cost: 1000</button>
-                <br>
-                <button id="btn4" onclick="buyAuto()">🌲 Banana Tree (Auto)<br>Cost: 500</button>
-                <button id="btn5" onclick="buyGatorade()">🥤 Gatorade (2x Speed)<br>Cost: 5000</button>
-                <button id="btn6" onclick="buyCheetos()">🔥 Flamin Hot Cheetos (+100)<br>Cost: 15000</button>
+                <p><b>MONKE</b></p>
+                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/157.png"
+                  class="click-target" style="width: 130px;" onclick="clickBtn(event)">
                 </div>
 
-                <hr>
-                <button onclick="toggleSilly()" style="background: cyan; color: black;">🌈 RAINBOW RAVE MODE 🌈</button>
-                <button onclick="doPrestige()" style="background: linear-gradient(to right, red, purple);">💎 PRESTIGE (1M)</button>
+                <div>
+                  <p><b>TITAN CAT</b></p>
+                    <img src="https://minechicken98.github.io/funny/battle-cats-capsule/images/titan.png"
+                    class="click-target" style="width: 110px;" onclick="clickBtn(event)">
+                  </div>
 
-                <h3 id="powerStat">Click Power: 1</h3>
-                <h4 id="autoStat">Trees: 0 | Speed: 1x</h4>
+                  <div>
+                    <p><b>SPINNY CAT</b></p>
+                      <img id="spinnyCat" src="https://media.tenor.com/Y86p4vW7X80AAAAM/spin-cat.gif"
+                      class="click-target" style="width: 100px; border-radius: 50%;" onclick="funnyCatClick(event)">
+                    </div>
+                  </div>
 
-                <script>
+                  <div class="mega-shop">
+                    <h2 style="color: #774502;">🔊 SOUNDBOARD SHOP</h2>
+                    <button onclick="playMemeSound()" style="background: #ff00ff; color: white;">📢 PLAY RANDOM MEME SOUND</button>
+                    <br>
+                    <button id="btn1" onclick="buyUpgrade(0, 1)">🥜 Extra PB (+1)<br>Cost: 10</button>
+                    <button id="btn2" onclick="buyUpgrade(1, 5)">🥪 Gamer Sandwich (+5)<br>Cost: 100</button>
+                    <button id="btn3" onclick="buyUpgrade(2, 20)">👑 Party Hat (+20)<br>Cost: 1000</button>
+                    <br>
+                    <button id="btn4" onclick="buyAuto()">🌲 Banana Tree (Auto)<br>Cost: 500</button>
+                    <button id="btn5" onclick="buyGatorade()">🥤 Gatorade (2x Speed)<br>Cost: 5000</button>
+                    <button id="btn6" onclick="buyCheetos()">🔥 Flamin Hot Cheetos (+100)<br>Cost: 15000</button>
+                  </div>
+
+                  <hr>
+                  <button onclick="toggleSilly()" style="background: cyan; color: black;">🌈 RAINBOW RAVE MODE 🌈</button>
+                  <button onclick="doPrestige()" style="background: linear-gradient(to right, red, purple);">💎 PRESTIGE (1M)</button>
+
+                  <h3 id="powerStat">Click Power: 1</h3>
+                  <h4 id="autoStat">Trees: 0 | Speed: 1x</h4>
+
+                  <script>
                   let bananas = 0;
                   let clickPower = 1;
                   let autoClickers = 0;
