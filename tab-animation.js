@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   animationCheckbox.checked = animationEnabled;
   animationCheckbox.addEventListener("change", () => {
     animationEnabled = animationCheckbox.checked;
+    console.log(animationEnabled)
 
     if (animationEnabled == true) {
       tab();
