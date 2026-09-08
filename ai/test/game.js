@@ -20,22 +20,22 @@ function initGame() {
 function renderBoard() {
   const gameBoard = document.getElementById('gameBoard');
   gameBoard.innerHTML = '';
-  
+
   cards.forEach((emoji, index) => {
     const card = document.createElement('button');
     card.className = 'card';
     card.textContent = matched.includes(index) ? emoji : '?';
-    
+
     if (matched.includes(index)) {
       card.classList.add('matched');
       card.disabled = true;
     }
-    
+
     if (flipped.includes(index)) {
       card.textContent = emoji;
       card.classList.add('flipped');
     }
-    
+
     card.addEventListener('click', () => flipCard(index));
     gameBoard.appendChild(card);
   });
@@ -45,17 +45,17 @@ function flipCard(index) {
   if (!canClick || flipped.includes(index) || matched.includes(index)) {
     return;
   }
-  
+
   flipped.push(index);
   renderBoard();
-  
+
   if (flipped.length === 2) {
     canClick = false;
     moves++;
     updateStats();
-    
+
     const [first, second] = flipped;
-    
+
     if (cards[first] === cards[second]) {
       matched.push(first, second);
       matches++;
@@ -63,7 +63,7 @@ function flipCard(index) {
       canClick = true;
       updateStats();
       renderBoard();
-      
+
       if (matched.length === cards.length) {
         setTimeout(() => alert(`🎉 You won! Completed in ${moves} moves!`), 300);
       }
