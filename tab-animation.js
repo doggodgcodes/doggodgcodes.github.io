@@ -5,6 +5,8 @@ function tab() {
   document.title = frame[i];
   if (i < frame.length - 1) {
     i++;
+  } else {
+    i = 0;
   }
   setTimeout(tab, 100);
 }
