@@ -4,7 +4,7 @@ let animationEnabled = true;
 let animationTimer;
 
 function tab() {
-  if (animationEnabled == false) {
+  if (!animationCheckbox) {
     return;
   }
 
@@ -22,7 +22,7 @@ function tab() {
 document.addEventListener("DOMContentLoaded", () => {
   const animationCheckbox = document.getElementById("animationCheckbox");
 
-  if (animationCheckbox == false) {
+  if (!animationCheckbox) {
     return;
   }
 
