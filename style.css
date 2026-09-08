@@ -240,3 +240,6 @@ hr {
   background: linear-gradient(to bottom, #3B6EA5, #00804F);
   margin: 0 auto;
 }
+.panel {
+  background: linear-gradient(to bottom, #3B6EA5, #00804F);
+}
