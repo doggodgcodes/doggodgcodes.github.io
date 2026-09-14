@@ -3,8 +3,8 @@ let i = 0;
 let animationEnabled = true;
 let animationTimer;
 
-function tab() {
-  if (!animationCheckbox) {
+function tab(ac = document.getElementById("animationCheckbox")) {
+  if (!ac) {
     return;
   }
 
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(animationEnabled);
 
     if (animationEnabled == true) {
-      tab();
+      tab(animationCheckbox);
     } else {
       clearTimeout(animationTimer);
       document.title = frame[0];
