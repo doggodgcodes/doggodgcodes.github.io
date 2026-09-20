@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="robots" content="noindex, nofollow">
+    <title>canvas</title>
+    <style type="text/css">
+      canvas {
+        width: 600px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+      <canvas id="canvas"></canvas>
+      <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        let gradient = ctx.createLinearGradient(64, 64, 64, 64);
+        gradient.addColorStop(0, rgba(255,255,255,0));
+        gradient.addColorStop(0.5, rgba(255,255,255,1));
+        gradient.addColorStop(1, rgba(255,255,255,1));
+        gradient.addColorStop(1.5, rgba(255,255,255,0));
+        
+      </script>
+  </body>
+</html>
