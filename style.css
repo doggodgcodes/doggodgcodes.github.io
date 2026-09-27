@@ -298,6 +298,6 @@ h1.sans-serif {
 p.sans-serif, a.sans-serif, .sans-serif.p, .sans-serif.a, .sans-serif > p, .sans-serif > a {
   letter-spacing: -1px;
 }
-p > a, p.a {
+p > a, p.a, div > p > a, div.p.a {
   margin: 0;
 }
