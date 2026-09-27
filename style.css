@@ -294,6 +294,9 @@ hr {
 h1.sans-serif {
   letter-spacing: -3px;
 }
-p.sans-serif {
+p.sans-serif, a.sans-serif {
   letter-spacing: -1px;
+}
+p > a {
+  margin: 0;
 }
