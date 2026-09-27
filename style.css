@@ -301,3 +301,18 @@ p.sans-serif, a.sans-serif, .sans-serif.p, .sans-serif.a, .sans-serif > p, .sans
 p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer > div > div > p > a, footer.div.div.p.a, .no-margin {
   margin: 0;
 }
+.spinny-container {
+  perspective: 1000px;
+}
+.spinny {
+  animation: spin 5s ease-in-out infinite alternate;
+  transform-style: preserve-3d;
+}  
+@keyframes spin {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
