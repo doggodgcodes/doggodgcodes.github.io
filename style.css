@@ -307,7 +307,7 @@ p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer >
 .spinny {
   animation: spin 5s ease-in-out infinite alternate;
   transform-style: preserve-3d;
-}  
+}
 @keyframes spin {
   0% {
     transform: rotateX(0deg) rotateY(0deg);
