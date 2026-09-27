@@ -291,9 +291,9 @@ hr {
     letter-spacing: -3px;
   }
 }
-h1 > .sans-serif {
+h1.sans-serif {
   letter-spacing: -3px;
 }
-p > .sans-serif {
+p.sans-serif {
   letter-spacing: -1px;
 }
