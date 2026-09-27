@@ -317,3 +317,15 @@ p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer >
     transform: rotateX(360deg) rotateY(360deg);
   }
 }
+.panel img {
+  animation: showoff 2s ease-in-out infinite alternate;
+  transform-style: preserve-3d;
+}
+@keyframes showoff {
+  0% {
+    transform: rotateX(-10deg) rotateY(-10deg);
+  }
+  100% {
+    transform: rotateX(10deg) rotateY(10deg);
+  }
+}
