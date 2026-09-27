@@ -278,7 +278,7 @@ hr {
   font-style: normal;
 }
 .sans-serif {
-  font-family: sans-serif;
+  font-family: sans-serif !important;
 }
 .anim-title {
   animation: font 2s ease-in-out infinite alternate;
@@ -290,4 +290,10 @@ hr {
   to {
     letter-spacing: -3px;
   }
+}
+h1 > .sans-serif {
+  letter-spacing: -3px;
+}
+p > .sans-serif {
+  letter-spacing: -1px;
 }
