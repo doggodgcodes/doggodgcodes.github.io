@@ -277,3 +277,17 @@ hr {
   font-weight: 700;
   font-style: normal;
 }
+.sans-serif {
+  font-family: sans-serif;
+}
+.anim-title {
+  animation: font 2s ease-in-out infinite alternate;
+}
+@keyframes font {
+  from {
+    letter-spacing: -5px;
+  }
+  to {
+    letter-spacing: -3px;
+  }
+}
