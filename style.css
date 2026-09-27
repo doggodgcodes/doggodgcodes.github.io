@@ -278,6 +278,7 @@ hr {
   font-style: normal;
 }
 .sans-serif {
+  letter-spacing: -1px;
   font-family: sans-serif !important;
 }
 .anim-title {
