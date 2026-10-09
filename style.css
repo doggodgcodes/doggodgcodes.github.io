@@ -317,7 +317,7 @@ p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer >
     transform: rotateX(360deg) rotateY(360deg);
   }
 }
-.panel img {
+.panel img, h1, h2, h3, h4, h5, h6, p, a {
   animation: showoff 2s ease-in-out infinite alternate;
   transform-style: preserve-3d;
 }
