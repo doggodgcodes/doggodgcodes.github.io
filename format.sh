@@ -15,7 +15,7 @@ function getFiles(dir) {
       if (!file.includes("node_modules") && !file.includes(".git")) {
         results = results.concat(getFiles(file));
       }
-    } else if (file.endsWith(".js") || file.endsWith(".html") || file.endsWith(".css")) {
+    } else if (file.endsWith(".js") || file.endsWith(".html") || file.endsWith(".css") || file.endsWith(".htm") || file.endsWith(".xhtml") || file.endsWith(".xht") || file.endsWith(".jsx")) {
       if (stat.size < 50 * 1024 * 1024) {
         results.push(file);
       }
