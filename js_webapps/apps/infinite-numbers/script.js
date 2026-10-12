@@ -4,6 +4,5 @@ function number() {
   x++;
   p.textContent += x;;
   p.textContent += ", "
-  p.scrollTop = p.scrollHeight;
 }
 setInterval(number, 1);

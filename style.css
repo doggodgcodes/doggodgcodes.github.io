@@ -306,7 +306,7 @@ p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer >
   perspective: 1000px;
 }
 .spinny {
-  animation: spin 5s ease-in-out infinite alternate;
+  animation: spin 5s ease-in-out infinite;
   transform-style: preserve-3d;
 }
 @keyframes spin {
@@ -318,7 +318,7 @@ p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer >
   }
 }
 .panel img {
-  animation: showoff 2s ease-in-out infinite alternate;
+  animation: showoff 2s ease-in-out infinite;
   transform-style: preserve-3d;
 }
 @keyframes showoff {

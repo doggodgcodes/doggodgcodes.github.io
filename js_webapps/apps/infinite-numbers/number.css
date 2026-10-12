@@ -1,0 +1,12 @@
+p {
+  animation: numbers 5s infinite;
+}
+
+@keyframes numbers {
+  from {
+    color: navy;
+  }
+  to {
+    color: black;
+  }
+}
