@@ -12,7 +12,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link id="ico" rel="icon" type="image/png" href="https://img.icons8.com/ios7/600w/40C057/grok.png">
-    <title>DOGEBOT V289 • ENJOY THE ICOSAHEDRON</title>
+    <title>DOGEBOT V290 • ENJOY THE ICOSAHEDRON</title>
     <style id="css">
       /* =========================================================
       💎 DOGEBOT v120 — Balanced Aero Gloss Hybrid
@@ -577,7 +577,7 @@
   <body class="fadein-zoom">
     <div id="news-thingy"></div>
 
-    <h1 id="title">🐕 DOGEBOT V289 • ENJOY THE ICOSAHEDRON</h1>
+    <h1 id="title">🐕 DOGEBOT V290 • ENJOY THE ICOSAHEDRON</h1>
     <p>Smart • Kind • Calculates • Chatty • Great</p>
 
       <div id="chat"></div>
@@ -892,6 +892,8 @@
                 if (!this.hexagramMap.has(hexaKey)) this.hexagramMap.set(hexaKey, []);
                 this.hexagramMap.get(hexaKey).push(tokens[i + 5]);
               }
+
+              // WHO THE HECK ARE YOU I CANT READ THIS CODE
 
               const inputVec = this.embeddings[a];
 
@@ -1491,7 +1493,8 @@
               "Food can be good or bad.",
               "Water is a drink.",
               "What if someone had some delicious noodles upon the world?",
-              "An apple is a fruit."
+              "An apple is a fruit.",
+              "Dogebot has other datasets but I use the small one because it actually isn't garbage dogebot was getting fed word slop and consuming it like a delicacy."
             ];
 
             // uhh so right below we have the news
@@ -1678,7 +1681,8 @@
               "NeuCore 1 is a relic recently rediscovered by Dogebot.",
               "Dogebot tries to find out how to bake a cake.",
               "This chatbot hasnt been updated in a month lol",
-              "Dogebot doesnt care"
+              "Dogebot doesnt care",
+              "this codebase is ugly"
             ]
             // chatgpt and gemini made some of the news (not that all of it is true news)
             const newsDisplay = document.getElementById("news-thingy");
@@ -1691,7 +1695,7 @@
               }
             }
 
-            newsDecider()
+            newsDecider();
 
             let msgCount = 0;
 
@@ -2300,6 +2304,9 @@
                 }
                 if (lower.includes("i dont like that") || lower.includes("i don't like that")) {
                   return "?";
+                }
+                if (lower.includes("personality")) {
+                  return "im not smart im just a random ai that exists";
                 }
                 if (lower.includes("malware")) {
                   return "Do you want to learn about malware? I'm not in the mood for malware.";
