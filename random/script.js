@@ -1,5 +1,8 @@
 const on = false;
 if (on == false) {
-  document.body.innerHTML = "<h1>Page offline</h1>";
-  document.title = "Page offline";
+  let stylesheet = document.createElement("style");
+  stylesheet.textContent = 'body { padding: 0; margin: 0; } .warning-banner { background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk1yCuOLzX749b1fv392hgSDgKKFjV3_NwLg"); color: white; padding: 20px; }';
+  document.head.appendChild(stylesheet);
+  document.body.innerHTML = '<h1 class="warning-banner">Nope, this page doesn\'t exist anymore.</h1>';
+  document.title = "Nope!";
 }
