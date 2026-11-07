@@ -6,12 +6,12 @@ const challenges = [
     prompt: 'Write a function that adds every number in the list. Empty lists should total zero.',
     functionName: 'sumNumbers',
     starter: `function sumNumbers(numbers) {
-  let total = 0;
-  for (let index = 0; index < numbers.length - 1; index++) {
-    total += numbers[index];
-  }
-  return total;
-}`,
+      let total = 0;
+      for (let index = 0; index < numbers.length - 1; index++) {
+        total += numbers[index];
+      }
+      return total;
+    }`,
     tests: [
       { name: 'Adds a list of positive numbers', input: [[2, 4, 6]], expected: 12 },
       { name: 'Includes negative numbers', input: [[10, -3, 5]], expected: 12 },
@@ -26,12 +26,12 @@ const challenges = [
     prompt: 'Return the first value that appears for a second time while scanning left to right. Return null if every value is unique.',
     functionName: 'firstDuplicate',
     starter: `function firstDuplicate(values) {
-  const seen = new Set();
-  for (const value of values) {
-    if (seen.has(value)) return value;
-  }
-  return null;
-}`,
+      const seen = new Set();
+      for (const value of values) {
+        if (seen.has(value)) return value;
+      }
+      return null;
+    }`,
     tests: [
       { name: 'Finds a repeat after other values', input: [[4, 2, 9, 2, 4]], expected: 2 },
       { name: 'Returns the earliest repeated value', input: [['a', 'b', 'b', 'a']], expected: 'b' },
@@ -46,19 +46,19 @@ const challenges = [
     prompt: 'Merge overlapping time ranges. Each range is [start, end], and the result should be sorted with overlaps combined.',
     functionName: 'mergeRanges',
     starter: `function mergeRanges(ranges) {
-  const sorted = ranges.map(([start, end]) => [start, end]);
-  sorted.sort((first, second) => first[0] - second[0]);
-  const merged = [];
-  for (const range of sorted) {
-    const last = merged[merged.length - 1];
-    if (!last || range[0] > last[1]) {
-      merged.push(range);
-    } else {
-      last[1] = range[1];
-    }
-  }
-  return merged;
-}`,
+      const sorted = ranges.map(([start, end]) => [start, end]);
+      sorted.sort((first, second) => first[0] - second[0]);
+      const merged = [];
+      for (const range of sorted) {
+        const last = merged[merged.length - 1];
+        if (!last || range[0] > last[1]) {
+          merged.push(range);
+        } else {
+          last[1] = range[1];
+        }
+      }
+      return merged;
+    }`,
     tests: [
       { name: 'Combines simple overlaps', input: [[[1, 4], [3, 7]]], expected: [[1, 7]] },
       { name: 'Keeps disjoint ranges separate and sorted', input: [[[8, 10], [1, 2], [4, 5]]], expected: [[1, 2], [4, 5], [8, 10]] },
