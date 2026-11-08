@@ -1,4 +1,4 @@
-name: Run Custom Auto Indent
+name: Indenter
 
 on:
   push:
@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 2
 
       - name: Make script executable and run it
         run: |
@@ -24,5 +26,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git diff-index --quiet HEAD || git commit -m "style: auto-indent run ${{ github.run_number }}"
+          original_message="$(git log -1 --format=%s)"
+          git diff-index --quiet HEAD || git commit -m "Indentation run ${{ github.run_number }} >>> ${original_message}"
           git push
