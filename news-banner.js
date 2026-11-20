@@ -2,18 +2,18 @@
 
 function checkNewsUpdate(targetMonthDay, newMessage) {
   const today = new Date();
-  const currentYear = today.getFullYear(); // This fetches 2026 (or whatever year it is!)
-  const elementId = "news-banner";
+  const Year = today.getFullYear(); // This fetches 2026 (or whatever year it is!)
+  let Message = newMessage.replace(/\{YEAR\}/g, Year.toString());
 
   // We combine the current year with your Month-Day to make a real date
   // Your input should be "MM-DD" (Example: "12-25")
-  const switchDate = new Date(`${currentYear}-${targetMonthDay}T00:00:00`);
-  const banner = document.getElementById(elementId);
+  const switchDate = new Date(`${Year}-${targetMonthDay}T00:00:00`);
+  const banner = document.getElementById("news-banner");
 
   // If today is equal to the switch date, update the banner!
   if (today == switchDate) {
     if (banner) {
-      banner.textContent = newMessage;
+      banner.textContent = Message;
       console.log("News updated for " + targetMonthDay);
     }
   }
@@ -28,7 +28,7 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
 // HOW TO USE THE MAGIC:
 // Just put the Month and the Day. The script handles the year!
 // checkNewsUpdate("MM-DD", "Your Epic Message");
-checkNewsUpdate("01-01", "NEW YEAR");
+checkNewsUpdate("01-01", "NEW YEAR {YEAR}");
 // Example: Updates for the banner test!
 checkNewsUpdate("01-30", "🚀 News banner testing! 🚀");
 
@@ -50,6 +50,8 @@ checkNewsUpdate("08-06", "another year of this site");
 // Example: Updates the banner for Halloween!
 checkNewsUpdate("10-31", "🎃 Halloween time! 🎃");
 
+checkNewsUpdate("11-20", "placeholder year test its {YEAR}");
+
 checkNewsUpdate("12-25", "🌲 Christmas time! 🌲");
 
-checkNewsUpdate("12-31", "NEW YEAR");
+checkNewsUpdate("12-31", "NEW YEAR'S EVE");
