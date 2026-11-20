@@ -28,6 +28,8 @@ div.innerHTML = `
   <a href="https://doggodgcodes.github.io/ai/" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes AI Page</h2><p class="project-description" style="color: navy;">Explore hilariously random AI creations made by doggodgcodes and others to test your AI detection skills.</p><span class="project-link">View Page →</span></a>
   <a href="https://github.com/doggodgcodes" target="_blank" class="project-card"><h2 class="project-title">DoggoDGCodes Code</h2><p class="project-description" style="color: navy;">Explore doggodgcodes code!</p><span class="project-link">View Page →</span></a>
   <a href="https://github.com/minechicken98" target="_blank" class="project-card"><h2 class="project-title">MineChicken98's Code</h2><p class="project-description" style="color: navy;">Explore minechicken98's code!</p><span class="project-link">View Page →</span></a>
+  <a href="https://piano.dallasread.com" target="_blank" class="project-card"><h2 class="project-title">Keyfall</h2><p class="project-description" style="color: navy;">minechicken's piano game where you can play a piano (audio file to MIDI conversion doesn't do a great job mostly).</p><span class="project-link">View Page →</span></a>
+  <a href="https://github.com/minechicken98/minechicken98.github.io/issues" target="_blank" class="project-card"><h2 class="project-title">This website's issues</h2><p class="project-description" style="color: navy;">Place to point out bugs and suggest features for games.</p><span class="project-link">View Page →</span></a>
 </div>
 `;
 
@@ -93,16 +95,3 @@ body {
   -1px -1px #008;
 }
 `;
-
-document.body.appendChild(style);
-// const a = document.createElement("script");
-
-// a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
-// const a2 = document.createElement("script");
-
-// a2.src = "https://doggodgcodes.github.io/april_fools.js";
-
-// IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
-// console.log("Appended April Fools.js");
-// document.body.appendChild(a);
-// document.body.appendChild(a2);
