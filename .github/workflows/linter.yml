@@ -1,4 +1,4 @@
-name: ESLint Auto Fix
+name: linter
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   eslint:
-    name: Run ESLint with autofix
+    name: lint
     runs-on: ubuntu-latest
 
     steps:
