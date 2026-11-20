@@ -3,6 +3,6 @@ let x = 0;
 function number() {
   x++;
   p.textContent += x;;
-  p.textContent += ", "
+  p.textContent += ", ";
 }
 setInterval(number, 1);

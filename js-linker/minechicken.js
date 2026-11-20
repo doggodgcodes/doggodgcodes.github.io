@@ -54,7 +54,7 @@ document.body.appendChild(script2);
 
 console.log("Appended Trail.js");
 
-backgroundGif = "body { background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjIzaTZ2aDVhbGZmZGxmNjFwa3JvcWNtZDF5MjFuZXRid3hzNTh6YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9PrqNHPAdWyJVOXntF/giphy.webp'); }"
+backgroundGif = "body { background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjIzaTZ2aDVhbGZmZGxmNjFwa3JvcWNtZDF5MjFuZXRid3hzNTh6YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9PrqNHPAdWyJVOXntF/giphy.webp'); }";
 
 const gif = document.createElement("style");
 gif.textContent = `
@@ -74,11 +74,11 @@ h1, .subtitle { color: white; text-shadow: 0px 0px 10px black; }
 `;
 document.head.appendChild(gif);
 
-const brokenElement = document.querySelector('a[href="https://youtube.com/@flyingdogwithapencil"]');
+const brokenElement = document.querySelector("a[href=\"https://youtube.com/@flyingdogwithapencil\"]");
 
 brokenElement.remove();
 
-const linkElement = document.querySelector('a[href="https://youtube.com/@nobodyasked67"]');
+const linkElement = document.querySelector("a[href=\"https://youtube.com/@nobodyasked67\"]");
 
 linkElement.href = "https://youtube.com/@Tony-the-pet-ghost";
 

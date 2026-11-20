@@ -1,4 +1,4 @@
-const emojis = ['🎮', '🎮', '🎲', '🎲', '🎯', '🎯', '🎪', '🎪', '🎨', '🎨', '🎭', '🎭', '🎸', '🎸', '🎺', '🎺'];
+const emojis = ["🎮", "🎮", "🎲", "🎲", "🎯", "🎯", "🎪", "🎪", "🎨", "🎨", "🎭", "🎭", "🎸", "🎸", "🎺", "🎺"];
 
 let cards = [];
 let flipped = [];
@@ -18,25 +18,25 @@ function initGame() {
 }
 
 function renderBoard() {
-  const gameBoard = document.getElementById('gameBoard');
-  gameBoard.innerHTML = '';
+  const gameBoard = document.getElementById("gameBoard");
+  gameBoard.innerHTML = "";
 
   cards.forEach((emoji, index) => {
-    const card = document.createElement('button');
-    card.className = 'card';
-    card.textContent = matched.includes(index) ? emoji : '?';
+    const card = document.createElement("button");
+    card.className = "card";
+    card.textContent = matched.includes(index) ? emoji : "?";
 
     if (matched.includes(index)) {
-      card.classList.add('matched');
+      card.classList.add("matched");
       card.disabled = true;
     }
 
     if (flipped.includes(index)) {
       card.textContent = emoji;
-      card.classList.add('flipped');
+      card.classList.add("flipped");
     }
 
-    card.addEventListener('click', () => flipCard(index));
+    card.addEventListener("click", () => flipCard(index));
     gameBoard.appendChild(card);
   });
 }
@@ -78,8 +78,8 @@ function flipCard(index) {
 }
 
 function updateStats() {
-  document.getElementById('moves').textContent = moves;
-  document.getElementById('matches').textContent = matches;
+  document.getElementById("moves").textContent = moves;
+  document.getElementById("matches").textContent = matches;
 }
 
 function resetGame() {

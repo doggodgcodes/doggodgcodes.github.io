@@ -109,10 +109,10 @@ class Block {
       // Highlight
       ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
       ctx.fillRect(
-      -pos.size / 2 + 3,
-      -pos.size / 2 + 3,
-      pos.size - 6,
-      pos.size - 6,
+        -pos.size / 2 + 3,
+        -pos.size / 2 + 3,
+        pos.size - 6,
+        pos.size - 6,
       );
 
       ctx.restore();
@@ -148,7 +148,7 @@ class Block {
 
     // Check if mouse is near the block
     const distToMouse = Math.sqrt(
-    Math.pow(mouseX - pos.x, 2) + Math.pow(mouseY - pos.y, 2),
+      Math.pow(mouseX - pos.x, 2) + Math.pow(mouseY - pos.y, 2),
     );
 
     // Need to be close and moving fast
@@ -316,7 +316,7 @@ function checkCollisions() {
 
   for (let block of blocks) {
     if (
-    block.checkSlice(mouseX, mouseY, lastMouseX, lastMouseY, mouseVelocity)
+      block.checkSlice(mouseX, mouseY, lastMouseX, lastMouseY, mouseVelocity)
     ) {
       combo++;
       if (combo > maxCombo) maxCombo = combo;

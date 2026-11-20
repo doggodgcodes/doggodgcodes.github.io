@@ -701,7 +701,7 @@ function checkCollisions() {
   const speed = Math.sqrt(
 
 
-  Math.pow(mouseX - lastMouseX, 2) +
+    Math.pow(mouseX - lastMouseX, 2) +
 
 
   Math.pow(mouseY - lastMouseY, 2),
@@ -749,7 +749,7 @@ function checkCollisions() {
     const dist = Math.sqrt(
 
 
-    Math.pow(mouseX - blockCenterX, 2) +
+      Math.pow(mouseX - blockCenterX, 2) +
 
 
     Math.pow(mouseY - blockCenterY, 2),
