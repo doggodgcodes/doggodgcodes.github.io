@@ -1,4 +1,4 @@
-name: linter
+name: Linter
 
 on:
   push:
@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 2
 
       - name: Set up Node.js
         uses: actions/setup-node@v7.0.0
@@ -32,5 +34,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git diff-index --quiet HEAD || git commit -m "style: eslint autofix run ${{ github.run_number }}"
+          original_message="$(git log -1 --format=%s)"
+          git diff-index --quiet HEAD || git commit -m "ESLint run ${{ github.run_number }} >>> ${original_message}"
           git push
