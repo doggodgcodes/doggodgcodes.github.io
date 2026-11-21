@@ -6,3 +6,5 @@ function loop() {
   array += "qwertyuiopasdfghjklzxcvbnm1234567890";
   loop();
 }
+
+loop();
