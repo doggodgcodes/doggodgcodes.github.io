@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => chaosZone.classList.remove("pulsing"), 500);
 
     if (moreClickCount === 3)
-      chaosText.textContent += "\n(Are you okay? The bananas are watching.)";
+    chaosText.textContent += "\n(Are you okay? The bananas are watching.)";
   });
 
   // Reset Button

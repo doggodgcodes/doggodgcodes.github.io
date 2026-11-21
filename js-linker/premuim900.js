@@ -53,16 +53,16 @@ div.innerHTML = `
 
 
 
-document.body.appendChild(div);
+  document.body.appendChild(div);
 
-const a = document.createElement("script");
+  const a = document.createElement("script");
 
-a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
-const a2 = document.createElement("script");
+  a.src = "https://doggodgcodes.github.io/js-linker/april-fools.js";
+  const a2 = document.createElement("script");
 
-a2.src = "https://doggodgcodes.github.io/april_fools.js";
+  a2.src = "https://doggodgcodes.github.io/april_fools.js";
 
-// IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
-console.log("Appended April Fools.js");
-document.body.appendChild(a);
-document.body.appendChild(a2);
+  // IT IS VERY IMPORTANT ANY CODE IS ABOVE UNLESS FOR FOOLING.
+  console.log("Appended April Fools.js");
+  document.body.appendChild(a);
+  document.body.appendChild(a2);
