@@ -137,19 +137,19 @@ class Block {
       // Inner darker square for depth
       ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
       ctx.fillRect(
-      -pos.size / 2 + 4,
-      -pos.size / 2 + 4,
-      pos.size - 8,
-      pos.size - 8,
+        -pos.size / 2 + 4,
+        -pos.size / 2 + 4,
+        pos.size - 8,
+        pos.size - 8,
       );
 
       // Highlight on top-left for 3D effect
       ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
       ctx.fillRect(
-      -pos.size / 2,
-      -pos.size / 2,
-      pos.size * 0.3,
-      pos.size * 0.3,
+        -pos.size / 2,
+        -pos.size / 2,
+        pos.size * 0.3,
+        pos.size * 0.3,
       );
 
       // Add pulsing white border when in hit zone
@@ -158,10 +158,10 @@ class Block {
         ctx.strokeStyle = `rgba(255, 255, 255, ${pulseAlpha})`;
         ctx.lineWidth = 3;
         ctx.strokeRect(
-        -pos.size / 2 - 2,
-        -pos.size / 2 - 2,
-        pos.size + 4,
-        pos.size + 4,
+          -pos.size / 2 - 2,
+          -pos.size / 2 - 2,
+          pos.size + 4,
+          pos.size + 4,
         );
       }
 
@@ -210,7 +210,7 @@ class Block {
 
     // Check if mouse is near the block
     const distToMouse = Math.sqrt(
-    Math.pow(mouseX - pos.x, 2) + Math.pow(mouseY - pos.y, 2),
+      Math.pow(mouseX - pos.x, 2) + Math.pow(mouseY - pos.y, 2),
     );
 
     // Need to be close and moving fast - no direction requirement
@@ -353,7 +353,7 @@ function checkCollisions() {
 
   for (let block of blocks) {
     if (
-    block.checkSlice(mouseX, mouseY, lastMouseX, lastMouseY, mouseVelocity)
+      block.checkSlice(mouseX, mouseY, lastMouseX, lastMouseY, mouseVelocity)
     ) {
       combo++;
       if (combo > maxCombo) maxCombo = combo;

@@ -165,7 +165,7 @@ function generateVideoGrid() {
   videoGrid.innerHTML = "";
 
   switch (currentView) {
-    case "home":
+  case "home":
     pageTitle.textContent = "Home";
     // Show user videos + fake videos
     userVideos.forEach((video, index) => {
@@ -202,15 +202,15 @@ function generateVideoGrid() {
         </div>
         `;
 
-        return card;
-      }
+    return card;
+  }
 
-      function createUserVideoCard(video, index) {
-        const card = document.createElement("div");
-        card.className = "video-card";
-        card.onclick = () => openUserVideo(video);
+  function createUserVideoCard(video, index) {
+    const card = document.createElement("div");
+    card.className = "video-card";
+    card.onclick = () => openUserVideo(video);
 
-        card.innerHTML = `
+    card.innerHTML = `
         <div class="video-thumbnail user-video">
           <video src="${video.url}" style="pointer-events: none;"></video>
             <div class="video-duration">${video.duration || "0:00"}</div>
@@ -225,224 +225,224 @@ function generateVideoGrid() {
               </div>
               `;
 
-              return card;
-            }
+    return card;
+  }
 
-            // Open fake video player with "haha."
-            function openVideo(video) {
-              currentVideo = video.title;
-              currentChannel = video.channel;
-              const modal = document.getElementById("playerModal");
-              const videoTitle = document.getElementById("videoTitle");
-              const videoViews = document.getElementById("videoViews");
-              const channelName = document.getElementById("channelName");
-              const channelIcon = document.getElementById("channelIcon");
-              const subscriberCount = document.getElementById("subscriberCount");
-              const hahaPlayer = document.querySelector(".haha");
-              const realPlayer = document.getElementById("realVideoPlayer");
+  // Open fake video player with "haha."
+  function openVideo(video) {
+    currentVideo = video.title;
+    currentChannel = video.channel;
+    const modal = document.getElementById("playerModal");
+    const videoTitle = document.getElementById("videoTitle");
+    const videoViews = document.getElementById("videoViews");
+    const channelName = document.getElementById("channelName");
+    const channelIcon = document.getElementById("channelIcon");
+    const subscriberCount = document.getElementById("subscriberCount");
+    const hahaPlayer = document.querySelector(".haha");
+    const realPlayer = document.getElementById("realVideoPlayer");
 
-              // Add to history
-              if (!watchHistory.includes(video.title)) {
-                watchHistory.push(video.title);
-                localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
-              }
+    // Add to history
+    if (!watchHistory.includes(video.title)) {
+      watchHistory.push(video.title);
+      localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
+    }
 
-              videoTitle.textContent = video.title;
-              videoViews.textContent = video.views;
-              channelName.textContent = video.channel;
-              channelIcon.textContent = "AI";
-              subscriberCount.textContent =
+    videoTitle.textContent = video.title;
+    videoViews.textContent = video.views;
+    channelName.textContent = video.channel;
+    channelIcon.textContent = "AI";
+    subscriberCount.textContent =
               Math.floor(Math.random() * 5 + 1) + "M subscribers";
 
-              hahaPlayer.style.display = "flex";
-              realPlayer.style.display = "none";
+    hahaPlayer.style.display = "flex";
+    realPlayer.style.display = "none";
 
-              // Update like/dislike counts and subscribe button
-              updateLikeDislikeUI();
-              updateSubscribeButton();
-              loadComments();
+    // Update like/dislike counts and subscribe button
+    updateLikeDislikeUI();
+    updateSubscribeButton();
+    loadComments();
 
-              modal.style.display = "block";
-            }
+    modal.style.display = "block";
+  }
 
-            function openUserVideo(video) {
-              currentVideo = video.title;
-              currentChannel = "My Channel";
-              const modal = document.getElementById("playerModal");
-              const videoTitle = document.getElementById("videoTitle");
-              const videoViews = document.getElementById("videoViews");
-              const channelName = document.getElementById("channelName");
-              const channelIcon = document.getElementById("channelIcon");
-              const subscriberCount = document.getElementById("subscriberCount");
-              const hahaPlayer = document.querySelector(".haha");
-              const realPlayer = document.getElementById("realVideoPlayer");
+  function openUserVideo(video) {
+    currentVideo = video.title;
+    currentChannel = "My Channel";
+    const modal = document.getElementById("playerModal");
+    const videoTitle = document.getElementById("videoTitle");
+    const videoViews = document.getElementById("videoViews");
+    const channelName = document.getElementById("channelName");
+    const channelIcon = document.getElementById("channelIcon");
+    const subscriberCount = document.getElementById("subscriberCount");
+    const hahaPlayer = document.querySelector(".haha");
+    const realPlayer = document.getElementById("realVideoPlayer");
 
-              // Add to history
-              if (!watchHistory.includes(video.title)) {
-                watchHistory.push(video.title);
-                localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
-              }
+    // Add to history
+    if (!watchHistory.includes(video.title)) {
+      watchHistory.push(video.title);
+      localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
+    }
 
-              videoTitle.textContent = video.title;
-              videoViews.textContent = "1";
-              channelName.textContent = "My Channel";
-              channelIcon.textContent = "ME";
-              subscriberCount.textContent = "0 subscribers";
+    videoTitle.textContent = video.title;
+    videoViews.textContent = "1";
+    channelName.textContent = "My Channel";
+    channelIcon.textContent = "ME";
+    subscriberCount.textContent = "0 subscribers";
 
-              // For user videos, show the actual video
-              hahaPlayer.style.display = "none";
-              realPlayer.style.display = "block";
-              realPlayer.src = video.url;
+    // For user videos, show the actual video
+    hahaPlayer.style.display = "none";
+    realPlayer.style.display = "block";
+    realPlayer.src = video.url;
 
-              // Update like/dislike counts and subscribe button
-              updateLikeDislikeUI();
-              updateSubscribeButton();
-              loadComments();
+    // Update like/dislike counts and subscribe button
+    updateLikeDislikeUI();
+    updateSubscribeButton();
+    loadComments();
 
-              modal.style.display = "block";
-            }
+    modal.style.display = "block";
+  }
 
-            // Like/Dislike functionality
-            function likeVideo() {
-              if (!currentVideo) return;
+  // Like/Dislike functionality
+  function likeVideo() {
+    if (!currentVideo) return;
 
-              if (!videoLikes[currentVideo]) {
-                videoLikes[currentVideo] = {
-                  likes: 0,
-                  dislikes: 0,
-                  userLiked: false,
-                  userDisliked: false,
-                };
-              }
+    if (!videoLikes[currentVideo]) {
+      videoLikes[currentVideo] = {
+        likes: 0,
+        dislikes: 0,
+        userLiked: false,
+        userDisliked: false,
+      };
+    }
 
-              if (videoLikes[currentVideo].userLiked) {
-                // Unlike
-                videoLikes[currentVideo].likes--;
-                videoLikes[currentVideo].userLiked = false;
+    if (videoLikes[currentVideo].userLiked) {
+      // Unlike
+      videoLikes[currentVideo].likes--;
+      videoLikes[currentVideo].userLiked = false;
 
-                // Remove from liked videos
-                const index = likedVideos.indexOf(currentVideo);
-                if (index > -1) {
-                  likedVideos.splice(index, 1);
-                }
-              } else {
-                // Like
-                videoLikes[currentVideo].likes++;
-                videoLikes[currentVideo].userLiked = true;
+      // Remove from liked videos
+      const index = likedVideos.indexOf(currentVideo);
+      if (index > -1) {
+        likedVideos.splice(index, 1);
+      }
+    } else {
+      // Like
+      videoLikes[currentVideo].likes++;
+      videoLikes[currentVideo].userLiked = true;
 
-                // Remove dislike if exists
-                if (videoLikes[currentVideo].userDisliked) {
-                  videoLikes[currentVideo].dislikes--;
-                  videoLikes[currentVideo].userDisliked = false;
-                }
+      // Remove dislike if exists
+      if (videoLikes[currentVideo].userDisliked) {
+        videoLikes[currentVideo].dislikes--;
+        videoLikes[currentVideo].userDisliked = false;
+      }
 
-                // Add to liked videos
-                if (!likedVideos.includes(currentVideo)) {
-                  likedVideos.push(currentVideo);
-                }
-              }
+      // Add to liked videos
+      if (!likedVideos.includes(currentVideo)) {
+        likedVideos.push(currentVideo);
+      }
+    }
 
-              localStorage.setItem("videoLikes", JSON.stringify(videoLikes));
-              localStorage.setItem("likedVideos", JSON.stringify(likedVideos));
-              updateLikeDislikeUI();
-            }
+    localStorage.setItem("videoLikes", JSON.stringify(videoLikes));
+    localStorage.setItem("likedVideos", JSON.stringify(likedVideos));
+    updateLikeDislikeUI();
+  }
 
-            function dislikeVideo() {
-              if (!currentVideo) return;
+  function dislikeVideo() {
+    if (!currentVideo) return;
 
-              if (!videoLikes[currentVideo]) {
-                videoLikes[currentVideo] = {
-                  likes: 0,
-                  dislikes: 0,
-                  userLiked: false,
-                  userDisliked: false,
-                };
-              }
+    if (!videoLikes[currentVideo]) {
+      videoLikes[currentVideo] = {
+        likes: 0,
+        dislikes: 0,
+        userLiked: false,
+        userDisliked: false,
+      };
+    }
 
-              if (videoLikes[currentVideo].userDisliked) {
-                // Remove dislike
-                videoLikes[currentVideo].dislikes--;
-                videoLikes[currentVideo].userDisliked = false;
-              } else {
-                // Dislike
-                videoLikes[currentVideo].dislikes++;
-                videoLikes[currentVideo].userDisliked = true;
+    if (videoLikes[currentVideo].userDisliked) {
+      // Remove dislike
+      videoLikes[currentVideo].dislikes--;
+      videoLikes[currentVideo].userDisliked = false;
+    } else {
+      // Dislike
+      videoLikes[currentVideo].dislikes++;
+      videoLikes[currentVideo].userDisliked = true;
 
-                // Remove like if exists
-                if (videoLikes[currentVideo].userLiked) {
-                  videoLikes[currentVideo].likes--;
-                  videoLikes[currentVideo].userLiked = false;
+      // Remove like if exists
+      if (videoLikes[currentVideo].userLiked) {
+        videoLikes[currentVideo].likes--;
+        videoLikes[currentVideo].userLiked = false;
 
-                  // Remove from liked videos
-                  const index = likedVideos.indexOf(currentVideo);
-                  if (index > -1) {
-                    likedVideos.splice(index, 1);
-                  }
-                }
-              }
+        // Remove from liked videos
+        const index = likedVideos.indexOf(currentVideo);
+        if (index > -1) {
+          likedVideos.splice(index, 1);
+        }
+      }
+    }
 
-              localStorage.setItem("videoLikes", JSON.stringify(videoLikes));
-              localStorage.setItem("likedVideos", JSON.stringify(likedVideos));
-              updateLikeDislikeUI();
-            }
+    localStorage.setItem("videoLikes", JSON.stringify(videoLikes));
+    localStorage.setItem("likedVideos", JSON.stringify(likedVideos));
+    updateLikeDislikeUI();
+  }
 
-            function updateLikeDislikeUI() {
-              const likeBtn = document.getElementById("likeBtn");
-              const dislikeBtn = document.getElementById("dislikeBtn");
-              const likeCount = document.getElementById("likeCount");
-              const dislikeCount = document.getElementById("dislikeCount");
+  function updateLikeDislikeUI() {
+    const likeBtn = document.getElementById("likeBtn");
+    const dislikeBtn = document.getElementById("dislikeBtn");
+    const likeCount = document.getElementById("likeCount");
+    const dislikeCount = document.getElementById("dislikeCount");
 
-              if (!currentVideo || !videoLikes[currentVideo]) {
-                likeCount.textContent = "0";
-                dislikeCount.textContent = "0";
-                likeBtn.style.background = "#3f3f3f";
-                dislikeBtn.style.background = "#3f3f3f";
-                return;
-              }
+    if (!currentVideo || !videoLikes[currentVideo]) {
+      likeCount.textContent = "0";
+      dislikeCount.textContent = "0";
+      likeBtn.style.background = "#3f3f3f";
+      dislikeBtn.style.background = "#3f3f3f";
+      return;
+    }
 
-              const data = videoLikes[currentVideo];
-              likeCount.textContent = formatCount(data.likes);
-              dislikeCount.textContent = formatCount(data.dislikes);
+    const data = videoLikes[currentVideo];
+    likeCount.textContent = formatCount(data.likes);
+    dislikeCount.textContent = formatCount(data.dislikes);
 
-              // Highlight if user liked/disliked
-              likeBtn.style.background = data.userLiked ? "#065fd4" : "#3f3f3f";
-              dislikeBtn.style.background = data.userDisliked ? "#065fd4" : "#3f3f3f";
-            }
+    // Highlight if user liked/disliked
+    likeBtn.style.background = data.userLiked ? "#065fd4" : "#3f3f3f";
+    dislikeBtn.style.background = data.userDisliked ? "#065fd4" : "#3f3f3f";
+  }
 
-            // Comment functionality
-            function addComment() {
-              if (!currentVideo) return;
+  // Comment functionality
+  function addComment() {
+    if (!currentVideo) return;
 
-              const input = document.getElementById("commentInput");
-              const text = input.value.trim();
+    const input = document.getElementById("commentInput");
+    const text = input.value.trim();
 
-              if (!text) return;
+    if (!text) return;
 
-              if (!videoComments[currentVideo]) {
-                videoComments[currentVideo] = [];
-              }
+    if (!videoComments[currentVideo]) {
+      videoComments[currentVideo] = [];
+    }
 
-              videoComments[currentVideo].push({
-                author: "ME",
-                text: text,
-                timestamp: Date.now(),
-              });
+    videoComments[currentVideo].push({
+      author: "ME",
+      text: text,
+      timestamp: Date.now(),
+    });
 
-              localStorage.setItem("videoComments", JSON.stringify(videoComments));
+    localStorage.setItem("videoComments", JSON.stringify(videoComments));
 
-              input.value = "";
-              loadComments();
+    input.value = "";
+    loadComments();
 
-              // Update comment count
-              document.getElementById("commentCount").textContent =
+    // Update comment count
+    document.getElementById("commentCount").textContent =
               videoComments[currentVideo].length + 3;
-            }
+  }
 
-            function loadComments() {
-              const container = document.getElementById("commentsContainer");
+  function loadComments() {
+    const container = document.getElementById("commentsContainer");
 
-              // Default comments
-              let html = `
+    // Default comments
+    let html = `
               <div class="comment">
                 <div class="comment-author">AI Bot #1</div>
                 <div class="comment-text">This is definitely a real video!</div>
@@ -457,230 +457,230 @@ function generateVideoGrid() {
               </div>
               `;
 
-              // Add user comments
-              if (currentVideo && videoComments[currentVideo]) {
-                videoComments[currentVideo].forEach((comment) => {
-                  html += `
+    // Add user comments
+    if (currentVideo && videoComments[currentVideo]) {
+      videoComments[currentVideo].forEach((comment) => {
+        html += `
                   <div class="comment">
                     <div class="comment-author">${comment.author}</div>
                     <div class="comment-text">${comment.text}</div>
                   </div>
                   `;
-                });
+      });
 
-                document.getElementById("commentCount").textContent =
+      document.getElementById("commentCount").textContent =
                 videoComments[currentVideo].length + 3;
-              } else {
-                document.getElementById("commentCount").textContent = "3";
-              }
+    } else {
+      document.getElementById("commentCount").textContent = "3";
+    }
 
-              container.innerHTML = html;
-            }
+    container.innerHTML = html;
+  }
 
-            // Upload functionality
-            document.getElementById("uploadBtn").addEventListener("click", () => {
-              document.getElementById("uploadModal").style.display = "block";
-            });
+  // Upload functionality
+  document.getElementById("uploadBtn").addEventListener("click", () => {
+    document.getElementById("uploadModal").style.display = "block";
+  });
 
-            document.getElementById("closeModal").addEventListener("click", () => {
-              document.getElementById("uploadModal").style.display = "none";
-            });
+  document.getElementById("closeModal").addEventListener("click", () => {
+    document.getElementById("uploadModal").style.display = "none";
+  });
 
-            document.getElementById("submitUpload").addEventListener("click", () => {
-              const fileInput = document.getElementById("videoFile");
-              const titleInput = document.getElementById("uploadVideoTitle");
+  document.getElementById("submitUpload").addEventListener("click", () => {
+    const fileInput = document.getElementById("videoFile");
+    const titleInput = document.getElementById("uploadVideoTitle");
 
-              if (fileInput.files.length > 0 && titleInput.value) {
-                const file = fileInput.files[0];
-                const reader = new FileReader();
+    if (fileInput.files.length > 0 && titleInput.value) {
+      const file = fileInput.files[0];
+      const reader = new FileReader();
 
-                reader.onload = function (e) {
-                  const video = {
-                    title: titleInput.value,
-                    url: e.target.result,
-                    duration: "0:00",
-                  };
+      reader.onload = function (e) {
+        const video = {
+          title: titleInput.value,
+          url: e.target.result,
+          duration: "0:00",
+        };
 
-                  userVideos.push(video);
-                  localStorage.setItem("userVideos", JSON.stringify(userVideos));
+        userVideos.push(video);
+        localStorage.setItem("userVideos", JSON.stringify(userVideos));
 
-                  // Close modal and refresh
-                  document.getElementById("uploadModal").style.display = "none";
-                  fileInput.value = "";
-                  titleInput.value = "";
+        // Close modal and refresh
+        document.getElementById("uploadModal").style.display = "none";
+        fileInput.value = "";
+        titleInput.value = "";
 
-                  generateVideoGrid();
-                };
+        generateVideoGrid();
+      };
 
-                reader.readAsDataURL(file);
-              } else {
-                alert("Please select a video and enter a title!");
-              }
-            });
+      reader.readAsDataURL(file);
+    } else {
+      alert("Please select a video and enter a title!");
+    }
+  });
 
-            // Close player
-            document.getElementById("closePlayer").addEventListener("click", () => {
-              document.getElementById("playerModal").style.display = "none";
-              const realPlayer = document.getElementById("realVideoPlayer");
-              realPlayer.pause();
-              realPlayer.src = "";
-            });
+  // Close player
+  document.getElementById("closePlayer").addEventListener("click", () => {
+    document.getElementById("playerModal").style.display = "none";
+    const realPlayer = document.getElementById("realVideoPlayer");
+    realPlayer.pause();
+    realPlayer.src = "";
+  });
 
-            // Profile button - show user uploads
-            document.getElementById("profileBtn").addEventListener("click", () => {
-              currentView = "library";
-              updateActiveMenuItem();
-              generateVideoGrid();
-            });
+  // Profile button - show user uploads
+  document.getElementById("profileBtn").addEventListener("click", () => {
+    currentView = "library";
+    updateActiveMenuItem();
+    generateVideoGrid();
+  });
 
-            // Sidebar navigation
-            document.querySelectorAll(".sidebar-item[data-view]").forEach((item) => {
-              item.addEventListener("click", function () {
-                currentView = this.getAttribute("data-view");
-                updateActiveMenuItem();
-                generateVideoGrid();
-              });
-            });
+  // Sidebar navigation
+  document.querySelectorAll(".sidebar-item[data-view]").forEach((item) => {
+    item.addEventListener("click", function () {
+      currentView = this.getAttribute("data-view");
+      updateActiveMenuItem();
+      generateVideoGrid();
+    });
+  });
 
-            function updateActiveMenuItem() {
-              document.querySelectorAll(".sidebar-item").forEach((item) => {
-                item.classList.remove("active");
-              });
-              document
-              .querySelector(`.sidebar-item[data-view="${currentView}"]`)
-              ?.classList.add("active");
-            }
+  function updateActiveMenuItem() {
+    document.querySelectorAll(".sidebar-item").forEach((item) => {
+      item.classList.remove("active");
+    });
+    document
+      .querySelector(`.sidebar-item[data-view="${currentView}"]`)
+      ?.classList.add("active");
+  }
 
-            // Close modals when clicking outside
-            window.onclick = function (event) {
-              const uploadModal = document.getElementById("uploadModal");
-              const playerModal = document.getElementById("playerModal");
+  // Close modals when clicking outside
+  window.onclick = function (event) {
+    const uploadModal = document.getElementById("uploadModal");
+    const playerModal = document.getElementById("playerModal");
 
-              if (event.target == uploadModal) {
-                uploadModal.style.display = "none";
-              }
-              if (event.target == playerModal) {
-                playerModal.style.display = "none";
-              }
-            };
+    if (event.target == uploadModal) {
+      uploadModal.style.display = "none";
+    }
+    if (event.target == playerModal) {
+      playerModal.style.display = "none";
+    }
+  };
 
-            // Update sidebar with user videos
-            function updateSidebarVideos() {
-              const list = document.getElementById("myVideosList");
-              list.innerHTML = "";
+  // Update sidebar with user videos
+  function updateSidebarVideos() {
+    const list = document.getElementById("myVideosList");
+    list.innerHTML = "";
 
-              userVideos.forEach((video, index) => {
-                const item = document.createElement("div");
-                item.className = "sidebar-item";
-                item.textContent = `📹 ${video.title.substring(0, 20)}${video.title.length > 20 ? "..." : ""}`;
-                item.onclick = () => openUserVideo(video);
-                list.appendChild(item);
-              });
-            }
+    userVideos.forEach((video, index) => {
+      const item = document.createElement("div");
+      item.className = "sidebar-item";
+      item.textContent = `📹 ${video.title.substring(0, 20)}${video.title.length > 20 ? "..." : ""}`;
+      item.onclick = () => openUserVideo(video);
+      list.appendChild(item);
+    });
+  }
 
-            // Search functionality (just for show)
-            document.getElementById("searchInput").addEventListener("keypress", (e) => {
-              if (e.key === "Enter") {
-                const query = e.target.value;
-                if (query) {
-                  alert(`Searching for "${query}"... haha. (Nothing actually happens)`);
-                }
-              }
-            });
+  // Search functionality (just for show)
+  document.getElementById("searchInput").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      const query = e.target.value;
+      if (query) {
+        alert(`Searching for "${query}"... haha. (Nothing actually happens)`);
+      }
+    }
+  });
 
-            // Filter chips (just for show)
-            document.querySelectorAll(".chip").forEach((chip) => {
-              chip.addEventListener("click", function () {
-                document
-                .querySelectorAll(".chip")
-                .forEach((c) => c.classList.remove("active"));
-                this.classList.add("active");
-              });
-            });
+  // Filter chips (just for show)
+  document.querySelectorAll(".chip").forEach((chip) => {
+    chip.addEventListener("click", function () {
+      document
+        .querySelectorAll(".chip")
+        .forEach((c) => c.classList.remove("active"));
+      this.classList.add("active");
+    });
+  });
 
-            // Subscription functionality
-            function toggleSubscribe() {
-              if (!currentChannel) return;
+  // Subscription functionality
+  function toggleSubscribe() {
+    if (!currentChannel) return;
 
-              const index = subscriptions.indexOf(currentChannel);
+    const index = subscriptions.indexOf(currentChannel);
 
-              if (index > -1) {
-                // Unsubscribe
-                subscriptions.splice(index, 1);
-              } else {
-                // Subscribe
-                subscriptions.push(currentChannel);
-              }
+    if (index > -1) {
+      // Unsubscribe
+      subscriptions.splice(index, 1);
+    } else {
+      // Subscribe
+      subscriptions.push(currentChannel);
+    }
 
-              localStorage.setItem("subscriptions", JSON.stringify(subscriptions));
-              updateSubscribeButton();
-              updateSubscriptionsList();
-            }
+    localStorage.setItem("subscriptions", JSON.stringify(subscriptions));
+    updateSubscribeButton();
+    updateSubscriptionsList();
+  }
 
-            function updateSubscribeButton() {
-              const subscribeBtn = document.getElementById("subscribeBtn");
+  function updateSubscribeButton() {
+    const subscribeBtn = document.getElementById("subscribeBtn");
 
-              if (!currentChannel) return;
+    if (!currentChannel) return;
 
-              if (subscriptions.includes(currentChannel)) {
-                subscribeBtn.textContent = "Subscribed";
-                subscribeBtn.classList.add("subscribed");
-              } else {
-                subscribeBtn.textContent = "Subscribe";
-                subscribeBtn.classList.remove("subscribed");
-              }
+    if (subscriptions.includes(currentChannel)) {
+      subscribeBtn.textContent = "Subscribed";
+      subscribeBtn.classList.add("subscribed");
+    } else {
+      subscribeBtn.textContent = "Subscribe";
+      subscribeBtn.classList.remove("subscribed");
+    }
 
-              // Don't show subscribe button for own channel
-              if (currentChannel === "My Channel") {
-                subscribeBtn.style.display = "none";
-              } else {
-                subscribeBtn.style.display = "block";
-              }
-            }
+    // Don't show subscribe button for own channel
+    if (currentChannel === "My Channel") {
+      subscribeBtn.style.display = "none";
+    } else {
+      subscribeBtn.style.display = "block";
+    }
+  }
 
-            function updateSubscriptionsList() {
-              const list = document.getElementById("subscriptionsList");
-              list.innerHTML = "";
+  function updateSubscriptionsList() {
+    const list = document.getElementById("subscriptionsList");
+    list.innerHTML = "";
 
-              if (subscriptions.length === 0) {
-                list.innerHTML =
+    if (subscriptions.length === 0) {
+      list.innerHTML =
                 "<div class=\"sidebar-item\" style=\"color: #aaa; font-size: 12px;\">No subscriptions yet</div>";
-                return;
-              }
+      return;
+    }
 
-              subscriptions.forEach((channel) => {
-                const item = document.createElement("div");
-                item.className = "sidebar-item";
-                item.textContent = channel;
-                item.onclick = () => {
-                  // Filter videos by this channel
-                  currentView = "subscriptions";
-                  filterByChannel(channel);
-                };
-                list.appendChild(item);
-              });
-            }
+    subscriptions.forEach((channel) => {
+      const item = document.createElement("div");
+      item.className = "sidebar-item";
+      item.textContent = channel;
+      item.onclick = () => {
+        // Filter videos by this channel
+        currentView = "subscriptions";
+        filterByChannel(channel);
+      };
+      list.appendChild(item);
+    });
+  }
 
-            function filterByChannel(channel) {
-              const videoGrid = document.getElementById("videoGrid");
-              const pageTitle = document.getElementById("pageTitle");
-              videoGrid.innerHTML = "";
-              pageTitle.textContent = channel;
+  function filterByChannel(channel) {
+    const videoGrid = document.getElementById("videoGrid");
+    const pageTitle = document.getElementById("pageTitle");
+    videoGrid.innerHTML = "";
+    pageTitle.textContent = channel;
 
-              const channelVideos = fakeVideos.filter((v) => v.channel === channel);
+    const channelVideos = fakeVideos.filter((v) => v.channel === channel);
 
-              if (channelVideos.length === 0) {
-                videoGrid.innerHTML =
+    if (channelVideos.length === 0) {
+      videoGrid.innerHTML =
                 "<p style=\"color: #aaa; font-size: 18px; padding: 40px;\">No videos from this channel.</p>";
-              } else {
-                channelVideos.forEach((video) => {
-                  const card = createFakeVideoCard(video, 0);
-                  videoGrid.appendChild(card);
-                });
-              }
-            }
+    } else {
+      channelVideos.forEach((video) => {
+        const card = createFakeVideoCard(video, 0);
+        videoGrid.appendChild(card);
+      });
+    }
+  }
 
-            // Initialize
-            generateVideoGrid();
-            updateSubscriptionsList();
-          }
+  // Initialize
+  generateVideoGrid();
+  updateSubscriptionsList();
+}

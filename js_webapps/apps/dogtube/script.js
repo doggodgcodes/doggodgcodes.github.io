@@ -11,7 +11,7 @@ let subscriberCount = "???";
 async function fetchSubscriberCount() {
   try {
     const response = await fetch(
-    `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`,
+      `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${CHANNEL_ID}&key=${YOUTUBE_API_KEY}`,
     );
     const data = await response.json();
     if (data.items && data.items.length > 0) {
@@ -55,7 +55,7 @@ async function fetchVideos() {
 
       // Get view count from media:statistics
       const statsElement = entry.querySelector(
-      "media\\:statistics, statistics",
+        "media\\:statistics, statistics",
       );
       const views = statsElement?.getAttribute("views") || "0";
 
@@ -114,8 +114,8 @@ function displayVideos() {
     card.onclick = () => openVideo(video);
 
     const avatarImg = channelAvatar
-    ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile" style="width: 36px; height: 36px; border-radius: 50%;">`
-    : "";
+      ? `<img src="${channelAvatar}" alt="DoggoWing21 Profile" style="width: 36px; height: 36px; border-radius: 50%;">`
+      : "";
 
     card.innerHTML = `
     <div class="thumbnail">
@@ -145,51 +145,51 @@ function displayVideos() {
     Visit DoggoWing21's channel on YouTube →
     </a>
     `;
-    grid.appendChild(moreContent);
+  grid.appendChild(moreContent);
+}
+
+function updateChannelStats() {
+  const statsElement = document.querySelector(".channel-stats");
+  if (statsElement) {
+    statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
   }
+}
 
-  function updateChannelStats() {
-    const statsElement = document.querySelector(".channel-stats");
-    if (statsElement) {
-      statsElement.textContent = `@flyingdogwithapencil • ${subscriberCount} subscribers • ${videos.length} videos • ${viewCount} views`;
-    }
+function updateChannelAvatar() {
+  const headerAvatar = document.querySelector(".channel-avatar");
+  if (headerAvatar && channelAvatar) {
+    headerAvatar.innerHTML = `<img src="${channelAvatar}" alt="DoggoWing21" style="width: 80px; height: 80px; border-radius: 50%;">`;
   }
+}
 
-  function updateChannelAvatar() {
-    const headerAvatar = document.querySelector(".channel-avatar");
-    if (headerAvatar && channelAvatar) {
-      headerAvatar.innerHTML = `<img src="${channelAvatar}" alt="DoggoWing21" style="width: 80px; height: 80px; border-radius: 50%;">`;
-    }
+function openVideo(video) {
+  const modal = document.getElementById("videoModal");
+  const player = document.getElementById("videoPlayer");
+  const title = document.getElementById("modalVideoTitle");
+
+  player.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  title.textContent = video.title;
+
+  modal.classList.add("active");
+}
+
+function closeModal() {
+  const modal = document.getElementById("videoModal");
+  const player = document.getElementById("videoPlayer");
+
+  player.innerHTML = "";
+  modal.classList.remove("active");
+}
+
+// Close modal when clicking outside
+document.getElementById("videoModal")?.addEventListener("click", (e) => {
+  if (e.target.id === "videoModal") {
+    closeModal();
   }
+});
 
-  function openVideo(video) {
-    const modal = document.getElementById("videoModal");
-    const player = document.getElementById("videoPlayer");
-    const title = document.getElementById("modalVideoTitle");
-
-    player.innerHTML = `<iframe src="https://www.youtube.com/embed/${video.id}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-    title.textContent = video.title;
-
-    modal.classList.add("active");
-  }
-
-  function closeModal() {
-    const modal = document.getElementById("videoModal");
-    const player = document.getElementById("videoPlayer");
-
-    player.innerHTML = "";
-    modal.classList.remove("active");
-  }
-
-  // Close modal when clicking outside
-  document.getElementById("videoModal")?.addEventListener("click", (e) => {
-    if (e.target.id === "videoModal") {
-      closeModal();
-    }
-  });
-
-  // Load videos and subscriber count on page load
-  document.addEventListener("DOMContentLoaded", async () => {
-    await fetchSubscriberCount();
-    await fetchVideos();
-  });
+// Load videos and subscriber count on page load
+document.addEventListener("DOMContentLoaded", async () => {
+  await fetchSubscriberCount();
+  await fetchVideos();
+});
