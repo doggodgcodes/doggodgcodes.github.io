@@ -322,6 +322,7 @@ p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer >
   margin: 0 auto;
 }
 .container-main {
+  background-color: var(--bg-color);
   padding: 25px;
   margin: 0 auto;
   box-sizing: border-box;
