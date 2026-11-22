@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
 /* aero type font */
 :root {
-  --bg-color: blueviolet;
+  --bg-color: rgb(117, 18, 210);
 }
 body {
   background-color: var(--bg-color); /* was #142079 */
