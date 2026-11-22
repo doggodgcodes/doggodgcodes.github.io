@@ -280,7 +280,7 @@ hr {
 }
 .sans-serif {
   letter-spacing: -1px;
-  font-family: sans-serif !important;
+  font-family: "Tahoma", sans-serif !important;
 }
 .anim-title {
   animation: font 2s ease-in-out infinite alternate;
