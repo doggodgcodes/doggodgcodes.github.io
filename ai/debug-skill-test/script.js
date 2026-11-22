@@ -1,11 +1,11 @@
 const defaultThings = [
-  { id: "NS-104", title: "Stop duplicate welcome emails", category: "Engineering", priority: "High", assignee: "Maya Chen", dueDate: "2026-11-25", status: "in-progress" },
-  { id: "NS-105", title: "Update the empty search state", category: "Design", priority: "Medium", assignee: "Leo Park", dueDate: "2026-11-28", status: "open" },
-  { id: "NS-106", title: "Review November support tags", category: "Operations", priority: "Low", assignee: "Alex Morgan", dueDate: "2026-11-30", status: "open" },
-  { id: "NS-107", title: "Fix invoice download on mobile", category: "Engineering", priority: "High", assignee: "Jordan Lee", dueDate: "2026-11-24", status: "open" },
-  { id: "NS-108", title: "Document account recovery steps", category: "Support", priority: "Medium", assignee: "Sam Rivera", dueDate: "2026-12-02", status: "done" },
-  { id: "NS-109", title: "Check new dashboard spacing", category: "Design", priority: "Low", assignee: "Maya Chen", dueDate: "2026-11-27", status: "in-progress" },
-  { id: "NS-110", title: "Archive last quarter's reports", category: "Operations", priority: "Medium", assignee: "Alex Morgan", dueDate: "2026-12-04", status: "done" },
+  { id: "NS-104", title: "Stop duplicate welcome emails", category: "Engineering", priority: "High", assignee: "m", dueDate: "2026-11-25", status: "in-progress" },
+  { id: "NS-105", title: "Update the empty search state", category: "Design", priority: "Medium", assignee: "l", dueDate: "2026-11-28", status: "open" },
+  { id: "NS-106", title: "Review November support tags", category: "Operations", priority: "Low", assignee: "a", dueDate: "2026-11-30", status: "open" },
+  { id: "NS-107", title: "Fix invoice download on mobile", category: "Engineering", priority: "High", assignee: "j", dueDate: "2026-11-24", status: "open" },
+  { id: "NS-108", title: "Document account recovery steps", category: "Support", priority: "Medium", assignee: "s", dueDate: "2026-12-02", status: "done" },
+  { id: "NS-109", title: "Check new dashboard spacing", category: "Design", priority: "Low", assignee: "m", dueDate: "2026-11-27", status: "in-progress" },
+  { id: "NS-110", title: "Archive last quarter's reports", category: "Operations", priority: "Medium", assignee: "a", dueDate: "2026-12-04", status: "done" },
 ];
 
 let bigOldList = JSON.parse(localStorage.getItem("nsTasks") || "null") || defaultThings;
