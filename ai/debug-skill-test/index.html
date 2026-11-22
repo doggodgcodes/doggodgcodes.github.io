@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A deliberately buggy JavaScript codebase for practicing real-world debugging.">
+    <title>Debug Skill Test — Desk</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./"><span class="brand-mark">N</span> northstar <span>desk</span></a>
+      <span class="workspace-label">SUPPORT WORKSPACE</span>
+    </header>
+
+    <main class="page">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">INTERNAL TOOLS / DEBUGGING SKILL TEST</p>
+          <h1>Good luck, <span>you'll need it.</span></h1>
+          <p class="muted">A tiny ticket tracker with a suspicious number of problems.</p>
+        </div>
+        <a class="source-link" href="script.js" target="_blank" rel="noopener">View the JavaScript ↗</a>
+      </section>
+
+      <section class="brief">
+        <h2>Your assignment</h2>
+        <p>Fix the existing code in <code>script.js</code>. Keep the app working and make it behave like a real task tracker. No need to rewrite it from scratch.</p>
+        <ul>
+          <li>Search titles and assignees, without caring about capitalization.</li>
+          <li>Category and status filters show only matching tasks; sorting orders tasks correctly.</li>
+          <li>Counts reflect the current tasks and their actual statuses.</li>
+          <li>Adding a task keeps its details in the right places.</li>
+          <li>Completing or removing a task affects the task you clicked.</li>
+          <li>Your changes are still there after you refresh.</li>
+        </ul>
+        <p class="note">Edit the files in your workspace, then refresh this page to test your changes. The app is the test.</p>
+      </section>
+
+      <section class="stats" aria-label="Task summary">
+        <article><span>TOTAL TASKS</span><strong id="totalCount">—</strong><small>across all teams</small></article>
+        <article><span>OPEN</span><strong id="openCount">—</strong><small>ready to pick up</small></article>
+        <article><span>IN PROGRESS</span><strong id="progressCount">—</strong><small>being worked on</small></article>
+        <article><span>COMPLETED</span><strong id="doneCount">—</strong><small>shipped and done</small></article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">THE WHOLE TEAM, PROBABLY</p><h2>Task queue</h2></div>
+          <label class="search">Search tasks
+            <input id="searchBox" type="search" placeholder="Search..." autocomplete="off">
+          </label>
+        </div>
+
+        <div class="toolbar">
+          <label>Category
+            <select id="categoryFilter">
+              <option value="all">All categories</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Design">Design</option>
+              <option value="Operations">Operations</option>
+              <option value="Support">Support</option>
+            </select>
+          </label>
+          <label>Status
+            <select id="statusFilter">
+              <option value="all">All statuses</option>
+              <option value="open">Open</option>
+              <option value="in-progress">In progress</option>
+              <option value="done">Completed</option>
+            </select>
+          </label>
+          <label>Sort by
+            <select id="sortBy">
+              <option value="dueDate">Due date</option>
+              <option value="priority">Priority</option>
+              <option value="title">Title</option>
+            </select>
+          </label>
+          <span id="visibleCount">Loading tasks...</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>TASK</th><th>CATEGORY</th><th>PRIORITY</th>
+                <th>ASSIGNEE</th><th>DUE DATE</th><th>STATUS</th><th></th>
+              </tr>
+            </thead>
+            <tbody id="taskRows"></tbody>
+          </table>
+          <div class="empty-state" id="emptyState" hidden>
+            <strong>No tasks found</strong>
+            <p>Try changing a filter or add a new task.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel add-panel">
+        <p class="eyebrow">ONE MORE THING</p>
+        <h2>Add a task</h2>
+        <form id="newTaskForm">
+          <label class="wide">Task title
+            <input id="newTitle" type="text" placeholder="What needs doing?" required>
+          </label>
+          <label>Category
+            <select id="newCategory">
+              <option>Engineering</option><option>Design</option>
+              <option>Operations</option><option>Support</option>
+            </select>
+          </label>
+          <label>Assignee
+            <input id="newAssignee" type="text" placeholder="Name">
+          </label>
+          <label>Due date
+            <input id="newDueDate" type="date">
+          </label>
+          <button type="submit">Add task +</button>
+        </form>
+      </section>
+
+      <footer><span>DESK · BUILD 0.9.4</span><span>Something's a little off. That's the point.</span></footer>
+    </main>
+  </body>
+</html>
