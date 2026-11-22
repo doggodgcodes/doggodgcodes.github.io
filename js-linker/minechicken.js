@@ -54,8 +54,6 @@ document.body.appendChild(script2);
 
 console.log("Appended Trail.js");
 
-backgroundGif = "body { background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjIzaTZ2aDVhbGZmZGxmNjFwa3JvcWNtZDF5MjFuZXRid3hzNTh6YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9PrqNHPAdWyJVOXntF/giphy.webp'); }";
-
 const gif = document.createElement("style");
 gif.textContent = `
 body::before {
@@ -66,7 +64,7 @@ body::before {
   width: 100%;
   height: 100vh;
   background-repeat: repeat;
-  background-image: url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnBlbXkweGgyaHUzZThqdjQ3bnNwYjhzaWZlMXUxbHh2OGJiYzJmcSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y4nk5bgwpWL6T5Ax9y/giphy.gif');
+  background-image: url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjIzaTZ2aDVhbGZmZGxmNjFwa3JvcWNtZDF5MjFuZXRid3hzNTh6YyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/9PrqNHPAdWyJVOXntF/giphy.webp');
   z-index: -1;
 }
 h1, .subtitle { color: white; text-shadow: 0px 0px 10px black; }
