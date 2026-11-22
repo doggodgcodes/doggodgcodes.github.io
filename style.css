@@ -243,12 +243,6 @@ hr {
   background: linear-gradient(to bottom, #3B6EA5, #00804F);
   margin: 0 auto;
 }
-.panel {
-  background-color: rgba(0, 36, 135, 0.5);
-  border: solid 3px;
-  border-color: rgba(0, 6, 177, 0.5);
-  padding: 10px;
-}
 .hind-light {
   font-family: "Hind", sans-serif;
   font-weight: 300;
@@ -278,6 +272,13 @@ hr {
   font-weight: 700;
   font-style: normal;
 }
+/* style v3 and v4 */
+.panel {
+  background-color: rgba(76, 0, 135, 0.5);
+  border: solid 3px;
+  border-color: rgba(115, 0, 177, 0.5);
+  padding: 10px;
+}
 .sans-serif {
   letter-spacing: -1px;
   font-family: "Tahoma", sans-serif !important;
@@ -287,17 +288,17 @@ hr {
 }
 @keyframes font {
   from {
-    letter-spacing: -5px;
+    letter-spacing: -1px;
   }
   to {
-    letter-spacing: -3px;
+    letter-spacing: 1px;
   }
 }
 h1.sans-serif {
-  letter-spacing: -3px;
+  letter-spacing: -1px;
 }
 p.sans-serif, a.sans-serif, .sans-serif.p, .sans-serif.a, .sans-serif > p, .sans-serif > a {
-  letter-spacing: -1px;
+  letter-spacing: 0px;
 }
 p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer > div > div > p > a, footer.div.div.p.a, .no-margin {
   margin: 0;
