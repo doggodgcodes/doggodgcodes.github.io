@@ -1,7 +1,7 @@
 const CounterDisplay = document.getElementById("counter");
 const hate = document.getElementById("ihatearray");
 let array = ["item"];
-let number = 0;
+let number = 1;
 
 function loop() {
   CounterDisplay.innerText = `length of array (WE LOVE YOUR RAM, SERVE US MORE DISHES OF RAM): ${array.length}`;
@@ -10,10 +10,10 @@ function loop() {
   }
 }
 
+setInterval(loop, 1);
+
 hate.addEventListener("click", e => function(){
   array = [];
   console.log("it works");
   number++;
 });
-
-setInterval(loop, 1);
