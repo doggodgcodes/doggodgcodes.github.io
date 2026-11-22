@@ -1,5 +1,5 @@
 const CounterDisplay = document.getElementById("counter");
-const HateArrayBtn = document.getElementById("ihatearray");
+const hate = document.getElementById("ihatearray");
 let array = ["item"];
 let number = 0;
 
@@ -10,7 +10,7 @@ function loop() {
   }
 }
 
-document.addEventListener("click", e => function(){
+hate.addEventListener("click", e => function(){
   array = [];
   console.log("it works");
   number++;
