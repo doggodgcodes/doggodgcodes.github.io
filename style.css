@@ -3,8 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Shizuru&family=VT323&family=Noto+Sans+Lao&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
 /* aero type font */
+:root {
+  --bg-color: blueviolet;
+}
 body {
-  background-color: #142079;
+  background-color: var(--bg-color); /* was #142079 */
   padding: 25px;
   -webkit-font-smoothing: antialiased;
   font-family: "Segoe UI", "Hind", -apple-system, BlinkMacSystemFont, "Noto Sans Lao", "Verdana", sans-serif;
@@ -225,24 +228,6 @@ hr {
   border-color: white;
   border-radius: 3px;
 }
-.gradient-top {
-  background: linear-gradient(to bottom, #f8f8fa, #3B6EA5);
-  margin: 0 auto;
-}
-.container-main {
-  padding: 25px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-.footer {
-  /* background-color: navy; */
-  /* background-color: rgba(0, 128, 79, 0.5); */
-  padding: 25px;
-}
-.gradient-bottom {
-  background: linear-gradient(to bottom, #3B6EA5, #00804F);
-  margin: 0 auto;
-}
 .hind-light {
   font-family: "Hind", sans-serif;
   font-weight: 300;
@@ -272,7 +257,9 @@ hr {
   font-weight: 700;
   font-style: normal;
 }
-/* style v3 and v4 */
+/* 
+style v3 and v4
+*/
 .panel {
   background-color: rgba(76, 0, 135, 0.5);
   border: solid 3px;
@@ -329,4 +316,22 @@ p > a, p.a, div > p > a, div.p.a, footer > div > p > a, footer.div.p.a, footer >
   100% {
     transform: rotateX(10deg) rotateY(10deg);
   }
+}
+.gradient-top {
+  background: linear-gradient(to bottom, #ffffff, var(--bg-color));
+  margin: 0 auto;
+}
+.container-main {
+  padding: 25px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.footer {
+  /* background-color: navy; */
+  /* background-color: rgba(0, 128, 79, 0.5); */
+  padding: 25px;
+}
+.gradient-bottom {
+  background: linear-gradient(to bottom, var(--bg-color), #200080);
+  margin: 0 auto;
 }
