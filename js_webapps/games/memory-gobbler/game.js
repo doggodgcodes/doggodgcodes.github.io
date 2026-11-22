@@ -12,7 +12,7 @@ function loop() {
 
 setInterval(loop, 1);
 
-hate.addEventListener("click", e => function(){
+hate.addEventListener("click", function(){
   array = [];
   console.log("it works");
   number++;
