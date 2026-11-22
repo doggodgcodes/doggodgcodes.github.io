@@ -8,11 +8,11 @@ const defaultThings = [
   { id: "NS-110", title: "Archive last quarter's reports", category: "Operations", priority: "Medium", assignee: "Alex Morgan", dueDate: "2026-12-04", status: "done" },
 ];
 
-let bigOldList = JSON.parse(localStorage.getItem("northstarTasks") || "null") || defaultThings;
+let bigOldList = JSON.parse(localStorage.getItem("nsTasks") || "null") || defaultThings;
 let currentMess = document.getElementById("taskRows");
 
 function saveTheStuff() {
-  localStorage.setItem("northstarTask", JSON.stringify(bigOldList));
+  localStorage.setItem("nsTasks", JSON.stringify(bigOldList));
 }
 
 function drawTheWholeThing() {
