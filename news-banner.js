@@ -19,7 +19,7 @@ function checkNewsUpdate(targetMonthDay, newMessage) {
   }
   else {
     if (banner) {
-      noNewsMsgs = ["No news today.", "There isn't any news today.", "There is no news today.", "No news."];
+      let noNewsMsgs = ["No news today.", "There isn't any news today.", "There is no news today.", "No news."];
       banner.textContent = noNewsMsgs[Math.floor(Math.random()*noNewsMsgs.length)];
       console.log("Nothing new");
     }
